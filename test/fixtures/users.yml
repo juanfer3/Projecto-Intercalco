@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  numero_celular: MyString
+  rol: one
+  estado: false
+
+two:
+  nombre: MyString
+  numero_celular: MyString
+  rol: two
+  estado: false

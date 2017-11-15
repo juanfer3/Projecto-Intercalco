@@ -1,16 +1,12 @@
-# Be sure to restart your server when you modify this file.
+ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
-# Add new inflection rules using the following format. Inflections
-# are locale specific, and you may define rules for as many different
-# locales as you wish. All of these examples are active by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.plural /^(ox)$/i, '\1en'
-#   inflect.singular /^(ox)en/i, '\1'
-#   inflect.irregular 'person', 'people'
-#   inflect.uncountable %w( fish sheep )
-# end
+  inflect.irregular 'rol', 'roles'
+  inflect.irregular 'cargo', 'cargos'
+  inflect.irregular 'estado', 'estados'
+  inflect.irregular 'nombre', 'nombres'
+  inflect.irregular 'usuario', 'usuarios'
+  inflect.irregular 'correo', 'correos'
+  inflect.irregular 'user', 'users'
+  inflect.irregular 'celular', 'celular'
 
-# These inflection rules are supported but not enabled by default:
-# ActiveSupport::Inflector.inflections(:en) do |inflect|
-#   inflect.acronym 'RESTful'
-# end
+ end
