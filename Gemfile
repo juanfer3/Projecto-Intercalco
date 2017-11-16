@@ -72,4 +72,5 @@ gem 'devise-bootstrap-views'
 gem 'devise-i18n'
 
 
+gem 'toastr-rails'
 gem "font-awesome-rails"

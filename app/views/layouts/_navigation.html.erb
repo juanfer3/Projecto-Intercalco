@@ -1,9 +1,56 @@
 <%# navigation styled for Bootstrap 4.0 %>
-<!-- Image and text -->
-<nav class="navbar navbar-light bg-light my_nav">
-  <a class="navbar-brand" href="#">
 
-  
-    Intercalco
-  </a>
-</nav>
+<!-- Admind  -->
+  <% if user_signed_in? %>
+    <nav class="navbar navbar-light bg-light my_nav">
+      
+      <a class="navbar-brand" href="#">
+        Intercalco
+      </a>
+      
+      <div class="form-inline">
+        
+        <a class="navbar-brand" href="#">
+          <%= link_to 'Usuarios', users_path, class:'navbar-brand' %>
+        </a>
+        <a class="navbar-brand" href="#">
+          <%= link_to 'Roles', roles_path, class:'navbar-brand' %>
+        </a>
+        <a class="navbar-brand" href="#">
+          Pedidos
+        </a>
+        
+      <div class="nav-item dropdown">
+        
+        <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown" 
+        role="button" data-toggle="dropdown" 
+        aria-haspopup="true" 
+        aria-expanded="false"type=""><span  ></span>Juan Fernando Villadiego</button>
+        
+        
+        
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to '<button type="button" class="btn btn-outline-danger btn-lg btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+      
+        
+      </div>
+    </nav>
+  <%else%>
+<!--/ Admind -->
+
+
+<!-- UserNull -->
+    <nav class="navbar navbar-light bg-light my_nav">
+      
+      <a class="navbar-brand" href="#">
+        Intercalco
+      </a>
+      
+    </nav>
+<!--/UserNull  -->
+  <%end%>
