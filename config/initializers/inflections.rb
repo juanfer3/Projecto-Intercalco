@@ -8,5 +8,13 @@
   inflect.irregular 'correo', 'correos'
   inflect.irregular 'user', 'users'
   inflect.irregular 'celular', 'celular'
-
+  inflect.irregular 'cliente', 'clientes'
+  inflect.irregular 'nit', 'nits'
+  inflect.irregular 'nombre_contacto', 'nombres_contactos'
+  inflect.irregular 'telefono', 'telefonos'
+  inflect.irregular 'correo', 'correos'
+  inflect.irregular 'direccion', 'direcciones'
+  inflect.irregular 'contacto', 'contactos'
+  
+  
  end

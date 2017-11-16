@@ -1,33 +1,52 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Numero celular</th>
-      <th>Rol</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody class="">
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.nombre %></td>
-        <td><%= user.numero_celular %></td>
-        <td><%= user.rol.cargo %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h1>Usuarios</h1>
 
 
 
-<%= link_to 'New User', new_user_path %>
+
+<div class="row my_users">
+ <% @users.each do |user| %> 
+  <div class="col-sm">
+    
+    <div class="card border-secondary mb-3" style="max-width: 20rem;">
+      
+        <div class="card-header">
+          <%= user.nombre %>
+        </div>
+        
+          <div class="card-body text-secondary">
+            
+            <h4 class="card-title">Información General</h4>
+            <p class="card-text">
+              Celular: <%= user.numero_celular %>
+            </p>
+            <p class="card-text">
+              Usuario: <%= user.email %>
+            </p>
+            <p class="card-text">
+              Cargo: <%= user.rol.cargo %>
+            </p>
+            
+          </div>
+          
+          <div class="card-footer bg-transparent border-secondary">
+            <div class="my_users_btn_options">
+              <%= link_to '<button type="button" class="btn btn-outline-warning">Ver</button>'.html_safe, user %>
+              <%= link_to '<button type="button" class="btn btn-outline-success">Editar</button>'.html_safe, edit_user_path(user) %>
+              <%= link_to '<button type="button" class="btn btn-outline-danger">Eliminar</button>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          </div>
+          
+        </div>
+        
+  </div>
+  <% end %>
+
+</div>
+
+
+
+<div class="btn pull-right">
+  <%= link_to '<button type="button" class="btn btn-outline-dark">Nuevo</button>'.html_safe, new_user_path %>
+</div>
