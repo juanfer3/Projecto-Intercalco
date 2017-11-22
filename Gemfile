@@ -62,8 +62,9 @@ gem "jquery-ui-rails"
 gem 'jquery-rails'
 
 gem 'rails_layout'
-  
-gem 'will_paginate-bootstrap'
+
+gem 'will_paginate', github: 'jonatack/will_paginate'
+gem 'will_paginate-bootstrap4'
 gem 'simple_form'
 
 gem 'devise'

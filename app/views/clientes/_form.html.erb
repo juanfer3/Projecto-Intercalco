@@ -1,0 +1,22 @@
+<%= simple_form_for(@cliente) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :nombre %>
+    <%= f.input :nit %>
+    <%= f.input :direccion %>
+    <%= f.input :telefono %>
+    <%= f.input :correo %>
+    <%= f.association :user %>
+    <%= f.input :estado %>
+    <%=f.fields_for :contactos do |contc|%>
+    
+       <%= render 'contacto_fields', f:contc%>
+       
+    <%end%>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
