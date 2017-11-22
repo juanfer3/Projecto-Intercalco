@@ -1,0 +1,15 @@
+<%= simple_form_for(@tiempos_de_entrega) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :pedido %>
+    <%= f.input :cantidad %>
+    <%= f.input :fecha_compromiso %>
+    <%= f.input :precio %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

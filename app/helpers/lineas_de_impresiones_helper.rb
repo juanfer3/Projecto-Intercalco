@@ -1,0 +1,2 @@
+module LineasDeImpresionesHelper
+end

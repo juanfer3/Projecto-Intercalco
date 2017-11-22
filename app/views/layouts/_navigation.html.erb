@@ -16,11 +16,13 @@
         <a class="navbar-brand" href="#">
           <%= link_to 'Roles', roles_path, class:'navbar-brand' %>
         </a>
+        
+        
         <a class="navbar-brand" href="#">
-          <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+          <%= link_to 'Pedidos', pedidos_path, class:'navbar-brand' %>
         </a>
         <a class="navbar-brand" href="#">
-          <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
+          <%= link_to 'Tiempos de Entregas', tiempos_de_entregas_path, class:'navbar-brand' %>
         </a>
         
       <div class="nav-item dropdown">
@@ -34,8 +36,21 @@
         
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">
+          <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+        </a>
           <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+          <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
+        </a>
+        <a class="dropdown-item" href="#">
+          <%= link_to 'Facturas', facturas_path, class:'navbar-brand' %>
+        </a>
+          <a class="dropdown-item" href="#">
+          <%= link_to 'Despachos', despachos_path, class:'navbar-brand' %>
+        </a>
           <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
           <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
           
         </div>

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pedidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contacto</th>
+      <th>Factura</th>
+      <th>Despacho</th>
+      <th>Producto</th>
+      <th>Tipo de trabajo</th>
+      <th>Condicion de pedido</th>
+      <th>Fecha entrega</th>
+      <th>Fecha de pedido</th>
+      <th>Numero cotizacion</th>
+      <th>Numero de pedido</th>
+      <th>Linea de impresion</th>
+      <th>Forma de pago</th>
+      <th>Arte</th>
+      <th>Descripcion</th>
+      <th>Estado pedido</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+      <tr>
+        <td><%= pedido.contacto %></td>
+        <td><%= pedido.factura %></td>
+        <td><%= pedido.despacho %></td>
+        <td><%= pedido.producto %></td>
+        <td><%= pedido.tipo_de_trabajo %></td>
+        <td><%= pedido.condicion_de_pedido %></td>
+        <td><%= pedido.fecha_entrega %></td>
+        <td><%= pedido.fecha_de_pedido %></td>
+        <td><%= pedido.numero_cotizacion %></td>
+        <td><%= pedido.numero_de_pedido %></td>
+        <td><%= pedido.linea_de_impresion %></td>
+        <td><%= pedido.forma_de_pago %></td>
+        <td><%= pedido.arte %></td>
+        <td><%= pedido.descripcion %></td>
+        <td><%= pedido.estado_pedido %></td>
+        <td><%= pedido.estado %></td>
+        <td><%= link_to 'Show', pedido %></td>
+        <td><%= link_to 'Edit', edit_pedido_path(pedido) %></td>
+        <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pedido', new_pedido_path %>

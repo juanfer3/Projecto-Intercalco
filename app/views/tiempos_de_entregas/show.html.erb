@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pedido:</strong>
+  <%= @tiempos_de_entrega.pedido %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @tiempos_de_entrega.cantidad %>
+</p>
+
+<p>
+  <strong>Fecha compromiso:</strong>
+  <%= @tiempos_de_entrega.fecha_compromiso %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @tiempos_de_entrega.precio %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @tiempos_de_entrega.estado %>
+</p>
+
+<%= link_to 'Edit', edit_tiempos_de_entrega_path(@tiempos_de_entrega) %> |
+<%= link_to 'Back', tiempos_de_entregas_path %>

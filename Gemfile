@@ -13,7 +13,7 @@ gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'#, '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -56,12 +56,22 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 
+gem 'bootstrap-datepicker-rails'
+
+gem "select2-rails"
+
+gem 'ionicons-rails'
+
 gem 'popper_js', '~> 1.12.3'
 
 gem "jquery-ui-rails"
 gem 'jquery-rails'
 
 gem 'rails_layout'
+
+
+
+gem "table_print"
 
 gem 'will_paginate', github: 'jonatack/will_paginate'
 gem 'will_paginate-bootstrap4'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_de_linea: MyString
+  descripcion: MyString
+  estado: false
+
+two:
+  tipo_de_linea: MyString
+  descripcion: MyString
+  estado: false

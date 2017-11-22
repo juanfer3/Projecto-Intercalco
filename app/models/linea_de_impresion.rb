@@ -1,0 +1,2 @@
+class LineaDeImpresion < ApplicationRecord
+end

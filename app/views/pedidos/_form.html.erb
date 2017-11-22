@@ -1,0 +1,138 @@
+<%= simple_form_for(@pedido) do |f| %>
+  <%= f.error_notification %>
+  
+
+  
+  
+  <div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="card-block">
+    <h4 class="card-title">Orden De Pedido</h4>
+    <div class="container">
+      <div class="my_card_pedidos_form">
+      
+        <div class="col-4">
+         <%= f.association :contacto,
+          collection: Contacto.all,
+          label_method: :nombre_contacto,
+          value_method: :id,
+          as: :select,
+          class:'col-4',
+          include_blank: 'Seleccione el Cliente'
+         %>
+        </div>
+      
+        <div class="col-4">
+          <label class="">Fecha de Pedido</label>
+          <div class="input-group date  ">
+            
+            <%= f.text_field :fecha_de_pedido,   
+            class:'form-control ', 
+            'data-provide'=>'datepicker'  %>
+            <div class="input-group-addon">
+                <span class=""><i class="ion-calendar"></i></span>
+            </div>
+          </div>
+      </div>
+      
+      <div class="col-4">
+        <%= f.input :numero_de_pedido %>
+      </div>
+      
+      <div class="col-4">
+        <%= f.input :condicion_de_pedido%> 
+      </div>
+      
+      <div class="col-4">
+        <label>Estado del pedido</label>
+        <div>
+        <%= f.collection_check_boxes :condicion_de_pedido, 
+        
+        [['Bajo Cotizacion'] ,['Producto de linea']], 
+         :first,
+        :last,
+        class:'col-4'
+        
+      %>
+      </div>
+      </div>
+      
+      <div class="col-4">
+        <%= f.input :numero_cotizacion %>
+      </div>
+      
+        <div class="col-12">
+          <hr>
+        </div>
+        
+        
+        
+      </div>
+      
+    </div>
+    <br>
+  </div>
+</div>
+
+<br>
+
+<div class="card card-outline-secondary mb-3 text-center">
+  <div class="card-block">
+    <blockquote class="card-blockquote">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+    </blockquote>
+  </div>
+</div>
+
+  <div class="form-inputs">
+    
+    <%= f.association :factura %>
+    <%= f.association :despacho %>
+    <%= f.input :producto %>
+    <%= f.input :tipo_de_trabajo %>
+    <%= f.input :condicion_de_pedido %>
+    
+    <div class="input-group date">
+      <%= f.text_field :fecha_entrega,   
+      class:'form-control', 
+      'data-provide'=>'datepicker'  %>
+   
+      <div class="input-group-addon">
+          <span class=""><i class="ion-calendar"></i></span>
+      </div>
+    </div>
+    <br>
+    <div class="input-group date">
+      <%= f.text_field :fecha_de_pedido,   
+      class:'form-control', 
+      'data-provide'=>'datepicker'  %>
+   
+      <div class="input-group-addon">
+          <span class=""><i class="ion-calendar"></i></span>
+      </div>
+    </div>
+    
+    
+    
+
+    <%= f.input :numero_cotizacion %>
+    <%= f.association :linea_de_impresion %>
+    <%= f.input :forma_de_pago %>
+    <%= f.input :arte %>
+    <%= f.input :descripcion %>
+    <%= f.input :estado_pedido %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

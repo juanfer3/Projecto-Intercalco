@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipo de linea:</strong>
+  <%= @linea_de_impresion.tipo_de_linea %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @linea_de_impresion.descripcion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @linea_de_impresion.estado %>
+</p>
+
+<%= link_to 'Edit', edit_linea_de_impresion_path(@linea_de_impresion) %> |
+<%= link_to 'Back', lineas_de_impresiones_path %>
