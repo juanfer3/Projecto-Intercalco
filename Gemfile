@@ -58,6 +58,7 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 gem 'bootstrap-datepicker-rails'
 
+
 gem "select2-rails"
 
 gem 'ionicons-rails'

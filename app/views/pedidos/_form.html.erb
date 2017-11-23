@@ -2,8 +2,28 @@
   <%= f.error_notification %>
   
 
+<!--select class="form-control js-example-tags"  id="mySelect" multiple="multiple">
+  <option>orange</option>
+  <option>white</option>
+  <option>purple</option>
+</select-->
+
+<div id="pedido_factura">
+<%= 
+  f.association :factura,
+  collection: Factura.all,
+  label_method: :nombre,
+  value_method: :id,
+  selected:1,
+  as: :select,
+  class:'col-4 Factura'
   
+%>
+</div>
+
+<button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button>
   
+<!--Datos Generales del Pedido-->
   <div class="card text-center">
   <div class="card-header">
     <ul class="nav nav-pills card-header-pills">
@@ -13,11 +33,13 @@
       
     </ul>
   </div>
+  <!--Card Block-->
   <div class="card-block">
     <h4 class="card-title">Orden De Pedido</h4>
     <div class="container">
+      <!--Container Con Flexbox-->
       <div class="my_card_pedidos_form">
-      
+        <!--Contacto Select-->
         <div class="col-4">
          <%= f.association :contacto,
           collection: Contacto.all,
@@ -28,28 +50,39 @@
           include_blank: 'Seleccione el Cliente'
          %>
         </div>
-      
+        <!--/Contacto Select-->
+        
+        <!--/Fecha De pedido-->
         <div class="col-4">
           <label class="">Fecha de Pedido</label>
           <div class="input-group date  ">
             
-            <%= f.text_field :fecha_de_pedido,   
+            <%= f.text_field :fecha_de_pedido,
+              as: :datetime_picker, readonly: true,
+              input_html: {value: @pedido.fecha_entrega.try(:strftime, '%d/%m/%Y'),
+              
+                data: {date_options: {format: 'DD/MM/YYYY', ignoreReadonly:
+                  true}
+                  
+                }
+                
+              },
             class:'form-control ', 
             'data-provide'=>'datepicker'  %>
-            <div class="input-group-addon">
+            <div class="input-group-addon alert-info">
                 <span class=""><i class="ion-calendar"></i></span>
             </div>
           </div>
       </div>
+      <!--/Contacto Select-->
       
+      <!--Numero De Pedido-->
       <div class="col-4">
         <%= f.input :numero_de_pedido %>
       </div>
+      <!--Numero De Pedido-->
       
-      <div class="col-4">
-        <%= f.input :condicion_de_pedido%> 
-      </div>
-      
+      <!--Estado del Pedido-->
       <div class="col-4">
         <label>Estado del pedido</label>
         <div>
@@ -60,48 +93,212 @@
         :last,
         class:'col-4'
         
-      %>
+        %>
+        </div>
       </div>
-      </div>
+      <!--/Estado del  Pedido-->
       
+      <!--Condicion del  Pedido-->
+      <div class="col-4">
+          <%= f.input :condicion_de_pedido %>
+      </div>
+      <!--/Condicion del  Pedido-->
+      
+      <!--Numero De Cotizacion-->
       <div class="col-4">
         <%= f.input :numero_cotizacion %>
       </div>
+      <!--/Numero De Cotizacion-->
       
+      <!--Separador-->
         <div class="col-12">
           <hr>
         </div>
+      <!--/Separador-->
+      
+      <!--Tipo de Trabajo-->
+        <div class="col-4">
+          <label>Tipo de Trabajo </label>
+          <select class="form-control " id="mySelect">
+            <option>Viejo</option>
+            <option>Nuevo</option>
+          </select>
+        </div>
+      <!--/Tipo de Trabajo-->
+      
+      <!--Producto-->
+        <div class="col-4">
+          <%= f.input :producto %>
+        </div>
+      <!--/Producto-->
+      
+      <!--Linea de Impresion-->  
+        <div class="col-4">
+          <%= f.association :linea_de_impresion,
+          collection: LineaDeImpresion.all,
+          label_method: :tipo_de_linea,
+          value_method: :id,
+          as: :select,
+          class:'col-4',
+          include_blank: 'Linea de Impresion'
+          %>
+        </div>
+      <!--/Linea de Impresion-->
+        
+      <!--Forma de pago-->
+        <div class="col-4">
+          <%= f.input :forma_de_pago %>
+        </div>
+      <!--/Forma de pago-->
+      
+      <!--Arte Select-->
+        <div class="col-4">
+          <%= f.select :arte,[['Cliente'], ['Intercalco']], include_blank:'Arte Por Parte de', class:"form-control col-4" %>
+        </div>
+      <!--/Arte Select-->
+      
+      <!--Descripcion-->
+        <div class="col-4">
+          <%= f.input :descripcion %>
+        </div>
+      <!--/Descripcion-->
         
         
         
       </div>
-      
+      <!--/Container con Flexbox-->
     </div>
+    <!--Container-->
     <br>
   </div>
+  <!--/Card Block-->
 </div>
+<!--/Datos Generales del Pedido---->
 
 <br>
 
-<div class="card card-outline-secondary mb-3 text-center">
-  <div class="card-block">
-    <blockquote class="card-blockquote">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-    </blockquote>
+
+<div class="container_add_entregas">
+  <div class="col-7">
+    <h1>Tiempos De Entregas</h1>
+  </div>
+  
+  <div class="col-2 offset-md-4">
+    <%= link_to_add_entregas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tiempos_de_entregas, class: '') %>
   </div>
 </div>
 
+<div class="card card-outline-secondary mb-3 text-center">
+  <div class="card-block">
+    <div class="container">
+      <br>
+      <div class="">
+       
+        <table class="table">
+          <thead>
+            <th>Fecha De Compromiso</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+          </thead>
+          <tbody class='fields_entrega'>
+            <%= f.simple_fields_for :tiempos_de_entregas do |builder| %>
+              <%= render "tiempos_de_entrega", :f => builder %>
+            <% end %>
+          </tbody>
+        </table>
+      
+      </div>
+      
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+<!--Depachos-->
+
+<div class="">
+    <h1>despachos</h1>
+  </div>
+
+<div class="card card-outline-secondary mb-3 text-center">
+  <div class="card-block">
+    <div class="container">
+      <br>
+      <div class="my_card_pedidos_form">
+       
+        
+            <%= f.simple_fields_for :despachos do |des| %>
+            
+              <div class="col-4">
+                <%= des.input :cliente, :input_html =>{value:1}%>
+              </div>
+              
+              <div class="col-4">
+                <%= des.input :nombre %>
+              </div>
+              <div class="col-4">
+                <%= des.input :direccion %>
+              </div>
+              <div class="col-4">
+                <%= des.input :celular %>
+              </div>
+              <div class="col-4">
+                <%= des.input :telefono %>
+              </div>
+              <div class="col-4">
+                <%= des.input :correo %>
+              </div>
+              <div class="col-4">
+                <%= des.input :lugar_de_despacho %>
+              </div>
+              <div class="col-4">
+                <%= des.input :recibe %>
+              </div>
+            
+            <% end %>
+       
+      
+      </div>
+      
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+
+<!--/Depachos-->
+
+
+
+
+
   <div class="form-inputs">
     
-    <%= f.association :factura %>
-    <%= f.association :despacho %>
-    <%= f.input :producto %>
-    <%= f.input :tipo_de_trabajo %>
-    <%= f.input :condicion_de_pedido %>
     
+    <!--%= f.association :despacho %-->
+    <!--%= f.input :producto %-->
+    
+    <!--%= f.input :condicion_de_pedido %-->
+    
+    <!--%= PeNdIeNtE%-->
     <div class="input-group date">
-      <%= f.text_field :fecha_entrega,   
+      <%= f.text_field :fecha_entrega,
+      as: :datetime_picker, readonly: true,
+      input_html: {value: @pedido.fecha_entrega.try(:strftime, '%d/%m/%Y'),
+      
+        data: {date_options: {format: 'DD/MM/YYYY', ignoreReadonly:
+          true}
+          
+        }
+        
+      },
       class:'form-control', 
       'data-provide'=>'datepicker'  %>
    
@@ -110,29 +307,27 @@
       </div>
     </div>
     <br>
-    <div class="input-group date">
-      <%= f.text_field :fecha_de_pedido,   
-      class:'form-control', 
-      'data-provide'=>'datepicker'  %>
-   
-      <div class="input-group-addon">
-          <span class=""><i class="ion-calendar"></i></span>
-      </div>
-    </div>
-    
-    
     
 
-    <%= f.input :numero_cotizacion %>
-    <%= f.association :linea_de_impresion %>
-    <%= f.input :forma_de_pago %>
-    <%= f.input :arte %>
-    <%= f.input :descripcion %>
-    <%= f.input :estado_pedido %>
-    <%= f.input :estado %>
+    
+    
+    
+    <%= f.input :tipo_de_trabajo, class:'trabajo' %>
+    
+    <!--%= f.input :numero_cotizacion %-->
+    
+    <!--%= f.association :linea_de_impresion %-->
+    <!--%= f.input :forma_de_pago %-->
+    <!--%= f.input :arte %-->
+    <!--%= f.input :descripcion %-->
+    <!--%= f.input :estado_pedido %-->
+    <!--%= f.input :estado %-->
+    
   </div>
 
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
+
+
 <% end %>

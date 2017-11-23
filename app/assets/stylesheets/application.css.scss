@@ -14,6 +14,7 @@
  *= require_self
  *= require devise_bootstrap_views
  *= require font-awesome
+ *= require select2
  */
  
   @import "bootstrap";
@@ -106,8 +107,19 @@ body{
   -webkit-flex-flow: row wrap;
 }
 
+
 /*-------------------------------------/Pedidos Form-----------------------------------*/
 
+/*-------------------------------------Pedidos Form Tiempos de Entrega-----------------------------------*/
+
+.container_add_entregas{
+    
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+/*-------------------------------------/Pedidos Form Tiempos de Entrega-----------------------------------*/
 
 //@import "compass/css3";
 //@import "compass";

@@ -15,6 +15,8 @@ class PedidosController < ApplicationController
   # GET /pedidos/new
   def new
     @pedido = Pedido.new
+    @pedido.tiempos_de_entregas.build
+    @cliente = Cliente.all
   end
 
   # GET /pedidos/1/edit
@@ -69,6 +71,14 @@ class PedidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.require(:pedido).permit(:contacto_id, :factura_id, :despacho_id, :producto, :tipo_de_trabajo, :condicion_de_pedido, :fecha_entrega, :fecha_de_pedido, :numero_cotizacion, :numero_de_pedido, :linea_de_impresion_id, :forma_de_pago, :arte, :descripcion, :estado_pedido, :estado)
+      params.require(:pedido).permit(:contacto_id, :factura_id, :despacho_id, 
+      :producto, :tipo_de_trabajo, 
+      :condicion_de_pedido, :fecha_entrega, 
+      :fecha_de_pedido, :numero_cotizacion, 
+      :numero_de_pedido, :linea_de_impresion_id, 
+      :forma_de_pago, :arte, :descripcion, 
+      :estado_pedido, :estado,
+      tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
+      despachos_attributes:[:cliente_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :estado])
     end
 end

@@ -1,0 +1,47 @@
+<tr>
+    
+  <td>
+      <div class="input-group date  ">
+            
+            <%= 
+              f.text_field :fecha_compromiso, 
+              as: :datetime_picker, readonly: true,
+              input_html: {value: @pedido.fecha_entrega.try(:strftime, '%d/%m/%Y'),
+              
+                data: {date_options: {format: 'DD/MM/YYYY', ignoreReadonly:
+                
+                  true
+                  
+                  }
+                  
+                }
+                
+              },
+            class:'form-control ', 
+            'data-provide'=>'datepicker'  %>
+            <div class="input-group-addon alert-info">
+                <span class=""><i class="ion-calendar"></i></span>
+            </div>
+          </div>
+  </td>
+  
+  <td>
+      <%= f.text_field :cantidad,class:'form-control ' %>
+  </td>
+  
+  <td>
+    <%= f.text_field :precio, class:'form-control ' %>
+  </td>
+  
+  <td>
+    <%= f.input_field :_destroy, as: :hidden %>
+    <%= 
+        link_to '<button type="button"  class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, 
+        '#', 
+        class: 'remove_entregas'
+    %>
+  </td>
+  
+</tr>
+
+

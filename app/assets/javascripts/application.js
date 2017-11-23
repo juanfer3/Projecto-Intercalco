@@ -19,6 +19,6 @@
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
-//= require select2-full
+//= require select2
 //= require toastr
 //= require_tree .
