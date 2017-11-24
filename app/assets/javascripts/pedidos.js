@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
-  $('#pedido_factura').hide()
+ 
   
   $('form').on('click', '.remove_entregas', function(event) {
     $(this).prev('input[type=hidden]').val('1');

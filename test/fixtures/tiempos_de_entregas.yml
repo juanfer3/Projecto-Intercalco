@@ -3,13 +3,13 @@
 one:
   pedido: one
   cantidad: 1.5
-  fecha_compromiso: 2017-11-22
+  fecha_compromiso: 2017-11-24
   precio: 1.5
   estado: false
 
 two:
   pedido: two
   cantidad: 1.5
-  fecha_compromiso: 2017-11-22
+  fecha_compromiso: 2017-11-24
   precio: 1.5
   estado: false

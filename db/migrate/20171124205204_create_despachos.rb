@@ -1,7 +1,7 @@
 class CreateDespachos < ActiveRecord::Migration[5.1]
   def change
     create_table :despachos do |t|
-      t.references :cliente, foreign_key: true
+      t.references :pedido, foreign_key: true
       t.string :nombre
       t.string :nit
       t.string :telefono

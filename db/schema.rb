@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122171425) do
+ActiveRecord::Schema.define(version: 20171124205209) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20171122171425) do
   end
 
   create_table "despachos", force: :cascade do |t|
-    t.integer "cliente_id"
+    t.integer "pedido_id"
     t.string "nombre"
     t.string "nit"
     t.string "telefono"
@@ -52,22 +52,7 @@ ActiveRecord::Schema.define(version: 20171122171425) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cliente_id"], name: "index_despachos_on_cliente_id"
-  end
-
-  create_table "facturas", force: :cascade do |t|
-    t.integer "cliente_id"
-    t.string "nombre"
-    t.string "nit"
-    t.string "telefono"
-    t.string "lugar_de_factura"
-    t.string "celular"
-    t.string "correo"
-    t.string "recibe"
-    t.boolean "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cliente_id"], name: "index_facturas_on_cliente_id"
+    t.index ["pedido_id"], name: "index_despachos_on_pedido_id"
   end
 
   create_table "lineas_de_impresiones", force: :cascade do |t|
@@ -80,8 +65,6 @@ ActiveRecord::Schema.define(version: 20171122171425) do
 
   create_table "pedidos", force: :cascade do |t|
     t.integer "contacto_id"
-    t.integer "factura_id"
-    t.integer "despacho_id"
     t.string "producto"
     t.string "tipo_de_trabajo"
     t.string "condicion_de_pedido"
@@ -94,12 +77,11 @@ ActiveRecord::Schema.define(version: 20171122171425) do
     t.string "arte"
     t.string "descripcion"
     t.string "estado_pedido"
+    t.string "total_articulo"
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contacto_id"], name: "index_pedidos_on_contacto_id"
-    t.index ["despacho_id"], name: "index_pedidos_on_despacho_id"
-    t.index ["factura_id"], name: "index_pedidos_on_factura_id"
     t.index ["linea_de_impresion_id"], name: "index_pedidos_on_linea_de_impresion_id"
   end
 

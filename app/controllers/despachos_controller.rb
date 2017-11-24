@@ -69,6 +69,6 @@ class DespachosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def despacho_params
-      params.require(:despacho).permit(:cliente_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :estado)
+      params.require(:despacho).permit(:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :estado)
     end
 end

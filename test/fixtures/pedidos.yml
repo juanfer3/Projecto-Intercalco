@@ -2,13 +2,11 @@
 
 one:
   contacto: one
-  factura: one
-  despacho: one
   producto: MyString
   tipo_de_trabajo: MyString
   condicion_de_pedido: MyString
-  fecha_entrega: 2017-11-22
-  fecha_de_pedido: 2017-11-22
+  fecha_entrega: 2017-11-24
+  fecha_de_pedido: 2017-11-24
   numero_cotizacion: MyString
   numero_de_pedido: MyString
   linea_de_impresion: one
@@ -16,17 +14,16 @@ one:
   arte: MyString
   descripcion: MyString
   estado_pedido: MyString
+  total_articulo: MyString
   estado: false
 
 two:
   contacto: two
-  factura: two
-  despacho: two
   producto: MyString
   tipo_de_trabajo: MyString
   condicion_de_pedido: MyString
-  fecha_entrega: 2017-11-22
-  fecha_de_pedido: 2017-11-22
+  fecha_entrega: 2017-11-24
+  fecha_de_pedido: 2017-11-24
   numero_cotizacion: MyString
   numero_de_pedido: MyString
   linea_de_impresion: two
@@ -34,4 +31,5 @@ two:
   arte: MyString
   descripcion: MyString
   estado_pedido: MyString
+  total_articulo: MyString
   estado: false

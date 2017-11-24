@@ -17,7 +17,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pedido" do
     assert_difference('Pedido.count') do
-      post pedidos_url, params: { pedido: { arte: @pedido.arte, condicion_de_pedido: @pedido.condicion_de_pedido, contacto_id: @pedido.contacto_id, descripcion: @pedido.descripcion, despacho_id: @pedido.despacho_id, estado: @pedido.estado, estado_pedido: @pedido.estado_pedido, factura_id: @pedido.factura_id, fecha_de_pedido: @pedido.fecha_de_pedido, fecha_entrega: @pedido.fecha_entrega, forma_de_pago: @pedido.forma_de_pago, linea_de_impresion_id: @pedido.linea_de_impresion_id, numero_cotizacion: @pedido.numero_cotizacion, numero_de_pedido: @pedido.numero_de_pedido, producto: @pedido.producto, tipo_de_trabajo: @pedido.tipo_de_trabajo } }
+      post pedidos_url, params: { pedido: { arte: @pedido.arte, condicion_de_pedido: @pedido.condicion_de_pedido, contacto_id: @pedido.contacto_id, descripcion: @pedido.descripcion, estado: @pedido.estado, estado_pedido: @pedido.estado_pedido, fecha_de_pedido: @pedido.fecha_de_pedido, fecha_entrega: @pedido.fecha_entrega, forma_de_pago: @pedido.forma_de_pago, linea_de_impresion_id: @pedido.linea_de_impresion_id, numero_cotizacion: @pedido.numero_cotizacion, numero_de_pedido: @pedido.numero_de_pedido, producto: @pedido.producto, tipo_de_trabajo: @pedido.tipo_de_trabajo, total_articulo: @pedido.total_articulo } }
     end
 
     assert_redirected_to pedido_url(Pedido.last)
@@ -34,7 +34,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update pedido" do
-    patch pedido_url(@pedido), params: { pedido: { arte: @pedido.arte, condicion_de_pedido: @pedido.condicion_de_pedido, contacto_id: @pedido.contacto_id, descripcion: @pedido.descripcion, despacho_id: @pedido.despacho_id, estado: @pedido.estado, estado_pedido: @pedido.estado_pedido, factura_id: @pedido.factura_id, fecha_de_pedido: @pedido.fecha_de_pedido, fecha_entrega: @pedido.fecha_entrega, forma_de_pago: @pedido.forma_de_pago, linea_de_impresion_id: @pedido.linea_de_impresion_id, numero_cotizacion: @pedido.numero_cotizacion, numero_de_pedido: @pedido.numero_de_pedido, producto: @pedido.producto, tipo_de_trabajo: @pedido.tipo_de_trabajo } }
+    patch pedido_url(@pedido), params: { pedido: { arte: @pedido.arte, condicion_de_pedido: @pedido.condicion_de_pedido, contacto_id: @pedido.contacto_id, descripcion: @pedido.descripcion, estado: @pedido.estado, estado_pedido: @pedido.estado_pedido, fecha_de_pedido: @pedido.fecha_de_pedido, fecha_entrega: @pedido.fecha_entrega, forma_de_pago: @pedido.forma_de_pago, linea_de_impresion_id: @pedido.linea_de_impresion_id, numero_cotizacion: @pedido.numero_cotizacion, numero_de_pedido: @pedido.numero_de_pedido, producto: @pedido.producto, tipo_de_trabajo: @pedido.tipo_de_trabajo, total_articulo: @pedido.total_articulo } }
     assert_redirected_to pedido_url(@pedido)
   end
 

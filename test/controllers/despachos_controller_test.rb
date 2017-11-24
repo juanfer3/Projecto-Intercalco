@@ -17,7 +17,7 @@ class DespachosControllerTest < ActionDispatch::IntegrationTest
 
   test "should create despacho" do
     assert_difference('Despacho.count') do
-      post despachos_url, params: { despacho: { celular: @despacho.celular, cliente_id: @despacho.cliente_id, correo: @despacho.correo, direccion: @despacho.direccion, estado: @despacho.estado, facturar: @despacho.facturar, lugar_de_despacho: @despacho.lugar_de_despacho, nit: @despacho.nit, nombre: @despacho.nombre, observacion: @despacho.observacion, recibe: @despacho.recibe, telefono: @despacho.telefono } }
+      post despachos_url, params: { despacho: { celular: @despacho.celular, correo: @despacho.correo, direccion: @despacho.direccion, estado: @despacho.estado, facturar: @despacho.facturar, lugar_de_despacho: @despacho.lugar_de_despacho, nit: @despacho.nit, nombre: @despacho.nombre, observacion: @despacho.observacion, pedido_id: @despacho.pedido_id, recibe: @despacho.recibe, telefono: @despacho.telefono } }
     end
 
     assert_redirected_to despacho_url(Despacho.last)
@@ -34,7 +34,7 @@ class DespachosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update despacho" do
-    patch despacho_url(@despacho), params: { despacho: { celular: @despacho.celular, cliente_id: @despacho.cliente_id, correo: @despacho.correo, direccion: @despacho.direccion, estado: @despacho.estado, facturar: @despacho.facturar, lugar_de_despacho: @despacho.lugar_de_despacho, nit: @despacho.nit, nombre: @despacho.nombre, observacion: @despacho.observacion, recibe: @despacho.recibe, telefono: @despacho.telefono } }
+    patch despacho_url(@despacho), params: { despacho: { celular: @despacho.celular, correo: @despacho.correo, direccion: @despacho.direccion, estado: @despacho.estado, facturar: @despacho.facturar, lugar_de_despacho: @despacho.lugar_de_despacho, nit: @despacho.nit, nombre: @despacho.nombre, observacion: @despacho.observacion, pedido_id: @despacho.pedido_id, recibe: @despacho.recibe, telefono: @despacho.telefono } }
     assert_redirected_to despacho_url(@despacho)
   end
 

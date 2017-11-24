@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   resources :tiempos_de_entregas
-  resources :pedidos
-  resources :facturas
   resources :despachos
+  resources :pedidos
   resources :lineas_de_impresiones
   resources :contactos
   resources :clientes
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :roles
  
+  get 'produccion', to: 'pedidos#produccion'
   root :to => 'static_pages#home'
   
   
