@@ -86,3 +86,5 @@ gem 'devise-i18n'
 
 gem 'toastr-rails'
 gem "font-awesome-rails"
+
+gem 'best_in_place'

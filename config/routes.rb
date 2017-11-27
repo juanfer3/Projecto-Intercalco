@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :roles
  
-  get 'produccion', to: 'pedidos#produccion'
+  get 'produccion', to: 'pedidos#produccion', as: :produccion
   root :to => 'static_pages#home'
   
   

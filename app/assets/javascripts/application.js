@@ -21,6 +21,9 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
 //= require select2
 //= require toastr
+//= require best_in_place
+//= require jquery-ui
+//= require best_in_place.jquery-ui
 //= require_tree .
 
 $(document).on('turbolinks:load', function() {

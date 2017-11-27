@@ -1,35 +1,21 @@
 <%= simple_form_for(@pedido) do |f| %>
   <%= f.error_notification %>
-  
 
-<!--select class="form-control js-example-tags"  id="mySelect" multiple="multiple">
-  <option>orange</option>
-  <option>white</option>
-  <option>purple</option>
-</select-->
 
-      
-    
-      
-      
-
-<button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button>
+<!--button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button-->
   
   
   
 <!--Datos Generales del Pedido-->
   <div class="card text-center">
   <div class="card-header">
-    <ul class="nav nav-pills card-header-pills">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      
-    </ul>
+    
+    <h1>Orden De Pedido</h1>
+    
   </div>
   <!--Card Block-->
   <div class="card-block">
-    <h4 class="card-title">Orden De Pedido</h4>
+    <h4 class="card-title"></h4>
     <div class="container">
       <!--Container Con Flexbox-->
       <div class="my_card_pedidos_form">
@@ -170,6 +156,7 @@
     <%= link_to_add_entregas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tiempos_de_entregas, class: '') %>
   </div>
 </div>
+<br>
 
 <div class="card card-outline-secondary mb-3 text-center">
   <div class="card-block">
@@ -214,35 +201,10 @@
     <div class="container">
       <br>
       <div class="my_card_pedidos_form">
-       
-        
-            <%= f.simple_fields_for :despachos do |des| %>
-            
-              
-              <div class="col-4">
-                <%= des.input :nombre %>
-              </div>
-              <div class="col-4">
-                <%= des.input :direccion %>
-              </div>
-              <div class="col-4">
-                <%= des.input :celular %>
-              </div>
-              <div class="col-4">
-                <%= des.input :telefono %>
-              </div>
-              <div class="col-4">
-                <%= des.input :correo %>
-              </div>
-              <div class="col-4">
-                <%= des.input :lugar_de_despacho %>
-              </div>
-              <div class="col-4">
-                <%= des.input :recibe %>
-              </div>
-            
+         
+         <%= f.simple_fields_for :despachos do |builder| %>
+              <%= render "despacho", :f => builder %>
             <% end %>
-       
       
       </div>
       

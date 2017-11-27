@@ -8,4 +8,7 @@ class Pedido < ApplicationRecord
 
   has_many :despachos, inverse_of: :pedido, dependent: :destroy
   accepts_nested_attributes_for :despachos, reject_if: :all_blank, allow_destroy: true
+  
+  
+  
 end

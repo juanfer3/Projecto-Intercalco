@@ -9,8 +9,18 @@ class PedidosController < ApplicationController
   
   def produccion
     @pedidos = Pedido.joins(:contacto)
-#    @pedidos = Pedido.joins("INNER JOIN clientes ON cliente.id = contactos.cliente_id")
+    #@pedidos = Pedido.joins("INNER JOIN clientes ON cliente.id = contactos.cliente_id")
   end
+  
+  def multiple
+   @pedidos = Pedido.find(params[:pedido_ids])
+   #@users.each do |pedido|
+   #   pedido.update_attributes!(params[:user].reject { |k,v| v.blank? })
+   #end
+   flash[:notice] = "Users Updated!"
+   #redirect_to admin_users_path
+  end
+  
   
   # GET /pedidos/1
   # GET /pedidos/1.json
@@ -86,4 +96,7 @@ class PedidosController < ApplicationController
       tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
       despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :estado])
     end
+    
+   
+    
 end
