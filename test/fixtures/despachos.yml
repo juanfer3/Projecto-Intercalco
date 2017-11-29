@@ -12,6 +12,7 @@ one:
   recibe: MyString
   observacion: MyString
   facturar: MyString
+  entregar_factura: MyString
   estado: false
 
 two:
@@ -26,4 +27,5 @@ two:
   recibe: MyString
   observacion: MyString
   facturar: MyString
+  entregar_factura: MyString
   estado: false

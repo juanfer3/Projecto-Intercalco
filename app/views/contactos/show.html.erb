@@ -29,6 +29,10 @@
   <strong>Estado:</strong>
   <%= @contacto.estado %>
 </p>
+<p>
+  <strong>Cliente:</strong>
+  <%= @contacto.cliente.nombre %>
+</p>
 
 <%= link_to 'Edit', edit_contacto_path(@contacto) %> |
 <%= link_to 'Back', contactos_path %>

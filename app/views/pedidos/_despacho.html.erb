@@ -20,3 +20,12 @@
       <div class="col-4">
         <%= f.input :recibe, class:'form-control'%>
       </div>
+      <div class="col-4">
+        <label>Llevar Factura con Despacho</label>
+        <%= f.select :entregar_factura,[['Si'], ['No']],
+            {label: false}, {class: "form-control"} %>
+      </div>
+      <div class="col-4">
+        <label>Observaciones</label>
+        <%= f.input :observacion, class:'form-control', label: false%>
+      </div>

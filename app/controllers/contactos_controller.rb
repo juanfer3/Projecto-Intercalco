@@ -11,7 +11,13 @@ class ContactosController < ApplicationController
   # GET /contactos/1.json
   def show
   end
-
+  
+  # GET /contactos/1.json
+  def vista
+    @contactos = Contacto.joins(:cliente).find(params[:id])
+    render json: @contactos.to_json(:include => :cliente)
+  end
+  
   # GET /contactos/new
   def new
     @contacto = Contacto.new

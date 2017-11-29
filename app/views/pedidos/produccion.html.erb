@@ -2,6 +2,7 @@
 
 <h1>Pedidos Para Producción</h1>
 
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -12,7 +13,6 @@
       <th>Fecha de pedido</th>
       <th>Digitado</th>
       <th>Estado de Pedido</th>
-      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -21,16 +21,13 @@
       <tr>
         <td><%= pedido.contacto.cliente.nombre %></td>
         <td><%= pedido.numero_de_pedido %></td>
-        <td><%= best_in_place pedido,:descripcion,as: :input,:place_holder=>"Click me to add content!" %></td>
+        <td><%= pedido.descripcion %></td>
         <td><%= pedido.numero_cotizacion %></td>
         <!--td><!--%= pedido.producto %></td-->
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.created_at%></td>
-        <td><%= best_in_place pedido, :estado_pedido,as: :select, collection:[[1,'En Pedido'],[2,'En Produccion']]%></td>
-        <!--td class="my_id"><!--%= pedido.id %></td-->
-        <!--td><input id="toggle-event" class="my_checkbox evento" type="checkbox" data-toggle="toggle"></td-->
-        
-        <td><%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td>
+        <td><%= best_in_place pedido, :estado_pedido, as: :select, collection:[[1,'En Pedido'],[2,'En Produccion']],:place_holder=>'En Pedido',inner_class: "input-sm"%></td>
+        <!--td><%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
       </tr>
       
     <% end %>
@@ -38,44 +35,6 @@
 </table>
 
 <br>
-
-<!--input type="checkbox" id="my_toggle" class="my_checkbox"  checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"-->
-<script>
-  $(function() {
-    
-    $('#toggle-event').bootstrapToggle();
-    
-    $('.evento').change(function() {
-      var id = $(this).parents("tr").find('.my_id').text();
-      var valor =  $(this).parents("tr").find('.my_checkbox').prop('checked');
-       
-      var va="My Value" 
-      
-      /*$.ajax({
-        url:'/pedidos/1/my_update',
-        method:'put',
-        success: function(data){
-          toastr.error(data);
-        }, 
-        error: function(data){
-          toastr.error('Error occurred while updating the record.');
-        }
-       
-      });*/
-       
-       
-      
-      
-      if (valor==true)
-        toastr.success(id)
-        
-      else
-        toastr.error(id)
-      console.log('Toggle: ' + $(this).prop('checked'));
-      });
-    
-  })
-</script>
 
 
 

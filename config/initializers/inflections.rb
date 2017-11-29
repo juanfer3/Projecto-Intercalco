@@ -31,5 +31,6 @@
    inflect.irregular 'recibe','reciben'
  
    inflect.irregular 'condicion_de_pedido','condiciones_de_pedido'
-
+   inflect.irregular 'entregar_factura','entregar_facturas'
+   
  end

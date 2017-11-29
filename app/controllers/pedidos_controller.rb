@@ -25,6 +25,7 @@ class PedidosController < ApplicationController
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
+    
   end
 
   # GET /pedidos/new
@@ -94,7 +95,7 @@ class PedidosController < ApplicationController
       :forma_de_pago, :arte, :descripcion, :total_articulo,
       :estado_pedido, :estado,
       tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
-      despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :estado])
+      despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado])
     end
     
    

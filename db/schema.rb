@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124205209) do
+ActiveRecord::Schema.define(version: 20171128121338) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -39,17 +39,18 @@ ActiveRecord::Schema.define(version: 20171124205209) do
 
   create_table "despachos", force: :cascade do |t|
     t.integer "pedido_id"
-    t.string "nombre", default: ""
-    t.string "nit", default: ""
-    t.string "telefono", default: ""
-    t.string "lugar_de_despacho", default: ""
-    t.string "direccion", default: ""
-    t.string "celular", default: ""
-    t.string "correo", default: ""
-    t.string "recibe", default: ""
-    t.string "observacion", default: ""
-    t.string "facturar", default: ""
-    t.boolean "estado", default: true
+    t.string "nombre"
+    t.string "nit"
+    t.string "telefono"
+    t.string "lugar_de_despacho"
+    t.string "direccion"
+    t.string "celular"
+    t.string "correo"
+    t.string "recibe"
+    t.string "observacion"
+    t.string "facturar"
+    t.string "entregar_factura"
+    t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_despachos_on_pedido_id"

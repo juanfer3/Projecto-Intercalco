@@ -1,256 +1,197 @@
 <%= simple_form_for(@pedido) do |f| %>
-  <%= f.error_notification %>
-
-
+<%= f.error_notification %>
 <!--button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button-->
-  
-  
-  
 <!--Datos Generales del Pedido-->
-  <div class="card text-center">
-  <div class="card-header">
-    
-    <h1>Orden De Pedido</h1>
-    
-  </div>
-  <!--Card Block-->
-  <div class="card-block">
-    <h4 class="card-title"></h4>
-    <div class="container">
-      <!--Container Con Flexbox-->
-      <div class="my_card_pedidos_form">
-        <!--Contacto Select-->
-        <div class="col-4">
-         <%= f.association :contacto,
-          collection: Contacto.all,
-          label_method: :nombre_contacto,
-          value_method: :id,
-          as: :select,
-          class:'col-4',
-          include_blank: 'Seleccione el Cliente'
-         %>
-        </div>
-        <!--/Contacto Select-->
-        
-        <%=
-        f.input :fecha_de_pedido,
-        tipe:'date'
-        
-      %>
-        <!--/Fecha De pedido-->
-        
-      <!--/Contacto Select-->
-      
-      <!--Numero De Pedido-->
-      <div class="col-4">
-        <%= f.input :numero_de_pedido %>
-      </div>
-      <!--Numero De Pedido-->
-      
-      <!--Estado del Pedido-->
-      <div class="col-4">
-        <label>Estado del pedido</label>
-        <div class="">
-        <%= 
-        f.select :condicion_de_pedido,
-        [['Bajo Cotizacion'], ['Bajo Pedido']],
-        {}, {class: "form-control"} 
-        
-        %>
-        </div>
-      </div>
-      <!--/Estado del  Pedido-->
-      
-      <!--Condicion del  Pedido-->
-      <div class="col-4">
-          <%= f.input :condicion_de_pedido %>
-      </div>
-      <!--/Condicion del  Pedido-->
-      
-      <!--Numero De Cotizacion-->
-      <div class="col-4">
-        <%= f.input :numero_cotizacion %>
-      </div>
-      <!--/Numero De Cotizacion-->
-      
-      <!--Separador-->
-        <div class="col-12">
-          <hr>
-        </div>
-      <!--/Separador-->
-      
-      <!--Tipo de Trabajo-->
-        <div class="col-4">
-          <label>Tipo De Trabajo</label>
-          <%= 
-            f.select :tipo_de_trabajo,
-            [['Nuevo'], ['Viejo']],
-            {}, {class: "form-control"}  
-          %>
-        </div>
-      <!--/Tipo de Trabajo-->
-      
-      <!--Producto-->
-        <div class="col-4">
-          <%= f.input :producto %>
-        </div>
-      <!--/Producto-->
-      
-      <!--Linea de Impresion-->  
-        <div class="col-4">
-          <%= f.association :linea_de_impresion,
-          collection: LineaDeImpresion.all,
-          label_method: :tipo_de_linea,
-          value_method: :id,
-          as: :select,
-          class:'col-4',
-          include_blank: 'Linea de Impresion'
-          %>
-        </div>
-      <!--/Linea de Impresion-->
-        
-      <!--Forma de pago-->
-        <div class="col-4">
-          <%= f.input :forma_de_pago %>
-        </div>
-      <!--/Forma de pago-->
-      
-      <!--Arte Select-->
-        <div class="col-4">
-          <label>Diseño de Arte</label>
-          <%= 
-            f.select :arte,[['Cliente'], ['Intercalco']],
-            {}, {class: "form-control"}  
-          %>
+<div class="card text-center">
+  
+   <div class="card-header">
+      <h1>Orden De Pedido</h1>
+      <div id="cliente"></div>
+   </div>
+   
+   <!--Card Block-->
+   <div class="card-block">
+      <h4 class="card-title"></h4>
+      <div class="container">
+         <!--Container Con Flexbox-->
+         <div class="my_card_pedidos_form">
+            <!--Contacto Select-->
+            <div class="col-4">
+               <%=
+                 f.association :contacto,
+                  collection: Contacto.all,
+                  label_method: :nombre_contacto,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-4 my_cliente form-control',
+                  
+                  include_blank: 'Seleccione el Cliente'
+                  %>
+            </div>
           
-        </div>
-      <!--/Arte Select-->
-      
-      <!--Descripcion-->
-        <div class="col-4">
-          <%= f.input :descripcion %>
-        </div>
-      <!--/Descripcion-->
-        
-        
-        
+            <!--/Contacto Select-->
+            <!--Estado del Pedido-->
+            <div class="col-4">
+               <label>Estado del pedido</label>
+               <div class="">
+                  <%= 
+                     f.select :condicion_de_pedido,
+                     [['Bajo Cotizacion'], ['Bajo Pedido']],
+                     {}, {class: "form-control"} 
+                     
+                     %>
+               </div>
+            </div>
+            <!--/Estado del  Pedido-->
+            <!--Numero De Cotizacion-->
+            <div class="col-4">
+               <%= f.input :numero_cotizacion %>
+            </div>
+            <!--/Numero De Cotizacion-->
+            <!--Numero De Pedido-->
+            <div class="col-4">
+               <%= f.input :numero_de_pedido %>
+            </div>
+            <!--Numero De Pedido-->
+            <!--Descripcion-->
+            <div class="col-4">
+               <label>Descripcion del Trabajo</label>
+               <%= f.input :descripcion, label: false %>
+            </div>
+            <!--/Descripcion-->
+            <!--Fecha De pedido-->
+            <div class="col-4">
+               <%=
+                  f.input :fecha_de_pedido,
+                  tipe:'date'
+                  %>
+            </div>
+            <!--/Fecha De pedido-->
+            
+            <div class="col-12">
+               <hr>
+            </div>
+            
+            <!--Linea de Impresion-->  
+            <div class="col-4">
+               <%= 
+                  f.association :linea_de_impresion,
+                  collection: LineaDeImpresion.all,
+                  label_method: :tipo_de_linea,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-4',
+                  include_blank: 'Linea de Impresion'
+                %>
+            </div>
+            <!--/Linea de Impresion-->
+            <!--Forma de pago-->
+            <div class="col-4">
+               <%= f.input :forma_de_pago %>
+            </div>
+            <!--/Forma de pago-->
+            <!--Arte Select-->
+            <div class="col-4">
+               <label>Diseño de Arte</label>
+               <%= 
+                  f.select :arte,[['Cliente'], ['Intercalco']],
+                  {}, {class: "form-control"}  
+                  %>
+            </div>
+            <!--/Arte Select-->
+            <!--Condicion del  Pedido-->
+            <div class="col-4">
+               <%= f.input :condicion_de_pedido %>
+            </div>
+            <!--/Condicion del  Pedido-->
+            
+            <!--Separador-->
+            
+            <!--/Separador-->
+            <!--Tipo de Trabajo-->
+            <div class="col-4">
+               <label>Tipo De Trabajo</label>
+               <%= 
+                  f.select :tipo_de_trabajo,[['Nuevo'], ['Viejo']],
+                  {include_blank: '...'}, {class: "form-control"}
+                  
+                %>
+            </div>
+            <!--/Tipo de Trabajo-->
+            <!--Producto-->
+            <!--div class="col-4"-->
+               <!--%= f.input :producto %-->
+            </div-->
+            <!--/Producto-->
+            
+         </div>
+         <!--/Container con Flexbox-->
       </div>
-      <!--/Container con Flexbox-->
-    </div>
-    <!--Container-->
-    <br>
-  </div>
-  <!--/Card Block-->
+      <!--Container-->
+      <br>
+   </div>
+   <!--/Card Block-->
 </div>
 <!--/Datos Generales del Pedido---->
-
 <br>
-
-
-<div class="container_add_entregas">
-  <div class="col-7">
-    <h1>Tiempos De Entregas</h1>
-  </div>
-  
-  <div class="col-2 offset-md-4">
-    <%= link_to_add_entregas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tiempos_de_entregas, class: '') %>
-  </div>
+<div class="container_add_entregas col-12">
+   <div class="col-4">
+      <h1>Tiempos De Entregas</h1>
+   </div>
+   <div class="col-3 offset-md-6">
+      <%= link_to_add_entregas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tiempos_de_entregas, class: '') %>
+   </div>
 </div>
 <br>
-
 <div class="card card-outline-secondary mb-3 text-center">
-  <div class="card-block">
-    <div class="container">
-      <br>
-      <div class="">
-       
-        <table class="table">
-          <thead>
-            <th>Fecha De Compromiso</th>
-            <th>Cantidad</th>
-            <th>Precio</th></th>
-            <th>Elminar</th>
-            <th></th>
-          </thead>
-          <tbody class='fields_entrega'>
-            <%= f.simple_fields_for :tiempos_de_entregas do |builder| %>
-              <%= render "tiempos_de_entrega", :f => builder %>
-            <% end %>
-          </tbody>
-        </table>
-      
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <div class="">
+            <table class="table">
+               <thead>
+                  <th>Fecha De Compromiso</th>
+                  <th>Cantidad</th>
+                  <th>Precio</th>
+                  </th>
+                  <th>Elminar</th>
+                  <th></th>
+               </thead>
+               <tbody class='fields_entrega'>
+                  <%= f.simple_fields_for :tiempos_de_entregas do |builder| %>
+                  <%= render "tiempos_de_entrega", :f => builder %>
+                  <% end %>
+               </tbody>
+            </table>
+         </div>
+         <br>
       </div>
-      
-      <br>
-      
-    </div>
-  </div>
+   </div>
 </div>
-
-
 
 
 <!--Depachos-->
-
 <div class="">
-    <h1>despachos</h1>
-  </div>
-
-<div class="card card-outline-secondary mb-3 text-center">
-  <div class="card-block">
-    <div class="container">
-      <br>
-      <div class="my_card_pedidos_form">
-         
-         <%= f.simple_fields_for :despachos do |builder| %>
-              <%= render "despacho", :f => builder %>
-            <% end %>
-      
-      </div>
-      
-      <br>
-      
-    </div>
-  </div>
+   <h1>Despachos</h1>
 </div>
-
-
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <div class="my_card_pedidos_form">
+            <%= f.simple_fields_for :despachos do |builder| %>
+            <%= render "despacho", :f => builder %>
+            <% end %>
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
 <!--/Depachos-->
 
-
-
-
-
-  <div class="form-inputs">
-    
-    
-    
-    
-    <br>
-    
-
-    
-    
-    
-    
-    
-    <!--%= f.input :numero_cotizacion %-->
-    
-    <!--%= f.association :linea_de_impresion %-->
-    <!--%= f.input :forma_de_pago %-->
-    <!--%= f.input :arte %-->
-    <!--%= f.input :descripcion %-->
-    <!--%= f.input :estado_pedido %-->
-    <!--%= f.input :estado %-->
-    
-  </div>
-
-
-
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-
-
+<div class="form-actions">
+   <%= f.button :submit %>
+</div>
 <% end %>
+
+
