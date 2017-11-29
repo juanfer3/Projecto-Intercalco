@@ -1,0 +1,19 @@
+<%= simple_form_for(@orden_de_produccion) do |f| %>
+  <%= f.error_notification %>
+<div class="container">
+  <div class="form-inputs">
+    <%= 
+      f.association :pedido
+    %>
+    <%= f.input :numero_de_orden %>
+    <%= f.input :descripcion %>
+    <%= f.input :fecha_final %>
+    <%= f.input :total %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+</div>
+<% end %>

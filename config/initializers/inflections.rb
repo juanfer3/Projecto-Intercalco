@@ -33,4 +33,14 @@
    inflect.irregular 'condicion_de_pedido','condiciones_de_pedido'
    inflect.irregular 'entregar_factura','entregar_facturas'
    
+   inflect.irregular 'orden_de_produccion','ordenes_de_produccion'
+   inflect.irregular 'fecha_final','fechas_finales'
+   inflect.irregular 'fecha','fechas'
+   inflect.irregular 'total','totales'
+   inflect.irregular 'detalle_de_produccion','detalles_de_produccion'
+   inflect.irregular 'inventario','inventarios'
+   inflect.irregular 'numero_de_orden','numeros_de_ordenes'
+   
+   
+   
  end

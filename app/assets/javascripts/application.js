@@ -26,6 +26,9 @@
 //= require best_in_place.jquery-ui
 //= require_tree .
 
+
+
+
 $(document).on('turbolinks:load', function() {
   
   
@@ -110,5 +113,40 @@ $(document).on('turbolinks:load', function() {
       }
     })
  });
+ 
+ 
+
+$('.crearProduccion').click(function(){
+  
+  var pedido_id =  $(this).parents("tr").find('.pedido_id').text()
+  var cliente_id = $(this).parents("tr").find('.cliente').text()
+  var descripcion = $(this).parents("tr").find('.descripcion').text()
+  
+  var infoPedido = '<tr><td>'+cliente_id+'</td><td>'+descripcion+'</td></tr>'
+  
+  $('#agregarPedido').html(infoPedido);
+  
+  $.ajax({
+      url:'/info_produccion',
+      data:{id:pedido_id},
+      method:'get',
+      success: function(data){
+        console.log(data);
+        var data_length = data.length;
+        for (var i = 0; i < data_length; i++) {
+            
+
+        }
+        
+      }
+    })
+  
+  
+  toastr.info('prueba'+descripcion);
+  
+})
+
+ 
+ 
 
 });

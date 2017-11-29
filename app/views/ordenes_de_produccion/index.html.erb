@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes De Produccion</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pedido</th>
+      <th>Numero de orden</th>
+      <th>Descripcion</th>
+      <th>Fecha final</th>
+      <th>Total</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes_de_produccion.each do |orden_de_produccion| %>
+      <tr>
+        <td><%= orden_de_produccion.pedido %></td>
+        <td><%= orden_de_produccion.numero_de_orden %></td>
+        <td><%= orden_de_produccion.descripcion %></td>
+        <td><%= orden_de_produccion.fecha_final %></td>
+        <td><%= orden_de_produccion.total %></td>
+        <td><%= orden_de_produccion.estado %></td>
+        <td><%= link_to 'Show', orden_de_produccion %></td>
+        <td><%= link_to 'Edit', edit_orden_de_produccion_path(orden_de_produccion) %></td>
+        <td><%= link_to 'Destroy', orden_de_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Orden De Produccion', new_orden_de_produccion_path %>
+
+
+<%= link_to 'Nuevo Add', new_orden_de_produccion_path, id:'nuevo_task', remote:true %>
+
+
+
+sdfsdf

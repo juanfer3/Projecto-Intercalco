@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128121338) do
+ActiveRecord::Schema.define(version: 20171129145500) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -56,12 +56,37 @@ ActiveRecord::Schema.define(version: 20171128121338) do
     t.index ["pedido_id"], name: "index_despachos_on_pedido_id"
   end
 
+  create_table "detalles_de_produccion", force: :cascade do |t|
+    t.integer "orden_de_produccion_id"
+    t.string "codigo"
+    t.string "descripcion"
+    t.string "cantidad"
+    t.date "fecha"
+    t.string "inventario"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orden_de_produccion_id"], name: "index_detalles_de_produccion_on_orden_de_produccion_id"
+  end
+
   create_table "lineas_de_impresiones", force: :cascade do |t|
     t.string "tipo_de_linea", default: ""
     t.string "descripcion", default: ""
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ordenes_de_produccion", force: :cascade do |t|
+    t.integer "pedido_id"
+    t.string "numero_de_orden"
+    t.string "descripcion"
+    t.date "fecha_final"
+    t.float "total"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pedido_id"], name: "index_ordenes_de_produccion_on_pedido_id"
   end
 
   create_table "pedidos", force: :cascade do |t|

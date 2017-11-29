@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orden de produccion:</strong>
+  <%= @detalle_de_produccion.orden_de_produccion %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @detalle_de_produccion.codigo %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @detalle_de_produccion.descripcion %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @detalle_de_produccion.cantidad %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @detalle_de_produccion.fecha %>
+</p>
+
+<p>
+  <strong>Inventario:</strong>
+  <%= @detalle_de_produccion.inventario %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @detalle_de_produccion.estado %>
+</p>
+
+<%= link_to 'Edit', edit_detalle_de_produccion_path(@detalle_de_produccion) %> |
+<%= link_to 'Back', detalles_de_produccion_path %>

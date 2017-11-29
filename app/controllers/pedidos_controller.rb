@@ -7,11 +7,6 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.all
   end
   
-  def produccion
-    @pedidos = Pedido.joins(:contacto)
-    #@pedidos = Pedido.joins("INNER JOIN clientes ON cliente.id = contactos.cliente_id")
-  end
-  
   def multiple
    @pedidos = Pedido.find(params[:pedido_ids])
    #@users.each do |pedido|
@@ -95,7 +90,8 @@ class PedidosController < ApplicationController
       :forma_de_pago, :arte, :descripcion, :total_articulo,
       :estado_pedido, :estado,
       tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
-      despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado])
+      despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado],
+      ordenes_de_produccion_attributes:[:pedido_id, :descripcion, :fecha_final, :total, :estado])
     end
     
    

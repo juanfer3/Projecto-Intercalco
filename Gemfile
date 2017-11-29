@@ -68,6 +68,7 @@ gem 'popper_js', '~> 1.12.3'
 gem "jquery-ui-rails"
 gem 'jquery-rails'
 
+
 gem 'rails_layout'
 
 

@@ -9,6 +9,7 @@ class Pedido < ApplicationRecord
   has_many :despachos, inverse_of: :pedido, dependent: :destroy
   accepts_nested_attributes_for :despachos, reject_if: :all_blank, allow_destroy: true
   
-  
+  has_many :ordenes_de_produccion, inverse_of: :pedido, dependent: :destroy
+  accepts_nested_attributes_for :ordenes_de_produccion, reject_if: :all_blank, allow_destroy: true
   
 end
