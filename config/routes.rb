@@ -10,23 +10,25 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :roles
- 
+
   get 'produccion', to: 'ordenes_de_produccion#produccion', as: :produccion
 
   root :to => 'static_pages#home'
-  
+
   get 'info_produccion', to: 'ordenes_de_produccion#info_produccion', as: :info_produccion
-  
+
+  post 'crearNuevaOrden', to: 'ordenes_de_produccion#crearNuevaOrden', as: :crearNuevaOrden
+
  # resources :ordenes_de_produccion, :only => :none do
 #      get :info_produccion
 #  end
-  
-  
+
+
   resources :contactos, :only => :none do
       get :vista
   end
 
-  
-  
-  
+
+
+
 end

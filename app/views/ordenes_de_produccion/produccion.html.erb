@@ -29,11 +29,11 @@
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.created_at%></td>
         <td class="pedido_id" ><%= pedido.id %></td>
-        <td><button type="button" id="crearProduccion" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-danger crearProduccion"><span><i class="ion-plus-round"></i></span></button></td>
-        <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, orden_de_produccion_path(pedido), id:'nuevo_task', remote:true %></td>
+        <td><button type="button" id="crearOrden" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-danger crearProduccion"><span><i class="ion-plus-round"></i></span></button></td>
+        <!--td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, orden_de_produccion_path(pedido), id:'nuevo_task', remote:true %></td-->
         <!--td><!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
       </tr>
-      
+
     <% end %>
   </tbody>
 </table>
@@ -70,7 +70,7 @@
 
 
 
-
+<!Nuevo Formulario>
 <div class="modal my_modal fade my_modal_orden_pedido " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-lg"  role="document">
     <div class="modal-content">
@@ -82,9 +82,28 @@
       </div>
       <div id="activarmodal"></div>
       <div class="modal-body">
-        <form id="activarmodal">
-            
+        <div id="agregarPedido">
+
+        </div>
+:pedido_id, :numero_de_orden, :descripcion, :fecha_final, :total, :estado
+        <form id="activarmodal" class="form-inline">
+          <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1"></span>
+              <input type="text" class="form-control" placeholder="pedido_id" id="pedido_id" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1"></span>
+              <input type="text" class="form-control" placeholder="Numero de Orden" id="numero_de_orden" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+              <span class="input-group-addon" id="basic-addon1"></span>
+              <input type="text" class="form-control" placeholder="Descripcion" id="descripcion" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <button type="button" id="" class="btn btn-primary crearOrden">Enviar</button>
+          </div>
         </form>
+
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -93,3 +112,4 @@
     </div>
   </div>
 </div>
+<!Nuevo Formulario>
