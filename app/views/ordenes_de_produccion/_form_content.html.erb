@@ -22,8 +22,8 @@
 <! ------------------Información De la Producción---------------------------------->
 <div class="container">
   <%@ordenes.each do |ordenes|%>
-    <div class="">
-      <div>
+    <div class="" id="AgregarOrdenes">
+      <div id="">
         <label for="">Numero de Orden:</label>
         <%=ordenes.numero_de_orden%>
       </div>
@@ -53,17 +53,20 @@
 
 
       </div>
+
     </div>
     <hr>
 
   <%end%>
+  <div id="my_numero_orden">
+  </div>
 </div>
 <div class=''>
 
 </div>
 
 <! ------------------Formulario---------------------------------->
-  <%= simple_form_for(@orden_de_produccion, remote: true) do |f| %>
+  <%= simple_form_for @orden_de_produccion, remote: true do |f| %>
     <%= f.error_notification %>
   <div class="container">
       <div class="ocultar_pedido" id="ocultar_pedido">
@@ -80,11 +83,11 @@
 
       <div><%= f.input :numero_de_orden %></div>
   <! ------------------Detalles-Formularios---------------------------------->
-  <div class="col-3 offset-md-6">
+  <div class="col-3 offset-md-6 ">
      <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
   </div>
   <table>
-    <tbody class='fields_detalle'>
+    <tbody class='fields_detalle detalles_form '>
       <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
         <%= render "detalle_de_produccion", :f => builder %>
       <% end %>

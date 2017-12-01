@@ -1,1 +1,29 @@
-$('#AgregarOrdenes').append('<%= j render(@task) %>');
+toastr.success('=====================Creado==============================')
+var numero_orden = $('#orden_de_produccion_numero_de_orden').val();
+var contenido_orden='<label for="">Numero de Orden:</label><p>'+numero_orden+'</p>'
+$('#my_numero_orden').append(contenido_orden);
+
+$('#orden_de_produccion_numero_de_orden').val(' ');
+$("#orden_de_produccion_detalles_de_produccion_attributes_0_codigo").val("");
+$("#orden_de_produccion_detalles_de_produccion_attributes_0_descripcion").val("");
+$("#orden_de_produccion_detalles_de_produccion_attributes_0_cantidad").val("");
+$(".detalles_form tr").each(function(data){
+        parseInt(data)
+        var cod= $(this).find('.orden_de_produccion_detalles_de_produccion_codigo').find("input").val()
+        var des= $(this).find('.orden_de_produccion_detalles_de_produccion_descripcion').find("input").val()
+        var cant= $(this).find('.orden_de_produccion_detalles_de_produccion_cantidad').find("input").val()
+        var this_fecha=$(this).find('.orden_de_produccion_detalles_de_produccion_fecha_1i').find('select')
+
+        cont=1;
+        data=data+cont
+        toastr.success(this_fecha)
+        console.log(this_fecha);
+
+        if (data>=2) {
+          $(this).remove()
+          toastr.info("contando")
+        } else {
+
+        }
+
+    })

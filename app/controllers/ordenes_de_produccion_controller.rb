@@ -51,16 +51,24 @@ class OrdenesDeProduccionController < ApplicationController
   # POST /ordenes_de_produccion.json
   def create
     @orden_de_produccion = OrdenDeProduccion.new(orden_de_produccion_params)
-
-    respond_to do |format|
-      if @orden_de_produccion.save
-        format.html { redirect_to orden_de_produccion_url, notice: 'Orden de produccion was successfully created.' }
-        format.json { render :show, status: :created, location: @orden_de_produccion }
-      else
-        format.html { render :new }
-        format.json { render json: @orden_de_produccion.errors, status: :unprocessable_entity }
+    if @orden_de_produccion.save
+      respond_to do |format|
+        format.html {redirect_to ordenes_de_produccion_url}
+        format.js{}
       end
     end
+
+
+    #respond_to do |format|
+    #  if @orden_de_produccion.save
+    #  format.html { redirect_to produccion_url, notice: 'Orden de produccion was successfully created.' }
+    #    format.json
+    #
+    #  else
+    #   format.html { render :new }
+    #   format.json { render json: @orden_de_produccion.errors, status: :unprocessable_entity }
+    #  end
+    #end
   end
 
   # PATCH/PUT /ordenes_de_produccion/1

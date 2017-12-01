@@ -33,19 +33,7 @@ $(document).on('turbolinks:load', function() {
 
   /*-------------------------Insert Y Delete de Detalles de Produccion----------*/
 
-    $('form').on('click', '.remove_detalle', function(event) {
-      $(this).prev('input[type=hidden]').val('1');
-      $(this).closest('tr').remove();
-      return event.preventDefault();
-    });
 
-    $('form').on('click', '.add_detalle', function(event) {
-      var regexp, time;
-      time = new Date().getTime();
-      regexp = new RegExp($(this).data('id'), 'g');
-      $('.fields_detalle').append($(this).data('fields').replace(regexp, time));
-      return event.preventDefault();
-    });
 
   $("#pedido_contacto_id").select2({
 
@@ -217,5 +205,12 @@ warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBc."]*/
 
 });
 */
+
+$(function () {
+    $('#datetimepicker10').datetimepicker({
+        viewMode: 'years',
+        format: 'MM/YYYY'
+    });
+});
 
 });
