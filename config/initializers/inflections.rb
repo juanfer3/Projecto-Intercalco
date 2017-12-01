@@ -15,7 +15,7 @@
    inflect.irregular 'correo', 'correos'
    inflect.irregular 'direccion', 'direcciones'
    inflect.irregular 'contacto', 'contactos'
-   
+
    inflect.irregular 'tamano', 'tamanos'
    inflect.irregular 'numero_pedido', 'numero_pedidos'
    inflect.irregular 'linea_de_impresion', 'lineas_de_impresiones'
@@ -24,15 +24,15 @@
    inflect.irregular 'costo', 'costos'
    inflect.irregular 'fecha_compromiso', 'fechas_compromiso'
    inflect.irregular 'total_fechas_decompromiso','totales_fechas_decompromiso'
- 
+
    inflect.irregular 'factura','facturas'
    inflect.irregular 'despacho', 'despachos'
    inflect.irregular 'lugar_a_factura','lugares_a_facturar'
    inflect.irregular 'recibe','reciben'
- 
+
    inflect.irregular 'condicion_de_pedido','condiciones_de_pedido'
    inflect.irregular 'entregar_factura','entregar_facturas'
-   
+
    inflect.irregular 'orden_de_produccion','ordenes_de_produccion'
    inflect.irregular 'fecha_final','fechas_finales'
    inflect.irregular 'fecha','fechas'
@@ -40,7 +40,10 @@
    inflect.irregular 'detalle_de_produccion','detalles_de_produccion'
    inflect.irregular 'inventario','inventarios'
    inflect.irregular 'numero_de_orden','numeros_de_ordenes'
-   
-   
-   
+
+   inflect.irregular 'codigo','codigos'
+   inflect.irregular 'fecha','fechas'
+   inflect.irregular 'cantidad','cantidades'
+
+
  end

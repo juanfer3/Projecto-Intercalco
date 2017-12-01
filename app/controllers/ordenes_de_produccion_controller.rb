@@ -30,7 +30,8 @@ class OrdenesDeProduccionController < ApplicationController
       puts '======================================',@ordenes,'====================='
 
       #@ped = Pedido.joins(:ordenes_de_produccion).find(params[:id])
-      @produccion = OrdenDeProduccion.new
+      @orden_de_produccion = OrdenDeProduccion.new
+      @orden_de_produccion.detalles_de_produccion.build
 
     puts "===================================GOOD END================================="
 
@@ -94,6 +95,9 @@ class OrdenesDeProduccionController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_de_produccion_params
-      params.require(:orden_de_produccion).permit(:pedido_id, :numero_de_orden, :descripcion, :fecha_final, :total, :estado)
+      params.require(:orden_de_produccion).permit(:pedido_id, :numero_de_orden,
+        :descripcion, :fecha_final, :total, :estado,
+      detalles_de_produccion_attributes:[:orden_de_produccion_id, :codigo,
+        :descripcion, :cantidad, :fecha, :inventario, :estado])
     end
 end

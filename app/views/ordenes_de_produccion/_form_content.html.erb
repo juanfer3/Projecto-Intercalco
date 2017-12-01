@@ -1,34 +1,97 @@
 
 <! ------------------Información Del Pedido---------------------------------->
-<div class=''>
-  <%@ped.each do |pedido|%>
-  <h1><%=pedido.contacto.cliente.nombre%></h1>
-  <h1><%=pedido.numero_de_pedido%></h1>
-  <h1><%=pedido.descripcion%></h1>
+<%@ped.each do |pedido|%>
+  <div class="container card-block">
+    <div class="container my_card_pedidos_form my_orden_pedidos">
+      <div class="col-4">
+        <label for="">Cliente</label>
+        <h4 ><%=pedido.contacto.cliente.nombre%></h4>
+      </div>
+      <div class="col-4">
+        <label for="">Descripción</label>
+        <h4 ><%=pedido.descripcion%></h4>
+      </div>
+      <div class="col-4">
+        <label for="">Numero de Pedido</label>
+        <h4 ><%=pedido.numero_de_pedido%></h4>
+      </div>
+    </div>
+  </div>
+<%end%>
+<hr>
+<! ------------------Información De la Producción---------------------------------->
+<div class="container">
+  <%@ordenes.each do |ordenes|%>
+    <div class="">
+      <div>
+        <label for="">Numero de Orden:</label>
+        <%=ordenes.numero_de_orden%>
+      </div>
+      <div>
+
+          <table class="table">
+            <tbody>
+              <thead>
+                <th>Codigo</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+              </thead>
+              <%ordenes.detalles_de_produccion.each do |detalles|%>
+              <tr>
+                <td><h6><%=detalles.codigo%></h6></td>
+                <td><h6><%=detalles.descripcion%></h6></td>
+                <td><h6><%=detalles.cantidad%></h6></td>
+                <td><h6><%=detalles.fecha%></h6></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
+
+
+
+
+
+      </div>
+    </div>
+    <hr>
+
   <%end%>
 </div>
-
-<! ------------------Información De la Producción---------------------------------->
-
 <div class=''>
-  <%@ordenes.each do |ordenes|%>
-    <%=ordenes.numero_de_orden%>
-    
-  <%end%>
+
 </div>
 
 <! ------------------Formulario---------------------------------->
-  <%= simple_form_for(@produccion, remote: true) do |f| %>
+  <%= simple_form_for(@orden_de_produccion, remote: true) do |f| %>
     <%= f.error_notification %>
   <div class="container">
+      <div class="ocultar_pedido" id="ocultar_pedido">
+        <%=
+          f.association :pedido,
+          collection: Pedido.all,
+          label_method: :descripcion,
+          value_method: :id,
+          as: :select,
+          class:'col-4 my_cliente form-control',
+          selected: @my_id
+        %>
+      </div>
 
-    <div class="form-inputs">
-      <%=
-        f.association :pedido
-      %>
-      <%= f.input :numero_de_orden %>
-      <%= f.input :descripcion %>
-    </div>
+      <div><%= f.input :numero_de_orden %></div>
+  <! ------------------Detalles-Formularios---------------------------------->
+  <div class="col-3 offset-md-6">
+     <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
+  </div>
+  <table>
+    <tbody class='fields_detalle'>
+      <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
+        <%= render "detalle_de_produccion", :f => builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+
 
     <div class="form-actions">
       <%= f.button :submit %>

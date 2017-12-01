@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 <div class="container">
   <div class="form-inputs">
-    <%= 
+    <%=
       f.association :pedido
     %>
     <%= f.input :numero_de_orden %>
@@ -11,6 +11,18 @@
     <%= f.input :total %>
     <%= f.input :estado %>
   </div>
+
+
+  <div class="col-3 offset-md-6">
+     <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
+  </div>
+  <table class="table col-12">
+    <tbody class='fields_detalle'>
+      <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
+        <%= render "detalle_de_produccion", :f => builder %>
+      <% end %>
+    </tbody>
+  </table>
 
   <div class="form-actions">
     <%= f.button :submit %>

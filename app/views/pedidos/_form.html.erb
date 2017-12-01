@@ -3,12 +3,12 @@
 <!--button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button-->
 <!--Datos Generales del Pedido-->
 <div class="card text-center">
-  
+
    <div class="card-header">
       <h1>Orden De Pedido</h1>
       <div id="cliente"></div>
    </div>
-   
+
    <!--Card Block-->
    <div class="card-block">
       <h4 class="card-title"></h4>
@@ -24,21 +24,21 @@
                   value_method: :id,
                   as: :select,
                   class:'col-4 my_cliente form-control',
-                  
+
                   include_blank: 'Seleccione el Cliente'
                   %>
             </div>
-          
+
             <!--/Contacto Select-->
             <!--Estado del Pedido-->
             <div class="col-4">
                <label>Estado del pedido</label>
                <div class="">
-                  <%= 
+                  <%=
                      f.select :condicion_de_pedido,
                      [['Bajo Cotizacion'], ['Bajo Pedido']],
-                     {}, {class: "form-control"} 
-                     
+                     {}, {class: "form-control"}
+
                      %>
                </div>
             </div>
@@ -67,14 +67,14 @@
                   %>
             </div>
             <!--/Fecha De pedido-->
-            
+
             <div class="col-12">
                <hr>
             </div>
-            
-            <!--Linea de Impresion-->  
+
+            <!--Linea de Impresion-->
             <div class="col-4">
-               <%= 
+               <%=
                   f.association :linea_de_impresion,
                   collection: LineaDeImpresion.all,
                   label_method: :tipo_de_linea,
@@ -93,9 +93,9 @@
             <!--Arte Select-->
             <div class="col-4">
                <label>Diseño de Arte</label>
-               <%= 
+               <%=
                   f.select :arte,[['Cliente'], ['Intercalco']],
-                  {}, {class: "form-control"}  
+                  {}, {class: "form-control"}
                   %>
             </div>
             <!--/Arte Select-->
@@ -104,17 +104,17 @@
                <%= f.input :condicion_de_pedido %>
             </div>
             <!--/Condicion del  Pedido-->
-            
+
             <!--Separador-->
-            
+
             <!--/Separador-->
             <!--Tipo de Trabajo-->
             <div class="col-4">
                <label>Tipo De Trabajo</label>
-               <%= 
+               <%=
                   f.select :tipo_de_trabajo,[['Nuevo'], ['Viejo']],
                   {include_blank: '...'}, {class: "form-control"}
-                  
+
                 %>
             </div>
             <!--/Tipo de Trabajo-->
@@ -123,7 +123,7 @@
                <!--%= f.input :producto %-->
             </div-->
             <!--/Producto-->
-            
+
          </div>
          <!--/Container con Flexbox-->
       </div>
@@ -180,7 +180,7 @@
          <br>
          <div class="my_card_pedidos_form">
             <%= f.simple_fields_for :despachos do |builder| %>
-            <%= render "despacho", :f => builder %>
+              <%= render "despacho", :f => builder %>
             <% end %>
          </div>
          <br>
@@ -193,5 +193,3 @@
    <%= f.button :submit %>
 </div>
 <% end %>
-
-

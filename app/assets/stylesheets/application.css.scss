@@ -17,13 +17,13 @@
  *= require select2
  *= require jquery-ui
  */
- 
+
   @import "bootstrap";
   @import 'ionicons';
   @import "toastr";
-  
 
-  
+
+
 
   @import url('https://fonts.googleapis.com/css?family=Rambla');
   @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Bungee|Frijole|Gabriela|Vast+Shadow');
@@ -31,7 +31,7 @@
 //h1{
      // font-family: 'Bungee', cursive;
       //color:black;
-      
+
 //  }
   h1 {
 	font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -41,7 +41,7 @@
 	font-weight: 500;
 	line-height: 26.4px;
 }
-  
+
 body{
     background:white   ;
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
@@ -50,29 +50,29 @@ body{
     //background-image: url(/assets/ColoresHumo.jpg);
     //background-size: 50% 50%;
     //background-repeat: no-repeat;
-    
+
 }
 
- 
+
 /*-------------------------------------home-----------------------------------*/
 .sub_title{
-  
+
   font-family: 'Gabriela', serif;
   text-align: center;
-  
+
 }
- 
+
 .my_container_tittle{
     top:35%;
     position:absolute;
     //z-index:3;
   }
-  
+
 .my_modal{
     //z-index:9!important;
-    
+
 }
-  
+
 .container_opacity{
     position:absolute;
     background: #f5f5f5 ;
@@ -82,18 +82,18 @@ body{
     width:100%;
     left:0;
 }
-  
+
 .my_container_image{
-    
+
     z-index:-2;
-    
-}  
- 
+
+}
+
 .my_title_login{
-    
+
     font-size:50px!important;
     text-align: center;
-    
+
 }
 
 .line_title{
@@ -101,26 +101,26 @@ body{
 }
 
 .my_nav{
-  
+
    border-bottom-style: solid;
-  
+
 }
-  
-  
+
+
 .my_btn_title{
-    
+
     font-family: 'Gabriela', serif;
-    
-      
+
+
   }
-  
-/*-------------------------------------/home-----------------------------------*/ 
- 
+
+/*-------------------------------------/home-----------------------------------*/
+
 /*-------------------------------------Users-----------------------------------*/
 .my_users{
-    
-    
-    
+
+
+
 }
 
 .my_users_btn_options{
@@ -137,7 +137,7 @@ body{
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-  
+
   -webkit-flex-flow: row wrap;
 }
 
@@ -156,26 +156,30 @@ body{
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-  
+
   -webkit-flex-flow: row wrap;
 }
 
+.my_orden_pedidos{
 
+  text-align: center;
+
+}
 /*-------------------------------------/Pedidos Form-----------------------------------*/
 
 /*-------------------------------------Pedidos Form Tiempos de Entrega-----------------------------------*/
 
 .container_add_entregas{
-    
+
     display: flex;
     justify-content: space-between;
-    
+
 }
 /*-------------------------------------Footer-----------------------------------*/
 .lista_footer{
-    
+
     color:#0091ea;
-    
+
 }
 
 
@@ -191,7 +195,7 @@ body{
 
 }
 .footer-top{
-  background: #f5f5f5; 
+  background: #f5f5f5;
   border-top-style: solid;
 }
 .footer-middle{
@@ -200,7 +204,7 @@ body{
   color: white;
 }
 
-    
+
 /*-------------------------------------/Footer-----------------------------------*/
 
 
@@ -214,25 +218,25 @@ body{
   margin: 0;
   list-style: none;
   flex-wrap:  wrap;
-  
+
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  
+
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
 }
 
 .flex-item {
-    
+
   background: tomato;
   padding: 5px;
   width: 200px;
   height: 150px;
   margin-top: 10px;
-  
+
   line-height: 150px;
   color: white;
   font-weight: bold;
@@ -242,8 +246,3 @@ body{
 */
 
 /*----------------foter*/
-
-
-
-
-
