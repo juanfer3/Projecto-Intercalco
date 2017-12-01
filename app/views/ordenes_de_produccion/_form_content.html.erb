@@ -1,17 +1,35 @@
-<div class=''>
 
+<! ------------------Información Del Pedido---------------------------------->
+<div class=''>
+  <%@ped.each do |pedido|%>
+  <h1><%=pedido.contacto.cliente.nombre%></h1>
+  <h1><%=pedido.numero_de_pedido%></h1>
+  <h1><%=pedido.descripcion%></h1>
+  <%end%>
+</div>
+
+<! ------------------Información De la Producción---------------------------------->
+
+<div class=''>
+  <%@ordenes.each do |ordenes|%>
+    <%=ordenes.numero_de_orden%>
+    
+  <%end%>
+</div>
+
+<! ------------------Formulario---------------------------------->
   <%= simple_form_for(@produccion, remote: true) do |f| %>
     <%= f.error_notification %>
   <div class="container">
 
     <div class="form-inputs">
-      <%= 
+      <%=
         f.association :pedido
       %>
       <%= f.input :numero_de_orden %>
       <%= f.input :descripcion %>
     </div>
-  
+
     <div class="form-actions">
       <%= f.button :submit %>
     </div>

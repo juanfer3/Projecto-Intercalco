@@ -116,7 +116,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-$('.crearProduccion').click(function(){
+/*$('.crearProduccion').click(function(){
 
   var pedido_id =  $(this).parents("tr").find('.pedido_id').text()
   var cliente_id = $(this).parents("tr").find('.cliente').text()
@@ -158,9 +158,9 @@ toastr.warning(descripcion)
 */
 
 
-})
+/*})*/
 
-$('.crearOrden').click(function(){
+/*$('.crearOrden').click(function(){
 
   var pedido_id = $('#pedido_id').val();
   pedido_id = parseInt(pedido_id);
@@ -178,7 +178,7 @@ _csrf_token: "NGOAeZ6Jbt30S1JDdZLPeWghetgyIpP97pjFtZcpjnc="
 session_id: "6c55f89f6cd2f70104384d17c4782e5d"
 warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBc."]*/
   // POST /ordenes_de_produccion
-  var create_new = '/crearNuevaOrden.json';
+/*  var create_new = '/crearNuevaOrden.json';
   $.ajax({
     url:create_new,
     method:'POST',
@@ -199,6 +199,6 @@ warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBc."]*/
     })
 
 });
-
+*/
 
 });

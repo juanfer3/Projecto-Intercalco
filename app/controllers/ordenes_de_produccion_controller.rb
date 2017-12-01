@@ -6,27 +6,12 @@ class OrdenesDeProduccionController < ApplicationController
   def index
     @ordenes_de_produccion = OrdenDeProduccion.all
   end
-  #crearNuevaOrden
-  def crearNuevaOrden
-    @orden_de_produccion = OrdenDeProduccion.new(orden_de_produccion_params)
 
-    respond_to do |format|
-      if @orden_de_produccion.save
-        format.html { redirect_to produccion_url, notice: 'Orden de produccion was successfully created.' }
-        format.json { render :show, status: :created, location: @orden_de_produccion }
-      else
-        format.html { render :new }
-        format.json { render json: @orden_de_produccion.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-  #Listar en Producción
   def produccion
     @pedidos = Pedido.joins(:contacto)
     @orden_de_produccion = OrdenDeProduccion.new
   end
 
-#Listar en Modal
   def info_produccion
     @my_produccion = Pedido.joins(:ordenes_de_produccion).find(params[:id])
     render json: @my_produccion.to_json(:include => :ordenes_de_produccion)
@@ -35,9 +20,22 @@ class OrdenesDeProduccionController < ApplicationController
   # GET /ordenes_de_produccion/1
   # GET /ordenes_de_produccion/1.json
   def show
-    #@my_produccion = Pedido.joins(:ordenes_de_produccion).find(params[:id])
-    @produccion = OrdenDeProduccion.new
+    puts "===================================START================================="
+      #@ordenes_de_produccion = OrdenDeProduccion.all
+      @my_id= params[:id]
+      @ped = Pedido.where('pedidos.id ='"#{@my_id}"'')
+      @ordenes = OrdenDeProduccion.where('pedido_id ='"#{@my_id}"'')
+
+      puts "****************************************",@ped,"****************************************"
+      puts '======================================',@ordenes,'====================='
+
+      #@ped = Pedido.joins(:ordenes_de_produccion).find(params[:id])
+      @produccion = OrdenDeProduccion.new
+
+    puts "===================================GOOD END================================="
+
   end
+
 
   # GET /ordenes_de_produccion/new
   def new
@@ -55,7 +53,7 @@ class OrdenesDeProduccionController < ApplicationController
 
     respond_to do |format|
       if @orden_de_produccion.save
-        format.html { redirect_to produccion_url, notice: 'Orden de produccion was successfully created.' }
+        format.html { redirect_to orden_de_produccion_url, notice: 'Orden de produccion was successfully created.' }
         format.json { render :show, status: :created, location: @orden_de_produccion }
       else
         format.html { render :new }

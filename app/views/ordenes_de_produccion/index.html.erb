@@ -18,7 +18,7 @@
   <tbody>
     <% @ordenes_de_produccion.each do |orden_de_produccion| %>
       <tr>
-        <td><%= orden_de_produccion.pedido %></td>
+        <td><%= orden_de_produccion.pedido.id %></td>
         <td><%= orden_de_produccion.numero_de_orden %></td>
         <td><%= orden_de_produccion.descripcion %></td>
         <td><%= orden_de_produccion.fecha_final %></td>
