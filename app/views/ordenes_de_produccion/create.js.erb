@@ -1,9 +1,12 @@
 toastr.success('Orden De Producción Creada')
 
+toastr.warning(<%=@lastId%>).text()
+var lastId = <%=@lastId%>
+toastr.error(lastId)
 jQuery(".best_in_place").best_in_place();
 
 var numero_orden = $('#orden_de_produccion_numero_de_orden').val();
-var contenido_orden='<div><label for="">Numero de Orden:</label><p>'+numero_orden+'</p><div>'
+var contenido_orden='<div><label for="">Numero de Orden:</label><p>'+numero_orden+'</p><h1><%= link_to 'Destroy', { action: :destroy, id: @lastId }, remote: true,method: :delete, data: { confirm: 'Are you sure?' } %></h1><div>'
 
 $('#agregarDetalle').append(contenido_orden);
 $('#orden_de_produccion_numero_de_orden').val("");
@@ -11,7 +14,7 @@ $('#orden_de_produccion_numero_de_orden').val("");
 var contTables=$(".agregarDetalle table").length
 var totalTables = contTables.toString();
 
-var tabla='<table class="table"><thead> <th>Codigo</th> <th>Descripción</th> <th>Cantidad</th> <th>Fecha</th> </thead><tbody id="classTbody" class="AgregarFilas'+contTables+'"></tbody></table>'
+var tabla='<table class="table tabla'+contTables+'"><thead> <th>Codigo</th> <th>Descripción</th> <th>Cantidad</th> <th>Fecha</th> </thead><tbody id="classTbody" class="AgregarFilas'+contTables+'"></tbody></table>'
 
 $('.tabla').addClass("table");
 
@@ -56,3 +59,4 @@ $(".detalles_form tr").each(function(data){
         }
 
     })
+$('')

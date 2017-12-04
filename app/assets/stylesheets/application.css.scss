@@ -212,6 +212,12 @@ body{
 
 }
 
+.contenedor_detalle_insert{
+
+  margin-top: -9px !important;
+
+}
+
 /*-------------------------------------/Pedidos Form Tiempos de Entrega-----------------------------------*/
 
 //@import "compass/css3";
@@ -250,3 +256,16 @@ body{
 */
 
 /*----------------foter*/
+.my_card_eliminar_ordenes{
+    //background:green;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:  wrap;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+  -webkit-flex-flow: row wrap;
+}

@@ -2,35 +2,57 @@
   <%= simple_form_for @orden_de_produccion, remote: true do |f| %>
     <%= f.error_notification %>
   <div class="container">
-      <div class="ocultar_pedido" id="ocultar_pedido">
-        <%=
-          f.association :pedido,
-          collection: Pedido.all,
-          label_method: :descripcion,
-          value_method: :id,
-          as: :select,
-          class:'col-4 my_cliente form-control',
-          selected: @my_id
-        %>
-      </div>
 
-      <div><%= f.input :numero_de_orden %></div>
   <! ------------------Detalles-Formularios---------------------------------->
-  <div class="col-3 offset-md-6 ">
-     <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
-  </div>
+
   <table>
     <tbody class='fields_detalle detalles_form '>
-      <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
-        <%= render "detalle_de_produccion", :f => builder %>
-      <% end %>
+
+      <tr id="detalles_formulario">
+        <td><div class="ocultar_pedido" id="ocultar_pedido">
+          <%=
+            f.association :pedido,
+            collection: Pedido.all,
+            label_method: :descripcion,
+            value_method: :id,
+            as: :select,
+            class:'col-4 my_cliente form-control',
+            selected: @my_id
+          %>
+        </div></td>
+        <td><%= f.input :numero_de_orden %></td>
+        <%= f.simple_fields_for :detalles_de_produccion do |f| %>
+        <td ><%= f.input :codigo, class: "codigo"%> </td>
+        <td ><%= f.input :descripcion, class:"descripcion" %></td>
+        <td ><%= f.input :cantidad, class:"cantidad"%></td>
+        <td class="ocultar_fecha"><%= f.text_field :fecha, class:"my_fecha" %></td>
+        <td>
+          <div class="contenedor_detalle_fecha">
+            <label for="">Fecha</label>
+            <div class="input-group" >
+              <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
+              data-provide='datepicker' placeholder="Fecha"
+              aria-describedby="basic-addon2" id='fecha'>
+              <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+            </div>
+          </div>
+        </td>
+        <td class="">
+          <div class="contenedor_detalle_insert">
+          <label for=""></label>
+          <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
+            <i class="ion-pricetags" aria-hidden="true"></i>
+        <% end %>
+      </div>
+        </td>
+        <% end %>
+      </tr>
+
     </tbody>
   </table>
 
 
 
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+
   </div>
   <% end %>

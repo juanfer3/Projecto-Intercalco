@@ -2,7 +2,7 @@
 
 <p>
   <strong>Pedido:</strong>
-  <%= @orden_de_produccion.pedido %>
+  <%= @ordenes.pedido %>
 </p>
 
 <p>
@@ -12,23 +12,23 @@
 
 <p>
   <strong>Descripcion:</strong>
-  <%= @orden_de_produccion.descripcion %>
+  <%= @ordenes.descripcion %>
 </p>
 
 <p>
   <strong>Fecha final:</strong>
-  <%= @orden_de_produccion.fecha_final %>
+  <%= @ordenesordenes.fecha_final %>
 </p>
 
 <p>
   <strong>Total:</strong>
-  <%= @orden_de_produccion.total %>
+  <%= @ordenes.total %>
 </p>
 
 <p>
   <strong>Estado:</strong>
-  <%= @orden_de_produccion.estado %>
+  <%= @ordenes.estado %>
 </p>
 
-<%= link_to 'Edit', edit_orden_de_produccion_path(@orden_de_produccion) %> |
+<%= link_to 'Edit', edit_orden_de_produccion_path(@ordenes) %> |
 <%= link_to 'Back', ordenes_de_produccion_path %>

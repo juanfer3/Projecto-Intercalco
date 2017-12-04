@@ -19,15 +19,29 @@
   </div>
 <%end%>
 <hr>
+
+<! ------------------Formulario---------------------------------->
+
+  <! ------------------Detalles-Formularios---------------------------------->
+
+
+        <%= render "orden_de_produccion" %>
 <! ------------------Información De la Producción---------------------------------->
-<div class="container">
+<div class="container" id="informacionProduccion">
   <%@ordenes.each do |ordenes|%>
-    <div class="" id="AgregarOrdenes">
-      <div id="">
-        <label for="">Numero de Orden:</label>
-        <%=ordenes.numero_de_orden%>
-      </div>
-      <div>
+  <div id=<%= "orden_#{ordenes.id}" %> >
+    <div class="AgregarOrdenes" >
+      <div class="">
+        <div class="my_card_eliminar_ordenes">
+          <div class="col-5">
+          <label for="">Numero de Orden:</label>
+          <%=ordenes.numero_de_orden%>
+          </div>
+          <div class="col6">
+          <%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, ordenes, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+
 
           <table class="table">
             <tbody>
@@ -36,13 +50,15 @@
                 <th>Descripción</th>
                 <th>Cantidad</th>
                 <th>Fecha</th>
+                <th></th>
               </thead>
               <%ordenes.detalles_de_produccion.each do |detalles|%>
               <tr>
-                <td><h6><%=detalles.codigo%></h6></td>
-                <td><h6><%=detalles.descripcion%></h6></td>
-                <td><h6><%=detalles.cantidad%></h6></td>
-                <td><h6><%=detalles.fecha%></h6></td>
+                <td><h6><%=best_in_place detalles, :codigo, as: :input%></h6></td>
+                <td><h6><%=best_in_place detalles, :descripcion, as: :input%></h6></td>
+                <td><h6><%=best_in_place detalles, :cantidad, as: :input%></h6></td>
+                <td><h6><%=best_in_place detalles, :fecha, as: :input%></h6></td>
+                <td></td>
               </tr>
               <%end%>
             </tbody>
@@ -56,7 +72,7 @@
 
     </div>
     <hr>
-
+  </div>
   <%end%>
   <div class="agregarDetalle" id="agregarDetalle">
 
@@ -64,40 +80,13 @@
 
 
 
-<! ------------------Formulario---------------------------------->
-  <%= simple_form_for @orden_de_produccion, remote: true do |f| %>
-    <%= f.error_notification %>
-  <div class="container">
-      <div class="ocultar_pedido" id="ocultar_pedido">
-        <%=
-          f.association :pedido,
-          collection: Pedido.all,
-          label_method: :descripcion,
-          value_method: :id,
-          as: :select,
-          class:'col-4 my_cliente form-control',
-          selected: @my_id
-        %>
-      </div>
 
-      <div><%= f.input :numero_de_orden %></div>
-  <! ------------------Detalles-Formularios---------------------------------->
-  <div class="col-3 offset-md-6 ">
-     <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
+
+
+
+
+
+
   </div>
-  <table>
-    <tbody class='fields_detalle detalles_form '>
-      <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
-        <%= render "detalle_de_produccion", :f => builder %>
-      <% end %>
-    </tbody>
-  </table>
 
-
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
-  </div>
-  <% end %>
 </div>

@@ -4,7 +4,7 @@ class OrdenesDeProduccionController < ApplicationController
   # GET /ordenes_de_produccion
   # GET /ordenes_de_produccion.json
   def index
-    @ordenes_de_produccion = OrdenDeProduccion.all
+    @ordenes = OrdenDeProduccion.all
   end
 
   def produccion
@@ -51,6 +51,7 @@ class OrdenesDeProduccionController < ApplicationController
   # POST /ordenes_de_produccion.json
   def create
     @orden_de_produccion = OrdenDeProduccion.new(orden_de_produccion_params)
+    @lastId = OrdenDeProduccion.all.last.id
     if @orden_de_produccion.save
       respond_to do |format|
         format.html {redirect_to ordenes_de_produccion_url}
@@ -88,17 +89,19 @@ class OrdenesDeProduccionController < ApplicationController
   # DELETE /ordenes_de_produccion/1
   # DELETE /ordenes_de_produccion/1.json
   def destroy
-    @orden_de_produccion.destroy
+    #@orden_de_produccion.destroy
+    @ordenes.destroy
     respond_to do |format|
-      format.html { redirect_to ordenes_de_produccion_url, notice: 'Orden de produccion was successfully destroyed.' }
-      format.json { head :no_content }
+        format.html {redirect_to ordenes_de_produccion_url}
+        format.js{}
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orden_de_produccion
-      @orden_de_produccion = OrdenDeProduccion.find(params[:id])
+      #@orden_de_produccion = OrdenDeProduccion.find(params[:id])
+      @ordenes=OrdenDeProduccion.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -16,7 +16,8 @@
   </thead>
 
   <tbody>
-    <% @ordenes_de_produccion.each do |orden_de_produccion| %>
+    <% @ordenes.each do |orden_de_produccion| %>
+      <%= orden_de_produccion.id %>
       <tr>
         <td><%= orden_de_produccion.pedido.id %></td>
         <td><%= orden_de_produccion.numero_de_orden %></td>
