@@ -18,7 +18,8 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
+//= require moment
+//= require moment/es.js
 //= require select2
 //= require toastr
 //= require best_in_place
@@ -30,6 +31,14 @@
 
 
 $(document).on('turbolinks:load', function() {
+
+
+  jQuery(".best_in_place").best_in_place();
+
+
+
+
+
 
   /*-------------------------Insert Y Delete de Detalles de Produccion----------*/
 
@@ -206,11 +215,6 @@ warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBc."]*/
 });
 */
 
-$(function () {
-    $('#datetimepicker10').datetimepicker({
-        viewMode: 'years',
-        format: 'MM/YYYY'
-    });
-});
+
 
 });

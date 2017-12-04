@@ -22,7 +22,7 @@
     <% @pedidos.each do |pedido| %>
       <tr>
         <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
-        <td ><%= pedido.numero_de_pedido %></td>
+        <td ><%=best_in_place pedido, :numero_de_pedido,as: :input %></td>
         <td class="descripcion"><%= pedido.descripcion %></td>
         <td><%= pedido.numero_cotizacion %></td>
         <!--td><!--%= pedido.producto %></td-->
@@ -51,30 +51,12 @@
 
 
 
+<div class="input-group" >
+  <input type="text" data-date-format="yyyy/mm]/dd" class="form-control " data-provide='datepicker' placeholder="Recipient's username" aria-describedby="basic-addon2">
+  <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<input type="text" class='datepicker' >
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker();
-  });
-</script>
 
 
 

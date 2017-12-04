@@ -2,6 +2,16 @@ $("#activarmodal").html("<%= j render "form_content"%>");
 $('#exampleModal').modal('show');
 $('#ocultar_pedido').hide();
 
+jQuery(".best_in_place").best_in_place();
+
+$('.ocultar_fecha').hide();
+$('.fecha').focusout(function(){
+
+  var this_fecha = $(this).parents("tr").find(".fecha").val();
+  $(this).parents("tr").find(".my_fecha").val(this_fecha);
+
+})
+
 $('form').on('click', '.remove_detalle', function(event) {
   $(this).prev('input[type=hidden]').val('1');
   $(this).closest('tr').remove();
@@ -13,5 +23,13 @@ $('form').on('click', '.add_detalle', function(event) {
   time = new Date().getTime();
   regexp = new RegExp($(this).data('id'), 'g');
   $('.fields_detalle').append($(this).data('fields').replace(regexp, time));
+  $('.ocultar_fecha').hide();
+  $('.fecha').focusout(function(){
+
+    var this_fecha = $(this).parents("tr").find(".fecha").val();
+    $(this).parents("tr").find(".my_fecha").val(this_fecha);
+
+  })
+
   return event.preventDefault();
 });
