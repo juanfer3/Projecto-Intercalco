@@ -12,8 +12,6 @@
       <th>Numero de Cotización</th>
       <th>Fecha de pedido</th>
       <th>Digitado</th>
-      <th>Estado de Pedido</th>
-      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -28,8 +26,7 @@
         <!--td><!--%= pedido.producto %></td-->
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.created_at%></td>
-        <td class="pedido_id" ><%= pedido.id %></td>
-        <td><button type="button" id="crearProduccion" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-danger crearProduccion"><span><i class="ion-plus-round"></i></span></button></td>
+
 
 
         <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, orden_de_produccion_path(pedido), id:'nuevo_task', remote:true %></td>

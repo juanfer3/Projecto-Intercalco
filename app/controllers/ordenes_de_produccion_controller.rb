@@ -41,6 +41,7 @@ class OrdenesDeProduccionController < ApplicationController
   # GET /ordenes_de_produccion/new
   def new
     @orden_de_produccion = OrdenDeProduccion.new
+    @orden_de_produccion.detalles_de_produccion.build
   end
 
   # GET /ordenes_de_produccion/1/edit

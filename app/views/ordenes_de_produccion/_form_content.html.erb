@@ -26,7 +26,13 @@
 
 
         <%= render "orden_de_produccion" %>
+
 <! ------------------Información De la Producción---------------------------------->
+<%@ped.each do |pedido|%>
+<%pedido.ordenes_de_produccion.each do |ord|%>
+
+<%end%>
+<%end%>
 <div class="container" id="informacionProduccion">
   <%@ordenes.each do |ordenes|%>
   <div id=<%= "orden_#{ordenes.id}" %> >
@@ -35,7 +41,7 @@
         <div class="my_card_eliminar_ordenes">
           <div class="col-5">
           <label for="">Numero de Orden:</label>
-          <%=ordenes.numero_de_orden%>
+          <%= best_in_place ordenes,:numero_de_orden,as: :input%>
           </div>
           <div class="col6">
           <%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, ordenes, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %>

@@ -66,37 +66,3 @@ $(".detalles_form tr").each(function(data){
         }
 
   })
-<%@orden_de_produccion.detalles_de_produccion.each do |detalle|%>
-  $(document).on('dblclick','span',function(){
-    toastr.info('dobleClick')
-    var input = $('<input />', {
-            'type': 'text',
-                'name': 'unique',
-                'value': $(this).text()
-        });
-        $(this).parent().append(input);
-        $(this).remove();
-        input.focus();
-  })
-
-
-  $(document).on('blur', 'input', function () {
-        var upCod=$('<span />').html($(this).val())
-        $(this).parent().append($('<span />').html($(this).val()));
-        $(this).remove();
-        $.ajax({
-          url:'/detalles_de_produccion/<%=detalle.id%>/update?cod=edito',
-          method:'PUT',
-          error: function(data){
-            toastr.error('fallo0-')
-            console.log(data);
-          },
-          success: function(data){
-            toastr.success('Conecto')
-            console.log(data);
-          }
-        })
-
-
-    });
-<%end%>

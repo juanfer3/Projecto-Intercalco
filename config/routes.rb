@@ -28,7 +28,6 @@ Rails.application.routes.draw do
       get :vista
   end
 
-get 'editar', to: 'ordenes_de_produccion#editar', as: :editar
 
 
 end
