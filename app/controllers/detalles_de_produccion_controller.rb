@@ -1,6 +1,10 @@
 class DetallesDeProduccionController < ApplicationController
   before_action :set_detalle_de_produccion, only: [:show, :edit, :update, :destroy]
 
+  def editar
+    @detalle_de_produccion.update(detalle_de_produccion_params)
+  end
+
   # GET /detalles_de_produccion
   # GET /detalles_de_produccion.json
   def index

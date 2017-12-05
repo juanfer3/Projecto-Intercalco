@@ -23,6 +23,8 @@
 //= require select2
 //= require toastr
 //= require best_in_place
+//= require jquery.purr
+//= require best_in_place.purr
 //= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require_tree .

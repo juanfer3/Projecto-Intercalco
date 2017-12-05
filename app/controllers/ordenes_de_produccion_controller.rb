@@ -51,7 +51,7 @@ class OrdenesDeProduccionController < ApplicationController
   # POST /ordenes_de_produccion.json
   def create
     @orden_de_produccion = OrdenDeProduccion.new(orden_de_produccion_params)
-    @lastId = OrdenDeProduccion.all.last.id
+    @OrdenDeProduccion = OrdenDeProduccion.last
     if @orden_de_produccion.save
       respond_to do |format|
         format.html {redirect_to ordenes_de_produccion_url}
