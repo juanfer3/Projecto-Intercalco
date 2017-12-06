@@ -1,68 +1,11 @@
-toastr.success('Orden De Producción Creada')
+toastr.error('Entra la Create')
 
 jQuery(".best_in_place").best_in_place();
-$('.best_in_place').bind("ajax:success", function () {$(this).closest('tr').effect('highlight'); });
 
-var div_Contenedor = '<div id="orden_<%=@orden_de_produccion.id%>"><h1></h1></div>'
-var numero_orden = $('#orden_de_produccion_numero_de_orden').val();
-var contenido_orden='<div class="contenido_orden"><div id="num" class="col-6"><label for="">Numero de Orden:</label><p><%=@orden_de_produccion.numero_de_orden%></p></div><div ><%= link_to '<button class="btn btn-outline-danger  col-12"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, @orden_de_produccion,remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></div></div>'
+$('#orden_de_produccion_numero_de_orden').val(' ');
+$("#orden_de_produccion_codigo").val("");
+$("#orden_de_produccion_descripcion").val("");
+$("#orden_de_produccion_cantidad").val("");
+$("#fecha").val("");
 
-$('#agregarDetalle').append(div_Contenedor);
-$('#orden_<%=@orden_de_produccion.id%>').append(contenido_orden);
-$('#orden_de_produccion_numero_de_orden').val("");
-
-var contTables=$(".agregarDetalle table").length
-var totalTables = contTables.toString();
-
-var tabla='<table class="table tabla'+contTables+'"><thead> <th>Codigo</th> <th>Descripción</th> <th>Cantidad</th> <th>Fecha</th> </thead><tbody id="classTbody" class="AgregarFilas'+contTables+'"></tbody></table>'
-
-$('.tabla').addClass("table");
-$('.contenido_orden').addClass("my_card_eliminar_ordenes")
-$('.col-3').addClass("col-3 offset-3")
-$('.col-5').addClass("col-5")
-$('.btn-derecha').addClass("btn-derecha")
-$('.col-offset-2').addClass('col-offset-2')
-$('#orden_<%=@orden_de_produccion.id%>').append(tabla);
-$(".agregarDetalle table")
-
-
-
-
-
-
-$(".detalles_form tr").each(function(data){
-        parseInt(data)
-        var cod= $(this).find('.orden_de_produccion_detalles_de_produccion_codigo').find("input").val()
-        var des= $(this).find('.orden_de_produccion_detalles_de_produccion_descripcion').find("input").val()
-        var cant= $(this).find('.orden_de_produccion_detalles_de_produccion_cantidad').find("input").val()
-        var this_fecha=$(this).find('.fecha').val()
-
-        cont=1;
-        data=data+cont
-
-
-        if (data>=2) {
-          jQuery(".best_in_place").best_in_place();
-          var fila='<tr><td><h6>'+cod+'</h6></td><td><h6>'+des+'</h6></td><td><h6>'+cant+'</h6></td><td><h6>'+this_fecha+'</h6></td></tr>'
-          var totalTables=$(".agregarDetalle table").length
-          totalTables= totalTables-1
-
-          toastr.info(totalTables)
-          $(".AgregarFilas"+totalTables+"").append(fila)
-          $(this).remove()
-          toastr.info("contando")
-        } else {
-          <%@orden_de_produccion.detalles_de_produccion.each do |detalles|%>
-          var fila='<tr><td><h6 id="codigo_<%=detalles.id%>"><%=best_in_place detalles, :codigo, as: :input%></h6></td><td><h6><%=detalles.descripcion%></h6></td><td><h6><%=detalles.cantidad%></h6></td><td><h6><%=detalles.fecha%></h6></td></tr>'
-          var totalTables=$(".agregarDetalle table").length
-          totalTables= totalTables-1
-          $(".AgregarFilas"+totalTables+"").append(fila)
-          $('#orden_de_produccion_numero_de_orden').val(' ');
-          $("#orden_de_produccion_detalles_de_produccion_attributes_0_codigo").val("");
-          $("#orden_de_produccion_detalles_de_produccion_attributes_0_descripcion").val("");
-          $("#orden_de_produccion_detalles_de_produccion_attributes_0_cantidad").val("");
-          $("#fecha").val("");
-          <%end%>
-        }
-
-  })
+$("#Agrego").append("<%= j render @orden_de_produccion%>");

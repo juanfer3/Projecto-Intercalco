@@ -4,7 +4,7 @@ class OrdenesDeProduccionController < ApplicationController
   # GET /ordenes_de_produccion
   # GET /ordenes_de_produccion.json
   def index
-    @ordenes = OrdenDeProduccion.all
+    @ordenes_de_produccion = OrdenDeProduccion.all
   end
 
   def produccion
@@ -20,28 +20,12 @@ class OrdenesDeProduccionController < ApplicationController
   # GET /ordenes_de_produccion/1
   # GET /ordenes_de_produccion/1.json
   def show
-    puts "===================================START================================="
-      #@ordenes_de_produccion = OrdenDeProduccion.all
-      @my_id= params[:id]
-      @ped = Pedido.where('pedidos.id ='"#{@my_id}"'')
-      @ordenes = OrdenDeProduccion.where('pedido_id ='"#{@my_id}"'')
-
-      puts "****************************************",@ped,"****************************************"
-      puts '======================================',@ordenes,'====================='
-
-      #@ped = Pedido.joins(:ordenes_de_produccion).find(params[:id])
-      @orden_de_produccion = OrdenDeProduccion.new
-      @orden_de_produccion.detalles_de_produccion.build
-
-    puts "===================================GOOD END================================="
-
   end
 
 
   # GET /ordenes_de_produccion/new
   def new
     @orden_de_produccion = OrdenDeProduccion.new
-    @orden_de_produccion.detalles_de_produccion.build
   end
 
   # GET /ordenes_de_produccion/1/edit
@@ -52,7 +36,6 @@ class OrdenesDeProduccionController < ApplicationController
   # POST /ordenes_de_produccion.json
   def create
     @orden_de_produccion = OrdenDeProduccion.new(orden_de_produccion_params)
-    @OrdenDeProduccion = OrdenDeProduccion.last
     if @orden_de_produccion.save
       respond_to do |format|
         format.html {redirect_to ordenes_de_produccion_url}
@@ -90,8 +73,8 @@ class OrdenesDeProduccionController < ApplicationController
   # DELETE /ordenes_de_produccion/1
   # DELETE /ordenes_de_produccion/1.json
   def destroy
-    #@orden_de_produccion.destroy
-    @ordenes.destroy
+    @orden_de_produccion.destroy
+    #@ordenes.destroy
     respond_to do |format|
         format.html {redirect_to ordenes_de_produccion_url}
         format.js{}
@@ -101,15 +84,13 @@ class OrdenesDeProduccionController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_orden_de_produccion
-      #@orden_de_produccion = OrdenDeProduccion.find(params[:id])
-      @ordenes=OrdenDeProduccion.find(params[:id])
+      @orden_de_produccion = OrdenDeProduccion.find(params[:id])
+     # @ordenes=OrdenDeProduccion.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_de_produccion_params
       params.require(:orden_de_produccion).permit(:pedido_id, :numero_de_orden,
-        :descripcion, :fecha_final, :total, :estado,
-      detalles_de_produccion_attributes:[:orden_de_produccion_id, :codigo,
-        :descripcion, :cantidad, :fecha, :inventario, :estado])
+        :descripcion, :fecha_final, :total, :estado,:pedido_id, :codigo, :total, :cantidad, :fecha,:inventario,:estado)
     end
 end

@@ -7,7 +7,7 @@ class CreatePedidos < ActiveRecord::Migration[5.1]
       t.string :condicion_de_pedido, default: ""
       t.date :fecha_entrega
       t.date :fecha_de_pedido
-      t.string :numero_cotizacion, default: ""
+      t.string :numero_cotizacion, default: "N/A"
       t.string :numero_de_pedido, default: ""
       t.references :linea_de_impresion, foreign_key: true
       t.string :forma_de_pago, default: ""

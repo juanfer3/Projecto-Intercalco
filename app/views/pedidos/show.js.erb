@@ -1,2 +1,17 @@
-$("#myModal").html("<%= j render "show"%>");
-$('#myModal').modal('show');
+toastr.error('Entra la show')
+$("#activarmodal").html("<%= j render @pedido%>");
+$('#exampleModal').modal('show');
+
+$('#ocultar_pedido').hide();
+
+jQuery(".best_in_place").best_in_place();
+$('.ocultar_fecha').hide();
+$('.fecha').focusout(function(){
+
+  var this_fecha = $(this).parents("tr").find(".fecha").val();
+  $(this).parents("tr").find(".my_fecha").val(this_fecha);
+  var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+  
+
+})
+

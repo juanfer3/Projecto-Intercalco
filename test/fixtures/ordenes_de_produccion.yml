@@ -4,14 +4,22 @@ one:
   pedido: one
   numero_de_orden: MyString
   descripcion: MyString
-  fecha_final: 2017-11-29
+  fecha_final: 2017-12-06
   total: 1.5
+  codigo: MyString
+  cantidad: 1.5
+  fecha: 2017-12-06
+  inventario: MyString
   estado: false
 
 two:
   pedido: two
   numero_de_orden: MyString
   descripcion: MyString
-  fecha_final: 2017-11-29
+  fecha_final: 2017-12-06
   total: 1.5
+  codigo: MyString
+  cantidad: 1.5
+  fecha: 2017-12-06
+  inventario: MyString
   estado: false

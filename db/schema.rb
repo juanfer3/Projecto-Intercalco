@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171129145500) do
+ActiveRecord::Schema.define(version: 20171206001613) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -39,34 +39,21 @@ ActiveRecord::Schema.define(version: 20171129145500) do
 
   create_table "despachos", force: :cascade do |t|
     t.integer "pedido_id"
-    t.string "nombre"
-    t.string "nit"
-    t.string "telefono"
-    t.string "lugar_de_despacho"
-    t.string "direccion"
-    t.string "celular"
-    t.string "correo"
-    t.string "recibe"
-    t.string "observacion"
-    t.string "facturar"
-    t.string "entregar_factura"
-    t.boolean "estado"
+    t.string "nombre", default: ""
+    t.string "nit", default: ""
+    t.string "telefono", default: ""
+    t.string "lugar_de_despacho", default: ""
+    t.string "direccion", default: ""
+    t.string "celular", default: ""
+    t.string "correo", default: ""
+    t.string "recibe", default: ""
+    t.string "observacion", default: ""
+    t.string "facturar", default: ""
+    t.string "entregar_factura", default: ""
+    t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_despachos_on_pedido_id"
-  end
-
-  create_table "detalles_de_produccion", force: :cascade do |t|
-    t.integer "orden_de_produccion_id"
-    t.string "codigo"
-    t.string "descripcion"
-    t.string "cantidad"
-    t.date "fecha"
-    t.string "inventario"
-    t.boolean "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["orden_de_produccion_id"], name: "index_detalles_de_produccion_on_orden_de_produccion_id"
   end
 
   create_table "lineas_de_impresiones", force: :cascade do |t|
@@ -79,11 +66,15 @@ ActiveRecord::Schema.define(version: 20171129145500) do
 
   create_table "ordenes_de_produccion", force: :cascade do |t|
     t.integer "pedido_id"
-    t.string "numero_de_orden"
-    t.string "descripcion"
+    t.string "numero_de_orden", default: ""
+    t.string "descripcion", default: ""
     t.date "fecha_final"
-    t.float "total"
-    t.boolean "estado"
+    t.float "total", default: 0.0
+    t.string "codigo", default: ""
+    t.float "cantidad", default: 0.0
+    t.date "fecha"
+    t.string "inventario", default: ""
+    t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_ordenes_de_produccion_on_pedido_id"
@@ -96,7 +87,7 @@ ActiveRecord::Schema.define(version: 20171129145500) do
     t.string "condicion_de_pedido", default: ""
     t.date "fecha_entrega"
     t.date "fecha_de_pedido"
-    t.string "numero_cotizacion", default: ""
+    t.string "numero_cotizacion", default: "N/A"
     t.string "numero_de_pedido", default: ""
     t.integer "linea_de_impresion_id"
     t.string "forma_de_pago", default: ""

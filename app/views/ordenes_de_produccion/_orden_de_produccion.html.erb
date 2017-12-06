@@ -1,58 +1,12 @@
-<! ------------------Formulario---------------------------------->
-  <%= simple_form_for @orden_de_produccion, remote: true do |f| %>
-    <%= f.error_notification %>
-  <div class="container">
-
-  <! ------------------Detalles-Formularios---------------------------------->
-
-  <table>
-    <tbody class='fields_detalle detalles_form '>
-
-      <tr id="detalles_formulario">
-        <td><div class="ocultar_pedido" id="ocultar_pedido">
-          <%=
-            f.association :pedido,
-            collection: Pedido.all,
-            label_method: :descripcion,
-            value_method: :id,
-            as: :select,
-            class:'col-4 my_cliente form-control',
-            selected: @my_id
-          %>
-        </div></td>
-        <td><%= f.input :numero_de_orden %></td>
-        <%= f.simple_fields_for :detalles_de_produccion do |f| %>
-        <td ><%= f.input :codigo, class: "codigo"%> </td>
-        <td ><%= f.input :descripcion, class:"descripcion" %></td>
-        <td ><%= f.input :cantidad, class:"cantidad"%></td>
-        <td class="ocultar_fecha"><%= f.text_field :fecha, class:"my_fecha" %></td>
-        <td>
-          <div class="contenedor_detalle_fecha">
-            <label for="">Fecha</label>
-            <div class="input-group" >
-              <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
-              data-provide='datepicker' placeholder="Fecha"
-              aria-describedby="basic-addon2" id='fecha'>
-              <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
-            </div>
-          </div>
-        </td>
-        <td class="">
-          <div class="contenedor_detalle_insert">
-          <label for=""></label>
-          <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
-            <i class="ion-pricetags" aria-hidden="true"></i>
-        <% end %>
-      </div>
-        </td>
-        <% end %>
-      </tr>
-
-    </tbody>
-  </table>
-
-
-
-
-  </div>
-  <% end %>
+<tr id=<%="orden_#{@orden_de_produccion.id}"%>>
+    <td><%=best_in_place @orden_de_produccion,:numero_de_orden, :as => :input%></td>
+    <td><%=best_in_place @orden_de_produccion,:codigo, as: :input%></td>
+    <td><%=best_in_place  @orden_de_produccion,:descripcion, as: :input%></td>
+    <td><%=best_in_place @orden_de_produccion,:cantidad, as: :input%></td>
+    <td><%=best_in_place @orden_de_produccion,:fecha, as: :input%></td>
+    <td><%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, @orden_de_produccion, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %></td>
+</tr> 
+<script>
+    toastr.error('cargars')
+    jQuery(".best_in_place").best_in_place();
+</script>

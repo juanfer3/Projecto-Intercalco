@@ -1,39 +1,20 @@
+<%= simple_form_for(@orden_de_produccion) do |f| %>
+  <%= f.error_notification %>
 
-
-<! ------------------Formulario---------------------------------->
-  <%= simple_form_for @orden_de_produccion, remote: true do |f| %>
-    <%= f.error_notification %>
-  <div class="container">
-      <div class="ocultar_pedido" id="ocultar_pedido">
-        <%=
-          f.association :pedido,
-          collection: Pedido.all,
-          label_method: :descripcion,
-          value_method: :id,
-          as: :select,
-          class:'col-4 my_cliente form-control',
-          selected: @my_id
-        %>
-      </div>
-
-      <div><%= f.input :numero_de_orden %></div>
-  <! ------------------Detalles-Formularios---------------------------------->
-  <div class="col-3 offset-md-6 ">
-     <%= link_to_add_detalles('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :detalles_de_produccion, class: '') %>
+  <div class="form-inputs">
+    <%= f.association :pedido %>
+    <%= f.input :numero_de_orden %>
+    <%= f.input :descripcion %>
+    <%= f.input :fecha_final %>
+    <%= f.input :total %>
+    <%= f.input :codigo %>
+    <%= f.input :cantidad %>
+    <%= f.input :fecha %>
+    <%= f.input :inventario %>
+    <%= f.input :estado %>
   </div>
-  <table>
-    <tbody class='fields_detalle detalles_form '>
-      <%= f.simple_fields_for :detalles_de_produccion do |builder| %>
-        <%= render "detalle_de_produccion", :f => builder %>
-      <% end %>
-    </tbody>
-  </table>
 
-
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
   </div>
-  <% end %>
-</div>
+<% end %>

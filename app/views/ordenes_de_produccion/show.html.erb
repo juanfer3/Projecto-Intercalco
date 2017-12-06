@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pedido:</strong>
+  <%= @orden_de_produccion.pedido %>
+</p>
+
+<p>
+  <strong>Numero de orden:</strong>
+  <%= @orden_de_produccion.numero_de_orden %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @orden_de_produccion.descripcion %>
+</p>
+
+<p>
+  <strong>Fecha final:</strong>
+  <%= @orden_de_produccion.fecha_final %>
+</p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @orden_de_produccion.total %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @orden_de_produccion.codigo %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @orden_de_produccion.cantidad %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @orden_de_produccion.fecha %>
+</p>
+
+<p>
+  <strong>Inventario:</strong>
+  <%= @orden_de_produccion.inventario %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @orden_de_produccion.estado %>
+</p>
+
+<%= link_to 'Edit', edit_orden_de_produccion_path(@orden_de_produccion) %> |
+<%= link_to 'Back', ordenes_de_produccion_path %>

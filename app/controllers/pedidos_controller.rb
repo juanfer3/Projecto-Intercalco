@@ -7,6 +7,12 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.all
   end
   
+  
+  def produccion
+    @pedidos = Pedido.joins(:contacto)
+    @orden_de_produccion = OrdenDeProduccion.new
+  end
+  
   def multiple
    @pedidos = Pedido.find(params[:pedido_ids])
    #@users.each do |pedido|
@@ -20,7 +26,7 @@ class PedidosController < ApplicationController
   # GET /pedidos/1
   # GET /pedidos/1.json
   def show
-    
+    @orden_de_produccion = OrdenDeProduccion.new
   end
 
   # GET /pedidos/new
@@ -28,6 +34,7 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
     @pedido.despachos.build
+    @pedido.orden_de_produccion.build
   end
 
   # GET /pedidos/1/edit
@@ -91,9 +98,10 @@ class PedidosController < ApplicationController
       :estado_pedido, :estado,
       tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
       despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado],
-      ordenes_de_produccion_attributes:[:pedido_id, :descripcion, :fecha_final, :total, :estado])
+      ordenes_de_produccion_attributes:[:pedido_id, :descripcion,  :codigo, :total, :cantidad, :fecha,:inventario,:estado])
     end
     
+        
    
     
 end

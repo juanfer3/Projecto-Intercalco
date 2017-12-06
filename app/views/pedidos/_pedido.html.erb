@@ -1,0 +1,60 @@
+
+<! ------------------Información Del Pedido---------------------------------->
+  <div class="container card-block">
+    <div class="container my_card_pedidos_form my_orden_pedidos">
+      <div class="col-4">
+        <label for="">Cliente</label>
+        <h4 ><%= @pedido.contacto.cliente.nombre%></h4>
+      </div>
+      <div class="col-4">
+        <label for="">Descripción</label>
+        <h4 ><%=@pedido.descripcion%></h4>
+      </div>
+      <div class="col-4">
+        <label for="">Numero de Pedido</label>
+        <h4 ><%=@pedido.numero_de_pedido%></h4>
+      </div>
+    </div>
+  </div>
+
+<hr>
+<! ------------------Detalles-Formularios---------------------------------->
+<div class="container" >
+   
+  <! ------------------Insercion-Formularios---------------------------------->
+    <%= render 'orden_de_produccion'%>
+
+
+          <table class="table">
+            
+              <thead>
+                <th>Numero de Produccion</th>
+                <th>Codigo</th>
+                <th>Descripción</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th></th>
+              </thead>
+              
+              
+            <tbody id="Agrego">
+<%@pedido.ordenes_de_produccion.each do |ordenes|%>
+                <tr id=<%="orden_#{ordenes.id}"%>>
+                    <td><%=best_in_place ordenes,:numero_de_orden,as: :input%></td>
+                    <td><%=best_in_place ordenes,:codigo,as: :input%></td>
+                    <td><%=best_in_place ordenes,:descripcion,as: :input%></td>
+                    <td><%=best_in_place ordenes,:cantidad,as: :input%></td>
+                    <td><%=best_in_place ordenes,:fecha,as: :input%></td>
+                    <td><%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, ordenes, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %></td>
+                </tr>  
+         <%end%> 
+            </tbody>
+          </table>
+
+
+
+
+
+    </div>
+  
+</div>
