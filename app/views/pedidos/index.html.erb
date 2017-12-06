@@ -27,7 +27,12 @@
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.numero_de_pedido %></td>
         <td><%= pedido.descripcion %></td>
-        <td><%= pedido.estado_pedido %></td>
+<!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
+
+            <td><h6><span class="badge badge-warning"><%= pedido.estado_pedido %></span></h6></td>
+          
+
+
         <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
         <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_pedido_path(pedido) %></td>
@@ -55,3 +60,10 @@
     </div>
   </div>
 </div>
+
+<span class="badge badge-default">Default</span>
+<span class="badge badge-primary">Primary</span>
+<span class="badge badge-success">Success</span>
+<span class="badge badge-info">Info</span>
+<span class="badge badge-warning">Warning</span>
+<span class="badge badge-danger">Danger</span>

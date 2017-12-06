@@ -1,42 +1,42 @@
 
 <div>
-  
+
     <div class="container_opacity col-12">
-      
+
     </div>
-    
+
     <div class="my_container_image col-7 offset-md-2">
       <%= image_tag "/assets/ColoresHumo.jpg", class:"img-fluid", alt:"Responsive image"%>
     </div>
-    
+
     <div class="col-md-8 offset-md-1 my_container_tittle">
         <div class="">
-            
+
             <h1 class="my_title_login">Manejo Corporativo</h1>
             <!--div class="sub_title">
                 <!--h2>Trabajamos para Impresionarte</h2-->
             <!--/div-->
            <hr class="line_title"/>
             <% if user_signed_in? %>
-              <h3>Bienvenido <%=nombre_usuario%></h3>
+              <!--h3>Bienvenido <%=nombre_usuario%></h3-->
               <%= link_to '<button type="button" class="btn btn-outline-danger btn-lg btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
             <%else%>
-             
+
              <button type="button" class="btn btn-outline-warning btn-lg btn-block my_btn_title" data-toggle="modal" data-target="#exampleModal">Login</button>
-            
+
             <%end%>
-            <diV class="">   
+            <diV class="">
                   <%=
                       image_tag 'logointercalco.png',
                       class:"float-left col-10"
                   %>
-                   
-              </diV> 
+
+              </diV>
         </div>
         <!--Modal -->
- 
+
    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f| %>
-            
+
     <div class="modal fade my_modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -66,13 +66,10 @@
         </div>
       </div>
     </div>
-            
+
 
 <%end%>
 <!--/Modal -->
   </div>
-  
+
 </div>
-
-
-
