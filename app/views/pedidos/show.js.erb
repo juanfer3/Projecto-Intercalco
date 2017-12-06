@@ -1,4 +1,6 @@
 toastr.error('Entra la show')
+
+
 $("#activarmodal").html("<%= j render @pedido%>");
 $('#exampleModal').modal('show');
 
@@ -11,7 +13,6 @@ $('.fecha').focusout(function(){
   var this_fecha = $(this).parents("tr").find(".fecha").val();
   $(this).parents("tr").find(".my_fecha").val(this_fecha);
   var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
-  
+
 
 })
-

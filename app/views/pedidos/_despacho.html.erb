@@ -1,9 +1,12 @@
-
-     <div class="col-4">
-        <%= f.input :nombre, class:'form-control' %>
-      </div>
+    <div class="col-4">
+      <%= f.input :lugar_de_despacho, class:'form-control' %>
+    </div>
       <div class="col-4">
         <%= f.input :direccion, class:'form-control' %>
+      </div>
+      <div class="col-4">
+        <label for="">Persona que Recibe</label>
+        <%= f.input :recibe, class:'form-control', label: false%>
       </div>
       <div class="col-4">
         <%= f.input :celular, class:'form-control' %>
@@ -14,12 +17,8 @@
       <div class="col-4">
         <%= f.input :correo, class:'form-control' %>
       </div>
-      <div class="col-4">
-        <%= f.input :lugar_de_despacho, class:'form-control' %>
-      </div>
-      <div class="col-4">
-        <%= f.input :recibe, class:'form-control'%>
-      </div>
+
+
       <div class="col-4">
         <label>Llevar Factura con Despacho</label>
         <%= f.select :entregar_factura,[['Si'], ['No']],

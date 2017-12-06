@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(version: 20171206001613) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "cargo"
-    t.boolean "estado"
+    t.string "cargo", default: ""
+    t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -121,10 +121,10 @@ ActiveRecord::Schema.define(version: 20171206001613) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "nombre"
-    t.string "numero_celular"
+    t.string "nombre", default: ""
+    t.string "numero_celular", default: ""
     t.integer "rol_id"
-    t.boolean "estado"
+    t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

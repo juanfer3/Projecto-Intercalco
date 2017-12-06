@@ -12,6 +12,7 @@
       <th>Fecha de pedido</th>
       <th>Numero de pedido</th>
       <th>Descripcion</th>
+      <th>Estado de Pedido</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -26,10 +27,11 @@
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.numero_de_pedido %></td>
         <td><%= pedido.descripcion %></td>
-        <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, 'data-target' => "#myModal_#{pedido.id}", 'data-toggle' => 'modal'%></td>
+        <td><%= pedido.estado_pedido %></td>
+        <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
         <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_pedido_path(pedido) %></td>
-        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, pedido, method: :delete,remote: true, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -37,7 +39,7 @@
 
 <br>
 
-<%= link_to 'New Pedido', new_pedido_path %>
+<%= link_to '<button class="btn btn-outline-primary"><span>Agregar <i class="ion-android-list"></i></span></button>'.html_safe, new_pedido_path %>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
