@@ -7,6 +7,17 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.all
   end
 
+  def consultar_despacho
+      respond_to do |format|
+      if @pedido = Pedido.find(params[:id])
+        format.js {flash[:notice] = "Cierre de Caja realizado correctamente." }
+      end
+    end
+  end
+
+  def entregas
+    @pedidos = Pedido.all
+  end
 
   def produccion
     @pedidos = Pedido.joins(:contacto)

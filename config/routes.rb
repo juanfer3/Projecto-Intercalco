@@ -12,11 +12,16 @@ Rails.application.routes.draw do
 
   get 'produccion', to: 'pedidos#produccion', as: :produccion
 
+  get 'entregas', to: 'pedidos#entregas', as: :entregas
+
   root :to => 'static_pages#home'
 
   get 'info_produccion', to: 'ordenes_de_produccion#info_produccion', as: :info_produccion
 
   post 'crearNuevaOrden', to: 'ordenes_de_produccion#crearNuevaOrden', as: :crearNuevaOrden
+
+  get 'consultar_despacho/:id', to: 'pedidos#consultar_despacho', as: :consultar_despacho
+
 
  # resources :ordenes_de_produccion, :only => :none do
 #      get :info_produccion
