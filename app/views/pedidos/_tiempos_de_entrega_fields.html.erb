@@ -1,0 +1,36 @@
+<tr>
+  <td>
+    <%= f.text_field :remision,class:'form-control ' %>
+  </td>
+  <td>
+    <div class="input-group date  ">
+      <%= f.text_field :fecha_compromiso, class:'form-control ',
+      disabled: true %>
+    </div>
+  </td>
+  <td>
+    <%= f.text_field :cantidad,class:'form-control ',
+    disabled: true %>
+  </td>
+
+  <td>
+    <%= f.text_field :precio, class:'form-control ',
+    disabled: true %>
+  </td>
+  <td>
+    <%=
+    f.text_field :fecha_de_despacho,class:'form-control '
+     %>
+  </td>
+  <td>
+    <%= f.text_field :cantidad_enviada,class:'form-control ' %>
+  </td>
+  <td>
+    <%= f.text_field :precio_a_facturar,class:'form-control ' %>
+  </td>
+  <td>
+
+       <%=  button_to "X", tiempos_de_entregas_path(f)%>
+
+  </td>
+</tr>

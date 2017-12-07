@@ -6,9 +6,16 @@
   <thead>
     <tr>
       <th>Pedido</th>
+      <th>Remision</th>
       <th>Cantidad</th>
       <th>Fecha compromiso</th>
       <th>Precio</th>
+      <th>Fecha de despacho</th>
+      <th>Cantidad enviada</th>
+      <th>Precio a facturar</th>
+      <th>Cantidad faltante</th>
+      <th>Anexo</th>
+      <th>Entrega cumplida</th>
       <th>Estado</th>
       <th colspan="3"></th>
     </tr>
@@ -18,9 +25,16 @@
     <% @tiempos_de_entregas.each do |tiempos_de_entrega| %>
       <tr>
         <td><%= tiempos_de_entrega.pedido %></td>
+        <td><%= tiempos_de_entrega.remision %></td>
         <td><%= tiempos_de_entrega.cantidad %></td>
         <td><%= tiempos_de_entrega.fecha_compromiso %></td>
         <td><%= tiempos_de_entrega.precio %></td>
+        <td><%= tiempos_de_entrega.fecha_de_despacho %></td>
+        <td><%= tiempos_de_entrega.cantidad_enviada %></td>
+        <td><%= tiempos_de_entrega.precio_a_facturar %></td>
+        <td><%= tiempos_de_entrega.cantidad_faltante %></td>
+        <td><%= tiempos_de_entrega.anexo %></td>
+        <td><%= tiempos_de_entrega.entrega_cumplida %></td>
         <td><%= tiempos_de_entrega.estado %></td>
         <td><%= link_to 'Show', tiempos_de_entrega %></td>
         <td><%= link_to 'Edit', edit_tiempos_de_entrega_path(tiempos_de_entrega) %></td>

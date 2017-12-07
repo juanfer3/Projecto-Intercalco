@@ -45,5 +45,13 @@
    inflect.irregular 'fecha','fechas'
    inflect.irregular 'cantidad','cantidades'
 
+   inflect.irregular 'remision','remisiones'
+   inflect.irregular 'fecha_de_despacho','fechas_de_despachos'
+   inflect.irregular 'cantidad_enviada','cantidades_enviadas'
+   inflect.irregular 'precio_a_facturar','precios_a_facturar'
+   inflect.irregular 'cantidad_faltante','cantidades_faltantes'
+   inflect.irregular 'anexo','anexos'
+   inflect.irregular 'entrega_cumplida','entregas_cumplidas'
+
 
  end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171206001613) do
+ActiveRecord::Schema.define(version: 20171207135150) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -111,9 +111,16 @@ ActiveRecord::Schema.define(version: 20171206001613) do
 
   create_table "tiempos_de_entregas", force: :cascade do |t|
     t.integer "pedido_id"
-    t.float "cantidad", default: 0.0
+    t.string "remision", default: ""
+    t.float "cantidad"
     t.date "fecha_compromiso"
-    t.float "precio", default: 0.0
+    t.float "precio"
+    t.date "fecha_de_despacho"
+    t.float "cantidad_enviada", default: 0.0
+    t.float "precio_a_facturar", default: 0.0
+    t.float "cantidad_faltante", default: 0.0
+    t.boolean "anexo", default: false
+    t.boolean "entrega_cumplida", default: false
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

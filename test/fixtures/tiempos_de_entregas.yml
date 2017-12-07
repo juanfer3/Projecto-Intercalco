@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pedido: one
+  remision: MyString
+  cantidad: 1.5
+  fecha_compromiso: 2017-12-07
+  precio: 1.5
+  fecha_de_despacho: 2017-12-07
+  cantidad_enviada: 1.5
+  precio_a_facturar: 1.5
+  cantidad_faltante: 1.5
+  anexo: false
+  entrega_cumplida: false
+  estado: false
+
+two:
+  pedido: two
+  remision: MyString
+  cantidad: 1.5
+  fecha_compromiso: 2017-12-07
+  precio: 1.5
+  fecha_de_despacho: 2017-12-07
+  cantidad_enviada: 1.5
+  precio_a_facturar: 1.5
+  cantidad_faltante: 1.5
+  anexo: false
+  entrega_cumplida: false
+  estado: false

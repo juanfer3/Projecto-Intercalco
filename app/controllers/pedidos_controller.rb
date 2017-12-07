@@ -8,8 +8,15 @@ class PedidosController < ApplicationController
   end
 
   def consultar_despacho
+    @pedido = Pedido.new
+    @pedido.tiempos_de_entregas.build
+    @pedido.despachos.build
+
+
       respond_to do |format|
       if @pedido = Pedido.find(params[:id])
+        @tiempos_de_entrega = TiemposDeEntrega.where("pedido_id=#{@pedido}")
+
         format.js {flash[:notice] = "Cierre de Caja realizado correctamente." }
       end
     end
@@ -17,6 +24,9 @@ class PedidosController < ApplicationController
 
   def entregas
     @pedidos = Pedido.all
+    @pedido = Pedido.new
+    @pedido.tiempos_de_entregas.build
+    @tiempos_de_entrega = TiemposDeEntrega.new
   end
 
   def produccion
@@ -45,6 +55,7 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
     @pedido.despachos.build
+
   end
 
   # GET /pedidos/1/edit
@@ -72,7 +83,7 @@ class PedidosController < ApplicationController
   def update
     respond_to do |format|
       if @pedido.update(pedido_params)
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
+        format.html { redirect_to pedidos_url, notice: 'Pedido was successfully updated.' }
         format.json { render :show, status: :ok, location: @pedido }
       else
         format.html { render :edit }
@@ -112,7 +123,7 @@ class PedidosController < ApplicationController
       :numero_de_pedido, :linea_de_impresion_id,
       :forma_de_pago, :arte, :descripcion, :total_articulo,
       :estado_pedido, :estado,
-      tiempos_de_entregas_attributes:[:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado],
+      tiempos_de_entregas_attributes:[:pedido_id, :remision, :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo, :entrega_cumplida, :estado],
       despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado],
       ordenes_de_produccion_attributes:[:pedido_id, :descripcion,  :codigo, :total, :cantidad, :fecha,:inventario,:estado])
     end

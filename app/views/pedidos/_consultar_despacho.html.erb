@@ -1,19 +1,66 @@
 <! ------------------Información Del Pedido---------------------------------->
-  <div class="container card-block">
-    <div class="container my_card_pedidos_form my_orden_pedidos">
-      <div class="col-4">
-        <label for="">Cliente</label>
-        <h4 ><%= @pedido.contacto.cliente.nombre%></h4>
-      </div>
-      <div class="col-4">
-        <label for="">Descripción</label>
-        <h4 ><%=@pedido.descripcion%></h4>
-      </div>
-      <div class="col-4">
-        <label for="">Numero de Pedido</label>
-        <h4 ><%=@pedido.numero_de_pedido%></h4>
-      </div>
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-4">
+      <label for="">Cliente</label>
+      <h4 ><%= @pedido.contacto.cliente.nombre%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Tipo De Trabajo</label>
+      <h4 ><%=@pedido.descripcion%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Numero de Pedido</label>
+      <h4 ><%=@pedido.numero_de_pedido%></h4>
     </div>
   </div>
+</div>
 
 <hr>
+
+<! ------------------Detalles-Formularios-despacho--------------------------------->
+<div class="">
+  <%@pedido.despachos.each do  |despachos|%>
+  <h5>Lugar de Despacho: <%=despachos.lugar_de_despacho%></h5>
+  <h5>Señor: <%=despachos.recibe%></h5>
+  <h5>Dirección: <%=despachos.direccion%></h5>
+  <%end%>
+</div>
+
+  <! ------------------Insercion-Formularios---------------------------------->
+
+  <! ------------------Detalles-Formularios---------------------------------->
+  <table class="table table-striped">
+
+    <thead>
+      <th>Remisión</th>
+      <th>Fecha De Compromido</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Fecha A Despachar</th>
+      <th>Cantidad Enviada</th>
+      <th>Precio A Facturar</th>
+      <th></th>
+    </thead>
+    <tbody id="Agrego">
+      <%@pedido.tiempos_de_entregas.each do |entregas|%>
+      <tr>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:remision, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td><h6><%=entregas.fecha_compromiso%></h6></td>
+        <td><h6><%=entregas.cantidad%></h6></td>
+        <td><h6><%=entregas.precio%></h6></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:fecha_de_despacho, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:cantidad_enviada, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:precio_a_facturar, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td></td>
+      </tr>
+      <%end%>
+    </tbody>
+
+  </table>
+
+
+
+<script>
+  jQuery(".best_in_place").best_in_place();
+</script>

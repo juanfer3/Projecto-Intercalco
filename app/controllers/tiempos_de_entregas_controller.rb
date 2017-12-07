@@ -69,6 +69,6 @@ class TiemposDeEntregasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tiempos_de_entrega_params
-      params.require(:tiempos_de_entrega).permit(:pedido_id, :cantidad, :fecha_compromiso, :precio, :estado)
+      params.require(:tiempos_de_entrega).permit(:pedido_id, :remision, :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo, :entrega_cumplida, :estado)
     end
 end

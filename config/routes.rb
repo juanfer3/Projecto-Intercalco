@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :tiempos_de_entregas
   resources :ordenes_de_produccion
   resources :despachos
-  resources :tiempos_de_entregas
   resources :pedidos
   resources :lineas_de_impresiones
   resources :contactos
