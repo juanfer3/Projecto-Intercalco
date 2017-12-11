@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Remisiones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Factura despacho</th>
+      <th>Tiempos de entrega</th>
+      <th>Fecha de despacho</th>
+      <th>Cantidad enviada</th>
+      <th>Precio a facturar</th>
+      <th>Cantidad faltante</th>
+      <th>Entrega cumplida</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @remisiones.each do |remision| %>
+      <tr>
+        <td><%= remision.factura_despacho %></td>
+        <td><%= remision.tiempos_de_entrega %></td>
+        <td><%= remision.fecha_de_despacho %></td>
+        <td><%= remision.cantidad_enviada %></td>
+        <td><%= remision.precio_a_facturar %></td>
+        <td><%= remision.cantidad_faltante %></td>
+        <td><%= remision.entrega_cumplida %></td>
+        <td><%= remision.estado %></td>
+        <td><%= link_to 'Show', remision %></td>
+        <td><%= link_to 'Edit', edit_remision_path(remision) %></td>
+        <td><%= link_to 'Destroy', remision, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Remision', new_remision_path %>

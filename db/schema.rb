@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207135150) do
+ActiveRecord::Schema.define(version: 20171211190900) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -39,21 +39,31 @@ ActiveRecord::Schema.define(version: 20171207135150) do
 
   create_table "despachos", force: :cascade do |t|
     t.integer "pedido_id"
-    t.string "nombre", default: ""
-    t.string "nit", default: ""
-    t.string "telefono", default: ""
-    t.string "lugar_de_despacho", default: ""
-    t.string "direccion", default: ""
-    t.string "celular", default: ""
-    t.string "correo", default: ""
-    t.string "recibe", default: ""
-    t.string "observacion", default: ""
-    t.string "facturar", default: ""
-    t.string "entregar_factura", default: ""
-    t.boolean "estado", default: true
+    t.string "nombre"
+    t.string "nit"
+    t.string "telefono"
+    t.string "lugar_de_despacho"
+    t.string "direccion"
+    t.string "celular"
+    t.string "correo"
+    t.string "recibe"
+    t.string "observacion"
+    t.string "facturar"
+    t.string "entregar_factura"
+    t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_despachos_on_pedido_id"
+  end
+
+  create_table "facturas_despacho", force: :cascade do |t|
+    t.integer "pedido_id"
+    t.string "numero_de_factura", default: ""
+    t.boolean "cancelada", default: true
+    t.boolean "estado", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pedido_id"], name: "index_facturas_despacho_on_pedido_id"
   end
 
   create_table "lineas_de_impresiones", force: :cascade do |t|
@@ -102,6 +112,21 @@ ActiveRecord::Schema.define(version: 20171207135150) do
     t.index ["linea_de_impresion_id"], name: "index_pedidos_on_linea_de_impresion_id"
   end
 
+  create_table "remisiones", force: :cascade do |t|
+    t.integer "factura_despacho_id"
+    t.integer "tiempos_de_entrega_id"
+    t.date "fecha_de_despacho"
+    t.float "cantidad_enviada", default: 0.0
+    t.float "precio_a_facturar", default: 0.0
+    t.float "cantidad_faltante", default: 0.0
+    t.boolean "entrega_cumplida", default: true
+    t.boolean "estado", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["factura_despacho_id"], name: "index_remisiones_on_factura_despacho_id"
+    t.index ["tiempos_de_entrega_id"], name: "index_remisiones_on_tiempos_de_entrega_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "cargo", default: ""
     t.boolean "estado", default: true
@@ -112,9 +137,9 @@ ActiveRecord::Schema.define(version: 20171207135150) do
   create_table "tiempos_de_entregas", force: :cascade do |t|
     t.integer "pedido_id"
     t.string "remision", default: ""
-    t.float "cantidad"
+    t.float "cantidad", default: 0.0
     t.date "fecha_compromiso"
-    t.float "precio"
+    t.float "precio", default: 0.0
     t.date "fecha_de_despacho"
     t.float "cantidad_enviada", default: 0.0
     t.float "precio_a_facturar", default: 0.0

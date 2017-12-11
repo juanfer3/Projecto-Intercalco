@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pedido: one
+  numero_de_factura: MyString
+  cancelada: false
+  estado: false
+
+two:
+  pedido: two
+  numero_de_factura: MyString
+  cancelada: false
+  estado: false

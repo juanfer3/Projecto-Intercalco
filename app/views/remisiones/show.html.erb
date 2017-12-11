@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Factura despacho:</strong>
+  <%= @remision.factura_despacho %>
+</p>
+
+<p>
+  <strong>Tiempos de entrega:</strong>
+  <%= @remision.tiempos_de_entrega %>
+</p>
+
+<p>
+  <strong>Fecha de despacho:</strong>
+  <%= @remision.fecha_de_despacho %>
+</p>
+
+<p>
+  <strong>Cantidad enviada:</strong>
+  <%= @remision.cantidad_enviada %>
+</p>
+
+<p>
+  <strong>Precio a facturar:</strong>
+  <%= @remision.precio_a_facturar %>
+</p>
+
+<p>
+  <strong>Cantidad faltante:</strong>
+  <%= @remision.cantidad_faltante %>
+</p>
+
+<p>
+  <strong>Entrega cumplida:</strong>
+  <%= @remision.entrega_cumplida %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @remision.estado %>
+</p>
+
+<%= link_to 'Edit', edit_remision_path(@remision) %> |
+<%= link_to 'Back', remisiones_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pedido:</strong>
+  <%= @factura_despacho.pedido %>
+</p>
+
+<p>
+  <strong>Numero de factura:</strong>
+  <%= @factura_despacho.numero_de_factura %>
+</p>
+
+<p>
+  <strong>Cancelada:</strong>
+  <%= @factura_despacho.cancelada %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @factura_despacho.estado %>
+</p>
+
+<%= link_to 'Edit', edit_factura_despacho_path(@factura_despacho) %> |
+<%= link_to 'Back', facturas_despacho_path %>

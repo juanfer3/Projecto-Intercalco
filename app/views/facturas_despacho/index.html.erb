@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Facturas Despacho</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pedido</th>
+      <th>Numero de factura</th>
+      <th>Cancelada</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @facturas_despacho.each do |factura_despacho| %>
+      <tr>
+        <td><%= factura_despacho.pedido %></td>
+        <td><%= factura_despacho.numero_de_factura %></td>
+        <td><%= factura_despacho.cancelada %></td>
+        <td><%= factura_despacho.estado %></td>
+        <td><%= link_to 'Show', factura_despacho %></td>
+        <td><%= link_to 'Edit', edit_factura_despacho_path(factura_despacho) %></td>
+        <td><%= link_to 'Destroy', factura_despacho, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Factura Despacho', new_factura_despacho_path %>

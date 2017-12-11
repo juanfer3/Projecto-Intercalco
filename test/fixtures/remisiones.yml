@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  factura_despacho: one
+  tiempos_de_entrega: one
+  fecha_de_despacho: 2017-12-11
+  cantidad_enviada: 1.5
+  precio_a_facturar: 1.5
+  cantidad_faltante: 1.5
+  entrega_cumplida: false
+  estado: false
+
+two:
+  factura_despacho: two
+  tiempos_de_entrega: two
+  fecha_de_despacho: 2017-12-11
+  cantidad_enviada: 1.5
+  precio_a_facturar: 1.5
+  cantidad_faltante: 1.5
+  entrega_cumplida: false
+  estado: false

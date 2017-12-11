@@ -11,6 +11,7 @@ class PedidosController < ApplicationController
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
     @pedido.despachos.build
+    @pedido.facturas_despacho.build
 
       respond_to do |format|
       if @pedido = Pedido.find(params[:id])
@@ -126,7 +127,8 @@ class PedidosController < ApplicationController
       :estado_pedido, :estado,
       tiempos_de_entregas_attributes:[:pedido_id, :remision, :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo, :entrega_cumplida, :estado],
       despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado],
-      ordenes_de_produccion_attributes:[:pedido_id, :descripcion,  :codigo, :total, :cantidad, :fecha,:inventario,:estado])
+      ordenes_de_produccion_attributes:[:pedido_id, :descripcion,  :codigo, :total, :cantidad, :fecha,:inventario,:estado],
+      facturas_despacho_attributes:[:pedido_id, :numero_de_factura, :cancelada, :estado]  )
     end
 
 

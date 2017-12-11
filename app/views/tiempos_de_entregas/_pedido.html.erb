@@ -32,6 +32,18 @@
 </div>
 
 <! ------------------Detalles-Formularios-despacho--------------------------------->
-<%= simple_form_for(@pedido) do |f| %>
-<%= f.error_notification %>
-<%end%>
+
+  <%if @pedido.facturas_despacho.any?%>
+  <%= simple_form_for(@pedido) do |f| %>
+  <%= f.error_notification %>
+    <%= f.simple_fields_for :facturas_despacho do |builder| %>
+      <%= render 'facturas_despacho', :f => builder  %>
+      <%end%>
+
+      <div class="form-actions">
+        <%= f.button :submit%>
+      </div>
+  <%end%>
+  <%else%>
+
+  <%end%>

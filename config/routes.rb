@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :remisiones
+  resources :facturas_despacho
   resources :tiempos_de_entregas
   resources :ordenes_de_produccion
   resources :despachos

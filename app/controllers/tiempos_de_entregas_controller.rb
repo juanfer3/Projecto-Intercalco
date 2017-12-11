@@ -5,18 +5,22 @@ class TiemposDeEntregasController < ApplicationController
   # GET /tiempos_de_entregas.json
   def index
     @tiempos_de_entregas = TiemposDeEntrega.all
+    @pedido = Pedido.new
+    @pedido.tiempos_de_entregas.build
+    @pedido.facturas_despacho.build
   end
 
 
   def info_despacho
-    @pedido = Pedido.new
-    @pedido.tiempos_de_entregas.build
+
       respond_to do |format|
       if@tiempos_de_entrega = TiemposDeEntrega.find(params[:id])
         puts "===================",@tiempos_de_entrega.pedido_id,"============"
         @pedido = Pedido.find(@tiempos_de_entrega.pedido_id)
         #@pedido = Pedido.where("id=#{@tiempos_de_entrega.pedido_id}")
         puts "===================",@pedido,"============"
+        @pedido.facturas_despacho.build
+
         format.js {flash[:notice] = "" }
       end
     end
@@ -94,6 +98,8 @@ class TiemposDeEntregasController < ApplicationController
         :fecha_de_pedido, :numero_cotizacion,
         :numero_de_pedido, :linea_de_impresion_id,
         :forma_de_pago, :arte, :descripcion, :total_articulo,
-        :estado_pedido, :estado])
+        :estado_pedido, :estado,
+        ],
+      facturas_despacho_attributes:[:pedido_id,:numero_de_factura ])
     end
 end
