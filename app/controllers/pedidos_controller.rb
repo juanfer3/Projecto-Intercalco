@@ -12,12 +12,11 @@ class PedidosController < ApplicationController
     @pedido.tiempos_de_entregas.build
     @pedido.despachos.build
 
-
       respond_to do |format|
       if @pedido = Pedido.find(params[:id])
         @tiempos_de_entrega = TiemposDeEntrega.where("pedido_id=#{@pedido}")
 
-        format.js {flash[:notice] = "Cierre de Caja realizado correctamente." }
+        format.js {flash[:notice] = "" }
       end
     end
   end
@@ -60,6 +59,8 @@ class PedidosController < ApplicationController
 
   # GET /pedidos/1/edit
   def edit
+    @pedido.tiempos_de_entregas.build
+    @pedido.despachos.build
   end
 
   # POST /pedidos

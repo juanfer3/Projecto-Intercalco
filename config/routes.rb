@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   get 'consultar_despacho/:id', to: 'pedidos#consultar_despacho', as: :consultar_despacho
 
+  get 'info_despacho/:id', to: 'tiempos_de_entregas#info_despacho', as: :info_despacho
 
  # resources :ordenes_de_produccion, :only => :none do
 #      get :info_produccion

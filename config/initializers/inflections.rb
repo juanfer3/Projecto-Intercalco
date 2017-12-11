@@ -53,5 +53,8 @@
    inflect.irregular 'anexo','anexos'
    inflect.irregular 'entrega_cumplida','entregas_cumplidas'
 
+   inflect.irregular 'factura_despacho', 'facturas_despacho'
+   inflect.irregular 'numero_de_factura', 'numeros_de_facturas'
+   
 
  end

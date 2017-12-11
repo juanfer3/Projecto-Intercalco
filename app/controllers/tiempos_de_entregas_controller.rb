@@ -7,6 +7,21 @@ class TiemposDeEntregasController < ApplicationController
     @tiempos_de_entregas = TiemposDeEntrega.all
   end
 
+
+  def info_despacho
+    @pedido = Pedido.new
+    @pedido.tiempos_de_entregas.build
+      respond_to do |format|
+      if@tiempos_de_entrega = TiemposDeEntrega.find(params[:id])
+        puts "===================",@tiempos_de_entrega.pedido_id,"============"
+        @pedido = Pedido.find(@tiempos_de_entrega.pedido_id)
+        #@pedido = Pedido.where("id=#{@tiempos_de_entrega.pedido_id}")
+        puts "===================",@pedido,"============"
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
   # GET /tiempos_de_entregas/1
   # GET /tiempos_de_entregas/1.json
   def show
@@ -69,6 +84,16 @@ class TiemposDeEntregasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tiempos_de_entrega_params
-      params.require(:tiempos_de_entrega).permit(:pedido_id, :remision, :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo, :entrega_cumplida, :estado)
+      params.require(:tiempos_de_entrega).permit(:pedido_id, :remision,
+        :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho,
+        :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo,
+        :entrega_cumplida, :estado,
+        pedidos_attributes:[:contacto_id,
+        :producto, :tipo_de_trabajo,
+        :condicion_de_pedido, :fecha_entrega,
+        :fecha_de_pedido, :numero_cotizacion,
+        :numero_de_pedido, :linea_de_impresion_id,
+        :forma_de_pago, :arte, :descripcion, :total_articulo,
+        :estado_pedido, :estado])
     end
 end

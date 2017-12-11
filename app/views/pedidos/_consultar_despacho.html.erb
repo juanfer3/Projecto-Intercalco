@@ -45,13 +45,13 @@
     <tbody id="Agrego">
       <%@pedido.tiempos_de_entregas.each do |entregas|%>
       <tr>
-        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:remision, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:remision, as: :input, inner_class:""%></div></td>
         <td><h6><%=entregas.fecha_compromiso%></h6></td>
         <td><h6><%=entregas.cantidad%></h6></td>
         <td><h6><%=entregas.precio%></h6></td>
-        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:fecha_de_despacho, as: :input, inner_class:"form-control alert-info"%></div></td>
-        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:cantidad_enviada, as: :input, inner_class:"form-control alert-info"%></div></td>
-        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:precio_a_facturar, as: :input, inner_class:"form-control alert-info"%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:fecha_de_despacho, as: :input, inner_class:""%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:cantidad_enviada, as: :input, inner_class:""%></div></td>
+        <td><div class="alert alert-info" role="alert"><%=best_in_place entregas,:precio_a_facturar, as: :input, inner_class:""%></div></td>
         <td></td>
       </tr>
       <%end%>
