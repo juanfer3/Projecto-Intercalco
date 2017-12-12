@@ -55,6 +55,9 @@
 
    inflect.irregular 'factura_despacho', 'facturas_despacho'
    inflect.irregular 'numero_de_factura', 'numeros_de_facturas'
-   
-
+   inflect.irregular 'cancelada', 'canceladas'
+   inflect.irregular 'numero_de_remision', 'numeros_de_remisiones'
+   inflect.irregular 'iva', 'ivas'
+   inflect.irregular 'total_facturado', 'totales_facturados'
+   inflect.irregular 'descuento', 'descuentos'
  end

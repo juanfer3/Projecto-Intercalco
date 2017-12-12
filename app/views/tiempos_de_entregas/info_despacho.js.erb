@@ -5,3 +5,68 @@ jQuery(".best_in_place").best_in_place();
 $('#modalConsultarDespachos').modal('show');
 
 $('#contenidoModal').html('<%= j render 'pedido'%>')
+
+$('#ocultarFecha').hide();
+$('.ocultar_fecha').hide();
+$('.fecha').focusout(function(){
+
+  var this_fecha = $(this).parents("tr").find(".fecha").val();
+  $(this).parents("tr").find(".my_fecha").val(this_fecha);
+  var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+})
+
+$('form').on('click', '.remove_remisiones', function(event) {
+  $(this).prev('input[type=hidden]').val('1');
+  $(this).closest('tr').remove();
+  return event.preventDefault();
+});
+
+$('form').on('click', '.add_remisiones', function(event) {
+  var regexp, time;
+  time = new Date().getTime();
+  regexp = new RegExp($(this).data('id'), 'g');
+  $('.fields_remisiones').append($(this).data('fields').replace(regexp, time));
+  $('.ocultar_fecha').hide();
+  $('.fecha').focusout(function(){
+
+    var this_fecha = $(this).parents("tr").find(".fecha").val();
+    $(this).parents("tr").find(".my_fecha").val(this_fecha);
+    var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+  })
+  return event.preventDefault();
+});
+
+$('form').on('click', '.add_remisiones_extra', function(event) {
+  var regexp, time;
+  time = new Date().getTime();
+  regexp = new RegExp($(this).data('id'), 'g');
+  $('.fields_remision_extra').append($(this).data('fields').replace(regexp, time));
+  $('.ocultar_fecha').hide();
+  $('.fecha').focusout(function(){
+
+    var this_fecha = $(this).parents("tr").find(".fecha").val();
+    $(this).parents("tr").find(".my_fecha").val(this_fecha);
+    var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+  })
+  return event.preventDefault();
+});
+
+
+$('.formularioRemisionesFields').click(function(){
+
+  var remision='<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div>'
+  var fecha= '<td><div class="input-group" ><input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"data-provide="datepicker" placeholder="Fecha"aria-describedby="basic-addon2" id="fecha"><span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span></div></td>'
+  var cantidad ='<td><input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div></td>'
+  var precio='<td><input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div></td>'
+  var contenido='<tr><td>'+remision+'</td></tr>'
+$(this).parents('table').find('.add_remision_extra').append(contenido)
+$(this).parents('table').find('.add_remision_extra').append('<%= j render "remision_fields" %>')
+  $('.ocultarRemision').hide()
+  $('.ocultar_fecha').hide();
+  $('.fecha').focusout(function(){
+
+    var this_fecha = $(this).parents("tr").find(".fecha").val();
+    $(this).parents("tr").find(".my_fecha").val(this_fecha);
+    var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+  })
+})

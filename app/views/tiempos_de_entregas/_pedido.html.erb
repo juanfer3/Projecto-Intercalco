@@ -30,20 +30,83 @@
   <h5>Dirección: <%=despachos.direccion%></h5>
   <%end%>
 </div>
+<div class="">
 
+  <%= simple_form_for @factura_despacho, remote: true do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <div id="ocultarFecha">
+      <%= f.association :tiempos_de_entrega,
+      collection: TiemposDeEntrega.all,
+      label_method: :id,
+      value_method: :id,
+      as: :select,
+      class:'col-4 my_cliente form-control',
+      selected: @tiempos_de_entrega.id
+      %>
+    </div>
+      <%= f.input :numero_de_factura %>
+    </div>
+    <div class="col-3 offset-md-6">
+       <%= link_to_add_remision('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %>
+    </div>
+<table>
+  <thead></thead>
+  <tbody class='fields_remisiones'>
+    <%= f.simple_fields_for :remisiones do |builder| %>
+      <%= render "remision", :f => builder %>
+    <% end %>
+  </tbody>
+</table>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+<% end %>
+</div>
 <! ------------------Detalles-Formularios-despacho--------------------------------->
+<div id="contenedorFacturas">
+<%@tiempos_de_entrega.facturas_despacho.each do |factura|%>
 
-  <%if @pedido.facturas_despacho.any?%>
-  <%= simple_form_for(@pedido) do |f| %>
-  <%= f.error_notification %>
-    <%= f.simple_fields_for :facturas_despacho do |builder| %>
-      <%= render 'facturas_despacho', :f => builder  %>
+<! ------------------Formulario--------------------------------->
+<!--%= simple_form_for(@factura_despacho, remote: true) do |f| %-->
+  <!--%= f.error_notification %-->
+  <table class="table" id="factura_<%=factura.id%>">
+    <thead class="table-primary">
+      <th colspan="4"><h1>Numero de Factura: <%=factura.numero_de_factura%></h1></th>
+      <th>
+           <!--%= link_to_add_remision_extra('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %-->
+           <button type="button" id="pruebaSelect" class="btn btn-outline-warning formularioRemisionesFields"><span><i class="ion-plus-round"></i></span></button>
+      </th>
+      <th>
+        <%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
+        factura, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %>
+      </th>
+    </thead>
+    <thead>
+      <th>N° De Remisión</th>
+      <th>Fecha</th>
+      <th>Cantidad Envidad</th>
+      <th>Precio Facturado</th>
+      <th></th>
+    </thead>
+    <tbody class='add_remision_extra'>
+      <%factura.remisiones.each do |remisiones|%>
+      <tr>
+        <td><%=remisiones.numero_de_remision%></td>
+        <td><%=remisiones.fecha_de_despacho%></td>
+        <td><%=remisiones.cantidad_enviada%></td>
+        <td><%=remisiones.precio_a_facturar%></td>
+      </tr>
       <%end%>
+    </tbody>
+  </table>
+  <!--%end%>
+<! ------------------Formulario--------------------------------->
 
-      <div class="form-actions">
-        <%= f.button :submit%>
-      </div>
-  <%end%>
-  <%else%>
 
-  <%end%>
+
+
+<%end%>
+</div>

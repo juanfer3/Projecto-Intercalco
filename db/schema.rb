@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211190900) do
+ActiveRecord::Schema.define(version: 20171212160537) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: ""
@@ -57,13 +57,18 @@ ActiveRecord::Schema.define(version: 20171211190900) do
   end
 
   create_table "facturas_despacho", force: :cascade do |t|
-    t.integer "pedido_id"
-    t.string "numero_de_factura", default: ""
-    t.boolean "cancelada", default: true
-    t.boolean "estado", default: true
+    t.integer "tiempos_de_entrega_id"
+    t.string "numero_de_factura"
+    t.float "total_facturado"
+    t.float "iva"
+    t.float "descuento"
+    t.boolean "cancelada"
+    t.float "cantidad_faltante"
+    t.float "total_enviado"
+    t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["pedido_id"], name: "index_facturas_despacho_on_pedido_id"
+    t.index ["tiempos_de_entrega_id"], name: "index_facturas_despacho_on_tiempos_de_entrega_id"
   end
 
   create_table "lineas_de_impresiones", force: :cascade do |t|
@@ -114,17 +119,16 @@ ActiveRecord::Schema.define(version: 20171211190900) do
 
   create_table "remisiones", force: :cascade do |t|
     t.integer "factura_despacho_id"
-    t.integer "tiempos_de_entrega_id"
+    t.string "numero_de_remision"
     t.date "fecha_de_despacho"
-    t.float "cantidad_enviada", default: 0.0
-    t.float "precio_a_facturar", default: 0.0
-    t.float "cantidad_faltante", default: 0.0
-    t.boolean "entrega_cumplida", default: true
-    t.boolean "estado", default: true
+    t.float "cantidad_enviada"
+    t.float "precio_a_facturar"
+    t.float "cantidad_faltante"
+    t.boolean "entrega_cumplida"
+    t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["factura_despacho_id"], name: "index_remisiones_on_factura_despacho_id"
-    t.index ["tiempos_de_entrega_id"], name: "index_remisiones_on_tiempos_de_entrega_id"
   end
 
   create_table "roles", force: :cascade do |t|

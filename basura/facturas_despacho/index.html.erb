@@ -7,12 +7,7 @@
     <tr>
       <th>Tiempos de entrega</th>
       <th>Numero de factura</th>
-      <th>Total facturado</th>
-      <th>Iva</th>
-      <th>Descuento</th>
       <th>Cancelada</th>
-      <th>Cantidad faltante</th>
-      <th>Total enviado</th>
       <th>Estado</th>
       <th colspan="3"></th>
     </tr>
@@ -21,15 +16,9 @@
   <tbody>
     <% @facturas_despacho.each do |factura_despacho| %>
       <tr>
-        <td><%= factura_despacho.id %></td>
-        <td><%= factura_despacho.tiempos_de_entrega.id %></td>
+        <td><%= factura_despacho.tiempos_de_entrega %></td>
         <td><%= factura_despacho.numero_de_factura %></td>
-        <td><%= factura_despacho.total_facturado %></td>
-        <td><%= factura_despacho.iva %></td>
-        <td><%= factura_despacho.descuento %></td>
         <td><%= factura_despacho.cancelada %></td>
-        <td><%= factura_despacho.cantidad_faltante %></td>
-        <td><%= factura_despacho.total_enviado %></td>
         <td><%= factura_despacho.estado %></td>
         <td><%= link_to 'Show', factura_despacho %></td>
         <td><%= link_to 'Edit', edit_factura_despacho_path(factura_despacho) %></td>

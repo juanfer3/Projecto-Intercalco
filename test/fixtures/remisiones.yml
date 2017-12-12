@@ -2,8 +2,8 @@
 
 one:
   factura_despacho: one
-  tiempos_de_entrega: one
-  fecha_de_despacho: 2017-12-11
+  numero_de_remision: MyString
+  fecha_de_despacho: 2017-12-12
   cantidad_enviada: 1.5
   precio_a_facturar: 1.5
   cantidad_faltante: 1.5
@@ -12,8 +12,8 @@ one:
 
 two:
   factura_despacho: two
-  tiempos_de_entrega: two
-  fecha_de_despacho: 2017-12-11
+  numero_de_remision: MyString
+  fecha_de_despacho: 2017-12-12
   cantidad_enviada: 1.5
   precio_a_facturar: 1.5
   cantidad_faltante: 1.5

@@ -17,7 +17,7 @@ class RemisionesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create remision" do
     assert_difference('Remision.count') do
-      post remisiones_url, params: { remision: { cantidad_enviada: @remision.cantidad_enviada, cantidad_faltante: @remision.cantidad_faltante, entrega_cumplida: @remision.entrega_cumplida, estado: @remision.estado, factura_despacho_id: @remision.factura_despacho_id, fecha_de_despacho: @remision.fecha_de_despacho, precio_a_facturar: @remision.precio_a_facturar, tiempos_de_entrega_id: @remision.tiempos_de_entrega_id } }
+      post remisiones_url, params: { remision: { cantidad_enviada: @remision.cantidad_enviada, cantidad_faltante: @remision.cantidad_faltante, entrega_cumplida: @remision.entrega_cumplida, estado: @remision.estado, factura_despacho_id: @remision.factura_despacho_id, fecha_de_despacho: @remision.fecha_de_despacho, numero_de_remision: @remision.numero_de_remision, precio_a_facturar: @remision.precio_a_facturar } }
     end
 
     assert_redirected_to remision_url(Remision.last)
@@ -34,7 +34,7 @@ class RemisionesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update remision" do
-    patch remision_url(@remision), params: { remision: { cantidad_enviada: @remision.cantidad_enviada, cantidad_faltante: @remision.cantidad_faltante, entrega_cumplida: @remision.entrega_cumplida, estado: @remision.estado, factura_despacho_id: @remision.factura_despacho_id, fecha_de_despacho: @remision.fecha_de_despacho, precio_a_facturar: @remision.precio_a_facturar, tiempos_de_entrega_id: @remision.tiempos_de_entrega_id } }
+    patch remision_url(@remision), params: { remision: { cantidad_enviada: @remision.cantidad_enviada, cantidad_faltante: @remision.cantidad_faltante, entrega_cumplida: @remision.entrega_cumplida, estado: @remision.estado, factura_despacho_id: @remision.factura_despacho_id, fecha_de_despacho: @remision.fecha_de_despacho, numero_de_remision: @remision.numero_de_remision, precio_a_facturar: @remision.precio_a_facturar } }
     assert_redirected_to remision_url(@remision)
   end
 

@@ -1,13 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  pedido: one
+  tiempos_de_entrega: one
   numero_de_factura: MyString
+  total_facturado: 1.5
+  iva: 1.5
+  descuento: 1.5
   cancelada: false
+  cantidad_faltante: 1.5
+  total_enviado: 1.5
   estado: false
 
 two:
-  pedido: two
+  tiempos_de_entrega: two
   numero_de_factura: MyString
+  total_facturado: 1.5
+  iva: 1.5
+  descuento: 1.5
   cancelada: false
+  cantidad_faltante: 1.5
+  total_enviado: 1.5
   estado: false

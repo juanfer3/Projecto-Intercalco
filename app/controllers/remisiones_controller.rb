@@ -69,6 +69,6 @@ class RemisionesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def remision_params
-      params.require(:remision).permit(:factura_despacho_id, :tiempos_de_entrega_id, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :entrega_cumplida, :estado)
+      params.require(:remision).permit(:factura_despacho_id, :numero_de_remision, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :entrega_cumplida, :estado)
     end
 end

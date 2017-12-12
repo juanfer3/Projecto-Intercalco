@@ -7,7 +7,7 @@ class TiemposDeEntregasController < ApplicationController
     @tiempos_de_entregas = TiemposDeEntrega.all
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
-    @pedido.facturas_despacho.build
+
   end
 
 
@@ -19,7 +19,9 @@ class TiemposDeEntregasController < ApplicationController
         @pedido = Pedido.find(@tiempos_de_entrega.pedido_id)
         #@pedido = Pedido.where("id=#{@tiempos_de_entrega.pedido_id}")
         puts "===================",@pedido,"============"
-        @pedido.facturas_despacho.build
+        @factura_despacho= FacturaDespacho.new
+        @factura_despacho.remisiones.build
+        @remision=Remision.new
 
         format.js {flash[:notice] = "" }
       end
@@ -100,6 +102,7 @@ class TiemposDeEntregasController < ApplicationController
         :forma_de_pago, :arte, :descripcion, :total_articulo,
         :estado_pedido, :estado,
         ],
-      facturas_despacho_attributes:[:pedido_id,:numero_de_factura ])
+        facturas_despacho_attributes:[:pedido_id,:numero_de_factura,
+        remisiones_attributes:[:factura_despacho_id, :numero_de_remision, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :entrega_cumplida, :estado]])
     end
 end

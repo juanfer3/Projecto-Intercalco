@@ -1,4 +1,16 @@
 <div class="form-inputs">
-  <%= f.association :pedido %>
+  <div id="ocultarPedidoYFecha">
+
+    <%=
+      f.association :tiempos_de_entrega,
+      collection: TiemposDeEntrega.all,
+      label_method: :fecha_compromiso,
+      value_method: :id,
+      as: :select,
+      class:'col-4 my_cliente form-control',
+      selected: @tiempos_de_entrega.id
+     %>
+ </div>
   <%= f.input :numero_de_factura %>
+
 </div>

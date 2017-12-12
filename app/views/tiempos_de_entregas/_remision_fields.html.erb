@@ -1,0 +1,33 @@
+
+
+<%= simple_form_for(@remision) do |f| %>
+<%= f.error_notification %>
+
+<div>
+
+  <div class="ocultarRemision">
+    <div>
+      <%= f.association :factura_despacho %>
+    </div>
+    <div>
+      <%= f.input :numero_de_remision %>
+    </div>
+    <div>
+      <%= f.input :fecha_de_despacho %>
+    </div>
+    <div>
+      <%= f.input :cantidad_enviada %>
+    </div>
+    <div>
+      <%= f.input :precio_a_facturar %>
+    </div>
+
+  </div>
+
+
+
+</div>
+<div class="col-12">
+  <%= f.button :submit %>
+</div>
+<% end %>

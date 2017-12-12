@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Factura despacho</th>
-      <th>Tiempos de entrega</th>
+      <th>Numero de remision</th>
       <th>Fecha de despacho</th>
       <th>Cantidad enviada</th>
       <th>Precio a facturar</th>
@@ -21,7 +21,7 @@
     <% @remisiones.each do |remision| %>
       <tr>
         <td><%= remision.factura_despacho %></td>
-        <td><%= remision.tiempos_de_entrega %></td>
+        <td><%= remision.numero_de_remision %></td>
         <td><%= remision.fecha_de_despacho %></td>
         <td><%= remision.cantidad_enviada %></td>
         <td><%= remision.precio_a_facturar %></td>
