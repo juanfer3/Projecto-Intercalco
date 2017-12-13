@@ -7,7 +7,6 @@ class TiemposDeEntregasController < ApplicationController
     @tiempos_de_entregas = TiemposDeEntrega.all
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
-
   end
 
 

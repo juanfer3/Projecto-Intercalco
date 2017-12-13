@@ -1,0 +1,9 @@
+
+
+$(<%="estado_pedido#{@pedido.id}"%>).text('<%=@pedido.estado_pedido%>')
+
+$(<%="estado_pedido#{@pedido.id}"%>).removeClass('badge badge-info').addClass("badge badge-warning")
+
+$(<%="btn_estado_pedido#{@pedido.id}"%>).remove()
+
+$(<%="contenido_btn_estado_pedido#{@pedido.id}"%>).html('<%=j render "btn_En_Pedido" %>')

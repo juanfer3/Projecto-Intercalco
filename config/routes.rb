@@ -26,6 +26,10 @@ Rails.application.routes.draw do
 
   get 'info_despacho/:id', to: 'tiempos_de_entregas#info_despacho', as: :info_despacho
 
+  get 'cambiar_estado/:id', to: 'pedidos#cambiar_estado', as: :cambiar_estado
+
+  get 'cambiar_estado_a_Pedido/:id', to: 'pedidos#cambiar_estado_a_Pedido', as: :cambiar_estado_a_Pedido
+
  # resources :ordenes_de_produccion, :only => :none do
 #      get :info_produccion
 #  end

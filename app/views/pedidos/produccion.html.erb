@@ -13,12 +13,15 @@
       <th>Fecha de pedido</th>
       <th>Digitado</th>
       <th>Estado de Pedido</th>
+      <th>Programar Pedido</th>
+
       <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @pedidos.each do |pedido| %>
+
       <tr>
         <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
         <td ><%=best_in_place pedido, :numero_de_pedido,as: :input %></td>
@@ -28,9 +31,21 @@
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.created_at%></td>
 <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-          <td><h6><span class="badge badge-warning"><%=best_in_place pedido,:estado_pedido,:as => :input %></span></h6></td>
+<%if pedido.estado_pedido =="Pedido"%>
+<td><h6><span class="badge badge-warning" id=<%="estado_pedido#{pedido.id}"%>><%=pedido.estado_pedido %></span></h6></td>
+<td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>><div id=<%="btn_estado_pedido#{pedido.id}"%> ><%= link_to '<button type="button" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-wrench"></i></span></button>'.html_safe, cambiar_estado_path(pedido.id),remote: true%></div></td>
+
+<%elsif pedido.estado_pedido =="En Producción"
+  %>
+<td><h6><span class="badge badge-info" id=<%="estado_pedido#{pedido.id}"%>><%= pedido.estado_pedido %></span></h6></td>
+<td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>><div id=<%="btn_estado_pedido#{pedido.id}"%> ><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-danger"><span><i class="ion-stop"></i></span></button>'.html_safe, cambiar_estado_a_Pedido_path(pedido.id), remote: true%></div></td>
+<%end%>
+
+
+
 
         <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
+
         <!--td><!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
       </tr>
 
@@ -39,7 +54,6 @@
 </table>
 
 <br>
-
 
 
 

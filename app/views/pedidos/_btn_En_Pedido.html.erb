@@ -1,0 +1,1 @@
+<div id=<%="btn_estado_pedido#{@pedido.id}"%> ><%= link_to '<button type="button" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-wrench"></i></span></button>'.html_safe, cambiar_estado_path(@pedido.id),remote: true%></div>

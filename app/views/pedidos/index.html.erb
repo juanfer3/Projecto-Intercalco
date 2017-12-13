@@ -28,9 +28,12 @@
         <td><%= pedido.numero_de_pedido %></td>
         <td><%= pedido.descripcion %></td>
 <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-
+            <%if pedido.estado_pedido =="Pedido"%>
             <td><h6><span class="badge badge-warning"><%= pedido.estado_pedido %></span></h6></td>
-
+            <%elsif pedido.estado_pedido =="En Producción"
+              %>
+            <td><h6><span class="badge badge-info"><%= pedido.estado_pedido %></span></h6></td>
+            <%end%>
 
 
         <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>

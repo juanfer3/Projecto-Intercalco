@@ -7,6 +7,25 @@ class PedidosController < ApplicationController
     @pedidos = Pedido.all
   end
 
+  def cambiar_estado
+    respond_to do |format|
+      if@pedido = Pedido.find(params[:id])
+        @pedido.update(estado_pedido: "En Producción")
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_a_Pedido
+    respond_to do |format|
+      if@pedido = Pedido.find(params[:id])
+        @pedido.update(estado_pedido: "Pedido")
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+
   def consultar_despacho
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
