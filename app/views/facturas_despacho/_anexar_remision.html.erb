@@ -1,0 +1,35 @@
+<%= simple_form_for(@factura_despacho) do |f| %>
+  <%= f.error_notification %>
+  <table class="table" id="factura_<%=factura.id%>">
+    <thead class="table-primary">
+      <th colspan="4"><h1>Numero de Factura: <%=f.numero_de_factura%></h1></th>
+      <th>
+           <!--%= link_to_add_remision_extra('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %-->
+           <%= link_to '<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, edit_factura_despacho_path(factura), remote: true %>
+           <!--button type="button" id="pruebaSelect" class="btn btn-outline-warning formularioRemisionesFields"><span><i class="ion-plus-round"></i></span></button-->
+      </th>
+      <th>
+        <%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
+        factura, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %>
+      </th>
+    </thead>
+    <thead>
+      <th>N° De Remisión</th>
+      <th>Fecha</th>
+      <th>Cantidad Envidad</th>
+      <th>Precio Facturado</th>
+      <th></th>
+    </thead>
+    <tbody class='add_remision_extra'>
+
+      <tr>
+        <td><%=remisiones.numero_de_remision%></td>
+        <td><%=remisiones.fecha_de_despacho%></td>
+        <td><%=remisiones.cantidad_enviada%></td>
+        <td><%=remisiones.precio_a_facturar%></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+<% end %>

@@ -1,0 +1,4 @@
+toastr.error('Edicion Correcta')
+toastr.error(<%="factura_#{@factura_despacho.id}"%>)
+$(<%="factura_#{@factura_despacho.id}"%>).remove()
+$(<%="contenedor_#{@factura_despacho.id}"%>).append("<%= j render @factura_despacho%>")

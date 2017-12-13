@@ -38,10 +38,22 @@ $(document).on('turbolinks:load', function() {
 
 
   jQuery(".best_in_place").best_in_place();
+  
+  $('#contenedor_Fecha_De_Pedido').hide()
+  $('#fecha_de_pedido').focusout(function(){
 
+    var this_fecha = $("#fecha_de_pedido").val();
+    $("#pedido_fecha_de_pedido").val(this_fecha);
 
+  })
 
+  $('.ocultar_fecha').hide();
+  $('.fecha').focusout(function(){
 
+    var this_fecha = $(this).parents("tr").find(".fecha").val();
+    $(this).parents("tr").find(".my_fecha").val(this_fecha);
+    var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+  })
 
 
   /*-------------------------Insert Y Delete de Detalles de Produccion----------*/
@@ -82,6 +94,13 @@ $(document).on('turbolinks:load', function() {
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $('.fields_entrega').append($(this).data('fields').replace(regexp, time));
+    $('.ocultar_fecha').hide();
+    $('.fecha').focusout(function(){
+
+      var this_fecha = $(this).parents("tr").find(".fecha").val();
+      $(this).parents("tr").find(".my_fecha").val(this_fecha);
+      var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+    })
     return event.preventDefault();
   });
 

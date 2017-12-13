@@ -42,27 +42,41 @@ $('form').on('click', '.add_remisiones_extra', function(event) {
   regexp = new RegExp($(this).data('id'), 'g');
   $('.fields_remision_extra').append($(this).data('fields').replace(regexp, time));
   $('.ocultar_fecha').hide();
+
   $('.fecha').focusout(function(){
 
     var this_fecha = $(this).parents("tr").find(".fecha").val();
     $(this).parents("tr").find(".my_fecha").val(this_fecha);
     var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
+
   })
+
   return event.preventDefault();
 });
 
 
 $('.formularioRemisionesFields').click(function(){
 
+
+
+
   var remision='<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div>'
-  var fecha= '<td><div class="input-group" ><input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"data-provide="datepicker" placeholder="Fecha"aria-describedby="basic-addon2" id="fecha"><span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span></div></td>'
-  var cantidad ='<td><input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div></td>'
-  var precio='<td><input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div></td>'
-  var contenido='<tr><td>'+remision+'</td></tr>'
-$(this).parents('table').find('.add_remision_extra').append(contenido)
-$(this).parents('table').find('.add_remision_extra').append('<%= j render "remision_fields" %>')
+  var fecha= '<div class="input-group" ><input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"data-provide="datepicker" placeholder="Fecha"aria-describedby="basic-addon2" id="fecha"><span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span></div>'
+  var cantidad ='<input type="text" class="form-control " placeholder="Username" aria-describedby="basic-addon1"></div>'
+  var precio='<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1"></div>'
+  var eliminar = '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'
+  var contenido='<tr class="contenido"><td>'+remision+'</td><td>'+fecha+'</td><td>'+cantidad+'</td><td>'+precio+'</td><td>'+eliminar+'</td></tr>'
+  $(this).parents('table').find('.add_remision_extra').append(contenido)
+  $(this).parents('table').find('.add_remision_extra').append('<%= j render "remision_fields" %>')
   $('.ocultarRemision').hide()
   $('.ocultar_fecha').hide();
+
+  $('form').on('click', '.remove_remisiones', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').remove();
+    return event.preventDefault();
+  });
+
   $('.fecha').focusout(function(){
 
     var this_fecha = $(this).parents("tr").find(".fecha").val();

@@ -2,6 +2,12 @@
 <%= f.error_notification %>
 <!--button type="button" id="pruebaSelect" class="btn btn-outline-success">Success ion-trash-a</button-->
 <!--Datos Generales del Pedido-->
+<div class="col-4" id="contenedor_Fecha_De_Pedido">
+   <%=
+      f.text_field :fecha_de_pedido,
+      class:"my_fecha"
+      %>
+</div>
 <div class="card text-center">
 
    <div class="card-header">
@@ -61,11 +67,15 @@
             <!--/Descripcion-->
             <!--Fecha De pedido-->
             <div class="col-4">
-               <%=
-                  f.input :fecha_de_pedido,
-                  tipe:'date'
-                  %>
+              <label for="">Fecha De Despacho</label>
+              <div class="input-group" >
+                <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
+                data-provide='datepicker' placeholder="Fecha"
+                aria-describedby="basic-addon2" id='fecha_de_pedido'>
+                <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+              </div>
             </div>
+
             <!--/Fecha De pedido-->
 
             <div class="col-12">
@@ -100,19 +110,19 @@
             </div>
             <!--/Arte Select-->
             <!--Condicion del  Pedido-->
-            <div class="col-4">
+            <!--div class="col-4">
                <%= f.input :condicion_de_pedido %>
-            </div>
+            </div-->
             <!--/Condicion del  Pedido-->
 
             <!--Separador-->
 
             <!--/Separador-->
             <!--Tipo de Trabajo-->
-            <div class="col-4">
+            <div class="col-6">
                <label>Tipo De Trabajo</label>
                <%=
-                  f.select :tipo_de_trabajo,[['Nuevo'], ['Viejo']],
+                  f.select :tipo_de_trabajo,[['Nuevo'], ['Repetitivo']],
                   {include_blank: '...'}, {class: "form-control"}
 
                 %>

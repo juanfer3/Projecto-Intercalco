@@ -1,9 +1,19 @@
 <tr>
-  <td>
+  <td class="ocultar_fecha">
     <div class="input-group date  ">
 
-      <%= f.input :fecha_compromiso, label: false, as: :date, class:'form-control ', 'data-provide'=>'datepicker' %>
+      <%= f.text_field :fecha_compromiso, class:"my_fecha" %>
 
+    </div>
+  </td>
+  <td>
+    <div class="">
+      <div class="input-group" >
+        <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
+        data-provide='datepicker' placeholder="Fecha"
+        aria-describedby="basic-addon2" id='fecha'>
+        <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+      </div>
     </div>
   </td>
   <td>

@@ -49,7 +49,7 @@
       <%= f.input :numero_de_factura %>
     </div>
     <div class="col-3 offset-md-6">
-       <%= link_to_add_remision('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %>
+       <%= link_to_add_remision('<button type="button" id="pruebaSelect agrego" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %>
     </div>
 <table>
   <thead></thead>
@@ -72,12 +72,14 @@
 <! ------------------Formulario--------------------------------->
 <!--%= simple_form_for(@factura_despacho, remote: true) do |f| %-->
   <!--%= f.error_notification %-->
+  <div id="contenedor_<%=factura.id%>">
   <table class="table" id="factura_<%=factura.id%>">
-    <thead class="table-primary">
-      <th colspan="4"><h1>Numero de Factura: <%=factura.numero_de_factura%></h1></th>
+    <thead class="">
+      <th colspan="3"><h1>Numero de Factura: <%=factura.numero_de_factura%></h1></th>
       <th>
            <!--%= link_to_add_remision_extra('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %-->
-           <button type="button" id="pruebaSelect" class="btn btn-outline-warning formularioRemisionesFields"><span><i class="ion-plus-round"></i></span></button>
+           <%= link_to '<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span>Habilitar Ediciones <i class=""></i></span></button>'.html_safe, edit_factura_despacho_path(factura), remote: true %>
+           <!--button type="button" id="pruebaSelect" class="btn btn-outline-warning formularioRemisionesFields"><span><i class="ion-plus-round"></i></span></button-->
       </th>
       <th>
         <%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
@@ -98,10 +100,12 @@
         <td><%=remisiones.fecha_de_despacho%></td>
         <td><%=remisiones.cantidad_enviada%></td>
         <td><%=remisiones.precio_a_facturar%></td>
+        <td></td>
       </tr>
       <%end%>
     </tbody>
   </table>
+</div>
   <!--%end%>
 <! ------------------Formulario--------------------------------->
 

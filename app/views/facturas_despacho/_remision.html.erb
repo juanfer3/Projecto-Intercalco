@@ -14,12 +14,12 @@
   </td>
   <td><%= f.input :cantidad_enviada %></td>
   <td><%= f.input :precio_a_facturar %></td>
-  
+
   <td>
     <%= f.input_field :_destroy, as: :hidden %>
     <%= link_to '<button type="button" class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_remisiones' %>
   </td>
   <td><div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, remote: true %>
   </div></td>
 </tr>

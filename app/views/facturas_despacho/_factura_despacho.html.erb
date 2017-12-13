@@ -1,9 +1,9 @@
+
 <%= simple_form_for(@factura_despacho, remote: true) do |f| %>
   <%= f.error_notification %>
-
   <table class="table" id=<%="factura_#{@factura_despacho.id}"%>>
-    <thead class="table-primary">
-      <th colspan="5"><h1>Numero de Factura: <%=@factura_despacho.numero_de_factura%></h1>
+    <thead class="">
+      <th colspan="4"><h1>Numero de Factura: <%=@factura_despacho.numero_de_factura%></h1>
     </th>
     <th class="">
      <%= link_to_add_remision('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :remisiones, class: '') %>
@@ -17,9 +17,9 @@
       <th>Precio Facturado</th>
       <th></th>
       <th></th>
-      <th></th>
+
     </thead>
-    <tbody class="fields_remisiones_new">
+    <tbody id= <%="fields_remisiones_new#{@factura_despacho.id}"%>>
       <%@factura_despacho.remisiones.each do |remisiones|%>
       <tr>
         <td><%=remisiones.numero_de_remision%></td>
@@ -49,7 +49,7 @@ $('form').on('click', '.add_remisiones', function(event) {
   var regexp, time;
   time = new Date().getTime();
   regexp = new RegExp($(this).data('id'), 'g');
-  $('.fields_remisiones_new').append($(this).data('fields').replace(regexp, time));
+  $(<%="fields_remisiones_new#{@factura_despacho.id}"%>).append($(this).data('fields').replace(regexp, time));
   $('.ocultar_fecha').hide();
   $('.fecha').focusout(function(){
 

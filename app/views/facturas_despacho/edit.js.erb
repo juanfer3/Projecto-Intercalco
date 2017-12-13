@@ -1,0 +1,3 @@
+toastr.error('editar')
+$(<%="factura_#{@factura_despacho.id}"%>).remove()
+$(<%="contenedor_#{@factura_despacho.id}"%>).append("<%= j render @factura_despacho%>")

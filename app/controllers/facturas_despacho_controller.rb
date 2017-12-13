@@ -44,8 +44,8 @@ class FacturasDespachoController < ApplicationController
   def update
     respond_to do |format|
       if @factura_despacho.update(factura_despacho_params)
-        format.html { redirect_to @factura_despacho, notice: 'Factura despacho was successfully updated.' }
-        format.json { render :show, status: :ok, location: @factura_despacho }
+        format.html {redirect_to tiempos_de_entrega_url}
+        format.js{}
       else
         format.html { render :edit }
         format.json { render json: @factura_despacho.errors, status: :unprocessable_entity }
