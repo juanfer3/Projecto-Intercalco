@@ -4,7 +4,11 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
+    if current_user.rol.cargo == "Administrador"
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
+    elsif current_user.rol.cargo == "Comercial"
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).where("user_id=#{current_user.id}").order('nombre DESC')
+    end
   end
 
   # GET /clientes/1

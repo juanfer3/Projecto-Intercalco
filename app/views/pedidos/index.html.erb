@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Pedidos</h1>
-
+<div class=" pull-right">
+  <%= will_paginate @pedidos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -45,7 +47,9 @@
 </table>
 
 <br>
-
+<div class=" pull-right">
+<%= will_paginate @pedidos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <%= link_to '<button class="btn btn-outline-primary"><span>Agregar <i class="ion-android-list"></i></span></button>'.html_safe, new_pedido_path %>
 
 <div class="btn pull-right">

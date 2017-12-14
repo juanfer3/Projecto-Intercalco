@@ -1,7 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Clientes</h1>
-
+<div class="pull-right">
+  <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <table>
   <thead>
     <tr>
@@ -31,7 +33,9 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-<br>
 
+<br>
+<div class="pull-right">
+  <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <%= link_to 'New Cliente', new_cliente_path %>

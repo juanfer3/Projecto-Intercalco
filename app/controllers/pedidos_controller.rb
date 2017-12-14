@@ -4,13 +4,33 @@ class PedidosController < ApplicationController
   # GET /pedidos
   # GET /pedidos.json
   def index
-    @pedidos = Pedido.all
+    if current_user.rol.cargo == "Administrador"
+    @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
       format.js
       format.xlsx {
         response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
       }
+    end
+    elsif current_user.rol.cargo == "Gerente Comercial"
+      @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
+      respond_to do |format|
+        format.html
+        format.js
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
+        }
+      end
+    elsif current_user.rol.cargo == "Comercial"
+      @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
+      respond_to do |format|
+        format.html
+        format.js
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
+        }
+      end
     end
   end
 

@@ -23,25 +23,33 @@
 
   <div class="field">
     <%= form.label :rol_id %>
-    <%= form.association :rol%>
+    <%= form.association :rol,
+    collection: Rol.all,
+    label_method: :cargo,
+    value_method: :id,
+    as: :select,
+    class:'col-4 my_cliente form-control',
+
+    include_blank: 'Seleccione Rol'
+    %>
   </div>
 
   <div class="field">
     <%= form.label :estado %>
     <%= form.check_box :estado, id: :user_estado %>
   </div>
-  
+
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, id: :user_email %>
   </div>
-  
+
   <div class="field">
     <%= form.label :password %>
     <%= form.text_field :password, id: :user_password%>
   </div>
-  
-  
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

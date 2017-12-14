@@ -4,20 +4,24 @@ class ContactosController < ApplicationController
   # GET /contactos
   # GET /contactos.json
   def index
-    @contactos = Contacto.all
+    if current_user.rol.cargo == "Administrador"
+      @contactos = Contacto.all.paginate(page: params[:page], per_page: 20)
+    elsif current_user.rol.cargo == "Comercial"
+      @contactos = Contacto.joins(:cliente).paginate(page: params[:page], per_page: 20).where( "clientes.user_id=#{current_user.id}")
+    end
   end
 
   # GET /contactos/1
   # GET /contactos/1.json
   def show
   end
-  
+
   # GET /contactos/1.json
   def vista
     @contactos = Contacto.joins(:cliente).find(params[:id])
     render json: @contactos.to_json(:include => :cliente)
   end
-  
+
   # GET /contactos/new
   def new
     @contacto = Contacto.new
