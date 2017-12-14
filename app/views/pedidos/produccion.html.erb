@@ -14,7 +14,7 @@
       <th>Digitado</th>
       <th>Estado de Pedido</th>
       <th>Programar Pedido</th>
-
+      <th></th>
       <th></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
 
       <tr>
         <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
-        <td ><%=best_in_place pedido, :numero_de_pedido,as: :input %></td>
+        <td ><%= pedido.numero_de_pedido %></td>
         <td class="descripcion"><%= pedido.descripcion %></td>
         <td><%= pedido.numero_cotizacion %></td>
         <!--td><!--%= pedido.producto %></td-->
@@ -43,7 +43,7 @@
 
 
 
-
+          <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
         <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
 
         <!--td><!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
@@ -56,7 +56,9 @@
 <br>
 
 
-
+<div class="">
+  <%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel De Todos Los Pedidos</span></button>'.html_safe, pedidos_path(format: :xlsx) %>
+</div>
 
 
 

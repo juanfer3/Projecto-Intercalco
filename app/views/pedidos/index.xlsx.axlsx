@@ -1,0 +1,23 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  highlight_cell = style.add_style(:b => true)
+
+	 wb.add_worksheet(name: "Evento ") do |sheet|
+
+	 sheet.add_row ["Cliente", "Contacto", "Tipo De Trabajo", "Numero De Pedido", "Fecha De Pedido","Numero cotizacion", "Numero de pedido", "Estado De Pedido","Linea de impresion","Forma de pago","Tipo De Trabajo","Tiempos De Entrega", "Cantidades A Despachar", "Precios de los Envios" ],
+	 style: [highlight_cell, highlight_cell,highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+  @pedidos.each do |pedido|
+	   sheet.add_row [pedido.contacto.cliente.nombre, pedido.contacto.nombre_contacto,
+      pedido.tipo_de_trabajo, pedido.numero_de_pedido, pedido.fecha_de_pedido,
+      pedido.numero_cotizacion,pedido.numero_de_pedido, pedido.estado_pedido,
+      pedido.linea_de_impresion.tipo_de_linea, pedido.forma_de_pago,
+      pedido.tipo_de_trabajo,
+      pedido.tiempos_de_entregas.pluck(:fecha_compromiso)*", "  " ",
+      pedido.tiempos_de_entregas.pluck(:cantidad)*", "  " ",
+      pedido.tiempos_de_entregas.pluck(:precio)*", "  " "]
+   end
+	end
+
+end

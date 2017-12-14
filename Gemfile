@@ -70,6 +70,7 @@ gem "jquery-ui-rails"
 gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'momentjs-rails'
+gem "font-awesome-rails"
 
 gem 'rails_layout'
 
@@ -91,3 +92,8 @@ gem 'toastr-rails'
 gem "font-awesome-rails"
 
 gem 'best_in_place'
+
+#para exportar a excel
+gem 'rubyzip', '>= 1.2.1'
+gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: '776037c0fc799bb09da8c9ea47980bd3bf296874'
+gem 'axlsx_rails'

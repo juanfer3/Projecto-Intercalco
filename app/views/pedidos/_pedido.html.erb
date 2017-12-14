@@ -20,13 +20,13 @@
 <hr>
 <! ------------------Detalles-Formularios---------------------------------->
 <div class="container" >
-   
+
   <! ------------------Insercion-Formularios---------------------------------->
     <%= render 'orden_de_produccion'%>
 
 
           <table class="table">
-            
+
               <thead>
                 <th>Numero de Produccion</th>
                 <th>Codigo</th>
@@ -35,10 +35,10 @@
                 <th>Fecha</th>
                 <th></th>
               </thead>
-              
-              
+
+
             <tbody id="Agrego">
-<%@pedido.ordenes_de_produccion.each do |ordenes|%>
+        <%@pedido.ordenes_de_produccion.each do |ordenes|%>
                 <tr id=<%="orden_#{ordenes.id}"%>>
                     <td><%=best_in_place ordenes,:numero_de_orden,as: :input%></td>
                     <td><%=best_in_place ordenes,:codigo,as: :input%></td>
@@ -46,8 +46,8 @@
                     <td><%=best_in_place ordenes,:cantidad,as: :input%></td>
                     <td><%=best_in_place ordenes,:fecha,as: :input%></td>
                     <td><%= link_to '<button class="btn btn-outline-danger borrar"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, ordenes, method: :delete, id:'borrar',remote: true,data: { confirm: 'Are you sure?' } %></td>
-                </tr>  
-         <%end%> 
+                </tr>
+         <%end%>
             </tbody>
           </table>
 
@@ -56,5 +56,5 @@
 
 
     </div>
-  
+
 </div>

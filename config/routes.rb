@@ -30,7 +30,10 @@ Rails.application.routes.draw do
 
   get 'cambiar_estado_a_Pedido/:id', to: 'pedidos#cambiar_estado_a_Pedido', as: :cambiar_estado_a_Pedido
 
- # resources :ordenes_de_produccion, :only => :none do
+  get 'genera_reporte_pedido', to: 'pedidos#genera_reporte_pedido', as: :genera_reporte_pedido
+
+
+# resources :ordenes_de_produccion, :only => :none do
 #      get :info_produccion
 #  end
 
