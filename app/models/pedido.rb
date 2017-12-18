@@ -1,4 +1,5 @@
 class Pedido < ApplicationRecord
+  belongs_to :user
   belongs_to :contacto
 
   belongs_to :linea_de_impresion

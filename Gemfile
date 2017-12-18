@@ -86,7 +86,8 @@ gem 'devise'
 
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
-
+#cancan Autorización
+gem 'cancancan'
 
 gem 'toastr-rails'
 gem "font-awesome-rails"
@@ -97,3 +98,5 @@ gem 'best_in_place'
 gem 'rubyzip', '>= 1.2.1'
 gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: '776037c0fc799bb09da8c9ea47980bd3bf296874'
 gem 'axlsx_rails'
+
+gem 'monetize'

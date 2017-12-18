@@ -23,7 +23,7 @@ class PedidosController < ApplicationController
         }
       end
     elsif current_user.rol.cargo == "Comercial"
-      @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
+      @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10).where("user_id=#{current_user.id}")
       respond_to do |format|
         format.html
         format.js
@@ -34,6 +34,7 @@ class PedidosController < ApplicationController
     end
   end
 
+#Generar Reportes
   def genera_reporte_pedido
     @pedidos = Pedido.all
     respond_to do |format|
@@ -46,7 +47,7 @@ class PedidosController < ApplicationController
   end
 
 
-
+#Cambiar Estado
   def cambiar_estado
     respond_to do |format|
       if@pedido = Pedido.find(params[:id])
@@ -56,6 +57,7 @@ class PedidosController < ApplicationController
     end
   end
 
+#Cambiar Estado A Pedido
   def cambiar_estado_a_Pedido
     respond_to do |format|
       if@pedido = Pedido.find(params[:id])
@@ -65,7 +67,7 @@ class PedidosController < ApplicationController
     end
   end
 
-
+#Consultas Despachos
   def consultar_despacho
     @pedido = Pedido.new
     @pedido.tiempos_de_entregas.build
@@ -81,6 +83,7 @@ class PedidosController < ApplicationController
     end
   end
 
+#Pag entregas
   def entregas
     @pedidos = Pedido.all
     @pedido = Pedido.new
@@ -88,6 +91,7 @@ class PedidosController < ApplicationController
     @tiempos_de_entrega = TiemposDeEntrega.new
   end
 
+#Pag Producción
   def produccion
     @pedidos = Pedido.joins(:contacto)
     @orden_de_produccion = OrdenDeProduccion.new
@@ -134,7 +138,7 @@ class PedidosController < ApplicationController
   # POST /pedidos
   # POST /pedidos.json
   def create
-    @pedido = Pedido.new(pedido_params)
+    @pedido = current_user.pedidos.new(pedido_params)
 
     respond_to do |format|
       if @pedido.save
@@ -185,7 +189,7 @@ class PedidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.require(:pedido).permit(:contacto_id,
+      params.require(:pedido).permit(:contacto_id,:user_id,
       :producto, :tipo_de_trabajo,
       :condicion_de_pedido, :fecha_entrega,
       :fecha_de_pedido, :numero_cotizacion,

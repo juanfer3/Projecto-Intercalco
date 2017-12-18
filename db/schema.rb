@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212160537) do
+ActiveRecord::Schema.define(version: 20171218130838) do
 
   create_table "clientes", force: :cascade do |t|
-    t.string "nombre", default: ""
-    t.string "nit", default: ""
-    t.string "direccion", default: ""
-    t.string "telefono", default: ""
-    t.string "correo", default: ""
+    t.string "nombre"
+    t.string "nit"
+    t.string "direccion"
+    t.string "telefono"
+    t.string "correo"
     t.integer "user_id"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20171212160537) do
   end
 
   create_table "contactos", force: :cascade do |t|
-    t.string "nombre_contacto", default: ""
-    t.string "telefono", default: ""
-    t.string "celular", default: ""
-    t.string "correo", default: ""
+    t.string "nombre_contacto"
+    t.string "telefono"
+    t.string "celular"
+    t.string "correo"
     t.integer "cliente_id"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
@@ -72,8 +72,8 @@ ActiveRecord::Schema.define(version: 20171212160537) do
   end
 
   create_table "lineas_de_impresiones", force: :cascade do |t|
-    t.string "tipo_de_linea", default: ""
-    t.string "descripcion", default: ""
+    t.string "tipo_de_linea"
+    t.string "descripcion"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -113,8 +113,10 @@ ActiveRecord::Schema.define(version: 20171212160537) do
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["contacto_id"], name: "index_pedidos_on_contacto_id"
     t.index ["linea_de_impresion_id"], name: "index_pedidos_on_linea_de_impresion_id"
+    t.index ["user_id"], name: "index_pedidos_on_user_id"
   end
 
   create_table "remisiones", force: :cascade do |t|
@@ -132,7 +134,7 @@ ActiveRecord::Schema.define(version: 20171212160537) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string "cargo", default: ""
+    t.string "cargo"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,8 +159,8 @@ ActiveRecord::Schema.define(version: 20171212160537) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "nombre", default: ""
-    t.string "numero_celular", default: ""
+    t.string "nombre"
+    t.string "numero_celular"
     t.integer "rol_id"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false

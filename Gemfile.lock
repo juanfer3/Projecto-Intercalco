@@ -77,6 +77,7 @@ GEM
     bootstrap-toggle-rails (2.2.1.0)
     builder (3.2.3)
     byebug (9.1.0)
+    cancancan (2.1.2)
     capybara (2.16.1)
       addressable
       mini_mime (>= 0.1.3)
@@ -140,6 +141,10 @@ GEM
     minitest (5.10.3)
     momentjs-rails (2.17.1)
       railties (>= 3.1)
+    monetize (1.7.0)
+      money (~> 6.9)
+    money (6.10.0)
+      i18n (>= 0.6.4, < 1.0)
     multi_json (1.12.2)
     nio4r (2.1.0)
     nokogiri (1.8.1)
@@ -255,6 +260,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-toggle-rails
   byebug
+  cancancan
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
@@ -267,6 +273,7 @@ DEPENDENCIES
   jquery-ui-rails
   listen (>= 3.0.5, < 3.2)
   momentjs-rails
+  monetize
   popper_js (~> 1.12.3)
   puma (~> 3.7)
   rails (~> 5.1.4)

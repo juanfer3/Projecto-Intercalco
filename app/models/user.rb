@@ -15,4 +15,5 @@ class User < ApplicationRecord
   end
 
   has_many :clientes
+  has_many :pedidos
 end
