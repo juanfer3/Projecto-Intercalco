@@ -1,15 +1,66 @@
 class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+#Clientes Excel
+  def vista_subir_excel
+    @user_id= current_user.id
+  end
+
+  def import_from_excel
+    my_user_id = current_user.id
+    file = params[:file]
+    begin
+      errores_o_true = Cliente.subir_excel(file, my_user_id)
+
+      respond_to do |format|
+        if errores_o_true == true
+          format.html { redirect_to clientes_path, notice: 'Records Importados' }
+          format.json { render :show, status: :created, location: @cliente }
+        else
+          @errores = errores_o_true
+          format.html { render 'vista_subir_excel'}
+        end
+    end
+    rescue Exception => e
+      flash[:notice] = "Tipo de archivo no valido"
+      redirect_to clientes_path
+    end
+  end
+
+#Contactos Excel
+def contactos_subir_excel
+  @user_id= current_user.id
+end
+
+def import_contactos_from_excel
+  my_user_id = current_user.id
+  file = params[:file]
+  begin
+    errores_o_true = Cliente.subir_contactos_excel(file, my_user_id)
+
+    respond_to do |format|
+      if errores_o_true == true
+        format.html { redirect_to clientes_path, notice: 'Records Importados' }
+        format.json { render :show, status: :created, location: @cliente }
+      else
+        @errores = errores_o_true
+        format.html { render 'vista_subir_excel'}
+      end
+  end
+  rescue Exception => e
+    flash[:notice] = "Tipo de archivo no valido"
+    redirect_to clientes_path
+  end
+end
 
   # GET /clientes
   # GET /clientes.json
   def index
     if current_user.rol.cargo == "Administrador"
-      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre')
     elsif current_user.rol.cargo == "Comercial"
-      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).where("user_id=#{current_user.id}").order('nombre DESC')
+      @clientes = Cliente.joins(:contactos, :user).paginate(page: params[:page], per_page: 20).where("contactos.user_id=#{current_user.id}").order('nombre')
     elsif current_user.rol.cargo == "Gerente Comercial"
-      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre')
     end
   end
 
@@ -77,6 +128,6 @@ class ClientesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
       params.require(:cliente).permit(:nombre, :nit, :direccion, :telefono, :correo, :user_id, :estado,
-      contactos_attributes: [:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :estado])
+      contactos_attributes: [:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :user_id,:estado])
     end
 end

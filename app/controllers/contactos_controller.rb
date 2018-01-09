@@ -7,7 +7,7 @@ class ContactosController < ApplicationController
     if current_user.rol.cargo == "Administrador"
       @contactos = Contacto.all.paginate(page: params[:page], per_page: 20)
     elsif current_user.rol.cargo == "Comercial"
-      @contactos = Contacto.joins(:cliente).paginate(page: params[:page], per_page: 20).where( "clientes.user_id=#{current_user.id}")
+      @contactos = Contacto.joins(:cliente, :user).paginate(page: params[:page], per_page: 20).where( "contactos.user_id=#{current_user.id}")
     elsif current_user.rol.cargo == "Gerente Comercial"
       @contactos = Contacto.all.paginate(page: params[:page], per_page: 20)
     end
@@ -36,7 +36,7 @@ class ContactosController < ApplicationController
   # POST /contactos
   # POST /contactos.json
   def create
-    @contacto = Contacto.new(contacto_params)
+    @contacto = current_user.contactos.new(contacto_params)
 
     respond_to do |format|
       if @contacto.save
@@ -81,6 +81,6 @@ class ContactosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contacto_params
-      params.require(:contacto).permit(:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :estado)
+      params.require(:contacto).permit(:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :user_id,:estado)
     end
 end

@@ -5,18 +5,18 @@
 
 
 
-<div class="row my_users">
- <% @users.each do |user| %> 
-  <div class="col-sm">
-    
+<div class="row my_card_users">
+ <% @users.each do |user| %>
+  <div class="col-4">
+
     <div class="card border-secondary mb-3" style="max-width: 20rem;">
-      
+
         <div class="card-header">
           <%= user.nombre %>
         </div>
-        
+
           <div class="card-body text-secondary">
-            
+
             <h4 class="card-title">Información General</h4>
             <p class="card-text">
               Celular: <%= user.numero_celular %>
@@ -27,9 +27,9 @@
             <p class="card-text">
               Cargo: <%= user.rol.cargo %>
             </p>
-            
+
           </div>
-          
+
           <div class="card-footer bg-transparent border-secondary">
             <div class="my_users_btn_options">
               <%= link_to '<button type="button" class="btn btn-outline-warning">Ver</button>'.html_safe, user %>
@@ -37,9 +37,9 @@
               <%= link_to '<button type="button" class="btn btn-outline-danger">Eliminar</button>'.html_safe, user, method: :delete, data: { confirm: 'Are you sure?' } %>
             </div>
           </div>
-          
+
         </div>
-        
+
   </div>
   <% end %>
 

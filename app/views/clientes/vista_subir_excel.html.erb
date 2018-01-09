@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<% if @errores %>
+  <% @errores.each do |message| %>
+    <ul>
+      <li><%= message %></li>
+    </ul>
+  <% end %>
+<% end %>
+
+<h1>Importar Clientes de Excel</h1>
+ <%= form_tag import_from_excel_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import", :class=> "btn"%>
+<% end %>
+<h1><%=@user_id%></h1>

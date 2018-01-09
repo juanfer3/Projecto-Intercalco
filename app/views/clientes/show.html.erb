@@ -1,40 +1,73 @@
+<br>
+<h1>Contactos de <%=@cliente.nombre%></h1>
+
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @cliente.nombre %>
-</p>
 
-<p>
-  <strong>Nit:</strong>
-  <%= @cliente.nit %>
-</p>
+<table  class="table  table-hover">
+  <thead>
+    <tr>
+      <th>Nombre contacto</th>
+      <th>Telefono</th>
+      <th>Celular</th>
+      <th>Correo</th>
 
-<p>
-  <strong>Direccion:</strong>
-  <%= @cliente.direccion %>
-</p>
+      <%if current_user.rol.cargo=="Comercial"%>
 
-<p>
-  <strong>Telefono:</strong>
-  <%= @cliente.telefono %>
-</p>
+      <%else%>
+        <th >Asignar Comercial</th>
+      <%end%>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Correo:</strong>
-  <%= @cliente.correo %>
-</p>
+  <tbody>
+    <% @cliente.contactos.each do |contacto| %>
 
-<p>
-  <strong>User:</strong>
-  <%= @cliente.user %>
-</p>
+        <%if current_user.rol.cargo=="Gerente Comercial"%>
+        <tr>
+          <td><%= contacto.nombre_contacto %></td>
+          <td><%= contacto.telefono %></td>
+          <td><%= contacto.celular %></td>
+          <td><%= contacto.correo %></td>
+          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.all.map { |i| [i.id, i.nombre] }%></td>
+          <td><%= link_to 'Show', contacto %></td>
+          <td><%= link_to 'Edit', edit_contacto_path(contacto) %></td>
+          <td><%= link_to 'Destroy', contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
 
-<p>
-  <strong>Estado:</strong>
-  <%= @cliente.estado %>
-</p>
+        <%elsif current_user.rol.cargo=="Administrador"%>
+        <tr>
+          <td><%= contacto.nombre_contacto %></td>
+          <td><%= contacto.telefono %></td>
+          <td><%= contacto.celular %></td>
+          <td><%= contacto.correo %></td>
+          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.all.map { |i| [i.id, i.nombre] }%></td>
+          <td><%= link_to 'Show', contacto %></td>
+          <td><%= link_to 'Edit', edit_contacto_path(contacto) %></td>
+          <td><%= link_to 'Destroy', contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
 
+        <%elsif current_user.rol.cargo=="Comercial"%>
+          <%if current_user.nombre == contacto.user.nombre%>
+            <tr>
+              <td><%= contacto.nombre_contacto %></td>
+              <td><%= contacto.telefono %></td>
+              <td><%= contacto.celular %></td>
+              <td><%= contacto.correo %></td>
+              <td><%= link_to 'Show', contacto %></td>
+              <td><%= link_to 'Edit', edit_contacto_path(contacto) %></td>
 
+            </tr>
+          <%end%>
+        <%end%>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Vista para Subir Excel', contactos_subir_excel_path,class:'btn btn-success' %>
 <%= link_to 'Edit', edit_cliente_path(@cliente) %> |
 <%= link_to 'Back', clientes_path %>

@@ -9,7 +9,7 @@
       <th>Telefono</th>
       <th>Celular</th>
       <th>Correo</th>
-      <th>Cliente</th>
+      <th>Asignar Comercial</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +21,13 @@
         <td><%= contacto.telefono %></td>
         <td><%= contacto.celular %></td>
         <td><%= contacto.correo %></td>
-        <td><%= contacto.cliente.nombre %></td>
+        <%if current_user.rol.cargo=="Gerente Comercial"%>
+          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.all.map { |i| [i.id, i.nombre] }%></td>
+        <%elsif current_user.rol.cargo=="Administrador"%>
+          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.all.map { |i| [i.id, i.nombre] }%></td>
+        <%else%>
+          <td><%=contacto.user.nombre%><td>
+        <%end%>
         <td><%= link_to 'Show', contacto %></td>
         <td><%= link_to 'Edit', edit_contacto_path(contacto) %></td>
         <td><%= link_to 'Destroy', contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>

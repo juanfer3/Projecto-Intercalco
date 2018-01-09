@@ -13,6 +13,22 @@
                 <%= f.input :correo %>
               </td >
               <td>
+                <%= f.input :user_id %>
+              </td >
+              <td>
+                <div class="ocultar_pedido" id="ocultar_pedido">
+                  <%=
+                    f.association :user,
+                    collection: User.all,
+                    label_method: :nombre,
+                    value_method: :id,
+                    as: :select,
+                    class:'col-4 my_cliente form-control',
+                    selected: current_user.id
+                  %>
+                </div>
+              </td>
+              <td>
                 <label for=""></label> <br>
                 <%= f.input_field :_destroy, as: :hidden %>
                 <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_entregas' %>

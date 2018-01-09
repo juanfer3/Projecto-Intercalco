@@ -60,4 +60,6 @@
    inflect.irregular 'iva', 'ivas'
    inflect.irregular 'total_facturado', 'totales_facturados'
    inflect.irregular 'descuento', 'descuentos'
+
+   inflect.irregular 'usuario_asignado', 'usuario_asignados'
  end

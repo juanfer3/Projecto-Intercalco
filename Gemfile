@@ -100,3 +100,7 @@ gem 'axlsx', git: 'https://github.com/randym/axlsx.git', ref: '776037c0fc799bb09
 gem 'axlsx_rails'
 
 gem 'monetize'
+
+#para exportar a excel
+gem 'roo'
+gem 'roo-xls'

@@ -187,6 +187,14 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
+    roo-xls (1.1.0)
+      nokogiri
+      roo (>= 2.0.0beta1, < 3)
+      spreadsheet (> 0.9.0)
+    ruby-ole (1.2.12.1)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.3)
@@ -208,6 +216,8 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
+    spreadsheet (1.1.5)
+      ruby-ole (>= 1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -278,6 +288,8 @@ DEPENDENCIES
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails_layout
+  roo
+  roo-xls
   rubyzip (>= 1.2.1)
   sass-rails
   select2-rails
