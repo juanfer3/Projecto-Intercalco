@@ -2,6 +2,9 @@
 
 <!-- Admind  -->
   <% if user_signed_in? %>
+
+  <!-- Admind  -->
+  <% if current_user.rol.cargo == "Administrador" %>
     <nav class="navbar navbar-light bg-light my_nav">
 
       <a class="navbar-brand" href="#">
@@ -67,6 +70,232 @@
 
       </div>
     </nav>
+    <!-- /Admind  -->
+
+    <!-- Gerente Comercial  -->
+    <%elsif current_user.rol.cargo == "Gerente Comercial"%>
+    <nav class="navbar navbar-light bg-light my_nav">
+
+      <a class="navbar-brand" href="#">
+        Intercalco
+      </a>
+
+      <div class="form-inline">
+
+        <a class="navbar-brand" href="#">
+          <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+        </a>
+        <a class="navbar-brand" href="#">
+          <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
+        </a>
+        <a class="navbar-brand" href="#">
+          <%= link_to 'Pedidos', pedidos_path, class:'navbar-brand' %>
+        </a>
+
+
+      <div class="nav-item dropdown">
+
+        <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+        role="button" data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+          <div class="dropdown-divider"></div>
+
+
+
+          <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+        </div>
+      </div>
+
+
+      </div>
+    </nav>
+    <!-- /Gerente Comercial  -->
+
+    <!-- Comercial  -->
+    <% elsif  current_user.rol.cargo == "Comercial" %>
+      <nav class="navbar navbar-light bg-light my_nav">
+
+        <a class="navbar-brand" href="#">
+          Intercalco
+        </a>
+
+        <div class="form-inline">
+
+          <a class="navbar-brand" href="#">
+            <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+          </a>
+          <a class="navbar-brand" href="#">
+            <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
+          </a>
+          <a class="navbar-brand" href="#">
+            <%= link_to 'Pedidos', pedidos_path, class:'navbar-brand' %>
+          </a>
+
+
+        <div class="nav-item dropdown">
+
+          <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <div class="dropdown-divider"></div>
+
+
+
+            <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+          </div>
+        </div>
+
+
+        </div>
+      </nav>
+      <!-- /Comercial  -->
+
+
+      <!-- Despacho  -->
+      <% elsif  current_user.rol.cargo == "Despachos" %>
+        <nav class="navbar navbar-light bg-light my_nav">
+
+          <a class="navbar-brand" href="#">
+            Intercalco
+          </a>
+
+          <div class="form-inline">
+
+            <a class="navbar-brand" href="#">
+              <%= link_to 'Despachos', tiempos_de_entregas_path, class:'navbar-brand' %>
+            </a>
+
+
+
+
+          <div class="nav-item dropdown">
+
+            <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+            role="button" data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+              <div class="dropdown-divider"></div>
+
+
+
+              <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+            </div>
+          </div>
+
+
+          </div>
+        </nav>
+        <!-- /Despacho  -->
+
+        <!-- Produccion  -->
+        <% elsif  current_user.rol.cargo == "Producción" %>
+          <nav class="navbar navbar-light bg-light my_nav">
+
+            <a class="navbar-brand" href="#">
+              Intercalco
+            </a>
+
+            <div class="form-inline">
+
+              <a class="navbar-brand" href="#">
+                <%= link_to 'Producción', produccion_path, class:'navbar-brand' %>
+              </a>
+
+
+
+
+            <div class="nav-item dropdown">
+
+              <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+              role="button" data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                <div class="dropdown-divider"></div>
+
+
+
+                <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+              </div>
+            </div>
+
+
+            </div>
+          </nav>
+          <!-- /Produccion  -->
+          <!-- Gerente  -->
+          <% elsif  current_user.rol.cargo == "Gerencia" %>
+            <nav class="navbar navbar-light bg-light my_nav">
+
+              <a class="navbar-brand" href="#">
+                Intercalco
+              </a>
+
+              <div class="form-inline">
+
+                <a class="navbar-brand" href="#">
+                  <%= link_to 'Reportes', genera_reporte_pedido_path, class:'navbar-brand' %>
+                </a>
+
+
+
+
+              <div class="nav-item dropdown">
+
+                <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+                role="button" data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+                  <div class="dropdown-divider"></div>
+
+
+
+                  <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+                </div>
+              </div>
+
+
+              </div>
+            </nav>
+            <!-- /Gerente  -->
+    <%end%>
+
   <%else%>
 <!--/ Admind -->
 

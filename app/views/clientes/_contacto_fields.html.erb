@@ -1,5 +1,20 @@
-<%= f.input :nombre_contacto %>
-    <%= f.input :telefono %>
-    <%= f.input :celular %>
-    <%= f.input :correo %>
-    
+
+            <tr>
+              <td>
+                <%= f.input :nombre_contacto %>
+              </td>
+              <td>
+                <%= f.input :telefono %>
+              </td >
+              <td>
+                <%= f.input :celular %>
+              </td >
+              <td>
+                <%= f.input :correo %>
+              </td >
+              <td>
+                <label for=""></label> <br>
+                <%= f.input_field :_destroy, as: :hidden %>
+                <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_entregas' %>
+              </td>
+            </tr>

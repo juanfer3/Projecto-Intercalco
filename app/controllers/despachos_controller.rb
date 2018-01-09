@@ -4,7 +4,11 @@ class DespachosController < ApplicationController
   # GET /despachos
   # GET /despachos.json
   def index
-    @despachos = Despacho.all
+    if current_user.rol.cargo == "Administrador"
+      @despachos = Despacho.all.paginate(page: params[:page], per_page: 20).order('nombre DESC')
+    elsif current_user.rol.cargo == "Despachos"
+      @despachos = Despacho.all.paginate(page: params[:page], per_page: 20).where("user_id=#{current_user.id}")
+    end
   end
 
   # GET /despachos/1

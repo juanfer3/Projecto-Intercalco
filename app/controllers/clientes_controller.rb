@@ -8,6 +8,8 @@ class ClientesController < ApplicationController
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
     elsif current_user.rol.cargo == "Comercial"
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).where("user_id=#{current_user.id}").order('nombre DESC')
+    elsif current_user.rol.cargo == "Gerente Comercial"
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 5).order('nombre DESC')
     end
   end
 

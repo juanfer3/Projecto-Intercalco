@@ -1,18 +1,70 @@
 <%= simple_form_for(@cliente) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :nombre %>
-    <%= f.input :nit %>
-    <%= f.input :direccion %>
-    <%= f.input :telefono %>
-    <%= f.input :estado %>
-    <%=f.fields_for :contactos do |contc|%>
+  <div class="card">
+    <h3 class="card-header">Cliente</h3>
 
-       <%= render 'contacto_fields', f:contc%>
+    <div class="container">
+      <br>
+        <div class="card-block">
+          <div class="my_card_pedidos_form">
+            <div class="col-4">
+              <%= f.input :nombre %>
+            </div>
+            <div class="col-4">
+              <%= f.input :nit %>
+            </div>
+            <div class="col-4">
+              <%= f.input :direccion %>
+            </div>
 
-    <%end%>
+
+          </div>
+        </div>
+      <br>
+    </div>
+</div>
+
+<br>
+
+
+
+
+  <div >
+
+    <br>
+      <div class="card">
+        <div class="card-header">
+          <div class="my_card_contactos_form">
+            <div >
+              <h3>Contactos</h3>
+            </div>
+            <div >
+              <%= link_to_add_contactos('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span><i class="ion-person-add"></i></span></button>'.html_safe, f, :contactos, class: '') %>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+
+          <table class="table">
+            <tbody class='fields_contactos'>
+              <%=f.fields_for :contactos do |contc|%>
+
+                 <%= render 'contacto_fields', f:contc%>
+
+              <%end%>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
   </div>
+
+  <br>
 
   <div class="form-actions">
     <%= f.button :submit %>

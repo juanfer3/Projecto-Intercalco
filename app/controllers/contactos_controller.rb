@@ -8,6 +8,8 @@ class ContactosController < ApplicationController
       @contactos = Contacto.all.paginate(page: params[:page], per_page: 20)
     elsif current_user.rol.cargo == "Comercial"
       @contactos = Contacto.joins(:cliente).paginate(page: params[:page], per_page: 20).where( "clientes.user_id=#{current_user.id}")
+    elsif current_user.rol.cargo == "Gerente Comercial"
+      @contactos = Contacto.all.paginate(page: params[:page], per_page: 20)
     end
   end
 
