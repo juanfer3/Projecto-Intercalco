@@ -44,7 +44,7 @@ Rails.application.routes.draw do
 
   post 'import_from_excel' => "clientes#import_from_excel"
   get 'vista_subir_excel', to: 'clientes#vista_subir_excel'
-  post 'import_contactos_from_excel' => "clientes#import_contactos_from_excel"
+  post 'import_contactos_from_excel/:id' => "clientes#import_contactos_from_excel", as: :import_contactos_from_excel
   get 'contactos_subir_excel', to: 'clientes#contactos_subir_excel'
 
 end

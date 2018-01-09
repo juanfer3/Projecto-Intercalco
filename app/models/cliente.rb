@@ -46,7 +46,7 @@ class Cliente < ApplicationRecord
 
 #Contactos Excel
 
-  def self.subir_excel(file ,my_user_id,cliente)
+  def self.subir_excel_contactos(file ,my_user_id,id_cliente)
 
     @errores = []
 
@@ -65,7 +65,7 @@ class Cliente < ApplicationRecord
 
     (2..spreadsheet.last_row).each do |i|
 
-      contacto = Cliente.new(nombre_contacto: spreadsheet.row(i)[0], telefono: spreadsheet.row(i)[1],celular:spreadsheet.row(i)[2],correo:spreadsheet.row(i)[3],user_id:my_user_id, cliente_id:cliente)
+      contacto = Contacto.new(nombre_contacto: spreadsheet.row(i)[0], telefono: spreadsheet.row(i)[1],celular:spreadsheet.row(i)[2],correo:spreadsheet.row(i)[3],user_id:my_user_id, cliente_id:id_cliente)
 
       unless contacto.save
         contacto.errors.full_messages.each do |message|

@@ -13,7 +13,7 @@ class ClientesController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to clientes_path, notice: 'Records Importados' }
+          format.html { redirect_to clientes_path, notice: 'Clientes Importados' }
           format.json { render :show, status: :created, location: @cliente }
         else
           @errores = errores_o_true
@@ -28,18 +28,20 @@ class ClientesController < ApplicationController
 
 #Contactos Excel
 def contactos_subir_excel
-  @user_id= current_user.id
+
 end
 
 def import_contactos_from_excel
+  @cliente = Cliente.find(params[:id])
+
   my_user_id = current_user.id
   file = params[:file]
   begin
-    errores_o_true = Cliente.subir_contactos_excel(file, my_user_id)
+    errores_o_true = Cliente.subir_excel_contactos(file, my_user_id, @cliente.id)
 
     respond_to do |format|
       if errores_o_true == true
-        format.html { redirect_to clientes_path, notice: 'Records Importados' }
+        format.html { redirect_to @cliente, notice: 'Contactos Importados' }
         format.json { render :show, status: :created, location: @cliente }
       else
         @errores = errores_o_true
@@ -56,17 +58,19 @@ end
   # GET /clientes.json
   def index
     if current_user.rol.cargo == "Administrador"
-      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre')
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre').distinct
     elsif current_user.rol.cargo == "Comercial"
-      @clientes = Cliente.joins(:contactos, :user).paginate(page: params[:page], per_page: 20).where("contactos.user_id=#{current_user.id}").order('nombre')
+      @clientes = Cliente.joins(:contactos, :user).paginate(page: params[:page], per_page: 20).where("contactos.user_id=#{current_user.id}").order('nombre').distinct
     elsif current_user.rol.cargo == "Gerente Comercial"
-      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre')
+      @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre').distinct
     end
   end
 
   # GET /clientes/1
   # GET /clientes/1.json
   def show
+    puts "==============="+@cliente.id.to_s+"======================"
+
   end
 
   # GET /clientes/new

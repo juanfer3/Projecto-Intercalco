@@ -35,6 +35,7 @@
 
 $(document).on('turbolinks:load', function() {
 
+    jQuery(".best_in_place").best_in_place();
 
   $('form').on('click', '.remove_contactos', function(event) {
     $(this).prev('input[type=hidden]').val('1');
@@ -52,7 +53,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-  jQuery(".best_in_place").best_in_place();
+
 
   $('#contenedor_Fecha_De_Pedido').hide()
   $('#fecha_de_pedido').focusout(function(){
