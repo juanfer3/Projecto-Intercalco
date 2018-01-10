@@ -13,6 +13,7 @@ class PedidosController < ApplicationController
         response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
       }
     end
+
     elsif current_user.rol.cargo == "Gerente Comercial"
       @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
       respond_to do |format|
@@ -31,12 +32,21 @@ class PedidosController < ApplicationController
           response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
         }
       end
+    elsif current_user.rol.cargo == "Producción"
+      @pedidos = Pedido.all.paginate(page: params[:page], per_page: 10)
+      respond_to do |format|
+        format.html
+        format.js
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
+        }
+      end
     end
   end
 
 #Generar Reportes
   def genera_reporte_pedido
-    @pedidos = Pedido.all
+    @pedidos = Pedido.joins(:tiempos_de_entrega, :factura,:facturas_despacho).distinct
     respond_to do |format|
       format.html
       format.js

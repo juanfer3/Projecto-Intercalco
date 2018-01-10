@@ -242,7 +242,8 @@ toastr.warning(descripcion)
 /*  Session dump
 _csrf_token: "NGOAeZ6Jbt30S1JDdZLPeWghetgyIpP97pjFtZcpjnc="
 session_id: "6c55f89f6cd2f70104384d17c4782e5d"
-warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBc."]*/
+warden.user.user.key: [[1], "$2a$11$MXstTWkpcuh3F9KB8vCBClientes
+c."]*/
   // POST /ordenes_de_produccion
 /*  var create_new = '/crearNuevaOrden.json';
   $.ajax({

@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'turbolinks:load', ()->
-    toastr.error('Best in place :)');
+    #toastr.error('Best in place :)');
     jQuery(".best_in_place").best_in_place();

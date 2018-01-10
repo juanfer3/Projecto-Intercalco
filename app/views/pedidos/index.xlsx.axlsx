@@ -5,10 +5,24 @@ wb.styles do |style|
 
 	 wb.add_worksheet(name: "Evento ") do |sheet|
 
-	 sheet.add_row ["Cliente", "Contacto", "Tipo De Trabajo", "Numero De Pedido", "Fecha De Pedido","Numero cotizacion", "Numero de pedido", "Estado De Pedido","Linea de impresion","Forma de pago","Tipo De Trabajo","Tiempos De Entrega", "Cantidades A Despachar", "Precios de los Envios" ],
-	 style: [highlight_cell, highlight_cell,highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+	 sheet.add_row ["Cliente", "Contacto", "Tipo De Trabajo", "Numero De Pedido", "Fecha De Pedido","Numero cotizacion", "Numero de pedido", "Estado De Pedido","Linea de impresion","Forma de pago","Tipo De Trabajo","Tiempos De Entrega", "Cantidades A Despachar", "Precios de los Envios", "Numero de orden de produccion","codigo","Descripción","Cantidad","Fecha de Orden","Numeros de Factura", "Remisiones" ],
+	 style: [highlight_cell, highlight_cell,highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+   @facturas = []
+   @remisiones = []
 
   @pedidos.each do |pedido|
+    pedido.tiempos_de_entregas.each do |facturar|
+      facturar.facturas_despacho.each do |facturas|
+        @facturas << facturas
+
+        facturas.remisiones.each do |remisiones|
+          @remisiones << remisiones
+        end
+      end
+    end
+
+
 	   sheet.add_row [pedido.contacto.cliente.nombre, pedido.contacto.nombre_contacto,
       pedido.tipo_de_trabajo, pedido.numero_de_pedido, pedido.fecha_de_pedido,
       pedido.numero_cotizacion,pedido.numero_de_pedido, pedido.estado_pedido,
@@ -16,7 +30,14 @@ wb.styles do |style|
       pedido.tipo_de_trabajo,
       pedido.tiempos_de_entregas.pluck(:fecha_compromiso)*", "  " ",
       pedido.tiempos_de_entregas.pluck(:cantidad)*", "  " ",
-      pedido.tiempos_de_entregas.pluck(:precio)*", "  " "]
+      pedido.tiempos_de_entregas.pluck(:precio)*", "  " ",
+      pedido.ordenes_de_produccion.pluck(:numero_de_orden)*", "  " ",
+      pedido.ordenes_de_produccion.pluck(:codigo)*", "  " ",
+      pedido.ordenes_de_produccion.pluck(:descripcion)*", "  " ",
+      pedido.ordenes_de_produccion.pluck(:cantidad)*", "  " ",
+      pedido.ordenes_de_produccion.pluck(:fecha)*", "  " ",
+      @facturas.pluck(:numero_de_factura)*", "  " ",
+      @remisiones.pluck(:numero_de_remision)*", "  " "]
    end
 	end
 

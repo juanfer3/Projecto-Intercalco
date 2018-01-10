@@ -13,7 +13,9 @@
       <th>Fecha de pedido</th>
       <th>Numero de pedido</th>
       <th>Descripcion Del Pedido</th>
+      <th>Fecha Final De Entrega</th>
       <th>Estado de Pedido</th>
+
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -27,46 +29,64 @@
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.numero_de_pedido %></td>
         <td><%= pedido.descripcion %></td>
-<!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-            <%if pedido.estado_pedido =="Pedido"%>
-            <td><h6><span class="badge badge-warning"><%= pedido.estado_pedido %></span></h6></td>
-            <%elsif pedido.estado_pedido =="En Producción"
+
+        <%fec1 = "0000/01/01"%>
+          <%@fech1 = fec1.to_time%>
+            <%pedido.tiempos_de_entregas.each do |fecha|%>
+
+              <%if @fech1 < fecha.fecha_compromiso%>
+                <%@fech1 = fecha.fecha_compromiso%><%end%>
+
+              <%end%>
+
+              <td><%=@fech1%></td>
+
+              <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
+              <%if pedido.estado_pedido =="Pedido"%>
+                <td>
+                  <h6>
+                    <span class="badge badge-warning"><%= pedido.estado_pedido %></span></h6>
+                </td>
+                <%elsif pedido.estado_pedido =="En Producción"
               %>
-            <td><h6><span class="badge badge-info"><%= pedido.estado_pedido %></span></h6></td>
-            <%end%>
+                  <td>
+                    <h6>
+                      <span class="badge badge-info"><%= pedido.estado_pedido %></span></h6>
+                  </td>
+                <%end%>
 
+                <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
+                <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
+                <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_pedido_path(pedido) %></td>
+                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
+                <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, pedido, method: :delete,remote: true, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-        <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
-        <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
-        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_pedido_path(pedido) %></td>
-        <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
-        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, pedido, method: :delete,remote: true, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <br>
+        <div class=" pull-right">
+          <%= will_paginate @pedidos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+        </div>
+        <%= link_to '<button class="btn btn-outline-primary"><span>Agregar <i class="ion-android-list"></i></span></button>'.html_safe, new_pedido_path %>
 
-<br>
-<div class=" pull-right">
-<%= will_paginate @pedidos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-</div>
-<%= link_to '<button class="btn btn-outline-primary"><span>Agregar <i class="ion-android-list"></i></span></button>'.html_safe, new_pedido_path %>
+        <div class="btn pull-right">
+          <%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel De Todos Los Pedidos</span></button>'.html_safe,
+          pedidos_path(format: :xlsx) %>
+        </div>
 
-<div class="btn pull-right">
-  <%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel De Todos Los Pedidos</span></button>'.html_safe, pedidos_path(format: :xlsx) %>
-</div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <%= render 'detalle_pedido' %>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <%= render 'detalle_pedido' %>
-
-    </div>
-  </div>
-</div>
+            </div>
+          </div>
+        </div>

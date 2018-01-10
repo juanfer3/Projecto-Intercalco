@@ -2,16 +2,15 @@
 
 <h1>Pedidos Para Producción</h1>
 
-
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Cliente</th>
       <th>Numero de pedido</th>
-      <th>Descripcion Del Producto</th>
-      <th>Numero de Cotización</th>
-      <th>Fecha de pedido</th>
+      <th>Descripcion del Producto</th>
+      <th>Fecha de Pedido</th>
       <th>Digitado</th>
+      <th>Fecha de Promesa</th>
       <th>Estado de Pedido</th>
       <th>Programar Pedido</th>
       <th></th>
@@ -26,61 +25,74 @@
         <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
         <td ><%= pedido.numero_de_pedido %></td>
         <td class="descripcion"><%= pedido.descripcion %></td>
-        <td><%= pedido.numero_cotizacion %></td>
         <!--td><!--%= pedido.producto %></td-->
         <td><%= pedido.fecha_de_pedido %></td>
-        <td><%= pedido.created_at%></td>
-<!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-<%if pedido.estado_pedido =="Pedido"%>
-<td><h6><span class="badge badge-warning" id=<%="estado_pedido#{pedido.id}"%>><%=pedido.estado_pedido %></span></h6></td>
-<td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>><div id=<%="btn_estado_pedido#{pedido.id}"%> ><%= link_to '<button type="button" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-wrench"></i></span></button>'.html_safe, cambiar_estado_path(pedido.id),remote: true%></div></td>
+        <td><%= pedido.created_at.strftime("%m/%d/%Y") %></td>
+        <%fec1 = "0000/01/01"%>
+          <%@fech1 = fec1.to_time%>
+            <%pedido.tiempos_de_entregas.each do |fecha|%>
 
-<%elsif pedido.estado_pedido =="En Producción"
+              <%if @fech1 < fecha.fecha_compromiso%>
+                <%@fech1 = fecha.fecha_compromiso%><%end%>
+
+              <%end%>
+
+              <td><%=@fech1%></td>
+              <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
+              <%if pedido.estado_pedido =="Pedido"%>
+                <td>
+                  <h6>
+                    <span class="badge badge-warning" id=<%="estado_pedido#{pedido.id}"%>><%=pedido.estado_pedido %></span></h6>
+                </td>
+                <td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>>
+                  <div id=<%="btn_estado_pedido#{pedido.id}"%>><%= link_to '<button type="button" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-wrench"></i></span></button>'.html_safe, cambiar_estado_path(pedido.id),remote: true%></div>
+                </td>
+
+                <%elsif pedido.estado_pedido =="En Producción"
   %>
-<td><h6><span class="badge badge-info" id=<%="estado_pedido#{pedido.id}"%>><%= pedido.estado_pedido %></span></h6></td>
-<td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>><div id=<%="btn_estado_pedido#{pedido.id}"%> ><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-danger"><span><i class="ion-stop"></i></span></button>'.html_safe, cambiar_estado_a_Pedido_path(pedido.id), remote: true%></div></td>
-<%end%>
+                  <td>
+                    <h6>
+                      <span class="badge badge-info" id=<%="estado_pedido#{pedido.id}"%>><%= pedido.estado_pedido %></span></h6>
+                  </td>
+                  <td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>>
+                    <div id=<%="btn_estado_pedido#{pedido.id}"%>><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-danger"><span><i class="ion-stop"></i></span></button>'.html_safe, cambiar_estado_a_Pedido_path(pedido.id), remote: true%></div>
+                  </td>
+                <%end%>
 
+                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
+                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
 
+                <!--td><!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
+              </tr>
 
-          <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
-        <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
+            <% end %>
+          </tbody>
+        </table>
 
-        <!--td><!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
-      </tr>
+        <br>
 
-    <% end %>
-  </tbody>
-</table>
+        <div class="">
+          <%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel De Todos Los Pedidos</span></button>'.html_safe,
+          pedidos_path(format: :xlsx) %>
+        </div>
 
-<br>
+        <div class="modal my_modal fade my_modal_orden_pedido " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ordenes de Producción</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div id="activarmodal"></div>
+              <div class="modal-body">
+                <form id="activarmodal"></form>
+              </div>
+              <div class="modal-footer">
 
-
-<div class="">
-  <%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel De Todos Los Pedidos</span></button>'.html_safe, pedidos_path(format: :xlsx) %>
-</div>
-
-
-
-<div class="modal my_modal fade my_modal_orden_pedido " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog  modal-lg"  role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ordenes de Producción</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div id="activarmodal"></div>
-      <div class="modal-body">
-        <form id="activarmodal">
-
-        </form>
-      </div>
-      <div class="modal-footer">
-
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>

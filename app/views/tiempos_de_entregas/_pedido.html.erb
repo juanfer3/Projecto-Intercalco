@@ -99,6 +99,7 @@
         <td><%=remisiones.numero_de_remision%></td>
         <td><%=remisiones.fecha_de_despacho%></td>
         <td><%=remisiones.cantidad_enviada%></td>
+        <td><%=number_with_delimiter(remisiones.precio_a_facturar, delimiter: '.', separator: ',')%></td>
         <td><%=remisiones.precio_a_facturar%></td>
         <td></td>
       </tr>

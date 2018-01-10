@@ -1,11 +1,10 @@
 <br>
-<h1>Contactos de <%=@cliente.nombre%></h1>
-
+<h1>Contactos de
+  <%=@cliente.nombre%></h1>
 
 <p id="notice"><%= notice %></p>
 
-
-<table  class="table  table-hover">
+<table class="table  table-hover">
   <thead>
     <tr>
       <th>Nombre contacto</th>
@@ -26,7 +25,7 @@
   <tbody>
     <% @cliente.contactos.each do |contacto| %>
 
-        <%if current_user.rol.cargo=="Gerente Comercial"%>
+      <%if current_user.rol.cargo=="Gerente Comercial"%>
         <tr>
           <td><%= contacto.nombre_contacto %></td>
           <td><%= contacto.telefono %></td>
@@ -37,80 +36,140 @@
         </tr>
 
         <%elsif current_user.rol.cargo=="Administrador"%>
-        <tr>
-          <td><%= contacto.nombre_contacto %></td>
-          <td><%= contacto.telefono %></td>
-          <td><%= contacto.celular %></td>
-          <td><%= contacto.correo %></td>
-          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"').map { |i| [i.id, i.nombre] }%></td>
-          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+          <tr>
+            <td><%= contacto.nombre_contacto %></td>
+            <td><%= contacto.telefono %></td>
+            <td><%= contacto.celular %></td>
+            <td><%= contacto.correo %></td>
+            <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"').map { |i| [i.id, i.nombre] }%></td>
+            <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
 
-        <%elsif current_user.rol.cargo=="Comercial"%>
-          <%if current_user.nombre == contacto.user.nombre%>
-            <tr>
-              <td><%= contacto.nombre_contacto %></td>
-              <td><%= contacto.telefono %></td>
-              <td><%= contacto.celular %></td>
-              <td><%= contacto.correo %></td>
-
-
-            </tr>
+          <%elsif current_user.rol.cargo=="Comercial"%>
+            <%if current_user.nombre == contacto.user.nombre%>
+              <tr>
+                <td><%= contacto.nombre_contacto %></td>
+                <td><%= contacto.telefono %></td>
+                <td><%= contacto.celular %></td>
+                <td><%= contacto.correo %></td>
+              </tr>
+            <%end%>
           <%end%>
-        <%end%>
 
-    <% end %>
-  </tbody>
-</table>
+        <% end %>
+      </tbody>
+    </table>
 
-<br>
+    <br>
+    <%if current_user.rol.cargo=="Gerente Comercial"%>
+    <!-- BTN modal -->
+    <br>
+    <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Contactos Desde Excel</button>
+    <br>
+    <%= link_to 'Edit', edit_cliente_path(@cliente) %>
+    |
+    <%= link_to 'Back', clientes_path %>
 
+    <!-- Modal Excel -->
 
-
-
-
-
-
-<!-- BTN modal -->
-<br>
-<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Exportar Contactos Desde Excel</button>
-<br>
-<%= link_to 'Edit', edit_cliente_path(@cliente) %> |
-<%= link_to 'Back', clientes_path %>
-
-
-<!-- Modal Excel -->
-
-<div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content col-12">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Importar Contactos Desde Excel</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <h1>Instrucciones:</h1>
-          <h6> <strong>-</strong> Para importar los contactos asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong>Nombre del Contacto, Telefono, Celular, Correo </strong>  </h6>
-          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
-           <%= form_tag import_contactos_from_excel_path(@cliente), multipart: true do %>
-            <%= file_field_tag :file %> <br> <br>
-            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
-          <% end %>
-          <h1><%=@user_id%></h1>
+    <div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content col-12">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Importar Contactos Desde Excel</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <h1>Instrucciones:</h1>
+              <h6>
+                <strong>-</strong>
+                Para importar los contactos asegurese de que el orden las las columnas sean los siguientes:
+                <br>
+                &nbsp;
+                <strong>Nombre del Contacto, Telefono, Celular, Correo
+                </strong>
+              </h6>
+              <h6>
+                <strong>-</strong>
+                Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br>
+                &nbsp;
+                <strong>".xls", ".xlsx", ".csv".
+                </strong>
+              </h6>
+              <%= form_tag import_contactos_from_excel_path(@cliente), multipart: true do %>
+              <%= file_field_tag :file %>
+              <br>
+              <br>
+              <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+            <% end %>
+            <h1><%=@user_id%></h1>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
 
       </div>
-
     </div>
-  </div>
+    <%elsif current_user.rol.cargo=="Administrador"%>
+    <!-- BTN modal -->
+    <br>
+    <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Contactos Desde Excel</button>
+    <br>
+    <%= link_to 'Edit', edit_cliente_path(@cliente) %>
+    |
+    <%= link_to 'Back', clientes_path %>
 
+    <!-- Modal Excel -->
 
-<script type="text/javascript">
-    jQuery(".best_in_place").best_in_place();
-</script>
+    <div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content col-12">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Importar Contactos Desde Excel</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <h1>Instrucciones:</h1>
+              <h6>
+                <strong>-</strong>
+                Para importar los contactos asegurese de que el orden las las columnas sean los siguientes:
+                <br>
+                &nbsp;
+                <strong>Nombre del Contacto, Telefono, Celular, Correo
+                </strong>
+              </h6>
+              <h6>
+                <strong>-</strong>
+                Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br>
+                &nbsp;
+                <strong>".xls", ".xlsx", ".csv".
+                </strong>
+              </h6>
+              <%= form_tag import_contactos_from_excel_path(@cliente), multipart: true do %>
+              <%= file_field_tag :file %>
+              <br>
+              <br>
+              <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+            <% end %>
+            <h1><%=@user_id%></h1>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
+
+      </div>
+    </div>
+    <%end%>
+    <script type="text/javascript">
+      jQuery(".best_in_place").best_in_place();
+    </script>

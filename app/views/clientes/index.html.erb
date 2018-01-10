@@ -36,39 +36,80 @@
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 
-<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Exportar Clientes Desde Excel</button>
-<br>
-<br>
-<%= link_to 'New Cliente', new_cliente_path %>
+<%if current_user.rol.cargo=="Gerente Comercial"%>
+  <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Clientes Desde Excel</button>
+  <br>
+  <br>
+  <%= link_to 'New Cliente', new_cliente_path %>
 
 
-<!-- Modal Excel -->
+  <!-- Modal Excel -->
 
-<div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content col-12">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content col-12">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <h1>Instrucciones:</h1>
+            <h6> <strong>-</strong> Para importar Clientes asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Nit, Dirección, Telefono.</strong>  </h6>
+            <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+              <%= form_tag import_from_excel_path, multipart: true do %> <br>
+              <%= file_field_tag :file %> <br> <br>
+              <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+            <% end %>
+            <h1><%=@user_id%></h1>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
+
       </div>
-      <div class="modal-body">
-        <div class="container">
-          <h1>Instrucciones:</h1>
-          <h6> <strong>-</strong> Para importar Clientes asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Nit, Dirección, Telefono.</strong>  </h6>
-          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
-            <%= form_tag import_from_excel_path, multipart: true do %> <br>
-            <%= file_field_tag :file %> <br> <br>
-            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
-          <% end %>
-          <h1><%=@user_id%></h1>
+    </div>
+  <%elsif current_user.rol.cargo=="Administrador"%>
+    <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Clientes Desde Excel</button>
+    <br>
+    <br>
+    <%= link_to 'New Cliente', new_cliente_path %>
+
+
+    <!-- Modal Excel -->
+
+    <div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content col-12">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <h1>Instrucciones:</h1>
+              <h6> <strong>-</strong> Para importar Clientes asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Nit, Dirección, Telefono.</strong>  </h6>
+              <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+                <%= form_tag import_from_excel_path, multipart: true do %> <br>
+                <%= file_field_tag :file %> <br> <br>
+                <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+              <% end %>
+              <h1><%=@user_id%></h1>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+          </div>
+
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
-      </div>
-
-    </div>
-  </div>
+    
+    <%end%>
