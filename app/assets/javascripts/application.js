@@ -35,6 +35,73 @@
 
 $(document).on('turbolinks:load', function() {
 
+  /*------------------Function Sumar Totales-------------------------*/
+  var sumarTotales= function(event){
+
+    var total = 0;
+    var cantInput = 1
+
+    var contador=$("#entregas .cantidad").length
+    contador = parseFloat(contador)
+
+    for (var i = 0; i < contador; i++) {
+
+      var valores = $('.cantidad:eq('+i+')').val()
+      valores = parseFloat(valores)
+      total = total + valores
+
+      if (isNaN(total)) {
+
+      } else {
+        $("#total").val(total)
+      }
+
+    }
+  }
+
+  /*------------------Function Sumar Totales-------------------------*/
+  var sumarTotalesPrecio= function(event){
+
+    var total = 0;
+    var cantInput = 1
+
+    var contador=$("#entregas .precio").length
+    contador = parseFloat(contador)
+
+    for (var i = 0; i < contador; i++) {
+
+      var valores = $('.precio:eq('+i+')').val()
+      valores = parseFloat(valores)
+      total = total + valores
+
+      if (isNaN(total)) {
+
+      } else {
+        $("#precio_total").val(total)
+      }
+
+    }
+  }
+
+
+/*---------------------Ejecutar Function Sumar Totales al iniciar la pagina----------------------------*/
+  $('.cantidad').focusout(function(event) {
+    toastr.success("focus Out")
+    /*Fucntion Totales*/
+      sumarTotales();
+    /*/Function Totalse*/
+  });
+
+  $('.precio').focusout(function(event) {
+    toastr.success("focus Out")
+    /*Fucntion Totales*/
+      sumarTotalesPrecio();
+    /*/Function Totalse*/
+  });
+
+
+
+
     jQuery(".best_in_place").best_in_place();
 
   $('form').on('click', '.remove_contactos', function(event) {
@@ -102,6 +169,8 @@ $(document).on('turbolinks:load', function() {
   $('form').on('click', '.remove_entregas', function(event) {
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('tr').remove();
+    sumarTotales();
+    sumarTotalesPrecio();
     return event.preventDefault();
   });
 
@@ -117,6 +186,20 @@ $(document).on('turbolinks:load', function() {
       $(this).parents("tr").find(".my_fecha").val(this_fecha);
       var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
     })
+    /*---------------------Ejecutar Function Sumar Totales al iniciar la pagina----------------------------*/
+      $('.cantidad').focusout(function(event) {
+        toastr.success("focus Out")
+        /*Fucntion Totales*/
+          sumarTotales();
+        /*/Function Totalse*/
+      });
+
+      $('.precio').focusout(function(event) {
+        toastr.success("focus Out")
+        /*Fucntion Totales*/
+          sumarTotalesPrecio();
+        /*/Function Totalse*/
+      });
     return event.preventDefault();
   });
 

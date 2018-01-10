@@ -157,6 +157,7 @@
    <div class="card-block">
       <div class="container">
          <br>
+         <br>
          <div class="">
             <table class="table">
                <thead>
@@ -165,16 +166,36 @@
                   <th>Precio</th>
                   </th>
                   <th>Elminar</th>
-                  <th></th>
+
                </thead>
                <tbody class='fields_entrega'>
                   <%= f.simple_fields_for :tiempos_de_entregas do |builder| %>
                      <%= render "tiempos_de_entrega", :f => builder %>
                   <% end %>
                </tbody>
+               <tfoot>
+                 <tr>
+                   <td></td>
+                   <td>
+                     <div class="input-group">
+                     <%= f.text_field :precio_total,class:'form-control my_cantidad',
+                     id:'total', placeholder:'total', aria_describedby:"basic-addon2"%>
+                     <span class="input-group-addon" id="basic-addon2">Cantidad Total</span>
+                   </div>
+                   </td>
+                   <td>
+                     <div class="input-group">
+                     <%= f.text_field :precio_total,class:'form-control my_cantidad',
+                     id:'precio_total', placeholder:'Precio Total', aria_describedby:"basic-addon2"%>
+                     <span class="input-group-addon" id="basic-addon2">Precio Total</span>
+                   </div>
+                   </td>
+                   <td></td>
+                 </tr>
+               </tfoot>
             </table>
          </div>
-         <br>
+
       </div>
    </div>
 </div>

@@ -205,7 +205,7 @@ class PedidosController < ApplicationController
       :fecha_de_pedido, :numero_cotizacion,
       :numero_de_pedido, :linea_de_impresion_id,
       :forma_de_pago, :arte, :descripcion, :total_articulo,
-      :estado_pedido, :estado,
+      :estado_pedido, :estado,:cantidad_total,:precio_total,
       tiempos_de_entregas_attributes:[:pedido_id, :remision, :cantidad, :fecha_compromiso, :precio, :fecha_de_despacho, :cantidad_enviada, :precio_a_facturar, :cantidad_faltante, :anexo, :entrega_cumplida, :estado, :_destroy],
       despachos_attributes:[:pedido_id, :nombre, :nit, :telefono, :lugar_de_despacho, :direccion, :celular, :correo, :recibe, :observacion, :facturar, :entregar_factura, :estado, :_destroy],
       ordenes_de_produccion_attributes:[:pedido_id, :descripcion,  :codigo, :total, :cantidad, :fecha,:inventario,:estado, :_destroy])
