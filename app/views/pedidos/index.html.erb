@@ -30,14 +30,18 @@
         <td><%= pedido.numero_de_pedido %></td>
         <td><%= pedido.descripcion %></td>
 
-        <%fec1 = "0000/01/01"%>
-          <%@fech1 = fec1.to_time%>
+            <%fec1 = "1111/01/01"%>
+            <%@fech1 = fec1.to_time%>
             <%pedido.tiempos_de_entregas.each do |fecha|%>
+              <%if fecha.fecha_compromiso == nil%>
+              <%@fech1=nil%>
+              <%else%>
+                <%if @fech1 < fecha.fecha_compromiso%>
+                  <%@fech1 = fecha.fecha_compromiso%><%end%>
 
-              <%if @fech1 < fecha.fecha_compromiso%>
-                <%@fech1 = fecha.fecha_compromiso%><%end%>
-
+                <%end%>
               <%end%>
+
 
               <td><%=@fech1%></td>
 

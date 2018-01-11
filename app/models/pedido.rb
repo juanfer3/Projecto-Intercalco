@@ -16,4 +16,9 @@ class Pedido < ApplicationRecord
 #reject_if: lambda {|attributes| attributes['numero_de_factura'].blank?}
 
 
+  validates :numero_cotizacion, presence: true
+  validates :cantidad_total, presence: true, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 999999}
+  validates :precio_total, presence: true, :numericality => {:greater_than_or_equal_to => 1, :less_than_or_equal_to => 9999999}
+
+
 end

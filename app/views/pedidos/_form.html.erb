@@ -30,7 +30,6 @@
                   value_method: :id,
                   as: :select,
                   class:'col-4 my_cliente form-control',
-
                   include_blank: 'Seleccione el Cliente'
                   %>
             </div>
@@ -55,14 +54,16 @@
             </div>
             <!--/Numero De Cotizacion-->
             <!--Numero De Pedido-->
-            <div class="col-4">
+            <div class="col-4" >
                <%= f.input :numero_de_pedido %>
+               <p id="campo_numero_de_pedido"></p>
             </div>
             <!--Numero De Pedido-->
             <!--Descripcion-->
             <div class="col-4">
                <label>Descripcion del Trabajo</label>
                <%= f.input :descripcion, label: false %>
+               <p id="campo_descripcion_pedido"></p>
             </div>
             <!--/Descripcion-->
             <!--Fecha De pedido-->
@@ -73,7 +74,9 @@
                 data-provide='datepicker' placeholder="Fecha"
                 aria-describedby="basic-addon2" id='fecha_de_pedido'>
                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
               </div>
+              <p id="campo_fecha_pedido"></p>
             </div>
 
             <!--/Fecha De pedido-->
@@ -178,7 +181,7 @@
                    <td></td>
                    <td>
                      <div class="input-group">
-                     <%= f.text_field :precio_total,class:'form-control my_cantidad',
+                     <%= f.text_field :cantidad_total,class:'form-control my_cantidad',
                      id:'total', placeholder:'total', aria_describedby:"basic-addon2"%>
                      <span class="input-group-addon" id="basic-addon2">Cantidad Total</span>
                    </div>

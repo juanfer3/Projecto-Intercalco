@@ -8,6 +8,7 @@
       <th>Cliente</th>
       <th>Numero de pedido</th>
       <th>Descripcion del Producto</th>
+      <th>Cantidad Total</th>
       <th>Fecha de Pedido</th>
       <th>Digitado</th>
       <th>Fecha de Promesa</th>
@@ -25,6 +26,7 @@
         <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
         <td ><%= pedido.numero_de_pedido %></td>
         <td class="descripcion"><%= pedido.descripcion %></td>
+        <td><%=pedido.cantidad_total%></td>
         <!--td><!--%= pedido.producto %></td-->
         <td><%= pedido.fecha_de_pedido %></td>
         <td><%= pedido.created_at.strftime("%m/%d/%Y") %></td>

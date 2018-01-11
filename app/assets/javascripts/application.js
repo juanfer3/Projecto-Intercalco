@@ -35,6 +35,103 @@
 
 $(document).on('turbolinks:load', function() {
 
+  /*------------------Validacion Pedidos Totales-------------------------*/
+
+
+  $('#pedido_condicion_de_pedido').change(function(){
+    var condicion_de_pedido=$('#pedido_condicion_de_pedido').val()
+    if(condicion_de_pedido= 'Bajo Cotizacion'){
+      $('#pedido_numero_cotizacion').prop('disabled', false);
+    }else if (condicion_de_pedido= 'Bajo Pedido') {
+      $('#pedido_numero_cotizacion').prop('disabled', true);
+    }
+  })
+
+  $('#pedido_numero_cotizacion').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    //toastr.success('pedido_numero_de_pedido')
+  })
+
+  $('#pedido_numero_de_pedido').focusout(function(){
+
+    var pedido_numero_de_pedido=$('#pedido_numero_de_pedido').val()
+    if (pedido_numero_de_pedido==""){
+      $('#pedido_numero_de_pedido').css("border", "1px solid #a94442")
+      var campo_error='<span class="help-block" id="error_numero_de_pedido">El Número de pedido no debe estar vacío</span>'
+      $('#campo_numero_de_pedido').html(campo_error)
+      //alertify.error("El número de pedido debe estar vacio")
+    }else{
+      $('#pedido_numero_de_pedido').css("border", "1px solid #3c763d");
+      $('#campo_numero_de_pedido').html("")
+    }
+
+  })
+
+  $('#pedido_descripcion').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    var pedido_numero_de_pedido=$('#pedido_descripcion').val()
+    if (pedido_numero_de_pedido==""){
+      $('#pedido_descripcion').css("border", "1px solid #a94442")
+      var campo_error='<span class="help-block" id="error_numero_de_pedido">La descripción del pedido no debe estar vacía</span>'
+      $('#campo_descripcion_pedido').html(campo_error)
+      //alertify.error("El número de pedido debe estar vacio")
+    }else{
+      $('#pedido_descripcion').css("border", "1px solid #3c763d");
+      $('#campo_descripcion_pedido').html("")
+    }
+  })
+  $('#fecha_de_pedido').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    var pedido_numero_de_pedido=$('#fecha_de_pedido').val()
+    if (pedido_numero_de_pedido==""){
+      $('#fecha_de_pedido').css("border", "1px solid #a94442")
+      var campo_error='<span class="help-block" id="error_numero_de_pedido">La Fecha del pedido no debe estar vacía</span>'
+      $('#campo_fecha_pedido').html(campo_error)
+      //alertify.error("El número de pedido debe estar vacio")
+    }else{
+      $('#fecha_de_pedido').css("border", "1px solid #3c763d");
+      $('#campo_fecha_pedido').html("")
+    }
+  })
+  $('#pedido_linea_de_impresion_id').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    toastr.success('pedido_numero_de_pedido')
+  })
+  $('#pedido_forma_de_pago').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    toastr.success('pedido_numero_de_pedido')
+  })
+  $('#pedido_arte').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    toastr.success('pedido_numero_de_pedido')
+  })
+  $('#pedido_tipo_de_trabajo').focusout(function(){
+    //var pedido_numero_cotizacion=$('#pedido_numero_cotizacion').val()
+    toastr.success('pedido_numero_de_pedido')
+  })
+
+
+  $('.validacion_fecha').focusout(function (){
+    //toastr.success("validate")
+    var pedido_numero_de_pedido=$(this).parents("tr").find('.validacion_fecha').val()
+    if (pedido_numero_de_pedido==""){
+      $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #a94442")
+      var campo_error='<span class="help-block" id="error_numero_de_pedido">La Fecha del Compromiso no debe estar vacía</span>'
+      $(this).parents("tr").find('.campo_fecha_entrega').html(campo_error)
+      //alertify.error("El número de pedido debe estar vacio")
+    }else{
+      $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #3c763d");
+      $(this).parents("tr").find('.campo_fecha_entrega').html("")
+    }
+  })
+
+
+
+
+
+
+
+
   /*------------------Function Sumar Totales-------------------------*/
   var sumarTotales= function(event){
 
@@ -86,14 +183,14 @@ $(document).on('turbolinks:load', function() {
 
 /*---------------------Ejecutar Function Sumar Totales al iniciar la pagina----------------------------*/
   $('.cantidad').focusout(function(event) {
-    toastr.success("focus Out")
+    //toastr.success("focus Out")
     /*Fucntion Totales*/
       sumarTotales();
     /*/Function Totalse*/
   });
 
   $('.precio').focusout(function(event) {
-    toastr.success("focus Out")
+    //toastr.success("focus Out")
     /*Fucntion Totales*/
       sumarTotalesPrecio();
     /*/Function Totalse*/
@@ -131,6 +228,8 @@ $(document).on('turbolinks:load', function() {
   })
 
   $('.ocultar_fecha').hide();
+
+
   $('.fecha').focusout(function(){
 
     var this_fecha = $(this).parents("tr").find(".fecha").val();
@@ -138,9 +237,7 @@ $(document).on('turbolinks:load', function() {
     var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
   })
 
-
   /*-------------------------Insert Y Delete de Detalles de Produccion----------*/
-
 
 
   $("#pedido_contacto_id").select2({
@@ -175,27 +272,45 @@ $(document).on('turbolinks:load', function() {
   });
 
   $('form').on('click', '.add_entregas', function(event) {
+
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
+
     $('.fields_entrega').append($(this).data('fields').replace(regexp, time));
     $('.ocultar_fecha').hide();
-    $('.fecha').focusout(function(){
 
+    $('.fecha').focusout(function(){
+      //toastr.success("Fecha FocusOut")
       var this_fecha = $(this).parents("tr").find(".fecha").val();
       $(this).parents("tr").find(".my_fecha").val(this_fecha);
       var validar_fecha = $(this).parents("tr").find(".my_fecha").val();
     })
+
+    //validar Fecha
+    $('.validacion_fecha').focusout(function (){
+      //toastr.success("validate")
+      var pedido_numero_de_pedido=$(this).parents("tr").find('.validacion_fecha').val()
+      if (pedido_numero_de_pedido==""){
+        $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">La Fecha del Compromiso no debe estar vacía</span>'
+        $(this).parents("tr").find('.campo_fecha_entrega').html(campo_error)
+        //alertify.error("El número de pedido debe estar vacio")
+      }else{
+        $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #3c763d");
+        $(this).parents("tr").find('.campo_fecha_entrega').html("")
+      }
+    })
     /*---------------------Ejecutar Function Sumar Totales al iniciar la pagina----------------------------*/
       $('.cantidad').focusout(function(event) {
-        toastr.success("focus Out")
+        //toastr.success("focus Out")
         /*Fucntion Totales*/
           sumarTotales();
         /*/Function Totalse*/
       });
 
       $('.precio').focusout(function(event) {
-        toastr.success("focus Out")
+        //toastr.success("focus Out")
         /*Fucntion Totales*/
           sumarTotalesPrecio();
         /*/Function Totalse*/
