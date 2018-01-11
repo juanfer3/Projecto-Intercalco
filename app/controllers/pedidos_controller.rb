@@ -1,6 +1,74 @@
 class PedidosController < ApplicationController
   before_action :set_pedido, only: [:show, :edit, :update, :destroy]
 
+  def cambiar_proceso
+    respond_to do |format|
+      if@pedido = Pedido.find(params[:id])
+
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_impresion
+    @pedido = Pedido.find(params[:id])
+    respond_to do |format|
+      if @pedido.impresion== false
+            @pedido.update(impresion: true)
+            puts "==========="+@pedido.impresion.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(impresion: false)
+        puts "==========="+@pedido.impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_corte_material
+    @pedido = Pedido.find(params[:id])
+    respond_to do |format|
+      if @pedido.corte_material== false
+            @pedido.update(corte_material: true)
+            puts "==========="+@pedido.corte_material.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(corte_material: false)
+        puts "==========="+@pedido.corte_material.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_color
+    @pedido = Pedido.find(params[:id])
+    respond_to do |format|
+      if @pedido.color== false
+            @pedido.update(color: true)
+            puts "==========="+@pedido.color.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(color: false)
+        puts "==========="+@pedido.color.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_pantalla
+    @pedido = Pedido.find(params[:id])
+    respond_to do |format|
+      if @pedido.pantalla== false
+            @pedido.update(pantalla: true)
+            puts "==========="+@pedido.pantalla.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(pantalla: false)
+        puts "==========="+@pedido.pantalla.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
   # GET /pedidos
   # GET /pedidos.json
   def index

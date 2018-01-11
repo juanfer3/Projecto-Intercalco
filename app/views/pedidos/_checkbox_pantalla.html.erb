@@ -1,0 +1,13 @@
+<%if @pedido.pantalla == false%>
+  <div class=""  >
+    <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+    <label for=""> <strong>Pantalla</strong> </label>
+  </div>
+  <br>
+<%else%>
+<div class="">
+  <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+  <label for=""> <strong>Pantalla</strong> </label>
+</div>
+<br>
+<%end%>

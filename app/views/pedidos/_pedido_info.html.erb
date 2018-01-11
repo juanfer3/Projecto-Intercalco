@@ -1,0 +1,94 @@
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-4">
+      <label for="">Cliente</label>
+      <h4 ><%= @pedido.contacto.cliente.nombre%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Descripción</label>
+      <h4 ><%=@pedido.descripcion%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Numero de Pedido</label>
+      <h4 ><%=@pedido.numero_de_pedido%></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container">
+  <%=@pedido.pantalla%>
+  <div class="" id="btn_pantalla">
+    <%if @pedido.pantalla == false%>
+      <div class=""  >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+        <label for=""> <strong>Pantalla: <%=@pedido.pantalla%></strong> </label>
+      </div>
+      <br>
+    <%else%>
+    <div class="">
+      <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+      <label for=""> <strong>Pantalla: <%=@pedido.pantalla%></strong> </label>
+    </div>
+    <br>
+    <%end%>
+  </div>
+
+<div class="" id="btn_color">
+  <%if @pedido.color == false%>
+    <div class=""  >
+      <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_color_path(@pedido), remote:true %>
+      <label for=""> <strong>Color</strong> </label>
+    </div>
+    <br>
+  <%else%>
+  <div class="">
+    <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_color_path(@pedido), remote:true %>
+    <label for=""> <strong>Color</strong> </label>
+  </div>
+  <br>
+  <%end%>
+</div>
+  <div class="" id="btn_corte_material">
+    <%if @pedido.corte_material== false%>
+      <div >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_impresion" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@pedido), remote:true %>
+        <label for=""> <strong>Corte De Material</strong> </label>
+      </div>
+      <br>
+      <%else%>
+      <div class="">
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@pedido), remote:true %>
+        <label for=""> <strong>Corte De Material</strong> </label>
+      </div>
+      <br>
+    <%end%>
+  </div>
+
+
+
+    <%if @pedido.impresion== false%>
+      <div >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_troquel" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+        <label for=""> <strong>impresión</strong> </label>
+      </div>
+      <br>
+    <%end%>
+    <%if @pedido.troquel== false%>
+      <div >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_acabado" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+        <label for=""> <strong>Troquel</strong> </label>
+      </div>
+      <br>
+    <%end%>
+    <%if @pedido.acabado== false%>
+      <div >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_pantalla_path(@pedido), remote:true %>
+        <label for=""> <strong>Acabado</strong> </label>
+      </div>
+      <br>
+    <%end%>
+
+  </div>

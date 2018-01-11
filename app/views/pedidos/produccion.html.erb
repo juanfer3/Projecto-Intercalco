@@ -61,6 +61,7 @@
                   </td>
                 <%end%>
 
+                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(pedido), remote: true %></td>
                 <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
                 <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
 
@@ -95,6 +96,31 @@
 
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal Excel -->
+
+        <div class="modal fade fullscreen-modal " id="modalprocesos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content col-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="" id="contenidoModal">
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+              </div>
+
             </div>
           </div>
         </div>

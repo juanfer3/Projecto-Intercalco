@@ -47,4 +47,12 @@ Rails.application.routes.draw do
   post 'import_contactos_from_excel/:id' => "clientes#import_contactos_from_excel", as: :import_contactos_from_excel
   get 'contactos_subir_excel', to: 'clientes#contactos_subir_excel'
 
+  get 'cambiar_proceso/:id', to: 'pedidos#cambiar_proceso', as: :cambiar_proceso
+  get 'cambiar_estado_pantalla/:id', to: 'pedidos#cambiar_estado_pantalla', as: :cambiar_estado_pantalla
+  get 'cambiar_estado_color/:id', to: 'pedidos#cambiar_estado_color', as: :cambiar_estado_color
+  get 'cambiar_estado_corte_material/:id', to: 'pedidos#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
+  get 'cambiar_estado_impresion/:id', to: 'pedidos#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
+  get 'cambiar_estado_troquel/:id', to: 'pedidos#cambiar_estado_troquel', as: :cambiar_estado_troquel
+  get 'cambiar_estado_acabados/:id', to: 'pedidos#cambiar_estado_acabados', as: :cambiar_estado_acabados
+
 end
