@@ -1,0 +1,45 @@
+
+
+<% if  @pedido.impresion == false%>
+  <% if @pedido.pantalla == true || @pedido.color === true || @pedido.corte_material=== true %>
+
+      <h6 id=<%="quitar_estado_@pedido#{@pedido.id}"%>>
+        <span class="badge badge-info">
+          Preprensa
+        </span>
+      </h6>
+
+  <%elsif @pedido.pantalla == false && @pedido.color === false && @pedido.corte_material=== false%>
+
+      <h6 id=<%="quitar_estado_@pedido#{@pedido.id}"%>>
+        <span class="badge badge-warning">
+          Pedido
+        </span>
+      </h6>
+
+  <% end %>
+<%elsif @pedido.impresion == true && @pedido.acabado == false%>
+
+  <h6 id=<%="quitar_estado_@pedido#{@pedido.id}"%>>
+    <span class="badge badge-warning baged_impresion">
+      Impresión
+    </span>
+  </h6>
+
+<%elsif @pedido.impresion == true && @pedido.acabado == true%>
+
+  <h6 id=<%="quitar_estado_@pedido#{@pedido.id}"%>>
+    <span class="badge badge-warning baged_acabado">
+      Acabado
+    </span>
+  </h6>
+
+  <%elsif @pedido.acabado == true%>
+
+    <h6 id=<%="quitar_estado_@pedido#{@pedido.id}"%>>
+      <span class="badge badge-warning baged_acabado">
+        Acabado
+      </span>
+    </h6>
+
+<% end %>

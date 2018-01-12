@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180111154701) do
+ActiveRecord::Schema.define(version: 20180112150331) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20180111154701) do
     t.boolean "impresion", default: false
     t.boolean "troquel", default: false
     t.boolean "acabado", default: false
+    t.boolean "habilitar_impresion", default: true
+    t.boolean "habilitar_acabado", default: true
     t.index ["contacto_id"], name: "index_pedidos_on_contacto_id"
     t.index ["linea_de_impresion_id"], name: "index_pedidos_on_linea_de_impresion_id"
     t.index ["user_id"], name: "index_pedidos_on_user_id"

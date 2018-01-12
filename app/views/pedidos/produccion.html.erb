@@ -40,28 +40,65 @@
               <%end%>
 
               <td><%=@fech1%></td>
+
               <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-              <%if pedido.estado_pedido =="Pedido"%>
-                <td>
-                  <h6>
-                    <span class="badge badge-warning" id=<%="estado_pedido#{pedido.id}"%>><%=pedido.estado_pedido %></span></h6>
-                </td>
-                <td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>>
-                  <div id=<%="btn_estado_pedido#{pedido.id}"%>><%= link_to '<button type="button" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-wrench"></i></span></button>'.html_safe, cambiar_estado_path(pedido.id),remote: true%></div>
-                </td>
 
-                <%elsif pedido.estado_pedido =="En Producción"
-  %>
-                  <td>
-                    <h6>
-                      <span class="badge badge-info" id=<%="estado_pedido#{pedido.id}"%>><%= pedido.estado_pedido %></span></h6>
-                  </td>
-                  <td id=<%="contenido_btn_estado_pedido#{pedido.id}"%>>
-                    <div id=<%="btn_estado_pedido#{pedido.id}"%>><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-danger"><span><i class="ion-stop"></i></span></button>'.html_safe, cambiar_estado_a_Pedido_path(pedido.id), remote: true%></div>
-                  </td>
-                <%end%>
 
-                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(pedido), remote: true %></td>
+                        <td id=<%="estado_pedido#{pedido.id}"%>>
+                                  <% if  pedido.impresion == false%>
+
+                                    <% if pedido.pantalla == true || pedido.color === true || pedido.corte_material=== true && pedido.acabado == false%>
+
+                                        <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                          <span class="badge badge-info">
+                                            Preprensa
+                                          </span>
+                                        </h6>
+
+                                    <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false && pedido.acabado == true%>
+
+                                      <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                        <span class="badge badge-warning baged_acabado">
+                                          Acabado
+                                        </span>
+                                      </h6>
+
+                                    <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false%>
+
+                                        <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                          <span class="badge badge-warning">
+                                            Pedido
+                                          </span>
+                                        </h6>
+
+
+
+                                    <% end %>
+
+
+
+                                  <%elsif pedido.impresion == true && pedido.acabado == false%>
+
+                                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                      <span class="badge badge-warning baged_impresion">
+                                        Impresión
+                                      </span>
+                                    </h6>
+
+                                  <%elsif pedido.impresion == true && pedido.acabado == true%>
+
+                                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                      <span class="badge badge-warning baged_acabado">
+                                        Acabado
+                                      </span>
+                                    </h6>
+
+
+
+                                  <% end %>
+                          </td>
+
+                <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-dark"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(pedido), remote: true %></td>
                 <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i></span></button>'.html_safe, pedido_url(pedido.id,format: :xlsx) %></td>
                 <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-info"><span><i class="ion-plus-round"></i></span></button>'.html_safe, pedido_path(@p=pedido.id), id:'nuevo_task', remote:true %></td>
 
@@ -117,7 +154,7 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 
               </div>
 

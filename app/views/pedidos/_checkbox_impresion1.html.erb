@@ -1,0 +1,21 @@
+<% if @pedido.color == true && @pedido.corte_material== true && @pedido.pantalla== true %>
+    <%if @pedido.impresion == false%>
+      <div class=""  >
+        <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@pedido), remote:true %>
+        <label for=""> <strong>Impresion</strong> </label>
+      </div>
+      <br>
+    <%else%>
+    <div class="">
+      <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@pedido), remote:true %>
+      <label for=""> <strong>Impresion</strong> </label>
+    </div>
+    <br>
+    <%end%>
+  <% else %>
+  <div class="">
+    <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-power"></i></i></span></button>
+    <label for=""> <strong>Impresion</strong> </label>
+  </div>
+  <br>
+  <% end %>

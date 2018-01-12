@@ -45,20 +45,45 @@
 
               <td><%=@fech1%></td>
 
-              <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
-              <%if pedido.estado_pedido =="Pedido"%>
-                <td>
-                  <h6>
-                    <span class="badge badge-warning"><%= pedido.estado_pedido %></span></h6>
-                </td>
-                <%elsif pedido.estado_pedido =="En Producción"
-              %>
-                  <td>
-                    <h6>
-                      <span class="badge badge-info"><%= pedido.estado_pedido %></span></h6>
-                  </td>
-                <%end%>
 
+<!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
+            <td>
+              <% if  pedido.impresion == false%>
+                <% if pedido.pantalla == true || pedido.color === true || pedido.corte_material=== true %>
+
+                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                      <span class="badge badge-info">
+                        Preprensa
+                      </span>
+                    </h6>
+
+                <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false%>
+
+                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                      <span class="badge badge-warning">
+                        Pedido
+                      </span>
+                    </h6>
+
+                <% end %>
+              <%elsif pedido.impresion == true && pedido.acabado == false%>
+
+                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                  <span class="badge badge-warning baged_impresion">
+                    Impresión
+                  </span>
+                </h6>
+
+              <%elsif pedido.impresion == true && pedido.acabado == true%>
+
+                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                  <span class="badge badge-warning baged_acabado">
+                    Acabado
+                  </span>
+                </h6>
+
+              <% end %>
+            </td>
                 <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
                 <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
                 <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_pedido_path(pedido) %></td>

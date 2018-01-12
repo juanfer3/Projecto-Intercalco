@@ -51,8 +51,9 @@ Rails.application.routes.draw do
   get 'cambiar_estado_pantalla/:id', to: 'pedidos#cambiar_estado_pantalla', as: :cambiar_estado_pantalla
   get 'cambiar_estado_color/:id', to: 'pedidos#cambiar_estado_color', as: :cambiar_estado_color
   get 'cambiar_estado_corte_material/:id', to: 'pedidos#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
-  get 'cambiar_estado_impresion/:id', to: 'pedidos#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
+  get 'cambiar_estado_impresion/:id', to: 'pedidos#cambiar_estado_impresion', as: :cambiar_estado_impresion
   get 'cambiar_estado_troquel/:id', to: 'pedidos#cambiar_estado_troquel', as: :cambiar_estado_troquel
   get 'cambiar_estado_acabados/:id', to: 'pedidos#cambiar_estado_acabados', as: :cambiar_estado_acabados
-
+  get 'cambiar_habilitar_impresion/:id', to: 'pedidos#cambiar_habilitar_impresion', as: :cambiar_habilitar_impresion
+  get 'cambiar_habilitar_acabado/:id', to: 'pedidos#cambiar_habilitar_acabado', as: :cambiar_habilitar_acabado
 end

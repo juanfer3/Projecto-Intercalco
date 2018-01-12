@@ -62,4 +62,6 @@
    inflect.irregular 'descuento', 'descuentos'
 
    inflect.irregular 'usuario_asignado', 'usuario_asignados'
+   inflect.irregular 'habilitar_acabado', 'habilitar_acabados'
+   inflect.irregular 'habilitar_impresion', 'habilitar_impresiones'
  end

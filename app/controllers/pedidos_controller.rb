@@ -4,7 +4,72 @@ class PedidosController < ApplicationController
   def cambiar_proceso
     respond_to do |format|
       if@pedido = Pedido.find(params[:id])
+        @pedidos = Pedido.all
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
 
+  def cambiar_habilitar_acabado
+    @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
+    respond_to do |format|
+      if@pedido.habilitar_acabado == false
+        @pedido.update(habilitar_acabado: true, acabado:false)
+        puts "==========="+@pedido.habilitar_acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      else
+        @pedido.update(habilitar_acabado: false, acabado:false)
+        puts "==========="+@pedido.habilitar_acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_habilitar_impresion
+    @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
+    respond_to do |format|
+      if@pedido.habilitar_impresion == false
+        @pedido.update(habilitar_impresion: true, impresion:false, color:false, pantalla:false, corte_material:false)
+        puts "==========="+@pedido.habilitar_impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      else
+        @pedido.update(habilitar_impresion: false, impresion: false, color:false, pantalla:false, corte_material:false)
+        puts "==========="+@pedido.habilitar_impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_acabados
+    @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
+    respond_to do |format|
+      if @pedido.acabado== false
+            @pedido.update(acabado: true)
+            puts "==========="+@pedido.acabado.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(acabado: false)
+        puts "==========="+@pedido.acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+
+  def cambiar_estado_troquel
+    @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
+    respond_to do |format|
+      if @pedido.troquel== false
+            @pedido.update(troquel: true)
+            puts "==========="+@pedido.troquel.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(troquel: false)
+        puts "==========="+@pedido.troquel.to_s+"=========="
         format.js {flash[:notice] = "" }
       end
     end
@@ -12,6 +77,7 @@ class PedidosController < ApplicationController
 
   def cambiar_estado_impresion
     @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
     respond_to do |format|
       if @pedido.impresion== false
             @pedido.update(impresion: true)
@@ -27,6 +93,7 @@ class PedidosController < ApplicationController
 
   def cambiar_estado_corte_material
     @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
     respond_to do |format|
       if @pedido.corte_material== false
             @pedido.update(corte_material: true)
@@ -42,6 +109,7 @@ class PedidosController < ApplicationController
 
   def cambiar_estado_color
     @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
     respond_to do |format|
       if @pedido.color== false
             @pedido.update(color: true)
@@ -57,6 +125,7 @@ class PedidosController < ApplicationController
 
   def cambiar_estado_pantalla
     @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
     respond_to do |format|
       if @pedido.pantalla== false
             @pedido.update(pantalla: true)
