@@ -1,0 +1,128 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pedidos Para Producción</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Numero de pedido</th>
+      <th>Descripcion del Producto</th>
+      <th>Cantidad Total</th>
+      <th>Fecha de Pedido</th>
+      <th>Digitado</th>
+      <th>Fecha de Promesa</th>
+      <th>Estado de Pedido</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pedidos.each do |pedido| %>
+
+      <tr>
+        <td class="cliente"><%= pedido.contacto.cliente.nombre %></td>
+        <td ><%= pedido.numero_de_pedido %></td>
+        <td class="descripcion"><%= pedido.descripcion %></td>
+        <td><%=pedido.cantidad_total%></td>
+        <!--td><!--%= pedido.producto %></td-->
+        <td><%= pedido.fecha_de_pedido %></td>
+        <td><%= pedido.created_at.strftime("%m/%d/%Y") %></td>
+        <%fec1 = "0000/01/01"%>
+          <%@fech1 = fec1.to_time%>
+            <%pedido.tiempos_de_entregas.each do |fecha|%>
+
+              <%if @fech1 < fecha.fecha_compromiso%>
+                <%@fech1 = fecha.fecha_compromiso%><%end%>
+
+              <%end%>
+
+              <td><%=@fech1%></td>
+
+              <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
+
+
+                        <td id=<%="estado_pedido#{pedido.id}"%>>
+                                  <% if  pedido.impresion == false%>
+
+                                    <% if pedido.pantalla == true || pedido.color === true || pedido.corte_material=== true && pedido.acabado == false%>
+
+                                        <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                          <span class="badge badge-info">
+                                            Preprensa
+                                          </span>
+                                        </h6>
+
+                                    <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false && pedido.acabado == true%>
+
+                                      <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                        <span class="badge badge-warning baged_acabado">
+                                          Acabado
+                                        </span>
+                                      </h6>
+
+                                    <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false%>
+
+                                        <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                          <span class="badge badge-warning">
+                                            Pedido
+                                          </span>
+                                        </h6>
+
+
+
+                                    <% end %>
+
+
+
+                                  <%elsif pedido.impresion == true && pedido.acabado == false%>
+
+                                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                      <span class="badge badge-warning baged_impresion">
+                                        Impresión
+                                      </span>
+                                    </h6>
+
+                                  <%elsif pedido.impresion == true && pedido.acabado == true%>
+
+                                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                      <span class="badge badge-warning baged_acabado">
+                                        Acabado
+                                      </span>
+                                    </h6>
+
+                                  <% end %>
+                          </td>
+                          <td>
+                            <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos" ><span><i class="ion-document-text"></i></i></span></button>'.html_safe, ver_factura_path(pedido), remote: true%>
+
+                          </td>
+              </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+
+        <br>
+
+
+
+        <div class="modal fade fullscreen-modal " id="modalVerFactura" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content col-12">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anexar Fecha De Entrega</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class=" container" id="contenidoModal">
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+              </div>
+
+            </div>
+          </div>
+        </div>

@@ -56,4 +56,14 @@ Rails.application.routes.draw do
   get 'cambiar_estado_acabados/:id', to: 'pedidos#cambiar_estado_acabados', as: :cambiar_estado_acabados
   get 'cambiar_habilitar_impresion/:id', to: 'pedidos#cambiar_habilitar_impresion', as: :cambiar_habilitar_impresion
   get 'cambiar_habilitar_acabado/:id', to: 'pedidos#cambiar_habilitar_acabado', as: :cambiar_habilitar_acabado
+
+  get 'despacho_facturas', to: 'tiempos_de_entregas#despacho_facturas', as: :despacho_facturas
+  get 'info_despacho_facturas/:id', to: 'tiempos_de_entregas#info_despacho_facturas', as: :info_despacho_facturas
+  get 'anexar_num_factura/:id', to: 'tiempos_de_entregas#anexar_num_factura', as: :anexar_num_factura
+  get 'consultar_factura', to: 'tiempos_de_entregas#consultar_factura', as: :consultar_factura
+  get 'anexar_tiempo_de_entrega', to: 'tiempos_de_entregas#anexar_tiempo_de_entrega', as: :anexar_tiempo_de_entrega
+  get 'ver_factura/:id', to: 'tiempos_de_entregas#ver_factura', as: :ver_factura
+  get 'cerrar_pedido/:id', to: 'tiempos_de_entregas#cerrar_pedido', as: :cerrar_pedido
+  get 'ordenes', to: 'pedidos#ordenes', as: :ordenes
+
 end

@@ -1,0 +1,135 @@
+<p id="notice"><%= notice %></p>
+
+<div class="">
+  <h1>Despachos</h1>
+  <!--%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos" ><span><i class="ion-network"></i></i></span></button>'.html_safe, anexar_tiempo_de_entrega_path, remote: true%-->
+
+</div>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Numero De Pedido</th>
+      <th>Descripción</th>
+      <th>Fecha De Pedido</th>
+      <th>Fechas De Entregas</th>
+      <th>Estado Pedido</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tiempos_de_entregas.each do |tiempos_de_entrega| %>
+      <tr>
+        <td><%= tiempos_de_entrega.pedido.contacto.cliente.nombre%></td>
+        <td><%= tiempos_de_entrega.pedido.numero_de_pedido%></td>
+        <td><%= tiempos_de_entrega.pedido.descripcion%></td>
+        <td><%= tiempos_de_entrega.pedido.fecha_de_pedido %></td>
+        <td><%= tiempos_de_entrega.fecha_compromiso %></td>
+        <td>
+        <% if  tiempos_de_entrega.pedido.impresion == false%>
+
+          <% if tiempos_de_entrega.pedido.pantalla == true || tiempos_de_entrega.pedido.color === true || tiempos_de_entrega.pedido.corte_material=== true && tiempos_de_entrega.pedido.acabado == false%>
+
+              <h6 id=<%="quitar_estado_tiempos_de_entrega.pedido#{tiempos_de_entrega.pedido.id}"%>>
+                <span class="badge badge-info">
+                  Preprensa
+                </span>
+              </h6>
+
+          <%elsif tiempos_de_entrega.pedido.pantalla == false && tiempos_de_entrega.pedido.color === false && tiempos_de_entrega.pedido.corte_material=== false && tiempos_de_entrega.pedido.acabado == true%>
+
+            <h6 id=<%="quitar_estado_tiempos_de_entrega.pedido#{tiempos_de_entrega.pedido.id}"%>>
+              <span class="badge badge-warning baged_acabado">
+                Acabado
+              </span>
+            </h6>
+
+          <%elsif tiempos_de_entrega.pedido.pantalla == false && tiempos_de_entrega.pedido.color === false && tiempos_de_entrega.pedido.corte_material=== false%>
+
+              <h6 id=<%="quitar_estado_tiempos_de_entrega.pedido#{tiempos_de_entrega.pedido.id}"%>>
+                <span class="badge badge-warning">
+                  Pedido
+                </span>
+              </h6>
+
+
+
+          <% end %>
+
+
+
+        <%elsif tiempos_de_entrega.pedido.impresion == true && tiempos_de_entrega.pedido.acabado == false%>
+
+          <h6 id=<%="quitar_estado_tiempos_de_entrega.pedido#{tiempos_de_entrega.pedido.id}"%>>
+            <span class="badge badge-warning baged_impresion">
+              Impresión
+            </span>
+          </h6>
+
+        <%elsif tiempos_de_entrega.pedido.impresion == true && tiempos_de_entrega.pedido.acabado == true%>
+
+          <h6 id=<%="quitar_estado_tiempos_de_entrega.pedido#{tiempos_de_entrega.pedido.id}"%>>
+            <span class="badge badge-warning baged_acabado">
+              Acabado
+            </span>
+          </h6>
+
+
+
+        <% end %>
+      </td>
+        <td><%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos" ><span><i class="ion-network"></i></i></span></button>'.html_safe, info_despacho_facturas_path(tiempos_de_entrega), remote: true%></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="modal fade fullscreen-modal " id="modalConsultarDespachos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remisiones</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class=" container" id="contenidoModal">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="modal fade fullscreen-modal " id="modalAnexarFechaDeEntrega" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Anexar Fecha De Entrega</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class=" container" id="contenidoModal">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>

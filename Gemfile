@@ -104,3 +104,9 @@ gem 'monetize'
 #para exportar a excel
 gem 'roo'
 gem 'roo-xls'
+
+
+#para Exportar A PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-heroku'
+gem 'wkhtmltopdf-binary'

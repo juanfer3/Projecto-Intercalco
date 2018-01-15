@@ -1,0 +1,18 @@
+jQuery(".best_in_place").best_in_place();
+
+$('#modalConsultarDespachos').modal('show');
+
+$('#contenidoModal').html('<%= j render 'editar_remision'%>')
+
+$('#ocultarFecha').hide();
+$('.ocultar_fecha').hide();
+var fech=$('#fech').text()
+$('#fecha').val(fech)
+
+
+$('#fecha').focusout(function(){
+  //toastr.success('pedido_numero_de_pedido')
+  var this_fecha = $("#fecha").val();
+  $("#my_fecha").val(this_fecha);
+
+})

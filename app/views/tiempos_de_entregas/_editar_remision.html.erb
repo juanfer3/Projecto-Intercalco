@@ -1,0 +1,60 @@
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-3">
+      <label for="">Cliente</label>
+      <h4 ><%= @pedido.contacto.cliente.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Tipo De Trabajo</label>
+      <h4 ><%=@pedido.descripcion%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Numero de Pedido</label>
+      <h4 ><%=@pedido.numero_de_pedido%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Fecha De Compromiso</label>
+      <h4 ><%=@tiempos_de_entrega.fecha_compromiso%></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<! ------------------Editar Remision---------------------------------->
+
+<% if @tiempos_de_entrega.fecha_de_despacho !=nil %>
+  <div class="ocultar_fecha">
+    <p id="fech"><%=@tiempos_de_entrega.fecha_de_despacho.strftime("%Y-%d-%m")%></p>
+  </div>
+<% end %>
+
+<%= simple_form_for(@tiempos_de_entrega, remote:true) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs my_card_eliminar_ordenes">
+
+    <%= f.input :remision %>
+    <div class="ocultar_fecha " id="">
+      <%= f.text_field :fecha_de_despacho , id:'my_fecha' %>
+    </div>
+    <div class="contenedor_detalle_fecha bajar_fecha">
+      <label for="">Fecha De Despacho</label>
+      <div class="input-group" >
+        <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
+        data-provide='datepicker' placeholder="Fecha"
+        aria-describedby="basic-addon2" id='fecha'>
+        <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+      </div>
+    </div>
+    <%= f.input :cantidad_enviada %>
+    <%= f.input :precio_a_facturar %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+  <br>
+<% end %>

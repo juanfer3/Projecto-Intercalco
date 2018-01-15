@@ -10,6 +10,80 @@ class TiemposDeEntregasController < ApplicationController
   end
 
 
+  def cerrar_pedido
+    @pedido = Pedido.find(params[:id])
+    @pedidos = Pedido.all
+    respond_to do |format|
+      if @pedido.impresion== false
+            @pedido.update(impresion: true)
+            puts "==========="+@pedido.impresion.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @pedido.update(impresion: false)
+        puts "==========="+@pedido.impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def ver_factura
+    respond_to do |format|
+      if @pedido = Pedido.find(params[:id])
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def consultar_factura
+    @pedidos = Pedido.all
+  end
+
+  def anexar_tiempo_de_entrega
+    @pedidos = Pedido.all
+
+    respond_to do |format|
+      format.js {flash[:notice] = "" }
+    end
+
+  end
+
+  def anexar_num_factura
+    respond_to do |format|
+    if@tiempos_de_entrega = TiemposDeEntrega.find(params[:id])
+      puts "===================",@tiempos_de_entrega.pedido_id,"============"
+      @pedido = Pedido.find(@tiempos_de_entrega.pedido_id)
+      #@pedido = Pedido.where("id=#{@tiempos_de_entrega.pedido_id}")
+      puts "===================",@pedido,"============"
+      @factura_despacho= FacturaDespacho.new
+      @factura_despacho.remisiones.build
+      @remision=Remision.new
+
+      format.js {flash[:notice] = "" }
+    end
+  end
+  end
+
+  def info_despacho_facturas
+    respond_to do |format|
+    if@tiempos_de_entrega = TiemposDeEntrega.find(params[:id])
+      puts "===================",@tiempos_de_entrega.pedido_id,"============"
+      @pedido = Pedido.find(@tiempos_de_entrega.pedido_id)
+      #@pedido = Pedido.where("id=#{@tiempos_de_entrega.pedido_id}")
+      puts "===================",@pedido,"============"
+      @factura_despacho= FacturaDespacho.new
+      @factura_despacho.remisiones.build
+      @remision=Remision.new
+
+      format.js {flash[:notice] = "" }
+    end
+  end
+  end
+
+  def despacho_facturas
+    @tiempos_de_entregas = TiemposDeEntrega.all
+  end
+
+
   def info_despacho
 
       respond_to do |format|
@@ -62,7 +136,7 @@ class TiemposDeEntregasController < ApplicationController
   def update
     respond_to do |format|
       if @tiempos_de_entrega.update(tiempos_de_entrega_params)
-        format.html { redirect_to @tiempos_de_entrega, notice: 'Tiempos de entrega was successfully updated.' }
+        format.html { redirect_to despacho_facturas_url, notice: 'Tiempos de entrega was successfully updated.' }
         format.json { render :show, status: :ok, location: @tiempos_de_entrega }
       else
         format.html { render :edit }
