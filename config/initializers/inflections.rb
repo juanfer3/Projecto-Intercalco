@@ -64,5 +64,30 @@
    inflect.irregular 'usuario_asignado', 'usuario_asignados'
    inflect.irregular 'habilitar_acabado', 'habilitar_acabados'
    inflect.irregular 'habilitar_impresion', 'habilitar_impresiones'
-   
+
+   inflect.irregular 'dimension', 'dimensiones'
+   inflect.irregular 'dimension_1', 'dimensiones_1'
+   inflect.irregular 'dimension_2', 'dimensiones_2'
+   inflect.irregular 'numero_de_montaje', 'numero_de_montajes'
+   inflect.irregular 'tipo_de_unidad', 'tipo_de_unidades'
+   inflect.irregular 'pieza', 'piezas'
+   inflect.irregular 'maquina', 'maquinas'
+   inflect.irregular 'linea_producto', 'lineas_productos'
+   inflect.irregular 'linea_de_color', 'lineas_de_colores'
+   inflect.irregular 'pieza_a_decorar', 'piezas_a_decorar'
+   inflect.irregular 'produccion', 'producciones'
+   inflect.irregular 'montaje','montajes'
+   inflect.irregular 'cantidad_programada', 'cantidades_programadas'
+   inflect.irregular 'precio_unitario', 'precios_unitarios'
+   inflect.irregular 'valor_total', 'valores_totales'
+   inflect.irregular 'tipo_de_produccion', 'tipos_de_producciones'
+   inflect.irregular 'tamanos_total', 'tamanos_totales'
+   inflect.irregular 'cavidad', 'cavidades'
+   inflect.irregular 'cantidad_hoja', 'cantidades_hojas'
+   inflect.irregular 'retiro', 'retiros'
+   inflect.irregular 'iva', 'ivas'
+   inflect.irregular 'iva', 'ivas'
+   inflect.irregular 'iva', 'ivas'
+
+
  end
