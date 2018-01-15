@@ -1,0 +1,40 @@
+<%= simple_form_for(@produccion_orden) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :cliente %>
+    <%= f.association :user %>
+    <%= f.association :maquina %>
+    <%= f.association :montaje %>
+    <%= f.association :pieza_a_decorar %>
+    <%= f.input :numero_de_orden %>
+    <%= f.input :mes %>
+    <%= f.input :cantidad_programada %>
+    <%= f.input :precio_unitario %>
+    <%= f.input :valor_total %>
+    <%= f.input :tipo_de_produccion %>
+    <%= f.input :tamanos_total %>
+    <%= f.input :cavidad %>
+    <%= f.input :tipo_de_linea %>
+    <%= f.input :fecha %>
+    <%= f.input :fecha_compromiso %>
+    <%= f.input :cantidad_hoja %>
+    <%= f.input :tiro %>
+    <%= f.input :retiro %>
+    <%= f.input :observacion %>
+    <%= f.input :pantalla %>
+    <%= f.input :color %>
+    <%= f.input :corte_material %>
+    <%= f.input :impresion %>
+    <%= f.input :troquel %>
+    <%= f.input :acabado %>
+    <%= f.input :habilitar_impresion %>
+    <%= f.input :habilitar_acabado %>
+    <%= f.input :estado_de_orde %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

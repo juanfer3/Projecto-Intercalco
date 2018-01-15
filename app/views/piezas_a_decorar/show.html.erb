@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @pieza_a_decorar.nombre %>
+</p>
+
+<p>
+  <strong>Descripccion:</strong>
+  <%= @pieza_a_decorar.descripccion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @pieza_a_decorar.estado %>
+</p>
+
+<%= link_to 'Edit', edit_pieza_a_decorar_path(@pieza_a_decorar) %> |
+<%= link_to 'Back', piezas_a_decorar_path %>

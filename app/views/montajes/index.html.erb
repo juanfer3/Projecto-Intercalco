@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Montajes</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th>Codigo</th>
+      <th>Cliente</th>
+      <th>Descripción </th>
+      <th>Dimension</th>
+      <th>Cantidad total</th>
+      <th>Observacion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @montajes.each do |montaje| %>
+      <tr>
+
+        <td><%= montaje.codigo %></td>
+        <td><%= montaje.cliente.nombre %></td>
+        <td><%= montaje.nombre %></td>
+        <td><%= montaje.dimension %></td>
+        <td><%= montaje.cantidad_total %></td>
+        <td><%= montaje.observacion %></td>
+        <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, montaje %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_montaje_path(montaje) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, montaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Montaje', new_montaje_path %>

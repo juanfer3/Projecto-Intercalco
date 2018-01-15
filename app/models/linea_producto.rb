@@ -1,0 +1,2 @@
+class LineaProducto < ApplicationRecord
+end

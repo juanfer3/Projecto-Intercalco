@@ -1,0 +1,138 @@
+<%= simple_form_for(@montaje) do |f| %>
+  <%= f.error_notification %>
+
+
+  <div class="col-4 ocultar_fecha" id="contenedor_Fecha_De_Pedido">
+     <%=
+        f.text_field :fecha_de_creacion,
+        class:"my_fecha"
+      %>
+  </div>
+
+  <div class="card text-center">
+
+     <div class="card-header">
+        <h1>Montajes</h1>
+        <div id="cliente"></div>
+     </div>
+
+     <!--Card Block-->
+     <div class="card-block">
+        <h4 class="card-title"></h4>
+        <div class="container">
+           <!--Container Con Flexbox-->
+           <div class="my_card_pedidos_form">
+
+
+              <!--Cliente-->
+              <div class="col-4">
+                <%=
+                  f.association :cliente,
+                  collection: Cliente.all,
+                  label_method: :nombre,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-4 my_cliente form-control',
+                  include_blank: 'Seleccione el Cliente'
+                %>
+              </div>
+
+
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :codigo %>
+              </div>
+
+              <!--Codigo-->
+              <div class="col-4">
+                <label for="">Descripción</label>
+                <%= f.input :nombre, label:false %>
+              </div>
+              <!--Codigo-->
+
+              <!--Codigo-->
+
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :dimension %>
+              </div>
+
+              <div class="col-4">
+                <label for="">Fecha De Creacion</label>
+                <div class="input-group" >
+                  <input type="text" data-date-format="yyyy/mm/dd" class="form-control fecha"
+                  data-provide='datepicker' placeholder="Fecha"
+                  aria-describedby="basic-addon2" id='fecha_de_pedido'>
+                  <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+                </div>
+                <!--p id="campo_fecha_pedido"></p-->
+              </div>
+
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :modo_de_empaque %>
+              </div>
+
+
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :observacion %>
+              </div>
+
+           </div>
+           <!--/Container con Flexbox-->
+        </div>
+        <!--Container-->
+        <br>
+     </div>
+     <!--/Card Block-->
+  </div>
+  <!--/Datos Generales del Pedido---->
+  <br>
+
+  <!--/Datos De las Piezas---->
+
+  <div class="container_add_entregas col-12">
+     <div class="col-4">
+        <h1>Piezas</h1>
+     </div>
+     <div class="col-3 offset-md-6">
+        <%= link_to_add_piezas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :piezas, class: '') %>
+     </div>
+</div>
+
+
+  <br>
+  <div class="card card-outline-secondary mb-3 text-center">
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="">
+              <table class="table">
+                 <thead>
+
+
+                 </thead>
+                 <tbody class='fields_piezas'>
+                    <%= f.simple_fields_for :piezas do |builder| %>
+                       <%= render "pieza", :f => builder %>
+                    <% end %>
+                 </tbody>
+
+              </table>
+           </div>
+
+        </div>
+     </div>
+  </div>
+
+
+  <!--Depachos-->
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

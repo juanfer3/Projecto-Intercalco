@@ -1,0 +1,2 @@
+class PiezaADecorar < ApplicationRecord
+end

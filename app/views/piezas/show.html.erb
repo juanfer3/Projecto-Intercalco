@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Montaje:</strong>
+  <%= @pieza.montaje %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @pieza.nombre %>
+</p>
+
+<p>
+  <strong>Tamano:</strong>
+  <%= @pieza.tamano %>
+</p>
+
+<p>
+  <strong>Tipo de unidad:</strong>
+  <%= @pieza.tipo_de_unidad %>
+</p>
+
+<p>
+  <strong>Dimension:</strong>
+  <%= @pieza.dimension %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @pieza.descripcion %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @pieza.cantidad %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @pieza.estado %>
+</p>
+
+<%= link_to 'Edit', edit_pieza_path(@pieza) %> |
+<%= link_to 'Back', piezas_path %>

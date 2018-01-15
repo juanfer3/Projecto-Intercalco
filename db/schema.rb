@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180112150331) do
+ActiveRecord::Schema.define(version: 20180115213918) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -73,12 +73,56 @@ ActiveRecord::Schema.define(version: 20180112150331) do
     t.index ["tiempos_de_entrega_id"], name: "index_facturas_despacho_on_tiempos_de_entrega_id"
   end
 
+  create_table "lineas_de_colores", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "lineas_de_impresiones", force: :cascade do |t|
     t.string "tipo_de_linea"
     t.string "descripcion"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lineas_productos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "maquinas", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "montajes", force: :cascade do |t|
+    t.integer "cliente_id"
+    t.string "nombre"
+    t.string "tamano"
+    t.string "dimension"
+    t.float "dimension_1"
+    t.float "dimension_2"
+    t.string "codigo"
+    t.string "numero_de_montaje"
+    t.string "tipo_de_unidad"
+    t.float "cantidad_total"
+    t.string "observacion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "modo_de_empaque"
+    t.date "fecha_de_creacion"
+    t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
   end
 
   create_table "ordenes_de_produccion", force: :cascade do |t|
@@ -129,6 +173,70 @@ ActiveRecord::Schema.define(version: 20180112150331) do
     t.index ["contacto_id"], name: "index_pedidos_on_contacto_id"
     t.index ["linea_de_impresion_id"], name: "index_pedidos_on_linea_de_impresion_id"
     t.index ["user_id"], name: "index_pedidos_on_user_id"
+  end
+
+  create_table "piezas", force: :cascade do |t|
+    t.integer "montaje_id"
+    t.string "nombre"
+    t.string "tamano"
+    t.string "tipo_de_unidad"
+    t.string "dimension"
+    t.string "descripcion"
+    t.float "cantidad"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "codigo"
+    t.date "fecha_de_creacion"
+    t.index ["montaje_id"], name: "index_piezas_on_montaje_id"
+  end
+
+  create_table "piezas_a_decorar", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripccion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "producciones_ordenes", force: :cascade do |t|
+    t.integer "cliente_id"
+    t.integer "user_id"
+    t.integer "maquina_id"
+    t.integer "montaje_id"
+    t.integer "pieza_a_decorar_id"
+    t.string "numero_de_orden"
+    t.string "mes"
+    t.float "cantidad_programada"
+    t.float "precio_unitario"
+    t.float "valor_total"
+    t.string "tipo_de_produccion"
+    t.float "tamanos_total"
+    t.float "cavidad"
+    t.string "tipo_de_linea"
+    t.date "fecha"
+    t.date "fecha_compromiso"
+    t.float "cantidad_hoja"
+    t.boolean "tiro"
+    t.boolean "retiro"
+    t.string "observacion"
+    t.boolean "pantalla"
+    t.boolean "color"
+    t.boolean "corte_material"
+    t.boolean "impresion"
+    t.boolean "troquel"
+    t.boolean "acabado"
+    t.boolean "habilitar_impresion"
+    t.boolean "habilitar_acabado"
+    t.string "estado_de_orde"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_producciones_ordenes_on_cliente_id"
+    t.index ["maquina_id"], name: "index_producciones_ordenes_on_maquina_id"
+    t.index ["montaje_id"], name: "index_producciones_ordenes_on_montaje_id"
+    t.index ["pieza_a_decorar_id"], name: "index_producciones_ordenes_on_pieza_a_decorar_id"
+    t.index ["user_id"], name: "index_producciones_ordenes_on_user_id"
   end
 
   create_table "remisiones", force: :cascade do |t|

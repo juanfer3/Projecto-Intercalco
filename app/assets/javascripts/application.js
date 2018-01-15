@@ -35,6 +35,24 @@
 
 $(document).on('turbolinks:load', function() {
 
+
+  $('.ocultar_fecha').hide()
+
+  $('form').on('click', '.remove_piezas', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').remove();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.add_piezas', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_piezas').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
+
+
   /*------------------Validacion Pedidos Totales-------------------------*/
 
 

@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Piezas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Montaje</th>
+      <th>Nombre</th>
+      <th>Tamano</th>
+      <th>Tipo de unidad</th>
+      <th>Dimension</th>
+      <th>Descripcion</th>
+      <th>Cantidad</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @piezas.each do |pieza| %>
+      <tr>
+        <td><%= pieza.montaje %></td>
+        <td><%= pieza.nombre %></td>
+        <td><%= pieza.tamano %></td>
+        <td><%= pieza.tipo_de_unidad %></td>
+        <td><%= pieza.dimension %></td>
+        <td><%= pieza.descripcion %></td>
+        <td><%= pieza.cantidad %></td>
+        <td><%= pieza.estado %></td>
+        <td><%= link_to 'Show', pieza %></td>
+        <td><%= link_to 'Edit', edit_pieza_path(pieza) %></td>
+        <td><%= link_to 'Destroy', pieza, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pieza', new_pieza_path %>

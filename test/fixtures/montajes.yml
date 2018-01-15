@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  nombre: MyString
+  tamano: MyString
+  dimension: MyString
+  dimension_1: 1.5
+  dimension_2: 1.5
+  codigo: MyString
+  numero_de_montaje: MyString
+  tipo_de_unidad: MyString
+  cantidad_total: 1.5
+  observacion: MyString
+  estado: false
+
+two:
+  cliente: two
+  nombre: MyString
+  tamano: MyString
+  dimension: MyString
+  dimension_1: 1.5
+  dimension_2: 1.5
+  codigo: MyString
+  numero_de_montaje: MyString
+  tipo_de_unidad: MyString
+  cantidad_total: 1.5
+  observacion: MyString
+  estado: false

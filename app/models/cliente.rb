@@ -4,6 +4,8 @@ class Cliente < ApplicationRecord
   has_many :contactos , inverse_of: :cliente, dependent: :destroy
   accepts_nested_attributes_for :contactos, reject_if: :all_blank, allow_destroy: true
 
+  has_many :montajes , inverse_of: :cliente, dependent: :destroy
+  accepts_nested_attributes_for :montajes, reject_if: :all_blank, allow_destroy: true
 
 
 

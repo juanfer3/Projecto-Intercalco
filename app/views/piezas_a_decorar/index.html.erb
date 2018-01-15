@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Piezas A Decorar</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripccion</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @piezas_a_decorar.each do |pieza_a_decorar| %>
+      <tr>
+        <td><%= pieza_a_decorar.nombre %></td>
+        <td><%= pieza_a_decorar.descripccion %></td>
+        <td><%= pieza_a_decorar.estado %></td>
+        <td><%= link_to 'Show', pieza_a_decorar %></td>
+        <td><%= link_to 'Edit', edit_pieza_a_decorar_path(pieza_a_decorar) %></td>
+        <td><%= link_to 'Destroy', pieza_a_decorar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pieza A Decorar', new_pieza_a_decorar_path %>

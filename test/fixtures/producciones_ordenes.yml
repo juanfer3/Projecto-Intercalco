@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cliente: one
+  user: one
+  maquina: one
+  montaje: one
+  pieza_a_decorar: one
+  numero_de_orden: MyString
+  mes: MyString
+  cantidad_programada: 1.5
+  precio_unitario: 1.5
+  valor_total: 1.5
+  tipo_de_produccion: MyString
+  tamanos_total: 1.5
+  cavidad: 1.5
+  tipo_de_linea: MyString
+  fecha: 2018-01-15
+  fecha_compromiso: 2018-01-15
+  cantidad_hoja: 1.5
+  tiro: false
+  retiro: false
+  observacion: MyString
+  pantalla: false
+  color: false
+  corte_material: false
+  impresion: false
+  troquel: false
+  acabado: false
+  habilitar_impresion: false
+  habilitar_acabado: false
+  estado_de_orde: MyString
+  estado: false
+
+two:
+  cliente: two
+  user: two
+  maquina: two
+  montaje: two
+  pieza_a_decorar: two
+  numero_de_orden: MyString
+  mes: MyString
+  cantidad_programada: 1.5
+  precio_unitario: 1.5
+  valor_total: 1.5
+  tipo_de_produccion: MyString
+  tamanos_total: 1.5
+  cavidad: 1.5
+  tipo_de_linea: MyString
+  fecha: 2018-01-15
+  fecha_compromiso: 2018-01-15
+  cantidad_hoja: 1.5
+  tiro: false
+  retiro: false
+  observacion: MyString
+  pantalla: false
+  color: false
+  corte_material: false
+  impresion: false
+  troquel: false
+  acabado: false
+  habilitar_impresion: false
+  habilitar_acabado: false
+  estado_de_orde: MyString
+  estado: false

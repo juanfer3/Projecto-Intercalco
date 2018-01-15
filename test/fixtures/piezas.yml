@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  montaje: one
+  nombre: MyString
+  tamano: MyString
+  tipo_de_unidad: MyString
+  dimension: MyString
+  descripcion: MyString
+  cantidad: 1.5
+  estado: false
+
+two:
+  montaje: two
+  nombre: MyString
+  tamano: MyString
+  tipo_de_unidad: MyString
+  dimension: MyString
+  descripcion: MyString
+  cantidad: 1.5
+  estado: false

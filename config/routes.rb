@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :producciones_ordenes
   resources :remisiones
   resources :facturas_despacho
   resources :tiempos_de_entregas
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :roles
+  resources :montajes
+  resources :piezas
+  resources :maquinas
 
   get 'produccion', to: 'pedidos#produccion', as: :produccion
 

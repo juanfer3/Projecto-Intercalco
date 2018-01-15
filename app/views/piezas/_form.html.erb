@@ -1,0 +1,18 @@
+<%= simple_form_for(@pieza) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :montaje %>
+    <%= f.input :nombre %>
+    <%= f.input :tamano %>
+    <%= f.input :tipo_de_unidad %>
+    <%= f.input :dimension %>
+    <%= f.input :descripcion %>
+    <%= f.input :cantidad %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

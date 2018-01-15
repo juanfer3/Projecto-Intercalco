@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @montaje.cliente %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @montaje.nombre %>
+</p>
+
+<p>
+  <strong>Tamano:</strong>
+  <%= @montaje.tamano %>
+</p>
+
+<p>
+  <strong>Dimension:</strong>
+  <%= @montaje.dimension %>
+</p>
+
+<p>
+  <strong>Dimension 1:</strong>
+  <%= @montaje.dimension_1 %>
+</p>
+
+<p>
+  <strong>Dimension 2:</strong>
+  <%= @montaje.dimension_2 %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @montaje.codigo %>
+</p>
+
+<p>
+  <strong>Numero de montaje:</strong>
+  <%= @montaje.numero_de_montaje %>
+</p>
+
+<p>
+  <strong>Tipo de unidad:</strong>
+  <%= @montaje.tipo_de_unidad %>
+</p>
+
+<p>
+  <strong>Cantidad total:</strong>
+  <%= @montaje.cantidad_total %>
+</p>
+
+<p>
+  <strong>Observacion:</strong>
+  <%= @montaje.observacion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @montaje.estado %>
+</p>
+
+<%= link_to 'Edit', edit_montaje_path(@montaje) %> |
+<%= link_to 'Back', montajes_path %>

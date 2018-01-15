@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @linea_de_color.nombre %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @linea_de_color.descripcion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @linea_de_color.estado %>
+</p>
+
+<%= link_to 'Edit', edit_linea_de_color_path(@linea_de_color) %> |
+<%= link_to 'Back', lineas_de_colores_path %>

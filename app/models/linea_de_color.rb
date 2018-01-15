@@ -1,0 +1,2 @@
+class LineaDeColor < ApplicationRecord
+end
