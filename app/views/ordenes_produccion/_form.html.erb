@@ -1,0 +1,196 @@
+
+
+
+<%= simple_form_for(@orden_produccion) do |f| %>
+  <%= f.error_notification %>
+
+
+
+
+<div class="">
+  <label for="">Numero De Plantilla</label>
+  <%=f.select :formato_op,FormatoOp.all.map {|i| [i.referencia_de_orden , i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: 'busqueda_fop'} %>
+  <button class="btn btn-outline-info" ><span><i class="ion-search"></i></span></button>
+
+</div>
+<br>
+
+
+  <div class="card text-center">
+
+     <div class="card-header">
+        <h1>Ordenes De Producción</h1>
+
+     </div>
+
+     <!--Card Block-->
+     <div class="card-block">
+        <h4 class="card-title"></h4>
+        <div class="container">
+           <!--Container Con Flexbox-->
+           <div class="my_card_pedidos_form">
+
+
+             <!--Numero de Orden-->
+             <div class="col-3">
+               <%= f.input :numero_de_orden %>
+             </div>
+
+             <!--Mes-->
+             <div class="col-3">
+               <label for="">Cliente</label>
+               <input type="text" name=""  class="form-control op_cliente" id="op_cliente" value="">
+             </div>
+
+             <div class="col-3">
+               <label for="">Vendedor</label>
+               <input type="text" name=""  class="form-control op_Vendedor" id="op_vendedor" value="">
+             </div>
+
+
+             <div class="col-3">
+               <label for="">Montaje</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_montaje" value="">
+             </div>
+
+
+
+
+
+             <!--Fecha De pedido-->
+             <div class="col-3">
+               <label for="">Fecha De La Orden</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+
+             <div class="col-3">
+               <label for="">Fecha De Compromiso</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha_compromiso , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+
+
+
+
+
+           </div>
+           <!--/Container con Flexbox-->
+        </div>
+        <!--Container-->
+        <br>
+     </div>
+     <!--/Card Block-->
+  </div>
+  <!--/Datos Generales del Pedido---->
+  <br>
+
+<br>
+
+
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+
+                        <div class="col-4">
+                          <%= f.input :cantidad_programada %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :precio_unitario %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :valor_total %>
+                        </div>
+
+
+                        <div class="col-4">
+                          <%= f.input :tamanos_total %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :cavidad %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :cantidad_hoja %>
+                        </div>
+
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
+
+<br>
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+                        <div class="col-4">
+                          <label for="">Producción</label> <br>
+                          <%= f.select :tipo_de_produccion,options_for_select([['Nuevo', 'Nuevo'], ['Repetitivo', 'Repetitivo']]), {}, {required: 'true', autofocus: 'true', class: 'form-control'}%>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="col-4">
+                          <%= f.input :temperatura %>
+                        </div>
+
+
+
+
+
+
+                        <div class="col-4">
+                          <br>
+                          <%= f.input :tiro %>
+                        </div>
+
+                        <div class="col-4">
+                          <br>
+                          <%= f.input :retiro %>
+                        </div>
+                            <div class="col-4">
+
+                              <%= f.input :observacion %>
+                            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

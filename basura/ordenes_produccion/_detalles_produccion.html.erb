@@ -1,0 +1,87 @@
+<h1><%=@orden_produccion.numero_de_orden%></h1>
+
+<div class="container my_card_pedidos_form">
+  <div class="col-4">
+    <h1>Maquina: <%=@orden_produccion.maquina.nombre%></h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Montaje: <%=@orden_produccion.montaje.nombre%></h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Pieza a decorar: <%=@orden_produccion.pieza_a_decorar.nombre%></h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Linea de Color: <%=@orden_produccion.linea_de_color.nombre%></h1>
+  </div>
+
+<div class="col-4">
+  <h1>Cantidad: <%=@orden_produccion.cantidad_programada%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Precio: <%=@orden_produccion.precio_unitario%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Valor Total: <%=@orden_produccion.valor_total%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Produccion: <%=@orden_produccion.tipo_de_produccion%></h1>
+</div>
+
+
+<div class="col-4">
+  <h1>Materiales: <%=@orden_produccion.material%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Temperatura: <%=@orden_produccion.temperatura%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Tamaños Totales: <%=@orden_produccion.tamanos_total%></h1>
+</div>
+
+<div class="col-4">
+  <h1>cavidad: <%=@orden_produccion.cavidad%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Cantidad Hojas: <%=@orden_produccion.cantidad_hoja%></h1>
+</div>
+
+<div class="col-4">
+  <%if @orden_produccion.tiro== true%>
+    <h1>Tiiro: Sí</h1>
+  <% else %>
+      <h1>Tiro: No</h1>
+  <% end %>
+</div>
+
+<div class="col-4">
+  <%if @orden_produccion.retiro== true%>
+    <h1>Retiiro: Sí</h1>
+  <% else %>
+    <h1>Retiiro: No</h1>
+  <% end %>
+</div>
+
+<div class="col-4">
+  <h1>Fecha: <%=@orden_produccion.fecha%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Compromiso: <%=@orden_produccion.fecha_compromiso%></h1>
+</div>
+
+<div class="col-4">
+  <h1>Observaciones: <%=@orden_produccion.observacion%></h1>
+</div>
+
+
+
+</div>

@@ -35,6 +35,29 @@
 
 $(document).on('turbolinks:load', function() {
 
+//ordenes_produccion
+
+$('#busqueda_fop').on("select2:select", function (e) {
+  var fop_id = e.params.data.id;
+  $.ajax({
+    url:'/buscar_fop/'+fop_id+'.json',
+    method:'get',
+    success: function(data){
+
+      var data_length = 1;
+
+      console.log('Encontrado');
+    }
+  })
+});
+
+$.ajax({
+
+})
+
+
+
+
 
   $('.ocultar_fecha').hide()
 

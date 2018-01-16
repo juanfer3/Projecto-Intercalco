@@ -1,0 +1,73 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes Produccion</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Numero de orden</th>
+      <th>Cliente</th>
+      <th>Comercial</th>
+      <th>Maquina</th>
+      <th>Montaje</th>
+      <th>Linea de color</th>
+      <th>Mes</th>
+      <th>Tipo de produccion</th>
+      <th>Cantidad Programada</th>
+      <th>Fecha</th>
+      <th>Fecha compromiso</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes_produccion.each do |orden_produccion| %>
+      <tr>
+        <td><%= orden_produccion.numero_de_orden %></td>
+        <td><%= orden_produccion.cliente.nombre%></td>
+        <td><%= orden_produccion.user.nombre %></td>
+        <td><%= orden_produccion.maquina.nombre%></td>
+        <td><%= orden_produccion.montaje.nombre %></td>
+        <td><%= orden_produccion.linea_de_color.nombre %></td>
+        <td><%= orden_produccion.mes.nombre%></td>
+        <td><%= orden_produccion.tipo_de_produccion %></td>
+        <td><%= orden_produccion.cantidad_programada %></td>
+        <td><%= orden_produccion.fecha %></td>
+        <td><%= orden_produccion.fecha_compromiso %></td>
+        <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_orden_produccion_path(orden_produccion) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, orden_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Orden Produccion', new_orden_produccion_path %>
+
+
+<!-- Modal Excel -->
+
+<div class="modal fade fullscreen-modal " id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Información Detallada De Pedidos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="contenidoModal">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

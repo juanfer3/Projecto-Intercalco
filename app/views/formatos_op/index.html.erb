@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Formatos Op</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Referencia de orden</th>
+      <th>User</th>
+      <th>Maquina</th>
+      <th>Montaje</th>
+      <th>Pieza a decorar</th>
+
+      <th>Linea de color</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @formatos_op.each do |formato_op| %>
+      <tr>
+        <td><%= formato_op.referencia_de_orden %></td>
+        <td><%= formato_op.montaje.cliente.nombre %></td>
+        <td><%= formato_op.user.nombre %></td>
+        <td><%= formato_op.maquina.nombre %></td>
+        <td><%= formato_op.pieza_a_decorar.nombre %></td>
+
+        <td><%= formato_op.linea_de_color.nombre %></td>
+        <td><%= formato_op.material %></td>
+
+        <td><%= link_to 'Show', formato_op %></td>
+        <td><%= link_to 'Edit', edit_formato_op_path(formato_op) %></td>
+        <td><%= link_to 'Destroy', formato_op, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Formato Op', new_formato_op_path %>

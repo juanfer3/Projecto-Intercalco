@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  dias: 1
+  observacion: MyString
+  estado: false
+
+two:
+  nombre: MyString
+  dias: 1
+  observacion: MyString
+  estado: false

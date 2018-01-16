@@ -1,0 +1,61 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formato_op: one
+  numero_de_orden: MyString
+  mes: one
+  cantidad_programada: 1.5
+  precio_unitario: 1.5
+  valor_total: 1.5
+  tipo_de_produccion: MyString
+  material: MyString
+  temperatura: MyString
+  tamanos_total: 1.5
+  cavidad: 1.5
+  fecha: 2018-01-16
+  fecha_compromiso: 2018-01-16
+  cantidad_hoja: 1.5
+  porcentaje_macula: 1.5
+  tiro: false
+  retiro: false
+  observacion: MyString
+  pantalla: false
+  color: false
+  corte_material: false
+  impresion: false
+  troquel: false
+  acabado: false
+  habilitar_impresion: false
+  habilitar_acabado: false
+  estado_de_orden: MyString
+  estado: false
+
+two:
+  formato_op: two
+  numero_de_orden: MyString
+  mes: two
+  cantidad_programada: 1.5
+  precio_unitario: 1.5
+  valor_total: 1.5
+  tipo_de_produccion: MyString
+  material: MyString
+  temperatura: MyString
+  tamanos_total: 1.5
+  cavidad: 1.5
+  fecha: 2018-01-16
+  fecha_compromiso: 2018-01-16
+  cantidad_hoja: 1.5
+  porcentaje_macula: 1.5
+  tiro: false
+  retiro: false
+  observacion: MyString
+  pantalla: false
+  color: false
+  corte_material: false
+  impresion: false
+  troquel: false
+  acabado: false
+  habilitar_impresion: false
+  habilitar_acabado: false
+  estado_de_orden: MyString
+  estado: false

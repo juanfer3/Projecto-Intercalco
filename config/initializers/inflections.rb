@@ -86,6 +86,12 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'cantidad_hoja', 'cantidades_hojas'
   inflect.irregular 'retiro', 'retiros'
   inflect.irregular 'modo_de_empaque', 'modos_de_empaques'
-  inflect.irregular 'fecha_de_creacion', 'fechas_de_creacion' 
+  inflect.irregular 'fecha_de_creacion', 'fechas_de_creacion'
+  inflect.irregular 'material', 'materiales'
+  inflect.irregular 'temperatura', 'temperaturas'
+  inflect.irregular 'orden_produccion', 'ordenes_produccion'
+  inflect.irregular 'dia', 'dias'
+  inflect.irregular 'mes', 'meses'
+  inflect.irregular 'formato_op', 'formatos_op'
 
 end

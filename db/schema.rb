@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180115213918) do
+ActiveRecord::Schema.define(version: 20180116204046) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -73,6 +73,33 @@ ActiveRecord::Schema.define(version: 20180115213918) do
     t.index ["tiempos_de_entrega_id"], name: "index_facturas_despacho_on_tiempos_de_entrega_id"
   end
 
+  create_table "formatos_op", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "maquina_id"
+    t.integer "montaje_id"
+    t.integer "pieza_a_decorar_id"
+    t.string "referencia_de_orden"
+    t.integer "linea_de_color_id"
+    t.string "tipo_de_produccion"
+    t.string "material"
+    t.string "temperatura"
+    t.float "tamanos_total"
+    t.float "cavidad"
+    t.string "tipo_de_linea"
+    t.float "cantidad_hoja"
+    t.string "observacion"
+    t.integer "linea_producto_id"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linea_de_color_id"], name: "index_formatos_op_on_linea_de_color_id"
+    t.index ["linea_producto_id"], name: "index_formatos_op_on_linea_producto_id"
+    t.index ["maquina_id"], name: "index_formatos_op_on_maquina_id"
+    t.index ["montaje_id"], name: "index_formatos_op_on_montaje_id"
+    t.index ["pieza_a_decorar_id"], name: "index_formatos_op_on_pieza_a_decorar_id"
+    t.index ["user_id"], name: "index_formatos_op_on_user_id"
+  end
+
   create_table "lineas_de_colores", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
@@ -100,6 +127,15 @@ ActiveRecord::Schema.define(version: 20180115213918) do
   create_table "maquinas", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "meses", force: :cascade do |t|
+    t.string "nombre"
+    t.integer "dias"
+    t.string "observacion"
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -139,6 +175,41 @@ ActiveRecord::Schema.define(version: 20180115213918) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_ordenes_de_produccion_on_pedido_id"
+  end
+
+  create_table "ordenes_produccion", force: :cascade do |t|
+    t.integer "formato_op_id"
+    t.string "numero_de_orden"
+    t.integer "mes_id"
+    t.float "cantidad_programada"
+    t.float "precio_unitario"
+    t.float "valor_total"
+    t.string "tipo_de_produccion"
+    t.string "material"
+    t.string "temperatura"
+    t.float "tamanos_total"
+    t.float "cavidad"
+    t.date "fecha"
+    t.date "fecha_compromiso"
+    t.float "cantidad_hoja"
+    t.float "porcentaje_macula"
+    t.boolean "tiro"
+    t.boolean "retiro"
+    t.string "observacion"
+    t.boolean "pantalla"
+    t.boolean "color"
+    t.boolean "corte_material"
+    t.boolean "impresion"
+    t.boolean "troquel"
+    t.boolean "acabado"
+    t.boolean "habilitar_impresion"
+    t.boolean "habilitar_acabado"
+    t.string "estado_de_orden"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["formato_op_id"], name: "index_ordenes_produccion_on_formato_op_id"
+    t.index ["mes_id"], name: "index_ordenes_produccion_on_mes_id"
   end
 
   create_table "pedidos", force: :cascade do |t|
@@ -197,46 +268,6 @@ ActiveRecord::Schema.define(version: 20180115213918) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "producciones_ordenes", force: :cascade do |t|
-    t.integer "cliente_id"
-    t.integer "user_id"
-    t.integer "maquina_id"
-    t.integer "montaje_id"
-    t.integer "pieza_a_decorar_id"
-    t.string "numero_de_orden"
-    t.string "mes"
-    t.float "cantidad_programada"
-    t.float "precio_unitario"
-    t.float "valor_total"
-    t.string "tipo_de_produccion"
-    t.float "tamanos_total"
-    t.float "cavidad"
-    t.string "tipo_de_linea"
-    t.date "fecha"
-    t.date "fecha_compromiso"
-    t.float "cantidad_hoja"
-    t.boolean "tiro"
-    t.boolean "retiro"
-    t.string "observacion"
-    t.boolean "pantalla"
-    t.boolean "color"
-    t.boolean "corte_material"
-    t.boolean "impresion"
-    t.boolean "troquel"
-    t.boolean "acabado"
-    t.boolean "habilitar_impresion"
-    t.boolean "habilitar_acabado"
-    t.string "estado_de_orde"
-    t.boolean "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cliente_id"], name: "index_producciones_ordenes_on_cliente_id"
-    t.index ["maquina_id"], name: "index_producciones_ordenes_on_maquina_id"
-    t.index ["montaje_id"], name: "index_producciones_ordenes_on_montaje_id"
-    t.index ["pieza_a_decorar_id"], name: "index_producciones_ordenes_on_pieza_a_decorar_id"
-    t.index ["user_id"], name: "index_producciones_ordenes_on_user_id"
   end
 
   create_table "remisiones", force: :cascade do |t|

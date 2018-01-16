@@ -1,0 +1,274 @@
+
+<%= simple_form_for(@orden_produccion) do |f| %>
+  <%= f.error_notification %>
+
+
+
+
+
+
+
+  <div class="card text-center">
+
+     <div class="card-header">
+        <h1>Ordenes De Producción</h1>
+
+     </div>
+
+     <!--Card Block-->
+     <div class="card-block">
+        <h4 class="card-title"></h4>
+        <div class="container">
+           <!--Container Con Flexbox-->
+           <div class="my_card_pedidos_form">
+
+
+             <!--Numero de Orden-->
+             <div class="col-3">
+               <%= f.input :numero_de_orden %>
+             </div>
+
+             <!--Mes-->
+             <div class="col-3">
+               <%= f.association :mes,
+               collection: Mes.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Seleccione el Mes'
+                %>
+             </div>
+
+
+
+             <!--CLiente-->
+             <div class="col-3">
+               <%= f.association :cliente,
+               collection: Cliente.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Seleccione el Cliente'
+                %>
+             </div>
+
+
+             <!--Vendedor-->
+             <div class="col-3">
+               <label for="">Vendedor</label> <br>
+               <%= f.association :user,
+               collection: User.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               label:false,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Seleccione al Vendedor'
+               %>
+             </div>
+
+             <!--Linea de Producto-->
+             <div class="col-3">
+               <%= f.association :linea_producto,
+               collection: LineaProducto.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Linea Producto'
+               %>
+
+             </div>
+
+
+             <!--Montaje-->
+             <div class="col-3">
+               <%= f.association :montaje,
+               collection: Montaje.all,
+               class:'',
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               include_blank: 'Seleccionar Montaje'
+               %>
+               <!--%=f.select :descripcion,Montaje.all.map {|i| [i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'} %-->
+             </div>
+
+             <!--Fecha De pedido-->
+             <div class="col-3">
+               <label for="">Fecha De La Orden</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+
+             <div class="col-3">
+               <label for="">Fecha De Compromiso</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha_compromiso , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+
+
+
+
+
+           </div>
+           <!--/Container con Flexbox-->
+        </div>
+        <!--Container-->
+        <br>
+     </div>
+     <!--/Card Block-->
+  </div>
+  <!--/Datos Generales del Pedido---->
+  <br>
+
+<br>
+
+
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+
+                        <div class="col-4">
+                          <%= f.input :cantidad_programada %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :precio_unitario %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :valor_total %>
+                        </div>
+
+
+                        <div class="col-4">
+                          <%= f.input :tamanos_total %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :cavidad %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :cantidad_hoja %>
+                        </div>
+
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
+
+<br>
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+                        <div class="col-4">
+                          <label for="">Producción</label> <br>
+                          <%= f.select :tipo_de_produccion,options_for_select([['Nuevo', 'Nuevo'], ['Repetitivo', 'Repetitivo']]), {}, {required: 'true', autofocus: 'true', class: 'form-control'}%>
+                        </div>
+
+
+                        <!--div class="col-4">
+                          <%= f.input :tipo_de_linea %>
+                        </div-->
+
+                        <div class="col-4">
+                          <%= f.input :material %>
+                        </div>
+
+
+                        <!--Linea De Color-->
+                        <div class="col-4">
+                          <%= f.association :linea_de_color,
+                          collection: LineaDeColor.all,
+                          label_method: :nombre,
+                          value_method: :id,
+                          as: :select,
+                          class:'col-4 my_cliente form-control',
+                          include_blank: 'Linea De Color'
+                          %>
+                        </div>
+
+                        <div class="col-4">
+                          <%= f.input :temperatura %>
+                        </div>
+
+                        <!--Maquina-->
+                        <div class="col-4">
+                          <%= f.association :maquina,
+                          collection: Maquina.all,
+                          label_method: :nombre,
+                          value_method: :id,
+                          as: :select,
+                          class:'col-4 my_cliente form-control',
+                          include_blank: 'Seleccione la Maquina'
+                          %>
+                        </div>
+
+
+                        <!--Pieza A Decorar-->
+                        <div class="col-4">
+                          <%= f.association :pieza_a_decorar,
+                          collection: PiezaADecorar.all,
+                          label_method: :nombre,
+                          value_method: :id,
+                          as: :select,
+                          class:'col-4 my_cliente form-control',
+                          include_blank: 'Pieza A Decorar'
+
+                          %>
+                        </div>
+
+
+
+
+                        <div class="col-4">
+                          <br>
+                          <%= f.input :tiro %>
+                        </div>
+
+                        <div class="col-4">
+                          <br>
+                          <%= f.input :retiro %>
+                        </div>
+                            <div class="col-4">
+
+                              <%= f.input :observacion %>
+                            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

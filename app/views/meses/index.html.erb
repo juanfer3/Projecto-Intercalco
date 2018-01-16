@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Meses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Dias</th>
+      <th>Observacion</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meses.each do |mes| %>
+      <tr>
+        <td><%= mes.nombre %></td>
+        <td><%= mes.dias %></td>
+        <td><%= mes.observacion %></td>
+        <td><%= mes.estado %></td>
+        <td><%= link_to 'Show', mes %></td>
+        <td><%= link_to 'Edit', edit_mes_path(mes) %></td>
+        <td><%= link_to 'Destroy', mes, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mes', new_mes_path %>

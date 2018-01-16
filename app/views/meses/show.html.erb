@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @mes.nombre %>
+</p>
+
+<p>
+  <strong>Dias:</strong>
+  <%= @mes.dias %>
+</p>
+
+<p>
+  <strong>Observacion:</strong>
+  <%= @mes.observacion %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @mes.estado %>
+</p>
+
+<%= link_to 'Edit', edit_mes_path(@mes) %> |
+<%= link_to 'Back', meses_path %>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :producciones_ordenes
+  resources :ordenes_produccion
+  resources :formatos_op
+  resources :formato_ops
+  resources :meses
   resources :remisiones
   resources :facturas_despacho
   resources :tiempos_de_entregas
@@ -15,6 +18,10 @@ Rails.application.routes.draw do
   resources :montajes
   resources :piezas
   resources :maquinas
+  resources :lineas_productos
+  resources :lineas_de_colores
+  resources :piezas_a_decorar
+
 
   get 'produccion', to: 'pedidos#produccion', as: :produccion
 
@@ -69,5 +76,7 @@ Rails.application.routes.draw do
   get 'ver_factura/:id', to: 'tiempos_de_entregas#ver_factura', as: :ver_factura
   get 'cerrar_pedido/:id', to: 'tiempos_de_entregas#cerrar_pedido', as: :cerrar_pedido
   get 'ordenes', to: 'pedidos#ordenes', as: :ordenes
+
+  get 'buscar_fop/:id', to: 'formatos_op#buscar_fop', as: :buscar_fop
 
 end

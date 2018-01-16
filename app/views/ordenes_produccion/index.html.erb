@@ -1,0 +1,81 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes Produccion</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Formato op</th>
+      <th>Numero de orden</th>
+      <th>Mes</th>
+      <th>Cantidad programada</th>
+      <th>Precio unitario</th>
+      <th>Valor total</th>
+      <th>Tipo de produccion</th>
+      <th>Material</th>
+      <th>Temperatura</th>
+      <th>Tamanos total</th>
+      <th>Cavidad</th>
+      <th>Fecha</th>
+      <th>Fecha compromiso</th>
+      <th>Cantidad hoja</th>
+      <th>Porcentaje macula</th>
+      <th>Tiro</th>
+      <th>Retiro</th>
+      <th>Observacion</th>
+      <th>Pantalla</th>
+      <th>Color</th>
+      <th>Corte material</th>
+      <th>Impresion</th>
+      <th>Troquel</th>
+      <th>Acabado</th>
+      <th>Habilitar impresion</th>
+      <th>Habilitar acabado</th>
+      <th>Estado de orden</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes_produccion.each do |orden_produccion| %>
+      <tr>
+        <td><%= orden_produccion.formato_op %></td>
+        <td><%= orden_produccion.numero_de_orden %></td>
+        <td><%= orden_produccion.mes %></td>
+        <td><%= orden_produccion.cantidad_programada %></td>
+        <td><%= orden_produccion.precio_unitario %></td>
+        <td><%= orden_produccion.valor_total %></td>
+        <td><%= orden_produccion.tipo_de_produccion %></td>
+        <td><%= orden_produccion.material %></td>
+        <td><%= orden_produccion.temperatura %></td>
+        <td><%= orden_produccion.tamanos_total %></td>
+        <td><%= orden_produccion.cavidad %></td>
+        <td><%= orden_produccion.fecha %></td>
+        <td><%= orden_produccion.fecha_compromiso %></td>
+        <td><%= orden_produccion.cantidad_hoja %></td>
+        <td><%= orden_produccion.porcentaje_macula %></td>
+        <td><%= orden_produccion.tiro %></td>
+        <td><%= orden_produccion.retiro %></td>
+        <td><%= orden_produccion.observacion %></td>
+        <td><%= orden_produccion.pantalla %></td>
+        <td><%= orden_produccion.color %></td>
+        <td><%= orden_produccion.corte_material %></td>
+        <td><%= orden_produccion.impresion %></td>
+        <td><%= orden_produccion.troquel %></td>
+        <td><%= orden_produccion.acabado %></td>
+        <td><%= orden_produccion.habilitar_impresion %></td>
+        <td><%= orden_produccion.habilitar_acabado %></td>
+        <td><%= orden_produccion.estado_de_orden %></td>
+        <td><%= orden_produccion.estado %></td>
+        <td><%= link_to 'Show', orden_produccion %></td>
+        <td><%= link_to 'Edit', edit_orden_produccion_path(orden_produccion) %></td>
+        <td><%= link_to 'Destroy', orden_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Orden Produccion', new_orden_produccion_path %>
