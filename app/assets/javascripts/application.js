@@ -46,14 +46,47 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
       var data_length = 1;
 
-      console.log('Encontrado');
+      for (var i = 0; i < data_length; i++) {
+
+        var vendedor = data["user"]["nombre"];
+        var montaje = data ["montaje"]["nombre"]
+        var linea_producto = data ["linea_producto"]["nombre"]
+        var maquina = data ["maquina"]["nombre"]
+        var linea_de_color = data ["linea_de_color"]["nombre"]
+        var material = data ["material"]
+        var cliente_id = data ["montaje"]["cliente_id"]
+
+
+
+        $('#op_vendedor').val(vendedor)
+        $('#op_montaje').val(montaje)
+        $('#op_linea_producto').val(linea_producto)
+        $('#op_maquina').val(maquina)
+        $('#op_linea_de_color').val(linea_de_color)
+        $('#op_material').val(material)
+
+        $.ajax({
+          url:'/clientes/'+cliente_id+'.json',
+          method:'get',
+          success: function (data){
+            var cliente_lentgh = 1;
+            for (var i = 0; i < cliente_lentgh; i++) {
+          
+              var cliente = data ["nombre"]
+              $('#op_cliente').val(cliente)
+
+            }
+          }
+        })
+
+
+      }
+
     }
   })
 });
 
-$.ajax({
 
-})
 
 
 

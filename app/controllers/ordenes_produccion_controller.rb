@@ -7,6 +7,8 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
+  
+
   def buscar_fop
     @formatos_op = FormatoOp.joins(:cliente,:montaje).find(params[:id])
     render json: @formatos_op .to_json(:include => :cliente)
@@ -15,11 +17,164 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion/1
   # GET /ordenes_produccion/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+  def cambiar_proceso
+    respond_to do |format|
+      if@orden_produccion = OrdenProduccion.find(params[:id])
+        @ordenes_produccion = OrdenProduccion.all
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_habilitar_acabado
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if@orden_produccion.habilitar_acabado == false
+        @orden_produccion.update(habilitar_acabado: true, acabado:false)
+        puts "==========="+@orden_produccion.habilitar_acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(habilitar_acabado: false, acabado:false)
+        puts "==========="+@orden_produccion.habilitar_acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_habilitar_impresion
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if@orden_produccion.habilitar_impresion == false
+        @orden_produccion.update(habilitar_impresion: true, impresion:false, color:false, pantalla:false, corte_material:false)
+        puts "==========="+@orden_produccion.habilitar_impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(habilitar_impresion: false, impresion: false, color:false, pantalla:false, corte_material:false)
+        puts "==========="+@orden_produccion.habilitar_impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_acabados
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.acabado== false
+            @orden_produccion.update(acabado: true)
+            puts "==========="+@orden_produccion.acabado.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(acabado: false)
+        puts "==========="+@orden_produccion.acabado.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+
+  def cambiar_estado_troquel
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.troquel== false
+            @orden_produccion.update(troquel: true)
+            puts "==========="+@orden_produccion.troquel.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(troquel: false)
+        puts "==========="+@orden_produccion.troquel.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_impresion
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.impresion== false
+            @orden_produccion.update(impresion: true)
+            puts "==========="+@orden_produccion.impresion.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(impresion: false)
+        puts "==========="+@orden_produccion.impresion.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_corte_material
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.corte_material== false
+            @orden_produccion.update(corte_material: true)
+            puts "==========="+@orden_produccion.corte_material.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(corte_material: false)
+        puts "==========="+@orden_produccion.corte_material.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_color
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.color == false
+            @orden_produccion.update(color: true)
+            puts "==========="+@orden_produccion.color.to_s+"=========="
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(color: false)
+        puts "==========="+@orden_produccion.color.to_s+"=========="
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cambiar_estado_pantalla
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.pantalla== false
+            @orden_produccion.update(pantalla: true)
+
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(pantalla: false)
+
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def cargar_form_formato
+    @formato_op = FormatoOp.new
+    @formato_op.ordenes_produccion.build
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /ordenes_produccion/new
   def new
     @orden_produccion = OrdenProduccion.new
+    @formato_op = FormatoOp.new
   end
 
   # GET /ordenes_produccion/1/edit

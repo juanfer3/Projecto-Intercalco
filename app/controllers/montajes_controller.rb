@@ -7,6 +7,27 @@ class MontajesController < ApplicationController
     @montajes = Montaje.all
   end
 
+  def import_montaje_from_excel
+
+    file = params[:file]
+    begin
+      errores_o_true = Montaje.subir_montaje_from_excel(file)
+
+      respond_to do |format|
+        if errores_o_true == true
+          format.html { redirect_to montajes_path, notice: 'Clientes Importados' }
+          format.json { render :show, status: :created, location: @cliente }
+        else
+          @errores = errores_o_true
+          format.html { render 'vista_subir_excel'}
+        end
+    end
+    rescue Exception => e
+      flash[:notice] = "Tipo de archivo no valido"
+      redirect_to montajes_path
+    end
+  end
+
   # GET /montajes/1
   # GET /montajes/1.json
   def show

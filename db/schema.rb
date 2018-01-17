@@ -196,16 +196,16 @@ ActiveRecord::Schema.define(version: 20180116204046) do
     t.boolean "tiro"
     t.boolean "retiro"
     t.string "observacion"
-    t.boolean "pantalla"
-    t.boolean "color"
-    t.boolean "corte_material"
-    t.boolean "impresion"
-    t.boolean "troquel"
-    t.boolean "acabado"
-    t.boolean "habilitar_impresion"
-    t.boolean "habilitar_acabado"
-    t.string "estado_de_orden"
-    t.boolean "estado"
+    t.boolean "pantalla", default: true
+    t.boolean "color", default: false
+    t.boolean "corte_material", default: false
+    t.boolean "impresion", default: false
+    t.boolean "troquel", default: false
+    t.boolean "acabado", default: false
+    t.boolean "habilitar_impresion", default: false
+    t.boolean "habilitar_acabado", default: false
+    t.string "estado_de_orden", default: "f"
+    t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["formato_op_id"], name: "index_ordenes_produccion_on_formato_op_id"

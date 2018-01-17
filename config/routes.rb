@@ -58,15 +58,15 @@ Rails.application.routes.draw do
   post 'import_contactos_from_excel/:id' => "clientes#import_contactos_from_excel", as: :import_contactos_from_excel
   get 'contactos_subir_excel', to: 'clientes#contactos_subir_excel'
 
-  get 'cambiar_proceso/:id', to: 'pedidos#cambiar_proceso', as: :cambiar_proceso
-  get 'cambiar_estado_pantalla/:id', to: 'pedidos#cambiar_estado_pantalla', as: :cambiar_estado_pantalla
-  get 'cambiar_estado_color/:id', to: 'pedidos#cambiar_estado_color', as: :cambiar_estado_color
-  get 'cambiar_estado_corte_material/:id', to: 'pedidos#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
-  get 'cambiar_estado_impresion/:id', to: 'pedidos#cambiar_estado_impresion', as: :cambiar_estado_impresion
-  get 'cambiar_estado_troquel/:id', to: 'pedidos#cambiar_estado_troquel', as: :cambiar_estado_troquel
-  get 'cambiar_estado_acabados/:id', to: 'pedidos#cambiar_estado_acabados', as: :cambiar_estado_acabados
-  get 'cambiar_habilitar_impresion/:id', to: 'pedidos#cambiar_habilitar_impresion', as: :cambiar_habilitar_impresion
-  get 'cambiar_habilitar_acabado/:id', to: 'pedidos#cambiar_habilitar_acabado', as: :cambiar_habilitar_acabado
+  get 'cambiar_proceso/:id', to: 'ordenes_produccion#cambiar_proceso', as: :cambiar_proceso
+  get 'cambiar_estado_pantalla/:id', to: 'ordenes_produccion#cambiar_estado_pantalla', as: :cambiar_estado_pantalla
+  get 'cambiar_estado_color/:id', to: 'ordenes_produccion#cambiar_estado_color', as: :cambiar_estado_color
+  get 'cambiar_estado_corte_material/:id', to: 'ordenes_produccion#cambiar_estado_corte_material', as: :cambiar_estado_corte_material
+  get 'cambiar_estado_impresion/:id', to: 'ordenes_produccion#cambiar_estado_impresion', as: :cambiar_estado_impresion
+  get 'cambiar_estado_troquel/:id', to: 'ordenes_produccion#cambiar_estado_troquel', as: :cambiar_estado_troquel
+  get 'cambiar_estado_acabados/:id', to: 'ordenes_produccion#cambiar_estado_acabados', as: :cambiar_estado_acabados
+  get 'cambiar_habilitar_impresion/:id', to: 'ordenes_produccion#cambiar_habilitar_impresion', as: :cambiar_habilitar_impresion
+  get 'cambiar_habilitar_acabado/:id', to: 'ordenes_produccion#cambiar_habilitar_acabado', as: :cambiar_habilitar_acabado
 
   get 'despacho_facturas', to: 'tiempos_de_entregas#despacho_facturas', as: :despacho_facturas
   get 'info_despacho_facturas/:id', to: 'tiempos_de_entregas#info_despacho_facturas', as: :info_despacho_facturas
@@ -78,5 +78,13 @@ Rails.application.routes.draw do
   get 'ordenes', to: 'pedidos#ordenes', as: :ordenes
 
   get 'buscar_fop/:id', to: 'formatos_op#buscar_fop', as: :buscar_fop
+
+  get 'cargar_form_formato', to: 'ordenes_produccion#cargar_form_formato', as: :cargar_form_formato
+
+  get 'cargar_form', to: 'ordenes_produccion#cargar_form', as: :cargar_form
+
+  post 'import_fop_from_excel' => "formatos_op#import_fop_from_excel", as: :import_fop_from_excel
+
+  post 'import_montaje_from_excel' => "montajes#import_montaje_from_excel", as: :import_montaje_from_excel
 
 end

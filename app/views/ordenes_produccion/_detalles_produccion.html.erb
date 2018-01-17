@@ -1,0 +1,125 @@
+<h1><%=@orden_produccion.numero_de_orden%></h1>
+
+<div class="container my_card_pedidos_form">
+  <div class="col-4">
+    <h1>Maquina: <h6>
+      <%=@orden_produccion.formato_op.maquina.nombre%>
+      </h6>
+    </h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Montaje: <h6><%=@orden_produccion.formato_op.montaje.nombre%>
+      </h6>
+
+    </h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Pieza a decorar: <h6><%=@orden_produccion.formato_op.pieza_a_decorar.nombre%>
+      </h6>
+    </h1>
+  </div>
+
+  <div class="col-4">
+    <h1>Linea de Color: <h6><%=@orden_produccion.formato_op.linea_de_color.nombre%>
+      </h6>
+    </h1>
+  </div>
+
+<div class="col-4">
+  <h1>Cantidad: <h6><%=@orden_produccion.cantidad_programada%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Precio: <h6><%=@orden_produccion.precio_unitario%>
+      </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Valor Total: <h6><%=@orden_produccion.valor_total%>
+      </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Produccion: <h6><%=@orden_produccion.tipo_de_produccion%>
+      </h6>
+  </h1>
+</div>
+
+
+<div class="col-4">
+  <h1>Materiales: <h6><%=@orden_produccion.formato_op.material%>
+      </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Temperatura: <h6><%=@orden_produccion.temperatura%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Tamaños Totales: <h6><%=@orden_produccion.tamanos_total%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>cavidad: <h6><%=@orden_produccion.cavidad%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Cantidad Hojas: <h6><%=@orden_produccion.cantidad_hoja%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <%if @orden_produccion.tiro== true%>
+    <h1>Tiiro: <h6>Sí</h6></h1>
+  <% else %>
+      <h1>Tiro: <h6>No</h6></h1>
+  <% end %>
+</div>
+
+<div class="col-4">
+  <%if @orden_produccion.retiro== true%>
+    <h1>Retiro: <h6>Sí
+      </h6>
+    </h1>
+  <% else %>
+    <h1>Retiiro: <h6>No
+      </h6>
+    </h1>
+  <% end %>
+</div>
+
+<div class="col-4">
+  <h1>Fecha: <h6><%=@orden_produccion.fecha%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Compromiso: <h6><%=@orden_produccion.fecha_compromiso%>
+    </h6>
+  </h1>
+</div>
+
+<div class="col-4">
+  <h1>Observaciones: <h6><%=@orden_produccion.observacion%>
+    </h6>
+  </h1>
+</div>
+
+
+
+</div>
