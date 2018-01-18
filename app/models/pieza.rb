@@ -1,3 +1,3 @@
 class Pieza < ApplicationRecord
-  belongs_to :montaje
+  belongs_to :montaje, dependent: :destroy
 end

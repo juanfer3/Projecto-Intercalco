@@ -7,6 +7,26 @@ class MontajesController < ApplicationController
     @montajes = Montaje.all
   end
 
+  def import__MP_from_excel
+    file = params[:file]
+    begin
+      errores_o_true = Montaje.subir_MP_from_excel(file)
+
+      respond_to do |format|
+        if errores_o_true == true
+          format.html { redirect_to montajes_path, notice: 'Montajes y Piezas Importados Importados' }
+          format.json { render :show, status: :created, location: @cliente }
+        else
+          @errores = errores_o_true
+          format.html { render 'vista_subir_excel'}
+        end
+    end
+    rescue Exception => e
+      flash[:notice] = "Tipo de archivo no valido"
+      redirect_to montajes_path
+    end
+  end
+
   def import_montaje_from_excel
 
     file = params[:file]
@@ -15,7 +35,7 @@ class MontajesController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to montajes_path, notice: 'Clientes Importados' }
+          format.html { redirect_to montajes_path, notice: 'Montajes Importados' }
           format.json { render :show, status: :created, location: @cliente }
         else
           @errores = errores_o_true
@@ -78,7 +98,7 @@ class MontajesController < ApplicationController
   def destroy
     @montaje.destroy
     respond_to do |format|
-      format.html { redirect_to montajes_url, notice: 'Montaje was successfully destroyed.' }
+      format.html { redirect_to montajes_url, notice: 'Informacion de Montaje Destruida.' }
       format.json { head :no_content }
     end
   end
@@ -92,7 +112,8 @@ class MontajesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
       params.require(:montaje).permit(:cliente_id, :nombre, :tamano, :dimension,
-        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad, :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
-        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado])
+        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
+         :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:_destroy,
+        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy])
     end
 end

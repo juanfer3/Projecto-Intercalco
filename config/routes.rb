@@ -87,4 +87,7 @@ Rails.application.routes.draw do
 
   post 'import_montaje_from_excel' => "montajes#import_montaje_from_excel", as: :import_montaje_from_excel
 
+
+  post 'import__MP_from_excel' => "montajes#import__MP_from_excel", as: :import__MP_from_excel
+
 end

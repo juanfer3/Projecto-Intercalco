@@ -1,7 +1,7 @@
 class FormatoOp < ApplicationRecord
   belongs_to :user
   belongs_to :maquina
-  belongs_to :montaje
+  belongs_to :montaje, dependent: :destroy
   belongs_to :pieza_a_decorar
   belongs_to :linea_de_color
   belongs_to :linea_producto
@@ -41,7 +41,7 @@ class FormatoOp < ApplicationRecord
       @users.each do |usuario|
         if usuario.nombre == @vendedor_nombre
           @usuario_id=usuario.id
-          puts "==============="+@usuario_id.to_s+"==============="
+          puts "===============user "+@usuario_id.to_s+"==============="
         end
       end
 
@@ -52,23 +52,60 @@ class FormatoOp < ApplicationRecord
       @montajes.each do |montaje|
         if montaje.nombre == @montaje_nombre
           @montaje_id=montaje.id
-          puts "==============="+@montaje_id.to_s+"==============="
+          puts "===============montaje id: "+@montaje_id.to_s+"==============="
         end
       end
 
 
       @linea_produccion_nombre = spreadsheet.row(i)[4]
+      puts "==============="+@linea_produccion_nombre+"==============="
 
-      @lineas_produccion = LineaProduccion.all
+      @lineas_produccion = LineaProducto.all
 
       @lineas_produccion.each do |linea_produccion|
         if linea_produccion.nombre == @linea_produccion_nombre
           @linea_produccion_id=linea_produccion.id
-          puts "==============="+@linea_produccion_id.to_s+"==============="
+          puts "===============l produccion id: "+@linea_produccion_id.to_s+"==============="
         end
       end
 
-      formato_op = FormatoOp.new( numer_de_referencia:spreadsheet.row(i)[0], user_id:@usuario_id, montaje_id: @montaje_id, )
+
+      @piezas_a_decorar_nombre = spreadsheet.row(i)[5]
+
+      @piezas_a_decorar = PiezaADecorar.all
+
+      @piezas_a_decorar.each do |pieza_a_decorar|
+        if pieza_a_decorar.nombre == @piezas_a_decorar_nombre
+          @pieza_a_decorar_id=pieza_a_decorar.id
+          puts "===============piezas id: "+@pieza_a_decorar_id.to_s+"==============="
+        end
+      end
+
+
+      @maquinas_nombre = spreadsheet.row(i)[6]
+      @maquinas = Maquina.all
+
+      @maquinas.each do |maquina|
+        if maquina.nombre == @maquinas_nombre
+          @maquina_id=maquina.id
+          puts "===============maquina id: "+@maquina_id.to_s+"==============="
+        end
+      end
+
+
+      @linea_de_color_nombre = spreadsheet.row(i)[7]
+
+      @lineas_de_colores = LineaDeColor.all
+
+      @lineas_de_colores.each do |linea_de_color|
+        if linea_de_color.nombre == @linea_de_color_nombre
+          @linea_de_color_id=linea_de_color.id
+          puts "===============color id:"+@linea_de_color_id.to_s+"==============="
+        end
+      end
+
+      formato_op = FormatoOp.new( referencia_de_orden: spreadsheet.row(i)[0],
+      user_id:@usuario_id, montaje_id: @montaje_id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
 
       unless formato_op.save
         cliente.errors.full_messages.each do |message|

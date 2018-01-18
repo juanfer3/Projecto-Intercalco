@@ -28,9 +28,9 @@
         <td><%= formato_op.linea_de_color.nombre %></td>
         <td><%= formato_op.material %></td>
 
-        <td><%= link_to 'Show', formato_op %></td>
-        <td><%= link_to 'Edit', edit_formato_op_path(formato_op) %></td>
-        <td><%= link_to 'Destroy', formato_op, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, formato_op %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_formato_op_path(formato_op) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, formato_op, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +40,7 @@
 
 <%= link_to 'New Formato Op', new_formato_op_path %>
 
-<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Clientes Desde Excel</button>
+<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Fichas De Formularios Desde Excel Desde Excel</button>
 <br>
 <br>
 
@@ -48,7 +48,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content col-12">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Fichas De Formularios Desde Excel</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -56,7 +56,7 @@
       <div class="modal-body">
         <div class="container">
           <h1>Instrucciones:</h1>
-          <h6> <strong>-</strong> Para importar Clientes asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Nit, Dirección, Telefono.</strong>  </h6>
+          <h6> <strong>-</strong> Para importar Fichas De Formularios  asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Numeros De Referencias, Clientes, Montajes, Vendedor,Linea De Producto, Pieza a Decorar, Maquina, Linea De Color.</strong>  </h6>
           <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
             <%= form_tag import_fop_from_excel_path, multipart: true do %> <br>
             <%= file_field_tag :file %> <br> <br>

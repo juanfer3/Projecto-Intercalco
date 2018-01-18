@@ -202,8 +202,8 @@ ActiveRecord::Schema.define(version: 20180116204046) do
     t.boolean "impresion", default: false
     t.boolean "troquel", default: false
     t.boolean "acabado", default: false
-    t.boolean "habilitar_impresion", default: false
-    t.boolean "habilitar_acabado", default: false
+    t.boolean "habilitar_impresion", default: true
+    t.boolean "habilitar_acabado", default: true
     t.string "estado_de_orden", default: "f"
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
