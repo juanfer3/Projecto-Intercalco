@@ -348,3 +348,20 @@ Contenedor Btn Procesos
 .bajar_fecha{
   margin-top: 1px!important;
 }
+
+
+.my_card_produccion{
+
+  //background:green;
+  display: flex;
+  justify-content: space-between ;
+  flex-wrap:  wrap;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+-webkit-flex-flow: row wrap;
+
+}

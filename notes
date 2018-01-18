@@ -1,1 +1,42 @@
-rails g scaffold orden_produccion cliente:references user:references maquina:references montaje:references pieza_a_decorar:references linea_de_color:references numero_de_orden mes cantidad_programada:float precio_unitario:float valor_total:float tipo_de_produccion material temperatura tamanos_total:float cavidad:float tipo_de_linea fecha:date fecha_compromiso:date cantidad_hoja:float tiro:boolean retiro:boolean observacion pantalla:boolean color:boolean corte_material:boolean impresion:boolean troquel:boolean acabado:boolean habilitar_impresion:boolean habilitar_acabado:boolean estado_de_orden linea_de_producto:references estado:boolean
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item container my_card_produccion">
+      <div class="">
+        <strong>Máquina:</strong>
+        <%=@orden_produccion.formato_op.maquina.nombre%>
+      </div>
+
+
+
+      <div class="">
+
+        <FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </FONT>
+
+      </div>
+    </li>
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </ul>
+</div>

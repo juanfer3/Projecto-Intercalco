@@ -1,124 +1,428 @@
-<h1><%=@orden_produccion.numero_de_orden%></h1>
 
-<div class="container my_card_pedidos_form">
-  <div class="col-4">
-    <h1>Maquina: <h6>
-      <%=@orden_produccion.formato_op.maquina.nombre%>
-      </h6>
-    </h1>
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-4">
+      <label for="">Cliente</label>
+      <h4 ><%= @orden_produccion.formato_op.montaje.cliente.nombre%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Descripción</label>
+      <h4 ><%= @orden_produccion.formato_op.montaje.nombre%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Numero de Orden</label>
+      <h4><%= @orden_produccion.numero_de_orden%></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="my_card_produccion">
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+
+      <li class="list-group-item container my_card_produccion">
+        <div class="">
+          <strong>Máquina:</strong>
+          <%=@orden_produccion.formato_op.maquina.nombre%>
+        </div>
+
+
+
+        <div class="">
+
+          <!--FONT FACE="arial" SIZE=6>
+            <span size=10 >
+               <i class="ion-printer"></i>
+            </span>
+          </!--FONT-->
+
+        </div>
+      </li>
+
+
+    </ul>
   </div>
 
-  <div class="col-4">
-    <h1>Montaje: <h6><%=@orden_produccion.formato_op.montaje.nombre%>
-      </h6>
 
-    </h1>
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Vendedor: </strong>
+          <%=@orden_produccion.formato_op.user.nombre%>
+        </div>
+
+
+        <div class="">
+          <!--FONT FACE="arial" SIZE=6>
+            <span size=10 >
+               <i class="ion-images"></i>
+            </span>
+          </!--FON--->
+        </div>
+
+    </li>
+
+
+
+
+
+    </ul>
   </div>
 
-  <div class="col-4">
-    <h1>Pieza a decorar: <h6><%=@orden_produccion.formato_op.pieza_a_decorar.nombre%>
-      </h6>
-    </h1>
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+
+        <div class="">
+          <strong>Pieza a Decorar: </strong>
+          <%=@orden_produccion.formato_op.pieza_a_decorar.nombre%>
+        </div>
+
+        <div class="">
+          <!--FONT FACE="arial" SIZE=6>
+            <span size=10 >
+               <i class="ion-wand"></i>
+            </span>
+          </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
   </div>
 
-  <div class="col-4">
-    <h1>Linea de Color: <h6><%=@orden_produccion.formato_op.linea_de_color.nombre%>
-      </h6>
-    </h1>
+
+
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Linea De Color: </strong>
+          <%=@orden_produccion.formato_op.linea_de_color.nombre%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-paintbrush"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
   </div>
 
-<div class="col-4">
-  <h1>Cantidad: <h6><%=@orden_produccion.cantidad_programada%>
-    </h6>
-  </h1>
-</div>
-
-<div class="col-4">
-  <h1>Precio: <h6><%=@orden_produccion.precio_unitario%>
-      </h6>
-  </h1>
-</div>
-
-<div class="col-4">
-  <h1>Valor Total: <h6><%=@orden_produccion.valor_total%>
-      </h6>
-  </h1>
-</div>
-
-<div class="col-4">
-  <h1>Produccion: <h6><%=@orden_produccion.tipo_de_produccion%>
-      </h6>
-  </h1>
-</div>
 
 
-<div class="col-4">
-  <h1>Materiales: <h6><%=@orden_produccion.formato_op.material%>
-      </h6>
-  </h1>
-</div>
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Cantidad: </strong>
+          <%=@orden_produccion.cantidad_programada%>
+        </div>
 
-<div class="col-4">
-  <h1>Temperatura: <h6><%=@orden_produccion.temperatura%>
-    </h6>
-  </h1>
-</div>
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-stats-bars"></i>
+          </span>
+        </!--FONT-->
 
-<div class="col-4">
-  <h1>Tamaños Totales: <h6><%=@orden_produccion.tamanos_total%>
-    </h6>
-  </h1>
-</div>
+        </div>
+       </li>
 
-<div class="col-4">
-  <h1>cavidad: <h6><%=@orden_produccion.cavidad%>
-    </h6>
-  </h1>
-</div>
 
-<div class="col-4">
-  <h1>Cantidad Hojas: <h6><%=@orden_produccion.cantidad_hoja%>
-    </h6>
-  </h1>
-</div>
 
-<div class="col-4">
-  <%if @orden_produccion.tiro== true%>
-    <h1>Tiiro: <h6>Sí</h6></h1>
-  <% else %>
-      <h1>Tiro: <h6>No</h6></h1>
-  <% end %>
-</div>
 
-<div class="col-4">
-  <%if @orden_produccion.retiro== true%>
-    <h1>Retiro: <h6>Sí
-      </h6>
-    </h1>
-  <% else %>
-    <h1>Retiiro: <h6>No
-      </h6>
-    </h1>
-  <% end %>
-</div>
+    </ul>
+  </div>
 
-<div class="col-4">
-  <h1>Fecha: <h6><%=@orden_produccion.fecha%>
-    </h6>
-  </h1>
-</div>
 
-<div class="col-4">
-  <h1>Compromiso: <h6><%=@orden_produccion.fecha_compromiso%>
-    </h6>
-  </h1>
-</div>
 
-<div class="col-4">
-  <h1>Observaciones: <h6><%=@orden_produccion.observacion%>
-    </h6>
-  </h1>
-</div>
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Tamaños Totales: </strong>
+          <%=@orden_produccion.tamanos_total%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-arrow-graph-up-right"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Precio Unitario: </strong>
+         <%=@orden_produccion.precio_unitario%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-cash"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Valor Total: </strong>
+          <%=@orden_produccion.valor_total%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-card"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Cavidad: </strong>
+          <%=@orden_produccion.cavidad%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-crop"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Cantidad Hojas: </strong>
+          <%=@orden_produccion.cantidad_hoja%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-document-text"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Materiales: </strong>
+          <%=@orden_produccion.formato_op.material%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-briefcase"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Tiro: </strong>
+          <%if @orden_produccion.tiro== true%>
+              Sí
+          <% else %>
+              No
+          <% end %>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-aperture"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+
+        <div class="">
+          <strong>Retiro: </strong>
+          <%if @orden_produccion.retiro== true%>
+              Sí
+          <% else %>
+              No
+          <% end %>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-aperture"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+        <div class="">
+          <strong>Fecha De Compromiso: </strong>
+          <%=@orden_produccion.fecha_compromiso%>
+        </div>
+
+        <div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-calendar"></i>
+          </span>
+        </!--FONT-->
+
+        </div>
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+
+
+
+  <div class="card col-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item my_card_produccion">
+
+        <div class="">
+          <strong>Observaciones: </strong>
+          <%=@orden_produccion.observacion%>
+        </div>
+
+
+        <!--div class="">
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-monitor"></i>
+          </span>
+        </!--FONT--->
+
+      </div-->
+      </li>
+
+
+
+
+    </ul>
+  </div>
+
+
+
+
+
 
 
 
