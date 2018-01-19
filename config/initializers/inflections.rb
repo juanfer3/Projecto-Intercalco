@@ -102,5 +102,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'color', 'colores'
   inflect.irregular 'tinta', 'tintas'
   inflect.irregular 'formulado', 'formulados'
+  inflect.irregular 'tinta_formulada', 'tintas_formuladas'
+  inflect.irregular 'pantone', 'pantones'
 
 end

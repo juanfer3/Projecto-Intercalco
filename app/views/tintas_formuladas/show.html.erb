@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Linea de color:</strong>
+  <%= @tinta_formulada.linea_de_color %>
+</p>
+
+<p>
+  <strong>Malla:</strong>
+  <%= @tinta_formulada.malla %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @tinta_formulada.codigo %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @tinta_formulada.descripcion %>
+</p>
+
+<p>
+  <strong>Pantone:</strong>
+  <%= @tinta_formulada.pantone %>
+</p>
+
+<p>
+  <strong>Cantidad total:</strong>
+  <%= @tinta_formulada.cantidad_total %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @tinta_formulada.estado %>
+</p>
+
+<%= link_to 'Edit', edit_tinta_formulada_path(@tinta_formulada) %> |
+<%= link_to 'Back', tintas_formuladas_path %>

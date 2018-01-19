@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119155541) do
+ActiveRecord::Schema.define(version: 20180119165654) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -360,6 +360,20 @@ ActiveRecord::Schema.define(version: 20180119155541) do
     t.datetime "updated_at", null: false
     t.index ["formato_op_id"], name: "index_tintas_fop_tiro_on_formato_op_id"
     t.index ["malla_id"], name: "index_tintas_fop_tiro_on_malla_id"
+  end
+
+  create_table "tintas_formuladas", force: :cascade do |t|
+    t.integer "linea_de_color_id"
+    t.integer "malla_id"
+    t.string "codigo"
+    t.string "descripcion"
+    t.string "pantone"
+    t.float "cantidad_total"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linea_de_color_id"], name: "index_tintas_formuladas_on_linea_de_color_id"
+    t.index ["malla_id"], name: "index_tintas_formuladas_on_malla_id"
   end
 
   create_table "users", force: :cascade do |t|

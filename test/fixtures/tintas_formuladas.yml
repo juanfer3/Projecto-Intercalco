@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  linea_de_color: one
+  malla: one
+  codigo: MyString
+  descripcion: MyString
+  pantone: MyString
+  cantidad_total: 1.5
+  estado: false
+
+two:
+  linea_de_color: two
+  malla: two
+  codigo: MyString
+  descripcion: MyString
+  pantone: MyString
+  cantidad_total: 1.5
+  estado: false
