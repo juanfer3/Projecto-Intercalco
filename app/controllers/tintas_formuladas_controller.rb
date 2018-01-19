@@ -30,6 +30,10 @@ class TintasFormuladasController < ApplicationController
   # GET /tintas_formuladas/1
   # GET /tintas_formuladas/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /tintas_formuladas/new

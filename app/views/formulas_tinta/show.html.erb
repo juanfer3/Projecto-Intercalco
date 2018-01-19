@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tinta formulada:</strong>
+  <%= @formula_tinta.tinta_formulada %>
+</p>
+
+<p>
+  <strong>Tinta:</strong>
+  <%= @formula_tinta.tinta %>
+</p>
+
+<p>
+  <strong>Porcentaje:</strong>
+  <%= @formula_tinta.porcentaje %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @formula_tinta.estado %>
+</p>
+
+<%= link_to 'Edit', edit_formula_tinta_path(@formula_tinta) %> |
+<%= link_to 'Back', formulas_tinta_path %>

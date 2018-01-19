@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :formulas_tinta
   resources :tintas_formuladas
   resources :tintas
   resources :linea_de_colores
@@ -99,5 +100,7 @@ Rails.application.routes.draw do
   post 'import_tintas_from_excel' => "tintas#import_tintas_from_excel", as: :import_tintas_from_excel
 
   post 'import_tintas_formuladas_from_excel' => "tintas_formuladas#import_tintas_formuladas_from_excel", as: :import_tintas_formuladas_from_excel
+
+  post 'import_formulaTintas_from_excel' => "formulas_tinta#import_formulaTintas_from_excel", as: :import_formulaTintas_from_excel
 
 end

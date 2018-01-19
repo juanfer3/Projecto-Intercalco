@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tinta_formulada: one
+  tinta: one
+  porcentaje: 1.5
+  estado: false
+
+two:
+  tinta_formulada: two
+  tinta: two
+  porcentaje: 1.5
+  estado: false

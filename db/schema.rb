@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119165654) do
+ActiveRecord::Schema.define(version: 20180119183358) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -100,6 +100,17 @@ ActiveRecord::Schema.define(version: 20180119165654) do
     t.index ["montaje_id"], name: "index_formatos_op_on_montaje_id"
     t.index ["pieza_a_decorar_id"], name: "index_formatos_op_on_pieza_a_decorar_id"
     t.index ["user_id"], name: "index_formatos_op_on_user_id"
+  end
+
+  create_table "formulas_tinta", force: :cascade do |t|
+    t.integer "tinta_formulada_id"
+    t.integer "tinta_id"
+    t.float "porcentaje"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tinta_formulada_id"], name: "index_formulas_tinta_on_tinta_formulada_id"
+    t.index ["tinta_id"], name: "index_formulas_tinta_on_tinta_id"
   end
 
   create_table "linea_de_colores", force: :cascade do |t|
