@@ -17,7 +17,7 @@ class TintasFopTiroControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tinta_fop_tiro" do
     assert_difference('TintaFopTiro.count') do
-      post tintas_fop_tiro_url, params: { tinta_fop_tiro: { color: @tinta_fop_tiro.color, estado: @tinta_fop_tiro.estado, formato_op_id: @tinta_fop_tiro.formato_op_id, malla_id: @tinta_fop_tiro.malla_id, tipo_de_tinta: @tinta_fop_tiro.tipo_de_tinta } }
+      post tintas_fop_tiro_url, params: { tinta_fop_tiro: { descripcion: @tinta_fop_tiro.descripcion, estado: @tinta_fop_tiro.estado, malla_id: @tinta_fop_tiro.malla_id, montaje_id: @tinta_fop_tiro.montaje_id, tinta: @tinta_fop_tiro.tinta } }
     end
 
     assert_redirected_to tinta_fop_tiro_url(TintaFopTiro.last)
@@ -34,7 +34,7 @@ class TintasFopTiroControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tinta_fop_tiro" do
-    patch tinta_fop_tiro_url(@tinta_fop_tiro), params: { tinta_fop_tiro: { color: @tinta_fop_tiro.color, estado: @tinta_fop_tiro.estado, formato_op_id: @tinta_fop_tiro.formato_op_id, malla_id: @tinta_fop_tiro.malla_id, tipo_de_tinta: @tinta_fop_tiro.tipo_de_tinta } }
+    patch tinta_fop_tiro_url(@tinta_fop_tiro), params: { tinta_fop_tiro: { descripcion: @tinta_fop_tiro.descripcion, estado: @tinta_fop_tiro.estado, malla_id: @tinta_fop_tiro.malla_id, montaje_id: @tinta_fop_tiro.montaje_id, tinta: @tinta_fop_tiro.tinta } }
     assert_redirected_to tinta_fop_tiro_url(@tinta_fop_tiro)
   end
 

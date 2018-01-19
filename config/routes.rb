@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :tintas_fop_retiro
+  resources :tintas_fop_tiro
   resources :formulas_tinta
   resources :tintas_formuladas
   resources :tintas
   resources :linea_de_colores
-  resources :tintas_fop_retiro
-  resources :tintas_fop_tiro
   resources :mallas
   resources :ordenes_produccion
   resources :formatos_op

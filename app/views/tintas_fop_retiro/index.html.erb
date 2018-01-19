@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Formato op</th>
+      <th>Montaje</th>
+      <th>Tinta</th>
       <th>Malla</th>
-      <th>Tipo de tinta</th>
-      <th>Color</th>
+      <th>Descripcion</th>
       <th>Estado</th>
       <th colspan="3"></th>
     </tr>
@@ -17,10 +17,10 @@
   <tbody>
     <% @tintas_fop_retiro.each do |tinta_fop_retiro| %>
       <tr>
-        <td><%= tinta_fop_retiro.formato_op %></td>
+        <td><%= tinta_fop_retiro.montaje %></td>
+        <td><%= tinta_fop_retiro.tinta %></td>
         <td><%= tinta_fop_retiro.malla %></td>
-        <td><%= tinta_fop_retiro.tipo_de_tinta %></td>
-        <td><%= tinta_fop_retiro.color %></td>
+        <td><%= tinta_fop_retiro.descripcion %></td>
         <td><%= tinta_fop_retiro.estado %></td>
         <td><%= link_to 'Show', tinta_fop_retiro %></td>
         <td><%= link_to 'Edit', edit_tinta_fop_retiro_path(tinta_fop_retiro) %></td>

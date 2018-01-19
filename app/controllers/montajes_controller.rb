@@ -57,6 +57,8 @@ class MontajesController < ApplicationController
   def new
     @montaje = Montaje.new
     @montaje.piezas.build
+    @montaje.tintas_fop_tiro.build
+    @montaje.tintas_fop_retiro.build
   end
 
   # GET /montajes/1/edit
@@ -114,6 +116,8 @@ class MontajesController < ApplicationController
       params.require(:montaje).permit(:cliente_id, :nombre, :tamano, :dimension,
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:_destroy,
-        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy])
+        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
+      tintas_fop_retiro_attributes:[:formato_op_id, :malla_id, :tipo_de_tinta, :color, :estado],
+      tintas_fop_tiro_attributes:[:formato_op_id, :malla_id, :tipo_de_tinta, :color, :estado])
     end
 end

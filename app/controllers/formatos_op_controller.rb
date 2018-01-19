@@ -42,8 +42,6 @@ class FormatosOpController < ApplicationController
   # GET /formatos_op/new
   def new
     @formato_op = FormatoOp.new
-    @formato_op.tintas_fop_tiro.build
-    @formato_op.tintas_fop_retiro.build
   end
 
   # GET /formatos_op/1/edit
@@ -106,8 +104,6 @@ class FormatosOpController < ApplicationController
           :precio_unitario, :valor_total, :tipo_de_produccion, :material, :temperatura, :tamanos_total,
           :cavidad, :fecha, :fecha_compromiso, :cantidad_hoja, :porcentaje_macula, :tiro, :retiro,
           :observacion, :pantalla, :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,
-          :habilitar_acabado, :estado_de_orden, :estado],
-        tintas_fop_retiro_attributes:[:formato_op_id, :malla_id, :tipo_de_tinta, :color, :estado],
-        tintas_fop_tiro_attributes:[:formato_op_id, :malla_id, :tipo_de_tinta, :color, :estado])
+          :habilitar_acabado, :estado_de_orden, :estado])
     end
 end

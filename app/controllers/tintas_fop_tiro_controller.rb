@@ -69,6 +69,6 @@ class TintasFopTiroController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tinta_fop_tiro_params
-      params.require(:tinta_fop_tiro).permit(:formato_op_id, :malla_id, :tipo_de_tinta, :color, :estado)
+      params.require(:tinta_fop_tiro).permit(:montaje_id, :tinta, :malla_id, :descripcion, :estado)
     end
 end

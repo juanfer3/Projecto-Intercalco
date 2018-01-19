@@ -106,5 +106,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'pantone', 'pantones'
   inflect.irregular 'formula_tinta', 'formulas_tinta'
   inflect.irregular 'porcentaje', 'porcentajes'
+  inflect.irregular 'montaje_tinta', 'montaje_tintas'
 
 end

@@ -17,7 +17,7 @@ class TintasFopRetiroControllerTest < ActionDispatch::IntegrationTest
 
   test "should create tinta_fop_retiro" do
     assert_difference('TintaFopRetiro.count') do
-      post tintas_fop_retiro_url, params: { tinta_fop_retiro: { color: @tinta_fop_retiro.color, estado: @tinta_fop_retiro.estado, formato_op_id: @tinta_fop_retiro.formato_op_id, malla_id: @tinta_fop_retiro.malla_id, tipo_de_tinta: @tinta_fop_retiro.tipo_de_tinta } }
+      post tintas_fop_retiro_url, params: { tinta_fop_retiro: { descripcion: @tinta_fop_retiro.descripcion, estado: @tinta_fop_retiro.estado, malla_id: @tinta_fop_retiro.malla_id, montaje_id: @tinta_fop_retiro.montaje_id, tinta: @tinta_fop_retiro.tinta } }
     end
 
     assert_redirected_to tinta_fop_retiro_url(TintaFopRetiro.last)
@@ -34,7 +34,7 @@ class TintasFopRetiroControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update tinta_fop_retiro" do
-    patch tinta_fop_retiro_url(@tinta_fop_retiro), params: { tinta_fop_retiro: { color: @tinta_fop_retiro.color, estado: @tinta_fop_retiro.estado, formato_op_id: @tinta_fop_retiro.formato_op_id, malla_id: @tinta_fop_retiro.malla_id, tipo_de_tinta: @tinta_fop_retiro.tipo_de_tinta } }
+    patch tinta_fop_retiro_url(@tinta_fop_retiro), params: { tinta_fop_retiro: { descripcion: @tinta_fop_retiro.descripcion, estado: @tinta_fop_retiro.estado, malla_id: @tinta_fop_retiro.malla_id, montaje_id: @tinta_fop_retiro.montaje_id, tinta: @tinta_fop_retiro.tinta } }
     assert_redirected_to tinta_fop_retiro_url(@tinta_fop_retiro)
   end
 

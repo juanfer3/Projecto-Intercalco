@@ -9,11 +9,7 @@ class FormatoOp < ApplicationRecord
   has_many :ordenes_produccion, inverse_of: :formato_op, dependent: :destroy
   accepts_nested_attributes_for :ordenes_produccion, reject_if: :all_blank, allow_destroy: true
 
-  has_many :tintas_fop_tiro, inverse_of: :formato_op, dependent: :destroy
-  accepts_nested_attributes_for :tintas_fop_tiro, reject_if: :all_blank, allow_destroy: true
-
-  has_many :tintas_fop_retiro, inverse_of: :formato_op, dependent: :destroy
-  accepts_nested_attributes_for :tintas_fop_retiro, reject_if: :all_blank, allow_destroy: true
+  
 
 
 

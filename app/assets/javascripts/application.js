@@ -35,6 +35,72 @@
 
 $(document).on('turbolinks:load', function() {
 
+
+  $(".js-example-data-ajax").select2({
+  ajax: {
+    url: "/tintas.json",
+    dataType: 'json',
+    delay: 250,
+    processResults: function (data, params) {
+      // parse the results into the format expected by Select2
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data, except to indicate that infinite
+      // scrolling can be used
+      console.log(data);
+    },
+    cache: true
+  },
+  placeholder: 'Buscar Tinta',
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  minimumInputLength: 1,
+  templateResult: formatRepo,
+  templateSelection: formatRepoSelection
+});
+
+function formatRepo (repo) {
+
+  if (repo.loading) {
+    return repo.text;
+  }
+
+  var markup = "<div class='select2-result-repository clearfix'>" +
+    "<div class='select2-result-repository__avatar'><img src='" + repo + "' /></div>" +
+    "<div class='select2-result-repository__meta'>" +
+      "<div class='select2-result-repository__title'>" + repo + "</div>";
+
+  if (repo.description) {
+    markup += "<div class='select2-result-repository__description'>" + repo + "</div>";
+  }
+
+  markup += "<div class='select2-result-repository__statistics'>" +
+    "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo + " Forks</div>" +
+    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo + " Stars</div>" +
+    "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo + " Watchers</div>" +
+  "</div>" +
+  "</div></div>";
+
+  return markup;
+}
+
+function formatRepoSelection (repo) {
+  return repo.full_name || repo.text;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   if( $('#formato_op_tiro').prop('checked') ) {
     $('#div_tintas_tiro').show()
   }else {

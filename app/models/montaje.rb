@@ -4,6 +4,11 @@ class Montaje < ApplicationRecord
   has_many :piezas , inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :piezas, reject_if: :all_blank, allow_destroy: true
 
+  has_many :tintas_fop_tiro, inverse_of: :montaje, dependent: :destroy
+  accepts_nested_attributes_for :tintas_fop_tiro, reject_if: :all_blank, allow_destroy: true
+
+  has_many :tintas_fop_retiro, inverse_of: :montaje, dependent: :destroy
+  accepts_nested_attributes_for :tintas_fop_retiro, reject_if: :all_blank, allow_destroy: true
 
   def self.subir_montaje_from_excel(file)
 

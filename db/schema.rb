@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119183358) do
+ActiveRecord::Schema.define(version: 20180119211916) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -350,27 +350,27 @@ ActiveRecord::Schema.define(version: 20180119183358) do
   end
 
   create_table "tintas_fop_retiro", force: :cascade do |t|
-    t.integer "formato_op_id"
+    t.integer "montaje_id"
+    t.string "tinta"
     t.integer "malla_id"
-    t.string "tipo_de_tinta"
-    t.string "color"
+    t.string "descripcion"
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["formato_op_id"], name: "index_tintas_fop_retiro_on_formato_op_id"
     t.index ["malla_id"], name: "index_tintas_fop_retiro_on_malla_id"
+    t.index ["montaje_id"], name: "index_tintas_fop_retiro_on_montaje_id"
   end
 
   create_table "tintas_fop_tiro", force: :cascade do |t|
-    t.integer "formato_op_id"
+    t.integer "montaje_id"
+    t.string "tinta"
     t.integer "malla_id"
-    t.string "tipo_de_tinta"
-    t.string "color"
+    t.string "descripcion"
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["formato_op_id"], name: "index_tintas_fop_tiro_on_formato_op_id"
     t.index ["malla_id"], name: "index_tintas_fop_tiro_on_malla_id"
+    t.index ["montaje_id"], name: "index_tintas_fop_tiro_on_montaje_id"
   end
 
   create_table "tintas_formuladas", force: :cascade do |t|
