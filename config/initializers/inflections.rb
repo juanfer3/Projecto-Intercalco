@@ -73,7 +73,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'pieza', 'piezas'
   inflect.irregular 'maquina', 'maquinas'
   inflect.irregular 'linea_producto', 'lineas_productos'
-  inflect.irregular 'linea_de_color', 'lineas_de_colores'
+
   inflect.irregular 'pieza_a_decorar', 'piezas_a_decorar'
   inflect.irregular 'produccion_orden', 'producciones_ordenes'
   inflect.irregular 'montaje','montajes'
@@ -93,5 +93,14 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'dia', 'dias'
   inflect.irregular 'mes', 'meses'
   inflect.irregular 'formato_op', 'formatos_op'
+  inflect.irregular 'linea_de_color', 'lineas_de_colores'
+
+  inflect.irregular 'malla', 'mallas'
+  inflect.irregular 'tinta_fop_tiro', 'tintas_fop_tiro'
+  inflect.irregular 'tinta_fop_retiro', 'tintas_fop_retiro'
+  inflect.irregular 'tipo_de_tinta', 'tipos_de_tintas'
+  inflect.irregular 'color', 'colores'
+  inflect.irregular 'tinta', 'tintas'
+  inflect.irregular 'formulado', 'formulados'
 
 end

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mallas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mallas.each do |malla| %>
+      <tr>
+        <td><%= malla.nombre %></td>
+        <td><%= malla.descripcion %></td>
+        <td><%= malla.estado %></td>
+        <td><%= link_to 'Show', malla %></td>
+        <td><%= link_to 'Edit', edit_malla_path(malla) %></td>
+        <td><%= link_to 'Destroy', malla, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Malla', new_malla_path %>

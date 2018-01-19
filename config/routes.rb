@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :tintas
+  resources :linea_de_colores
+  resources :tintas_fop_retiro
+  resources :tintas_fop_tiro
+  resources :mallas
   resources :ordenes_produccion
   resources :formatos_op
   resources :formato_ops
@@ -89,5 +94,7 @@ Rails.application.routes.draw do
 
 
   post 'import__MP_from_excel' => "montajes#import__MP_from_excel", as: :import__MP_from_excel
+
+  post 'import_tintas_from_excel' => "tintas#import_tintas_from_excel", as: :import_tintas_from_excel
 
 end

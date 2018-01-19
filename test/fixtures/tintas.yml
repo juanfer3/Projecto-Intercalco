@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  linea_de_color: one
+  descripcion: MyString
+  codigo: MyString
+  formulado: false
+  estado: false
+
+two:
+  linea_de_color: two
+  descripcion: MyString
+  codigo: MyString
+  formulado: false
+  estado: false

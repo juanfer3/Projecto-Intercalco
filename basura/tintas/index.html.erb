@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tintas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Malla</th>
+      <th>Linea de color</th>
+      <th>Descripcion</th>
+      <th>Codigo</th>
+      <th>Formulado</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tintas.each do |tinta| %>
+      <tr>
+        <td><%= tinta.malla %></td>
+        <td><%= tinta.linea_de_color %></td>
+        <td><%= tinta.descripcion %></td>
+        <td><%= tinta.codigo %></td>
+        <td><%= tinta.formulado %></td>
+        <td><%= tinta.estado %></td>
+        <td><%= link_to 'Show', tinta %></td>
+        <td><%= link_to 'Edit', edit_tinta_path(tinta) %></td>
+        <td><%= link_to 'Destroy', tinta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tinta', new_tinta_path %>
+<br>
+
+<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Tintas Desde Excel</button>
+<br>
+<br>
+
+<!-- Modal Excel -->
+
+<div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Importar Tintas Desde Excel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <h1>Instrucciones:</h1>
+          <h6> <strong>-</strong> Para importar Tintas asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Codigo, Linea De Color, Descripción.</strong>  </h6>
+          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+            <%= form_tag import_tintas_from_excel_path, multipart: true do %> <br>
+            <%= file_field_tag :file %> <br> <br>
+            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+          <% end %>
+          <h1><%=@user_id%></h1>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

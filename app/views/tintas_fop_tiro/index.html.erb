@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tintas Fop Tiro</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Formato op</th>
+      <th>Malla</th>
+      <th>Tipo de tinta</th>
+      <th>Color</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tintas_fop_tiro.each do |tinta_fop_tiro| %>
+      <tr>
+        <td><%= tinta_fop_tiro.formato_op %></td>
+        <td><%= tinta_fop_tiro.malla %></td>
+        <td><%= tinta_fop_tiro.tipo_de_tinta %></td>
+        <td><%= tinta_fop_tiro.color %></td>
+        <td><%= tinta_fop_tiro.estado %></td>
+        <td><%= link_to 'Show', tinta_fop_tiro %></td>
+        <td><%= link_to 'Edit', edit_tinta_fop_tiro_path(tinta_fop_tiro) %></td>
+        <td><%= link_to 'Destroy', tinta_fop_tiro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tinta Fop Tiro', new_tinta_fop_tiro_path %>

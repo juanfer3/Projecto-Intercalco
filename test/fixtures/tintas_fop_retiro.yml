@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formato_op: one
+  malla: one
+  tipo_de_tinta: MyString
+  color: MyString
+  estado: false
+
+two:
+  formato_op: two
+  malla: two
+  tipo_de_tinta: MyString
+  color: MyString
+  estado: false

@@ -35,6 +35,86 @@
 
 $(document).on('turbolinks:load', function() {
 
+  if( $('#formato_op_tiro').prop('checked') ) {
+    $('#div_tintas_tiro').show()
+  }else {
+    $('#div_tintas_tiro').hide()
+  }
+
+
+  if( $('#formato_op_retiro').prop('checked') ) {
+
+    $('#div_tintas_retiro').show()
+  }else {
+
+    $('#div_tintas_retiro').hide()
+  }
+
+
+$("#formato_op_tiro").change(function(){
+
+
+  if( $('#formato_op_tiro').prop('checked') ) {
+
+    $('#div_tintas_tiro').show()
+  }else {
+
+    $('#div_tintas_tiro').hide()
+  }
+
+
+})
+
+
+$("#formato_op_retiro").change(function(){
+
+
+  if( $('#formato_op_retiro').prop('checked') ) {
+
+    $('#div_tintas_retiro').show()
+  }else {
+    toastr.info("No Esta seleccionado")
+
+  }
+
+
+})
+
+
+
+
+
+  $('form').on('click', '.remove_tintas_retiro', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').remove();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.add_tintas_retiro', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_tintas_retiro').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
+
+
+
+
+  $('form').on('click', '.remove_tintas_tiro', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').remove();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.add_tintas_tiro', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_tintas_tiro').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
+
 //ordenes_produccion
 
 $('#busqueda_fop').on("select2:select", function (e) {
@@ -71,7 +151,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
           success: function (data){
             var cliente_lentgh = 1;
             for (var i = 0; i < cliente_lentgh; i++) {
-          
+
               var cliente = data ["nombre"]
               $('#op_cliente').val(cliente)
 

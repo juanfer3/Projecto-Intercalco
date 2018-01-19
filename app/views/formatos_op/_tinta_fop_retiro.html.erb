@@ -1,0 +1,16 @@
+<tr>
+  <td> <%= f.association :malla,
+  collection: Malla.all,
+  label_method: :nombre,
+  value_method: :id,
+  as: :select,
+  class:'col-4 my_cliente form-control',
+  include_blank: 'Seleccione Malla' 
+  %> </td>
+  <td><%= f.input :tipo_de_tinta %></td>
+  <td><%= f.input :color %></td>
+  <td><br>
+    <%= f.input_field :_destroy, as: :hidden %>
+  <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_tintas_tiro' %></td>
+
+</tr>

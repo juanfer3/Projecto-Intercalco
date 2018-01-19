@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Malla:</strong>
+  <%= @tinta.malla %>
+</p>
+
+<p>
+  <strong>Linea de color:</strong>
+  <%= @tinta.linea_de_color %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @tinta.descripcion %>
+</p>
+
+<p>
+  <strong>Codigo:</strong>
+  <%= @tinta.codigo %>
+</p>
+
+<p>
+  <strong>Formulado:</strong>
+  <%= @tinta.formulado %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @tinta.estado %>
+</p>
+
+<%= link_to 'Edit', edit_tinta_path(@tinta) %> |
+<%= link_to 'Back', tintas_path %>

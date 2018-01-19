@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180116204046) do
+ActiveRecord::Schema.define(version: 20180119155541) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -92,12 +92,22 @@ ActiveRecord::Schema.define(version: 20180116204046) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "tiro"
+    t.boolean "retiro"
     t.index ["linea_de_color_id"], name: "index_formatos_op_on_linea_de_color_id"
     t.index ["linea_producto_id"], name: "index_formatos_op_on_linea_producto_id"
     t.index ["maquina_id"], name: "index_formatos_op_on_maquina_id"
     t.index ["montaje_id"], name: "index_formatos_op_on_montaje_id"
     t.index ["pieza_a_decorar_id"], name: "index_formatos_op_on_pieza_a_decorar_id"
     t.index ["user_id"], name: "index_formatos_op_on_user_id"
+  end
+
+  create_table "linea_de_colores", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lineas_de_colores", force: :cascade do |t|
@@ -117,6 +127,14 @@ ActiveRecord::Schema.define(version: 20180116204046) do
   end
 
   create_table "lineas_productos", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mallas", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
     t.boolean "estado"
@@ -307,6 +325,41 @@ ActiveRecord::Schema.define(version: 20180116204046) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_tiempos_de_entregas_on_pedido_id"
+  end
+
+  create_table "tintas", force: :cascade do |t|
+    t.integer "linea_de_color_id"
+    t.string "descripcion"
+    t.string "codigo"
+    t.boolean "formulado"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linea_de_color_id"], name: "index_tintas_on_linea_de_color_id"
+  end
+
+  create_table "tintas_fop_retiro", force: :cascade do |t|
+    t.integer "formato_op_id"
+    t.integer "malla_id"
+    t.string "tipo_de_tinta"
+    t.string "color"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["formato_op_id"], name: "index_tintas_fop_retiro_on_formato_op_id"
+    t.index ["malla_id"], name: "index_tintas_fop_retiro_on_malla_id"
+  end
+
+  create_table "tintas_fop_tiro", force: :cascade do |t|
+    t.integer "formato_op_id"
+    t.integer "malla_id"
+    t.string "tipo_de_tinta"
+    t.string "color"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["formato_op_id"], name: "index_tintas_fop_tiro_on_formato_op_id"
+    t.index ["malla_id"], name: "index_tintas_fop_tiro_on_malla_id"
   end
 
   create_table "users", force: :cascade do |t|

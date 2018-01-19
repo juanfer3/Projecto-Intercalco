@@ -1,0 +1,15 @@
+<%= simple_form_for(@tinta_fop_tiro) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :formato_op %>
+    <%= f.association :malla %>
+    <%= f.input :tipo_de_tinta %>
+    <%= f.input :color %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
