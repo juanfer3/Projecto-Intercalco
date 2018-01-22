@@ -5,12 +5,21 @@
   value_method: :id,
   as: :select,
   class:'col-4 my_cliente form-control',
-  include_blank: 'Seleccione Malla' 
+  include_blank: 'Seleccione Malla'
   %> </td>
-  <td><%= f.input :tipo_de_tinta %></td>
-  <td><%= f.input :color %></td>
+  <td>
+    <label for="">Seleccione La Tinta</label><br>
+    <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags ', id: 'busqueda_fop'}%></td>
+
   <td><br>
     <%= f.input_field :_destroy, as: :hidden %>
   <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_tintas_tiro' %></td>
 
 </tr>
+<script>
+$(".js-example-tags").select2({
+
+
+})
+
+</script>

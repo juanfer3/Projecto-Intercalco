@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180119211916) do
+ActiveRecord::Schema.define(version: 20180122121530) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -187,6 +187,8 @@ ActiveRecord::Schema.define(version: 20180119211916) do
     t.datetime "updated_at", null: false
     t.string "modo_de_empaque"
     t.date "fecha_de_creacion"
+    t.boolean "tiro"
+    t.boolean "retiro"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
   end
 

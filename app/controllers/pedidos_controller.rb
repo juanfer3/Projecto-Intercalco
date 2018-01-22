@@ -10,6 +10,8 @@ class PedidosController < ApplicationController
     end
   end
 
+
+
   def cambiar_habilitar_acabado
     @pedido = Pedido.find(params[:id])
     @pedidos = Pedido.all

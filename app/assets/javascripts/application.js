@@ -36,55 +36,35 @@
 $(document).on('turbolinks:load', function() {
 
 
-  $(".js-example-data-ajax").select2({
-  ajax: {
-    url: "/tintas.json",
+/*
+
+  $.ajax: {
+
+    url: "http://localhost:3000/busquedaTintas.json",
     dataType: 'json',
-    delay: 250,
-    processResults: function (data, params) {
-      // parse the results into the format expected by Select2
-      // since we are using custom formatting functions we do not need to
-      // alter the remote JSON data, except to indicate that infinite
-      // scrolling can be used
+    delay:250,
+    processResults: function (data, params){
       console.log(data);
-    },
-    cache: true
-  },
-  placeholder: 'Buscar Tinta',
-  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
-  minimumInputLength: 1,
-  templateResult: formatRepo,
-  templateSelection: formatRepoSelection
-});
 
-function formatRepo (repo) {
+      function formatRepo (repo) {
 
-  if (repo.loading) {
-    return repo.text;
+      }
+    }
   }
 
-  var markup = "<div class='select2-result-repository clearfix'>" +
-    "<div class='select2-result-repository__avatar'><img src='" + repo + "' /></div>" +
-    "<div class='select2-result-repository__meta'>" +
-      "<div class='select2-result-repository__title'>" + repo + "</div>";
+*/
 
-  if (repo.description) {
-    markup += "<div class='select2-result-repository__description'>" + repo + "</div>";
-  }
 
-  markup += "<div class='select2-result-repository__statistics'>" +
-    "<div class='select2-result-repository__forks'><i class='fa fa-flash'></i> " + repo + " Forks</div>" +
-    "<div class='select2-result-repository__stargazers'><i class='fa fa-star'></i> " + repo + " Stars</div>" +
-    "<div class='select2-result-repository__watchers'><i class='fa fa-eye'></i> " + repo + " Watchers</div>" +
-  "</div>" +
-  "</div></div>";
 
-  return markup;
-}
+$(".js-example-data-ajax-Tintas").select2({
 
-function formatRepoSelection (repo) {
-  return repo.full_name || repo.text;
-}
+
+})
+
+$(".js-example-tags").select2({
+
+
+})
 
 
 
@@ -101,28 +81,48 @@ function formatRepoSelection (repo) {
 
 
 
-  if( $('#formato_op_tiro').prop('checked') ) {
+
+
+
+
+
+
+
+
+  if( $('#montaje_tiro').prop('checked') ) {
     $('#div_tintas_tiro').show()
+    $(".js-example-tags").select2({
+
+
+    })
   }else {
     $('#div_tintas_tiro').hide()
   }
 
 
-  if( $('#formato_op_retiro').prop('checked') ) {
+  if( $('#montaje_retiro').prop('checked') ) {
 
     $('#div_tintas_retiro').show()
-  }else {
+    $(".js-example-tags").select2({
 
+
+    })
+  }else {
     $('#div_tintas_retiro').hide()
+
   }
 
 
-$("#formato_op_tiro").change(function(){
+$("#montaje_tiro").change(function(){
 
 
-  if( $('#formato_op_tiro').prop('checked') ) {
+  if( $('#montaje_tiro').prop('checked') ) {
 
     $('#div_tintas_tiro').show()
+    $(".js-example-tags").select2({
+
+
+    })
   }else {
 
     $('#div_tintas_tiro').hide()
@@ -132,14 +132,18 @@ $("#formato_op_tiro").change(function(){
 })
 
 
-$("#formato_op_retiro").change(function(){
+$("#montaje_retiro").change(function(){
 
 
-  if( $('#formato_op_retiro').prop('checked') ) {
+  if( $('#montaje_retiro').prop('checked') ) {
 
     $('#div_tintas_retiro').show()
+    $(".js-example-tags").select2({
+
+
+    })
   }else {
-    toastr.info("No Esta seleccionado")
+    $('#div_tintas_retiro').hide()
 
   }
 
@@ -151,16 +155,26 @@ $("#formato_op_retiro").change(function(){
 
 
   $('form').on('click', '.remove_tintas_retiro', function(event) {
+    $(".js-example-tags").select2({
+        tags : true ,
+        tokenSeparators : [',']
+    });
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('tr').remove();
+
     return event.preventDefault();
   });
 
   $('form').on('click', '.add_tintas_retiro', function(event) {
+    $(".js-example-tags").select2({
+        tags : true ,
+        tokenSeparators : [',']
+    });
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $('.fields_tintas_retiro').append($(this).data('fields').replace(regexp, time));
+
     return event.preventDefault();
   });
 
@@ -168,16 +182,26 @@ $("#formato_op_retiro").change(function(){
 
 
   $('form').on('click', '.remove_tintas_tiro', function(event) {
+    $(".js-example-tags").select2({
+        tags : true ,
+        tokenSeparators : [',']
+    });
     $(this).prev('input[type=hidden]').val('1');
     $(this).closest('tr').remove();
+
     return event.preventDefault();
   });
 
   $('form').on('click', '.add_tintas_tiro', function(event) {
+    $(".js-example-tags").select2({
+        tags : true ,
+        tokenSeparators : [',']
+    });
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $('.fields_tintas_tiro').append($(this).data('fields').replace(regexp, time));
+
     return event.preventDefault();
   });
 
@@ -224,7 +248,6 @@ $('#busqueda_fop').on("select2:select", function (e) {
             }
           }
         })
-
 
       }
 

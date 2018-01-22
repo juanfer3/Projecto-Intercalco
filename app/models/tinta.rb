@@ -1,6 +1,8 @@
 class Tinta < ApplicationRecord
   belongs_to :linea_de_color
 
+  has_many :tintas_formuladas, inverse_of: :tinta, dependent: :destroy
+  accepts_nested_attributes_for :tintas_formuladas, reject_if: :all_blank, allow_destroy: true
 
 
   def self.subir_excel(file)

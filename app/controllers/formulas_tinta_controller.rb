@@ -7,6 +7,12 @@ class FormulasTintaController < ApplicationController
     @formulas_tinta = FormulaTinta.all
   end
 
+  def busquedaTintas
+    #code
+    @formulas_tinta = FormulaTinta.joins(:tinta, :tinta_formulada).distinct
+    render json: @formulas_tinta.to_json(:include => [:tinta, :tinta_formulada])
+  end
+
   def import_formulaTintas_from_excel
     file = params[:file]
     begin

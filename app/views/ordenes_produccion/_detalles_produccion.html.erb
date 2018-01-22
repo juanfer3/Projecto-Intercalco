@@ -427,3 +427,169 @@
 
 
 </div>
+
+
+<hr>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Tiro</h1>
+  </div>
+
+<%@orden_produccion.formato_op.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+
+        <p><%=tintas_tiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_tiro.malla.nombre%></p>
+
+      </div>
+
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>
+
+
+
+
+
+
+
+
+<hr>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Retiro</h1>
+  </div>
+
+<%@orden_produccion.formato_op.montaje.tintas_fop_retiro.each do |tintas_retiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+
+        <p><%=tintas_retiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_retiro.malla.nombre%></p>
+
+      </div>
+
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>

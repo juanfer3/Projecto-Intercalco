@@ -103,4 +103,6 @@ Rails.application.routes.draw do
 
   post 'import_formulaTintas_from_excel' => "formulas_tinta#import_formulaTintas_from_excel", as: :import_formulaTintas_from_excel
 
+  get 'busquedaTintas', to: 'formulas_tinta#busquedaTintas', as: :busquedaTintas
+
 end
