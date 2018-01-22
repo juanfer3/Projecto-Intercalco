@@ -1,15 +1,89 @@
 <%= simple_form_for(@tinta_formulada) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.association :linea_de_color %>
-    <%= f.association :malla %>
-    <%= f.input :codigo %>
-    <%= f.input :descripcion %>
-    <%= f.input :pantone %>
-    <%= f.input :cantidad_total %>
-    <%= f.input :estado %>
+  <div class="card">
+    <h3 class="card-header">Tintas Formuladas</h3>
+
+    <div class="container">
+      <br>
+        <div class="card-block">
+          <div class="my_card_pedidos_form">
+
+            <div class="col-4">
+              <%= f.input :codigo %>
+            </div>
+            <div class="col-4">
+              <%= f.input :descripcion %>
+            </div>
+            <div class="col-4">
+              <%= f.input :pantone %>
+            </div>
+            <div class="col-4">
+              <label for="">Linea De Color</label> <br>
+              <%= f.select :linea_de_color_id,LineaDeColor.all.map {|i|[i.nombre, i.id]}, {},
+              {required: true, autofocus: 'true', class: "js-example-tags form-control",id: 'busqueda_fop'}
+               %>
+            </div>
+
+            <div class="col-4">
+              <label for="">Selección De Malla</label>
+              <%=
+              f.select :malla_id,
+              Malla.all.map{|i|[i.nombre, i.id]},{},
+              {required: true, autofocus: 'true', class: "js-example-tags form-control"}
+               %>
+            </div>
+
+          </div>
+        </div>
+      <br>
+    </div>
   </div>
+
+  <br>
+
+
+
+
+    <div >
+
+      <br>
+        <div class="card">
+          <div class="card-header">
+            <div class="my_card_contactos_form">
+              <div >
+                <h3>Formula</h3>
+              </div>
+              <div >
+                <%= link_to_add_formula('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span>Agregar <i class="ion-beaker"></i></span></button>'.html_safe, f, :formulas_tinta, class: '') %>
+              </div>
+          </div>
+          </div>
+
+
+          <div class="">
+
+            <table class="table">
+              <thead>
+
+              </thead>
+              <tbody class='fields_formula'>
+                <%=f.fields_for :formulas_tinta do |builder|%>
+
+                   <%= render 'formula_tinta', :f => builder%>
+
+                <%end%>
+              </tbody>
+              </table>
+
+          </div>
+      </div>
+
+
+    </div>
+
+    <br>
+
 
   <div class="form-actions">
     <%= f.button :submit %>

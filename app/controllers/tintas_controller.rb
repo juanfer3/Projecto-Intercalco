@@ -4,7 +4,7 @@ class TintasController < ApplicationController
   # GET /tintas
   # GET /tintas.json
   def index
-    @tintas = Tinta.all
+    @tintas = Tinta.all.paginate(page: params[:page], per_page: 20).order('descripcion')
   end
 
 

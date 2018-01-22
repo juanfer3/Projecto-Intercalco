@@ -51,6 +51,10 @@ class MontajesController < ApplicationController
   # GET /montajes/1
   # GET /montajes/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /montajes/new
@@ -84,10 +88,9 @@ class MontajesController < ApplicationController
   # POST /montajes.json
   def create
     @montaje = Montaje.new(montaje_params)
-
     respond_to do |format|
       if @montaje.save
-        format.html { redirect_to @montaje, notice: 'Montaje was successfully created.' }
+        format.html { redirect_to montajes_path notice: 'Montaje was successfully created.' }
         format.json { render :show, status: :created, location: @montaje }
       else
         format.html { render :new }
@@ -101,7 +104,7 @@ class MontajesController < ApplicationController
   def update
     respond_to do |format|
       if @montaje.update(montaje_params)
-        format.html { redirect_to @montaje, notice: 'Montaje was successfully updated.' }
+        format.html { redirect_to montajes_path, notice: 'Montaje was successfully updated.' }
         format.json { render :show, status: :ok, location: @montaje }
       else
         format.html { render :edit }

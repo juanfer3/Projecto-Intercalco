@@ -42,6 +42,7 @@ class FormatosOpController < ApplicationController
   # GET /formatos_op/new
   def new
     @formato_op = FormatoOp.new
+    @formato_op.ordenes_produccion.build
   end
 
   # GET /formatos_op/1/edit

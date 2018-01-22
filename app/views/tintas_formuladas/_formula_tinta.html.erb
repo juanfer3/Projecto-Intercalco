@@ -1,0 +1,28 @@
+<tr>
+  <td class="">
+    <label for="">Seleccione La Tinta Base</label> <br>
+      <%= f.select :tinta_id, Tinta.all.map{|i|[i.descripcion, i.id]},{},
+      {required: true, autofocus: 'true', class: "js-example-tags "} %>
+  </td>
+  <td class="">
+    <%= f.input :porcentaje ,class: "form-control"%>
+  </td>
+  <td class="">
+    <label for=""></label> <br>
+    <%= f.input_field :_destroy, as: :hidden %>
+    <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_entregas' %>
+  </td>
+</tr>
+
+
+
+
+
+
+<script>
+$(".js-example-tags").select2({
+
+
+})
+
+</script>

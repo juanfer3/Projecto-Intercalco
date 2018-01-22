@@ -4,7 +4,7 @@ class TintasFormuladasController < ApplicationController
   # GET /tintas_formuladas
   # GET /tintas_formuladas.json
   def index
-    @tintas_formuladas = TintaFormulada.all
+    @tintas_formuladas= TintaFormulada.all.paginate(page: params[:page], per_page: 20).order('descripcion')
   end
 
   def import_tintas_formuladas_from_excel
@@ -39,6 +39,7 @@ class TintasFormuladasController < ApplicationController
   # GET /tintas_formuladas/new
   def new
     @tinta_formulada = TintaFormulada.new
+    @tinta_formulada.formulas_tinta.build
   end
 
   # GET /tintas_formuladas/1/edit
@@ -93,6 +94,7 @@ class TintasFormuladasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tinta_formulada_params
-      params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado)
+      params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado,
+      formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado])
     end
 end

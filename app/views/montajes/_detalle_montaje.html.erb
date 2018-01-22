@@ -1,0 +1,283 @@
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-2">
+      <label for="">Cliente</label>
+      <h4 ><%=@montaje.cliente.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Codigo</label>
+      <h4 ><%= @montaje.codigo%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Descripción</label>
+      <h4><%= @montaje.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Dimensión</label>
+      <h4><%=@montaje.dimension%></h4>
+    </div>
+    <div class="col-12">
+      <strong>Modo De Empaque:</strong>
+      <h4><%=@montaje.modo_de_empaque %></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+
+
+</div>
+
+
+
+<% if @montaje.tiro == true %>
+  <!-- true -->
+
+<hr>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Tiro</h1>
+  </div>
+
+<%@montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+
+        <p><%=tintas_tiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_tiro.malla.nombre%></p>
+
+      </div>
+
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>
+
+<% end %>
+<hr>
+
+<% if @montaje.retiro == true%>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Retiro</h1>
+  </div>
+
+<%@montaje.tintas_fop_retiro.each do |tintas_retiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-9">
+
+        <p><%=tintas_retiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_retiro.malla.nombre%></p>
+
+      </div>
+
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>
+
+
+
+
+<% end %>
+
+<hr>
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Piezas</h1>
+
+
+    <div class="card col-10 offset-md-1">
+      <ul class="list-group list-group-flush">
+
+
+
+
+        <li class="list-group-item container my_card_produccion">
+          <div class="col-2">
+            <div class="">
+              <strong>Codigo:</strong>
+            </div>
+
+
+          </div>
+          <div class="col-6">
+            <strong>Descripcion:</strong>
+          </div>
+
+          <div class="col-2">
+            <strong>Cavidad:</strong>
+          </div>
+
+          <div class="">
+
+            <!--FONT FACE="arial" SIZE=6>
+              <span size=10 >
+                 <i class="ion-printer"></i>
+              </span>
+            </!--FONT-->
+
+          </div>
+        </li>
+    <!--color-->
+    <%@montaje.piezas.each do |pieza|%>
+        <li class="list-group-item container my_card_produccion">
+          <div class="col-2">
+
+            <p><%=pieza.codigo%></p>
+          </div>
+
+          <div class="col-6">
+
+            <p><%=pieza.nombre%></p>
+
+          </div>
+
+          <div class="col-2">
+
+
+            <p><%=pieza.cantidad%></p>
+          </div>
+
+
+          <div class="">
+
+            <!--FONT FACE="arial" SIZE=6>
+              <span size=10 >
+                 <i class="ion-printer"></i>
+              </span>
+            </!--FONT-->
+
+          </div>
+        </li>
+        <% end %>
+
+
+
+
+      </ul>
+    </div>
+
+  </div>
+</div>

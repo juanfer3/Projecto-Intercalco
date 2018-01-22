@@ -9,10 +9,14 @@
         <div class="card-block">
           <div class="my_card_pedidos_form">
             <div class="col-4">
-              <%= f.association :malla %>
-            </div>
-            <div class="col-4">
-              <%= f.association :linea_de_color %>
+              <%= f.association :linea_de_color,
+               collection: LineaDeColor.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Seleccione la Linea de Color'
+               %>
             </div>
             <div class="col-4">
               <%= f.input :descripcion %>

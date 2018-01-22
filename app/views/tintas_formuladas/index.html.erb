@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<div class="pull-right">
+  <%= will_paginate @tintas_formuladas, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <h1>Tintas Formuladas</h1>
+
+<br>
 
 <table class="table">
   <thead>
@@ -35,12 +40,37 @@
 
 <br>
 
-<%= link_to 'New Tinta Formulada', new_tinta_formulada_path %>
+
+<div class="pull-right">
+  <%= will_paginate @tintas_formuladas, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-4">
+      <%= link_to '<button type="button" class="btn btn-dark">Registrar Tinta Nueva</button>'.html_safe, new_tinta_formulada_path %>
+    </div>
+
+    <div class="col-4">
+      <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Tintas Formuladas Desde Excel</button>
+    </div>
+
+
+  </div>
+</div>
+
 <br>
 
-<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Tintas Formuladas Desde Excel</button>
-<br>
-<br>
+
+
+
+
+
+
+
+
+
 
 <!-- Modal Excel -->
 
