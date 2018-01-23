@@ -227,22 +227,23 @@ $('#busqueda_fop').on("select2:select", function (e) {
     url:'/buscar_fop/'+fop_id+'.json',
     method:'get',
     success: function(data){
-
+  
       var data_length = 1;
 
       for (var i = 0; i < data_length; i++) {
 
-        var vendedor = data["user"]["nombre"];
-        var montaje = data ["montaje"]["nombre"]
-        var linea_producto = data ["linea_producto"]["nombre"]
-        var maquina = data ["maquina"]["nombre"]
-        var linea_de_color = data ["linea_de_color"]["nombre"]
-        var material = data ["material"]
-        var cliente_id = data ["montaje"]["cliente_id"]
 
 
 
-        $('#op_vendedor').val(vendedor)
+        var vendedor_id = data["0"]["montaje"]["user_id"];
+        var montaje = data ["0"]["montaje"]["nombre"]
+        var linea_producto = data ["0"]["linea_producto"]["nombre"]
+        var maquina = data["0"] ["maquina"]["nombre"]
+        var linea_de_color = data ["0"]["linea_de_color"]["nombre"]
+        var material = data ["0"]["material"]
+        var cliente_id = data ["0"]["montaje"]["cliente_id"]
+
+
         $('#op_montaje').val(montaje)
         $('#op_linea_producto').val(linea_producto)
         $('#op_maquina').val(maquina)
@@ -262,6 +263,21 @@ $('#busqueda_fop').on("select2:select", function (e) {
             }
           }
         })
+
+        $.ajax({
+          url:'/users/'+vendedor_id+'.json',
+          method:'get',
+          success: function (data){
+            var vendedor_lentgh = 1;
+            for (var i = 0; i < vendedor_lentgh; i++) {
+
+              var vendedor = data ["nombre"]
+              $('#op_vendedor').val(vendedor)
+
+            }
+          }
+        })
+
 
       }
 

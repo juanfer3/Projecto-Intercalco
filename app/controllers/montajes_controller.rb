@@ -7,6 +7,14 @@ class MontajesController < ApplicationController
     @montajes = Montaje.all.paginate(page: params[:page], per_page: 20)
   end
 
+  def buscar_fop
+    @montaje = Montaje.find(params[:id])
+    @formato_op = FormatoOp.joins(
+      :maquina, :montaje, :linea_de_color, :linea_producto).where("montaje_id = '#{@montaje.id}'")
+    render json: @formato_op .to_json(:include => [ :maquina, :montaje, :linea_de_color, :linea_producto])
+
+  end
+
   def import__MP_from_excel
     file = params[:file]
     begin

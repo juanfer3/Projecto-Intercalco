@@ -228,7 +228,7 @@ class OrdenesProduccionController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_produccion_params
-      params.require(:orden_produccion).permit(:formato_op_id, :numero_de_orden,
+      params.require(:orden_produccion).permit(:montaje_id, :numero_de_orden,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,

@@ -85,7 +85,7 @@ Rails.application.routes.draw do
   get 'cerrar_pedido/:id', to: 'tiempos_de_entregas#cerrar_pedido', as: :cerrar_pedido
   get 'ordenes', to: 'pedidos#ordenes', as: :ordenes
 
-  get 'buscar_fop/:id', to: 'formatos_op#buscar_fop', as: :buscar_fop
+  get 'buscar_fop/:id', to: 'montajes#buscar_fop', as: :buscar_fop
 
   get 'cargar_form_formato', to: 'ordenes_produccion#cargar_form_formato', as: :cargar_form_formato
 

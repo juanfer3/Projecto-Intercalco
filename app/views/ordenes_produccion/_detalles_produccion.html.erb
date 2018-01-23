@@ -4,11 +4,12 @@
   <div class="container my_card_pedidos_form my_orden_pedidos">
     <div class="col-4">
       <label for="">Cliente</label>
-      <h4 ><%= @orden_produccion.formato_op.montaje.cliente.nombre%></h4>
+
+      <h4 ><%= @orden_produccion.montaje.cliente.nombre%></h4>
     </div>
     <div class="col-4">
       <label for="">Descripción</label>
-      <h4 ><%= @orden_produccion.formato_op.montaje.nombre%></h4>
+      <h4 ><%= @orden_produccion.montaje.nombre%></h4>
     </div>
     <div class="col-4">
       <label for="">Numero de Orden</label>
@@ -25,11 +26,12 @@
     <ul class="list-group list-group-flush">
 
       <li class="list-group-item container my_card_produccion">
-        <div class="">
-          <strong>Máquina:</strong>
-          <%=@orden_produccion.formato_op.maquina.nombre%>
-        </div>
-
+        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+            <div class="">
+            <strong>Máquina:</strong>
+            <%=formato.maquina.nombre%>
+            </div>
+        <% end %>
 
 
         <div class="">
@@ -53,7 +55,7 @@
       <li class="list-group-item my_card_produccion">
         <div class="">
           <strong>Vendedor: </strong>
-          <%=@orden_produccion.formato_op.user.nombre%>
+          <%=@orden_produccion.montaje.user.nombre%>
         </div>
 
 
@@ -80,10 +82,16 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item my_card_produccion">
 
-        <div class="">
-          <strong>Pieza a Decorar: </strong>
-          <%=@orden_produccion.formato_op.pieza_a_decorar.nombre%>
-        </div>
+
+
+
+          <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+              <div class="">
+              <strong>Pieza a Decorar: </strong>
+              <%=formato.pieza_a_decorar.nombre%>
+              </div>
+          <% end %>
+
 
         <div class="">
           <!--FONT FACE="arial" SIZE=6>
@@ -108,10 +116,14 @@
   <div class="card col-4">
     <ul class="list-group list-group-flush">
       <li class="list-group-item my_card_produccion">
-        <div class="">
-          <strong>Linea De Color: </strong>
-          <%=@orden_produccion.formato_op.linea_de_color.nombre%>
-        </div>
+
+        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+            <div class="">
+            <strong>Linea De Color: </strong>
+            <%=formato.linea_de_color.nombre%>
+            </div>
+        <% end %>
+
 
         <div class="">
         <!--FONT FACE="arial" SIZE=6>
@@ -287,10 +299,14 @@
   <div class="card col-4">
     <ul class="list-group list-group-flush">
       <li class="list-group-item my_card_produccion">
-        <div class="">
-          <strong>Materiales: </strong>
-          <%=@orden_produccion.formato_op.material%>
-        </div>
+
+
+        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+            <div class="">
+            <strong>Materiales: </strong>
+            <%=formato.material%>
+            </div>
+        <% end %>
 
         <div class="">
         <!--FONT FACE="arial" SIZE=6>
@@ -436,7 +452,7 @@
     <h1>Tintas Tiro</h1>
   </div>
 
-<%@orden_produccion.formato_op.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+<%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
 
 
 
@@ -522,7 +538,7 @@
     <h1>Tintas Retiro</h1>
   </div>
 
-<%@orden_produccion.formato_op.montaje.tintas_fop_retiro.each do |tintas_retiro|%>
+<%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_retiro|%>
 
 
 

@@ -124,14 +124,78 @@ class Montaje < ApplicationRecord
                 end
               end
 
+              puts "****************************************Vacio**********************"
+              @nombre_user = spreadsheet.row(i)[5]
+              puts "****************************************"+@nombre_cliente+"*********************"
 
-              formato_op = Montaje.new( codigo:spreadsheet.row(i)[1], nombre: spreadsheet.row(i)[2], cliente_id: @cliente_id)
+
+              @users = User.all
+
+              @users.each do |user|
+                if user.nombre == @nombre_user
+                  @user_id=user.id
+                end
+              end
+
+
+              formato_op = Montaje.new( codigo:spreadsheet.row(i)[1], nombre: spreadsheet.row(i)[2], cliente_id: @cliente_id, user_id: @user_id)
 
               if formato_op.save
                 puts "**************Montaje Guardado**************************"
 
                     @mo = Montaje.find_by(nombre: @montaje_nombre)
 
+
+
+                          @linea_produccion_nombre = spreadsheet.row(i)[6]
+                          puts "==============="+@linea_produccion_nombre+"==============="
+
+                          @lineas_produccion = LineaProducto.all
+
+                          @lineas_produccion.each do |linea_produccion|
+                            if linea_produccion.nombre == @linea_produccion_nombre
+                              @linea_produccion_id=linea_produccion.id
+                              puts "===============l produccion id: "+@linea_produccion_id.to_s+"==============="
+                            end
+                          end
+
+
+                          @piezas_a_decorar_nombre = spreadsheet.row(i)[7]
+
+                          @piezas_a_decorar = PiezaADecorar.all
+
+                          @piezas_a_decorar.each do |pieza_a_decorar|
+                            if pieza_a_decorar.nombre == @piezas_a_decorar_nombre
+                              @pieza_a_decorar_id=pieza_a_decorar.id
+                              puts "===============piezas id: "+@pieza_a_decorar_id.to_s+"==============="
+                            end
+                          end
+
+
+                          @maquinas_nombre = spreadsheet.row(i)[8]
+                          @maquinas = Maquina.all
+
+                          @maquinas.each do |maquina|
+                            if maquina.nombre == @maquinas_nombre
+                              @maquina_id=maquina.id
+                              puts "===============maquina id: "+@maquina_id.to_s+"==============="
+                            end
+                          end
+
+
+                          @linea_de_color_nombre = spreadsheet.row(i)[9]
+
+                          @lineas_de_colores = LineaDeColor.all
+
+                          @lineas_de_colores.each do |linea_de_color|
+                            if linea_de_color.nombre == @linea_de_color_nombre
+                              @linea_de_color_id=linea_de_color.id
+                              puts "===============color id:"+@linea_de_color_id.to_s+"==============="
+                            end
+                          end
+
+                          formato_op = FormatoOp.new( referencia_de_orden: spreadsheet.row(i)[0],
+                           montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
 
 
                     Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)

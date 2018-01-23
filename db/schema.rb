@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123200918) do
+ActiveRecord::Schema.define(version: 20180123202657) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -225,7 +225,6 @@ ActiveRecord::Schema.define(version: 20180123200918) do
   end
 
   create_table "ordenes_produccion", force: :cascade do |t|
-    t.integer "formato_op_id"
     t.string "numero_de_orden"
     t.float "cantidad_programada"
     t.float "precio_unitario"
@@ -254,7 +253,8 @@ ActiveRecord::Schema.define(version: 20180123200918) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["formato_op_id"], name: "index_ordenes_produccion_on_formato_op_id"
+    t.integer "montaje_id"
+    t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 
   create_table "pedidos", force: :cascade do |t|
