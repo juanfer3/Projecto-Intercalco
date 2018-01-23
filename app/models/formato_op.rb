@@ -1,5 +1,5 @@
 class FormatoOp < ApplicationRecord
-  belongs_to :user
+
   belongs_to :maquina
   belongs_to :montaje, dependent: :destroy
   belongs_to :pieza_a_decorar

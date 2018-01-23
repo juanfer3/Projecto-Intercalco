@@ -83,6 +83,17 @@ class MontajesController < ApplicationController
 
   # GET /montajes/1/edit
   def edit
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
   end
 
   # POST /montajes
@@ -145,9 +156,10 @@ class MontajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
-      params.require(:montaje).permit(:cliente_id, :nombre, :tamano, :dimension,
+      params.require(:montaje).permit(:cliente_id, :user_id,:nombre, :tamano, :dimension,
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
-         :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:_destroy, :tiro, :retiro,
+         :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
+         :_destroy, :tiro, :retiro,
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
       tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],

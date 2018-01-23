@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123160439) do
+ActiveRecord::Schema.define(version: 20180123200918) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20180123160439) do
   end
 
   create_table "formatos_op", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "maquina_id"
     t.integer "montaje_id"
     t.integer "pieza_a_decorar_id"
@@ -115,7 +114,6 @@ ActiveRecord::Schema.define(version: 20180123160439) do
     t.index ["maquina_id"], name: "index_formatos_op_on_maquina_id"
     t.index ["montaje_id"], name: "index_formatos_op_on_montaje_id"
     t.index ["pieza_a_decorar_id"], name: "index_formatos_op_on_pieza_a_decorar_id"
-    t.index ["user_id"], name: "index_formatos_op_on_user_id"
   end
 
   create_table "formulas_tinta", force: :cascade do |t|
@@ -205,7 +203,9 @@ ActiveRecord::Schema.define(version: 20180123160439) do
     t.date "fecha_de_creacion"
     t.boolean "tiro"
     t.boolean "retiro"
+    t.integer "user_id"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
+    t.index ["user_id"], name: "index_montajes_on_user_id"
   end
 
   create_table "ordenes_de_produccion", force: :cascade do |t|
