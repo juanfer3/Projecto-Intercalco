@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123132904) do
+ActiveRecord::Schema.define(version: 20180123160439) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -227,7 +227,6 @@ ActiveRecord::Schema.define(version: 20180123132904) do
   create_table "ordenes_produccion", force: :cascade do |t|
     t.integer "formato_op_id"
     t.string "numero_de_orden"
-    t.integer "mes_id"
     t.float "cantidad_programada"
     t.float "precio_unitario"
     t.float "valor_total"
@@ -243,20 +242,19 @@ ActiveRecord::Schema.define(version: 20180123132904) do
     t.boolean "tiro"
     t.boolean "retiro"
     t.string "observacion"
-    t.boolean "pantalla", default: true
-    t.boolean "color", default: false
-    t.boolean "corte_material", default: false
-    t.boolean "impresion", default: false
-    t.boolean "troquel", default: false
-    t.boolean "acabado", default: false
-    t.boolean "habilitar_impresion", default: true
-    t.boolean "habilitar_acabado", default: true
-    t.string "estado_de_orden", default: "f"
-    t.boolean "estado", default: true
+    t.boolean "pantalla"
+    t.boolean "color"
+    t.boolean "corte_material"
+    t.boolean "impresion"
+    t.boolean "troquel"
+    t.boolean "acabado"
+    t.boolean "habilitar_impresion"
+    t.boolean "habilitar_acabado"
+    t.string "estado_de_orden"
+    t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["formato_op_id"], name: "index_ordenes_produccion_on_formato_op_id"
-    t.index ["mes_id"], name: "index_ordenes_produccion_on_mes_id"
   end
 
   create_table "pedidos", force: :cascade do |t|

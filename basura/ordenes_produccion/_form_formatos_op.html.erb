@@ -161,7 +161,11 @@
    </div>
 </div>
 
-
+  <div class="">
+    <%= f.simple_fields_for :ordenes_produccion do |builder| %>
+       <%= render "orden_produccion_fields", :f => builder %>
+    <% end %>
+  </div>
 
 
   <div class="form-actions">

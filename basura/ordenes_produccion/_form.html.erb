@@ -1,11 +1,26 @@
 
+<div class="" id="contenido_formulario">
+
+  <div class="offset-md-10">
+    <%= link_to '<button class="btn btn-outline-info"><span>Produccion Nueva <i class="ion-android-document"></i></span></button>'.html_safe, cargar_form_formato_url , remote: true %>
+  </div>
+
+
+  <br>
 <%= simple_form_for(@orden_produccion) do |f| %>
   <%= f.error_notification %>
 
 
 
+<div class="">
+  <label for="">Seleccione De Plantilla</label>
+  <%=f.select :formato_op_id,FormatoOp.all.map {|i| [i.referencia_de_orden , i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: 'busqueda_fop'} %>
+
+</div>
 
 
+
+<br>
 
 
   <div class="card text-center">
@@ -30,91 +45,45 @@
 
              <!--Mes-->
              <div class="col-3">
-               <%= f.association :mes,
-               collection: Mes.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Seleccione el Mes'
-                %>
-             </div>
-
-
-
-             <!--CLiente-->
-             <div class="col-3">
-               <%= f.association :cliente,
-               collection: Cliente.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Seleccione el Cliente'
-                %>
-             </div>
-
-
-             <!--Vendedor-->
-             <div class="col-3">
-               <label for="">Vendedor</label> <br>
-               <%= f.association :user,
-               collection: User.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               label:false,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Seleccione al Vendedor'
-               %>
-             </div>
-
-             <!--Linea de Producto-->
-             <div class="col-3">
-               <%= f.association :linea_producto,
-               collection: LineaProducto.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Linea Producto'
-               %>
-
-             </div>
-
-
-             <!--Montaje-->
-             <div class="col-3">
-               <%= f.association :montaje,
-               collection: Montaje.all,
-               class:'',
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               include_blank: 'Seleccionar Montaje'
-               %>
-               <!--%=f.select :descripcion,Montaje.all.map {|i| [i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'} %-->
-             </div>
-
-             <!--Fecha De pedido-->
-             <div class="col-3">
-               <label for="">Fecha De La Orden</label>
-               <div class="input-group" >
-                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
-                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
-
-               </div>
-               <p id="campo_fecha_pedido"></p>
+               <label for="">Cliente</label>
+               <input type="text" name=""  class="form-control op_cliente" id="op_cliente" value="" disabled>
              </div>
 
              <div class="col-3">
-               <label for="">Fecha De Compromiso</label>
-               <div class="input-group" >
-                 <%= f.text_field :fecha_compromiso , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
-                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
-               </div>
-               <p id="campo_fecha_pedido"></p>
+               <label for="">Vendedor</label>
+               <input type="text" name=""  class="form-control op_Vendedor" id="op_vendedor" value="" disabled>
              </div>
+
+
+             <div class="col-3">
+               <label for="">Montaje</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_montaje" value="" disabled>
+             </div>
+
+             <div class="col-3">
+               <label for="">Maquina</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_maquina" value="" disabled>
+             </div>
+
+             <div class="col-3">
+               <label for="">Linea De Color</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_linea_de_color" value="" disabled>
+             </div>
+
+             <div class="col-3">
+               <label for="">Linea De Producto</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_linea_producto" value="" disabled>
+             </div>
+
+             <div class="col-3">
+               <label for="">Material</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_material" value="" disabled>
+             </div>
+
+
+
+
+
 
 
 
@@ -133,8 +102,78 @@
 
 <br>
 
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+           <div class="col-6">
+             <%=
+               f.association :mes,
+               collection: Mes.all,
+               label_method: :nombre,
+               value_method: :id,
+               as: :select,
+               class:'col-4 my_cliente form-control',
+               include_blank: 'Seleccione el mes'
+             %>
+           </div>
 
 
+           <!--Fecha De pedido-->
+           <div class="col-6">
+             <label for="">Fecha De La Orden</label>
+             <div class="input-group" >
+               <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+               <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+             </div>
+             <p id="campo_fecha_pedido"></p>
+           </div>
+
+
+
+
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
+
+<br>
+
+
+<br>
+  <div class="card">
+    <div class="card-header">
+      <div class="my_card_contactos_form">
+        <div >
+          <h3>Fechas De Entrega</h3>
+        </div>
+        <div >
+          <%= link_to_add_compromisos('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span>Agregar <i class="ion-calendar"></i></span></button>'.html_safe, f, :compromisos_de_entrega, class: '') %>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="container">
+
+      <table class="table">
+        <tbody class='fields_compromisos'>
+          <%=f.fields_for :compromisos_de_entrega do |builder|%>
+
+             <%= render 'compromiso_de_entrega', :f => builder%>
+
+          <%end%>
+        </tbody>
+        </table>
+
+    </div>
+</div>
+
+<br>
 <div class="card card-outline-secondary mb-3 text-center">
    <div class="card-block">
       <div class="container">
@@ -146,28 +185,30 @@
 
 
 
-                        <div class="col-4">
-                          <%= f.input :cantidad_programada %>
+                        <div class="col-2">
+                          <label for="">Cantidad </label>
+                          <%= f.input :cantidad_programada, label: false %>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-2">
                           <%= f.input :precio_unitario %>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-2">
                           <%= f.input :valor_total %>
                         </div>
 
 
-                        <div class="col-4">
-                          <%= f.input :tamanos_total %>
+                        <div class="col-2">
+                          <label for="">Tamaños Totales</label>
+                          <%= f.input :tamanos_total , label: false%>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-2">
                           <%= f.input :cavidad %>
                         </div>
 
-                        <div class="col-4">
+                        <div class="col-2">
                           <%= f.input :cantidad_hoja %>
                         </div>
 
@@ -189,78 +230,20 @@
 
 
 
-                        <div class="col-4">
-                          <label for="">Producción</label> <br>
-                          <%= f.select :tipo_de_produccion,options_for_select([['Nuevo', 'Nuevo'], ['Repetitivo', 'Repetitivo']]), {}, {required: 'true', autofocus: 'true', class: 'form-control'}%>
-                        </div>
-
-
-                        <!--div class="col-4">
-                          <%= f.input :tipo_de_linea %>
-                        </div-->
-
-                        <div class="col-4">
-                          <%= f.input :material %>
-                        </div>
-
-
-                        <!--Linea De Color-->
-                        <div class="col-4">
-                          <%= f.association :linea_de_color,
-                          collection: LineaDeColor.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Linea De Color'
-                          %>
-                        </div>
 
                         <div class="col-4">
                           <%= f.input :temperatura %>
                         </div>
 
-                        <!--Maquina-->
-                        <div class="col-4">
-                          <%= f.association :maquina,
-                          collection: Maquina.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Seleccione la Maquina'
-                          %>
-                        </div>
-
-
-                        <!--Pieza A Decorar-->
-                        <div class="col-4">
-                          <%= f.association :pieza_a_decorar,
-                          collection: PiezaADecorar.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Pieza A Decorar'
-
-                          %>
-                        </div>
 
 
 
 
-                        <div class="col-4">
-                          <br>
-                          <%= f.input :tiro %>
-                        </div>
 
-                        <div class="col-4">
-                          <br>
-                          <%= f.input :retiro %>
-                        </div>
-                            <div class="col-4">
 
-                              <%= f.input :observacion %>
+                            <div class="col-12">
+                              <label for="">Obsevaciones</label>
+                              <%= f.input :observacion, label: false %>
                             </div>
          </div>
       </div>
@@ -272,3 +255,5 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+</div>

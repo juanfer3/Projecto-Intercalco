@@ -6,10 +6,10 @@ class FormatoOp < ApplicationRecord
   belongs_to :linea_de_color
   belongs_to :linea_producto
 
-  has_many :ordenes_produccion, inverse_of: :formato_op, dependent: :destroy
+  has_many :ordenes_produccion,inverse_of: :formato_op, dependent: :destroy
   accepts_nested_attributes_for :ordenes_produccion, reject_if: :all_blank, allow_destroy: true
 
-  
+
 
 
 

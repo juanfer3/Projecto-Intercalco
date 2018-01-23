@@ -60,13 +60,10 @@
 
              <!--Montaje-->
              <div class="col-3">
-               <%= f.association :montaje,
-               collection: Montaje.all,
-               class:'',
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               include_blank: 'Seleccionar Montaje'
+               <label for="">Seleccione El Montaje</label> <br>
+               <%= f.select :montaje_id,
+               Montaje.all.map{|i|[i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
+
                %>
                <!--%=f.select :descripcion,Montaje.all.map {|i| [i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'} %-->
              </div>

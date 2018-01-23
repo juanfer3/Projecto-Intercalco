@@ -4,7 +4,7 @@ class MontajesController < ApplicationController
   # GET /montajes
   # GET /montajes.json
   def index
-    @montajes = Montaje.all
+    @montajes = Montaje.all.paginate(page: params[:page], per_page: 20)
   end
 
   def import__MP_from_excel
@@ -63,6 +63,7 @@ class MontajesController < ApplicationController
     @montaje.piezas.build
     @montaje.tintas_fop_tiro.build
     @montaje.tintas_fop_retiro.build
+    @montaje.formatos_op.build
 
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
@@ -149,6 +150,10 @@ class MontajesController < ApplicationController
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:_destroy, :tiro, :retiro,
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
-      tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado])
+      tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
+      formatos_op_attributes:[:user_id, :maquina_id, :montaje_id, :pieza_a_decorar_id,
+        :referencia_de_orden, :linea_de_color_id, :tipo_de_produccion, :material, :temperatura,
+        :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
+        :tiro, :retiro])
     end
 end

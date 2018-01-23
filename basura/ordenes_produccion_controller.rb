@@ -7,6 +7,8 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
+
+
   def buscar_fop
     @formatos_op = FormatoOp.joins(:cliente,:montaje).find(params[:id])
     render json: @formatos_op .to_json(:include => :cliente)
@@ -228,12 +230,12 @@ class OrdenesProduccionController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_produccion_params
-      params.require(:orden_produccion).permit(:formato_op_id, :numero_de_orden,
-        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
-        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
-        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
-        :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,
-        :habilitar_acabado, :estado_de_orden, :estado,
+      params.require(:orden_produccion).permit(:formato_op_id, :numero_de_orden, :mes_id,
+        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion, :material,
+        :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso, :cantidad_hoja,
+        :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla, :color, :corte_material,
+        :impresion, :troquel, :acabado, :habilitar_impresion, :habilitar_acabado, :estado_de_orden,
+        :estado,
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
         :diferencia, :numero_de_remision, :estado])

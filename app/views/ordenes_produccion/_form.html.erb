@@ -108,17 +108,7 @@
          <br>
          <br>
          <div class="my_card_pedidos_form">
-           <div class="col-6">
-             <%=
-               f.association :mes,
-               collection: Mes.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Seleccione el mes'
-             %>
-           </div>
+           
 
 
            <!--Fecha De pedido-->

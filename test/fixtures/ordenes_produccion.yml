@@ -3,7 +3,6 @@
 one:
   formato_op: one
   numero_de_orden: MyString
-  mes: one
   cantidad_programada: 1.5
   precio_unitario: 1.5
   valor_total: 1.5
@@ -12,8 +11,8 @@ one:
   temperatura: MyString
   tamanos_total: 1.5
   cavidad: 1.5
-  fecha: 2018-01-16
-  fecha_compromiso: 2018-01-16
+  fecha: 2018-01-23
+  fecha_compromiso: 2018-01-23
   cantidad_hoja: 1.5
   porcentaje_macula: 1.5
   tiro: false
@@ -33,7 +32,6 @@ one:
 two:
   formato_op: two
   numero_de_orden: MyString
-  mes: two
   cantidad_programada: 1.5
   precio_unitario: 1.5
   valor_total: 1.5
@@ -42,8 +40,8 @@ two:
   temperatura: MyString
   tamanos_total: 1.5
   cavidad: 1.5
-  fecha: 2018-01-16
-  fecha_compromiso: 2018-01-16
+  fecha: 2018-01-23
+  fecha_compromiso: 2018-01-23
   cantidad_hoja: 1.5
   porcentaje_macula: 1.5
   tiro: false

@@ -43,6 +43,7 @@ class FormatosOpController < ApplicationController
   def new
     @formato_op = FormatoOp.new
     @formato_op.ordenes_produccion.build
+    
   end
 
   # GET /formatos_op/1/edit
@@ -105,6 +106,9 @@ class FormatosOpController < ApplicationController
           :precio_unitario, :valor_total, :tipo_de_produccion, :material, :temperatura, :tamanos_total,
           :cavidad, :fecha, :fecha_compromiso, :cantidad_hoja, :porcentaje_macula, :tiro, :retiro,
           :observacion, :pantalla, :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,
-          :habilitar_acabado, :estado_de_orden, :estado])
+          :habilitar_acabado, :estado_de_orden, :estado,
+          compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
+            :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
+            :diferencia, :numero_de_remision, :estado]])
     end
 end

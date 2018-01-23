@@ -86,7 +86,7 @@
       <div class="modal-body">
         <div class="container">
           <h1>Instrucciones:</h1>
-          <h6> <strong>-</strong> Para importar Tintas Formulada asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Codigo, Linea De Color, Descripción, Malla.</strong>  </h6>
+          <h6> <strong>-</strong> Para importar Tintas Formulada asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Codigo, Linea De Color, Descripción, Pantone,Malla.</strong>  </h6>
           <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
             <%= form_tag import_tintas_formuladas_from_excel_path, multipart: true do %> <br>
             <%= file_field_tag :file %> <br> <br>

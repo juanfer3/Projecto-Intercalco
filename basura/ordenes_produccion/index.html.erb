@@ -2,21 +2,21 @@
 
 <h1>Ordenes Produccion</h1>
 
+
+
+
 <table class="table">
   <thead>
     <tr>
       <th>Numero de orden</th>
       <th>Cliente</th>
-      <th>Comercial</th>
+      <th>Descripción</th>
       <th>Maquina</th>
-      <th>Montaje</th>
       <th>Linea de color</th>
       <th>Mes</th>
-      <th>Tipo de produccion</th>
-      <th>Cantidad Programada</th>
-      <th>Fecha</th>
       <th>Fecha compromiso</th>
-      <th colspan="3"></th>
+      <th></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -24,16 +24,145 @@
     <% @ordenes_produccion.each do |orden_produccion| %>
       <tr>
         <td><%= orden_produccion.numero_de_orden %></td>
-        <td><%= orden_produccion.cliente.nombre%></td>
-        <td><%= orden_produccion.user.nombre %></td>
-        <td><%= orden_produccion.maquina.nombre%></td>
-        <td><%= orden_produccion.montaje.nombre %></td>
-        <td><%= orden_produccion.linea_de_color.nombre %></td>
-        <td><%= orden_produccion.mes.nombre%></td>
-        <td><%= orden_produccion.tipo_de_produccion %></td>
-        <td><%= orden_produccion.cantidad_programada %></td>
-        <td><%= orden_produccion.fecha %></td>
-        <td><%= orden_produccion.fecha_compromiso %></td>
+        <td><%= orden_produccion.formato_op.montaje.cliente.nombre%></td>
+        <td><%= orden_produccion.formato_op.montaje.nombre %></td>
+        <td><%= orden_produccion.formato_op.maquina.nombre%></td>
+        <td><%= orden_produccion.formato_op.linea_de_color.nombre %></td>
+        <!--td><%= orden_produccion.mes.nombre%></td-->
+
+        <%
+    			@date = Time.now.strftime("%Y/%m/%d")
+
+          @dat = Date.parse(@date)
+    		%>
+
+        <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                <%fech = fecha.fecha_de_compromiso
+
+                  fech.strftime("%Y/%m/%d")
+
+                %>
+              <% if   @dat == fech %>
+
+                <%@dates = fech%>
+
+              <%elsif fech.to_time < @dat%>
+
+                <%@dates = fech%>
+              <%else%>
+              <%
+          			@dates = fech
+
+          		%>
+                <% if fech < @dates %>
+                  <!-- true -->
+                  <%@dates = fech%>
+                <% end %>
+
+              <% end %>
+
+
+        <% end %>
+        <%
+          mes = @dates.strftime("%m")
+
+
+          case mes
+          when "01"%>
+            <td>Enero</td>
+          <%when "02"%>
+            <td>Febrero</td>
+          <%when "03"%>
+            <td>Marzo</td>
+          <%when "04"%>
+            <td>Abril</td>
+          <%when "05"%>
+            <td>Mayo</td>
+          <%when "06"%>
+            <td>Junio</td>
+          <%when "07"%>
+            <td>Julio</td>
+          <%when "08"%>
+            <td>Agosto</td>
+          <%when "09"%>
+            <td>Septiembre</td>
+          <%when "10"%>
+            <td>Octubre</td>
+          <%when "11"%>
+            <td>Noviembre</td>
+          <%when "12"%>
+            <td>Diciembre</td>
+          <% end %>
+
+
+
+
+
+
+
+
+
+
+
+        <td><%=@dates%> </td>
+        <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+                  <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
+                            <% if  orden_produccion.impresion == false%>
+
+                              <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                    <span class="badge badge-info">
+                                      Preprensa
+                                    </span>
+                                  </h6>
+
+                              <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
+
+                                <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                  <span class="badge badge-warning baged_acabado">
+                                    Acabado
+                                  </span>
+                                </h6>
+
+                              <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                    <span class="badge badge-warning">
+                                      Sin Programar
+                                    </span>
+                                  </h6>
+
+
+
+                              <% end %>
+
+
+
+                            <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
+
+                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                <span class="badge badge-warning baged_impresion">
+                                  Impresión
+                                </span>
+                              </h6>
+
+                            <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
+
+                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                <span class="badge badge-warning baged_acabado">
+                                  Acabado
+                                </span>
+                              </h6>
+
+
+
+                            <% end %>
+                    </td>
+        <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-dark"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(orden_produccion), remote: true %></td>
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_orden_produccion_path(orden_produccion) %></td>
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, orden_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -53,7 +182,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content col-12">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Información Detallada De Pedidos</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Información Ordenes De Producción</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

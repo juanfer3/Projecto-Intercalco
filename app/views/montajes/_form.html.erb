@@ -9,7 +9,7 @@
   <div class="card text-center">
 
      <div class="card-header">
-        <h1>Montajes</h1>
+        <h1>Referencia</h1>
         <div id="cliente"></div>
      </div>
 
@@ -172,6 +172,32 @@
     </div>
   </div>
 
+
+
+  <br>
+  <div class="card card-outline-secondary mb-3 text-center">
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="">
+              <table class="table">
+                 <thead>
+
+
+                 </thead>
+                 <tbody class='fields_piezas'>
+                    <%= f.simple_fields_for :formatos_op do |builder| %>
+                       <%= render "formato_op", :f => builder %>
+                    <% end %>
+                 </tbody>
+
+              </table>
+           </div>
+
+        </div>
+     </div>
+  </div>
 
   <!--/Datos De las Piezas---->
 

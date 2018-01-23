@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ordenes_produccion
   resources :compromisos_de_entrega
   resources :tintas_fop_retiro
   resources :tintas_fop_tiro
@@ -7,7 +8,6 @@ Rails.application.routes.draw do
   resources :tintas
   resources :linea_de_colores
   resources :mallas
-  resources :ordenes_produccion
   resources :formatos_op
   resources :formato_ops
   resources :meses
