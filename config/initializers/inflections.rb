@@ -107,5 +107,12 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'formula_tinta', 'formulas_tinta'
   inflect.irregular 'porcentaje', 'porcentajes'
   inflect.irregular 'montaje_tinta', 'montaje_tintas'
+  inflect.irregular 'compromiso_de_entrega', 'compromisos_de_entrega'
+  inflect.irregular 'fecha_de_compromiso', 'fechas_de_compromiso'
+  inflect.irregular 'fecha_despacho', 'fechas_despachos'
+  inflect.irregular 'cantidad_despacho', 'cantidades_despachos'
+  inflect.irregular 'precio_despacho', 'precios_despachos'
+  inflect.irregular 'diferencia', 'diferencias'
+  inflect.irregular 'precio', 'precios'
 
 end

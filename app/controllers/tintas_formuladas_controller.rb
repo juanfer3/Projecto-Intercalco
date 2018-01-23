@@ -4,7 +4,7 @@ class TintasFormuladasController < ApplicationController
   # GET /tintas_formuladas
   # GET /tintas_formuladas.json
   def index
-    @tintas_formuladas= TintaFormulada.all.paginate(page: params[:page], per_page: 20).order('descripcion')
+    @tintas_formuladas= TintaFormulada.all.paginate(page: params[:page], per_page: 20).order('codigo')
   end
 
   def import_tintas_formuladas_from_excel

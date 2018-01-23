@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orden produccion:</strong>
+  <%= @compromiso_de_entrega.orden_produccion %>
+</p>
+
+<p>
+  <strong>Fecha de compromiso:</strong>
+  <%= @compromiso_de_entrega.fecha_de_compromiso %>
+</p>
+
+<p>
+  <strong>Cantidad:</strong>
+  <%= @compromiso_de_entrega.cantidad %>
+</p>
+
+<p>
+  <strong>Precio:</strong>
+  <%= @compromiso_de_entrega.precio %>
+</p>
+
+<p>
+  <strong>Fecha despacho:</strong>
+  <%= @compromiso_de_entrega.fecha_despacho %>
+</p>
+
+<p>
+  <strong>Cantidad despacho:</strong>
+  <%= @compromiso_de_entrega.cantidad_despacho %>
+</p>
+
+<p>
+  <strong>Precio despacho:</strong>
+  <%= @compromiso_de_entrega.precio_despacho %>
+</p>
+
+<p>
+  <strong>Diferencia:</strong>
+  <%= @compromiso_de_entrega.diferencia %>
+</p>
+
+<p>
+  <strong>Numero de remision:</strong>
+  <%= @compromiso_de_entrega.numero_de_remision %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @compromiso_de_entrega.estado %>
+</p>
+
+<%= link_to 'Edit', edit_compromiso_de_entrega_path(@compromiso_de_entrega) %> |
+<%= link_to 'Back', compromisos_de_entrega_path %>

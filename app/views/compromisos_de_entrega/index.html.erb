@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Compromisos De Entrega</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Orden produccion</th>
+      <th>Fecha de compromiso</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Fecha despacho</th>
+      <th>Cantidad despacho</th>
+      <th>Precio despacho</th>
+      <th>Diferencia</th>
+      <th>Numero de remision</th>
+      <th>Estado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compromisos_de_entrega.each do |compromiso_de_entrega| %>
+      <tr>
+        <td><%= compromiso_de_entrega.orden_produccion %></td>
+        <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
+        <td><%= compromiso_de_entrega.cantidad %></td>
+        <td><%= compromiso_de_entrega.precio %></td>
+        <td><%= compromiso_de_entrega.fecha_despacho %></td>
+        <td><%= compromiso_de_entrega.cantidad_despacho %></td>
+        <td><%= compromiso_de_entrega.precio_despacho %></td>
+        <td><%= compromiso_de_entrega.diferencia %></td>
+        <td><%= compromiso_de_entrega.numero_de_remision %></td>
+        <td><%= compromiso_de_entrega.estado %></td>
+        <td><%= link_to 'Show', compromiso_de_entrega %></td>
+        <td><%= link_to 'Edit', edit_compromiso_de_entrega_path(compromiso_de_entrega) %></td>
+        <td><%= link_to 'Destroy', compromiso_de_entrega, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Compromiso De Entrega', new_compromiso_de_entrega_path %>

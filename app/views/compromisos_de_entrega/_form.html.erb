@@ -1,0 +1,20 @@
+<%= simple_form_for(@compromiso_de_entrega) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :orden_produccion %>
+    <%= f.input :fecha_de_compromiso %>
+    <%= f.input :cantidad %>
+    <%= f.input :precio %>
+    <%= f.input :fecha_despacho %>
+    <%= f.input :cantidad_despacho %>
+    <%= f.input :precio_despacho %>
+    <%= f.input :diferencia %>
+    <%= f.input :numero_de_remision %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

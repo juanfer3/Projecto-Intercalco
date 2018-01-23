@@ -108,7 +108,7 @@
          <br>
          <br>
          <div class="my_card_pedidos_form">
-           <div class="col-4">
+           <div class="col-6">
              <%=
                f.association :mes,
                collection: Mes.all,
@@ -122,7 +122,7 @@
 
 
            <!--Fecha De pedido-->
-           <div class="col-4">
+           <div class="col-6">
              <label for="">Fecha De La Orden</label>
              <div class="input-group" >
                <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
@@ -132,14 +132,6 @@
              <p id="campo_fecha_pedido"></p>
            </div>
 
-           <div class="col-4">
-             <label for="">Fecha De Compromiso</label>
-             <div class="input-group" >
-               <%= f.text_field :fecha_compromiso , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
-               <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
-             </div>
-             <p id="campo_fecha_pedido"></p>
-           </div>
 
 
 
@@ -151,6 +143,37 @@
 
 <br>
 
+
+<br>
+  <div class="card">
+    <div class="card-header">
+      <div class="my_card_contactos_form">
+        <div >
+          <h3>Fechas De Entrega</h3>
+        </div>
+        <div >
+          <%= link_to_add_compromisos('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span>Agregar <i class="ion-calendar"></i></span></button>'.html_safe, f, :compromisos_de_entrega, class: '') %>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="container">
+
+      <table class="table">
+        <tbody class='fields_compromisos'>
+          <%=f.fields_for :compromisos_de_entrega do |builder|%>
+
+             <%= render 'compromiso_de_entrega', :f => builder%>
+
+          <%end%>
+        </tbody>
+        </table>
+
+    </div>
+</div>
+
+<br>
 <div class="card card-outline-secondary mb-3 text-center">
    <div class="card-block">
       <div class="container">

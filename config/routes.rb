@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :compromisos_de_entrega
   resources :tintas_fop_retiro
   resources :tintas_fop_tiro
   resources :formulas_tinta
