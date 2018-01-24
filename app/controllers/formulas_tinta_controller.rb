@@ -20,7 +20,7 @@ class FormulasTintaController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to formulas_tinta_path, notice: 'Tintas_Bases Importados' }
+          format.js { redirect_to formulas_tinta_path, notice: 'Tintas_Bases Importados' }
           format.json { render :show, status: :created, location: @formula_tinta }
         else
           @errores = errores_o_true

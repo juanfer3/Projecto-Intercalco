@@ -7,6 +7,13 @@ class MontajesController < ApplicationController
     @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo")
   end
 
+  def busquedaTintasMontaje
+    #code
+    @montaje = Montaje.find(params[:id])
+    @montajes = Montaje.joins(:tintas_fop_tiro, :tintas_fop_retiro).where("montaje_id = '#{@montaje.id}'")
+    render json: @montaje.to_json(:include => [:tintas_fop_tiro, :tintas_fop_retiro])
+  end
+
   def buscar_fop
     @montaje = Montaje.find(params[:id])
     @formato_op = FormatoOp.joins(
@@ -64,6 +71,8 @@ class MontajesController < ApplicationController
       format.js
     end
   end
+
+  
 
   # GET /montajes/new
   def new

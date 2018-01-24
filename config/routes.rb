@@ -106,4 +106,8 @@ Rails.application.routes.draw do
 
   get 'busquedaTintas', to: 'formulas_tinta#busquedaTintas', as: :busquedaTintas
 
+  get 'busquedaTintasMontaje/:id', to: 'montajes#busquedaTintasMontaje', as: :busquedaTintasMontaje
+
+  get 'select_buscar_montaje/:id', to: 'ordenes_produccion#select_buscar_montaje', as: :select_buscar_montaje
+
 end

@@ -7,6 +7,14 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
+
+  def select_buscar_montaje
+    @montaje = Montaje.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def buscar_fop
     @formatos_op = FormatoOp.joins(:cliente,:montaje).find(params[:id])
     render json: @formatos_op .to_json(:include => :cliente)
@@ -233,7 +241,7 @@ class OrdenesProduccionController < ApplicationController
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,
-        :habilitar_acabado, :estado_de_orden, :estado,
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
         :diferencia, :numero_de_remision, :estado])

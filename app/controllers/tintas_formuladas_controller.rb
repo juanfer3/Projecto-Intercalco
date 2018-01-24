@@ -14,11 +14,11 @@ class TintasFormuladasController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to tintas_formuladas_path, notice: 'Tintas_Bases Importados' }
+          format.js { redirect_to tintas_formuladas_path, notice: 'Tintas_Bases Importados' }
           format.json { render :show, status: :created, location: @tinta }
         else
           @errores = errores_o_true
-          format.html { render tintas_formuladas_path}
+          format.js { render tintas_formuladas_path}
         end
     end
     rescue Exception => e

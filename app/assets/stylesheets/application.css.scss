@@ -365,3 +365,21 @@ Contenedor Btn Procesos
 -webkit-flex-flow: row wrap;
 
 }
+
+.my_card_produccion_tintas{
+
+  //background:green;
+  display: flex;
+  justify-content: center ;
+  flex-wrap:  wrap;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+-webkit-flex-flow: row wrap;
+
+
+
+}

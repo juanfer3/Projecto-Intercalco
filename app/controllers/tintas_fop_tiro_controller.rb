@@ -7,6 +7,8 @@ class TintasFopTiroController < ApplicationController
     @tintas_fop_tiro = TintaFopTiro.all
   end
 
+  
+
   # GET /tintas_fop_tiro/1
   # GET /tintas_fop_tiro/1.json
   def show

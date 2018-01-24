@@ -14,7 +14,7 @@
 
 <div class="col-6">
   <label for="">Selección De Referencia</label>
-  <%=f.select :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: 'busqueda_fop'} %>
+  <%=f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"} %>
 
 </div>
 
@@ -141,37 +141,43 @@
          <br>
          <div class="my_card_pedidos_form">
 
-                       <div class="col-3">
+                       <div class="col-12">
                          <label for="">Material A Imprimir</label>
                          <input type="text" name=""  class="form-control op_montaje" id="op_material" value="" disabled>
+                       </div>
+                       <div class="col-12">
+                         <br>
                        </div>
 
                        <div class="col-2">
                          <%= f.input :cantidad_hoja %>
                        </div>
 
-                        <div class="col-2">
-                          <label for="">Cantidad </label>
-                          <%= f.input :cantidad_programada, label: false %>
-                        </div>
+                       <div class="col-2">
+                         <label for="">Tamaños hojas </label>
+                         <%= f.input :tamano_hoja, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Tamaños por hojas </label>
+                         <%= f.input :tamano_por_hojas, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Tamaño de corte </label>
+                         <%= f.input :tamano_de_corte, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Tamaños Totales</label>
+                         <%= f.input :tamanos_total , label: false%>
+                       </div>
 
-                        <div class="col-2">
-                          <%= f.input :precio_unitario %>
-                        </div>
-
-                        <div class="col-2">
-                          <%= f.input :valor_total %>
-                        </div>
+                       <div class="col-2">
+                         <%= f.input :cavidad %>
+                       </div>
 
 
-                        <div class="col-2">
-                          <label for="">Tamaños Totales</label>
-                          <%= f.input :tamanos_total , label: false%>
-                        </div>
 
-                        <div class="col-2">
-                          <%= f.input :cavidad %>
-                        </div>
+
+
 
 
 
@@ -193,25 +199,25 @@
 
 
 
-
-                        <div class="col-4">
-                          <%= f.input :temperatura %>
-                        </div>
-
-
+             <div class="col-12">
+               <label for="">Obsevaciones</label>
+               <%= f.input :observacion, label: false %>
+             </div>
 
 
 
 
-
-                            <div class="col-12">
-                              <label for="">Obsevaciones</label>
-                              <%= f.input :observacion, label: false %>
-                            </div>
          </div>
       </div>
    </div>
 </div>
+
+
+<div id="AgregarTintaTiro">
+
+</div>
+<br>
+
 
 
   <div class="form-actions">

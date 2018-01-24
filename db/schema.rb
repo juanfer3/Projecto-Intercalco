@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180123202657) do
+ActiveRecord::Schema.define(version: 20180124142202) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -247,13 +247,16 @@ ActiveRecord::Schema.define(version: 20180123202657) do
     t.boolean "impresion"
     t.boolean "troquel"
     t.boolean "acabado"
-    t.boolean "habilitar_impresion"
-    t.boolean "habilitar_acabado"
+    t.boolean "habilitar_impresion", default: true
+    t.boolean "habilitar_acabado", default: true
     t.string "estado_de_orden"
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "montaje_id"
+    t.float "tamano_hoja"
+    t.float "tamano_por_hojas"
+    t.float "tamano_de_corte"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 
