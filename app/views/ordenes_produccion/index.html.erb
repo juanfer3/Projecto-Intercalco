@@ -26,7 +26,7 @@
         <td><%= orden_produccion.numero_de_orden %></td>
         <td><%= orden_produccion.montaje.cliente.nombre%></td>
         <td><%= orden_produccion.montaje.nombre %></td>
-        
+
         <% orden_produccion.montaje.formatos_op.each do |formato|%>
           <td><%=formato.maquina.nombre%></td>
           <td><%=formato.linea_de_color.nombre%></td>

@@ -194,12 +194,14 @@ class Montaje < ApplicationRecord
                             end
                           end
 
-                          formato_op = FormatoOp.new( referencia_de_orden: spreadsheet.row(i)[0],
-                           montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
-
-
-                    Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)
-
+                    formato_op = FormatoOp.new(montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
+                    if formato_op.save
+                      puts "*******************Insercion De Formatos*********************"
+                    end
+                    piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)
+                    if piezas.save
+                      puts "*******************Insercion De piezas*********************"
+                    end
               end
 
       else

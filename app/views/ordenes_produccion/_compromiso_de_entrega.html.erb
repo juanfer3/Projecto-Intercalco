@@ -3,11 +3,11 @@
     <div class="">
     <label for="">Fecha De Compromiso</label>
     <div class="input-group" >
-      <%= f.text_field :fecha_de_compromiso , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+      <%= f.text_field :fecha_de_compromiso , class: "form-control ", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
       <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
     </div>
   </div></td>
-  <td><%= f.input :cantidad %></td>
+  <td><%= f.input :cantidad, class: "" %></td>
   <td><label for=""></label> <br>
   <%= f.input_field :_destroy, as: :hidden %>
   <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_compromisos' %></td>

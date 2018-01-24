@@ -115,4 +115,9 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'diferencia', 'diferencias'
   inflect.irregular 'precio', 'precios'
 
+  inflect.irregular 'tamano_hoja', 'tamanos_hojas'
+  inflect.irregular 'tamano_por_hojas', 'tamano_por_hojas'
+  inflect.irregular 'tamano_de_corte', 'tamanos_de_corte'
+  inflect.irregular 'cantidad_hoja', 'cantidades_hojas'
+
 end

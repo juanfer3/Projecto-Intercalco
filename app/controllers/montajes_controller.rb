@@ -4,7 +4,7 @@ class MontajesController < ApplicationController
   # GET /montajes
   # GET /montajes.json
   def index
-    @montajes = Montaje.all.paginate(page: params[:page], per_page: 20)
+    @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo")
   end
 
   def buscar_fop
@@ -22,8 +22,8 @@ class MontajesController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to montajes_path, notice: 'Montajes y Piezas Importados Importados' }
-          format.json { render :show, status: :created, location: @cliente }
+          format.js { redirect_to montajes_path, notice: 'Montajes y Piezas Importados Importados' }
+          format.json { render :show, status: :created, location: @montaje }
         else
           @errores = errores_o_true
           format.html { render 'vista_subir_excel'}

@@ -24,8 +24,8 @@ class CreateOrdenesProduccion < ActiveRecord::Migration[5.1]
       t.boolean :impresion
       t.boolean :troquel
       t.boolean :acabado
-      t.boolean :habilitar_impresion
-      t.boolean :habilitar_acabado
+      t.boolean :habilitar_impresion, default: true
+      t.boolean :habilitar_acabado, default: true
       t.string :estado_de_orden
       t.boolean :estado
 
