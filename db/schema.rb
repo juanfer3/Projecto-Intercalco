@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124142202) do
+ActiveRecord::Schema.define(version: 20180124190712) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -204,6 +204,24 @@ ActiveRecord::Schema.define(version: 20180124142202) do
     t.boolean "tiro"
     t.boolean "retiro"
     t.integer "user_id"
+    t.boolean "precorte"
+    t.boolean "pretroquelado"
+    t.boolean "laminado"
+    t.boolean "troquelado"
+    t.boolean "descalerillado"
+    t.boolean "plotter"
+    t.boolean "doming"
+    t.boolean "descolille"
+    t.boolean "doblez_calor"
+    t.boolean "termoformado"
+    t.boolean "estampado_al_calor"
+    t.boolean "refilado"
+    t.boolean "perforado"
+    t.boolean "ojalete"
+    t.boolean "hilo"
+    t.boolean "pegado"
+    t.boolean "ensamblado"
+    t.string "otro"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
     t.index ["user_id"], name: "index_montajes_on_user_id"
   end
@@ -254,9 +272,9 @@ ActiveRecord::Schema.define(version: 20180124142202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "montaje_id"
-    t.float "tamano_hoja"
     t.float "tamano_por_hojas"
-    t.float "tamano_de_corte"
+    t.string "tamano_hoja"
+    t.string "tamano_de_corte"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 

@@ -72,7 +72,7 @@ class MontajesController < ApplicationController
     end
   end
 
-  
+
 
   # GET /montajes/new
   def new
@@ -171,12 +171,15 @@ class MontajesController < ApplicationController
       end
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
       params.require(:montaje).permit(:cliente_id, :user_id,:nombre, :tamano, :dimension,
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
-         :_destroy, :tiro, :retiro,
+         :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
+         :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
+         :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado, :otro,
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
       tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],

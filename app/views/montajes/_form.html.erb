@@ -243,6 +243,163 @@
      </div>
   </div>
 
+
+  <div class="card card-outline-secondary mb-3 text-center">
+
+
+
+
+
+    <div class="card-header">
+
+      <div class="col-12">
+        <div class="my_card_contactos_form">
+          <div >
+            <h3>Acabados</h3>
+          </div>
+          <div >
+
+          <button type="button" id="pruebaSelect" data-toggle="modal" data-target="#modalExcelMP" class="btn btn-outline-primary"><span>Otros <i class="ion-calendar"></i></span></button>
+          </div>
+      </div>
+      </div>
+
+    </div>
+     <div class="card-block">
+        <div class="container">
+          <br>
+          <br>
+          <div class="my_card_pedidos_form">
+
+                       <div class="col-2">
+                          <%= f.input :precorte , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :pretroquelado , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :laminado , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :troquelado , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :descalerillado , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :plotter , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+
+                       <div class="col-2">
+                          <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
+                       </div>
+          </div>
+
+
+        </div>
+     </div>
+  </div>
+
+
+
+  <div class="modal fade fullscreen-modal " id="modalExcelMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content col-12">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Selección De Acabados</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="card-block">
+               <div class="container">
+                 <br>
+                 <br>
+                 <div class="my_card_pedidos_form">
+
+                              <div class="col-2">
+                                 <%= f.input :descolille, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :doblez_calor, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :termoformado, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-3">
+                                 <%= f.input :estampado_al_calor, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :refilado, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :perforado, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :ojalete, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :hilo, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :pegado, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-2">
+                                 <%= f.input :ensamblado, class: "myCheckBoxTiro", id: ""%>
+                              </div>
+
+                              <div class="col-12">
+                                 <%= f.select :otro,  {}, {  class: 'js-example-tokenizer col-12  form-control','multiple' => "multiple" }%>
+                              </div>
+
+                              <div class="">
+                                <%= f.input :otro, id:"otro_montaje"%>
+                              </div>
+
+                              <div class="col-12">
+                                <select id="value_otro" class="form-control js-example-tokenizer" multiple="multiple" id=otros>
+                                  <option selected="selected">orange</option>
+                                  <option>white</option>
+                                  <option selected="selected">purple</option>
+                                </select>
+                              </div>
+
+
+
+
+                 </div>
+
+               </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="form-actions">
     <%= f.button :submit %>
   </div>

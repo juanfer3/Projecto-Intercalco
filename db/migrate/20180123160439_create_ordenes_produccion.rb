@@ -18,12 +18,12 @@ class CreateOrdenesProduccion < ActiveRecord::Migration[5.1]
       t.boolean :tiro
       t.boolean :retiro
       t.string :observacion
-      t.boolean :pantalla
-      t.boolean :color
-      t.boolean :corte_material
-      t.boolean :impresion
-      t.boolean :troquel
-      t.boolean :acabado
+      t.boolean :pantalla, default: false
+      t.boolean :color, default: false
+      t.boolean :corte_material, default: false
+      t.boolean :impresion, default: false
+      t.boolean :troquel, default: false
+      t.boolean :acabado, default: false
       t.boolean :habilitar_impresion, default: true
       t.boolean :habilitar_acabado, default: true
       t.string :estado_de_orden

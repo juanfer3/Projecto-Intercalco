@@ -120,4 +120,23 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'tamano_de_corte', 'tamanos_de_corte'
   inflect.irregular 'cantidad_hoja', 'cantidades_hojas'
 
+  inflect.irregular 'precorte', 'precortes'
+  inflect.irregular 'pretroquelado', 'pretroquelados'
+  inflect.irregular 'laminado', 'laminados'
+  inflect.irregular 'troquelado', 'troquelados'
+  inflect.irregular 'descalerillado', 'descalerillados'
+  inflect.irregular 'plotter', 'plotters'
+  inflect.irregular 'doming', 'domings'
+  inflect.irregular 'descolille', 'descolilles'
+  inflect.irregular 'doblez_calor', 'dobleces_calor'
+  inflect.irregular 'termoformado', 'termoformados'
+  inflect.irregular 'estampado_al_calor', 'estampados_al_calor'
+  inflect.irregular 'refilado', 'refilados'
+  inflect.irregular 'perforado', 'perforados'
+  inflect.irregular 'ojalete', 'ojaletes'
+  inflect.irregular 'hilo', 'hilos'
+  inflect.irregular 'pegado', 'pegados'
+  inflect.irregular 'ensamblado', 'ensamblados'
+  inflect.irregular 'otro', 'otros'
+
 end

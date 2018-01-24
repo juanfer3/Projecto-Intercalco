@@ -36,6 +36,28 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+
+
+
+  $(".js-example-tokenizer").select2({
+      tags: true,
+      tokenSeparators: [',', ' ']
+
+
+
+  })
+
+  $('#value_otro').on("select2:select", function (e) {
+    var valores = e.params.data.id;
+    var contenido_otro = $('#montaje_otro').val()
+    $("#montaje_otro").val(contenido_otro+", "+valores)
+    toastr.info(valores)
+  })
+
+
+
+
 /*
 
   $.ajax: {
