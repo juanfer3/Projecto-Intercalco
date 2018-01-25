@@ -1,9 +1,8 @@
-$("#register-button").addClass(" ion-checkmark-round ")
-$("#register-button").addClass("btn-outline-success")
-$("#iconoSubmit").removeClass("ion-paper-airplane ")
-$("#register-button").removeClass("btn-outline-info")
+
 
 <%if @compromiso_de_entrega.save%>
-    toastr.success(":)Guardado")
+    toastr.success("Registro Gurdado")
 
 <%end%>
+
+$('#contenidoModal').html('<%= j render 'info_pedido'%>')

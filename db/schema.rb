@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124190712) do
+ActiveRecord::Schema.define(version: 20180125192149) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20180124190712) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "enviado"
+    t.boolean "cumplido"
     t.index ["orden_produccion_id"], name: "index_compromisos_de_entrega_on_orden_produccion_id"
   end
 

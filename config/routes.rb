@@ -110,4 +110,6 @@ Rails.application.routes.draw do
 
   get 'select_buscar_montaje/:id', to: 'ordenes_produccion#select_buscar_montaje', as: :select_buscar_montaje
 
+  get 'deshacer_envio/:id', to: 'compromisos_de_entrega#deshacer_envio', as: :deshacer_envio
+
 end

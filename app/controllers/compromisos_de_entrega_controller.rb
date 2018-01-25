@@ -7,6 +7,18 @@ class CompromisosDeEntregaController < ApplicationController
     @compromisos_de_entrega = CompromisoDeEntrega.all
   end
 
+  def deshacer_envio
+    @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
+    respond_to do |format|
+        @compromiso_de_entrega.update(enviado: false,
+          fecha_despacho: "", cantidad_despacho:0.0, numero_de_remision:"")
+        format.js {flash[:notice] = "" }
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /compromisos_de_entrega/1
   # GET /compromisos_de_entrega/1.json
   def show
@@ -76,6 +88,6 @@ class CompromisosDeEntregaController < ApplicationController
     def compromiso_de_entrega_params
       params.require(:compromiso_de_entrega).permit(:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado)
+        :diferencia, :numero_de_remision,:enviado, :cumplido,:estado)
     end
 end

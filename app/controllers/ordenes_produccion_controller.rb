@@ -41,7 +41,6 @@ class OrdenesProduccionController < ApplicationController
 
   def cambiar_habilitar_acabado
     @orden_produccion = OrdenProduccion.find(params[:id])
-
     respond_to do |format|
       if@orden_produccion.habilitar_acabado == false
         @orden_produccion.update(habilitar_acabado: true, acabado:false)

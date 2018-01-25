@@ -35,6 +35,9 @@
 
 $(document).on('turbolinks:load', function() {
 
+
+  $("#compromiso_de_entrega_enviado").attr('checked',true);
+
   $("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").focusout(function(){
 
       var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
