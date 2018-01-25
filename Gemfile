@@ -64,6 +64,7 @@ gem "select2-rails"
 
 gem 'ionicons-rails'
 
+
 gem 'popper_js', '~> 1.12.3'
 
 gem "jquery-ui-rails"

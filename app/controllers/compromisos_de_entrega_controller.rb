@@ -19,6 +19,9 @@ class CompromisosDeEntregaController < ApplicationController
 
   # GET /compromisos_de_entrega/1/edit
   def edit
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /compromisos_de_entrega
@@ -44,9 +47,11 @@ class CompromisosDeEntregaController < ApplicationController
       if @compromiso_de_entrega.update(compromiso_de_entrega_params)
         format.html { redirect_to @compromiso_de_entrega, notice: 'Compromiso de entrega was successfully updated.' }
         format.json { render :show, status: :ok, location: @compromiso_de_entrega }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @compromiso_de_entrega.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

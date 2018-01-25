@@ -1,10 +1,6 @@
-<div class="offset-md-10">
-  <%= link_to '<button class="btn btn-outline-info"><span>Produccion Repetida <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path %>
-</div>
-
-<br>
-<%= simple_form_for(@formato_op) do |f| %>
+<%= simple_form_for(@montaje) do |f| %>
   <%= f.error_notification %>
+
 
 
 
@@ -13,8 +9,8 @@
   <div class="card text-center">
 
      <div class="card-header">
-        <h1>Ordenes De Producción</h1>
-
+        <h1>Referencia</h1>
+        <div id="cliente"></div>
      </div>
 
      <!--Card Block-->
@@ -25,55 +21,80 @@
            <div class="my_card_pedidos_form">
 
 
-             <!--Numero de Orden-->
-             <div class="col-3">
-               <%= f.input :referencia_de_orden %>
-             </div>
+              <!--Cliente-->
+              <div class="col-4">
+                <%=
+                  f.association :cliente,
+                  collection: Cliente.all,
+                  label_method: :nombre,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-4 my_cliente form-control',
+                  include_blank: 'Seleccione el Cliente'
+                %>
+                <p id="campo_cliente"></p>
+              </div>
+
+              <div class="col-4">
+                <%=
+                  f.association :user,
+                  collection: User.all,
+                  label_method: :nombre,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-4 my_cliente form-control',
+                  include_blank: 'Seleccione el Vendedor'
+                %>
+                <p id="campo_user"></p>
+              </div>
 
 
-             <!--Vendedor-->
-             <div class="col-3">
-               <label for="">Vendedor</label> <br>
-               <%= f.association :user,
-               collection: User.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               label:false,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Seleccione al Vendedor'
-               %>
-             </div>
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :codigo %>
+                <p id="campo_codigo"></p>
+              </div>
 
-             <!--Linea de Producto-->
-             <div class="col-3">
-               <%= f.association :linea_producto,
-               collection: LineaProducto.all,
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               class:'col-4 my_cliente form-control',
-               include_blank: 'Linea Producto'
-               %>
+              <!--Codigo-->
+              <div class="col-4">
+                <label for="">Descripción</label>
+                <%= f.input :nombre, label:false %>
+                <p id="campo_nombre"></p>
+              </div>
+              <!--Codigo-->
 
-             </div>
+              <!--Codigo-->
 
-
-             <!--Montaje-->
-             <div class="col-3">
-               <%= f.association :montaje,
-               collection: Montaje.all,
-               class:'',
-               label_method: :nombre,
-               value_method: :id,
-               as: :select,
-               include_blank: 'Seleccionar Montaje'
-               %>
-               <!--%=f.select :descripcion,Montaje.all.map {|i| [i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'} %-->
-             </div>
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :dimension %>
+                <p id="campo_dimension"></p>
+              </div>
 
 
 
+
+
+              <div class="col-4" id="tiro_mont">
+                <br>
+                <%= f.input :tiro , class: "myCheckBoxTiro", id: "myCheckBoxTiro"%>
+              </div>
+
+              <div class="col-4">
+                <br>
+                <label for="">Tinta Retiro</label>
+                <%= f.input :retiro, label:false %>
+              </div>
+
+
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :modo_de_empaque %>
+              </div>
+              <!--Codigo-->
+              <div class="col-4">
+                <%= f.input :observacion %>
+              </div>
 
            </div>
            <!--/Container con Flexbox-->
@@ -86,85 +107,334 @@
   <!--/Datos Generales del Pedido---->
   <br>
 
-<br>
+
+
+
+  <!--Depachos-->
+
+
+
+  <div class="" id="div_tintas_tiro">
+
+
+    <div class="container_add_entregas col-12">
+       <div class="col-4">
+          <h1>Tintas De Tiro</h1>
+       </div>
+       <div class="col-3 offset-md-6">
+          <%= link_to_add_tintas_tiro('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_tiro, class: '') %>
+       </div>
+    </div>
+    <br>
+
+    <div class="card card-outline-secondary mb-3 text-center">
+       <div class="card-block">
+          <div class="container">
+             <br>
+             <br>
+             <div class="container">
+
+               <table class="table">
+                 <tbody class='fields_tintas_tiro'>
+                   <%=f.fields_for :tintas_fop_tiro do |contc|%>
+
+                      <%= render 'tinta_fop_tiro', f:contc%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+
+
+  <div class="" id="div_tintas_retiro">
+
+
+
+    <div class="container_add_entregas col-12">
+       <div class="col-4">
+          <h1>Tintas Retiro</h1>
+       </div>
+       <div class="col-3 offset-md-6">
+          <%= link_to_add_tintas_retiro('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_retiro, class: '') %>
+       </div>
+    </div>
+    <br>
+
+    <div class="card card-outline-secondary mb-3 text-center">
+       <div class="card-block">
+          <div class="container">
+             <br>
+             <br>
+             <div class="container">
+
+               <table class="table">
+                 <tbody class='fields_tintas_retiro'>
+                   <%=f.fields_for :tintas_fop_retiro do |contc|%>
+
+                      <%= render 'tinta_fop_retiro', f:contc%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
+
+
+
+  <br>
+
+  <div class="card card-outline-secondary mb-3 text-center">
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="">
+                    <%= f.simple_fields_for :formatos_op do |builder| %>
+                       <%= render "formato_op", :f => builder %>
+                    <% end %>
+           </div>
+        </div>
+     </div>
+  </div>
 
 
 
 
-<div class="card card-outline-secondary mb-3 text-center">
-   <div class="card-block">
-      <div class="container">
-         <br>
-         <br>
-         <div class="my_card_pedidos_form">
+  <!--/Datos De las Piezas---->
 
-
-                        <!--div class="col-4">
-                          <%= f.input :tipo_de_linea %>
-                        </div-->
-
-                        <div class="col-4">
-                          <%= f.input :material %>
-                        </div>
-
-
-                        <!--Linea De Color-->
-                        <div class="col-4">
-                          <%= f.association :linea_de_color,
-                          collection: LineaDeColor.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Linea De Color'
-                          %>
-                        </div>
-
-
-
-                        <!--Maquina-->
-                        <div class="col-4">
-                          <%= f.association :maquina,
-                          collection: Maquina.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Seleccione la Maquina'
-                          %>
-                        </div>
-
-
-                        <!--Pieza A Decorar-->
-                        <div class="col-4">
-                          <%= f.association :pieza_a_decorar,
-                          collection: PiezaADecorar.all,
-                          label_method: :nombre,
-                          value_method: :id,
-                          as: :select,
-                          class:'col-4 my_cliente form-control',
-                          include_blank: 'Pieza A Decorar'
-
-                          %>
-                        </div>
-
-
-
-
-
-                            <div class="col-4">
-
-                              <%= f.input :observacion %>
-                            </div>
-         </div>
-      </div>
-   </div>
+  <div class="container_add_entregas col-12">
+     <div class="col-4">
+        <h1>Piezas</h1>
+     </div>
+     <div class="col-3 offset-md-6">
+        <%= link_to_add_piezas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :piezas, class: '') %>
+     </div>
 </div>
 
+
+  <br>
+  <div class="card card-outline-secondary mb-3 text-center">
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="">
+              <table class="table">
+                 <thead>
+
+
+                 </thead>
+                 <tbody class='fields_piezas'>
+                    <%= f.simple_fields_for :piezas do |builder| %>
+                       <%= render "pieza", :f => builder %>
+                    <% end %>
+                 </tbody>
+
+              </table>
+           </div>
+
+        </div>
+     </div>
+  </div>
+
+
+  <div class="card card-outline-secondary mb-3 text-center">
+
+
+
+
+
+    <div class="card-header">
+
+      <div class="col-12">
+        <div class="my_card_contactos_form">
+          <div >
+            <h3>Acabados</h3>
+          </div>
+          <div >
+
+          <button type="button" id="pruebaSelect" data-toggle="modal" data-target="#modalExcelMP" class="btn btn-outline-primary"><span>Otros <i class="ion-calendar"></i></span></button>
+          </div>
+      </div>
+      </div>
+
+    </div>
+     <div class="card-block">
+        <div class="container">
+          <br>
+          <br>
+          <div class="my_card_pedidos_form" id="contenedorEstado">
+
+
+
+
+                       <div class="col-2" id="origenPrecorte">
+                         <div class="" id="contenedorPrecorte">
+                           <%= f.input :precorte , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenPretroquelado">
+                         <div class="" id="contenedorPretroquelado">
+                           <%= f.input :pretroquelado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenLaminado">
+                         <div class="" id="contenedorLaminado">
+                           <%= f.input :laminado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenTroquelado">
+                         <div class="" id="contenedorTorquelado">
+                           <%= f.input :troquelado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenDescalerillado">
+                         <div class="" id="contenedorDescalerillado">
+                           <%= f.input :descalerillado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenPlotter">
+                         <div class="" id="contenedorPlotter">
+                           <%= f.input :plotter , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+
+                       <div class="col-2" id="origenDoming">
+                         <div class="" id="contenedorDoming">
+                           <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
+                         </div>
+                       </div>
+          </div>
+
+
+        </div>
+     </div>
+  </div>
+
+
+
+  <div class="modal fade fullscreen-modal " id="modalExcelMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content col-12">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Selección De Acabados</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="card-block">
+               <div class="container">
+                 <br>
+                 <br>
+                 <div class="my_card_pedidos_form" id="EstadosFalse">
+
+                              <div class="col-2" id="origenDescolille">
+                                <div class="" id="contenedorDescolille">
+                                  <%= f.input :descolille, class: "myCheckBoxTiro", id: "descolille"%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenDoblez_calor">
+                                <div class="" id="contenedorDoblez_calor">
+                                  <%= f.input :doblez_calor, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenTermoformado">
+                                <div class="" id="contenedorTermoformado">
+                                  <%= f.input :termoformado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+
+                              </div>
+
+                              <div class="col-3" id="origenEstampado_al_calor">
+                                <div class="" id="contenedorEstampado_al_calor">
+                                  <%= f.input :estampado_al_calor, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenRefilado">
+                                <div class="" id="contenedorRefilado">
+                                  <%= f.input :refilado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenPerforado">
+                                <div class="" id="contenedorPerforado">
+                                  <%= f.input :perforado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenOjalete">
+                                <div class="" id="contenedorOjalete">
+                                  <%= f.input :ojalete, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenHilo">
+                                <div class="" id="contenedorHilo">
+                                  <%= f.input :hilo, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenPegado">
+                                <div class="" id="contenedorPegado">
+                                  <%= f.input :pegado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+                              <div class="col-2" id="origenEnsamblado">
+                                <div class="" id="contenedorEnsamblado">
+                                  <%= f.input :ensamblado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+                              </div>
+
+
+
+
+
+
+
+
+
+
+                 </div>
+                 <div class="col-6 offset-md-3">
+                   <%= f.input :otro, id:"otro_montaje"%>
+                 </div>
+               </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit , id: "btn-montaje"%>
   </div>
 <% end %>

@@ -5,6 +5,18 @@ class MontajesController < ApplicationController
   # GET /montajes.json
   def index
     @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo")
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
   end
 
   def busquedaTintasMontaje
@@ -66,6 +78,18 @@ class MontajesController < ApplicationController
   # GET /montajes/1
   # GET /montajes/1.json
   def show
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
     respond_to do |format|
       format.html
       format.js
@@ -102,6 +126,7 @@ class MontajesController < ApplicationController
   def edit
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
+
     @Tintas=[]
 
     @NombreTintas.each do |nombreTintas|
@@ -160,6 +185,7 @@ class MontajesController < ApplicationController
 
       @NombreTintas = Tinta.all.distinct
       @TintaFormulada = TintaFormulada.all.distinct
+
       @Tintas=[]
 
       @NombreTintas.each do |nombreTintas|

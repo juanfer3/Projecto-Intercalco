@@ -1,0 +1,12 @@
+<tr>
+  <td><%= f.input :codigo%></td>
+  <td>
+    <label for="">Descripción De La Pieza</label>
+    <%= f.input :nombre, label:false%>
+  </td>
+  <td><label for="">cavidad</label><%= f.input :cantidad, label: false %></td>
+  <td>
+    <label for="">Elminar</label><br>
+  <%= f.input_field :_destroy, as: :hidden %>
+  <%= link_to '<button type="button" class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_piezas' %></td>
+</tr>

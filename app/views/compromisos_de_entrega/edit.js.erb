@@ -1,0 +1,10 @@
+
+$('#modalAnexo').modal('show');
+
+$('#contenidoModal').html('<%= j render 'info_pedido'%>')
+
+<%if @compromiso_de_entrega.fecha_despacho != nil %>
+
+  $('#compromiso_de_entrega_fecha_despacho').val("<%=@compromiso_de_entrega.fecha_despacho.strftime("%Y/%m/%d ") %>")
+
+<%end%>

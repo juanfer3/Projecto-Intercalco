@@ -169,8 +169,24 @@ class OrdenesProduccionController < ApplicationController
   end
 
   def cargar_form_formato
-    @formato_op = FormatoOp.new
-    @formato_op.ordenes_produccion.build
+    @montaje = Montaje.new
+    @montaje.piezas.build
+    @montaje.tintas_fop_tiro.build
+    @montaje.tintas_fop_retiro.build
+    @montaje.formatos_op.build
+
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
     respond_to do |format|
       format.js
     end
@@ -179,7 +195,7 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion/new
   def new
     @orden_produccion = OrdenProduccion.new
-    @formato_op = FormatoOp.new
+    @montaje = Montaje.new
     @orden_produccion.compromisos_de_entrega.build
 
   end
@@ -195,7 +211,7 @@ class OrdenesProduccionController < ApplicationController
 
     respond_to do |format|
       if @orden_produccion.save
-        format.html { redirect_to @orden_produccion, notice: 'Orden produccion was successfully created.' }
+        format.html { redirect_to ordenes_produccion_path, notice: 'Orden produccion was successfully created.' }
         format.json { render :show, status: :created, location: @orden_produccion }
       else
         format.html { render :new }

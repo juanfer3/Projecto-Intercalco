@@ -32,6 +32,7 @@
                   class:'col-4 my_cliente form-control',
                   include_blank: 'Seleccione el Cliente'
                 %>
+                <p id="campo_cliente"></p>
               </div>
 
               <div class="col-4">
@@ -44,18 +45,21 @@
                   class:'col-4 my_cliente form-control',
                   include_blank: 'Seleccione el Vendedor'
                 %>
+                <p id="campo_user"></p>
               </div>
 
 
               <!--Codigo-->
               <div class="col-4">
                 <%= f.input :codigo %>
+                <p id="campo_codigo"></p>
               </div>
 
               <!--Codigo-->
               <div class="col-4">
                 <label for="">Descripción</label>
                 <%= f.input :nombre, label:false %>
+                <p id="campo_nombre"></p>
               </div>
               <!--Codigo-->
 
@@ -64,20 +68,22 @@
               <!--Codigo-->
               <div class="col-4">
                 <%= f.input :dimension %>
+                <p id="campo_dimension"></p>
               </div>
 
 
 
 
 
-              <div class="col-4">
+              <div class="col-4" id="tiro_mont">
                 <br>
                 <%= f.input :tiro , class: "myCheckBoxTiro", id: "myCheckBoxTiro"%>
               </div>
 
               <div class="col-4">
                 <br>
-                <%= f.input :retiro %>
+                <label for="">Tinta Retiro</label>
+                <%= f.input :retiro, label:false %>
               </div>
 
 
@@ -186,19 +192,17 @@
 
 
   <br>
+
   <div class="card card-outline-secondary mb-3 text-center">
      <div class="card-block">
         <div class="container">
            <br>
            <br>
            <div class="">
-
                     <%= f.simple_fields_for :formatos_op do |builder| %>
                        <%= render "formato_op", :f => builder %>
                     <% end %>
-
            </div>
-
         </div>
      </div>
   </div>
@@ -269,34 +273,51 @@
         <div class="container">
           <br>
           <br>
-          <div class="my_card_pedidos_form">
+          <div class="my_card_pedidos_form" id="contenedorEstado">
 
-                       <div class="col-2">
-                          <%= f.input :precorte , class: "myCheckBoxTiro", id: ""%>
+
+
+
+                       <div class="col-2" id="origenPrecorte">
+                         <div class="" id="contenedorPrecorte">
+                           <%= f.input :precorte , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :pretroquelado , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenPretroquelado">
+                         <div class="" id="contenedorPretroquelado">
+                           <%= f.input :pretroquelado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :laminado , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenLaminado">
+                         <div class="" id="contenedorLaminado">
+                           <%= f.input :laminado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :troquelado , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenTroquelado">
+                         <div class="" id="contenedorTorquelado">
+                           <%= f.input :troquelado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :descalerillado , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenDescalerillado">
+                         <div class="" id="contenedorDescalerillado">
+                           <%= f.input :descalerillado , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :plotter , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenPlotter">
+                         <div class="" id="contenedorPlotter">
+                           <%= f.input :plotter , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
 
-                       <div class="col-2">
-                          <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
+                       <div class="col-2" id="origenDoming">
+                         <div class="" id="contenedorDoming">
+                           <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
+                         </div>
                        </div>
           </div>
 
@@ -322,69 +343,82 @@
                <div class="container">
                  <br>
                  <br>
-                 <div class="my_card_pedidos_form">
+                 <div class="my_card_pedidos_form" id="EstadosFalse">
 
-                              <div class="col-2">
-                                 <%= f.input :descolille, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenDescolille">
+                                <div class="" id="contenedorDescolille">
+                                  <%= f.input :descolille, class: "myCheckBoxTiro", id: "descolille"%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :doblez_calor, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenDoblez_calor">
+                                <div class="" id="contenedorDoblez_calor">
+                                  <%= f.input :doblez_calor, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :termoformado, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenTermoformado">
+                                <div class="" id="contenedorTermoformado">
+                                  <%= f.input :termoformado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
+
                               </div>
 
-                              <div class="col-3">
-                                 <%= f.input :estampado_al_calor, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-3" id="origenEstampado_al_calor">
+                                <div class="" id="contenedorEstampado_al_calor">
+                                  <%= f.input :estampado_al_calor, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :refilado, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenRefilado">
+                                <div class="" id="contenedorRefilado">
+                                  <%= f.input :refilado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :perforado, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenPerforado">
+                                <div class="" id="contenedorPerforado">
+                                  <%= f.input :perforado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :ojalete, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenOjalete">
+                                <div class="" id="contenedorOjalete">
+                                  <%= f.input :ojalete, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :hilo, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenHilo">
+                                <div class="" id="contenedorHilo">
+                                  <%= f.input :hilo, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :pegado, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenPegado">
+                                <div class="" id="contenedorPegado">
+                                  <%= f.input :pegado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-2">
-                                 <%= f.input :ensamblado, class: "myCheckBoxTiro", id: ""%>
+                              <div class="col-2" id="origenEnsamblado">
+                                <div class="" id="contenedorEnsamblado">
+                                  <%= f.input :ensamblado, class: "myCheckBoxTiro", id: ""%>
+                                </div>
                               </div>
 
-                              <div class="col-12">
-                                 <%= f.select :otro,  {}, {  class: 'js-example-tokenizer col-12  form-control','multiple' => "multiple" }%>
-                              </div>
 
-                              <div class="">
-                                <%= f.input :otro, id:"otro_montaje"%>
-                              </div>
 
-                              <div class="col-12">
-                                <select id="value_otro" class="form-control js-example-tokenizer" multiple="multiple" id=otros>
-                                  <option selected="selected">orange</option>
-                                  <option>white</option>
-                                  <option selected="selected">purple</option>
-                                </select>
-                              </div>
+
+
+
 
 
 
 
                  </div>
-
+                 <div class="col-6 offset-md-3">
+                   <%= f.input :otro, id:"otro_montaje"%>
+                 </div>
                </div>
             </div>
           </div>
@@ -401,6 +435,6 @@
 
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit , id: "btn-montaje"%>
   </div>
 <% end %>

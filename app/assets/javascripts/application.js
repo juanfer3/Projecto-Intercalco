@@ -35,10 +35,604 @@
 
 $(document).on('turbolinks:load', function() {
 
+  $("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").focusout(function(){
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      if (linea_pieza=="") {
+        $('#montaje_formatos_op_attributes_0_pieza_a_decorar_id').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe seleccionar la pieza a decorar</span>'
+        $('#campo_pieza').html(campo_error)
+
+      }else{
+
+        $('#montaje_formatos_op_attributes_0_pieza_a_decorar_id').css("border", "1px solid #3c763d");
+        $('#campo_pieza').html("")
+
+      }
+      var valor =$("#montaje_nombre").val()
+      var montaje =$("#montaje_codigo").val()
+      var user =$("#montaje_user_id").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+      var linea_color =$("#montaje_formatos_op_attributes_0_linea_de_color_id").val()
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="") {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+  $("#montaje_formatos_op_attributes_0_maquina_id").focusout(function(){
+
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+      if (linea_maquina=="") {
+        $('#montaje_formatos_op_attributes_0_maquina_id').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe Selecionar la máquina</span>'
+        $('#campo_maquina').html(campo_error)
+
+      }else{
+
+        $('#montaje_formatos_op_attributes_0_maquina_id').css("border", "1px solid #3c763d");
+        $('#campo_maquina').html("")
+
+      }
+      var valor =$("#montaje_nombre").val()
+      var montaje =$("#montaje_codigo").val()
+      var user =$("#montaje_user_id").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+      var linea_color =$("#montaje_formatos_op_attributes_0_linea_de_color_id").val()
+
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="" ) {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+
+
+  $("#montaje_formatos_op_attributes_0_linea_de_color_id").focusout(function(){
+
+      var linea_color =$("#montaje_formatos_op_attributes_0_linea_de_color_id").val()
+      if (linea_color=="") {
+        $('#montaje_formatos_op_attributes_0_linea_de_color_id').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe seleccionar la línea de color</span>'
+        $('#campo_lineaColor').html(campo_error)
+
+      }else{
+
+        $('#montaje_formatos_op_attributes_0_linea_de_color_id').css("border", "1px solid #3c763d");
+        $('#campo_lineaColor').html("")
+
+      }
+      var valor =$("#montaje_nombre").val()
+      var montaje =$("#montaje_codigo").val()
+      var user =$("#montaje_user_id").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="") {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+  $("#montaje_formatos_op_attributes_0_linea_producto_id").focusout(function(){
+
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+      if (linea_producto=="") {
+        $('#montaje_formatos_op_attributes_0_linea_producto_id').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe seleccionar la línea de producto</span>'
+        $('#campo_productos').html(campo_error)
+
+      }else{
+
+        $('#montaje_formatos_op_attributes_0_linea_producto_id').css("border", "1px solid #3c763d");
+        $('#campo_productos').html("")
+
+      }
+      var valor =$("#montaje_nombre").val()
+      var montaje =$("#montaje_codigo").val()
+      var user =$("#montaje_user_id").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+      var linea_color =$("#montaje_formatos_op_attributes_0_linea_de_color_id").val()
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="") {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+  $("#montaje_nombre").focusout(function(){
+
+      var valor =$("#montaje_nombre").val()
+      if (valor=="") {
+        $('#montaje_nombre').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">El campo de la descripción no puede estar vacio</span>'
+        $('#campo_nombre').html(campo_error)
+
+      }else{
+
+        $('#montaje_nombre').css("border", "1px solid #3c763d");
+        $('#campo_nombre').html("")
+
+      }
+
+      var montaje =$("#montaje_codigo").val()
+      var user =$("#montaje_user_id").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+      var linea_color =$("#montaje_formatos_op_attributes_0_linea_de_color_id").val()
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="") {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+  $("#montaje_codigo").focusout(function(){
+      var user =$("#montaje_codigo").val()
+      if (user=="") {
+        $('#montaje_codigo').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">El campo del codigo no puede estar vacio</span>'
+        $('#campo_codigo').html(campo_error)
+        $('#btn-montaje').attr('disabled','disabled');
+      }else{
+
+        $('#montaje_codigo').css("border", "1px solid #3c763d");
+        $('#campo_codigo').html("")
+      }
+
+      var montaje =$("#montaje_codigo").val()
+      var valor =$("#montaje_nombre").val()
+      var cliente =$("#montaje_cliente_id").val()
+
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_producto =$("#montaje_formatos_op_attributes_0_linea_producto_id").val()
+      var linea_pieza =$("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").val()
+      var linea_maquina =$("#montaje_formatos_op_attributes_0_maquina_id").val()
+
+      if (montaje == "" || valor=="" || user== "" || cliente =="" ||
+      linea_producto=="" || linea_color==""|| linea_maquina== ""|| linea_pieza=="") {
+        $('#btn-montaje').attr('disabled','disabled');
+      }else {
+        $('#btn-montaje').prop('disabled', false);
+      }
+
+  })
+
+  $("#montaje_user_id").focusout(function(){
+      var user =$("#montaje_user_id").val()
+      if (user=="") {
+        $('#montaje_user_id').css("border", "1px solid #a94442")
+        var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe Seleccionar Un Vendedor</span>'
+        $('#campo_user').html(campo_error)
+        $('#btn-montaje').attr('disabled','disabled');
+      }else{
+
+        $('#montaje_user_id').css("border", "1px solid #3c763d");
+        $('#campo_user').html("")
+      }
+  })
+
+
+$("#montaje_cliente_id").focusout(function(){
+    var cliente =$("#montaje_cliente_id").val()
+    if (cliente=="") {
+      $('#montaje_cliente_id').css("border", "1px solid #a94442")
+      var campo_error='<span class="help-block" id="error_numero_de_pedido">Debe Seleccionar Un Cliente</span>'
+      $('#campo_cliente').html(campo_error)
+      $('#btn-montaje').attr('disabled','disabled');
+    }else{
+
+      $('#montaje_cliente_id').css("border", "1px solid #3c763d");
+      $('#campo_cliente').html("")
+    }
+})
 
 
 
 
+$('.validacion_fecha').focusout(function (){
+  //toastr.success("validate")
+  var pedido_numero_de_pedido=$(this).parents("tr").find('.validacion_fecha').val()
+  if (pedido_numero_de_pedido==""){
+    $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #a94442")
+    var campo_error='<span class="help-block" id="error_numero_de_pedido">La Fecha del Compromiso no debe estar vacía</span>'
+    $(this).parents("tr").find('.campo_fecha_entrega').html(campo_error)
+    //alertify.error("El número de pedido debe estar vacio")
+  }else{
+    $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #3c763d");
+    $(this).parents("tr").find('.campo_fecha_entrega').html("")
+  }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $("#montaje_doming").attr('checked',true);
+  $("#montaje_doming").change(function(){
+
+    if( $('#montaje_doming').prop('checked') ) {
+
+      $('#origenDoming').show()
+      $('#contenedorDoming').appendTo('#origenDoming');
+      $('#contenedorDoming').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorDoming').appendTo('#EstadosFalse');
+      $('#contenedorDoming').addClass( "col-2" );
+      $('#origenDoming').hide()
+
+    }
+
+  })
+
+
+  $("#montaje_plotter").attr('checked',true);
+  $("#montaje_plotter").change(function(){
+
+    if( $('#montaje_plotter').prop('checked') ) {
+
+      $('#origenPlotter').show()
+      $('#contenedorPlotter').appendTo('#origenPlotter');
+      $('#contenedorPlotter').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorPlotter').appendTo('#EstadosFalse');
+      $('#contenedorPlotter').addClass( "col-2" );
+      $('#origenPlotter').hide()
+
+    }
+
+  })
+
+  $("#montaje_descalerillado").attr('checked',true);
+  $("#montaje_descalerillado").change(function(){
+
+    if( $('#montaje_descalerillado').prop('checked') ) {
+
+      $('#origenDescalerillado').show()
+      $('#contenedorDescalerillado').appendTo('#origenDescalerillado');
+      $('#contenedorDescalerillado').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorDescalerillado').appendTo('#EstadosFalse');
+      $('#contenedorDescalerillado').addClass( "col-2" );
+      $('#origenDescalerillado').hide()
+
+    }
+
+  })
+
+
+  $("#montaje_troquelado").attr('checked',true);
+  $("#montaje_troquelado").change(function(){
+
+    if( $('#montaje_troquelado').prop('checked') ) {
+
+      $('#origenTroquelado').show()
+      $('#contenedorTroquelado').appendTo('#origenTroquelado');
+      $('#contenedorTroquelado').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorTroquelado').appendTo('#EstadosFalse');
+      $('#contenedorTroquelado').addClass( "col-2" );
+      $('#origenTroquelado').hide()
+
+    }
+
+  })
+  $("#montaje_laminado").attr('checked',true);
+  $("#montaje_laminado").change(function(){
+
+    if( $('#montaje_laminado').prop('checked') ) {
+
+      $('#origenLaminado').show()
+      $('#contenedorLaminado').appendTo('#origenLaminado');
+      $('#contenedorLaminado').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorLaminado').appendTo('#EstadosFalse');
+      $('#contenedorLaminado').addClass( "col-2" );
+      $('#origenLaminado').hide()
+
+    }
+
+  })
+
+  $("#montaje_pretroquelado").attr('checked',true);
+  $("#montaje_pretroquelado").change(function(){
+
+    if( $('#montaje_pretroquelado').prop('checked') ) {
+
+      $('#origenPretroquelado').show()
+      $('#contenedorPretroquelado').appendTo('#origenPretroquelado');
+      $('#contenedorPretroquelado').removeClass( "col-2" )
+
+    }else {
+
+
+      $('#contenedorPretroquelado').appendTo('#EstadosFalse');
+      $('#contenedorPretroquelado').addClass( "col-2" );
+      $('#origenPretroquelado').hide()
+
+
+
+
+    }
+
+  })
+  $("#montaje_precorte").attr('checked',true);
+  $("#montaje_precorte").change(function(){
+
+    if( $('#montaje_precorte').prop('checked') ) {
+
+      $('#origenPrecorte').show()
+      $('#contenedorPrecorte').appendTo('#origenPrecorte');
+      $('#contenedorPrecorte').removeClass( "col-2" )
+
+    }else {
+
+      $('#contenedorPrecorte').appendTo('#EstadosFalse');
+      $('#contenedorPrecorte').addClass( "col-2" );
+      $('#origenPrecorte').hide()
+
+
+
+
+    }
+
+  })
+
+
+  $("#montaje_ensamblado").change(function(){
+
+    if( $('#montaje_ensamblado').prop('checked') ) {
+
+      $('#contenedorEnsamblado').appendTo('#contenedorEstado');
+      $('#contenedorEnsamblado').addClass( "col-2" );
+      $('#origenEnsamblado').hide()
+    }else {
+      $('#origenEnsamblado').show()
+      $('#contenedorEnsamblado').appendTo('#origenEnsamblado');
+      $('#contenedorEnsamblado').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+
+  $("#montaje_ensamblado").change(function(){
+
+    if( $('#montaje_ensamblado').prop('checked') ) {
+
+      $('#contenedorEnsamblado').appendTo('#contenedorEstado');
+      $('#contenedorEnsamblado').addClass( "col-2" );
+      $('#origenEnsamblado').hide()
+    }else {
+      $('#origenEnsamblado').show()
+      $('#contenedorEnsamblado').appendTo('#origenEnsamblado');
+      $('#contenedorEnsamblado').removeClass( "col-2" )
+    }
+
+  })
+
+
+  $("#montaje_pegado").change(function(){
+
+    if( $('#montaje_pegado').prop('checked') ) {
+
+      $('#contenedorPegado').appendTo('#contenedorEstado');
+      $('#contenedorPegado').addClass( "col-2" );
+      $('#origenPegado').hide()
+    }else {
+      $('#origenPegado').show()
+      $('#contenedorPegado').appendTo('#origenPegado');
+      $('#contenedorPegado').removeClass( "col-2" )
+    }
+
+  })
+
+
+  $("#montaje_hilo").change(function(){
+
+    if( $('#montaje_hilo').prop('checked') ) {
+
+      $('#contenedorHilo').appendTo('#contenedorEstado');
+      $('#contenedorHilo').addClass( "col-2" );
+      $('#origenHilo').hide()
+    }else {
+      $('#origenHilo').show()
+      $('#contenedorHilo').appendTo('#origenHilo');
+      $('#contenedorHilo').removeClass( "col-2" )
+    }
+
+  })
+
+
+  $("#montaje_ojalete").change(function(){
+
+    if( $('#montaje_ojalete').prop('checked') ) {
+
+      $('#contenedorOjalete').appendTo('#contenedorEstado');
+      $('#contenedorOjalete').addClass( "col-2" );
+      $('#origenOjalete').hide()
+    }else {
+      $('#origenOjalete').show()
+      $('#contenedorOjalete').appendTo('#origenOjalete');
+      $('#contenedorOjalete').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+  $("#montaje_perforado").change(function(){
+
+    if( $('#montaje_perforado').prop('checked') ) {
+
+      $('#contenedorPerforado').appendTo('#contenedorEstado');
+      $('#contenedorPerforado').addClass( "col-2" );
+      $('#origenPerforado').hide()
+    }else {
+      $('#origenPerforado').show()
+      $('#contenedorPerforado').appendTo('#origenPerforado');
+      $('#contenedorPerforado').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+
+
+  $("#montaje_refilado").change(function(){
+
+    if( $('#montaje_refilado').prop('checked') ) {
+
+      $('#contenedorRefilado').appendTo('#contenedorEstado');
+      $('#contenedorRefilado').addClass( "col-2" );
+      $('#origenRefilado').hide()
+    }else {
+      $('#origenRefilado').show()
+      $('#contenedorRefilado').appendTo('#origenRefilado');
+      $('#contenedorRefilado').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+
+
+
+  $("#montaje_estampado_al_calor").change(function(){
+
+    if( $('#montaje_estampado_al_calor').prop('checked') ) {
+
+      $('#contenedorEstampado_al_calor').appendTo('#contenedorEstado');
+      $('#contenedorEstampado_al_calor').addClass( "col-3" );
+      $('#origenEstampado_al_calor').hide()
+    }else {
+      $('#origenEstampado_al_calor').show()
+      $('#contenedorEstampado_al_calor').appendTo('#origenEstampado_al_calor');
+      $('#contenedorEstampado_al_calor').removeClass( "col-3" )
+    }
+
+  })
+
+
+  $("#montaje_termoformado").change(function(){
+
+
+
+    if( $('#montaje_termoformado').prop('checked') ) {
+
+      $('#contenedorTermoformado').appendTo('#contenedorEstado');
+      $('#contenedorTermoformado').addClass( "col-2" );
+      $('#origenTermoformado').hide()
+    }else {
+      $('#origenTermoformado').show()
+      $('#contenedorTermoformado').appendTo('#origenTermoformado');
+      $('#contenedorTermoformado').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+
+  $("#montaje_doblez_calor").change(function(){
+
+
+
+    if( $('#montaje_doblez_calor').prop('checked') ) {
+
+      $('#contenedorDoblez_calor').appendTo('#contenedorEstado');
+      $('#contenedorDoblez_calor').addClass( "col-2" );
+      $('#origenDoblez_calor').hide()
+    }else {
+      $('#origenDoblez_calor').show()
+      $('#contenedorDoblez_calor').appendTo('#origenDoblez_calor');
+      $('#contenedorDoblez_calor').removeClass( "col-2" )
+    }
+
+  })
+
+
+
+
+
+$("#montaje_descolille").change(function(){
+
+
+
+  if( $('#montaje_descolille').prop('checked') ) {
+
+    $('#contenedorDescolille').appendTo('#contenedorEstado');
+    $('#contenedorDescolille').appendTo('#contenedorEstado');
+    $('#origenDescolille').hide()
+  }else {
+    $('#origenDescolille').show()
+    $('#contenedorDescolille').appendTo('#origenDescolille');
+  }
+
+})
 
   $(".js-example-tokenizer").select2({
       tags: true,
@@ -97,20 +691,8 @@ $(".js-example-tags").select2({
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+$("#montaje_tiro").attr('checked',true);
+$("#tiro_mont").hide();
   if( $('#montaje_tiro').prop('checked') ) {
     $('#div_tintas_tiro').show()
     $(".js-example-tags").select2({
@@ -187,7 +769,6 @@ $('form').on('click', '.add_formula', function(event) {
 
   return event.preventDefault();
 });
-
 
 
   $('form').on('click', '.remove_tintas_retiro', function(event) {
