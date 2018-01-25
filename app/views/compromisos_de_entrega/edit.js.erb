@@ -8,3 +8,31 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
   $('#compromiso_de_entrega_fecha_despacho').val("<%=@compromiso_de_entrega.fecha_despacho.strftime("%Y/%m/%d ") %>")
 
 <%end%>
+$('.someBlock').preloader({
+
+  // loading text
+  text: '',
+
+  // from 0 to 100
+  percent: '',
+
+  // duration in ms
+  duration: '',
+
+  // z-index property
+  zIndex: '',
+
+  // sets relative position to preloader's parent
+  setRelative: false
+
+});
+
+// remove the loading indicator
+$('.someBlock').preloader('remove')
+
+// up<a href="https://www.jqueryscript.net/time-clock/">date</a> the loading indicator
+$('.someBlock').preloader('update', {
+  percent: '70',
+  text: 'example',
+  // more options here
+});

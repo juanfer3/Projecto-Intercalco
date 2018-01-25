@@ -37,7 +37,7 @@
       <label for="">Fecha real de despacho</label>
       <div class="input-group" >
         <%= f.text_field :fecha_despacho , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
-        <span class="input-group-addon " id="basic-addon2"> <i class="fa-li fa fa-spinner fa-spin"></i> </span>
+        <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
 
       </div>
 
@@ -46,12 +46,18 @@
       <label for="">Cantidad Despachada</label>
       <%= f.input :cantidad_despacho, label:false %>
     </div>
-    <div class="form-actions col-3">
-      <label for="">Aceptar Cambios</label>
-      <%= f.button :submit %>
+    <div class=" col-3">
+      <label for="">Aceptar Cambios</label><br>
+      <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
+        <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+       <% end %>
+
     </div>
 
   </div>
 
 
 <% end %>
+<!--div class="">
+  <button type="button" name="button" class=" btn btn-info  fa fa-spinner fa-spin"></button>
+</div-->

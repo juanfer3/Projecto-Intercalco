@@ -138,5 +138,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'pegado', 'pegados'
   inflect.irregular 'ensamblado', 'ensamblados'
   inflect.irregular 'otro', 'otros'
+  inflect.irregular 'enviado', 'enviados'
+  inflect.irregular 'cumplido', 'cumplidos'
 
 end
