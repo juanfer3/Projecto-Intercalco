@@ -9,6 +9,7 @@
       <th>Cliente</th>
       <th>Descripción</th>
       <th>Fecha de compromiso</th>
+      <th>Mes a entregar</th>
       <th>Cantidad a Entregar</th>
       <th>Estado</th>
       <th colspan="3"></th>
@@ -22,9 +23,47 @@
         <td><%= compromiso_de_entrega.orden_produccion.montaje.cliente.nombre %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.nombre %></td>
         <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
+        <%
+                  mes = compromiso_de_entrega.fecha_de_compromiso.strftime("%m")
+
+
+                  case mes
+                  when "01"%>
+                    <td>Enero</td>
+                  <%when "02"%>
+                    <td>Febrero</td>
+                  <%when "03"%>
+                    <td>Marzo</td>
+                  <%when "04"%>
+                    <td>Abril</td>
+                  <%when "05"%>
+                    <td>Mayo</td>
+                  <%when "06"%>
+                    <td>Junio</td>
+                  <%when "07"%>
+                    <td>Julio</td>
+                  <%when "08"%>
+                    <td>Agosto</td>
+                  <%when "09"%>
+                    <td>Septiembre</td>
+                  <%when "10"%>
+                    <td>Octubre</td>
+                  <%when "11"%>
+                    <td>Noviembre</td>
+                  <%when "12"%>
+                    <td>Diciembre</td>
+                  <% end %>
         <td><%= compromiso_de_entrega.cantidad %></td>
 
-        <td id=<%="estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+
+
+
+
+
+
+
+        <td id=<%="estado_orden_produccion#{compromiso_de_entrega.id}"%>>
+          <% if compromiso_de_entrega.enviado == false || compromiso_de_entrega.enviado == nil%>
                   <% if  compromiso_de_entrega.orden_produccion.impresion == false%>
 
                     <% if compromiso_de_entrega.orden_produccion.pantalla == true || compromiso_de_entrega.orden_produccion.color === true || compromiso_de_entrega.orden_produccion.corte_material=== true && compromiso_de_entrega.orden_produccion.acabado == false%>
@@ -76,6 +115,14 @@
 
 
                   <% end %>
+            <% else %>
+            <h6 id=<%="quitar_estado_orden_produccion#compromiso_de_entrega.orden_produccion.id}"%>>
+              <span class="badge badge-success ">
+                Despacho entregado
+                <%=@cantidades%>
+              </span>
+            </h6>
+            <% end %>
           </td>
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, compromiso_de_entrega %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_compromiso_de_entrega_path(compromiso_de_entrega), remote:true %></td>

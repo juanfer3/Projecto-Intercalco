@@ -36,101 +36,96 @@
     			@date = Time.now.strftime("%Y/%m/%d")
 
           @dat = Date.parse(@date)
+
+          fec1 = "1111/01/01"
+          @fech1 = fec1.to_time
     		%>
         <%cont=0%>
         <%@comparador_fecha = ""%>
+        <%contador_enviados = 0%>
+
+
+
+        <%@hallado = false%>
+        <%@estado_data= false%>
         <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
 
-                <%fech = fecha.fecha_de_compromiso
+              <%
+                fech = fecha.fecha_de_compromiso
+                fech.strftime("%Y/%m/%d")
+              %>
+              <% if fecha.enviado == true %>
+                  <%@estado_data = true%>
+                  <%contador_enviados = contador_enviados + 1%>
+                  <%@cantidades = contador_enviados%>
+              <% end %>
 
-                  fech.strftime("%Y/%m/%d")
-
-                  cont = cont+1
-                %>
 
 
+        <%if fech < Date.today
 
-                            <% if fecha.fecha_de_compromiso < @dat  %>
 
-                                      <%
-                                      @dates = fecha.fecha_de_compromiso
-                                      @estado_data = fecha.enviado
-                                      @numeroEntrega = cont
-                                      @mensaje ="1. IF Fecha menor con enviado false"
-                                      %>
 
-                            <%elsif @dat == fecha.fecha_de_compromiso %>
 
-                                    <%
-                                    @dates = fecha.fecha_de_compromiso
-                                    @estado_data = fecha.enviado
-                                    @numeroEntrega = cont
+              %>
 
-                                    @mensaje ="2. IF Fecha igual con enviado false"
-                                    %>
+        <% elsif fech >= Date.today %>
 
-                            <%elsif fech.to_time < @dat%>
+                <%
+                  dias = (fech - Date.today).to_i
 
-                                  <%
-                              			@dates = fech
 
-                              		%>
+                  if dias == 0
+                    @dates= fech
+                    @hallado = true
+                  else
+                    if @hallado == false
+                      @dates= fech
+                    end
+                  end
 
-                                          <% if fech < @dates %>
-                                                  <!-- true -->
-                                                  <%@dates = fech
-                                                  @estado_data = fecha.enviado
-                                                  @numeroEntrega = cont
-                                                  @estado_data = fecha.enviado
-                                                  @numeroEntrega = cont
-                                                  @mensaje ="3. IF Fecha mayor con enviado anterior true"
-                                                  %>
+                  %>
 
-                                          <% end %>
 
-                            <% end %>
-
-                        Estado numer <%=cont%><%=@comparador_fecha = fecha.enviado%>///
         <% end %>
-        <td><%=@mensaje%></td>
-        <%
-          mes = @dates.strftime("%m")
-
-
-          case mes
-          when "01"%>
-            <td>Enero</td>
-          <%when "02"%>
-            <td>Febrero</td>
-          <%when "03"%>
-            <td>Marzo</td>
-          <%when "04"%>
-            <td>Abril</td>
-          <%when "05"%>
-            <td>Mayo</td>
-          <%when "06"%>
-            <td>Junio</td>
-          <%when "07"%>
-            <td>Julio</td>
-          <%when "08"%>
-            <td>Agosto</td>
-          <%when "09"%>
-            <td>Septiembre</td>
-          <%when "10"%>
-            <td>Octubre</td>
-          <%when "11"%>
-            <td>Noviembre</td>
-          <%when "12"%>
-            <td>Diciembre</td>
-          <% end %>
 
 
 
 
+  <% end %>
 
 
 
+  <%
+            mes = @dates.strftime("%m")
 
+
+            case mes
+            when "01"%>
+              <td>Enero</td>
+            <%when "02"%>
+              <td>Febrero</td>
+            <%when "03"%>
+              <td>Marzo</td>
+            <%when "04"%>
+              <td>Abril</td>
+            <%when "05"%>
+              <td>Mayo</td>
+            <%when "06"%>
+              <td>Junio</td>
+            <%when "07"%>
+              <td>Julio</td>
+            <%when "08"%>
+              <td>Agosto</td>
+            <%when "09"%>
+              <td>Septiembre</td>
+            <%when "10"%>
+              <td>Octubre</td>
+            <%when "11"%>
+              <td>Noviembre</td>
+            <%when "12"%>
+              <td>Diciembre</td>
+            <% end %>
 
 
 
@@ -139,8 +134,10 @@
 
 
                   <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
-                    <% if @estado_data == false %>
+
                       <!-- true -->
+                      <% if @estado_data == false || @estado_data == nil%>
+                        <!-- true -->
 
                             <% if  orden_produccion.impresion == false%>
 
@@ -194,23 +191,25 @@
 
                             <% end %>
 
+                    <% else %>
+                    <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                      <span class="badge badge-success ">
+                        Despachos entregados: <br>
+                        <%=@cantidades%>
+                      </span>
+                    </h6>
+                    <% end %>
 
 
-                      <%else%>
-                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                        <span class="badge badge-success ">
-                          Despachado<%=@numeroEntrega-1%>
-                        </span>
-                      </h6>
 
-                      <% end %>
                     </td>
+
         <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-dark"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(orden_produccion), remote: true %></td>
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_orden_produccion_path(orden_produccion) %></td>
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, orden_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-        <h1>Estado<%=@estado_data%></h1>
+
     <% end %>
   </tbody>
 </table>
