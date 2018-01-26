@@ -1,60 +1,68 @@
-<% if @compromiso_de_entrega.enviado == false %>
-        <% if  @compromiso_de_entrega.orden_produccion.impresion == false%>
+<% if  @compromiso_de_entrega.orden_produccion.entregado == false || @compromiso_de_entrega.orden_produccion.entregado == nil %>
+      <% if @compromiso_de_entrega.enviado == false || @compromiso_de_entrega.enviado == nil%>
+              <% if  @compromiso_de_entrega.orden_produccion.impresion == false%>
 
-          <% if @compromiso_de_entrega.orden_produccion.pantalla == true || @compromiso_de_entrega.orden_produccion.color === true || @compromiso_de_entrega.orden_produccion.corte_material=== true && @compromiso_de_entrega.orden_produccion.acabado == false%>
+                <% if @compromiso_de_entrega.orden_produccion.pantalla == true || @compromiso_de_entrega.orden_produccion.color === true || @compromiso_de_entrega.orden_produccion.corte_material=== true && @compromiso_de_entrega.orden_produccion.acabado == false%>
 
-              <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
-                <span class="badge badge-info">
-                  Preprensa
-                </span>
-              </h6>
+                    <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
+                      <span class="badge badge-info">
+                        Preprensa
+                      </span>
+                    </h6>
 
-          <%elsif @compromiso_de_entrega.orden_produccion.pantalla == false && @compromiso_de_entrega.orden_produccion.color === false && @compromiso_de_entrega.orden_produccion.corte_material=== false && @compromiso_de_entrega.orden_produccion.acabado == true%>
+                <%elsif @compromiso_de_entrega.orden_produccion.pantalla == false && @compromiso_de_entrega.orden_produccion.color === false && @compromiso_de_entrega.orden_produccion.corte_material=== false && @compromiso_de_entrega.orden_produccion.acabado == true%>
 
-            <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
-              <span class="badge badge-warning baged_acabado">
-                Acabado
-              </span>
-            </h6>
+                  <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
+                    <span class="badge badge-warning baged_acabado">
+                      Acabado
+                    </span>
+                  </h6>
 
-          <%elsif @compromiso_de_entrega.orden_produccion.pantalla == false && @compromiso_de_entrega.orden_produccion.color === false && @compromiso_de_entrega.orden_produccion.corte_material=== false%>
+                <%elsif @compromiso_de_entrega.orden_produccion.pantalla == false && @compromiso_de_entrega.orden_produccion.color === false && @compromiso_de_entrega.orden_produccion.corte_material=== false%>
 
-              <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
-                <span class="badge badge-warning">
-                  Sin Programar
-                </span>
-              </h6>
-
-
-
-          <% end %>
+                    <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
+                      <span class="badge badge-warning">
+                        Sin Programar
+                      </span>
+                    </h6>
 
 
 
-        <%elsif @compromiso_de_entrega.orden_produccion.impresion == true && @compromiso_de_entrega.orden_produccion.acabado == false%>
-
-          <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
-            <span class="badge badge-warning baged_impresion">
-              Impresión
-            </span>
-          </h6>
-
-        <%elsif @compromiso_de_entrega.orden_produccion.impresion == true && @compromiso_de_entrega.orden_produccion.acabado == true%>
-
-          <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
-            <span class="badge badge-warning baged_acabado">
-              Acabado
-            </span>
-          </h6>
+                <% end %>
 
 
 
+              <%elsif @compromiso_de_entrega.orden_produccion.impresion == true && @compromiso_de_entrega.orden_produccion.acabado == false%>
+
+                <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
+                  <span class="badge badge-warning baged_impresion">
+                    Impresión
+                  </span>
+                </h6>
+
+              <%elsif @compromiso_de_entrega.orden_produccion.impresion == true && @compromiso_de_entrega.orden_produccion.acabado == true%>
+
+                <h6 id=<%="quitar_estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>>
+                  <span class="badge badge-warning baged_acabado">
+                    Acabado
+                  </span>
+                </h6>
+
+
+
+              <% end %>
+        <% else %>
+        <h6 id=<%="quitar_estado_orden_produccion#@compromiso_de_entrega.orden_produccion.id}"%>>
+          <span class="badge badge-success ">
+            Despacho entregado
+            <%=@cantidades%>
+          </span>
+        </h6>
         <% end %>
   <% else %>
   <h6 id=<%="quitar_estado_orden_produccion#@compromiso_de_entrega.orden_produccion.id}"%>>
     <span class="badge badge-success ">
-      Despacho entregado
-  
+      Cerrado
     </span>
   </h6>
   <% end %>

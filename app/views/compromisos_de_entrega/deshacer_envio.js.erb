@@ -10,4 +10,4 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
 <%end%>
 $("#compromiso_de_entrega_enviado").attr('checked',true);
 $("#OcultarChecboxEnviado").hide()
-$(<%="estado_orden_produccion#{@compromiso_de_entrega.id}"%>).html('<%= j render 'bageds_despachos'%>')
+$(<%="estado_orden_produccion#{@compromiso_de_entrega.orden_produccion.id}"%>).html('<%= j render 'bageds_despachos'%>')

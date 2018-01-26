@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125192149) do
+ActiveRecord::Schema.define(version: 20180126193301) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -277,6 +277,7 @@ ActiveRecord::Schema.define(version: 20180125192149) do
     t.float "tamano_por_hojas"
     t.string "tamano_hoja"
     t.string "tamano_de_corte"
+    t.boolean "entregado", default: false
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 

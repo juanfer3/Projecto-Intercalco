@@ -43,6 +43,7 @@ class CompromisosDeEntregaController < ApplicationController
 
     respond_to do |format|
       if @compromiso_de_entrega.save
+
         format.html { redirect_to @compromiso_de_entrega, notice: 'Compromiso de entrega was successfully created.' }
         format.json { render :show, status: :created, location: @compromiso_de_entrega }
       else
@@ -57,6 +58,7 @@ class CompromisosDeEntregaController < ApplicationController
   def update
     respond_to do |format|
       if @compromiso_de_entrega.update(compromiso_de_entrega_params)
+        @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
         format.html { redirect_to @compromiso_de_entrega, notice: 'Compromiso de entrega was successfully updated.' }
         format.json { render :show, status: :ok, location: @compromiso_de_entrega }
         format.js

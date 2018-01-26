@@ -48,57 +48,63 @@
 
 <!-- ---------------------Estado Pedido Bageds ------------------------------------ -->
             <td>
-              <% if  pedido.impresion == false%>
-
-                <% if pedido.pantalla == true || pedido.color === true || pedido.corte_material=== true && pedido.acabado == false%>
-
-                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
-                      <span class="badge badge-info">
-                        Preprensa
-                      </span>
-                    </h6>
-
-                <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false && pedido.acabado == true%>
-
-                  <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
-                    <span class="badge badge-warning baged_acabado">
-                      Acabado
-                    </span>
-                  </h6>
-
-                <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false%>
-
-                    <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
-                      <span class="badge badge-warning">
-                        Pedido
-                      </span>
-                    </h6>
 
 
+                <!-- true -->
 
-                <% end %>
+                          <% if  pedido.impresion == false%>
 
+                            <% if pedido.pantalla == true || pedido.color === true || pedido.corte_material=== true && pedido.acabado == false%>
 
+                                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                  <span class="badge badge-info">
+                                    Preprensa
+                                  </span>
+                                </h6>
 
-              <%elsif pedido.impresion == true && pedido.acabado == false%>
+                            <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false && pedido.acabado == true%>
 
-                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
-                  <span class="badge badge-warning baged_impresion">
-                    Impresión
-                  </span>
-                </h6>
+                              <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                <span class="badge badge-warning baged_acabado">
+                                  Acabado
+                                </span>
+                              </h6>
 
-              <%elsif pedido.impresion == true && pedido.acabado == true%>
+                            <%elsif pedido.pantalla == false && pedido.color === false && pedido.corte_material=== false%>
 
-                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
-                  <span class="badge badge-warning baged_acabado">
-                    Acabado
-                  </span>
-                </h6>
+                                <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                                  <span class="badge badge-warning">
+                                    Pedido
+                                  </span>
+                                </h6>
 
 
 
-              <% end %>
+                            <% end %>
+
+
+
+                          <%elsif pedido.impresion == true && pedido.acabado == false%>
+
+                            <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                              <span class="badge badge-warning baged_impresion">
+                                Impresión
+                              </span>
+                            </h6>
+
+                          <%elsif pedido.impresion == true && pedido.acabado == true%>
+
+                            <h6 id=<%="quitar_estado_pedido#{pedido.id}"%>>
+                              <span class="badge badge-warning baged_acabado">
+                                Acabado
+                              </span>
+                            </h6>
+
+
+
+                          <% end %>
+
+            
             </td>
                 <!--td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido, remote: true%></td>
                 <!--td><!--%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-clipboard"></i></i></span></button>'.html_safe, pedido %></td-->
