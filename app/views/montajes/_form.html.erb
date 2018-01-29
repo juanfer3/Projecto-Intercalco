@@ -248,12 +248,23 @@
   </div>
 
 
+
+
+
+    <div class=" ">
+
+
+          <%=f.fields_for :ordenes_produccion do |builder|%>
+
+             <%= render 'orden_produccion', :f => builder%>
+
+          <%end%>
+
+
+
+    </div>
+
   <div class="card card-outline-secondary mb-3 text-center">
-
-
-
-
-
     <div class="card-header">
 
       <div class="col-12">
@@ -269,6 +280,8 @@
       </div>
 
     </div>
+
+
      <div class="card-block">
         <div class="container">
           <br>

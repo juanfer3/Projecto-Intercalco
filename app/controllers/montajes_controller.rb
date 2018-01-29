@@ -106,6 +106,9 @@ class MontajesController < ApplicationController
     @montaje.tintas_fop_retiro.build
     @montaje.formatos_op.build
 
+
+    @montaje.ordenes_produccion.build.compromisos_de_entrega.build
+
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
 
@@ -118,7 +121,6 @@ class MontajesController < ApplicationController
     @TintaFormulada.each do |nombreTintas|
       @Tintas << nombreTintas.descripcion
     end
-
 
   end
 
@@ -212,6 +214,17 @@ class MontajesController < ApplicationController
       formatos_op_attributes:[:user_id, :maquina_id, :montaje_id, :pieza_a_decorar_id,
         :referencia_de_orden, :linea_de_color_id, :tipo_de_produccion, :material, :temperatura,
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
-        :tiro, :retiro])
+        :tiro, :retiro],
+      ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,
+        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
+        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
+        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
+        :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
+        compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
+          :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
+          :diferencia, :numero_de_remision, :estado]
+      ]
+      )
     end
 end

@@ -1,0 +1,195 @@
+
+<div class="" id="contenido_formulario">
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+
+  <div class="card text-center">
+
+     <div class="card-header">
+        <h1>Datos Generales</h1>
+
+     </div>
+
+     <!--Card Block-->
+     <div class="card-block">
+        <h4 class="card-title"></h4>
+        <div class="container">
+           <!--Container Con Flexbox-->
+           <div class="my_card_pedidos_form">
+
+
+             <!--Numero de Orden-->
+             <div class="col-4">
+               <%= f.input :numero_de_orden %>
+             </div>
+
+
+
+
+
+
+             <div class="col-4">
+               <label for="">Cantidad </label>
+               <%= f.input :cantidad_programada, label: false %>
+             </div>
+
+
+
+
+             <!--Fecha De pedido-->
+             <div class="col-4">
+               <label for="">Fecha De La Orden</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+             <div class="col-12">
+               <br>
+             </div>
+             <div class="col-12">
+               <div class="my_card_contactos_form">
+                 <div >
+                   <h3>Fechas De Entrega</h3>
+                 </div>
+                 <div >
+                   <%= link_to_add_compromisos('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span>Agregar <i class="ion-calendar"></i></span></button>'.html_safe, f, :compromisos_de_entrega, class: '') %>
+                 </div>
+             </div>
+             </div>
+
+
+             <div class="col-6 ">
+
+               <table class="table">
+                 <tbody class='fields_compromisos'>
+                   <%=f.fields_for :compromisos_de_entrega do |builder|%>
+
+                      <%= render 'compromiso_de_entrega', :f => builder%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+             </div>
+
+
+
+
+           </div>
+           <!--/Container con Flexbox-->
+        </div>
+        <!--Container-->
+        <br>
+     </div>
+     <!--/Card Block-->
+  </div>
+  <!--/Datos Generales del Pedido---->
+
+
+<br>
+<div class="card card-outline-secondary mb-3 text-center">
+  <div class="card-header">
+     <h1>Materias Primas</h1>
+
+  </div>
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+                       
+                       <div class="col-12">
+                         <br>
+                       </div>
+
+                       <div class="col-2">
+                         <%= f.input :cantidad_hoja %>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Medida de la hoja </label>
+                         <%= f.input :tamano_hoja, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Tamaños por hoja </label>
+                         <%= f.input :tamano_por_hojas, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Medida de corte </label>
+                         <%= f.input :tamano_de_corte, label: false %>
+                       </div>
+                       <div class="col-2">
+                         <label for="">Tamaños Totales</label>
+                         <%= f.input :tamanos_total , label: false%>
+                       </div>
+
+                       <div class="col-2">
+                         <%= f.input :cavidad %>
+                       </div>
+
+
+
+
+
+
+
+
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
+
+<br>
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+             <div class="col-12">
+               <label for="">Obsevaciones</label>
+               <%= f.input :observacion, label: false %>
+             </div>
+
+
+
+
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div id="AgregarTintaTiro">
+
+</div>
+<br>
+
+
+
+
+
+
+</div>

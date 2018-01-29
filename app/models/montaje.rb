@@ -14,6 +14,13 @@ class Montaje < ApplicationRecord
   has_many :tintas_fop_retiro, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :tintas_fop_retiro, reject_if: :all_blank, allow_destroy: true
 
+  has_many :ordenes_produccion, inverse_of: :montaje, dependent: :destroy
+  accepts_nested_attributes_for :ordenes_produccion, reject_if: :all_blank, allow_destroy: true
+
+  has_many :compromisos_de_entrega, inverse_of: :orden_produccion, dependent: :destroy
+  accepts_nested_attributes_for :compromisos_de_entrega, reject_if: :all_blank, allow_destroy: true
+
+
   def self.subir_montaje_from_excel(file)
 
     @errores = []
