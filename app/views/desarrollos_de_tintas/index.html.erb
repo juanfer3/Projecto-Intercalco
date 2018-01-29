@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Desarrollos De Tintas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Orden produccion</th>
+      <th>Linea de color</th>
+      <th>Malla</th>
+      <th>Descripción</th>
+      <th>Cantidad</th>
+      <th>Estado</th>
+      <th>Tiro</th>
+      <th>Retiro</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @desarrollos_de_tintas.each do |desarrollo_de_tinta| %>
+      <tr>
+        <td><%= desarrollo_de_tinta.orden_produccion %></td>
+        <td><%= desarrollo_de_tinta.linea_de_color %></td>
+        <td><%= desarrollo_de_tinta.malla %></td>
+        <td><%= desarrollo_de_tinta.descripción %></td>
+        <td><%= desarrollo_de_tinta.cantidad %></td>
+        <td><%= desarrollo_de_tinta.estado %></td>
+        <td><%= desarrollo_de_tinta.tiro %></td>
+        <td><%= desarrollo_de_tinta.retiro %></td>
+        <td><%= link_to 'Show', desarrollo_de_tinta %></td>
+        <td><%= link_to 'Edit', edit_desarrollo_de_tinta_path(desarrollo_de_tinta) %></td>
+        <td><%= link_to 'Destroy', desarrollo_de_tinta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Desarrollo De Tinta', new_desarrollo_de_tinta_path %>

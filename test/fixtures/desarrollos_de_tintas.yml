@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orden_produccion: one
+  linea_de_color: one
+  malla: one
+  descripción: MyString
+  cantidad: 1.5
+  estado: false
+  tiro: false
+  retiro: false
+
+two:
+  orden_produccion: two
+  linea_de_color: two
+  malla: two
+  descripción: MyString
+  cantidad: 1.5
+  estado: false
+  tiro: false
+  retiro: false

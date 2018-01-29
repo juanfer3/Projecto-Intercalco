@@ -107,7 +107,10 @@ class MontajesController < ApplicationController
     @montaje.formatos_op.build
 
 
-    @montaje.ordenes_produccion.build.compromisos_de_entrega.build
+    @montaje.ordenes_produccion.build.desarrollos_de_tintas.build
+    @montaje.build_compromisos_de_entrega
+
+
 
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
@@ -121,6 +124,8 @@ class MontajesController < ApplicationController
     @TintaFormulada.each do |nombreTintas|
       @Tintas << nombreTintas.descripcion
     end
+
+    render "new"
 
   end
 
@@ -224,7 +229,8 @@ class MontajesController < ApplicationController
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
           :diferencia, :numero_de_remision, :estado]
-      ]
+      ],
+      desarrollos_de_tintas_attributes:[:orden_produccion_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro]
       )
     end
 end

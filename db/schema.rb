@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126193301) do
+ActiveRecord::Schema.define(version: 20180129211342) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "enviado"
-    t.boolean "cumplido"
+    t.boolean "enviado", default: false
+    t.boolean "cumplido", default: false
     t.index ["orden_produccion_id"], name: "index_compromisos_de_entrega_on_orden_produccion_id"
   end
 
@@ -55,6 +55,22 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.integer "user_id"
     t.index ["cliente_id"], name: "index_contactos_on_cliente_id"
     t.index ["user_id"], name: "index_contactos_on_user_id"
+  end
+
+  create_table "desarrollos_de_tintas", force: :cascade do |t|
+    t.integer "orden_produccion_id"
+    t.integer "linea_de_color_id"
+    t.integer "malla_id"
+    t.string "descripción"
+    t.float "cantidad"
+    t.boolean "estado"
+    t.boolean "tiro"
+    t.boolean "retiro"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["linea_de_color_id"], name: "index_desarrollos_de_tintas_on_linea_de_color_id"
+    t.index ["malla_id"], name: "index_desarrollos_de_tintas_on_malla_id"
+    t.index ["orden_produccion_id"], name: "index_desarrollos_de_tintas_on_orden_produccion_id"
   end
 
   create_table "despachos", force: :cascade do |t|
@@ -203,7 +219,7 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.datetime "updated_at", null: false
     t.string "modo_de_empaque"
     t.date "fecha_de_creacion"
-    t.boolean "tiro"
+    t.boolean "tiro", default: true
     t.boolean "retiro"
     t.integer "user_id"
     t.boolean "precorte"
@@ -224,6 +240,8 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.boolean "pegado"
     t.boolean "ensamblado"
     t.string "otro"
+    t.boolean "tinta_nueva_tiro", default: false
+    t.boolean "tinta_nueva_retiro", default: false
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
     t.index ["user_id"], name: "index_montajes_on_user_id"
   end
@@ -261,12 +279,12 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.boolean "tiro"
     t.boolean "retiro"
     t.string "observacion"
-    t.boolean "pantalla"
-    t.boolean "color"
-    t.boolean "corte_material"
-    t.boolean "impresion"
-    t.boolean "troquel"
-    t.boolean "acabado"
+    t.boolean "pantalla", default: false
+    t.boolean "color", default: false
+    t.boolean "corte_material", default: false
+    t.boolean "impresion", default: false
+    t.boolean "troquel", default: false
+    t.boolean "acabado", default: false
     t.boolean "habilitar_impresion", default: true
     t.boolean "habilitar_acabado", default: true
     t.string "estado_de_orden"
@@ -278,6 +296,8 @@ ActiveRecord::Schema.define(version: 20180126193301) do
     t.string "tamano_hoja"
     t.string "tamano_de_corte"
     t.boolean "entregado", default: false
+    t.boolean "tinta_nueva_tiro"
+    t.boolean "tinta_nueva_retiro"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 

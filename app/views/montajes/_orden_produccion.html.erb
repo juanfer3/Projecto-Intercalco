@@ -87,7 +87,19 @@
 
              </div>
 
+             <div class="col-6 ">
 
+               <table class="table">
+                 <tbody class=''>
+                   <%=f.fields_for :desarrollos_de_tintas do |builder|%>
+
+                      <%= render 'desarrollo_de_tinta', :f => builder%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+             </div>
 
 
            </div>
@@ -113,7 +125,7 @@
          <br>
          <div class="my_card_pedidos_form">
 
-                       
+
                        <div class="col-12">
                          <br>
                        </div>

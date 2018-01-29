@@ -1,0 +1,18 @@
+<%= simple_form_for(@desarrollo_de_tinta) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :orden_produccion %>
+    <%= f.association :linea_de_color %>
+    <%= f.association :malla %>
+    <%= f.input :descripción %>
+    <%= f.input :cantidad %>
+    <%= f.input :estado %>
+    <%= f.input :tiro %>
+    <%= f.input :retiro %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
