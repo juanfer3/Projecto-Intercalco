@@ -1,0 +1,13 @@
+<%if @orden_produccion.pantalla == true%>
+      <h6 id=<%="quitar_estado_orden_produccion#{@orden_produccion.id}"%>>
+        <span class="badge badge-success">
+          Cerrado
+        </span>
+      </h6>
+<% else %>
+      <h6 id=<%="quitar_estado_orden_produccion#{@orden_produccion.id}"%>>
+        <span class="badge badge-info">
+          Pendiente
+        </span>
+      </h6>
+<% end %>

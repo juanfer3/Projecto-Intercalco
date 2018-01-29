@@ -1,0 +1,249 @@
+
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-3">
+      <label for="">Cliente</label>
+
+      <h4 ><%= @orden_produccion.montaje.cliente.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Descripción</label>
+      <h4 ><%= @orden_produccion.montaje.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Numero de Orden</label>
+      <h4><%= @orden_produccion.numero_de_orden%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Fecha de Orden</label>
+      <h4><%= @orden_produccion.fecha%></h4>
+    </div>
+
+
+    <div class="col-12">
+      <hr>
+    </div>
+
+
+    <div class="col-3">
+      <label for="">Máquina:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.maquina.nombre%></h4>
+      <% end %>
+    </div>
+
+
+
+
+    <div class="col-3">
+      <label for="">Sustrato:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.material%></h4>
+      <% end %>
+    </div>
+
+    <div class="col-3">
+      <label for="">Tamaño De Impresión:</label>
+
+        <h4><%=@orden_produccion.tamano_de_corte%></h4>
+
+    </div>
+
+    <div class="col-3">
+      <label for="">Linea de color:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.linea_de_color.nombre%></h4>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+
+
+
+
+
+
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Tiro</h1>
+  </div>
+
+<%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-6">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+      <div class="col-3">
+        <strong>Tiros:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-6">
+
+        <p><%=tintas_tiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_tiro.malla.nombre%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=@orden_produccion.tamanos_total%></p>
+
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>
+
+
+
+
+
+
+
+
+<hr>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Retiro</h1>
+  </div>
+
+<%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_retiro|%>
+
+
+
+<div class="card col-6">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-6">
+        <div class="">
+          <strong>Tinta:</strong>
+        </div>
+
+
+      </div>
+      <div class="col-3">
+        <strong>Malla:</strong>
+      </div>
+
+      <div class="col-3">
+        <strong>Tiros:</strong>
+      </div>
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-6">
+
+        <p><%=tintas_retiro.descripcion%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=tintas_retiro.malla.nombre%></p>
+
+      </div>
+
+      <div class="col-3">
+
+        <p><%=@orden_produccion.tamanos_total%></p>
+
+      </div>
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+
+
+
+
+  </ul>
+</div>
+
+
+<% end %>
+</div>

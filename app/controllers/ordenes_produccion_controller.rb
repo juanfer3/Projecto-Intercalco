@@ -8,6 +8,111 @@ class OrdenesProduccionController < ApplicationController
   end
 
 
+  #Color
+  def produccion_color
+    @ordenes_produccion = OrdenProduccion.all
+  end
+
+  def cerrar_color
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.color== false
+            @orden_produccion.update(color: true)
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(color: false)
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def info_color
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+
+    @Tintas_tiro=[]
+    @Tintas_retiro=[]
+
+
+    @orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|
+
+        @busq_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: tintas_tiro.descripcion)
+
+        if @busq_tinta == nil
+          @formula_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: tintas_tiro.descripcion)
+
+          @Tintas_tiro << @formula_tintas
+
+        else
+
+          @Tintas_tiro << @busq_tinta
+
+        end
+    end
+
+    @orden_produccion.montaje.tintas_fop_retiro.each do |tintas_retiro|
+
+        @busq2_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
+        puts "******************#{@busq2_tinta}**********************"
+        if @busq2_tinta == nil
+          puts "******************Esta Vacio**********************"
+          @formula2_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
+
+          @Tintas_retiro << @formula2_tintas
+
+        else
+          puts "******************Esta Vacio**********************"
+          @Tintas_retiro << @busq2_tinta
+
+
+        end
+
+    end
+
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+
+
+
+  #pantallas
+  def produccion_pantallas
+    @ordenes_produccion = OrdenProduccion.all
+  end
+
+  def cerrar_pantalla
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      if @orden_produccion.pantalla== false
+            @orden_produccion.update(pantalla: true)
+
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(pantalla: false)
+
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
+  def info_pantallas
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def select_buscar_montaje
     @montaje = Montaje.find(params[:id])
     respond_to do |format|

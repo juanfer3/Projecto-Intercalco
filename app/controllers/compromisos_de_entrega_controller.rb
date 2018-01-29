@@ -12,6 +12,8 @@ class CompromisosDeEntregaController < ApplicationController
     respond_to do |format|
         @compromiso_de_entrega.update(enviado: false,
           fecha_despacho: "", cantidad_despacho:0.0, numero_de_remision:"")
+          @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
+          @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion.id)
         format.js {flash[:notice] = "" }
     end
     respond_to do |format|
@@ -59,6 +61,7 @@ class CompromisosDeEntregaController < ApplicationController
     respond_to do |format|
       if @compromiso_de_entrega.update(compromiso_de_entrega_params)
         @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
+        @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion.id)
         format.html { redirect_to @compromiso_de_entrega, notice: 'Compromiso de entrega was successfully updated.' }
         format.json { render :show, status: :ok, location: @compromiso_de_entrega }
         format.js

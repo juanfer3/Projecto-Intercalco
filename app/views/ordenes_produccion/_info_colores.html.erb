@@ -1,0 +1,157 @@
+
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-3">
+      <label for="">Cliente</label>
+
+      <h4 ><%= @orden_produccion.montaje.cliente.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Descripción</label>
+      <h4 ><%= @orden_produccion.montaje.nombre%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Numero de Orden</label>
+      <h4><%= @orden_produccion.numero_de_orden%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Fecha de Orden</label>
+      <h4><%= @orden_produccion.fecha%></h4>
+    </div>
+
+
+    <div class="col-12">
+      <hr>
+    </div>
+
+
+    <div class="col-3">
+      <label for="">Máquina:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.maquina.nombre%></h4>
+      <% end %>
+    </div>
+
+
+
+
+    <div class="col-3">
+      <label for="">Sustrato:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.material%></h4>
+      <% end %>
+    </div>
+
+    <div class="col-3">
+      <label for="">Tamaño De Impresión:</label>
+
+        <h4><%=@orden_produccion.tamano_de_corte%></h4>
+
+    </div>
+
+    <div class="col-3">
+      <label for="">Linea de color:</label>
+      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+        <h4><%=formato.linea_de_color.nombre%></h4>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+
+
+
+
+
+
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Tiro</h1>
+  </div>
+  <table class="table">
+    <thead>
+      <th>Color</th>
+      <th>Linea</th>
+      <th>Malla</th>
+      <th>Tiros</th>
+    </thead>
+    <tbody>
+      <%cont=0%>
+
+      <%total=0%>
+      <%@Tintas_tiro.each do |tinta|%>
+            <%
+            cont = cont +1
+            %>
+            <tr>
+              <td><%=tinta.descripcion%></td>
+              <td><%=tinta.linea_de_color.nombre%></td>
+              <%cont2=0%>
+              <%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+              <%cont2 = cont2+1%>
+                  <% if cont == cont2 %>
+                    <!-- true -->
+                    <td><%=tintas_tiro.malla.nombre%></td>
+                  <% end %>
+
+              <% end %>
+              <td><%=@orden_produccion.tamanos_total%></td>
+            </tr>
+
+
+            <%= puts"********************************************************#{tinta}"%>
+
+      <%end%>
+    </tbody>
+  </table>
+
+</div>
+<hr>
+
+<div class="my_card_produccion">
+  <div class="col-12">
+    <h1>Tintas Retiro</h1>
+  </div>
+  <table class="table">
+    <thead>
+      <th>Color</th>
+      <th>Linea</th>
+      <th>Malla</th>
+      <th>Tiros</th>
+    </thead>
+    <tbody>
+      <%cont=0%>
+
+      <%total=0%>
+      <%@Tintas_retiro.each do |tinta|%>
+            <%
+            cont = cont +1
+            %>
+            <tr>
+              <td><%=tinta.descripcion%></td>
+              <td><%=tinta.linea_de_color.nombre%></td>
+              <%cont2=0%>
+              <%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_tiro|%>
+              <%cont2 = cont2+1%>
+                  <% if cont == cont2 %>
+                    <!-- true -->
+                    <td><%=tintas_tiro.malla.nombre%></td>
+                  <% end %>
+
+              <% end %>
+              <td><%=@orden_produccion.tamanos_total%></td>
+            </tr>
+
+
+            <%= puts"********************************************************#{tinta}"%>
+
+      <%end%>
+    </tbody>
+  </table>
+
+</div>

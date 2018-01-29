@@ -112,4 +112,13 @@ Rails.application.routes.draw do
 
   get 'deshacer_envio/:id', to: 'compromisos_de_entrega#deshacer_envio', as: :deshacer_envio
 
+  get 'produccion_pantallas', to: 'ordenes_produccion#produccion_pantallas', as: :produccion_pantallas
+  get 'info_pantallas/:id', to: 'ordenes_produccion#info_pantallas', as: :info_pantallas
+  get 'cerrar_pantalla/:id', to: 'ordenes_produccion#cerrar_pantalla', as: :cerrar_pantalla
+
+
+  get 'produccion_color', to: 'ordenes_produccion#produccion_color', as: :produccion_color
+  get 'info_color/:id', to: 'ordenes_produccion#info_color', as: :info_color
+  get 'cerrar_color/:id', to: 'ordenes_produccion#cerrar_color', as: :cerrar_color
+
 end
