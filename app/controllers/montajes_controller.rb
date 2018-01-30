@@ -106,9 +106,11 @@ class MontajesController < ApplicationController
     @montaje.tintas_fop_retiro.build
     @montaje.formatos_op.build
 
+    @montaje.ordenes_produccion.build.compromisos_de_entrega.build
 
-    @montaje.ordenes_produccion.build.desarrollos_de_tintas.build
-    @montaje.build_compromisos_de_entrega
+    @montaje.desarrollos_de_tintas.build
+
+
 
 
 
@@ -212,7 +214,8 @@ class MontajesController < ApplicationController
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
-         :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado, :otro,
+         :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado, :otro, :tinta_nueva,
+         desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
       tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
@@ -229,8 +232,9 @@ class MontajesController < ApplicationController
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
           :diferencia, :numero_de_remision, :estado]
-      ],
-      desarrollos_de_tintas_attributes:[:orden_produccion_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro]
+      ]
+
       )
+
     end
 end

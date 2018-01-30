@@ -36,10 +36,6 @@
              </div>
 
 
-
-
-
-
              <div class="col-4">
                <label for="">Cantidad </label>
                <%= f.input :cantidad_programada, label: false %>
@@ -72,34 +68,24 @@
              </div>
              </div>
 
+                      <br>
+                      <br>
+                      <div class="my_card_pedidos_form">
 
-             <div class="col-6 ">
 
-               <table class="table">
-                 <tbody class='fields_compromisos'>
-                   <%=f.fields_for :compromisos_de_entrega do |builder|%>
+                        <div class="col-12 ">
 
-                      <%= render 'compromiso_de_entrega', :f => builder%>
+                          <table class="table">
+                            <tbody class='fields_compromisos'>
+                              <%=f.fields_for :compromisos_de_entrega do |builder|%>
 
-                   <%end%>
-                 </tbody>
-                 </table>
+                                 <%= render 'compromiso_de_entrega', :f => builder%>
 
-             </div>
+                              <%end%>
+                            </tbody>
+                            </table>
 
-             <div class="col-6 ">
-
-               <table class="table">
-                 <tbody class=''>
-                   <%=f.fields_for :desarrollos_de_tintas do |builder|%>
-
-                      <%= render 'desarrollo_de_tinta', :f => builder%>
-
-                   <%end%>
-                 </tbody>
-                 </table>
-
-             </div>
+                        </div>
 
 
            </div>
@@ -113,7 +99,22 @@
   <!--/Datos Generales del Pedido---->
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+</div>
 <br>
+
 <div class="card card-outline-secondary mb-3 text-center">
   <div class="card-header">
      <h1>Materias Primas</h1>
@@ -166,42 +167,4 @@
          <br>
       </div>
    </div>
-</div>
-
-<br>
-
-<div class="card card-outline-secondary mb-3 text-center">
-   <div class="card-block">
-      <div class="container">
-         <br>
-         <br>
-         <div class="my_card_pedidos_form">
-
-
-
-
-             <div class="col-12">
-               <label for="">Obsevaciones</label>
-               <%= f.input :observacion, label: false %>
-             </div>
-
-
-
-
-         </div>
-      </div>
-   </div>
-</div>
-
-
-<div id="AgregarTintaTiro">
-
-</div>
-<br>
-
-
-
-
-
-
 </div>

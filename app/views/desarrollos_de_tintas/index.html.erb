@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Orden produccion</th>
+      <th>Montaje</th>
       <th>Linea de color</th>
       <th>Malla</th>
       <th>Descripción</th>
@@ -20,7 +20,7 @@
   <tbody>
     <% @desarrollos_de_tintas.each do |desarrollo_de_tinta| %>
       <tr>
-        <td><%= desarrollo_de_tinta.orden_produccion %></td>
+        <td><%= desarrollo_de_tinta.montaje %></td>
         <td><%= desarrollo_de_tinta.linea_de_color %></td>
         <td><%= desarrollo_de_tinta.malla %></td>
         <td><%= desarrollo_de_tinta.descripción %></td>

@@ -67,6 +67,64 @@
 
 
 
+<%if @orden_produccion.montaje.tinta_nueva == true%>
+<div class="" id="divContenedor">
+
+
+      <div class="my_card_produccion">
+        <div class="col-12">
+          <h1>Tintas Nuevas</h1>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <th>Color</th>
+            <th>Linea</th>
+            <th>Malla</th>
+            <th>Tiro</th>
+            <th>Retiro</th>
+            <th>Desarrollar</th>
+          </thead>
+          <tbody>
+            <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
+              <tr>
+                <td><%=desarrollo.descripción%></td>
+                <td><%=desarrollo.linea_de_color.nombre%></td>
+                <td><%=desarrollo.malla.nombre%></td>
+
+                <% if desarrollo.tiro== true %>
+                  <td>
+                    <span><i class="ion-checkmark-circled"></i> </span>
+                  </td>
+                <% else %>
+                  <td></td>
+                <% end %>
+
+
+
+                <% if desarrollo.retiro== true %>
+                  <td>
+                    <span><i class="ion-checkmark-circled"></i> </span>
+                  </td>
+                <% else %>
+                    <td></td>
+                <% end %>
+
+
+
+
+
+                <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+
+              </tr>
+            <%end%>
+          </tbody>
+        </table>
+
+      </div>
+</div>
+<hr>
+<%end%>
+
 
 
 <div class="my_card_produccion">

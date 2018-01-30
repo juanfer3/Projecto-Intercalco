@@ -7,6 +7,17 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
+  
+
+  def desarrollar_color
+    @desarrollo_de_tinta = DesarrolloDeTinta.find(params[:id])
+    @tinta_formulada = TintaFormulada.new
+    @tinta_formulada.formulas_tinta.build
+    respond_to do |format|
+      format.js
+    end
+
+  end
 
   #Color
   def produccion_color
@@ -317,9 +328,11 @@ class OrdenesProduccionController < ApplicationController
       if @orden_produccion.save
         format.html { redirect_to ordenes_produccion_path, notice: 'Orden produccion was successfully created.' }
         format.json { render :show, status: :created, location: @orden_produccion }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @orden_produccion.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

@@ -1,8 +1,27 @@
 <tr>
-  <td><%= f.association :orden_produccion %></td>
-  <td><%= f.association :linea_de_color %></td>
-  <td><%= f.association :malla %></td>
-  <td><%= f.input :descripción %></td>
-  <td><%= f.input :tiro %></td>
-  <td><%= f.input :retiro %></td>
+  <td>
+
+
+    <%= f.select :linea_de_color_id,LineaDeColor.all.map {|i| [i.nombre , i.id]},
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}  %>
+  </td>
+  <td>
+
+    <%= f.select :malla_id, Malla.all.map {|i| [i.nombre , i.id]},
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control' } %>
+  </td>
+  <td><%= f.input :descripción, label:false%></td>
+  <td>
+    <br>
+    <%= f.input :tiro, label:false %>
+  </td>
+  <td>
+    <br>
+    <%= f.input :retiro, label:false %>
+  </td>
+<td>
+  <%= f.input_field :_destroy, as: :hidden %>
+  <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_compromisos' %>
+</td>
+
 </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129211342) do
+ActiveRecord::Schema.define(version: 20180130131837) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20180129211342) do
   end
 
   create_table "desarrollos_de_tintas", force: :cascade do |t|
-    t.integer "orden_produccion_id"
+    t.integer "montaje_id"
     t.integer "linea_de_color_id"
     t.integer "malla_id"
     t.string "descripción"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20180129211342) do
     t.datetime "updated_at", null: false
     t.index ["linea_de_color_id"], name: "index_desarrollos_de_tintas_on_linea_de_color_id"
     t.index ["malla_id"], name: "index_desarrollos_de_tintas_on_malla_id"
-    t.index ["orden_produccion_id"], name: "index_desarrollos_de_tintas_on_orden_produccion_id"
+    t.index ["montaje_id"], name: "index_desarrollos_de_tintas_on_montaje_id"
   end
 
   create_table "despachos", force: :cascade do |t|
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20180129211342) do
     t.string "otro"
     t.boolean "tinta_nueva_tiro", default: false
     t.boolean "tinta_nueva_retiro", default: false
+    t.boolean "tinta_nueva"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
     t.index ["user_id"], name: "index_montajes_on_user_id"
   end

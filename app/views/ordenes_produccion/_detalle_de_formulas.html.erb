@@ -1,0 +1,85 @@
+<! ------------------Información Del Formulas---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-3">
+      <label for="">Codigo</label>
+      <h4 ><%= @tinta_formulada.codigo%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Descripción</label>
+      <h4 ><%= @tinta_formulada.descripcion%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Pantone</label>
+      <h4><%= @tinta_formulada.pantone%></h4>
+    </div>
+    <div class="col-3">
+      <label for="">Linea De Color</label>
+      <h4><%= @tinta_formulada.linea_de_color.nombre%></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="card col-6 offset-md-3">
+  <ul class="list-group list-group-flush">
+
+
+
+
+    <li class="list-group-item container my_card_produccion">
+      <div class="col">
+        <div class="">
+          <strong>Color:</strong>
+        </div>
+
+
+      </div>
+      <div class="col">
+        <strong>Porcentaje:</strong>
+      </div>
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+<!--color-->
+    <%@tinta_formulada.formulas_tinta.each do |formula|%>
+    <li class="list-group-item container my_card_produccion">
+      <div class="col-6">
+
+        <p><%=formula.tinta.descripcion%></p>
+
+      </div>
+
+      <div class="col-6">
+        <p><%=formula.porcentaje%>%</p>
+      </div>
+
+
+
+      <div class="">
+
+        <!--FONT FACE="arial" SIZE=6>
+          <span size=10 >
+             <i class="ion-printer"></i>
+          </span>
+        </!--FONT-->
+
+      </div>
+    </li>
+
+    <% end %>
+
+
+  </ul>
+</div>

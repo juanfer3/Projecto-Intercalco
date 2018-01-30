@@ -69,6 +69,6 @@ class DesarrollosDeTintasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def desarrollo_de_tinta_params
-      params.require(:desarrollo_de_tinta).permit(:orden_produccion_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro)
+      params.require(:desarrollo_de_tinta).permit(:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro)
     end
 end

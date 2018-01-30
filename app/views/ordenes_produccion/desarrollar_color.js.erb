@@ -1,0 +1,34 @@
+toastr.success(":)")
+
+$("#divContenedor").html("<%= j render 'desarrollar_color_form'%>")
+
+$("#tinta_formulada_descripcion").val("<%=@desarrollo_de_tinta.descripción%>")
+
+$('#select_linea').val('<%=@desarrollo_de_tinta.linea_de_color.id%>');
+$('#select_linea > option[value="<%=@desarrollo_de_tinta.linea_de_color.id%>"]').attr('selected', 'selected');
+$('#select_malla').val('<%=@desarrollo_de_tinta.linea_de_color.id%>');
+$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
+$('form').on('click', '.remove_formula', function(event) {
+  $(this).prev('input[type=hidden]').val('1');
+  $(this).closest('tr').remove();
+
+  return event.preventDefault();
+});
+
+$('form').on('click', '.add_formula', function(event) {
+  var regexp, time;
+  time = new Date().getTime();
+  regexp = new RegExp($(this).data('id'), 'g');
+  $('.fields_formula').append($(this).data('fields').replace(regexp, time));
+  $(".js-example-tags").select2({
+
+  })
+  return event.preventDefault();
+});
+
+$(".js-example-tags").select2({
+
+
+
+
+})

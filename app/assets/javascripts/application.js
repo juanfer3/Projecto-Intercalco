@@ -289,10 +289,30 @@ $('.validacion_fecha').focusout(function (){
 
 
 
+if( $('#montaje_tinta_nueva').prop('checked') ) {
+
+  $('#contenedorDesarrolloTintas').show()
+
+}else {
+
+  $('#contenedorDesarrolloTintas').hide()
+
+}
 
 
+$('#montaje_tinta_nueva').change(function(){
 
+  if( $('#montaje_tinta_nueva').prop('checked') ) {
 
+    $('#contenedorDesarrolloTintas').show()
+
+  }else {
+
+    $('#contenedorDesarrolloTintas').hide()
+
+  }
+
+})
 
 
 
@@ -1167,7 +1187,19 @@ $('#busqueda_fop').on("select2:select", function (e) {
   });
 
 
+  $('form').on('click', '.remove_desarrollo_tintas', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').remove();
+    return event.preventDefault();
+  });
 
+  $('form').on('click', '.add_desarrollo_tintas', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_desarrollo_tintas').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
 
 
   $('#contenedor_Fecha_De_Pedido').hide()

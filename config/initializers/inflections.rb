@@ -142,5 +142,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'cumplido', 'cumplidos'
 
   inflect.irregular 'desarrollo_de_tinta', 'desarrollos_de_tintas'
+  inflect.irregular 'tinta_nueva', 'tintas_nuevas'
+  inflect.irregular 'transicion', 'transiciones'
+
 
 end

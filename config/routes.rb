@@ -122,4 +122,8 @@ Rails.application.routes.draw do
   get 'info_color/:id', to: 'ordenes_produccion#info_color', as: :info_color
   get 'cerrar_color/:id', to: 'ordenes_produccion#cerrar_color', as: :cerrar_color
 
+  get 'desarrollar_color/:id', to: 'ordenes_produccion#desarrollar_color', as: :desarrollar_color
+
+  get 'crear_color/:id', to: 'tintas_formuladas#crear_color', as: :crear_color
+
 end

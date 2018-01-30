@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  orden_produccion: one
+  montaje: one
   linea_de_color: one
   malla: one
   descripción: MyString
@@ -11,7 +11,7 @@ one:
   retiro: false
 
 two:
-  orden_produccion: two
+  montaje: two
   linea_de_color: two
   malla: two
   descripción: MyString

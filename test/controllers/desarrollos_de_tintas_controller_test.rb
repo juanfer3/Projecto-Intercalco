@@ -17,7 +17,7 @@ class DesarrollosDeTintasControllerTest < ActionDispatch::IntegrationTest
 
   test "should create desarrollo_de_tinta" do
     assert_difference('DesarrolloDeTinta.count') do
-      post desarrollos_de_tintas_url, params: { desarrollo_de_tinta: { cantidad: @desarrollo_de_tinta.cantidad, descripción: @desarrollo_de_tinta.descripción, estado: @desarrollo_de_tinta.estado, linea_de_color_id: @desarrollo_de_tinta.linea_de_color_id, malla_id: @desarrollo_de_tinta.malla_id, orden_produccion_id: @desarrollo_de_tinta.orden_produccion_id, retiro: @desarrollo_de_tinta.retiro, tiro: @desarrollo_de_tinta.tiro } }
+      post desarrollos_de_tintas_url, params: { desarrollo_de_tinta: { cantidad: @desarrollo_de_tinta.cantidad, descripción: @desarrollo_de_tinta.descripción, estado: @desarrollo_de_tinta.estado, linea_de_color_id: @desarrollo_de_tinta.linea_de_color_id, malla_id: @desarrollo_de_tinta.malla_id, montaje_id: @desarrollo_de_tinta.montaje_id, retiro: @desarrollo_de_tinta.retiro, tiro: @desarrollo_de_tinta.tiro } }
     end
 
     assert_redirected_to desarrollo_de_tinta_url(DesarrolloDeTinta.last)
@@ -34,7 +34,7 @@ class DesarrollosDeTintasControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update desarrollo_de_tinta" do
-    patch desarrollo_de_tinta_url(@desarrollo_de_tinta), params: { desarrollo_de_tinta: { cantidad: @desarrollo_de_tinta.cantidad, descripción: @desarrollo_de_tinta.descripción, estado: @desarrollo_de_tinta.estado, linea_de_color_id: @desarrollo_de_tinta.linea_de_color_id, malla_id: @desarrollo_de_tinta.malla_id, orden_produccion_id: @desarrollo_de_tinta.orden_produccion_id, retiro: @desarrollo_de_tinta.retiro, tiro: @desarrollo_de_tinta.tiro } }
+    patch desarrollo_de_tinta_url(@desarrollo_de_tinta), params: { desarrollo_de_tinta: { cantidad: @desarrollo_de_tinta.cantidad, descripción: @desarrollo_de_tinta.descripción, estado: @desarrollo_de_tinta.estado, linea_de_color_id: @desarrollo_de_tinta.linea_de_color_id, malla_id: @desarrollo_de_tinta.malla_id, montaje_id: @desarrollo_de_tinta.montaje_id, retiro: @desarrollo_de_tinta.retiro, tiro: @desarrollo_de_tinta.tiro } }
     assert_redirected_to desarrollo_de_tinta_url(@desarrollo_de_tinta)
   end
 

@@ -7,6 +7,20 @@ class TintasFormuladasController < ApplicationController
     @tintas_formuladas= TintaFormulada.all.paginate(page: params[:page], per_page: 20).order('codigo')
   end
 
+  def crear_color
+    #code
+    @desarrollo_de_tinta = DesarrolloDeTinta.find(params[:id])
+    @tinta_formulada = TintaFormulada.new(tinta_formulada_params)
+    respond_to do |format|
+      if @tinta_formulada.save
+
+        format.js
+      else
+        format.js
+      end
+    end
+  end
+
   def import_tintas_formuladas_from_excel
     file = params[:file]
     begin
@@ -55,9 +69,11 @@ class TintasFormuladasController < ApplicationController
       if @tinta_formulada.save
         format.html { redirect_to @tinta_formulada, notice: 'Tinta formulada was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_formulada }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tinta_formulada.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

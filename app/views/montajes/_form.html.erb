@@ -2,9 +2,11 @@
   <%= f.error_notification %>
 
 
+  <div class="offset-md-10">
+    <%= link_to '<button class="btn btn-outline-info"><span>Ficha Exixtente <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path  %>
+  </div>
 
-
-
+  <br>
 
   <div class="card text-center">
 
@@ -188,8 +190,70 @@
        </div>
     </div>
   </div>
+  <br>
+  <div class="col-12">
+    <div class="my_card_contactos_form">
+      <div class="input-group">
+          <h1>Programar tintas nuevas</h1>
+          <div class="anexar_tinta">
+            <%= f.input :tinta_nueva, label:false, class: "form-control " %>
+          </div>
+
+      </div>
+
+  </div>
+  </div>
+  <br>
 
 
+  <div class="card card-outline-secondary mb-3 text-center" id="contenedorDesarrolloTintas">
+    <div class="card-header">
+
+      <div class="col-12">
+        <div class="my_card_contactos_form">
+          <div >
+            <h3>Anexar Tintas</h3>
+          </div>
+          <div >
+
+          <%= link_to_add_desarrollo_tintas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :desarrollos_de_tintas, class: '') %>
+          </div>
+      </div>
+      </div>
+
+    </div>
+     <div class="card-block">
+        <div class="container">
+
+           <br>
+           <br>
+           <div class="">
+             <div class="col-12 ">
+
+               <table class="table">
+                 <thead>
+                   <th>Selecione linea de color</th>
+                   <th>Seleccione malla</th>
+                   <th>Descripción</th>
+                   <th>Anexar tinta al tiro</th>
+                   <th>Anexar tinta al retiro</th>
+                   <th>Eliminar</th>
+                 </thead>
+                 <tbody class='fields_desarrollo_tintas'>
+                   <%=f.fields_for :desarrollos_de_tintas do |builder|%>
+
+                      <%= render 'desarrollo_de_tinta', :f => builder%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+             </div>
+           </div>
+
+        </div>
+     </div>
+  </div>
 
   <br>
 
@@ -263,6 +327,16 @@
 
 
     </div>
+
+
+
+
+
+
+
+
+
+
 
   <div class="card card-outline-secondary mb-3 text-center">
     <div class="card-header">
@@ -446,6 +520,28 @@
   </div>
 
 
+  <div class="card card-outline-secondary mb-3 text-center">
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="my_card_pedidos_form">
+
+
+
+
+               <div class="col-12">
+                 <label for="">Obsevaciones</label>
+                 <%= f.input :observacion, label: false %>
+               </div>
+
+
+
+
+           </div>
+        </div>
+     </div>
+  </div>
 
   <div class="form-actions">
     <%= f.button :submit , id: "btn-montaje"%>
