@@ -65,6 +65,23 @@
                 </table>
 
             </div>
+
+            <div class="">
+
+              <table class="table">
+                <thead>
+
+                </thead>
+                <tbody class=''>
+                  <%=f.fields_for :transiciones do |builder|%>
+
+                     <%= render 'transicion', :f => builder%>
+
+                  <%end%>
+                </tbody>
+                </table>
+
+            </div>
             </div>
           </div>
         </div>

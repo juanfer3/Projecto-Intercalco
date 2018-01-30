@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Desarrollo de tinta:</strong>
+  <%= @transicion.desarrollo_de_tinta %>
+</p>
+
+<p>
+  <strong>Tinta formulada:</strong>
+  <%= @transicion.tinta_formulada %>
+</p>
+
+<%= link_to 'Edit', edit_transicion_path(@transicion) %> |
+<%= link_to 'Back', transiciones_path %>

@@ -7,12 +7,13 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
-  
+
 
   def desarrollar_color
     @desarrollo_de_tinta = DesarrolloDeTinta.find(params[:id])
     @tinta_formulada = TintaFormulada.new
     @tinta_formulada.formulas_tinta.build
+    @tinta_formulada.transiciones.build
     respond_to do |format|
       format.js
     end
@@ -377,6 +378,7 @@ class OrdenesProduccionController < ApplicationController
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado])
+        :diferencia, :numero_de_remision, :estado]
+      )
     end
 end

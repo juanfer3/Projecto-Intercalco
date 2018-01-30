@@ -6,8 +6,13 @@ $("#tinta_formulada_descripcion").val("<%=@desarrollo_de_tinta.descripción%>")
 
 $('#select_linea').val('<%=@desarrollo_de_tinta.linea_de_color.id%>');
 $('#select_linea > option[value="<%=@desarrollo_de_tinta.linea_de_color.id%>"]').attr('selected', 'selected');
+
 $('#select_malla').val('<%=@desarrollo_de_tinta.linea_de_color.id%>');
 $('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
+
+$('#select_desarrollo').val('<%=@desarrollo_de_tinta.id%>');
+$('#select_desarrollo > option[value="<%=@desarrollo_de_tinta.id%>"]').attr('selected', 'selected');
+
 $('form').on('click', '.remove_formula', function(event) {
   $(this).prev('input[type=hidden]').val('1');
   $(this).closest('tr').remove();

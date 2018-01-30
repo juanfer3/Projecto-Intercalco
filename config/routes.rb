@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transiciones
   resources :desarrollos_de_tintas
   resources :ordenes_produccion
   resources :compromisos_de_entrega

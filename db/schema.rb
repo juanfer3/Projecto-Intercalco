@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180130131837) do
+ActiveRecord::Schema.define(version: 20180130201504) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -446,6 +446,15 @@ ActiveRecord::Schema.define(version: 20180130131837) do
     t.datetime "updated_at", null: false
     t.index ["linea_de_color_id"], name: "index_tintas_formuladas_on_linea_de_color_id"
     t.index ["malla_id"], name: "index_tintas_formuladas_on_malla_id"
+  end
+
+  create_table "transiciones", force: :cascade do |t|
+    t.integer "desarrollo_de_tinta_id"
+    t.integer "tinta_formulada_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["desarrollo_de_tinta_id"], name: "index_transiciones_on_desarrollo_de_tinta_id"
+    t.index ["tinta_formulada_id"], name: "index_transiciones_on_tinta_formulada_id"
   end
 
   create_table "users", force: :cascade do |t|

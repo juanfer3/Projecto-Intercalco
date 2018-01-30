@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Transiciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Desarrollo de tinta</th>
+      <th>Tinta formulada</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @transiciones.each do |transicion| %>
+      <tr>
+        <td><%= transicion.desarrollo_de_tinta %></td>
+        <td><%= transicion.tinta_formulada %></td>
+        <td><%= link_to 'Show', transicion %></td>
+        <td><%= link_to 'Edit', edit_transicion_path(transicion) %></td>
+        <td><%= link_to 'Destroy', transicion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Transicion', new_transicion_path %>

@@ -54,6 +54,7 @@ class TintasFormuladasController < ApplicationController
   def new
     @tinta_formulada = TintaFormulada.new
     @tinta_formulada.formulas_tinta.build
+    @tinta_formulada.transiciones.build
   end
 
   # GET /tintas_formuladas/1/edit
@@ -67,6 +68,44 @@ class TintasFormuladasController < ApplicationController
 
     respond_to do |format|
       if @tinta_formulada.save
+          if @tinta_formulada.transiciones == nil
+            puts "**************************Vacio tinta**************"
+          else
+            puts "**************************LLeno tinta*************"
+            @tinta_formulada.transiciones.each do |transicion|
+              @montaje = Montaje.where("desarrollos_de_tintas.montaje_id=#{transicion.desarrollo_de_tinta.montaje.id}")
+              if @montaje== nil
+                puts "**************************Montaje Vacio**************"
+              else
+                puts "**************************Montaje LLeno*************"
+                @eliminar_transicion = Transicion.find_by(id:transicion.id)
+                @eliminar_transicion.destroy
+
+                @tinta_solicitada = DesarrolloDeTinta.find_by(id:transicion.desarrollo_de_tinta.id)
+
+                  if @tinta_solicitada.tiro == true
+                    tinta_tiro = TintaFopTiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
+
+                    if tinta_tiro.save
+                      puts "**************************Tinta Tiro Creada**************"
+                    end
+                  end
+
+
+                  if @tinta_solicitada.retiro == true
+                    tinta_tiro = TintaFopRetiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
+
+                    if tinta_tiro.save
+                      puts "**************************Tinta Tiro Creada**************"
+                    end
+                  end
+                  @tinta_solicitada.destroy
+              end
+
+            end
+          end
+
+        @montaje = Montaje.find_by(id: @tinta)
         format.html { redirect_to @tinta_formulada, notice: 'Tinta formulada was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_formulada }
         format.js
@@ -111,6 +150,7 @@ class TintasFormuladasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def tinta_formulada_params
       params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado,
-      formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado])
+      formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado],
+      transiciones_attributes:[:desarrollo_de_tinta_id, :tinta_formulada_id])
     end
 end
