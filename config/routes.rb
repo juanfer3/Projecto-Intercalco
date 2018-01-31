@@ -127,4 +127,8 @@ Rails.application.routes.draw do
 
   get 'crear_color/:id', to: 'tintas_formuladas#crear_color', as: :crear_color
 
+  get 'desarrollar_tintas_tiro/:id', to: 'ordenes_produccion#desarrollar_tintas_tiro', as: :desarrollar_tintas_tiro
+
+  get 'desarrollar_tintas_retiro/:id', to: 'ordenes_produccion#desarrollar_tintas_retiro', as: :desarrollar_tintas_retiro
+
 end

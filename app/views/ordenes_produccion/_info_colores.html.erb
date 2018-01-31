@@ -1,6 +1,9 @@
 
 <! ------------------Información Del Pedido---------------------------------->
 <div class="container card-block">
+  <div class="ocultar">
+    <p id="tamanos"><%=@orden_produccion.tamanos_total%></p>
+  </div>
   <div class="container my_card_pedidos_form my_orden_pedidos">
     <div class="col-3">
       <label for="">Cliente</label>
@@ -70,10 +73,13 @@
 
 
 <%if @orden_produccion.montaje.tinta_nueva == true%>
+    <br>
     <div class="" id="divContenedor">
 
 
           <div class="my_card_produccion">
+
+
             <div class="col-12">
               <h1>Tintas Nuevas</h1>
             </div>
@@ -131,7 +137,27 @@
 
 <% if @orden_produccion.montaje.tiro == true %>
   <!-- true -->
+  <div class="container_add_entregas col-12">
+     <div class="col-4">
+        <h1>Agragar Tinta al Tiro</h1>
+     </div>
+     <div class="col-3 offset-md-6">
+        <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@orden_produccion.montaje.id), remote:true %>
+     </div>
+  </div>
+  <div class="col-12">
+    <br>
+  </div>
 
+
+  <div class="" id="generarTintaNueva">
+
+  </div>
+
+
+  <div class="col-12">
+    <br>
+  </div>
     <div class="my_card_produccion">
       <div class="col-12">
         <h1>Tintas Tiro</h1>
@@ -143,7 +169,7 @@
           <th>Malla</th>
           <th>Tiros</th>
         </thead>
-        <tbody>
+        <tbody id="AgregarTintasTiro">
           <%cont=0%>
 
           <%total=0%>
@@ -163,7 +189,7 @@
                       <% end %>
 
                   <% end %>
-                  <td><%=@orden_produccion.tamanos_total%></td>
+                  <td ><%=@orden_produccion.tamanos_total%></td>
                 </tr>
 
 
@@ -178,6 +204,26 @@
 
 <% if @orden_produccion.montaje.retiro == true %>
     <div class="my_card_produccion">
+      <div class="container_add_entregas col-12">
+         <div class="col-4">
+            <h1>Agragar Tinta al Retiro</h1>
+         </div>
+         <div class="col-3 offset-md-6">
+            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_retiro_path(@orden_produccion.montaje.id), remote:true %>
+         </div>
+      </div>
+
+
+      <div class="col-12">
+        <br>
+      </div>
+
+
+      <div class="col-12" id="generarTintaNuevaRetiro">
+
+      </div>
+
+
       <div class="col-12">
         <h1>Tintas Retiro</h1>
       </div>
@@ -188,7 +234,7 @@
           <th>Malla</th>
           <th>Tiros</th>
         </thead>
-        <tbody>
+        <tbody id="AgregarTintasRetiro">
           <%cont=0%>
 
           <%total=0%>

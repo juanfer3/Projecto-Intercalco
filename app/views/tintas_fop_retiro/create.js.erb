@@ -1,0 +1,15 @@
+toastr.success("Registro Creado")
+
+
+
+
+$('#select_malla').val(''); // Select the option with a value of '1'
+$('#select_malla').trigger('change'); // Notify any JS components that the value changed
+
+$("#select_tinta").val("");
+$('#select_tinta').trigger('change'); // Notify any JS components that the value changed
+
+$("#AgregarTintasRetiro").append('<%= j render 'fields_retiro'%>')
+var tiro = $("#tamanos").text()
+
+$(".darValor").html(tiro)

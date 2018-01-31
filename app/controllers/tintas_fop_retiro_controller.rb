@@ -28,11 +28,30 @@ class TintasFopRetiroController < ApplicationController
 
     respond_to do |format|
       if @tinta_fop_retiro.save
+        @Tintas_tiro=[]
+
+
+
+
+            @busq_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: @tinta_fop_retiro.descripcion)
+
+            if @busq_tinta == nil
+              @formula_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: @tinta_fop_retiro.descripcion)
+
+              @Tintas_tiro << @formula_tintas
+
+            else
+
+              @Tintas_tiro << @busq_tinta
+
+            end
         format.html { redirect_to @tinta_fop_retiro, notice: 'Tinta fop retiro was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_fop_retiro }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tinta_fop_retiro.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

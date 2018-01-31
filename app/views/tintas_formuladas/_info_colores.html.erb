@@ -24,29 +24,26 @@
                     <td><%=desarrollo.malla.nombre%></td>
 
                     <% if desarrollo.tiro== true %>
-                      <td>
-                        <span><i class="ion-checkmark-circled"></i> </span>
-                      </td>
+                          <td>
+                            <span><i class="ion-checkmark-circled"></i> </span>
+                          </td>
                     <% else %>
-                      <td></td>
+                          <td></td>
                     <% end %>
 
 
 
                     <% if desarrollo.retiro== true %>
-                      <td>
-                        <span><i class="ion-checkmark-circled"></i> </span>
-                      </td>
+                          <td>
+                            <span><i class="ion-checkmark-circled"></i> </span>
+                          </td>
                     <% else %>
-                        <td></td>
+                          <td></td>
                     <% end %>
 
+                          <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+                          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
 
-
-
-
-                    <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
-                      <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
                   </tr>
                 <%end%>
               </tbody>
@@ -70,7 +67,7 @@
           <th>Malla</th>
           <th>Tiros</th>
         </thead>
-        <tbody>
+        <tbody id="AgregarTintasTiro">
           <%cont=0%>
 
           <%total=0%>
@@ -90,7 +87,7 @@
                       <% end %>
 
                   <% end %>
-                  <td></td>
+                  <td ></td>
                 </tr>
 
 
@@ -103,6 +100,14 @@
     <hr>
 
     <div class="my_card_produccion">
+      <div class="container_add_entregas col-12">
+         <div class="col-4">
+            <h1>Agragar Tinta al Tiro</h1>
+         </div>
+         <div class="col-3 offset-md-6">
+            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@orden_produccion.montaje.id), remote:true %>
+         </div>
+      </div>
       <div class="col-12">
         <h1>Tintas Retiro</h1>
       </div>

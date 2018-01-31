@@ -1,0 +1,8 @@
+<tr>
+  <td><%=@tinta_fop_tiro.descripcion%></td>
+  <%@Tintas_tiro.each do |tinta|%>
+    <td><%=tinta.linea_de_color.nombre%></td>
+  <% end %>
+  <td><%=@tinta_fop_tiro.malla.nombre%></td>
+  <td> <p class="darValor"></p> </td>
+</tr>

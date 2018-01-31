@@ -7,7 +7,7 @@ class TintasFopTiroController < ApplicationController
     @tintas_fop_tiro = TintaFopTiro.all
   end
 
-  
+
 
   # GET /tintas_fop_tiro/1
   # GET /tintas_fop_tiro/1.json
@@ -30,11 +30,31 @@ class TintasFopTiroController < ApplicationController
 
     respond_to do |format|
       if @tinta_fop_tiro.save
+        @Tintas_tiro=[]
+
+
+
+
+            @busq_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: @tinta_fop_tiro.descripcion)
+
+            if @busq_tinta == nil
+              @formula_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: @tinta_fop_tiro.descripcion)
+
+              @Tintas_tiro << @formula_tintas
+
+            else
+
+              @Tintas_tiro << @busq_tinta
+
+            end
+
         format.html { redirect_to @tinta_fop_tiro, notice: 'Tinta fop tiro was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_fop_tiro }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @tinta_fop_tiro.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

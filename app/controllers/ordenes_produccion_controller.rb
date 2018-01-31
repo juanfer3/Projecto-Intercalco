@@ -7,6 +7,51 @@ class OrdenesProduccionController < ApplicationController
     @ordenes_produccion = OrdenProduccion.all
   end
 
+  def desarrollar_tintas_retiro
+    #code
+    @montaje = Montaje.find(params[:id])
+    @tinta_fop_retiro = TintaFopRetiro.new
+
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  def desarrollar_tintas_tiro
+    @montaje = Montaje.find(params[:id])
+    @tinta_fop_tiro = TintaFopTiro.new
+
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    respond_to do |format|
+      format.js
+    end
+  end
 
 
   def desarrollar_color

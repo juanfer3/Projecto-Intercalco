@@ -1,0 +1,41 @@
+
+
+<%= simple_form_for(@tinta_fop_retiro, remote: true) do |f| %>
+  <%= f.error_notification %>
+
+<div class="my_card_produccion">
+
+
+    <div class="col-3" id="ocultarMontaje">
+      <%=
+      f.association :montaje,
+      collection: Montaje.all,
+      label_method: :nombre,
+      value_method: :id,
+      as: :select,
+      class:'  form-control',
+      selected: @montaje.id
+
+
+      %>
+    </div>
+
+    <div class="col-4">
+      <label for="">Seleccione la malla</label><br>
+      <%= f.select :malla_id, Malla.all.map {|i|[i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_malla"} %>
+    </div>
+
+    <div class="col-4">
+      <label for="">Seleccione la tinta</label><br>
+      <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_tinta"}%>
+    </div>
+
+    <div class="col-4">
+      <label for=""></label><br>
+      <%= button_tag type: 'submit', class: "btn btn-outline-info col-3", id: "register-button" do %>
+        <i class="ion-shuffle" aria-hidden="true"></i>
+       <% end %>
+    </div>
+
+  <% end %>
+</div>
