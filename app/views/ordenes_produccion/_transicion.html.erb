@@ -1,3 +1,17 @@
 <tr>
-  <td><%= f.association :desarrollo_de_tinta %></td>
+  <td>
+    <div class="" id="ocultarDesarrollo">
+      <%=
+        f.association :desarrollo_de_tinta,
+        collection: DesarrolloDeTinta.all,
+        label_method: :descripción,
+        value_method: :id,
+        as: :select,
+        class:'col-4 my_cliente form-control',
+        selected: @desarrollo_de_tinta.id
+     %>
+   </div>
+ </td>
+
+
 </tr>

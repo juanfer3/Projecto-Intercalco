@@ -9,7 +9,7 @@
   %> </td>
   <td>
     <label for="">Seleccione La Tinta</label><br>
-    <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags ', id: 'busqueda_fop'}%></td>
+    <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags '}%></td>
 
   <td><br>
     <%= f.input_field :_destroy, as: :hidden %>

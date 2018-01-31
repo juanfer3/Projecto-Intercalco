@@ -77,35 +77,83 @@ class TintasFormuladasController < ApplicationController
               if @montaje== nil
                 puts "**************************Montaje Vacio**************"
               else
-                puts "**************************Montaje LLeno*************"
-                @eliminar_transicion = Transicion.find_by(id:transicion.id)
-                @eliminar_transicion.destroy
+                  puts "**************************Montaje LLeno*************"
+                  @eliminar_transicion = Transicion.find_by(id:transicion.id)
+                  @eliminar_transicion.destroy
 
-                @tinta_solicitada = DesarrolloDeTinta.find_by(id:transicion.desarrollo_de_tinta.id)
+                  @tinta_solicitada = DesarrolloDeTinta.find_by(id:transicion.desarrollo_de_tinta.id)
 
-                  if @tinta_solicitada.tiro == true
-                    tinta_tiro = TintaFopTiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
+                    if @tinta_solicitada.tiro == true
+                      tinta_tiro = TintaFopTiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
 
-                    if tinta_tiro.save
-                      puts "**************************Tinta Tiro Creada**************"
+                      if tinta_tiro.save
+                        puts "**************************Tinta Tiro Creada**************"
+                      end
                     end
-                  end
 
 
-                  if @tinta_solicitada.retiro == true
-                    tinta_tiro = TintaFopRetiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
+                    if @tinta_solicitada.retiro == true
+                      tinta_tiro = TintaFopRetiro.new(montaje_id: @tinta_solicitada.montaje.id, malla_id: @tinta_solicitada.malla.id,descripcion: @tinta_formulada.descripcion)
 
-                    if tinta_tiro.save
-                      puts "**************************Tinta Tiro Creada**************"
+                      if tinta_tiro.save
+                        puts "**************************Tinta Tiro Creada**************"
+                      end
                     end
-                  end
                   @tinta_solicitada.destroy
               end
+              @montajes = Montaje.find_by(id:transicion.desarrollo_de_tinta.montaje.id)
+
+                if @montajes.desarrollos_de_tintas.any?
+                  puts "******************Existe**********************"
+                else
+                  puts "*******************No Existe*********************"
+                  @montajes.update(tinta_nueva:false)
+                end
+
+
+
 
             end
           end
 
-        @montaje = Montaje.find_by(id: @tinta)
+          @Tintas_tiro=[]
+          @Tintas_retiro=[]
+
+
+          @montajes.tintas_fop_tiro.each do |tintas_tiro|
+
+              @busq_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: tintas_tiro.descripcion)
+
+              if @busq_tinta == nil
+                @formula_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: tintas_tiro.descripcion)
+
+                @Tintas_tiro << @formula_tintas
+
+              else
+
+                @Tintas_tiro << @busq_tinta
+
+              end
+          end
+
+          @montajes.tintas_fop_retiro.each do |tintas_retiro|
+
+              @busq2_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
+              puts "******************#{@busq2_tinta}**********************"
+              if @busq2_tinta == nil
+                puts "******************Esta Vacio**********************"
+                @formula2_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
+
+                @Tintas_retiro << @formula2_tintas
+
+              else
+                puts "******************Esta Vacio**********************"
+                @Tintas_retiro << @busq2_tinta
+
+
+              end
+
+          end
         format.html { redirect_to @tinta_formulada, notice: 'Tinta formulada was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_formulada }
         format.js
@@ -151,6 +199,6 @@ class TintasFormuladasController < ApplicationController
     def tinta_formulada_params
       params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado,
       formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado],
-      transiciones_attributes:[:desarrollo_de_tinta_id, :tinta_formulada_id])
+      transiciones_attributes:[:desarrollo_de_tinta_id, :tinta_formulada_id, :orden_produccion_id])
     end
 end

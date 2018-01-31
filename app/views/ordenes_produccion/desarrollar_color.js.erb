@@ -13,6 +13,8 @@ $('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('se
 $('#select_desarrollo').val('<%=@desarrollo_de_tinta.id%>');
 $('#select_desarrollo > option[value="<%=@desarrollo_de_tinta.id%>"]').attr('selected', 'selected');
 
+$("#ocultarDesarrollo").hide()
+
 $('form').on('click', '.remove_formula', function(event) {
   $(this).prev('input[type=hidden]').val('1');
   $(this).closest('tr').remove();

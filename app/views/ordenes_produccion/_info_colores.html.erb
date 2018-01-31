@@ -66,150 +66,157 @@
 
 
 
+<div class="" id="ContenedorTintas">
+
 
 <%if @orden_produccion.montaje.tinta_nueva == true%>
-<div class="" id="divContenedor">
+    <div class="" id="divContenedor">
 
 
-      <div class="my_card_produccion">
-        <div class="col-12">
-          <h1>Tintas Nuevas</h1>
-        </div>
-        <table class="table table-striped">
-          <thead>
-            <th>Color</th>
-            <th>Linea</th>
-            <th>Malla</th>
-            <th>Tiro</th>
-            <th>Retiro</th>
-            <th>Desarrollar</th>
-          </thead>
-          <tbody>
-            <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
-              <tr>
-                <td><%=desarrollo.descripción%></td>
-                <td><%=desarrollo.linea_de_color.nombre%></td>
-                <td><%=desarrollo.malla.nombre%></td>
+          <div class="my_card_produccion">
+            <div class="col-12">
+              <h1>Tintas Nuevas</h1>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <th>Color</th>
+                <th>Linea</th>
+                <th>Malla</th>
+                <th>Tiro</th>
+                <th>Retiro</th>
+                <th>Desarrollar</th>
+                <th>Eliminar</th>
+              </thead>
+              <tbody>
+                <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
+                  <tr id=<%="quitar_desarrollo_#{desarrollo.id}"%>>
+                    <td><%=desarrollo.descripción%></td>
+                    <td><%=desarrollo.linea_de_color.nombre%></td>
+                    <td><%=desarrollo.malla.nombre%></td>
 
-                <% if desarrollo.tiro== true %>
-                  <td>
-                    <span><i class="ion-checkmark-circled"></i> </span>
-                  </td>
-                <% else %>
-                  <td></td>
-                <% end %>
-
-
-
-                <% if desarrollo.retiro== true %>
-                  <td>
-                    <span><i class="ion-checkmark-circled"></i> </span>
-                  </td>
-                <% else %>
-                    <td></td>
-                <% end %>
+                    <% if desarrollo.tiro== true %>
+                      <td>
+                        <span><i class="ion-checkmark-circled"></i> </span>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
 
 
 
+                    <% if desarrollo.retiro== true %>
+                      <td>
+                        <span><i class="ion-checkmark-circled"></i> </span>
+                      </td>
+                    <% else %>
+                        <td></td>
+                    <% end %>
 
 
-                <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
 
-              </tr>
-            <%end%>
-          </tbody>
-        </table>
 
+
+                    <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+                    <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+
+          </div>
+    </div>
+    <hr>
+    <%end%>
+
+
+<% if @orden_produccion.montaje.tiro == true %>
+  <!-- true -->
+
+    <div class="my_card_produccion">
+      <div class="col-12">
+        <h1>Tintas Tiro</h1>
       </div>
-</div>
-<hr>
-<%end%>
+      <table class="table">
+        <thead>
+          <th>Color</th>
+          <th>Linea</th>
+          <th>Malla</th>
+          <th>Tiros</th>
+        </thead>
+        <tbody>
+          <%cont=0%>
 
+          <%total=0%>
+          <%@Tintas_tiro.each do |tinta|%>
+                <%
+                cont = cont +1
+                %>
+                <tr>
+                  <td><%=tinta.descripcion%></td>
+                  <td><%=tinta.linea_de_color.nombre%></td>
+                  <%cont2=0%>
+                  <%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+                  <%cont2 = cont2+1%>
+                      <% if cont == cont2 %>
+                        <!-- true -->
+                        <td><%=tintas_tiro.malla.nombre%></td>
+                      <% end %>
 
-
-<div class="my_card_produccion">
-  <div class="col-12">
-    <h1>Tintas Tiro</h1>
-  </div>
-  <table class="table">
-    <thead>
-      <th>Color</th>
-      <th>Linea</th>
-      <th>Malla</th>
-      <th>Tiros</th>
-    </thead>
-    <tbody>
-      <%cont=0%>
-
-      <%total=0%>
-      <%@Tintas_tiro.each do |tinta|%>
-            <%
-            cont = cont +1
-            %>
-            <tr>
-              <td><%=tinta.descripcion%></td>
-              <td><%=tinta.linea_de_color.nombre%></td>
-              <%cont2=0%>
-              <%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
-              <%cont2 = cont2+1%>
-                  <% if cont == cont2 %>
-                    <!-- true -->
-                    <td><%=tintas_tiro.malla.nombre%></td>
                   <% end %>
-
-              <% end %>
-              <td><%=@orden_produccion.tamanos_total%></td>
-            </tr>
+                  <td><%=@orden_produccion.tamanos_total%></td>
+                </tr>
 
 
-            <%= puts"********************************************************#{tinta}"%>
 
-      <%end%>
-    </tbody>
-  </table>
+          <%end%>
+        </tbody>
+      </table>
 
-</div>
-<hr>
+    </div>
+    <hr>
+<% end %>
 
-<div class="my_card_produccion">
-  <div class="col-12">
-    <h1>Tintas Retiro</h1>
-  </div>
-  <table class="table">
-    <thead>
-      <th>Color</th>
-      <th>Linea</th>
-      <th>Malla</th>
-      <th>Tiros</th>
-    </thead>
-    <tbody>
-      <%cont=0%>
+<% if @orden_produccion.montaje.retiro == true %>
+    <div class="my_card_produccion">
+      <div class="col-12">
+        <h1>Tintas Retiro</h1>
+      </div>
+      <table class="table">
+        <thead>
+          <th>Color</th>
+          <th>Linea</th>
+          <th>Malla</th>
+          <th>Tiros</th>
+        </thead>
+        <tbody>
+          <%cont=0%>
 
-      <%total=0%>
-      <%@Tintas_retiro.each do |tinta|%>
-            <%
-            cont = cont +1
-            %>
-            <tr>
-              <td><%=tinta.descripcion%></td>
-              <td><%=tinta.linea_de_color.nombre%></td>
-              <%cont2=0%>
-              <%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_tiro|%>
-              <%cont2 = cont2+1%>
-                  <% if cont == cont2 %>
-                    <!-- true -->
-                    <td><%=tintas_tiro.malla.nombre%></td>
+          <%total=0%>
+          <%@Tintas_retiro.each do |tinta|%>
+                <%
+                cont = cont +1
+                %>
+                <tr>
+                  <td><%=tinta.descripcion%></td>
+                  <td><%=tinta.linea_de_color.nombre%></td>
+                  <%cont2=0%>
+                  <%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_tiro|%>
+                  <%cont2 = cont2+1%>
+                      <% if cont == cont2 %>
+                        <!-- true -->
+                        <td><%=tintas_tiro.malla.nombre%></td>
+                      <% end %>
+
                   <% end %>
-
-              <% end %>
-              <td><%=@orden_produccion.tamanos_total%></td>
-            </tr>
+                  <td><%=@orden_produccion.tamanos_total%></td>
+                </tr>
 
 
-            <%= puts"********************************************************#{tinta}"%>
 
-      <%end%>
-    </tbody>
-  </table>
+          <%end%>
+        </tbody>
+      </table>
 
+    </div>
 </div>
+<% end %>

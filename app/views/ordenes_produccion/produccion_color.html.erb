@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Ordenes Produccion Pantallas</h1>
+<h1>Ordenes Produccion Tintas</h1>
 
 
 
@@ -16,7 +16,7 @@
       <th>Mes</th>
       <th>Fecha compromiso</th>
       <th></th>
-      <th></th>
+
       <th colspan="4"></th>
     </tr>
   </thead>
@@ -133,13 +133,6 @@
         <td><%=@dates%> </td>
         <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
-        <%if orden_produccion.montaje.tinta_nueva == true%>
-        <td><span class="badge badge-danger">
-          <i class="ion-alert"></i>
-        </span></td>
-        <% else %>
-        <td></td>
-        <% end %>
                   <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
                         <% if orden_produccion.color == true%>
                               <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>

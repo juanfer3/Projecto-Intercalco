@@ -54,10 +54,25 @@ class DesarrollosDeTintasController < ApplicationController
   # DELETE /desarrollos_de_tintas/1
   # DELETE /desarrollos_de_tintas/1.json
   def destroy
+
     @desarrollo_de_tinta.destroy
+    @montajes = Montaje.find_by(id: @desarrollo_de_tinta.montaje.id)
+
+      if @montajes.desarrollos_de_tintas.any?
+        puts "******************Existe**********************"
+      else
+        puts "*******************No Existe*********************"
+        @montajes.update(tinta_nueva:false)
+      end
+
+
+
+
+      
     respond_to do |format|
       format.html { redirect_to desarrollos_de_tintas_url, notice: 'Desarrollo de tinta was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

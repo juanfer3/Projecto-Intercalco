@@ -69,6 +69,6 @@ class TransicionesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transicion_params
-      params.require(:transicion).permit(:desarrollo_de_tinta_id, :tinta_formulada_id)
+      params.require(:transicion).permit(:desarrollo_de_tinta_id, :tinta_formulada_id, :orden_produccion_id)
     end
 end
