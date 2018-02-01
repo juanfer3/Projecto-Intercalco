@@ -163,7 +163,7 @@
           <h1>Tintas Retiro</h1>
        </div>
        <div class="col-3 offset-md-6">
-          <%= link_to_add_tintas_retiro('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_retiro, class: '') %>
+          <%= link_to_add_tintas_retiro('<button type="button"  class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_retiro, class: '') %>
        </div>
     </div>
     <br>
@@ -196,7 +196,7 @@
       <div class="input-group">
           <h1>Programar tintas nuevas</h1>
           <div class="anexar_tinta">
-            <%= f.input :tinta_nueva, label:false, class: "form-control " %>
+            <%= f.input :tinta_nueva, label:false, class: "form-control add_desarrollo_tintas" %>
           </div>
 
       </div>
@@ -216,7 +216,7 @@
           </div>
           <div >
 
-          <%= link_to_add_desarrollo_tintas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :desarrollos_de_tintas, class: '') %>
+          <%= link_to_add_desarrollo_tintas('<button type="button" id="btnDesarrollo" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :desarrollos_de_tintas, class: '') %>
           </div>
       </div>
       </div>

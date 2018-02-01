@@ -3,7 +3,10 @@
 <h1>Ordenes Produccion</h1>
 
 
-
+<div class="pull-right">
+  <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+<br>
 
 <table class="table">
   <thead>
@@ -26,110 +29,130 @@
         <td><%= orden_produccion.numero_de_orden %></td>
         <td><%= orden_produccion.montaje.cliente.nombre%></td>
         <td><%= orden_produccion.montaje.nombre %></td>
+        <% if orden_produccion.montaje.formatos_op.any? %>
+          <!-- true -->
 
-        <% orden_produccion.montaje.formatos_op.each do |formato|%>
-          <td><%=formato.maquina.nombre%></td>
-          <td><%=formato.linea_de_color.nombre%></td>
+              <% orden_produccion.montaje.formatos_op.each do |formato|%>
+                <td><%=formato.maquina.nombre%></td>
+                <td><%=formato.linea_de_color.nombre%></td>
+
+
+              <% end %>
+        <% else %>
+        <td> <p>Pendiente Por Definir</p> </td>
+        <td> <p>Pendiente Por Definir</p> </td>
         <% end %>
 
-        <%
-    			@date = Time.now.strftime("%Y/%m/%d")
 
-          @dat = Date.parse(@date)
-
-          fec1 = "1111/01/01"
-          @fech1 = fec1.to_time
-    		%>
-        <%cont=0%>
-        <%@comparador_fecha = ""%>
-        <%contador_enviados = 0%>
+        <% if orden_produccion.compromisos_de_entrega.any? %>
+                      <!-- true -->
 
 
 
-        <%@hallado = false%>
-        <%@estado_data= false%>
-        <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+                    <%
 
-              <%
-                fech = fecha.fecha_de_compromiso
-                fech.strftime("%Y/%m/%d")
-              %>
-              <% if fecha.enviado == true %>
-                  <%@estado_data = true%>
-                  <%contador_enviados = contador_enviados + 1%>
-                  <%@cantidades = contador_enviados%>
+
+                			@date = Time.now.strftime("%Y/%m/%d")
+
+                      @dat = Date.parse(@date)
+
+                      fec1 = "1111/01/01"
+                      @fech1 = fec1.to_time
+                		%>
+                    <%cont=0%>
+                    <%@comparador_fecha = ""%>
+                    <%contador_enviados = 0%>
+
+
+
+                    <%@hallado = false%>
+                    <%@estado_data= false%>
+                    <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                          <%
+                            fech = fecha.fecha_de_compromiso
+                            fech.strftime("%Y/%m/%d")
+                          %>
+                          <% if fecha.enviado == true %>
+                              <%@estado_data = true%>
+                              <%contador_enviados = contador_enviados + 1%>
+                              <%@cantidades = contador_enviados%>
+                          <% end %>
+
+
+
+                    <%if fech < Date.today
+
+
+
+
+                          %>
+
+                    <% elsif fech >= Date.today %>
+
+                            <%
+                              dias = (fech - Date.today).to_i
+
+
+                              if dias == 0
+                                @dates= fech
+                                @hallado = true
+                              else
+                                if @hallado == false
+                                  @dates= fech
+                                end
+                              end
+
+                              %>
+
+
+                    <% end %>
+
+
+
+
               <% end %>
 
 
 
-        <%if fech < Date.today
+              <%
+                        mes = @dates.strftime("%m")
+
+
+                        case mes
+                        when "01"%>
+                          <td>Enero</td>
+                        <%when "02"%>
+                          <td>Febrero</td>
+                        <%when "03"%>
+                          <td>Marzo</td>
+                        <%when "04"%>
+                          <td>Abril</td>
+                        <%when "05"%>
+                          <td>Mayo</td>
+                        <%when "06"%>
+                          <td>Junio</td>
+                        <%when "07"%>
+                          <td>Julio</td>
+                        <%when "08"%>
+                          <td>Agosto</td>
+                        <%when "09"%>
+                          <td>Septiembre</td>
+                        <%when "10"%>
+                          <td>Octubre</td>
+                        <%when "11"%>
+                          <td>Noviembre</td>
+                        <%when "12"%>
+                          <td>Diciembre</td>
+                        <% end %>
 
 
 
-
-              %>
-
-        <% elsif fech >= Date.today %>
-
-                <%
-                  dias = (fech - Date.today).to_i
-
-
-                  if dias == 0
-                    @dates= fech
-                    @hallado = true
-                  else
-                    if @hallado == false
-                      @dates= fech
-                    end
-                  end
-
-                  %>
-
-
+                    <td><%=@dates%> </td>
+        <% else %>
+        <td><p>Pendiente Por Definir Fecha</p> </td>
+        <td><p>Pendiente Por Definir Fecha</p> </td>
         <% end %>
-
-
-
-
-  <% end %>
-
-
-
-  <%
-            mes = @dates.strftime("%m")
-
-
-            case mes
-            when "01"%>
-              <td>Enero</td>
-            <%when "02"%>
-              <td>Febrero</td>
-            <%when "03"%>
-              <td>Marzo</td>
-            <%when "04"%>
-              <td>Abril</td>
-            <%when "05"%>
-              <td>Mayo</td>
-            <%when "06"%>
-              <td>Junio</td>
-            <%when "07"%>
-              <td>Julio</td>
-            <%when "08"%>
-              <td>Agosto</td>
-            <%when "09"%>
-              <td>Septiembre</td>
-            <%when "10"%>
-              <td>Octubre</td>
-            <%when "11"%>
-              <td>Noviembre</td>
-            <%when "12"%>
-              <td>Diciembre</td>
-            <% end %>
-
-
-
-        <td><%=@dates%> </td>
         <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
 
@@ -224,6 +247,9 @@
 
 <%= link_to 'New Orden Produccion', new_orden_produccion_path %>
 
+<div class="col-4">
+  <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Montajes Desde Excel</button>
+</div>
 
 <!-- Modal Excel -->
 
@@ -243,6 +269,41 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+<br>
+
+<div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Importar Montajes Desde Excel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <h1>Instrucciones:</h1>
+          <h6> <strong>-</strong> Para importar Montajes desde Excel asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Codigo del Montaje, Descripción.</strong>  </h6>
+          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+            <%= form_tag import_ordenes_produccion_from_excel_path, remote:true,multipart: true do %> <br>
+            <%= file_field_tag :file %> <br> <br>
+            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
       </div>
 

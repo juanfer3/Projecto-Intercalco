@@ -287,29 +287,28 @@ $('.validacion_fecha').focusout(function (){
 
 
 
-
-
+//================================!!!!!!!!!!!!!!!!!!!!!=========================
+$('#contenedorDesarrolloTintas').hide()
 if( $('#montaje_tinta_nueva').prop('checked') ) {
 
   $('#contenedorDesarrolloTintas').show()
-
+  $('#btnDesarrollo').trigger('click');
 }else {
 
   $('#contenedorDesarrolloTintas').hide()
-
+  $(".contenedor_tinta_nueva").remove()
 }
-
 
 $('#montaje_tinta_nueva').change(function(){
 
   if( $('#montaje_tinta_nueva').prop('checked') ) {
 
     $('#contenedorDesarrolloTintas').show()
-
+    $('#btnDesarrollo').trigger('click');
   }else {
 
     $('#contenedorDesarrolloTintas').hide()
-
+    $(".contenedor_tinta_nueva").remove()
   }
 
 })
@@ -660,9 +659,6 @@ $("#montaje_descolille").change(function(){
   $(".js-example-tokenizer").select2({
       tags: true,
       tokenSeparators: [',', ' ']
-
-
-
   })
 
   $('#value_otro').on("select2:select", function (e) {

@@ -4,9 +4,32 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion
   # GET /ordenes_produccion.json
   def index
-    @ordenes_produccion = OrdenProduccion.all
+    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden').distinct
+
   end
 
+def import_ordenes_produccion_from_excel
+
+  file = params[:file]
+  begin
+    errores_o_true = OrdenProduccion.subir_excel(file)
+
+    respond_to do |format|
+      if errores_o_true == true
+        format.html { redirect_to ordenes_produccion_path, notice: 'Ordenes Importados' }
+        format.json { render :show, status: :created, location: @orden_produccion }
+        format.js
+    else
+        @errores = errores_o_true
+        format.html { render ordenes_produccion_path}
+        format.js
+      end
+  end
+  rescue Exception => e
+    flash[:notice] = "Tipo de archivo no valido"
+    redirect_to ordenes_produccion_path
+  end
+end
   def desarrollar_tintas_retiro
     #code
     @montaje = Montaje.find(params[:id])

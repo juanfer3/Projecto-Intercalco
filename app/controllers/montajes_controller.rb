@@ -150,6 +150,18 @@ class MontajesController < ApplicationController
   # POST /montajes
   # POST /montajes.json
   def create
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
     @montaje = Montaje.new(montaje_params)
     respond_to do |format|
       if @montaje.save
@@ -165,6 +177,18 @@ class MontajesController < ApplicationController
   # PATCH/PUT /montajes/1
   # PATCH/PUT /montajes/1.json
   def update
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
     respond_to do |format|
       if @montaje.update(montaje_params)
         format.html { redirect_to montajes_path, notice: 'Montaje was successfully updated.' }
@@ -179,6 +203,18 @@ class MontajesController < ApplicationController
   # DELETE /montajes/1
   # DELETE /montajes/1.json
   def destroy
+    @NombreTintas = Tinta.all.distinct
+    @TintaFormulada = TintaFormulada.all.distinct
+
+    @Tintas=[]
+
+    @NombreTintas.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
+
+    @TintaFormulada.each do |nombreTintas|
+      @Tintas << nombreTintas.descripcion
+    end
     @montaje.destroy
     respond_to do |format|
       format.html { redirect_to montajes_url, notice: 'Informacion de Montaje Destruida.' }
@@ -189,6 +225,7 @@ class MontajesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_montaje
+      
       @montaje = Montaje.find(params[:id])
 
 

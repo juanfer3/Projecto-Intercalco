@@ -107,132 +107,147 @@ class Montaje < ApplicationRecord
     header = spreadsheet.row(1)
     nombre_cliente =""
     (2..spreadsheet.last_row).each do |i|
+      puts "*******************Entra Al excel*********************"
+      codigo_de_pieza = spreadsheet.row(i)[3]
+      puts "*******************cod pieza #{codigo_de_pieza}*********************"
+      if codigo_de_pieza != ""
+        puts "*******************La Pieza NO es un String vacio y la pieza es "+codigo_de_pieza.to_s+"*********************"
+
+            @busq_pieza = Pieza.find_by(codigo: codigo_de_pieza)
+            puts "*******************Consulto La Pieza y es *********************"
+                    if @busq_pieza == nil
+                      puts "****************************************La pieza No Existe**********************"
+
+
+                                          @montaje_nombre = spreadsheet.row(i)[2]
+                                          puts "****************************************NOmbre: MOntaje"+@montaje_nombre+"**********************"
+
+                                          @montaje = Montaje.find_by(nombre: @montaje_nombre)
 
 
 
-      @montaje_nombre = spreadsheet.row(i)[2]
-      puts "****************************************"+@montaje_nombre+"**********************"
-
-      @montaje = Montaje.find_by(nombre: @montaje_nombre)
 
 
+                                          if @montaje == nil
+
+                                                  puts "****************************************El Montaje No Existe**********************"
+                                                  @nombre_cliente = spreadsheet.row(i)[0]
+                                                  puts "****************************************"+@nombre_cliente+"*********************"
+                                                  @cli = Cliente.find_by(nombre: @nombre_cliente)
+                                                  puts "****************************************Busco El cliente**********************"
+                                                  if @cli == nil
+                                                    puts "****************************************El Cliente no Existe**********************"
+                                                    @nombre_user = spreadsheet.row(i)[5]
+
+                                                    @vendedor=User.find_by(nombre: @nombre_user)
+                                                    puts "****************************************El Vendedor es #{@vendedor.nombre}**********************"
+                                                    @clienteNuevo=Cliente.new(nombre:spreadsheet.row(i)[0],user_id:@vendedor.id)
+                                                    if @clienteNuevo.save
+                                                      puts "*****************El Cliente se creo"
+                                                    end
+                                                    @cliente_id = @clienteNuevo.id
+                                                  else
+                                                    puts "****************************************El Cliente -Si- Existe y su id es: #{@cli.id}**********************"
+                                                    @cliente_id = @cli.id
+
+                                                    @nombre_user = spreadsheet.row(i)[5]
+                                                    @users = User.find_by(nombre: @nombre_user)
+                                                    puts "****************************************El Vendedor se Busco**********************"
 
 
+                                                        @user_id=@users.id
+                                                        puts "****************************************El User -Si- Existe y su id es: #{@users.id}**********************"
 
-      if @montaje == nil
-
-              puts "****************************************Vacio**********************"
-              @nombre_cliente = spreadsheet.row(i)[0]
-              puts "****************************************"+@nombre_cliente+"*********************"
-
-
-              @clientes = Cliente.all
-
-              @clientes.each do |cliente|
-                if cliente.nombre == @nombre_cliente
-                  @cliente_id=cliente.id
-                end
-              end
-
-              puts "****************************************Vacio**********************"
-              @nombre_user = spreadsheet.row(i)[5]
-              puts "****************************************"+@nombre_cliente+"*********************"
-
-
-              @users = User.all
-
-              @users.each do |user|
-                if user.nombre == @nombre_user
-                  @user_id=user.id
-                end
-              end
-
-
-              formato_op = Montaje.new( codigo:spreadsheet.row(i)[1], nombre: spreadsheet.row(i)[2], cliente_id: @cliente_id, user_id: @user_id)
-
-              if formato_op.save
-                puts "**************Montaje Guardado**************************"
-
-                    @mo = Montaje.find_by(nombre: @montaje_nombre)
+                                                  end
 
 
 
-                          @linea_produccion_nombre = spreadsheet.row(i)[6]
-                          puts "==============="+@linea_produccion_nombre+"==============="
-
-                          @lineas_produccion = LineaProducto.all
-
-                          @lineas_produccion.each do |linea_produccion|
-                            if linea_produccion.nombre == @linea_produccion_nombre
-                              @linea_produccion_id=linea_produccion.id
-                              puts "===============l produccion id: "+@linea_produccion_id.to_s+"==============="
-                            end
-                          end
 
 
-                          @piezas_a_decorar_nombre = spreadsheet.row(i)[7]
-
-                          @piezas_a_decorar = PiezaADecorar.all
-
-                          @piezas_a_decorar.each do |pieza_a_decorar|
-                            if pieza_a_decorar.nombre == @piezas_a_decorar_nombre
-                              @pieza_a_decorar_id=pieza_a_decorar.id
-                              puts "===============piezas id: "+@pieza_a_decorar_id.to_s+"==============="
-                            end
-                          end
 
 
-                          @maquinas_nombre = spreadsheet.row(i)[8]
-                          @maquinas = Maquina.all
-
-                          @maquinas.each do |maquina|
-                            if maquina.nombre == @maquinas_nombre
-                              @maquina_id=maquina.id
-                              puts "===============maquina id: "+@maquina_id.to_s+"==============="
-                            end
-                          end
 
 
-                          @linea_de_color_nombre = spreadsheet.row(i)[9]
 
-                          @lineas_de_colores = LineaDeColor.all
+                                                  formato_op = Montaje.new( codigo:spreadsheet.row(i)[1], nombre: spreadsheet.row(i)[2], cliente_id: @cliente_id, user_id: @user_id)
 
-                          @lineas_de_colores.each do |linea_de_color|
-                            if linea_de_color.nombre == @linea_de_color_nombre
-                              @linea_de_color_id=linea_de_color.id
-                              puts "===============color id:"+@linea_de_color_id.to_s+"==============="
-                            end
-                          end
+                                                  if formato_op.save
+                                                    puts "**************Montaje Guardado**************************"
 
-                    formato_op = FormatoOp.new(montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
-                    if formato_op.save
-                      puts "*******************Insercion De Formatos*********************"
+                                                        @mo = Montaje.find_by(nombre: @montaje_nombre)
+
+
+
+                                                              @linea_produccion_nombre = spreadsheet.row(i)[6]
+                                                              puts "=============Esta es la LInea==#{@linea_produccion_nombre}==============="
+
+                                                              @lineas_produccion = LineaProducto.find_by(nombre: @linea_produccion_nombre)
+                                                              puts "===============se busco linea de producto y es #{@lineas_produccion.id}==============="
+
+
+                                                                  @linea_produccion_id=@lineas_produccion.id
+
+
+
+
+                                                              @piezas_a_decorar_nombre = spreadsheet.row(i)[7]
+
+                                                              @piezas_a_decorar = PiezaADecorar.all
+
+                                                              @piezas_a_decorar.each do |pieza_a_decorar|
+                                                                if pieza_a_decorar.nombre == @piezas_a_decorar_nombre
+                                                                  @pieza_a_decorar_id=pieza_a_decorar.id
+                                                                  puts "===============piezas id: "+@pieza_a_decorar_id.to_s+"==============="
+                                                                end
+                                                              end
+
+
+                                                              @maquinas_nombre = spreadsheet.row(i)[8]
+                                                              @maquinas = Maquina.all
+
+                                                              @maquinas.each do |maquina|
+                                                                if maquina.nombre == @maquinas_nombre
+                                                                  @maquina_id=maquina.id
+                                                                  puts "===============maquina id: "+@maquina_id.to_s+"==============="
+                                                                end
+                                                              end
+
+
+                                                              @linea_de_color_nombre = spreadsheet.row(i)[9]
+
+                                                              @lineas_de_colores = LineaDeColor.all
+
+                                                              @lineas_de_colores.each do |linea_de_color|
+                                                                if linea_de_color.nombre == @linea_de_color_nombre
+                                                                  @linea_de_color_id=linea_de_color.id
+                                                                  puts "===============color id:"+@linea_de_color_id.to_s+"==============="
+                                                                end
+                                                              end
+
+                                                        formato_op = FormatoOp.new(montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
+                                                        if formato_op.save
+                                                          puts "*******************Insercion De Formatos*********************"
+                                                        end
+                                                        piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)
+                                                        if piezas.save
+                                                          puts "*******************Insercion De piezas*********************"
+                                                        end
+                                                  end
+
+                                          else
+                                                puts "****************************************Lleno**********************"
+
+
+
+                                                  piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @montaje.id)
+
+                                                  if piezas.save
+                                                    puts "*******************Insercion De piezas*********************"
+                                                  end
+                                          end
+
                     end
-                    piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)
-                    if piezas.save
-                      puts "*******************Insercion De piezas*********************"
-                    end
-              end
-
-      else
-            puts "****************************************Lleno**********************"
-
-
-
-              piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @montaje.id)
-
-              if piezas.save
-                puts "*******************Insercion De piezas*********************"
-              end
       end
-
-
-
-
-
-
-
-
 
     end
 

@@ -240,8 +240,20 @@
             <div class="form-inline">
 
               <a class="navbar-brand" href="#">
-                <%= link_to 'Producción', produccion_path, class:'navbar-brand' %>
+                <%= link_to 'Producción', ordenes_produccion_path, class:'navbar-brand' %>
               </a>
+
+              <a class="navbar-brand" href="#">
+                <%= link_to 'Lineas De Colores', lineas_de_colores_path, class:'navbar-brand' %>
+              </a>
+
+              <a class="navbar-brand" href="#">
+                <%= link_to 'Maquinas', maquinas_path, class:'navbar-brand' %>
+              </a>
+
+
+
+
 
 
 
@@ -259,6 +271,25 @@
 
 
                 <div class="dropdown-divider"></div>
+
+                  <a class="dropdown-item" href="#">
+                    <%= link_to 'Tintas', tintas_path, class:'navbar-brand' %>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <%= link_to 'Tintas Formuladas', tintas_formuladas_path, class:'navbar-brand' %>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <%= link_to 'Lineas De Colores', lineas_de_colores_path, class:'navbar-brand' %>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <%= link_to 'Formulas', formulas_tinta_path, class:'navbar-brand' %>
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <%= link_to 'Piezas A Decorar', piezas_a_decorar_path, class:'navbar-brand' %>
+                  </a>
+
+
+
 
 
 
