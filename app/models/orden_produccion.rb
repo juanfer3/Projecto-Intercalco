@@ -72,7 +72,7 @@ class OrdenProduccion < ApplicationRecord
                                                   @cliente_id = @bus_cliente.id
                                         end
 
-                                        montajeNuevo = Montaje.new(  nombre: spreadsheet.row(i)[7], cliente_id: @cliente_id, user_id: @vendedor.id)
+                                        montajeNuevo = Montaje.new( codigo: "", nombre: spreadsheet.row(i)[7], cliente_id: @cliente_id, user_id: @vendedor.id)
 
                                         if montajeNuevo.save
                                                 puts "***********El Montaje a sido alamcenado*****************************"
@@ -252,8 +252,18 @@ class OrdenProduccion < ApplicationRecord
                                         ordenNueva=OrdenProduccion.new(montaje_id:@montaje_id, numero_de_orden:numero_orden, fecha:fecha)
                                         if ordenNueva.save
                                           puts "*******************Orden Almacenada*********************"
-                                        else
-                                          puts "*******************Orden Fallida*********************"
+                                          fecha_de_compromiso = spreadsheet.row(i)[4]
+                                          fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
+                                          puts "*******************Orden Almacenada*********************"
+                                          compromiso= CompromisoDeEntrega.new(orden_produccion_id:ordenNueva.id, fecha_de_compromiso: fecha_compromiso)
+
+                                          if compromiso.save
+
+                                            puts "*******************Fecha de compromiso Almacenada*********************"
+
+                                          end
+                                          else
+                                            puts "*******************Orden Fallida*********************"
                                         end
 
                           else
@@ -270,10 +280,19 @@ class OrdenProduccion < ApplicationRecord
                                         ordenNueva=OrdenProduccion.new(montaje_id:@bus_montaje.id, numero_de_orden:numero_orden , fecha:fecha)
                                         if ordenNueva.save
                                           puts "*******************Orden Almacenada*********************"
-                                        else
-                                          puts "*******************Orden Fallida*********************"
-                                        end
+                                          fecha_de_compromiso = spreadsheet.row(i)[4]
+                                          fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
+                                          puts "*******************Orden Almacenada*********************"
+                                          compromiso= CompromisoDeEntrega.new(orden_produccion_id:ordenNueva.id, fecha_de_compromiso: fecha_compromiso)
 
+                                          if compromiso.save
+
+                                            puts "*******************Fecha de compromiso Almacenada*********************"
+
+                                          end
+                                          else
+                                            puts "*******************Orden Fallida*********************"
+                                        end
                           end
 
 

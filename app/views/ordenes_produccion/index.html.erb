@@ -52,12 +52,7 @@
                     <%
 
 
-                			@date = Time.now.strftime("%Y/%m/%d")
 
-                      @dat = Date.parse(@date)
-
-                      fec1 = "1111/01/01"
-                      @fech1 = fec1.to_time
                 		%>
                     <%cont=0%>
                     <%@comparador_fecha = ""%>
@@ -73,6 +68,7 @@
                             fech = fecha.fecha_de_compromiso
                             fech.strftime("%Y/%m/%d")
                           %>
+
                           <% if fecha.enviado == true %>
                               <%@estado_data = true%>
                               <%contador_enviados = contador_enviados + 1%>
@@ -81,25 +77,27 @@
 
 
 
-                    <%if fech < Date.today
+                    <%if fecha.fecha_de_compromiso < Date.today
 
+                          puts "******************Dia menor #{@dates}**********************"
 
-
-
+                          @dates= fecha.fecha_de_compromiso
                           %>
 
-                    <% elsif fech >= Date.today %>
+                    <% elsif fecha.fecha_de_compromiso >= Date.today %>
 
                             <%
-                              dias = (fech - Date.today).to_i
+                              dias = (fecha.fecha_de_compromiso - Date.today).to_i
 
 
                               if dias == 0
-                                @dates= fech
+                                @dates= fecha.fecha_de_compromiso
                                 @hallado = true
+                                puts "******************Dia igual #{@dates}**********************"
                               else
                                 if @hallado == false
-                                  @dates= fech
+                                  @dates= fecha.fecha_de_compromiso
+                                  puts "******************Dia mayor #{@dates}**********************"
                                 end
                               end
 
@@ -113,7 +111,9 @@
 
               <% end %>
 
-
+            
+              <% if @dates != nil %>
+                <!-- true -->
 
               <%
                         mes = @dates.strftime("%m")
@@ -145,8 +145,9 @@
                         <%when "12"%>
                           <td>Diciembre</td>
                         <% end %>
-
-
+                        <% else %>
+                        <td>Por Definir</td>
+                  <% end %>
 
                     <td><%=@dates%> </td>
         <% else %>

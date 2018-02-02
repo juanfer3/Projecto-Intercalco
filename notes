@@ -1,42 +1,34 @@
-<div class="card">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item container my_card_produccion">
-      <div class="">
-        <strong>Máquina:</strong>
-        <%=@orden_produccion.formato_op.maquina.nombre%>
-      </div>
+linea_producto =  spreadsheet.row(i)[20]
+if linea_producto != ""
+      @bus_linea_producto= LineaProducto.find_by(nombre: linea_producto)
+      puts "**************Busqueda De la linea_producto**************************"
 
 
+                if @bus_linea_producto== nil
+                  puts "**************La linea_producto es nula**************************"
+                  linea_productoNueva = LineaProducto.new(nombre: linea_producto)
+                  if linea_productoNueva.save
+                      puts "**************La linea_producto a sido Creada**************************"
+                      @linea_producto_id=LineaProducto.id
+                  end
+                else
+                  puts "**************La linea_producto Existe**************************"
+                    @linea_producto_id=@bus_linea_producto.id
+                end
+else
+        puts "**************La El campo Pieza esta vacio**************************"
+        busqueda="Por Definir"
+        @bus_linea_producto= LineaProducto.find_by(nombre: busqueda)
+        puts "**************Busqueda De la linea_producto nulas**************************"
 
-      <div class="">
-
-        <FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </FONT>
-
-      </div>
-    </li>
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  </ul>
-</div>
+                  busqueda="Por Definir"
+                  if @bus_linea_producto== nil
+                      linea_productoNueva = LineaProducto.new(nombre: busqueda)
+                      if linea_productoNueva.save
+                          puts "**************La linea_producto a sido Creada y se Por Definir**************************"
+                          @linea_producto_id=linea_productoNueva.id
+                      end
+                  else
+                      @linea_producto_id=@bus_linea_producto.id
+                  end
+end

@@ -36,6 +36,20 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+  $('form').keypress(function(e){
+    if(e == 13){
+      return false;
+    }
+  });
+
+  $('input').keypress(function(e){
+    if(e.which == 13){
+      return false;
+    }
+  });
+
+
   $("#compromiso_de_entrega_enviado").attr('checked',true);
 
   $("#montaje_formatos_op_attributes_0_pieza_a_decorar_id").focusout(function(){
