@@ -31,9 +31,9 @@
 
     <div class="col-3">
       <label for="">Máquina:</label>
-      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
-        <h4><%=formato.maquina.nombre%></h4>
-      <% end %>
+
+        <h4><%=@orden_produccion.montaje.maquina.nombre%></h4>
+
     </div>
 
 
@@ -41,9 +41,9 @@
 
     <div class="col-3">
       <label for="">Sustrato:</label>
-      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
-        <h4><%=formato.material%></h4>
-      <% end %>
+
+        <h4><%=@orden_produccion.montaje.material%></h4>
+
     </div>
 
     <div class="col-3">
@@ -55,9 +55,7 @@
 
     <div class="col-3">
       <label for="">Linea de color:</label>
-      <% @orden_produccion.montaje.formatos_op.each do |formato|%>
-        <h4><%=formato.linea_de_color.nombre%></h4>
-      <% end %>
+        <h4><%=@orden_produccion.montaje.linea_de_color.nombre%></h4>
     </div>
   </div>
 </div>
@@ -72,7 +70,7 @@
 <div class="" id="ContenedorTintas">
 
 
-<%if @orden_produccion.montaje.tinta_nueva == true%>
+<%if @orden_produccion.montaje.desarrollos_de_tintas.any? %>
     <br>
     <div class="" id="divContenedor">
 
@@ -81,7 +79,7 @@
 
 
             <div class="col-12">
-              <h1>Tintas Nuevas</h1>
+              <h1>Tintas Programadas</h1>
             </div>
             <table class="table table-striped">
               <thead>
@@ -90,7 +88,7 @@
                 <th>Malla</th>
                 <th>Tiro</th>
                 <th>Retiro</th>
-                <th>Desarrollar</th>
+
                 <th>Eliminar</th>
               </thead>
               <tbody>
@@ -122,7 +120,7 @@
 
 
 
-                    <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+
                     <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
                   </tr>
                 <%end%>
@@ -168,6 +166,7 @@
           <th>Linea</th>
           <th>Malla</th>
           <th>Tiros</th>
+          <th>Eliminar</th>
         </thead>
         <tbody id="AgregarTintasTiro">
           <%cont=0%>
@@ -186,10 +185,12 @@
                       <% if cont == cont2 %>
                         <!-- true -->
                         <td><%=tintas_tiro.malla.nombre%></td>
+                        <td><%=@orden_produccion.tamanos_total%></td>
+                          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
                       <% end %>
 
                   <% end %>
-                  <td ><%=@orden_produccion.tamanos_total%></td>
+
                 </tr>
 
 
@@ -202,7 +203,7 @@
     <hr>
 <% end %>
 
-<% if @orden_produccion.montaje.retiro == true %>
+
     <div class="my_card_produccion">
       <div class="container_add_entregas col-12">
          <div class="col-4">
@@ -211,6 +212,7 @@
          <div class="col-3 offset-md-6">
             <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_retiro_path(@orden_produccion.montaje.id), remote:true %>
          </div>
+
       </div>
 
 
@@ -223,16 +225,24 @@
 
       </div>
 
+      <div class="col-12">
+          <br>
+      </div>
+<div class="col-12" id=<%="tinta_retiro#{@orden_produccion.montaje.id}"%>>
+<% if @orden_produccion.montaje.tintas_fop_retiro.any? %>
+
+
 
       <div class="col-12">
         <h1>Tintas Retiro</h1>
       </div>
-      <table class="table">
+      <table class="table" >
         <thead>
           <th>Color</th>
           <th>Linea</th>
           <th>Malla</th>
           <th>Tiros</th>
+          <th>Eliminar</th>
         </thead>
         <tbody id="AgregarTintasRetiro">
           <%cont=0%>
@@ -245,16 +255,21 @@
                 <tr>
                   <td><%=tinta.descripcion%></td>
                   <td><%=tinta.linea_de_color.nombre%></td>
+
                   <%cont2=0%>
                   <%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_tiro|%>
                   <%cont2 = cont2+1%>
                       <% if cont == cont2 %>
                         <!-- true -->
                         <td><%=tintas_tiro.malla.nombre%></td>
+                        <td><%=@orden_produccion.tamanos_total%></td>
+                          <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, tintas_tiro, method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
+
                       <% end %>
 
                   <% end %>
-                  <td><%=@orden_produccion.tamanos_total%></td>
+
+
                 </tr>
 
 
@@ -263,6 +278,7 @@
         </tbody>
       </table>
 
+<% end %>
+</div>
     </div>
 </div>
-<% end %>

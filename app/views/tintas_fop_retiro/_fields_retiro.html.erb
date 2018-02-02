@@ -1,8 +1,40 @@
-<tr>
-  <td><%=@tinta_fop_retiro.descripcion%></td>
-  <%@Tintas_tiro.each do |tinta|%>
-    <td><%=tinta.linea_de_color.nombre%></td>
-  <% end %>
-  <td><%=@tinta_fop_retiro.malla.nombre%></td>
-  <td> <p class="darValor"></p> </td>
-</tr>
+
+<div class="col-12">
+  <h1>Tintas Retiro</h1>
+</div>
+<table class="table" >
+  <thead>
+    <th>Color</th>
+    <th>Linea</th>
+    <th>Malla</th>
+    <th>Tiros</th>
+  </thead>
+  <tbody id="AgregarTintasRetiro">
+    <%cont=0%>
+
+    <%total=0%>
+    <%@Tintas_retiro.each do |tinta|%>
+          <%
+          cont = cont +1
+          %>
+          <tr>
+            <td><%=tinta.descripcion%></td>
+            <td><%=tinta.linea_de_color.nombre%></td>
+            <%cont2=0%>
+            <%@montaje.tintas_fop_retiro.each do |tintas_tiro|%>
+            <%cont2 = cont2+1%>
+                <% if cont == cont2 %>
+                  <!-- true -->
+                  <td><%=tintas_tiro.malla.nombre%></td>
+                <% end %>
+
+            <% end %>
+            <td></td>
+          </tr>
+
+
+
+    <%end%>
+  </tbody>
+</table>
+</div>

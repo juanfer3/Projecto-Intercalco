@@ -41,7 +41,7 @@
                           <td></td>
                     <% end %>
 
-                          <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+
                           <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
 
                   </tr>
@@ -105,7 +105,7 @@
             <h1>Agragar Tinta al Tiro</h1>
          </div>
          <div class="col-3 offset-md-6">
-            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@orden_produccion.montaje.id), remote:true %>
+            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@montajes.id), remote:true %>
          </div>
       </div>
       <div class="col-12">

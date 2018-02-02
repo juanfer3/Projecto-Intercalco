@@ -25,31 +25,46 @@
 
               <!--Cliente-->
               <div class="col-4">
+                <label for="">Seleccion Cliente</label>
                 <%=
-                  f.association :cliente,
-                  collection: Cliente.all,
-                  label_method: :nombre,
-                  value_method: :id,
-                  as: :select,
-                  class:'col-4 my_cliente form-control',
-                  include_blank: 'Seleccione el Cliente'
+                  f.select :cliente_id,
+                  Cliente.all.map{|i| ["Cliente: "+i.nombre+"- Vendedor: "+i.user.nombre , i.id]},
+                  {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_cliente_montaje"}
                 %>
                 <p id="campo_cliente"></p>
               </div>
 
+
+              <!--Linea De Color-->
               <div class="col-4">
-                <%=
-                  f.association :user,
-                  collection: User.all,
-                  label_method: :nombre,
-                  value_method: :id,
-                  as: :select,
-                  class:'col-4 my_cliente form-control',
-                  include_blank: 'Seleccione el Vendedor'
+                <label for="">Seleccione la linea de color</label>
+                <%= f.select :linea_de_color_id,
+                LineaDeColor.all.map{|i| [i.nombre, i.id]},
+                {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
                 %>
-                <p id="campo_user"></p>
+                <p id="campo_lineaColor"></p>
               </div>
 
+              <!--Linea de Producto-->
+              <div class="col-4">
+                <label for="">Línea de Producto</label>
+                <%=
+                f.select :linea_producto_id,
+                LineaProducto.all.map{|i| [i.nombre, i.id]},
+                {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
+                %>
+                <p id="campo_productos"></p>
+              </div>
+
+              <!--Maquina-->
+              <div class="col-4">
+                <label for="">Seleccion De Maquina</label>
+                <%= f.select :maquina_id,
+                Maquina.all.map{|i| [i.nombre, i.id]},
+                {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
+                %>
+                <p id="campo_maquina"></p>
+              </div>
 
               <!--Codigo-->
               <div class="col-4">
@@ -82,20 +97,22 @@
                 <%= f.input :tiro , class: "myCheckBoxTiro", id: "myCheckBoxTiro"%>
               </div>
 
-              <div class="col-4">
-                <br>
-                <label for="">Tinta Retiro</label>
-                <%= f.input :retiro, label:false %>
-              </div>
+
 
 
               <!--Codigo-->
               <div class="col-4">
                 <%= f.input :modo_de_empaque %>
               </div>
-              <!--Codigo-->
+
+
+
+
+
+
               <div class="col-4">
-                <%= f.input :observacion %>
+                <%= f.input :material %>
+                <p id="campo_material"></p>
               </div>
 
            </div>
@@ -110,91 +127,47 @@
   <br>
 
 
+  <div class="card card-outline-secondary mb-3 text-center">
+    <div class="card-header">
+       <h1>Observaciones</h1>
 
+    </div>
+     <div class="card-block">
+        <div class="container">
+
+
+
+          <br>
+
+
+
+
+             <!--Codigo-->
+             <div class="">
+               <%= f.text_area :observacion, class: "form-control" %>
+             </div>
+
+
+
+             <br>
+
+
+        </div>
+     </div>
+  </div>
 
   <!--Depachos-->
 
 
 
-  <div class="" id="div_tintas_tiro">
-
-
-    <div class="container_add_entregas col-12">
-       <div class="col-4">
-          <h1>Tintas De Tiro</h1>
-       </div>
-       <div class="col-3 offset-md-6">
-          <%= link_to_add_tintas_tiro('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_tiro, class: '') %>
-       </div>
-    </div>
-    <br>
-
-    <div class="card card-outline-secondary mb-3 text-center">
-       <div class="card-block">
-          <div class="container">
-             <br>
-             <br>
-             <div class="container">
-
-               <table class="table">
-                 <tbody class='fields_tintas_tiro'>
-                   <%=f.fields_for :tintas_fop_tiro do |contc|%>
-
-                      <%= render 'tinta_fop_tiro', f:contc%>
-
-                   <%end%>
-                 </tbody>
-                 </table>
-
-             </div>
-          </div>
-       </div>
-    </div>
-  </div>
 
 
 
-  <div class="" id="div_tintas_retiro">
-
-
-
-    <div class="container_add_entregas col-12">
-       <div class="col-4">
-          <h1>Tintas Retiro</h1>
-       </div>
-       <div class="col-3 offset-md-6">
-          <%= link_to_add_tintas_retiro('<button type="button"  class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :tintas_fop_retiro, class: '') %>
-       </div>
-    </div>
-    <br>
-
-    <div class="card card-outline-secondary mb-3 text-center">
-       <div class="card-block">
-          <div class="container">
-             <br>
-             <br>
-             <div class="container">
-
-               <table class="table">
-                 <tbody class='fields_tintas_retiro'>
-                   <%=f.fields_for :tintas_fop_retiro do |contc|%>
-
-                      <%= render 'tinta_fop_retiro', f:contc%>
-
-                   <%end%>
-                 </tbody>
-                 </table>
-
-             </div>
-          </div>
-       </div>
-    </div>
-  </div>
   <br>
   <div class="col-12">
     <div class="my_card_contactos_form">
       <div class="input-group">
-          <h1>Programar tintas nuevas</h1>
+          <h1>Programar tintas</h1>
           <div class="anexar_tinta">
             <%= f.input :tinta_nueva, label:false, class: "form-control add_desarrollo_tintas" %>
           </div>
@@ -222,6 +195,7 @@
       </div>
 
     </div>
+
      <div class="card-block">
         <div class="container">
 
@@ -257,19 +231,7 @@
 
   <br>
 
-  <div class="card card-outline-secondary mb-3 text-center">
-     <div class="card-block">
-        <div class="container">
-           <br>
-           <br>
-           <div class="">
-                    <%= f.simple_fields_for :formatos_op do |builder| %>
-                       <%= render "formato_op", :f => builder %>
-                    <% end %>
-           </div>
-        </div>
-     </div>
-  </div>
+
 
 
 

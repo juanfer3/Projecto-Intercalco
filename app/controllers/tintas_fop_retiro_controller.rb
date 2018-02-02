@@ -28,23 +28,31 @@ class TintasFopRetiroController < ApplicationController
 
     respond_to do |format|
       if @tinta_fop_retiro.save
-        @Tintas_tiro=[]
+        @Tintas_retiro=[]
 
 
+        @montaje= Montaje.find_by(id:@tinta_fop_retiro.montaje.id)
 
+        @montaje.tintas_fop_retiro.each do |tintas_retiro|
 
-            @busq_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: @tinta_fop_retiro.descripcion)
+            @busq2_tinta = Tinta.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
+            puts "******************#{@busq2_tinta}**********************"
+            if @busq2_tinta == nil
+              puts "******************Esta Vacio**********************"
+              @formula2_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: tintas_retiro.descripcion)
 
-            if @busq_tinta == nil
-              @formula_tintas = TintaFormulada.joins(:linea_de_color).find_by(descripcion: @tinta_fop_retiro.descripcion)
-
-              @Tintas_tiro << @formula_tintas
+              @Tintas_retiro << @formula2_tintas
 
             else
+              puts "******************Esta Vacio**********************"
+              @Tintas_retiro << @busq2_tinta
 
-              @Tintas_tiro << @busq_tinta
 
             end
+
+        end
+
+
         format.html { redirect_to @tinta_fop_retiro, notice: 'Tinta fop retiro was successfully created.' }
         format.json { render :show, status: :created, location: @tinta_fop_retiro }
         format.js

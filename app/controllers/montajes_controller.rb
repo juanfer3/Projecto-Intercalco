@@ -225,7 +225,7 @@ class MontajesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_montaje
-      
+
       @montaje = Montaje.find(params[:id])
 
 
@@ -246,12 +246,13 @@ class MontajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
-      params.require(:montaje).permit(:cliente_id, :user_id,:nombre, :tamano, :dimension,
+      params.require(:montaje).permit(:cliente_id, :material,:nombre, :tamano, :dimension,
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
-         :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado, :otro, :tinta_nueva,
+         :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
+         :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,
          desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
@@ -259,16 +260,16 @@ class MontajesController < ApplicationController
       formatos_op_attributes:[:user_id, :maquina_id, :montaje_id, :pieza_a_decorar_id,
         :referencia_de_orden, :linea_de_color_id, :tipo_de_produccion, :material, :temperatura,
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
-        :tiro, :retiro],
+        :tiro, :retiro, :_destroy],
       ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,
-        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy,
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-          :diferencia, :numero_de_remision, :estado]
+          :diferencia, :numero_de_remision, :estado, :_destroy]
       ]
 
       )

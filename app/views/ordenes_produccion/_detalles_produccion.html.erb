@@ -26,12 +26,12 @@
     <ul class="list-group list-group-flush">
 
       <li class="list-group-item container my_card_produccion">
-        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+
             <div class="">
             <strong>Máquina:</strong>
-            <%=formato.maquina.nombre%>
+            <%=@orden_produccion.montaje.maquina.nombre%>
             </div>
-        <% end %>
+
 
 
         <div class="">
@@ -55,7 +55,7 @@
       <li class="list-group-item my_card_produccion">
         <div class="">
           <strong>Vendedor: </strong>
-          <%=@orden_produccion.montaje.user.nombre%>
+          <%=@orden_produccion.montaje.cliente.user.nombre%>
         </div>
 
 
@@ -78,36 +78,6 @@
 
 
 
-  <div class="card col-4">
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item my_card_produccion">
-
-
-
-
-          <% @orden_produccion.montaje.formatos_op.each do |formato|%>
-              <div class="">
-              <strong>Pieza a Decorar: </strong>
-              <%=formato.pieza_a_decorar.nombre%>
-              </div>
-          <% end %>
-
-
-        <div class="">
-          <!--FONT FACE="arial" SIZE=6>
-            <span size=10 >
-               <i class="ion-wand"></i>
-            </span>
-          </!--FONT-->
-
-        </div>
-      </li>
-
-
-
-
-    </ul>
-  </div>
 
 
 
@@ -117,12 +87,12 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item my_card_produccion">
 
-        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+
             <div class="">
             <strong>Linea De Color: </strong>
-            <%=formato.linea_de_color.nombre%>
+            <%=@orden_produccion.montaje.linea_de_color.nombre%>
             </div>
-        <% end %>
+
 
 
         <div class="">
@@ -301,12 +271,12 @@
       <li class="list-group-item my_card_produccion">
 
 
-        <% @orden_produccion.montaje.formatos_op.each do |formato|%>
+
             <div class="">
             <strong>Materiales: </strong>
-            <%=formato.material%>
+            <%=@orden_produccion.montaje.material%>
             </div>
-        <% end %>
+
 
         <div class="">
         <!--FONT FACE="arial" SIZE=6>
@@ -435,9 +405,71 @@
     </ul>
   </div>
 
+<div class="col-12">
+  <br>
+</div>
+
+  <%if @orden_produccion.montaje.desarrollos_de_tintas.any? %>
+      <br>
+      <div class="col-12" id="">
+
+
+            <div class="my_card_produccion">
+
+
+              <div class="col-12">
+                <h1>Tintas Programadas</h1>
+              </div>
+              <table class="table table-striped">
+                <thead>
+                  <th>Color</th>
+                  <th>Linea</th>
+                  <th>Malla</th>
+                  <th>Tiro</th>
+                  <th>Retiro</th>
+
+                  <th>Eliminar</th>
+                </thead>
+                <tbody>
+                  <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
+                    <tr id=<%="quitar_desarrollo_#{desarrollo.id}"%>>
+                      <td><%=desarrollo.descripción%></td>
+                      <td><%=desarrollo.linea_de_color.nombre%></td>
+                      <td><%=desarrollo.malla.nombre%></td>
+
+                      <% if desarrollo.tiro== true %>
+                        <td>
+                          <span><i class="ion-checkmark-circled"></i> </span>
+                        </td>
+                      <% else %>
+                        <td></td>
+                      <% end %>
 
 
 
+                      <% if desarrollo.retiro== true %>
+                        <td>
+                          <span><i class="ion-checkmark-circled"></i> </span>
+                        </td>
+                      <% else %>
+                          <td></td>
+                      <% end %>
+
+
+
+
+
+
+                      <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+              </table>
+
+            </div>
+      </div>
+      <hr>
+      <%end%>
 
 
 
@@ -446,166 +478,3 @@
 
 
 <hr>
-
-<div class="my_card_produccion">
-  <div class="col-12">
-    <h1>Tintas Tiro</h1>
-  </div>
-
-<%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
-
-
-
-<div class="card col-6">
-  <ul class="list-group list-group-flush">
-
-
-
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-        <div class="">
-          <strong>Tinta:</strong>
-        </div>
-
-
-      </div>
-      <div class="col-3">
-        <strong>Malla:</strong>
-      </div>
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-<!--color-->
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-
-        <p><%=tintas_tiro.descripcion%></p>
-
-      </div>
-
-      <div class="col-3">
-
-        <p><%=tintas_tiro.malla.nombre%></p>
-
-      </div>
-
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-
-
-
-
-
-  </ul>
-</div>
-
-
-<% end %>
-</div>
-
-
-
-
-
-
-
-
-<hr>
-
-<div class="my_card_produccion">
-  <div class="col-12">
-    <h1>Tintas Retiro</h1>
-  </div>
-
-<%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_retiro|%>
-
-
-
-<div class="card col-6">
-  <ul class="list-group list-group-flush">
-
-
-
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-        <div class="">
-          <strong>Tinta:</strong>
-        </div>
-
-
-      </div>
-      <div class="col-3">
-        <strong>Malla:</strong>
-      </div>
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-<!--color-->
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-
-        <p><%=tintas_retiro.descripcion%></p>
-
-      </div>
-
-      <div class="col-3">
-
-        <p><%=tintas_retiro.malla.nombre%></p>
-
-      </div>
-
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-
-
-
-
-
-  </ul>
-</div>
-
-
-<% end %>
-</div>

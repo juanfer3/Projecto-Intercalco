@@ -2,8 +2,11 @@ toastr.success(":)")
 
 
 $('#generarTintaNueva').html('<%= j render 'form_tintas_tiro'%>')
-$("#ocultarMontaje").hide()
+$("#ocultarMontajeTiro").hide()
 $(".js-example-tags").select2({
 
 
+})
+$("#borrarTintaNueva").click(function(){
+  $('#generarTintaNueva').html("")
 })

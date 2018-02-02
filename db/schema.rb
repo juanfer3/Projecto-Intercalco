@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131151813) do
+ActiveRecord::Schema.define(version: 20180202162640) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -222,7 +222,6 @@ ActiveRecord::Schema.define(version: 20180131151813) do
     t.date "fecha_de_creacion"
     t.boolean "tiro", default: true
     t.boolean "retiro"
-    t.integer "user_id"
     t.boolean "precorte"
     t.boolean "pretroquelado"
     t.boolean "laminado"
@@ -244,8 +243,14 @@ ActiveRecord::Schema.define(version: 20180131151813) do
     t.boolean "tinta_nueva_tiro", default: false
     t.boolean "tinta_nueva_retiro", default: false
     t.boolean "tinta_nueva"
+    t.integer "linea_de_color_id"
+    t.integer "maquina_id"
+    t.integer "linea_producto_id"
+    t.string "material"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
-    t.index ["user_id"], name: "index_montajes_on_user_id"
+    t.index ["linea_de_color_id"], name: "index_montajes_on_linea_de_color_id"
+    t.index ["linea_producto_id"], name: "index_montajes_on_linea_producto_id"
+    t.index ["maquina_id"], name: "index_montajes_on_maquina_id"
   end
 
   create_table "ordenes_de_produccion", force: :cascade do |t|

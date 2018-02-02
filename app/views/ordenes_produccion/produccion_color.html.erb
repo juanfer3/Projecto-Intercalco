@@ -27,19 +27,11 @@
       <td><%= orden_produccion.numero_de_orden %></td>
       <td><%= orden_produccion.montaje.cliente.nombre%></td>
       <td><%= orden_produccion.montaje.nombre %></td>
-      <% if orden_produccion.montaje.formatos_op.any? %>
-        <!-- true -->
-
-            <% orden_produccion.montaje.formatos_op.each do |formato|%>
-              <td><%=formato.maquina.nombre%></td>
-              <td><%=formato.linea_de_color.nombre%></td>
+      <td><%=orden_produccion.montaje.maquina.nombre%></td>
+      <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
 
 
-            <% end %>
-      <% else %>
-      <td> <p>Pendiente Por Definir</p> </td>
-      <td> <p>Pendiente Por Definir</p> </td>
-      <% end %>
+
 
 
       <% if orden_produccion.compromisos_de_entrega.any? %>

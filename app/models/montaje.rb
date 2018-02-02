@@ -1,6 +1,8 @@
 class Montaje < ApplicationRecord
   belongs_to :cliente
-  belongs_to :user
+  belongs_to :linea_de_color
+  belongs_to :maquina
+  belongs_to :linea_producto
 
   has_many :formatos_op, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :formatos_op, reject_if: :all_blank, allow_destroy: true

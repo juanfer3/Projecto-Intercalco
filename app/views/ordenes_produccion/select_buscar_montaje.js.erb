@@ -1,12 +1,11 @@
 toastr.success(":)")
 
-$("#AgregarTintaTiro").html('<%= j render 'montaje_tintas_tiro'%>')
+$("#AgregarTintas").html('<%= j render 'montaje_tintas_tiro'%>')
 
 $('#op_cliente').val("<%=@montaje.cliente.nombre%>")
-$('#op_vendedor').val("<%=@montaje.user.nombre%>")
-<%@montaje.formatos_op.each do  |formato|%>
-$('#op_maquina').val("<%=formato.maquina.nombre%>")
-$('#op_linea_producto').val("<%=formato.linea_producto.nombre%>")
-$('#op_linea_de_color').val("<%=formato.linea_de_color.nombre%>")
-$('#op_material').val("<%=formato.material%>")
-<%end%>
+$('#op_vendedor').val("<%=@montaje.cliente.user.nombre%>")
+
+$('#op_maquina').val("<%=@montaje.maquina.nombre%>")
+$('#op_linea_producto').val("<%=@montaje.linea_producto.nombre%>")
+$('#op_linea_de_color').val("<%=@montaje.linea_de_color.nombre%>")
+$('#op_material').val("<%=@montaje.material%>")

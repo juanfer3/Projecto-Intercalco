@@ -6,7 +6,7 @@
 <div class="my_card_produccion">
 
 
-    <div class="col-3" id="ocultarMontaje">
+    <div class="col-3" id="ocultarMontajeTiro">
       <%=
       f.association :montaje,
       collection: Montaje.all,
@@ -20,22 +20,38 @@
       %>
     </div>
 
-    <div class="col-4">
+    <div class="col-2">
       <label for="">Seleccione la malla</label><br>
       <%= f.select :malla_id, Malla.all.map {|i|[i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_malla"} %>
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
       <label for="">Seleccione la tinta</label><br>
       <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_tinta"}%>
     </div>
 
-    <div class="col-4">
+    <div class="col-3">
       <label for=""></label><br>
       <%= button_tag type: 'submit', class: "btn btn-outline-info col-3", id: "register-button" do %>
         <i class="ion-shuffle" aria-hidden="true"></i>
        <% end %>
     </div>
 
+    <div class="3">
+
+        <label for=""></label> <br>
+        <%= f.input_field :_destroy, as: :hidden %>
+        <button type="button" class="btn btn-outline-danger " id="borrarTintaNueva"><span><i class="ion-trash-a"></i></span></button>
+
+    </div>
+
   <% end %>
 </div>
+
+
+<script type="text/javascript">
+$(".js-example-tags").select2({
+
+
+})
+</script>

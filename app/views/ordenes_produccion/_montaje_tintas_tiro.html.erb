@@ -1,160 +1,215 @@
-<div class="my_card_produccion_tintas">
-  <%if @montaje.tiro == true%>
-  <div class="col-12">
-    <h1>Tintas Tiro</h1>
-  </div>
-  <%end%>
-<%@montaje.tintas_fop_tiro.each do |tintas_retiro|%>
+<%if @montaje.desarrollos_de_tintas.any? %>
+    <br>
+    <div class="" id="divContenedor">
+
+
+          <div class="my_card_produccion">
+
+
+            <div class="col-12">
+              <h1>Tintas Programadas</h1>
+            </div>
+            <table class="table table-striped">
+              <thead>
+                <th>Color</th>
+                <th>Linea</th>
+                <th>Malla</th>
+                <th>Tiro</th>
+                <th>Retiro</th>
+
+
+              </thead>
+              <tbody>
+                <%@montaje.desarrollos_de_tintas.each do  |desarrollo|%>
+                  <tr id=<%="quitar_desarrollo_#{desarrollo.id}"%>>
+                    <td><%=desarrollo.descripción%></td>
+                    <td><%=desarrollo.linea_de_color.nombre%></td>
+                    <td><%=desarrollo.malla.nombre%></td>
+
+                    <% if desarrollo.tiro== true %>
+                      <td>
+                        <span><i class="ion-checkmark-circled"></i> </span>
+                      </td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
 
 
 
-<div class="card col-4">
-  <ul class="list-group list-group-flush">
+                    <% if desarrollo.retiro== true %>
+                      <td>
+                        <span class=""><i class="ion-checkmark-circled"></i> </span>
+                      </td>
+                    <% else %>
+                        <td></td>
+                    <% end %>
+
+
+
+                  </tr>
+                <%end%>
+              </tbody>
+            </table>
+
+          </div>
+    </div>
+    <hr>
+    <% else %>
+    <h1>El Montaje No tiene Tintas Definidas</h1>
+    <br>
+    <%end%>
 
 
 
 
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-        <div class="">
-          <strong>Tinta:</strong>
+
+
+
+
+
+
+
+        <div class="card card-outline-secondary mb-3 text-center">
+          <div class="card-header">
+
+            <div class="col-12">
+              <h3>Acabados</h3>
+            </div>
+
+          </div>
+
+
+           <div class="card-block">
+              <div class="container">
+                <br>
+                <br>
+                <div class="my_card_pedidos_form" >
+
+
+                  <% if @montaje.precorte == true%>
+                  <div class="col-2">
+                    <h6>Tiro</h6>
+                  </div>
+                  <% end %>
+
+
+
+                  <% if @montaje.pretroquelado== true%>
+                  <div class="col-2">
+                    <h6>Pretroquelado</h6>
+                  </div>
+                  <% end %>
+
+
+
+                  <% if @montaje.laminado== true%>
+                  <div class="col-2">
+                    <h6>Laminado</h6>
+                  </div>
+                  <% end %>
+
+
+
+                  <% if @montaje.troquelado== true%>
+                  <div class="col-2">
+                    <h6>Torquelado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.descalerillado== true%>
+                  <div class="col-2">
+                    <h6>Torquelado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.plotter== true%>
+                  <div class="col-2">
+                    <h6>Plotter</h6>
+                  </div>
+                  <% end %>
+
+
+
+                  <% if @montaje.doming== true%>
+                  <div class="col-2">
+                    <h6>Doming</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.descolille== true%>
+                  <div class="col-2">
+                    <h6>Descolille</h6>
+                  </div>
+                  <% end %>
+
+                  <% if @montaje.doblez_calor== true%>
+                  <div class="col-2">
+                    <h6>Doblez al calor</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.termoformado== true%>
+                  <div class="col-2">
+                    <h6>Termoformado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.estampado_al_calor== true%>
+                  <div class="col-2">
+                    <h6>Estampado al calor</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.refilado== true%>
+                  <div class="col-2">
+                    <h6>Refilado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.perforado== true%>
+                  <div class="col-2">
+                    <h6>Perforado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.ojalete== true%>
+                  <div class="col-2">
+                    <h6>Ojalete</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.hilo== true%>
+                  <div class="col-2">
+                    <h6>Hilo</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.pegado== true%>
+                  <div class="col-2">
+                    <h6>Pegado</h6>
+                  </div>
+                  <% end %>
+
+
+                  <% if @montaje.ensamblado== true%>
+                  <div class="col-2">
+                    <h6>Ensamblado</h6>
+                  </div>
+                  <% end %>
+
+                </div>
+
+                <br>
+              </div>
+           </div>
         </div>
-
-
-      </div>
-      <div class="col-3">
-        <strong>Malla:</strong>
-      </div>
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-<!--color-->
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-
-        <p><%=tintas_retiro.descripcion%></p>
-
-      </div>
-
-      <div class="col-3">
-
-        <p><%=tintas_retiro.malla.nombre%></p>
-
-      </div>
-
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-
-
-
-
-
-  </ul>
-</div>
-
-
-<% end %>
-</div>
-
-
-<br>
-
-
-<div class="my_card_produccion_tintas">
-  <%if @montaje.retiro == true%>
-  <div class="col-12">
-    <h1>Tintas Retiro</h1>
-  </div>
-  <%end%>
-
-<%@montaje.tintas_fop_retiro.each do |tintas_retiro|%>
-
-
-
-<div class="card col-4">
-  <ul class="list-group list-group-flush">
-
-
-
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-        <div class="">
-          <strong>Tinta:</strong>
-        </div>
-
-
-      </div>
-      <div class="col-3">
-        <strong>Malla:</strong>
-      </div>
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-<!--color-->
-
-    <li class="list-group-item container my_card_produccion">
-      <div class="col-9">
-
-        <p><%=tintas_retiro.descripcion%></p>
-
-      </div>
-
-      <div class="col-3">
-
-        <p><%=tintas_retiro.malla.nombre%></p>
-
-      </div>
-
-
-
-      <div class="">
-
-        <!--FONT FACE="arial" SIZE=6>
-          <span size=10 >
-             <i class="ion-printer"></i>
-          </span>
-        </!--FONT-->
-
-      </div>
-    </li>
-
-
-
-
-
-  </ul>
-</div>
-
-
-<% end %>
-</div>

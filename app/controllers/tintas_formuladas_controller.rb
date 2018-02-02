@@ -100,8 +100,9 @@ class TintasFormuladasController < ApplicationController
                       end
                     end
                   @tinta_solicitada.destroy
+                  @montajes = Montaje.find_by(id:transicion.desarrollo_de_tinta.montaje.id)
               end
-              @montajes = Montaje.find_by(id:transicion.desarrollo_de_tinta.montaje.id)
+
 
                 if @montajes.desarrollos_de_tintas.any?
                   puts "******************Existe**********************"
