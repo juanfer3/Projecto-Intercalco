@@ -52,7 +52,7 @@
                   <%@hallado = false%>
                   <%@estado_data= false%>
                   <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
-
+                    <% if fecha.fecha_de_compromiso != nil %>
                         <%
                           fech = fecha.fecha_de_compromiso
                           fech.strftime("%Y/%m/%d")
@@ -96,7 +96,7 @@
                   <% end %>
 
 
-
+                  <% end %>
 
             <% end %>
 

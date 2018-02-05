@@ -373,6 +373,7 @@ end
     end
     respond_to do |format|
       format.js
+      format.html
     end
   end
 
@@ -411,7 +412,7 @@ end
   def update
     respond_to do |format|
       if @orden_produccion.update(orden_produccion_params)
-        format.html { redirect_to @orden_produccion, notice: 'Orden produccion was successfully updated.' }
+        format.html { redirect_to ordenes_produccion_path, notice: 'Orden produccion was successfully updated.' }
         format.json { render :show, status: :ok, location: @orden_produccion }
       else
         format.html { render :edit }
@@ -443,10 +444,10 @@ end
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,
-        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado]
+        :diferencia, :numero_de_remision, :estado,:_destroy, :id]
       )
     end
 end

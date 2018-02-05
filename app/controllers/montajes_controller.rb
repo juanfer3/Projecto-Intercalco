@@ -101,6 +101,7 @@ class MontajesController < ApplicationController
   # GET /montajes/new
   def new
     @montaje = Montaje.new
+    @montaje.desarrollos_de_tintas.build
     @montaje.piezas.build
     @montaje.tintas_fop_tiro.build
     @montaje.tintas_fop_retiro.build
@@ -108,7 +109,7 @@ class MontajesController < ApplicationController
 
     @montaje.ordenes_produccion.build.compromisos_de_entrega.build
 
-    @montaje.desarrollos_de_tintas.build
+
 
 
 
@@ -133,6 +134,11 @@ class MontajesController < ApplicationController
 
   # GET /montajes/1/edit
   def edit
+
+
+
+
+
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
 
@@ -145,6 +151,9 @@ class MontajesController < ApplicationController
     @TintaFormulada.each do |nombreTintas|
       @Tintas << nombreTintas.descripcion
     end
+
+
+
   end
 
   # POST /montajes
@@ -165,7 +174,7 @@ class MontajesController < ApplicationController
     @montaje = Montaje.new(montaje_params)
     respond_to do |format|
       if @montaje.save
-        format.html { redirect_to montajes_path notice: 'Montaje was successfully created.' }
+        format.html { redirect_to ordenes_produccion_path notice: 'Montaje was successfully created.' }
         format.json { render :show, status: :created, location: @montaje }
       else
         format.html { render :new }
@@ -252,24 +261,24 @@ class MontajesController < ApplicationController
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
          :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
-         :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,
-         desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro],
-        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy],
-      tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
-      tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado],
+         :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,
+       desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
+        piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy, :id],
+      tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado, :_destroy, :id],
+      tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado, :_destroy, :id],
       formatos_op_attributes:[:user_id, :maquina_id, :montaje_id, :pieza_a_decorar_id,
         :referencia_de_orden, :linea_de_color_id, :tipo_de_produccion, :material, :temperatura,
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
-        :tiro, :retiro, :_destroy],
+        :tiro, :retiro, :_destroy, :id],
       ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,
-        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy,
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-          :diferencia, :numero_de_remision, :estado, :_destroy]
+          :diferencia, :numero_de_remision, :estado, :_destroy, :id]
       ]
 
       )

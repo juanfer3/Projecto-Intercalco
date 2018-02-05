@@ -1,34 +1,39 @@
-<tr class="contenedor_tinta_nueva">
+<tr class="" id="CamposDesarrollo">
   <td>
 
 
     <%= f.select :linea_de_color_id,LineaDeColor.all.map {|i| [i.nombre , i.id]},
     {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}  %>
   </td>
-  <td>
 
+  <td>
     <%= f.select :malla_id, Malla.all.map {|i| [i.nombre , i.id]},
     {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control' } %>
   </td>
-  <td><%= f.input :descripción, label:false%></td>
+
+  <td>
+    <%= f.select :descripción,[['CYAN'], ['MAGENTA'],['YELLOW'], ['NEGRO']],
+    {}, {class: "form-control js-example-tintas"}%>
+  </td>
+
   <td>
     <br>
     <%= f.input :tiro, label:false %>
   </td>
+
   <td>
     <br>
     <%= f.input :retiro, label:false %>
   </td>
-<td>
+
+  <td>
   <%= f.input_field :_destroy, as: :hidden %>
   <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_compromisos' %>
-</td>
+  </td>
 
 </tr>
 <script>
-$(".js-example-tags").select2({
 
 
-})
 
 </script>

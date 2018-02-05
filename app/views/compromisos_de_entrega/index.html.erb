@@ -23,6 +23,9 @@
         <td><%= compromiso_de_entrega.orden_produccion.montaje.cliente.nombre %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.nombre %></td>
         <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
+        <% if compromiso_de_entrega.fecha_de_compromiso != nil %>
+          <!-- true -->
+
         <%
                   mes = compromiso_de_entrega.fecha_de_compromiso.strftime("%m")
 
@@ -53,6 +56,10 @@
                   <%when "12"%>
                     <td>Diciembre</td>
                   <% end %>
+
+            <% else %>
+            <td>Fecha sin definir</td>
+            <% end %>
         <td><%= compromiso_de_entrega.cantidad %></td>
 
 

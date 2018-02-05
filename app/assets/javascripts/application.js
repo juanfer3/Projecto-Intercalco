@@ -35,6 +35,114 @@
 
 $(document).on('turbolinks:load', function() {
 
+    $(".js-example-tokenizer").select2({
+      tags: true,
+      tokenSeparators: [',', ' ']
+  })
+
+//$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
+
+  //$('#btnDesarrollo').trigger('click');
+
+
+
+  $("#checkbox_policromia").change(function (){
+    if ($("#checkbox_policromia").prop('checked')) {
+      for (var i = 0; i < 3; i++) {
+        $('#btnDesarrollo').trigger('click');
+      }
+
+      var contador_de_policromias = $("#CamposDesarrollo .js-example-tintas").length
+
+      contador_de_policromias = parseFloat(contador_de_policromias)
+      for (var i = 0; i < contador_de_policromias; i++) {
+
+        switch(i) {
+              case 0:
+                  $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
+                  break;
+              case 1:
+
+
+                  $('.js-example-tintas:eq('+i+') ').val("MAGENTA").trigger('change');
+                  break;
+              case 2:
+
+                  $('.js-example-tintas:eq('+i+') ').val("YELLOW").trigger('change');
+                  break;
+              case 3:
+
+                $('.js-example-tintas:eq('+i+') ').val("NEGRO").trigger('change');
+                break;
+
+          }
+
+      }
+    }else {
+      $('#ContenedorDesarrollo').html("")
+      $('#btnDesarrollo').trigger('click');
+    }
+
+  })
+
+
+
+  $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").focusout(function(){
+
+    var cantidad_hojas= $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").val()
+    var tamano_por_hojas = $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").val()
+    if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
+
+      }
+
+      else {
+
+        cantidad_hojas = parseFloat(cantidad_hojas)
+
+
+        tamano_por_hojas = parseFloat(tamano_por_hojas )
+
+
+        var tamanos_total = cantidad_hojas * tamano_por_hojas
+
+        $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val(tamanos_total)
+      }
+
+
+
+
+  })
+
+
+
+  $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").focusout(function(){
+
+    var cantidad_hojas= $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").val()
+    var tamano_por_hojas = $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").val()
+    if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <=0) {
+
+
+    }
+
+    else {
+
+      cantidad_hojas = parseFloat(cantidad_hojas)
+
+
+      tamano_por_hojas = parseFloat(tamano_por_hojas )
+
+
+      var tamanos_total = cantidad_hojas * tamano_por_hojas
+
+      $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val(tamanos_total)
+    }
+
+
+
+
+
+
+  })
 
 
   $('form').keypress(function(e){
@@ -679,7 +787,7 @@ $("#montaje_descolille").change(function(){
     var valores = e.params.data.id;
     var contenido_otro = $('#montaje_otro').val()
     $("#montaje_otro").val(contenido_otro+", "+valores)
-    toastr.info(valores)
+
   })
 
 
@@ -870,6 +978,30 @@ $("#buscandoControlador").on("select2:select", function (e) {
 
 })
 
+
+var busVal = $("#buscandoControlador").select2("val")
+
+if (busVal == null ) {
+
+
+
+}else {
+  if (busVal.length != 0 ) {
+
+
+        $.ajax({
+          url:'/select_buscar_montaje/'+busVal+'',
+          method:'get',
+          success: function (data){
+            console.log();
+
+          }
+        })
+  }
+}
+
+
+
 $('#busqueda_fop').on("select2:select", function (e) {
   var fop_id = e.params.data.id;
   $.ajax({
@@ -892,7 +1024,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
         var material = data ["0"]["material"]
         var cliente_id = data ["0"]["montaje"]["cliente_id"]
 
-        toastr.success(montaje_id)
+
         $('#op_maquina').val(maquina)
         $('#op_linea_producto').val(linea_producto)
         $('#op_linea_de_color').val(linea_de_color)
@@ -946,7 +1078,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
                 $("#AgregarTintaTiro").append(contenedor)
                 console.log(Tintas);
-                toastr.info(contenedor)
+
 
 
                 $.ajax({
@@ -1003,7 +1135,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
   $('form').on('click', '.remove_compromisos', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').remove();
+    $(this).closest('tr').hide();
     return event.preventDefault();
   });
 
@@ -1199,15 +1331,32 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
   $('form').on('click', '.remove_desarrollo_tintas', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').remove();
+    $(this).closest('tr').hide();
     return event.preventDefault();
   });
 
+
+
+  $(".js-example-tintas").select2({
+    tags: true,
+    tokenSeparators: [',', ' ']
+  })
+
   $('form').on('click', '.add_desarrollo_tintas', function(event) {
+
     var regexp, time;
     time = new Date().getTime();
     regexp = new RegExp($(this).data('id'), 'g');
     $('.fields_desarrollo_tintas').append($(this).data('fields').replace(regexp, time));
+    $(".js-example-tags").select2({
+
+
+    })
+
+    $(".js-example-tintas").select2({
+      tags: true,
+      tokenSeparators: [',', ' ']
+    })
     return event.preventDefault();
   });
 
