@@ -145,6 +145,195 @@ $(document).on('turbolinks:load', function() {
   })
 
 
+  $("#montaje_ordenes_produccion_attributes_0_tamanos_total").focusout(function(){
+
+    var tama_total= $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val()
+    var cavidad = $("#montaje_ordenes_produccion_attributes_0_cavidad").val()
+    if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+    }
+
+    else {
+
+      tama_total = parseFloat(tama_total)
+
+
+      cavidad = parseFloat(cavidad)
+
+
+      var cantidad_total = tama_total * cavidad
+
+      $("#montaje_ordenes_produccion_attributes_0_cantidad_programada").val(cantidad_total)
+    }
+
+
+
+
+
+
+  })
+
+
+  $("#montaje_ordenes_produccion_attributes_0_cavidad").focusout(function(){
+
+    var tama_total= $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val()
+    var cavidad = $("#montaje_ordenes_produccion_attributes_0_cavidad").val()
+    if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+    }
+
+    else {
+
+      tama_total = parseFloat(tama_total)
+
+
+      cavidad = parseFloat(cavidad)
+
+
+      var cantidad_total = tama_total * cavidad
+
+      $("#montaje_ordenes_produccion_attributes_0_cantidad_programada").val(cantidad_total)
+    }
+
+
+
+
+
+
+  })
+
+
+
+
+
+
+
+
+
+
+
+  //============================================================================================================
+
+  $("#orden_produccion_cantidad_hoja").focusout(function(){
+
+    var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
+    var tamano_por_hojas = $("#orden_produccion_tamano_por_hojas").val()
+    if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
+
+      }
+
+      else {
+
+        cantidad_hojas = parseFloat(cantidad_hojas)
+
+
+        tamano_por_hojas = parseFloat(tamano_por_hojas )
+
+
+        var tamanos_total = cantidad_hojas * tamano_por_hojas
+
+        $("#orden_produccion_tamanos_total").val(tamanos_total)
+      }
+
+
+
+
+  })
+
+
+
+  $("#orden_produccion_tamano_por_hojas").focusout(function(){
+
+    var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
+    var tamano_por_hojas = $("#orden_produccion_tamano_por_hojas").val()
+    if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <=0) {
+
+
+    }
+
+    else {
+
+      cantidad_hojas = parseFloat(cantidad_hojas)
+
+
+      tamano_por_hojas = parseFloat(tamano_por_hojas )
+
+
+      var tamanos_total = cantidad_hojas * tamano_por_hojas
+
+      $("#orden_produccion_tamanos_total").val(tamanos_total)
+    }
+
+
+
+
+
+
+  })
+
+
+  $("#orden_produccion_tamanos_total").focusout(function(){
+
+    var tama_total= $("#orden_produccion_tamanos_total").val()
+    var cavidad = $("#orden_produccion_cavidad").val()
+    if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+    }
+
+    else {
+
+      tama_total = parseFloat(tama_total)
+
+
+      cavidad = parseFloat(cavidad)
+
+
+      var cantidad_total = tama_total * cavidad
+
+      $("#orden_produccion_programada").val(cantidad_total)
+    }
+
+
+
+
+
+
+  })
+
+
+  $("#orden_produccion_cavidad").focusout(function(){
+
+    var tama_total= $("#orden_produccion_tamanos_total").val()
+    var cavidad = $("#orden_produccion_cavidad").val()
+    if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+    }
+
+    else {
+
+      tama_total = parseFloat(tama_total)
+
+
+      cavidad = parseFloat(cavidad)
+
+
+      var cantidad_total = tama_total * cavidad
+
+      $("#orden_produccion_programada").val(cantidad_total)
+    }
+
+
+
+
+
+
+  })
+
+
   $('form').keypress(function(e){
     if(e == 13){
       return false;
