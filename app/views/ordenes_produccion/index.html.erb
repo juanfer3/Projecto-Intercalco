@@ -244,11 +244,24 @@
 
 <br>
 
-<%= link_to 'New Orden Produccion', new_orden_produccion_path %>
 
-<div class="col-4">
-  <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Montajes Desde Excel</button>
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-4">
+      <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Crear orden de producción</button>'.html_safe, new_orden_produccion_path %>
+    </div>
+
+    <div class="col-4">
+      <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Montajes Desde Excel</button>
+    </div>
+
+
+  </div>
 </div>
+
+
+
 
 <!-- Modal Excel -->
 

@@ -106,11 +106,12 @@ class Montaje < ApplicationRecord
       spreadsheet = Roo::CSV.new(file.path)
     end
 
-    header = spreadsheet.row(1)
-    nombre_cliente =""
+
     (2..spreadsheet.last_row).each do |i|
       puts "*******************Entra Al excel*********************"
-      codigo_de_pieza = spreadsheet.row(i)[3]
+      codigo_de_p = spreadsheet.row(i)[3].to_s.upcase
+      codigo_de_pieza= codigo_de_p
+
       puts "*******************cod pieza #{codigo_de_pieza}*********************"
       if codigo_de_pieza != ""
         puts "*******************La Pieza NO es un String vacio y la pieza es "+codigo_de_pieza.to_s+"*********************"
@@ -121,7 +122,7 @@ class Montaje < ApplicationRecord
                       puts "****************************************La pieza No Existe**********************"
 
 
-                                          @montaje_nombre = spreadsheet.row(i)[2]
+                                          @montaje_nombre = spreadsheet.row(i)[2].to_s.upcase
                                           puts "****************************************NOmbre: MOntaje"+@montaje_nombre+"**********************"
 
                                           @montaje = Montaje.find_by(nombre: @montaje_nombre)
@@ -165,21 +166,6 @@ class Montaje < ApplicationRecord
 
 
 
-
-
-
-
-
-
-                                                  formato_op = Montaje.new( codigo:spreadsheet.row(i)[1], nombre: spreadsheet.row(i)[2], cliente_id: @cliente_id, user_id: @user_id)
-
-                                                  if formato_op.save
-                                                    puts "**************Montaje Guardado**************************"
-
-                                                        @mo = Montaje.find_by(nombre: @montaje_nombre)
-
-
-
                                                               @linea_produccion_nombre = spreadsheet.row(i)[6]
                                                               puts "=============Esta es la LInea==#{@linea_produccion_nombre}==============="
 
@@ -192,16 +178,6 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @piezas_a_decorar_nombre = spreadsheet.row(i)[7]
-
-                                                              @piezas_a_decorar = PiezaADecorar.all
-
-                                                              @piezas_a_decorar.each do |pieza_a_decorar|
-                                                                if pieza_a_decorar.nombre == @piezas_a_decorar_nombre
-                                                                  @pieza_a_decorar_id=pieza_a_decorar.id
-                                                                  puts "===============piezas id: "+@pieza_a_decorar_id.to_s+"==============="
-                                                                end
-                                                              end
 
 
                                                               @maquinas_nombre = spreadsheet.row(i)[8]
@@ -226,23 +202,29 @@ class Montaje < ApplicationRecord
                                                                 end
                                                               end
 
-                                                        formato_op = FormatoOp.new(montaje_id: @mo.id, pieza_a_decorar_id: @pieza_a_decorar_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id )
-                                                        if formato_op.save
-                                                          puts "*******************Insercion De Formatos*********************"
-                                                        end
-                                                        piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @mo.id)
-                                                        if piezas.save
-                                                          puts "*******************Insercion De piezas*********************"
-                                                        end
-                                                  end
+                                                            codigo_mo=spreadsheet.row(i)[1].to_s.upcase
+                                                            nombre_mo=spreadsheet.row(i)[2].to_s.upcase
+                                                            formato_mo = Montaje.new( codigo:codigo_mo, nombre: nombre_mo, cliente_id: @cliente_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id)
+                                                            if formato_mo.save
+                                                              puts "****************************************Montaje Creado**********************"
+                                                              codigo_pieza = spreadsheet.row(i)[3].to_s.upcase
+                                                              nombre_pieza = spreadsheet.row(i)[4].to_s.upcase
+                                                              piezas=Pieza.new( codigo:codigo_pieza, nombre: nombre_pieza, montaje_id: formato_mo.id)
+
+                                                              if piezas.save
+                                                                puts "*******************Insercion De piezas*********************"
+                                                              end
+                                                            end
+
+
 
                                           else
                                                 puts "****************************************Lleno**********************"
 
 
-
-                                                  piezas=Pieza.new( codigo:spreadsheet.row(i)[3], nombre: spreadsheet.row(i)[4], montaje_id: @montaje.id)
-
+                                                codigo_pieza = spreadsheet.row(i)[3].to_s.upcase
+                                                nombre_pieza = spreadsheet.row(i)[4].to_s.upcase
+                                                piezas=Pieza.new( codigo:codigo_pieza, nombre: nombre_pieza, montaje_id: @montaje.id)
                                                   if piezas.save
                                                     puts "*******************Insercion De piezas*********************"
                                                   end

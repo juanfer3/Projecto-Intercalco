@@ -1,6 +1,7 @@
-toastr.success(":)")
 
-$("#divContenedor").html("<%= j render 'desarrollar_color_form'%>")
+
+$("#divContenedor").hide()
+$("#ContenedorNuevo").html("<%= j render 'desarrollar_color_form'%>")
 
 $("#tinta_formulada_descripcion").val("<%=@desarrollo_de_tinta.descripción%>")
 
@@ -38,4 +39,9 @@ $(".js-example-tags").select2({
 
 
 
+})
+
+$("#CerrarVentana").click(function(){
+  $("#ContenedorNuevo").html("")
+  $("#divContenedor").show()
 })

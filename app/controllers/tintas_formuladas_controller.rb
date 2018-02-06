@@ -28,7 +28,7 @@ class TintasFormuladasController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.js { redirect_to tintas_formuladas_path, notice: 'Tintas_Bases Importados' }
+          format.js { redirect_to tintas_formuladas_path, notice: 'Tintas Bases han Importados' }
           format.json { render :show, status: :created, location: @tinta }
         else
           @errores = errores_o_true
@@ -99,7 +99,7 @@ class TintasFormuladasController < ApplicationController
                         puts "**************************Tinta Tiro Creada**************"
                       end
                     end
-                  @tinta_solicitada.destroy
+
                   @montajes = Montaje.find_by(id:transicion.desarrollo_de_tinta.montaje.id)
               end
 
@@ -155,7 +155,7 @@ class TintasFormuladasController < ApplicationController
               end
 
           end
-        format.html { redirect_to @tinta_formulada, notice: 'Tinta formulada was successfully created.' }
+        format.html { redirect_to @tinta_formulada, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @tinta_formulada }
         format.js
       else
@@ -171,7 +171,7 @@ class TintasFormuladasController < ApplicationController
   def update
     respond_to do |format|
       if @tinta_formulada.update(tinta_formulada_params)
-        format.html { redirect_to @tinta_formulada, notice: 'Tinta formulada was successfully updated.' }
+        format.html { redirect_to @tinta_formulada, notice: 'Registro editado.' }
         format.json { render :show, status: :ok, location: @tinta_formulada }
       else
         format.html { render :edit }
@@ -185,7 +185,7 @@ class TintasFormuladasController < ApplicationController
   def destroy
     @tinta_formulada.destroy
     respond_to do |format|
-      format.html { redirect_to tintas_formuladas_url, notice: 'Tinta formulada was successfully destroyed.' }
+      format.html { redirect_to tintas_formuladas_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end
@@ -198,8 +198,8 @@ class TintasFormuladasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tinta_formulada_params
-      params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado,
-      formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado],
-      transiciones_attributes:[:desarrollo_de_tinta_id, :tinta_formulada_id, :orden_produccion_id])
+      params.require(:tinta_formulada).permit(:linea_de_color_id, :malla_id, :codigo, :descripcion, :pantone, :cantidad_total, :estado,:_destroy, :id,
+      formulas_tinta_attributes:[:tinta_formulada_id, :tinta_id, :porcentaje, :estado, :_destroy, :id],
+      transiciones_attributes:[:desarrollo_de_tinta_id, :tinta_formulada_id, :orden_produccion_id,:_destroy, :id])
     end
 end

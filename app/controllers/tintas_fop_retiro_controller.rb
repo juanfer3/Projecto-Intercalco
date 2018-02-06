@@ -85,6 +85,7 @@ class TintasFopRetiroController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tintas_fop_retiro_url, notice: 'Tinta fop retiro was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

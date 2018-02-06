@@ -375,6 +375,7 @@
                            <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
                          </div>
                        </div>
+                       
                        <div class="col-12">
                          <br>
                        </div>
@@ -518,7 +519,13 @@
      </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit , id: "btn-montaje"%>
-  </div>
+
+  <div class="btn pull-right">
+  <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+    <span>Guardar
+      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+    </span>
+   <% end %>
+ </div>
+ <br>
 <% end %>

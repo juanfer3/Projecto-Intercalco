@@ -72,48 +72,9 @@ class OrdenProduccion < ApplicationRecord
                                                   @cliente_id = @bus_cliente.id
                                         end
 
-                                        montajeNuevo = Montaje.new( codigo: "", nombre: spreadsheet.row(i)[7], cliente_id: @cliente_id, user_id: @vendedor.id)
-
-                                        if montajeNuevo.save
-                                                puts "***********El Montaje a sido alamcenado*****************************"
-                                                @montaje_id = montajeNuevo.id
-                                        end
-
-                                        pieza_a_decorar =  spreadsheet.row(i)[20]
-                                        if pieza_a_decorar != ""
-                                              @bus_pieza= PiezaADecorar.find_by(nombre: pieza_a_decorar)
-                                              puts "**************Busqueda De la Pieza**************************"
 
 
-                                                        if @bus_pieza== nil
-                                                          puts "**************La pieza es nula**************************"
-                                                          piezaNueva = PiezaADecorar.new(nombre:pieza_a_decorar)
-                                                          if piezaNueva.save
-                                                              puts "**************La pieza a sido Creada**************************"
-                                                              @pieza_id=piezaNueva.id
-                                                          end
-                                                        else
-                                                          puts "**************La pieza Existe**************************"
-                                                            @pieza_id=@bus_pieza.id
-                                                        end
-                                        else
 
-                                                puts "**************La El campo Pieza esta vacio**************************"
-                                                busqueda="Por Definir"
-                                                @bus_pieza= PiezaADecorar.find_by(nombre: busqueda)
-                                                puts "**************Busqueda De la Pieza**************************"
-
-
-                                                          if @bus_pieza== nil
-                                                              piezaNueva = PiezaADecorar.new(nombre: busqueda)
-                                                              if piezaNueva.save
-                                                                  puts "**************La pieza a sido Creada y se Por Definir**************************"
-                                                                  @pieza_id=piezaNueva.id
-                                                              end
-                                                          else
-                                                              @pieza_id=@bus_pieza.id
-                                                          end
-                                        end
 
 
 
@@ -228,11 +189,13 @@ class OrdenProduccion < ApplicationRecord
                                                               @linea_producto_id=@bus_linea_producto.id
                                                           end
                                         end
+                                        nombre_montaje = spreadsheet.row(i)[7].to_s.upcase
 
-
-
-
-
+                                        montajeNuevo = Montaje.new( codigo: "", nombre:nombre_montaje, cliente_id: @cliente_id, maquina_id: @maquina_id, linea_de_color_id: @linea_color_id, linea_producto_id:@linea_producto_id, material:spreadsheet.row(i)[15].to_s.upcase)
+                                        if montajeNuevo.save
+                                                puts "***********El Montaje a sido alamcenado*****************************"
+                                                @montaje_id = montajeNuevo.id
+                                        end
 
 
 

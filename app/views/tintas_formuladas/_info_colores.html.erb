@@ -1,4 +1,4 @@
-<%if @montajes.tinta_nueva == true%>
+
     <div class="" id="divContenedor">
 
 
@@ -14,7 +14,7 @@
                 <th>Tiro</th>
                 <th>Retiro</th>
                 <th>Desarrollar</th>
-                <th>Eliminar</th>
+
               </thead>
               <tbody>
                 <%@montajes.desarrollos_de_tintas.each do  |desarrollo|%>
@@ -41,8 +41,7 @@
                           <td></td>
                     <% end %>
 
-
-                          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, desarrollo, method: :delete, data: { confirm: 'Are you sure?' } , remote:true%></td>
+                          <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
 
                   </tr>
                 <%end%>
@@ -52,13 +51,26 @@
           </div>
     </div>
     <hr>
-    <%end%>
+
 
 
 
     <div class="my_card_produccion">
+      <div class="container_add_entregas col-12">
+        <div class="col-4">
+           <h1>Agregar Tinta al Tiro</h1>
+        </div>
+        <div class="col-3 offset-md-6">
+           <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@montajes.id), remote:true %>
+        </div>
+      </div>
       <div class="col-12">
-        <h1>Tintas Tiro</h1>
+        <br>
+      </div>
+
+
+      <div class="col-12" id="generarTintaNueva">
+
       </div>
       <table class="table">
         <thead>
@@ -74,8 +86,15 @@
           <%@Tintas_tiro.each do |tinta|%>
                 <%
                 cont = cont +1
+                cont_id = 0
                 %>
-                <tr>
+                <%@montajes.tintas_fop_tiro.each do |tintas_tiro|%>
+                  <%cont_id = cont_id+1%>
+                  <% if cont == cont_id %>
+                    <tr id=<%="tiro_#{tintas_tiro.id}"%>>
+                  <% end %>
+
+                <% end %>
                   <td><%=tinta.descripcion%></td>
                   <td><%=tinta.linea_de_color.nombre%></td>
                   <%cont2=0%>
@@ -84,10 +103,12 @@
                       <% if cont == cont2 %>
                         <!-- true -->
                         <td><%=tintas_tiro.malla.nombre%></td>
+                          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, remote: true,method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
                       <% end %>
 
+
+
                   <% end %>
-                  <td ></td>
                 </tr>
 
 
@@ -102,49 +123,77 @@
     <div class="my_card_produccion">
       <div class="container_add_entregas col-12">
          <div class="col-4">
-            <h1>Agragar Tinta al Tiro</h1>
+            <h1>Agragar Tinta al Retiro</h1>
          </div>
          <div class="col-3 offset-md-6">
-            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_tiro_path(@montajes.id), remote:true %>
+            <%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, desarrollar_tintas_retiro_path(@montajes.id), remote:true %>
          </div>
+
       </div>
+
+
       <div class="col-12">
-        <h1>Tintas Retiro</h1>
+        <br>
       </div>
-      <table class="table">
-        <thead>
-          <th>Color</th>
-          <th>Linea</th>
-          <th>Malla</th>
-          <th>Tiros</th>
-        </thead>
-        <tbody>
-          <%cont=0%>
-
-          <%total=0%>
-          <%@Tintas_retiro.each do |tinta|%>
-                <%
-                cont = cont +1
-                %>
-                <tr>
-                  <td><%=tinta.descripcion%></td>
-                  <td><%=tinta.linea_de_color.nombre%></td>
-                  <%cont2=0%>
-                  <%@montajes.tintas_fop_retiro.each do |tintas_tiro|%>
-                  <%cont2 = cont2+1%>
-                      <% if cont == cont2 %>
-                        <!-- true -->
-                        <td><%=tintas_tiro.malla.nombre%></td>
-                      <% end %>
-
-                  <% end %>
-                  <td></td>
-                </tr>
 
 
+      <div class="col-12" id="generarTintaNuevaRetiro">
+
+      </div>
+
+      <div class="col-12">
+          <br>
+      </div>
+            <div class="col-12" id=<%="tinta_retiro#{@montajes.id}"%>>
 
 
-          <%end%>
-        </tbody>
-      </table>
+                      <div class="col-12">
+                        <h1>Tintas Retiro</h1>
+                      </div>
+                      <table class="table">
+                        <thead>
+                          <th>Color</th>
+                          <th>Linea</th>
+                          <th>Malla</th>
+                          <th>Tiros</th>
+                        </thead>
+                        <tbody id="AgregarTintasRetiro">
+                          <%cont=0%>
+
+                          <%total=0%>
+                          <%@Tintas_retiro.each do |tinta|%>
+                                <%
+                                cont = cont +1
+                                cont_id=0
+                                %>
+                                <%@montajes.tintas_fop_retiro.each do |tintas_tiro|%>
+                                  <%cont_id = cont_id+1%>
+                                  <% if cont == cont_id %>
+                                    <tr id=<%="retiro_#{tintas_tiro.id}"%>>
+                                  <% end %>
+
+                                <% end %>
+                                  <td><%=tinta.descripcion%></td>
+                                  <td><%=tinta.linea_de_color.nombre%></td>
+                                  <%cont2=0%>
+                                  <%@montajes.tintas_fop_retiro.each do |tintas_tiro|%>
+                                  <%cont2 = cont2+1%>
+                                      <% if cont == cont2 %>
+                                        <!-- true -->
+                                        <td><%=tintas_tiro.malla.nombre%></td>
+                                        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, remote: true,method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
+                                        <% end %>
+                                      <% end %>
+
+
+
+                              </tr>
+
+
+
+
+                          <%end%>
+                        </tbody>
+                      </table>
+            </div>
       </div>

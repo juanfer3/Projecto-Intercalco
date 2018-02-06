@@ -345,6 +345,13 @@
                            <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
                          </div>
                        </div>
+
+                       <div class="col-12">
+                         <br>
+                       </div>
+                       <div class="col-9">
+                         <%= f.input :otro, id:"otro_montaje"%>
+                       </div>
           </div>
 
 
@@ -442,9 +449,7 @@
 
 
                  </div>
-                 <div class="col-6 offset-md-3">
-                   <%= f.input :otro, id:"otro_montaje"%>
-                 </div>
+
                </div>
             </div>
           </div>
@@ -482,9 +487,13 @@
      </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit , id: "btn-montaje"%>
-  </div>
+  <div class="btn pull-right">
+  <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+    <span>Guardar
+      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+    </span>
+   <% end %>
+ </div>
 <% end %>
 
 <%= link_to 'Back', montajes_path %>

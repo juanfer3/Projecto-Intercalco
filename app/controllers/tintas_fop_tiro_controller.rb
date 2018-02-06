@@ -80,6 +80,7 @@ class TintasFopTiroController < ApplicationController
     respond_to do |format|
       format.html { redirect_to tintas_fop_tiro_url, notice: 'Tinta fop tiro was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

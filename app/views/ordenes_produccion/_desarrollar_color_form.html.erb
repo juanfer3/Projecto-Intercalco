@@ -2,7 +2,16 @@
   <%= f.error_notification %>
 
   <div class="card">
-    <h3 class="card-header">Tintas Formuladas</h3>
+
+    <div class="my_card_contactos_form card-header">
+          <div class="">
+            <h3 class="">Tintas Formuladas</h3>
+          </div>
+
+          <div class="">
+            <button type="button"  class="btn btn-outline-danger" id="CerrarVentana"><span><i class="ion-reply-all"></i></span></button>
+          </div>
+    </div>
 
     <div class="container">
       <br>
@@ -85,7 +94,17 @@
             </div>
           </div>
         </div>
+        <div class=" col-3 offset-md-9">
+
+          <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+            <span>Crear Tinta Nueva
+              <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+            </span>
+           <% end %>
+
+        </div>
       <br>
+
     </div>
   </div>
 
@@ -101,7 +120,4 @@
     <br>
 
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>

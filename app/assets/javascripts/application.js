@@ -35,6 +35,10 @@
 
 $(document).on('turbolinks:load', function() {
 
+
+
+
+
     $(".js-example-tokenizer").select2({
       tags: true,
       tokenSeparators: [',', ' ']
@@ -62,16 +66,12 @@ $(document).on('turbolinks:load', function() {
                   $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
                   break;
               case 1:
-
-
                   $('.js-example-tintas:eq('+i+') ').val("MAGENTA").trigger('change');
                   break;
               case 2:
-
                   $('.js-example-tintas:eq('+i+') ').val("YELLOW").trigger('change');
                   break;
               case 3:
-
                 $('.js-example-tintas:eq('+i+') ').val("NEGRO").trigger('change');
                 break;
 
@@ -293,7 +293,7 @@ $(document).on('turbolinks:load', function() {
 
       var cantidad_total = tama_total * cavidad
 
-      $("#orden_produccion_programada").val(cantidad_total)
+      $("#orden_produccion_cantidad_programada").val(cantidad_total)
     }
 
 
@@ -323,7 +323,7 @@ $(document).on('turbolinks:load', function() {
 
       var cantidad_total = tama_total * cavidad
 
-      $("#orden_produccion_programada").val(cantidad_total)
+      $("#orden_produccion_cantidad_programada").val(cantidad_total)
     }
 
 
@@ -1086,7 +1086,7 @@ $("#montaje_retiro").change(function(){
 
 $('form').on('click', '.remove_formula', function(event) {
   $(this).prev('input[type=hidden]').val('1');
-  $(this).closest('tr').remove();
+  $(this).closest('tr').hide();
 
   return event.preventDefault();
 });
@@ -1309,7 +1309,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
   $('form').on('click', '.remove_piezas', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').remove();
+    $(this).closest('tr').hide();
     return event.preventDefault();
   });
 
