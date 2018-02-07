@@ -37,13 +37,6 @@ $(document).on('turbolinks:load', function() {
 
 
 
-
-
-    $(".js-example-tokenizer").select2({
-      tags: true,
-      tokenSeparators: [',', ' ']
-  })
-
 //$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 
   //$('#btnDesarrollo').trigger('click');

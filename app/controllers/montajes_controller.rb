@@ -174,7 +174,7 @@ class MontajesController < ApplicationController
     @montaje = Montaje.new(montaje_params)
     respond_to do |format|
       if @montaje.save
-        format.html { redirect_to ordenes_produccion_path notice: 'Montaje was successfully created.' }
+        format.html { redirect_to ordenes_produccion_path notice: 'Inserción creada con éxito' }
         format.json { render :show, status: :created, location: @montaje }
       else
         format.html { render :new }
@@ -200,7 +200,7 @@ class MontajesController < ApplicationController
     end
     respond_to do |format|
       if @montaje.update(montaje_params)
-        format.html { redirect_to montajes_path, notice: 'Montaje was successfully updated.' }
+        format.html { redirect_to montajes_path, notice: 'Registros editados.' }
         format.json { render :show, status: :ok, location: @montaje }
       else
         format.html { render :edit }

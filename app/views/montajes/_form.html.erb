@@ -1,5 +1,17 @@
 <%= simple_form_for(@montaje) do |f| %>
   <%= f.error_notification %>
+  <!-- Errores en la validación -->
+
+  <% if @montaje.errors.any? %>
+    <div class="">
+      <h2><%= pluralize(@montaje.errors.count, "errore") %> impiden registrar esta ficha:</h2>
+      <ul>
+      <% @montaje.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <%end%>
 
 
   <div class="offset-md-10">
@@ -375,7 +387,7 @@
                            <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
                          </div>
                        </div>
-                       
+
                        <div class="col-12">
                          <br>
                        </div>
@@ -519,13 +531,17 @@
      </div>
   </div>
 
+<div class="">
+  <div class="btn pull-left">
+    <%= link_to '<button type="button" class="btn btn-outline-dark">Lista de Fichas</button>'.html_safe, montajes_path %>
+  </div>
+    <div class="btn pull-right">
+    <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
 
-  <div class="btn pull-right">
-  <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
-    <span>Guardar
-      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
-    </span>
-   <% end %>
- </div>
- <br>
+      <span>Guardar
+        <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+      </span>
+     <% end %>
+   </div>
+</div>
 <% end %>
