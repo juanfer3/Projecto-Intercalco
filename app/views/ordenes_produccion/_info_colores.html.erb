@@ -160,6 +160,7 @@
     <br>
   </div>
     <div class="my_card_produccion">
+      <div class="col-12" id=<%="tinta_tiro#{@orden_produccion.montaje.id}"%>>
       <% if @orden_produccion.montaje.tintas_fop_tiro.any? %>
       <div class="col-12">
         <h1>Tintas Tiro</h1>
@@ -210,6 +211,7 @@
         </tbody>
       </table>
 <% end %>
+</div>
     </div>
     <hr>
 

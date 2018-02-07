@@ -22,12 +22,12 @@
 
     <div class="col-3">
       <label for="">Seleccione la malla</label><br>
-      <%= f.select :malla_id, Malla.all.map {|i|[i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_malla"} %>
+      <%= f.select :malla_id, Malla.all.map {|i|[i.nombre, i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control limpiar_select_malla', id: "select_malla"} %>
     </div>
 
     <div class="col-3">
       <label for="">Seleccione la tinta</label><br>
-      <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_tinta"}%>
+      <%= f.select :descripcion , @Tintas.map {|i|[i, i]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control limpiar_select_tinta', id: "select_tinta"}%>
     </div>
 
     <div class="col-3">

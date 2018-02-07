@@ -3,11 +3,11 @@ toastr.success("Registro Creado")
 
 
 
-$('#select_malla').val(''); // Select the option with a value of '1'
-$('#select_malla').trigger('change'); // Notify any JS components that the value changed
+$('.limpiar_select_malla').val(''); // Select the option with a value of '1'
+$('.limpiar_select_malla').trigger('change'); // Notify any JS components that the value changed
 
-$("#select_tinta").val("");
-$('#select_tinta').trigger('change'); // Notify any JS components that the value changed
+$(".limpiar_select_tinta").val("");
+$('.limpiar_select_tinta').trigger('change'); // Notify any JS components that the value changed
 
 $(<%="tinta_retiro#{@montaje.id}"%>).html('<%= j render 'fields_retiro'%>')
 var tiro = $("#tamanos").text()

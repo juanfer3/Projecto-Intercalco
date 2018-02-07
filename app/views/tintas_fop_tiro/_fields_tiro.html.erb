@@ -1,8 +1,47 @@
-<tr>
-  <td><%=@tinta_fop_tiro.descripcion%></td>
-  <%@Tintas_tiro.each do |tinta|%>
-    <td><%=tinta.linea_de_color.nombre%></td>
-  <% end %>
-  <td><%=@tinta_fop_tiro.malla.nombre%></td>
-  <td> <p class="darValor"></p> </td>
-</tr>
+<div class="">
+  <h1>Tintas Tiro</h1>
+</div>
+<table class="table">
+  <thead>
+    <th>Color</th>
+    <th>Linea</th>
+    <th>Malla</th>
+    <th>Tiros</th>
+  </thead>
+  <tbody id="AgregarTintasTiro">
+    <%cont=0%>
+
+    <%total=0%>
+    <%@Tintas_tiro.each do |tinta|%>
+          <%
+          cont = cont +1
+          cont_id =0
+          %>
+          <%@montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+            <%cont_id = cont_id+1%>
+            <% if cont == cont_id %>
+              <tr id=<%="tiro_#{tintas_tiro.id}"%>>
+            <% end %>
+
+          <% end %>
+            <td><%=tinta.descripcion%></td>
+            <td><%=tinta.linea_de_color.nombre%></td>
+            <%cont2=0%>
+            <%@montaje.tintas_fop_tiro.each do |tintas_tiro|%>
+            <%cont2 = cont2+1%>
+                <% if cont == cont2 %>
+                  <!-- true -->
+                  <td><%=tintas_tiro.malla.nombre%></td>
+                    <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, remote: true,method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
+                <% end %>
+
+            <% end %>
+            <td></td>
+          </tr>
+
+
+
+    <%end%>
+  </tbody>
+</table>
+</div>

@@ -9,7 +9,7 @@ $('#select_malla').trigger('change'); // Notify any JS components that the value
 $("#select_tinta").val("");
 $('#select_tinta').trigger('change'); // Notify any JS components that the value changed
 
-$("#AgregarTintasTiro").append('<%= j render 'fields_tiro'%>')
+$(<%="tinta_tiro#{@montaje.id}"%>).html('<%= j render 'fields_tiro'%>')
 var tiro = $("#tamanos").text()
 
 $(".darValor").html(tiro)
