@@ -1,0 +1,21 @@
+
+
+$("#facturas").hide()
+$('#btnFormulario').hide()
+
+$('#desarrollar_factura').html('<%= j render  'form' %>')
+
+$(".ocultar").hide()
+
+$(".multiSelect").select2({
+  tags: true,
+  tokenSeparators: [',', ' ']
+})
+
+$('.select2-search__field').prop('readonly', true);
+$('#CerrarVentana').click(function(){
+
+  $('#desarrollar_factura').html("")
+  $("#facturas").show()
+  $('#btnFormulario').show()
+})

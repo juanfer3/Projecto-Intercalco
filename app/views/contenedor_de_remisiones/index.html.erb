@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contenedor De Remisiones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Compromiso de entrega</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contenedor_de_remisiones.each do |contenedor_de_remision| %>
+      <tr>
+        <td><%= contenedor_de_remision.factura %></td>
+        <td><%= contenedor_de_remision.compromiso_de_entrega %></td>
+        <td><%= link_to 'Show', contenedor_de_remision %></td>
+        <td><%= link_to 'Edit', edit_contenedor_de_remision_path(contenedor_de_remision) %></td>
+        <td><%= link_to 'Destroy', contenedor_de_remision, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contenedor De Remision', new_contenedor_de_remision_path %>

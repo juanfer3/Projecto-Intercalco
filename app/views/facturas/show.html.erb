@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orden produccion:</strong>
+  <%= @factura.orden_produccion %>
+</p>
+
+<p>
+  <strong>Numero de factura:</strong>
+  <%= @factura.numero_de_factura %>
+</p>
+
+<p>
+  <strong>Iva:</strong>
+  <%= @factura.iva %>
+</p>
+
+<p>
+  <strong>Descuento:</strong>
+  <%= @factura.descuento %>
+</p>
+
+<p>
+  <strong>Total facturado:</strong>
+  <%= @factura.total_facturado %>
+</p>
+
+<p>
+  <strong>Cancelada:</strong>
+  <%= @factura.cancelada %>
+</p>
+
+<%= link_to 'Edit', edit_factura_path(@factura) %> |
+<%= link_to 'Back', facturas_path %>

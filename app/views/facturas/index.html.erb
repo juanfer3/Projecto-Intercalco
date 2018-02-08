@@ -1,0 +1,186 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes Produccion Tintas</h1>
+
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Numero de orden</th>
+      <th>Cliente</th>
+      <th>Descripción</th>
+      <th>Maquina</th>
+      <th>Linea de color</th>
+      <th>Mes</th>
+      <th>Fecha compromiso</th>
+
+
+      <th colspan=""></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ordenes_produccion.each do |orden_produccion| %>
+    <tr>
+      <td><%= orden_produccion.numero_de_orden %></td>
+      <td><%= orden_produccion.montaje.cliente.nombre%></td>
+      <td><%= orden_produccion.montaje.nombre %></td>
+      <td><%=orden_produccion.montaje.maquina.nombre%></td>
+      <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
+
+
+
+
+
+      <% if orden_produccion.compromisos_de_entrega.any? %>
+                    <!-- true -->
+
+
+
+                  <%
+
+
+
+                  %>
+                  <%cont=0%>
+                  <%@comparador_fecha = ""%>
+                  <%contador_enviados = 0%>
+
+
+
+                  <%@hallado = false%>
+                  <%@estado_data= false%>
+                  <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+                  <% if fecha.fecha_de_compromiso != nil %>
+                        <%
+                          fech = fecha.fecha_de_compromiso
+                          fech.strftime("%Y/%m/%d")
+                        %>
+
+                        <% if fecha.enviado == true %>
+                            <%@estado_data = true%>
+                            <%contador_enviados = contador_enviados + 1%>
+                            <%@cantidades = contador_enviados%>
+                        <% end %>
+
+
+
+                  <%if fecha.fecha_de_compromiso < Date.today
+
+                        puts "******************Dia menor #{@dates}**********************"
+
+                        @dates= fecha.fecha_de_compromiso
+                        %>
+
+                  <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                          <%
+                            dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                            if dias == 0
+                              @dates= fecha.fecha_de_compromiso
+                              @hallado = true
+                              puts "******************Dia igual #{@dates}**********************"
+                            else
+                              if @hallado == false
+                                @dates= fecha.fecha_de_compromiso
+                                puts "******************Dia mayor #{@dates}**********************"
+                              end
+                            end
+
+                            %>
+
+
+                  <% end %>
+
+
+                  <% end %>
+
+            <% end %>
+
+
+            <% if @dates != nil %>
+              <!-- true -->
+
+            <%
+                      mes = @dates.strftime("%m")
+
+
+                      case mes
+                      when "01"%>
+                        <td>Enero</td>
+                      <%when "02"%>
+                        <td>Febrero</td>
+                      <%when "03"%>
+                        <td>Marzo</td>
+                      <%when "04"%>
+                        <td>Abril</td>
+                      <%when "05"%>
+                        <td>Mayo</td>
+                      <%when "06"%>
+                        <td>Junio</td>
+                      <%when "07"%>
+                        <td>Julio</td>
+                      <%when "08"%>
+                        <td>Agosto</td>
+                      <%when "09"%>
+                        <td>Septiembre</td>
+                      <%when "10"%>
+                        <td>Octubre</td>
+                      <%when "11"%>
+                        <td>Noviembre</td>
+                      <%when "12"%>
+                        <td>Diciembre</td>
+                      <% end %>
+                      <% else %>
+                      <td>Por Definir</td>
+                <% end %>
+
+                  <td><%=@dates%> </td>
+      <% else %>
+      <td><p>Pendiente Por Definir Fecha</p> </td>
+      <td><p>Pendiente Por Definir Fecha</p> </td>
+      <% end %>
+        <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-document-text"></i></span></button>'.html_safe, info_factura_path(orden_produccion), remote: true %></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+
+
+<!-- Modal Excel -->
+
+<div class="modal fade fullscreen-modal " id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Facturas</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="contenidoModal">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

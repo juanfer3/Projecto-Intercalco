@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205214234) do
+ActiveRecord::Schema.define(version: 20180208140953) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 20180205214234) do
     t.index ["user_id"], name: "index_contactos_on_user_id"
   end
 
+  create_table "contenedor_de_remisiones", force: :cascade do |t|
+    t.integer "factura_id"
+    t.integer "compromiso_de_entrega_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["compromiso_de_entrega_id"], name: "index_contenedor_de_remisiones_on_compromiso_de_entrega_id"
+    t.index ["factura_id"], name: "index_contenedor_de_remisiones_on_factura_id"
+  end
+
   create_table "desarrollos_de_tintas", force: :cascade do |t|
     t.integer "montaje_id"
     t.integer "linea_de_color_id"
@@ -91,6 +100,18 @@ ActiveRecord::Schema.define(version: 20180205214234) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["pedido_id"], name: "index_despachos_on_pedido_id"
+  end
+
+  create_table "facturas", force: :cascade do |t|
+    t.integer "orden_produccion_id"
+    t.string "numero_de_factura", default: ""
+    t.float "iva", default: 0.0
+    t.float "descuento", default: 0.0
+    t.float "total_facturado", default: 0.0
+    t.boolean "cancelada", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["orden_produccion_id"], name: "index_facturas_on_orden_produccion_id"
   end
 
   create_table "facturas_despacho", force: :cascade do |t|

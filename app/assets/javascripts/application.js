@@ -35,7 +35,10 @@
 
 $(document).on('turbolinks:load', function() {
 
-
+  $(".multiSelect").select2({
+    tags: true,
+    tokenSeparators: [',', ' ']
+})
 
 //$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 

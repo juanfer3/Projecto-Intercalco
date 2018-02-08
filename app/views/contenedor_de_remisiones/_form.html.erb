@@ -1,0 +1,12 @@
+<%= simple_form_for(@contenedor_de_remision) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :factura %>
+    <%= f.association :compromiso_de_entrega %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

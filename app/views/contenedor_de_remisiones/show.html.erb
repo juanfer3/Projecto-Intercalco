@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Factura:</strong>
+  <%= @contenedor_de_remision.factura %>
+</p>
+
+<p>
+  <strong>Compromiso de entrega:</strong>
+  <%= @contenedor_de_remision.compromiso_de_entrega %>
+</p>
+
+<%= link_to 'Edit', edit_contenedor_de_remision_path(@contenedor_de_remision) %> |
+<%= link_to 'Back', contenedor_de_remisiones_path %>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contenedor_de_remisiones
+  resources :facturas
   resources :transiciones
   resources :desarrollos_de_tintas
   resources :ordenes_produccion
@@ -124,6 +126,8 @@ Rails.application.routes.draw do
   get 'produccion_color', to: 'ordenes_produccion#produccion_color', as: :produccion_color
   get 'info_color/:id', to: 'ordenes_produccion#info_color', as: :info_color
   get 'cerrar_color/:id', to: 'ordenes_produccion#cerrar_color', as: :cerrar_color
+  get 'info_factura/:id', to: 'facturas#info_factura', as: :info_factura
+
 
   get 'desarrollar_color/:id', to: 'ordenes_produccion#desarrollar_color', as: :desarrollar_color
 
@@ -132,5 +136,5 @@ Rails.application.routes.draw do
   get 'desarrollar_tintas_tiro/:id', to: 'ordenes_produccion#desarrollar_tintas_tiro', as: :desarrollar_tintas_tiro
 
   get 'desarrollar_tintas_retiro/:id', to: 'ordenes_produccion#desarrollar_tintas_retiro', as: :desarrollar_tintas_retiro
-
+  get 'desarrollar_factura/:id', to: 'facturas#desarrollar_factura', as: :desarrollar_factura
 end

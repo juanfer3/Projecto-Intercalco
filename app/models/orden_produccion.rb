@@ -12,6 +12,9 @@ class OrdenProduccion < ApplicationRecord
   has_many :transiciones, inverse_of: :tinta_formulada, dependent: :destroy
   accepts_nested_attributes_for :transiciones, reject_if: :all_blank, allow_destroy: true
 
+  has_many :facturas, inverse_of: :orden_produccion, dependent: :destroy
+  accepts_nested_attributes_for :facturas, reject_if: :all_blank, allow_destroy: true
+
   def self.subir_excel(file)
     @errores = []
 

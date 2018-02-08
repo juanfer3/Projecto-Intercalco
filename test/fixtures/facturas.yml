@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orden_produccion: one
+  numero_de_factura: MyString
+  iva: 1.5
+  descuento: 1.5
+  total_facturado: 1.5
+  cancelada: false
+
+two:
+  orden_produccion: two
+  numero_de_factura: MyString
+  iva: 1.5
+  descuento: 1.5
+  total_facturado: 1.5
+  cancelada: false

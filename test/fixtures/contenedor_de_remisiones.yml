@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  factura: one
+  compromiso_de_entrega: one
+
+two:
+  factura: two
+  compromiso_de_entrega: two
