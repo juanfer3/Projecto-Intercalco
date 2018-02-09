@@ -2,13 +2,31 @@
         <div class="contenedorFacturas">
 
 
-            <br>
-            <h4 class="card-title">Descripcción: </h4>
-              <h6>Numero de Factura: </h6>
 
-                <div class="bnt pull-right">
-                  
-                </div>
+
+
+          <br>
+          <h4 class="card-title">Descripcción: <%= @factura.orden_produccion.montaje.nombre%></h4>
+            <h6>Numero de Factura: <%= @factura.numero_de_factura%></h6>
+            <% @factura.contenedor_de_remisiones.each do |remisiones|%>
+                <p class="card-text">Remision:<%=remisiones.compromiso_de_entrega.numero_de_remision%></p>
+
+
+
+            <%end%>
+              <div class="bnt pull-right">
+                <%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, @factura, method: :delete,remote: true, data: { confirm: 'Are you sure?' } %>
+              </div>
+
+            <table>
+              <thead>
+                <th></th>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+
 
 
         </div>

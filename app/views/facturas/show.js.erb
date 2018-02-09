@@ -1,4 +1,11 @@
-toastr.info(";)")
 
 
 $('#detalles_facturas').html('<%= j render  'facturas_individual' %>')
+
+<%@orden_produccion.facturas.each do |facturas|%>
+  <%if facturas.id == @factura.id%>
+    $(<%="factura_#{@factura.id}"%>).addClass("active")
+  <%else%>
+    $(<%="factura_#{facturas.id}"%>).removeClass("active")
+  <%end%>
+<%end%>

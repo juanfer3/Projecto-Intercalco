@@ -33,6 +33,7 @@ class FacturasController < ApplicationController
   # GET /facturas/1
   # GET /facturas/1.json
   def show
+    @orden_produccion = OrdenProduccion.find_by(id:@factura.orden_produccion.id)
     respond_to do |format|
       format.html
       format.js
