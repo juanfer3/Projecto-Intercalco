@@ -19,6 +19,14 @@ class MontajesController < ApplicationController
     end
   end
 
+
+  def form_ordenes
+    #code
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def busquedaTintasMontaje
     #code
     @montaje = Montaje.find(params[:id])
@@ -255,7 +263,7 @@ class MontajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
-      params.require(:montaje).permit(:cliente_id, :material,:nombre, :tamano, :dimension,
+      params.require(:montaje).permit(:cliente_id, :material,:nombre, :tamano, :dimension,:new_cliente,:select_vendedor,
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,

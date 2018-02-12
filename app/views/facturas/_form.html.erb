@@ -24,9 +24,7 @@
       <br>
         <div class="card-block">
           <div class="my_card_pedidos_form">
-            <div class="col-4">
-              <%=f.input :numero_de_factura%>
-            </div>
+
             <div class="col-12">
 
 
@@ -51,15 +49,7 @@
 
 
 
-  <div class="form-inputs ocultar">
-    <%= f.association :orden_produccion, label:'Cliente',
-    collection: OrdenProduccion.all,
-    label_method: :numero_de_orden,
-    value_method: :id,
-    as: :select,
-    class:'col-4 my_cliente form-control',
-    selected: @orden_produccion.id %>
-  </div>
+
 
 
 

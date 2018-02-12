@@ -2,6 +2,8 @@
   <%= f.error_notification %>
   <!-- Errores en la validación -->
 
+
+
   <% if @montaje.errors.any? %>
     <div class="">
       <h2><%= pluralize(@montaje.errors.count, "errore") %> impiden registrar esta ficha:</h2>
@@ -23,8 +25,26 @@
   <div class="card text-center">
 
      <div class="card-header">
-        <h1>Referencia</h1>
-        <div id="cliente"></div>
+
+
+       <div class="my_card_contactos_form">
+         <div >
+           <h1>Referencia</h1>
+         </div>
+
+         <div id="cliente">
+           <div class="">
+             <input type="checkbox"  id="crearCliente">
+             <label for="" > Registrar cliente nuevo </label>
+           </div>
+         </div>
+
+
+     </div>
+
+
+
+
      </div>
 
      <!--Card Block-->
@@ -36,7 +56,7 @@
 
 
               <!--Cliente-->
-              <div class="col-4">
+              <div class="col-4" id="contenedorClienteExistente">
                 <label for="">Seleccion Cliente</label>
                 <%=
                   f.select :cliente_id,
@@ -45,6 +65,18 @@
                 %>
                 <p id="campo_cliente"></p>
               </div>
+
+
+                      <div class="col-4 ContenedorClienteNuevo">
+                        <label for=""> Cliente nuevo</label><br>
+                        <%=f.text_field :new_cliente,  :class => 'form-control '%>
+                      </div>
+
+                      <div class="col-4  ContenedorClienteNuevo" >
+                        <label for="">Selecionar Vendedor</label> <br>
+                        <%=f.select :select_vendedor,User.all.map{|i| [i.nombre, i.id]},
+                        {}, {required: 'true', autofocus: 'true', class: 'form-control  col-12', id: "vendedor_cliente_nuevo"}%>
+                      </div>
 
 
               <!--Linea De Color-->
@@ -188,16 +220,22 @@
           </div>
 
           <div class="" id="contenedorBotonesPolicromia">
-            <div class="col-lg-6">
+            <div class="col-lg-8">
+
+
             <div class="input-group">
-              <span class="input-group-addon">
-                <input type="checkbox" aria-label="Checkbox for following text input" id="checkbox_policromia">
+              <span class="input-group-addon" id="btnGroupAddon">
+                <input type="checkbox"  id="checkbox_policromia">
               </span>
-              <span class="input-group-addon">Policromía  <i class="ion-aperture"></i></span>
+
+              <input type="text" class="form-control ion-aperture" placeholder="Input group example" value="Policromía" disabled>
             </div>
           </div>
 
           </div>
+
+
+
 
           <div >
 
@@ -294,9 +332,23 @@
 
 
 
+  <div class="container_add_entregas col-12">
+     <div class="col-4">
+        <h5>Generar orden de producción  </h5>
+     </div>
+
+     <div id="contenedorBtnOrden" class="col-3 offset-md-6">
+         <%= link_to_add_ordenes('<button type="button"  class="btn btn-outline-info"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, f, :ordenes_produccion, class: 'add_ordenes', id: "ordenes_quitar_poner") %>
+     </div>
+     <div id="contenedorBtnOrdenEliminar" class="col-3 offset-md-6">
+       <%= link_to '<button type="button" class="btn btn-outline-info  "><span><i class="ion-close-round"></i></span></button>'.html_safe, '#', class: 'remove_ordenes' %>
+     </div>
+</div>
 
 
-    <div class=" ">
+<br>
+
+    <div class="" id="ContenedorDeOrdenes">
 
 
           <%=f.fields_for :ordenes_produccion do |builder|%>

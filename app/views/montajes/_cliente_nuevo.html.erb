@@ -1,0 +1,10 @@
+<div class="col-4">
+  <label for=""> Cliente nuevo</label><br>
+  <%=f.text_field :new_cliente,  :class => 'form-control' %>
+</div>
+
+<div class="col-4">
+  <label for="">Selecionar Vendedor</label> <br>
+  <%=f.select :select_vendedor,User.all.map{|i| [i.nombre, i.id]},
+  {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}%>
+</div>

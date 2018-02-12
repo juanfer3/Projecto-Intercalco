@@ -25,6 +25,18 @@ class Montaje < ApplicationRecord
   has_many :desarrollos_de_tintas, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :desarrollos_de_tintas, reject_if: :all_blank, allow_destroy: true
 
+  attr_accessor :new_cliente, :select_vendedor
+
+  before_save :create_cliente
+
+  def create_cliente
+    puts "***************Creando Cliente: #{new_cliente}*************************"
+    puts "****************************************"
+    puts "***************Creando Cliente: #{select_vendedor}*************************"
+    self.cliente = Cliente.create(nombre: new_cliente, user_id: select_vendedor) if new_cliente.present?
+    
+  end
+
 
   def self.subir_montaje_from_excel(file)
 

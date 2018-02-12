@@ -40,9 +40,90 @@ $(document).on('turbolinks:load', function() {
     tokenSeparators: [',', ' ']
 })
 
+//ordenes=============================================================================
+
+$('#contenedorBtnOrden').hide()
+$('form').on('click', '.remove_ordenes', function(event) {
+  $('#ContenedorDeOrdenes').html("")
+  $('#contenedorBtnOrden').show()
+  $('#contenedorBtnOrdenEliminar').hide()
+  return event.preventDefault();
+});
+
+$('form').on('click', '.add_ordenes', function(event) {
+
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('#ContenedorDeOrdenes').append($(this).data('fields').replace(regexp, time));
+    $("#ordenes_quitar_poner").removeClass('add_ordenes')
+    $('#contenedorBtnOrden').hide()
+    $('#contenedorBtnOrdenEliminar').show()
+    return event.preventDefault();
+
+
+
+});
+/*
+if( $('#crearOrden').prop('checked') ) {
+
+  $("#ContenedorDeOrdenes").show()
+
+}else {
+
+  $("#ContenedorDeOrdenes").hide()
+}
+
+$("#crearOrden").change(function(){
+
+  if( $('#crearOrden').prop('checked') ) {
+
+    $("#ContenedorDeOrdenes").show()
+
+  }else {
+
+    $("#ContenedorDeOrdenes").hide()
+  }
+
+})
+*/
+
+$('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje option:eq(1)').val());
+
 //$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 
   //$('#btnDesarrollo').trigger('click');
+
+
+  if( $('#crearCliente').prop('checked') ) {
+
+    $('.ContenedorClienteNuevo').show()
+    $('#contenedorClienteExistente').hide();
+  }else {
+
+    $('#contenedorClienteExistente').show()
+    $('#vendedor_cliente_nuevo').addClass('form-control')
+    $(".ContenedorClienteNuevo").hide()
+  }
+
+
+  $("#crearCliente").change(function(){
+
+    if( $('#crearCliente').prop('checked') ) {
+
+      $('.ContenedorClienteNuevo').show()
+      $('#vendedor_cliente_nuevo').addClass("form-control")
+      $('#contenedorClienteExistente').hide();
+    }else {
+
+      $('#contenedorClienteExistente').show()
+      $('#montaje_new_cliente').val("")
+      $(".ContenedorClienteNuevo").hide()
+    }
+
+  })
+
+
 
 
 

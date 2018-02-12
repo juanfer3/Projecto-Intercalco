@@ -8,6 +8,8 @@ class FacturasController < ApplicationController
       @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden').distinct
   end
 
+
+
   def desarrollar_factura
     @orden_produccion = OrdenProduccion.find(params[:id])
 
@@ -98,7 +100,7 @@ class FacturasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def factura_params
-      params.require(:factura).permit(:orden_produccion_id, :numero_de_factura, :iva,
+      params.require(:factura).permit(:numero_de_factura, :iva,
         :descuento, :total_facturado, :cancelada, :compromiso_de_entrega_ids=>[],
        contenedor_de_remisiones_attributes: [:factura_id,:id,  :_destroy, :compromiso_de_entrega_ids => []] )
     end

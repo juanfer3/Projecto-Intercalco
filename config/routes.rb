@@ -137,4 +137,6 @@ Rails.application.routes.draw do
 
   get 'desarrollar_tintas_retiro/:id', to: 'ordenes_produccion#desarrollar_tintas_retiro', as: :desarrollar_tintas_retiro
   get 'desarrollar_factura/:id', to: 'facturas#desarrollar_factura', as: :desarrollar_factura
+
+  get 'form_ordenes', to: 'montajes#form_ordenes', as: :form_ordenes
 end
