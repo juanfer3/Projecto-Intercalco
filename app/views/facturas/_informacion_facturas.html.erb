@@ -1,5 +1,116 @@
-<%if @orden_produccion.contenedor_de_remisiones.any?%>
-  <h1>Si existe</h1>
+<%if @orden_produccion.contenedores_de_ordenes.any?%>
+
+
+<div class="" id="btnFormulario">
+    <%= link_to '<button class="btn btn-outline-info"><span>Registrar Facturas <i class="ion-android-document"></i></span></button>'.html_safe, desarrollar_factura_path(@orden_produccion.id), remote: true  %>
+
+</div>
+
+<div class="" id="desarrollar_factura">
+
+</div>
+<br>
+<div class="" id="facturas">
+
+
+        <div class="card text-center">
+          <div class="card-header">
+
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+
+                    <div class="nav-link active" id="">
+                       <%= link_to ''+@factura.first.numero_de_factura+'  ', @factura.first.numero_de_factura, remote: true %>
+
+                    </div>
+
+                  </li>
+                  <%cont= 0%>
+                  <% @factura.each do |facturas|%>
+                  <%cont = cont+1%>
+
+                  <% if cont >= 2 %>
+                      <li class="nav-item">
+                        <div class="nav-link" id=<%="factura_#{facturas.id}"%> >
+                            <%= link_to ''+facturas.numero_de_factura+'  ', facturas, remote: true %>
+                        </div>
+                      </li>
+                  <% end %>
+
+
+                  <% end %>
+
+
+            </ul>
+          </div>
+          <div class="card-block" id="detalles_facturas">
+                  <div class="contenedorFacturas">
+
+
+                  <br>
+                        <div class="container_add_entregas">
+                          <div class="col-6">
+
+                          </div>
+
+
+                          <div class="col-6">
+
+                          </div>
+
+
+
+                        </div>
+
+
+                        <div class="">
+                            <hr>
+                        </div>
+
+                        <div class="">
+
+
+                          <p class="card-text"></p>
+                          <table class="table">
+                            <thead>
+                              <th>Remision</th>
+                              <th>Cantidad despachada</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                          </table>
+                        </div>
+
+
+                      <div class="bnt pull-right">
+
+
+
+                  </div>
+
+          </div>
+          <br>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <% else %>
 
 <h1>No hay Facturas Creadas</h1>

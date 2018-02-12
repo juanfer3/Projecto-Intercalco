@@ -147,6 +147,8 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'cantidad_solicitada', 'cantidades_solicitadas'
 
+  inflect.irregular 'contenedor_de_ordenes', 'contenedores_de_ordenes'
+
 
 
 end

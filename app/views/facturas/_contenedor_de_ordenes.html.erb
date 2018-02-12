@@ -1,0 +1,19 @@
+
+
+
+
+<%=
+      f.select :compromiso_de_entrega_ids,
+      @orden_produccion.compromisos_de_entrega.map{|i| [ i.numero_de_remision, i.id]},
+      {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
+    %>
+
+    <div class="form-inputs ocultar">
+        <%= f.association :orden_produccion, label:'Cliente',
+        collection: OrdenProduccion.all,
+        label_method: :numero_de_orden,
+        value_method: :id,
+        as: :select,
+        class:'col-4 my_cliente form-control',
+        selected: @orden_produccion.id %>
+      </div>

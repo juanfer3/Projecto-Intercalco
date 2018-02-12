@@ -1,0 +1,12 @@
+<%= simple_form_for(@contenedor_de_ordenes) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :factura %>
+    <%= f.association :orden_produccion %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

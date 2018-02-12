@@ -24,23 +24,25 @@
       <br>
         <div class="card-block">
           <div class="my_card_pedidos_form">
-
             <div class="col-12">
-
+              <div class="">
+                <%= f.text_field :numero_de_factura, class: "form-control" %>
+              </div>
 
                   <label for="">Remisiones</label>
-                  <%=
-                    f.select :compromiso_de_entrega_ids,
-                    @orden_produccion.compromisos_de_entrega.map{|i| [ i.numero_de_remision, i.id]},
-                    {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
-                  %>
-            </div>
 
-            <div class="col-12 btn pull-right">
+
+                      <%=f.fields_for :contenedores_de_ordenes do |contc|%>
+
+                         <%= render 'contenedor_de_ordenes', f:contc%>
+
+                      <%end%>
+
+                      <div class="col-12 btn pull-right">
               <%= f.button :submit %>
             </div>
 
-
+            </div>
           </div>
         </div>
       <br>

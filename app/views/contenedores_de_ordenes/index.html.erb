@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contenedores De Ordenes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Factura</th>
+      <th>Orden produccion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contenedores_de_ordenes.each do |contenedor_de_ordenes| %>
+      <tr>
+        <td><%= contenedor_de_ordenes.factura %></td>
+        <td><%= contenedor_de_ordenes.orden_produccion %></td>
+        <td><%= link_to 'Show', contenedor_de_ordenes %></td>
+        <td><%= link_to 'Edit', edit_contenedor_de_ordenes_path(contenedor_de_ordenes) %></td>
+        <td><%= link_to 'Destroy', contenedor_de_ordenes, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contenedor De Ordenes', new_contenedor_de_ordenes_path %>

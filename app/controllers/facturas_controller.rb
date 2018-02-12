@@ -19,7 +19,7 @@ class FacturasController < ApplicationController
     end
 
     @factura = Factura.new
-    @factura.contenedor_de_remisiones.build
+    @factura.contenedores_de_ordenes.build.contenedor_de_remisiones.build
     respond_to do |format|
       format.js
     end
@@ -27,6 +27,12 @@ class FacturasController < ApplicationController
 
   def info_factura
     @orden_produccion = OrdenProduccion.find(params[:id])
+    @factura = []
+  @orden_produccion.contenedores_de_ordenes.each do |contenedor|
+    @factura << contenedor.factura
+  end
+
+
     respond_to do |format|
       format.js
     end
@@ -45,7 +51,7 @@ class FacturasController < ApplicationController
   # GET /facturas/new
   def new
     @factura = Factura.new
-    @factura.contenedor_de_remisiones.build
+    @factura.contenedores_de_ordenes.build.contenedor_de_remisiones.build
   end
 
   # GET /facturas/1/edit
@@ -101,7 +107,8 @@ class FacturasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def factura_params
       params.require(:factura).permit(:numero_de_factura, :iva,
-        :descuento, :total_facturado, :cancelada, :compromiso_de_entrega_ids=>[],
-       contenedor_de_remisiones_attributes: [:factura_id,:id,  :_destroy, :compromiso_de_entrega_ids => []] )
+        :descuento, :total_facturado, :cancelada,
+        contenedores_de_ordenes_attributes: [:factura_id, :orden_produccion_id,contenedor_de_remisiones_attributes: [:factura_id,:id,  :_destroy, :compromiso_de_entrega_ids => []],:compromiso_de_entrega_ids => []]
+        )
     end
 end
