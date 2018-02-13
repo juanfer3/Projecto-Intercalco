@@ -2,13 +2,12 @@
 
 <h1>Mallas</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
       <th>Descripcion</th>
-      <th>Estado</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -17,10 +16,8 @@
       <tr>
         <td><%= malla.nombre %></td>
         <td><%= malla.descripcion %></td>
-        <td><%= malla.estado %></td>
-        <td><%= link_to 'Show', malla %></td>
-        <td><%= link_to 'Edit', edit_malla_path(malla) %></td>
-        <td><%= link_to 'Destroy', malla, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_malla_path(malla) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, malla, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
