@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :materiales
   resources :contenedores_de_ordenes
   resources :contenedor_de_remisiones
   resources :facturas

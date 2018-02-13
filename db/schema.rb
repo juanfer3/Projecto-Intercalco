@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212202739) do
+ActiveRecord::Schema.define(version: 20180213200954) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -222,6 +222,16 @@ ActiveRecord::Schema.define(version: 20180212202739) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "materiales", force: :cascade do |t|
+    t.string "codigo"
+    t.string "descripcion"
+    t.string "medida_material"
+    t.float "cantidad"
+    t.boolean "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "meses", force: :cascade do |t|
     t.string "nombre"
     t.integer "dias"
@@ -275,6 +285,9 @@ ActiveRecord::Schema.define(version: 20180212202739) do
     t.integer "maquina_id"
     t.integer "linea_producto_id"
     t.string "material"
+    t.string "tamano_hoja"
+    t.float "tamano_por_hojas"
+    t.string "tamano_de_corte"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
     t.index ["linea_de_color_id"], name: "index_montajes_on_linea_de_color_id"
     t.index ["linea_producto_id"], name: "index_montajes_on_linea_producto_id"

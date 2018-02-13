@@ -186,6 +186,7 @@
 
 
 
+
              <!--Codigo-->
              <div class="">
                <%= f.text_area :observacion, class: "form-control" %>
@@ -199,6 +200,50 @@
         </div>
      </div>
   </div>
+
+
+
+
+  <!--Inputs Medidas De corte-->
+
+  <div class="card card-outline-secondary mb-3 text-center">
+    <div class="card-header">
+       <h1>Medida De corte y hojas</h1>
+
+    </div>
+     <div class="card-block">
+        <div class="container">
+
+
+
+          <br>
+          <div class="my_card_pedidos_form">
+
+              <div class="col-2">
+                <label for="">Medida de la hoja </label>
+                <%= f.input :tamano_hoja, label: false %>
+              </div>
+              <div class="col-2">
+                <label for="">Tamaños por hoja </label>
+                <%= f.input :tamano_por_hojas, label: false %>
+              </div>
+              <div class="col-2">
+                <label for="">Medida de corte </label>
+                <%= f.input :tamano_de_corte, label: false %>
+              </div>
+
+
+
+          </div>
+
+             <br>
+
+
+        </div>
+     </div>
+  </div>
+
+
 
   <!--Depachos-->
 

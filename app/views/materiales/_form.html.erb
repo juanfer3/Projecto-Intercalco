@@ -1,0 +1,15 @@
+<%= simple_form_for(@material) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :codigo %>
+    <%= f.input :descripcion %>
+    <%= f.input :medida_material %>
+    <%= f.input :cantidad %>
+    <%= f.input :estado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

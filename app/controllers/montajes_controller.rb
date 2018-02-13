@@ -269,6 +269,7 @@ class MontajesController < ApplicationController
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
          :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
+         :tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
          :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,
        desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy, :id],
