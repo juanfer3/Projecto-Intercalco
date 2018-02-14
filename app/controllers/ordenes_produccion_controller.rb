@@ -4,8 +4,23 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion
   # GET /ordenes_produccion.json
   def index
-    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden').distinct
+    @busqueda = OrdenProduccion.ransack(params[:numero_de_orden])
+    @ordenes_produccion = @busqueda.result
+  end
 
+  def buscador_de_ordenes
+    @data = params['data']
+    puts "*****************#{@data}***********************"
+    @ordenes= OrdenProduccion.find_by(numero_de_orden: @data)
+    respond_to do |format|
+            if @ordenes == nil
+              puts "****************No se encuentra************************"
+              format.js
+            else
+              puts "****************Se encuentra************************"
+              format.js
+            end
+    end
   end
 
 def import_ordenes_produccion_from_excel

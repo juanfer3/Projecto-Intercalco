@@ -141,4 +141,9 @@ Rails.application.routes.draw do
   get 'desarrollar_factura/:id', to: 'facturas#desarrollar_factura', as: :desarrollar_factura
 
   get 'form_ordenes', to: 'montajes#form_ordenes', as: :form_ordenes
+
+
+  get 'buscador_de_ordenes', to: 'ordenes_produccion#buscador_de_ordenes', as: :buscador_de_ordenes
+
+
 end

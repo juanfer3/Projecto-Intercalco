@@ -18,7 +18,6 @@
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
-//= require bootstrap-toggle
 //= require moment
 //= require moment/es.js
 //= require select2
@@ -34,6 +33,22 @@
 
 
 $(document).on('turbolinks:load', function() {
+
+  $('#buscar_orden').keyup(function(){
+    var data=$('#buscar_orden').val()
+    $.ajax({
+      url:'/buscador_de_ordenes/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log();
+
+      }
+    })
+  })
+
+  //////////////////////////////////////////////////////////////
+
 
   $(".multiSelect").select2({
     tags: true,
@@ -89,10 +104,45 @@ $("#crearOrden").change(function(){
 */
 
 $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje option:eq(1)').val());
+$('#select_material').select2().select2('val', $('#select_material option:eq(1)').val());
 
 //$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 
   //$('#btnDesarrollo').trigger('click');
+
+
+
+
+  if( $('#crearMaterial').prop('checked') ) {
+
+    $('.ContenedorMaterialNuevo').show()
+    $('#contenedorMaterialExistente').hide();
+  }else {
+
+    $('#contenedorMaterialExistente').show()
+
+    $(".ContenedorMaterialNuevo").hide()
+  }
+
+
+  $("#crearMaterial").change(function(){
+
+    if( $('#crearMaterial').prop('checked') ) {
+
+      $('.ContenedorMaterialNuevo').show()
+
+      $('#contenedorMaterialExistente').hide();
+    }else {
+
+      $('#contenedorMaterialExistente').show()
+      $('#montaje_material_nuevo').val("")
+      $(".ContenedorMaterialNuevo").hide()
+    }
+
+  })
+
+
+
 
 
   if( $('#crearCliente').prop('checked') ) {
@@ -167,7 +217,7 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
   $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").focusout(function(){
 
     var cantidad_hojas= $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").val()
-    var tamano_por_hojas = $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").val()
+    var tamano_por_hojas = $("#montaje_tamano_por_hojas").val()
     if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
 
       }
@@ -177,12 +227,38 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
         cantidad_hojas = parseFloat(cantidad_hojas)
 
 
-        tamano_por_hojas = parseFloat(tamano_por_hojas )
+        tamano_por_hojas = parseFloat(tamano_por_hojas)
 
 
         var tamanos_total = cantidad_hojas * tamano_por_hojas
 
         $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val(tamanos_total)
+
+
+
+
+
+        var tama_total= $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val()
+        var cavidad = $("#montaje_ordenes_produccion_attributes_0_cavidad").val()
+        if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+        }
+
+        else {
+
+          tama_total = parseFloat(tama_total)
+
+
+          cavidad = parseFloat(cavidad)
+
+
+          var cantidad_total = tama_total * cavidad
+
+          $("#montaje_ordenes_produccion_attributes_0_cantidad_programada").val(cantidad_total)
+        }
+
+
       }
 
 
@@ -192,10 +268,10 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
 
 
 
-  $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").focusout(function(){
+  $("#montaje_tamano_por_hojas").focusout(function(){
 
     var cantidad_hojas= $("#montaje_ordenes_produccion_attributes_0_cantidad_hoja").val()
-    var tamano_por_hojas = $("#montaje_ordenes_produccion_attributes_0_tamano_por_hojas").val()
+    var tamano_por_hojas = $("#montaje_tamano_por_hojas").val()
     if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <=0) {
 
 
@@ -212,6 +288,26 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
       var tamanos_total = cantidad_hojas * tamano_por_hojas
 
       $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val(tamanos_total)
+      var tama_total= $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val()
+      var cavidad = $("#montaje_ordenes_produccion_attributes_0_cavidad").val()
+      if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+      }
+
+      else {
+
+        tama_total = parseFloat(tama_total)
+
+
+        cavidad = parseFloat(cavidad)
+
+
+        var cantidad_total = tama_total * cavidad
+
+        $("#montaje_ordenes_produccion_attributes_0_cantidad_programada").val(cantidad_total)
+      }
+
     }
 
 
@@ -296,7 +392,7 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
   $("#orden_produccion_cantidad_hoja").focusout(function(){
 
     var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
-    var tamano_por_hojas = $("#orden_produccion_tamano_por_hojas").val()
+    var tamano_por_hojas = $("#op_tamano_hoja").val()
     if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
 
       }
@@ -312,6 +408,27 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
         var tamanos_total = cantidad_hojas * tamano_por_hojas
 
         $("#orden_produccion_tamanos_total").val(tamanos_total)
+        var tama_total= $("#orden_produccion_tamanos_total").val()
+        var cavidad = $("#orden_produccion_cavidad").val()
+        if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+        }
+
+        else {
+
+          tama_total = parseFloat(tama_total)
+
+
+          cavidad = parseFloat(cavidad)
+
+
+          var cantidad_total = tama_total * cavidad
+
+          $("#orden_produccion_cantidad_programada").val(cantidad_total)
+        }
+
+
       }
 
 
@@ -341,6 +458,30 @@ $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje
       var tamanos_total = cantidad_hojas * tamano_por_hojas
 
       $("#orden_produccion_tamanos_total").val(tamanos_total)
+
+      var tama_total= $("#orden_produccion_tamanos_total").val()
+      var cavidad = $("#orden_produccion_cavidad").val()
+      if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+      }
+
+      else {
+
+        tama_total = parseFloat(tama_total)
+
+
+        cavidad = parseFloat(cavidad)
+
+
+        var cantidad_total = tama_total * cavidad
+
+        $("#orden_produccion_cantidad_programada").val(cantidad_total)
+      }
+
+
+
+
     }
 
 

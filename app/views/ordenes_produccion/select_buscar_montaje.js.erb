@@ -8,4 +8,49 @@ $('#op_vendedor').val("<%=@montaje.cliente.user.nombre%>")
 $('#op_maquina').val("<%=@montaje.maquina.nombre%>")
 $('#op_linea_producto').val("<%=@montaje.linea_producto.nombre%>")
 $('#op_linea_de_color').val("<%=@montaje.linea_de_color.nombre%>")
-$('#op_material').val("<%=@montaje.material%>")
+$('#op_material').val("<%=@montaje.material.descripcion%>")
+
+$('#op_medida_hoja').val("<%=@montaje.tamano_hoja%>")
+$('#op_tamano_hoja').val("<%=@montaje.tamano_por_hojas%>")
+$('#op_medida_corte').val("<%=@montaje.tamano_de_corte%>")
+
+
+var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
+var tamano_por_hojas = $("#op_tamano_hoja").val()
+
+if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
+
+  }
+
+  else {
+
+    cantidad_hojas = parseFloat(cantidad_hojas)
+
+
+    tamano_por_hojas = parseFloat(tamano_por_hojas )
+
+
+    var tamanos_total = cantidad_hojas * tamano_por_hojas
+
+    $("#orden_produccion_tamanos_total").val(tamanos_total)
+  }
+
+  var tama_total= $("#orden_produccion_tamanos_total").val()
+  var cavidad = $("#orden_produccion_cavidad").val()
+  if (tama_total.length <= 0 && cavidad.length <=0) {
+
+
+  }
+
+  else {
+
+    tama_total = parseFloat(tama_total)
+
+
+    cavidad = parseFloat(cavidad)
+
+
+    var cantidad_total = tama_total * cavidad
+
+    $("#orden_produccion_cantidad_programada").val(cantidad_total)
+  }

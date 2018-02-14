@@ -3,6 +3,7 @@ class Montaje < ApplicationRecord
   belongs_to :linea_de_color
   belongs_to :maquina
   belongs_to :linea_producto
+  belongs_to :material
 
   has_many :formatos_op, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :formatos_op, reject_if: :all_blank, allow_destroy: true
@@ -25,7 +26,7 @@ class Montaje < ApplicationRecord
   has_many :desarrollos_de_tintas, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :desarrollos_de_tintas, reject_if: :all_blank, allow_destroy: true
 
-  attr_accessor :new_cliente, :select_vendedor
+  attr_accessor :new_cliente, :select_vendedor, :material_nuevo
 
   before_save :create_cliente
 
@@ -34,7 +35,7 @@ class Montaje < ApplicationRecord
     puts "****************************************"
     puts "***************Creando Cliente: #{select_vendedor}*************************"
     self.cliente = Cliente.create(nombre: new_cliente, user_id: select_vendedor) if new_cliente.present?
-    
+    self.material = Material.create(descripcion: material_nuevo) if material_nuevo.present?
   end
 
 

@@ -4,14 +4,33 @@
 
 
 <div class="pull-right">
-  <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <!--%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %-->
 </div>
 <br>
+
+
+
+
+<input type="text" name="" class="form-control" value="" id="buscar_orden">
+
+
+<%= search_form_for @busqueda do |f| %>
+
+  <%= f.text_field :numero_de_orden %>
+  <%= f.submit %>
+<% end %>
+
+
+
+
+
+
 
 <table class="table">
   <thead>
     <tr>
       <th>Numero de orden</th>
+      <th>Línea producto</th>
       <th>Cliente</th>
       <th>Descripción</th>
       <th>Maquina</th>
@@ -20,13 +39,14 @@
       <th>Fecha compromiso</th>
       <th></th>
       <th colspan="4"></th>
-    </tr>
   </thead>
 
-  <tbody>
+  <tbody id="bodyDeOrdenes">
+
     <% @ordenes_produccion.each do |orden_produccion| %>
-      <tr>
+      <tr class="ocultarBodyOrdenes">
         <td><%= orden_produccion.numero_de_orden %></td>
+        <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
         <td><%= orden_produccion.montaje.cliente.nombre%></td>
         <td><%= orden_produccion.montaje.nombre %></td>
         <td><%=orden_produccion.montaje.maquina.nombre%></td>

@@ -154,10 +154,7 @@
 
 
 
-              <div class="col-4">
-                <%= f.input :material %>
-                <p id="campo_material"></p>
-              </div>
+
 
            </div>
            <!--/Container con Flexbox-->
@@ -169,6 +166,84 @@
   </div>
   <!--/Datos Generales del Pedido---->
   <br>
+
+
+
+
+
+  <!--Inputs Medidas De corte-->
+
+  <div class="card card-outline-secondary mb-3 text-center">
+    <div class="card-header">
+
+
+              <div class="my_card_contactos_form">
+                <div >
+                  <h1>Medida De corte y hojas</h1>
+                </div>
+
+                <div id="cliente">
+                  <div class="">
+                    <input type="checkbox"  id="crearMaterial">
+                    <label for="" > Registrar material nuevo </label>
+                  </div>
+                </div>
+
+
+            </div>
+
+    </div>
+     <div class="card-block">
+        <div class="container">
+
+
+
+          <br>
+          <div class="my_card_pedidos_form">
+
+            <div class="col-4" id="contenedorMaterialExistente">
+              <label for="">Material</label>
+              <%= f.select :material_id,
+              Material.all.map{|i| [i.descripcion, i.id]},
+              {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_material"}
+              %>
+            </div>
+
+                  <div class="col-4 ContenedorMaterialNuevo">
+                    <label for=""> Material nuevo</label><br>
+                    <%= f.input :material_nuevo, label: false %>
+                  </div>
+
+
+
+
+              <div class="col-2">
+                <label for="">Medida de la hoja </label>
+                <%= f.input :tamano_hoja, label: false %>
+              </div>
+              <div class="col-2">
+                <label for="">Tamaños por hoja </label>
+                <%= f.input :tamano_por_hojas, label: false %>
+              </div>
+              <div class="col-2">
+                <label for="">Medida de corte </label>
+                <%= f.input :tamano_de_corte, label: false %>
+              </div>
+
+
+
+          </div>
+
+             <br>
+
+
+        </div>
+     </div>
+  </div>
+
+
+
+
 
 
   <div class="card card-outline-secondary mb-3 text-center">
@@ -204,44 +279,7 @@
 
 
 
-  <!--Inputs Medidas De corte-->
 
-  <div class="card card-outline-secondary mb-3 text-center">
-    <div class="card-header">
-       <h1>Medida De corte y hojas</h1>
-
-    </div>
-     <div class="card-block">
-        <div class="container">
-
-
-
-          <br>
-          <div class="my_card_pedidos_form">
-
-              <div class="col-2">
-                <label for="">Medida de la hoja </label>
-                <%= f.input :tamano_hoja, label: false %>
-              </div>
-              <div class="col-2">
-                <label for="">Tamaños por hoja </label>
-                <%= f.input :tamano_por_hojas, label: false %>
-              </div>
-              <div class="col-2">
-                <label for="">Medida de corte </label>
-                <%= f.input :tamano_de_corte, label: false %>
-              </div>
-
-
-
-          </div>
-
-             <br>
-
-
-        </div>
-     </div>
-  </div>
 
 
 

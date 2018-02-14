@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213200954) do
+ActiveRecord::Schema.define(version: 20180214122313) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180213200954) do
     t.boolean "retiro"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "tinta_registrada"
+    t.boolean "tinta_registrada", default: true
     t.index ["linea_de_color_id"], name: "index_desarrollos_de_tintas_on_linea_de_color_id"
     t.index ["malla_id"], name: "index_desarrollos_de_tintas_on_malla_id"
     t.index ["montaje_id"], name: "index_desarrollos_de_tintas_on_montaje_id"
@@ -288,10 +288,12 @@ ActiveRecord::Schema.define(version: 20180213200954) do
     t.string "tamano_hoja"
     t.float "tamano_por_hojas"
     t.string "tamano_de_corte"
+    t.integer "material_id"
     t.index ["cliente_id"], name: "index_montajes_on_cliente_id"
     t.index ["linea_de_color_id"], name: "index_montajes_on_linea_de_color_id"
     t.index ["linea_producto_id"], name: "index_montajes_on_linea_producto_id"
     t.index ["maquina_id"], name: "index_montajes_on_maquina_id"
+    t.index ["material_id"], name: "index_montajes_on_material_id"
   end
 
   create_table "ordenes_de_produccion", force: :cascade do |t|

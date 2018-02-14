@@ -112,3 +112,7 @@ gem 'roo-xls'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-heroku'
 gem 'wkhtmltopdf-binary'
+
+#buscadores
+gem 'ransack'
+#gem 'ransack', github: 'activerecord-hackery/ransack'

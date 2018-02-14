@@ -263,8 +263,8 @@ class MontajesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
-      params.require(:montaje).permit(:cliente_id, :material,:nombre, :tamano, :dimension,:new_cliente,:select_vendedor,
-        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,
+      params.require(:montaje).permit(:cliente_id, :material_id,:material,:nombre, :tamano, :dimension,:new_cliente,:select_vendedor,
+        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,

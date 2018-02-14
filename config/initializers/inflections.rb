@@ -149,6 +149,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'contenedor_de_ordenes', 'contenedores_de_ordenes'
 
+  inflect.irregular 'medida_material', 'medidas_materiales'
 
 
 end

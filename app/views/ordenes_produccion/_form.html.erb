@@ -14,7 +14,12 @@
 
 <div class="col-6">
   <label for="">Selección De Referencia</label>
-  <%=f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]}, {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"} %>
+  <%=
+
+    f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"}
+
+  %>
 
 </div>
 
@@ -153,22 +158,28 @@
                          <br>
                        </div>
 
+                       <!--Mes-->
+                       <div class="col-2">
+                         <label for="">Medida de la hoja</label>
+                         <input type="text" name=""  class="form-control op_cliente" id="op_medida_hoja" value="" disabled>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Tamaños por hoja </label>
+                         <input type="text" name=""  class="form-control op_Vendedor" id="op_tamano_hoja" value="" disabled>
+                       </div>
+
+
+                       <div class="col-2">
+                         <label for="">Medida de corte </label>
+                         <input type="text" name=""  class="form-control op_montaje" id="op_medida_corte" value="" disabled>
+                       </div>
+
                        <div class="col-2">
                          <%= f.input :cantidad_hoja %>
                        </div>
 
-                       <div class="col-2">
-                         <label for="">Medida de la hoja </label>
-                         <%= f.input :tamano_hoja, label: false %>
-                       </div>
-                       <div class="col-2">
-                         <label for="">Tamaños por hoja </label>
-                         <%= f.input :tamano_por_hojas, label: false %>
-                       </div>
-                       <div class="col-2">
-                         <label for="">Medida de corte </label>
-                         <%= f.input :tamano_de_corte, label: false %>
-                       </div>
+                  
                        <div class="col-2">
                          <label for="">Tamaños Totales</label>
                          <%= f.input :tamanos_total , label: false%>

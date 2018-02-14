@@ -1,0 +1,21 @@
+toastr.info(":)")
+
+<%if @data.length <= 0 %>
+
+  $('.ocultarBodyOrdenes').show()
+  $('.removerContenidoNuevo').remove()
+
+<%else%>
+
+  <%if @ordenes == nil%>
+
+  <%else%>
+      toastr.info("Existe")
+      $('.ocultarBodyOrdenes').hide()
+      $('.removerContenidoNuevo').remove()
+      $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_ordenes'%>")
+
+      $('.identificador').addClass('removerContenidoNuevo')
+  <%end%>
+
+<%end%>
