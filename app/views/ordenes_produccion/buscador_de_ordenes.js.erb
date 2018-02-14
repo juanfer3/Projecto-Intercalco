@@ -1,13 +1,14 @@
-toastr.info(":)")
+
 
 <%if @data.length <= 0 %>
 
   $('.ocultarBodyOrdenes').show()
   $('.removerContenidoNuevo').remove()
 
+
 <%else%>
 
-  <%if @ordenes == nil%>
+  <%if @ordenes.empty?%>
 
   <%else%>
       toastr.info("Existe")

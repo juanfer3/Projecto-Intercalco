@@ -10,14 +10,23 @@ class OrdenesProduccionController < ApplicationController
 
   def buscador_de_ordenes
     @data = params['data']
-    puts "*****************#{@data}***********************"
-    @ordenes= OrdenProduccion.find_by(numero_de_orden: @data)
+    puts "*****************el dato es: #{@data}***********************"
+    @ordenes= OrdenProduccion.where('numero_de_orden LIKE ?', @data+'%')
+
+    @ordenes.each do |orden|
+      puts "****************Se encuentra: #{orden.id}************************"
+    end
     respond_to do |format|
-            if @ordenes == nil
-              puts "****************No se encuentra************************"
+            if @ordenes.empty?
+              puts "****************No se encuentra #{@ordenes}************************"
+              @ordenes.each do |orden|
+                puts "****************no Se encuentra#{orden.id}************************"
+              end
               format.js
             else
-              puts "****************Se encuentra************************"
+              @ordenes.each do |orden|
+                puts "****************Se encuentra#{orden.id}************************"
+              end
               format.js
             end
     end
