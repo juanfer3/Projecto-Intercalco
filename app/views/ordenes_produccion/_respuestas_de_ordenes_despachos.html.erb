@@ -1,0 +1,130 @@
+<% @orden.each do |orden| %>
+        <%orden.compromisos_de_entrega.each do |compromiso_de_entrega|%>
+          <tr class="identificador">
+            <td><%= compromiso_de_entrega.orden_produccion.numero_de_orden %></td>
+            <td><%= compromiso_de_entrega.orden_produccion.montaje.cliente.nombre %></td>
+            <td><%= compromiso_de_entrega.orden_produccion.montaje.nombre %></td>
+            <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
+            <% if compromiso_de_entrega.fecha_de_compromiso != nil %>
+              <!-- true -->
+
+            <%
+                      mes = compromiso_de_entrega.fecha_de_compromiso.strftime("%m")
+
+
+                      case mes
+                      when "01"%>
+                        <td>Enero</td>
+                      <%when "02"%>
+                        <td>Febrero</td>
+                      <%when "03"%>
+                        <td>Marzo</td>
+                      <%when "04"%>
+                        <td>Abril</td>
+                      <%when "05"%>
+                        <td>Mayo</td>
+                      <%when "06"%>
+                        <td>Junio</td>
+                      <%when "07"%>
+                        <td>Julio</td>
+                      <%when "08"%>
+                        <td>Agosto</td>
+                      <%when "09"%>
+                        <td>Septiembre</td>
+                      <%when "10"%>
+                        <td>Octubre</td>
+                      <%when "11"%>
+                        <td>Noviembre</td>
+                      <%when "12"%>
+                        <td>Diciembre</td>
+                      <% end %>
+
+                <% else %>
+                <td>Fecha sin definir</td>
+                <% end %>
+            <td><%= compromiso_de_entrega.cantidad %></td>
+
+
+
+
+
+
+
+
+            <td id=<%="estado_orden_produccion#{compromiso_de_entrega.id}"%>>
+
+              <% if  compromiso_de_entrega.orden_produccion.entregado == false || compromiso_de_entrega.orden_produccion.entregado == nil %>
+                    <% if compromiso_de_entrega.enviado == false || compromiso_de_entrega.enviado == nil%>
+                            <% if  compromiso_de_entrega.orden_produccion.impresion == false%>
+
+                              <% if compromiso_de_entrega.orden_produccion.pantalla == true || compromiso_de_entrega.orden_produccion.color === true || compromiso_de_entrega.orden_produccion.corte_material=== true && compromiso_de_entrega.orden_produccion.acabado == false%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                                    <span class="badge badge-info">
+                                      Preprensa
+                                    </span>
+                                  </h6>
+
+                              <%elsif compromiso_de_entrega.orden_produccion.pantalla == false && compromiso_de_entrega.orden_produccion.color === false && compromiso_de_entrega.orden_produccion.corte_material=== false && compromiso_de_entrega.orden_produccion.acabado == true%>
+
+                                <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                                  <span class="badge badge-warning baged_acabado">
+                                    Acabado
+                                  </span>
+                                </h6>
+
+                              <%elsif compromiso_de_entrega.orden_produccion.pantalla == false && compromiso_de_entrega.orden_produccion.color === false && compromiso_de_entrega.orden_produccion.corte_material=== false%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                                    <span class="badge badge-warning">
+                                      Sin Programar
+                                    </span>
+                                  </h6>
+
+
+
+                              <% end %>
+
+
+
+                            <%elsif compromiso_de_entrega.orden_produccion.impresion == true && compromiso_de_entrega.orden_produccion.acabado == false%>
+
+                              <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                                <span class="badge badge-warning baged_impresion">
+                                  Impresión
+                                </span>
+                              </h6>
+
+                            <%elsif compromiso_de_entrega.orden_produccion.impresion == true && compromiso_de_entrega.orden_produccion.acabado == true%>
+
+                              <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                                <span class="badge badge-warning baged_acabado">
+                                  Acabado
+                                </span>
+                              </h6>
+
+
+
+                            <% end %>
+                      <% else %>
+                      <h6 id=<%="quitar_estado_orden_produccion#compromiso_de_entrega.orden_produccion.id}"%>>
+                        <span class="badge badge-success ">
+                          Despacho entregado
+                          <%=@cantidades%>
+                        </span>
+                      </h6>
+                      <% end %>
+                <% else %>
+                <h6 id=<%="quitar_estado_orden_produccion#compromiso_de_entrega.orden_produccion.id}"%>>
+                  <span class="badge badge-success ">
+                    Cerrado
+                  </span>
+                </h6>
+                <% end %>
+              </td>
+            <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, compromiso_de_entrega %></td>
+            <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-document-text"></i></span></button>'.html_safe, edit_compromiso_de_entrega_path(compromiso_de_entrega), remote:true %></td>
+
+          </tr>
+      <% end %>
+<% end %>

@@ -4,14 +4,81 @@
 
 
 <div class="pull-right">
-  <!--%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %-->
+  <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
+
+
+
+
+
+
 <br>
 
+<div class="my_card_contactos_form">
+
+
+          <div class="col-3">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+                </span>
+                <input type="text" class="form-control" placeholder="Buscar..." id="buscar_orden">
+              </div>
+            </div>
 
 
 
-<input type="text" name="" class="form-control" value="" id="buscar_orden">
+            <div class="col-3">
+
+              <%= form_tag buscador_de_ordenes_por_mes_path, class: 'form-inline',remote:true,multipart: true do %> <br>
+
+                    <div class="input-group">
+                      <%=
+                      select_tag "mes",
+                      options_for_select([ "ENERO", "FEBRERO","MARZO", "ABRIL", "MAYO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE", "DICIEMBRE" ], "ENERO"),
+                      class:"form-control input-group"
+                      %>
+                    </div>
+                    <div class="input-group">
+                      &nbsp;&nbsp;
+                    </div>
+                    <div class="input-group">
+                      <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+                        <span>Buscar... <i></i> </span>
+                       <% end %>
+
+                    </div>
+
+              <% end %>
+
+            </div>
+
+
+
+
+
+
+            <div class="col-5 ">
+
+                  <%= form_tag buscador_de_ordenes_por_fecha_path, class: 'form-inline ', remote:true, multipart: true do %>
+
+
+                    <div class="my_card_contactos_form">
+
+
+
+                          <div class="input-group">
+
+
+
+
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                          <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+                                          <%= text_field_tag 'fecha',"",class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+
+                                        </div>
+                                    </div>
 
 
 
@@ -19,9 +86,32 @@
 
 
 
+                                    <div class="input-group">
+                                      <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+                                        <span>Buscar... <i></i> </span>
+                                       <% end %>
+
+                                    </div>
+
+                            </div>
+
+                          </div>
+                    <% end %>
+
+            </div>
 
 
 
+
+            <div class="col-1">
+                <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, ordenes_produccion_path %>
+            </div>
+
+
+
+</div>
+<br>
+<br>
 <table class="table">
   <thead>
     <tr>

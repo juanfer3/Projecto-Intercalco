@@ -20,6 +20,17 @@ class MontajesController < ApplicationController
   end
 
 
+  def buscador_de_fichas
+    #buscador
+    @data = params['data']
+    @fichas = Montaje.buscar_ficha(@data)
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+
   def form_ordenes
     #code
     respond_to do |format|

@@ -2,6 +2,18 @@
 
 <h1>Ordenes Produccion Tintas</h1>
 
+<div class="col-lg-6 pull-right">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Buscar..." id="buscar_orden">
+    </div>
+  </div>
+
+<br>
+<br>
+<br>
 
 
 
@@ -21,9 +33,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="bodyDeOrdenes">
     <% @ordenes_produccion.each do |orden_produccion| %>
-    <tr>
+    <tr class="ocultarBodyOrdenes">
       <td><%= orden_produccion.numero_de_orden %></td>
       <td><%= orden_produccion.montaje.cliente.nombre%></td>
       <td><%= orden_produccion.montaje.nombre %></td>

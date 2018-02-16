@@ -4,7 +4,22 @@
   <%= will_paginate @montajes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 <h1>Referencias</h1>
+<br>
 
+
+
+<div class="col-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Buscar..." id="buscador_montajes">
+    </div>
+  </div>
+
+
+<br>
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -17,9 +32,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="bodyDeOrdenes">
     <% @montajes.each do |montaje| %>
-      <tr>
+      <tr class="ocultarBodyOrdenes">
 
         <td><%= montaje.codigo %></td>
         <td><%= montaje.cliente.nombre %></td>

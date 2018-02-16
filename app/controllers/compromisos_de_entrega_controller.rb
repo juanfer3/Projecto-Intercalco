@@ -7,6 +7,18 @@ class CompromisosDeEntregaController < ApplicationController
     @compromisos_de_entrega = CompromisoDeEntrega.all
   end
 
+
+  def buscador_de_ordenes_despachos
+    #code
+    data = params['data']
+    CompromisoDeEntrega.buscador_de_ordenes(data)
+    puts "****************El dato es #{data}************************"
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
   def deshacer_envio
     @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
     respond_to do |format|

@@ -1,0 +1,30 @@
+
+
+
+<%if @mes == nil%>
+
+  $('.ocultarBodyOrdenes').hide()
+  $('.removerContenidoNuevo').remove()
+<%end%>
+<%if @compromisos_de_entrega== nil %>
+  $('.ocultarBodyOrdenes').hide()
+  $('.removerContenidoNuevo').remove()
+<%else%>
+    <%if @compromisos_de_entrega.empty?%>
+      $('.ocultarBodyOrdenes').hide()
+      $('.removerContenidoNuevo').remove()
+    <%else%>
+        <%if current_user.rol.cargo == "Administrador" %>
+              $('.ocultarBodyOrdenes').hide()
+              $('.removerContenidoNuevo').remove()
+              $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_compromisos_produccion'%>")
+              $('.identificador').addClass('removerContenidoNuevo')
+        <%elsif current_user.rol.cargo == "Despachos"%>
+              $('.ocultarBodyOrdenes').hide()
+              $('.removerContenidoNuevo').remove()
+              $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_compromisos'%>")
+              $('.identificador').addClass('removerContenidoNuevo')
+        <%end%>
+
+    <%end%>
+<%end%>

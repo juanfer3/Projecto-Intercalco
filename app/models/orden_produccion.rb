@@ -9,6 +9,222 @@ class OrdenProduccion < ApplicationRecord
 
   attr_accessor :buscar
 
+  def self.consultar_fecha(fecha)
+    puts "****************la fecha es #{fecha}************************"
+    fecha_de_compromiso=fecha.to_date
+    ordenes = CompromisoDeEntrega.where(fecha_de_compromiso: fecha_de_compromiso)
+    if ordenes.empty?
+      puts "******************Vacio**********************"
+    else
+      puts "******************Lleno**********************"
+    end
+    
+    return ordenes
+
+  end
+
+  def self.consultar_mes(mes)
+    #code
+    puts "*****************Consulta del mes: #{mes}***********************"
+
+    case mes
+
+          when "ENERO"
+            numero_de_mes=01
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de enero vacio***********************"
+            else
+                puts "*****************ordendes del mes de enero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+            return @ordenes
+
+            end
+
+          when "FEBRERO"
+            numero_de_mes=02
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+
+            end
+          when "MARZO"
+            numero_de_mes=03
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "ABRIL"
+            numero_de_mes=04
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "MAYO"
+            numero_de_mes=05
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+          when "JUNIO"
+            numero_de_mes=06
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+          when "JULIO"
+            numero_de_mes=07
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "AGOSTO"
+
+            numero_de_mes=8
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "SEPTIEMBRE"
+            numero_de_mes=9
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "OCTUBRE"
+            numero_de_mes=10
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "NOVIEMBRE"
+            numero_de_mes=11
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "DICIEMBRE"
+            numero_de_mes=12
+
+            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+    end
+  end
+
+
+
+
   def self.subir_excel(file)
     @errores = []
 

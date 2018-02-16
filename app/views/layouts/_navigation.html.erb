@@ -92,8 +92,8 @@
     </nav>
     <!-- /Admind  -->
 
-    <!-- Gerente Comercial  -->
-    <%elsif current_user.rol.cargo == "Gerente Comercial"%>
+    <!-- tintas  -->
+    <%elsif current_user.rol.cargo == "Tintas"%>
     <nav class="navbar navbar-light bg-light my_nav">
 
       <a class="navbar-brand" href="#">
@@ -103,13 +103,13 @@
       <div class="form-inline">
 
         <a class="navbar-brand" href="#">
-          <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+          <%= link_to 'Ordenes de producción', produccion_color_path, class:'navbar-brand' %>
         </a>
         <a class="navbar-brand" href="#">
-          <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
+          <%= link_to 'Tintas', tintas_path, class:'navbar-brand' %>
         </a>
         <a class="navbar-brand" href="#">
-          <%= link_to 'Pedidos', pedidos_path, class:'navbar-brand' %>
+          <%= link_to 'Tintas Formuladas', tintas_formuladas_path, class:'navbar-brand' %>
         </a>
 
 
@@ -139,8 +139,8 @@
     </nav>
     <!-- /Gerente Comercial  -->
 
-    <!-- Comercial  -->
-    <% elsif  current_user.rol.cargo == "Comercial" %>
+    <!-- pantalla  -->
+    <% elsif  current_user.rol.cargo == "Pantallas" %>
       <nav class="navbar navbar-light bg-light my_nav">
 
         <a class="navbar-brand" href="#">
@@ -150,14 +150,9 @@
         <div class="form-inline">
 
           <a class="navbar-brand" href="#">
-            <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
+            <%= link_to 'Ordenes Producción', produccion_pantallas_path, class:'navbar-brand' %>
           </a>
-          <a class="navbar-brand" href="#">
-            <%= link_to 'Contactos', contactos_path, class:'navbar-brand' %>
-          </a>
-          <a class="navbar-brand" href="#">
-            <%= link_to 'Pedidos', pedidos_path, class:'navbar-brand' %>
-          </a>
+
 
 
         <div class="nav-item dropdown">
@@ -198,7 +193,7 @@
           <div class="form-inline">
 
             <a class="navbar-brand" href="#">
-              <%= link_to 'Despachos', tiempos_de_entregas_path, class:'navbar-brand' %>
+              <%= link_to 'Despachos', compromisos_de_entrega_path, class:'navbar-brand' %>
             </a>
 
 

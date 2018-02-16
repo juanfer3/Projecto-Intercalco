@@ -34,6 +34,21 @@
 
 $(document).on('turbolinks:load', function() {
 
+
+  $('#buscador_montajes').keyup(function(){
+    var data=$('#buscador_montajes').val()
+    $.ajax({
+      url:'/buscador_de_fichas/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log();
+
+      }
+    })
+  })
+
+
   $('#buscar_orden').keyup(function(){
     var data=$('#buscar_orden').val()
     $.ajax({

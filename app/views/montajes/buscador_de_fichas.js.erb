@@ -1,0 +1,28 @@
+toastr.info(':)')
+
+
+<%if @data.length <= 0 %>
+
+  $('.ocultarBodyOrdenes').show()
+  $('.removerContenidoNuevo').remove()
+
+
+<%else%>
+
+  <%if @fichas.any?%>
+
+        $('.ocultarBodyOrdenes').hide()
+        $('.removerContenidoNuevo').remove()
+        $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_fichas'%>")
+        $('.identificador').addClass('removerContenidoNuevo')
+
+  <%else%>
+
+
+
+
+      $('.removerContenidoNuevo').remove()
+      $('.ocultarBodyOrdenes').hide()
+  <%end%>
+
+<%end%>

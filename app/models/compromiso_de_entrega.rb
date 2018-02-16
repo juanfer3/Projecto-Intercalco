@@ -4,6 +4,13 @@ class CompromisoDeEntrega < ApplicationRecord
   after_update  :cerrar
 
 
+
+  def self.buscador_de_ordenes(data)
+    
+  end
+
+
+
   def cerrar()
 
     puts "****************************************Edicion A LA ORdes De PRoduccion "+self.orden_produccion_id.to_s+"***********************************+"

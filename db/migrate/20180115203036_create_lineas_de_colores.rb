@@ -6,6 +6,8 @@ class CreateLineasDeColores < ActiveRecord::Migration[5.1]
       t.boolean :estado
 
       t.timestamps
+
+    
     end
   end
 end

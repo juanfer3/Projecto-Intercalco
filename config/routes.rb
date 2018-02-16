@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :linea_de_colores
   resources :materiales
   resources :contenedores_de_ordenes
   resources :contenedor_de_remisiones
@@ -12,7 +13,6 @@ Rails.application.routes.draw do
   resources :formulas_tinta
   resources :tintas_formuladas
   resources :tintas
-  resources :linea_de_colores
   resources :mallas
   resources :formatos_op
   resources :formato_ops
@@ -145,5 +145,11 @@ Rails.application.routes.draw do
 
   get 'buscador_de_ordenes', to: 'ordenes_produccion#buscador_de_ordenes', as: :buscador_de_ordenes
 
+  post 'buscador_de_ordenes_por_mes', to: 'ordenes_produccion#buscador_de_ordenes_por_mes', as: :buscador_de_ordenes_por_mes
+  post 'buscador_de_ordenes_por_fecha', to: 'ordenes_produccion#buscador_de_ordenes_por_fecha', as: :buscador_de_ordenes_por_fecha
+
+  get 'buscador_de_ordenes_despachos', to: 'compromisos_de_entrega#buscador_de_ordenes_despachos', as: :buscador_de_ordenes_despachos
+
+  get 'buscador_de_fichas', to: 'montajes#buscador_de_fichas', as: :buscador_de_fichas
 
 end

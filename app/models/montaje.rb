@@ -30,6 +30,49 @@ class Montaje < ApplicationRecord
 
   before_save :create_cliente
 
+
+
+  def self.buscar_ficha(data)
+    #code
+    dato= data.to_s.upcase
+    puts "*****************Entrada***********************"
+    puts "*****************el dato es: #{dato}***********************"
+    @fichas= Montaje.where('montajes.nombre LIKE ?', dato+'%').distinct
+
+    if @fichas.any?
+            puts "*****************MOntaje nombre lleno***********************"
+            return @fichas
+    else
+              puts "*****************MOntaje nombre vacio***********************"
+              @fichas= Montaje.joins(:ordenes_produccion, :cliente).where('clientes.nombre LIKE ?', dato+'%').distinct
+              if @fichas.any?
+                  puts "****************Cliente existe************************"
+                  return @fichas
+              else
+                  puts "****************Cliente no existe************************"
+                  @fichas= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre LIKE ?', dato+'%').distinct
+                  if @fichas.any?
+                    puts "****************La Maquina existe existe************************"
+                    return @fichas
+                  else
+
+                  end
+
+              end
+    end
+
+
+
+
+    @orden= []
+
+
+
+#===========================================
+  end
+
+
+
   def create_cliente
     puts "***************Creando Cliente: #{new_cliente}*************************"
     puts "****************************************"
