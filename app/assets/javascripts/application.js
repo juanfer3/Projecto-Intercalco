@@ -35,6 +35,36 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+  $('#buscador_de_tintas_formuladas').keyup(function(){
+    var data=$('#buscador_de_tintas_formuladas').val()
+    $.ajax({
+      url:'/buscador_de_tintas_formuladas/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log();
+
+      }
+    })
+  })
+
+
+
+  $('#buscador_tintas').keyup(function(){
+    var data=$('#buscador_tintas').val()
+    $.ajax({
+      url:'/buscador_de_tintas/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log();
+
+      }
+    })
+  })
+
+
   $('#buscador_montajes').keyup(function(){
     var data=$('#buscador_montajes').val()
     $.ajax({

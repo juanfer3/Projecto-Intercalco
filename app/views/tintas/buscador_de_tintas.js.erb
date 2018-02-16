@@ -1,6 +1,5 @@
 
 
-
 <%if @data.length <= 0 %>
 
   $('.ocultarBodyOrdenes').show()
@@ -9,17 +8,14 @@
 
 <%else%>
 
-  <%if @fichas.any?%>
+  <%if @inks.any?%>
 
         $('.ocultarBodyOrdenes').hide()
         $('.removerContenidoNuevo').remove()
-        $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_fichas'%>")
+        $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_tintas'%>")
         $('.identificador').addClass('removerContenidoNuevo')
 
   <%else%>
-
-
-
 
       $('.removerContenidoNuevo').remove()
       $('.ocultarBodyOrdenes').hide()

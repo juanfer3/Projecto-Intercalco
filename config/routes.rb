@@ -152,4 +152,9 @@ Rails.application.routes.draw do
 
   get 'buscador_de_fichas', to: 'montajes#buscador_de_fichas', as: :buscador_de_fichas
 
+  get 'buscador_de_tintas', to: 'tintas#buscador_de_tintas', as: :buscador_de_tintas
+
+  get 'buscador_de_tintas_formuladas', to: 'tintas_formuladas#buscador_de_tintas_formuladas', as: :buscador_de_tintas_formuladas
+
+  post 'import_materiales_excel' => "materiales#import_materiales_excel", as: :import_materiales_excel
 end

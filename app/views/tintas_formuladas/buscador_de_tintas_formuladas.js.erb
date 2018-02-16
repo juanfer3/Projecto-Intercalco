@@ -1,0 +1,27 @@
+
+
+<%if @data.length <= 0 %>
+
+  $('.ocultarBodyOrdenes').show()
+  $('.removerContenidoNuevo').remove()
+
+
+<%else%>
+
+  <%if @inks.empty?%>
+  $('.removerContenidoNuevo').remove()
+  $('.ocultarBodyOrdenes').hide()
+
+
+  <%else%>
+
+  $('.ocultarBodyOrdenes').hide()
+  $('.removerContenidoNuevo').remove()
+  $('#bodyDeOrdenes').append("<%= j render 'respuesta_buscador_tintas_formulada'%>")
+  $('.identificador').addClass('removerContenidoNuevo')
+
+
+
+  <%end%>
+
+<%end%>

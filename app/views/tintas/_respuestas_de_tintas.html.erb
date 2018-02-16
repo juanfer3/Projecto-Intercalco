@@ -1,0 +1,9 @@
+<% @inks.each do |tinta| %>
+  <tr class="identificador">
+    <td><%= tinta.codigo %></td>
+    <td><%= tinta.descripcion %></td>
+    <td><%= tinta.linea_de_color.nombre %></td>
+    <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_tinta_path(tinta) %></td>
+    <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tinta, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

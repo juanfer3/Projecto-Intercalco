@@ -8,6 +8,28 @@ class TintaFormulada < ApplicationRecord
   has_many :transiciones, inverse_of: :tinta_formulada, dependent: :destroy
   accepts_nested_attributes_for :transiciones, reject_if: :all_blank, allow_destroy: true
 
+  def self.buscar_tinta(data)
+    #code
+    puts "****************Entrada************************"
+    dato=data.to_s.upcase
+    @inks = TintaFormulada.where('tintas_formuladas.descripcion LIKE ?', '%'+dato+'%').distinct
+    if @inks.any?
+      puts "***************Existe*************************"
+      return @inks
+    else
+      puts "***************No Existe*************************"
+      @inks = TintaFormulada.where('tintas_formuladas.pantone LIKE ?', '%'+dato+'%').distinct
+      if @inks.any?
+        puts "************** Pantone Existe*************************"
+        return @inks
+      else
+        puts "***************Pantone No Existe*************************"
+        return @inks
+      end
+    end
+  end
+
+
   def self.subir_excel(file)
 
     @errores = []

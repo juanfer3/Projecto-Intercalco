@@ -33,3 +33,37 @@
 <br>
 
 <%= link_to 'New Material', new_material_path %>
+
+<div class="col-4">
+  <button class="btn btn-info" data-toggle="modal" data-target="#modalExcelMP">Importar Piezas Montajes Desde Excel</button>
+</div>
+
+<div class="modal fade fullscreen-modal " id="modalExcelMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Importar Montajes Desde Excel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <h1>Instrucciones:</h1>
+          <h6> <strong>-</strong> Para importar Montajes Con Piezas desde Excel asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Codigo del Montaje, Descripción.</strong>  </h6>
+          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+            <%= form_tag import_materiales_excel_path, remote: true, multipart: true do%> <br>
+            <%= file_field_tag :file %> <br> <br>
+            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+          <% end %>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

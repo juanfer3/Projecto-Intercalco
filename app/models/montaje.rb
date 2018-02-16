@@ -32,6 +32,8 @@ class Montaje < ApplicationRecord
 
 
 
+
+
   def self.buscar_ficha(data)
     #code
     dato= data.to_s.upcase
@@ -55,6 +57,15 @@ class Montaje < ApplicationRecord
                     puts "****************La Maquina existe existe************************"
                     return @fichas
                   else
+                    puts "****************La Maquina no existe existe************************"
+                    @fichas = Montaje.where('montajes.codigo LIKE ?', dato+'%').distinct
+
+                    if @fichas.any?
+                      puts "****************El codigo existe existe************************"
+                      return @fichas
+                    else
+                      return @fichas
+                    end
 
                   end
 

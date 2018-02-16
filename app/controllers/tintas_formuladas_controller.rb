@@ -7,6 +7,16 @@ class TintasFormuladasController < ApplicationController
     @tintas_formuladas= TintaFormulada.all.paginate(page: params[:page], per_page: 20).order('codigo')
   end
 
+  def buscador_de_tintas_formuladas
+    #code
+    #code
+    @data = params['data']
+    @inks = TintaFormulada.buscar_tinta(@data)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def crear_color
     #code
     @desarrollo_de_tinta = DesarrolloDeTinta.find(params[:id])

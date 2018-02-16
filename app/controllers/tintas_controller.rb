@@ -7,6 +7,15 @@ class TintasController < ApplicationController
     @tintas = Tinta.all.paginate(page: params[:page], per_page: 20).order('descripcion')
   end
 
+  def buscador_de_tintas
+    #code
+    @data = params['data']
+    @inks = Tinta.buscar_tinta(@data)
+    respond_to do |format|
+      format.js
+    end
+  end
+
 
   def import_tintas_from_excel
 

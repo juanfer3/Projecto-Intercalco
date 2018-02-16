@@ -7,6 +7,29 @@ class MaterialesController < ApplicationController
     @materiales = Material.all
   end
 
+  def import_materiales_excel
+    #code
+    file = params[:file]
+    begin
+      errores_o_true = Material.subir_excel(file)
+
+      respond_to do |format|
+        if errores_o_true == true
+          format.html { redirect_to clientes_path, notice: 'Materiales Importados' }
+          format.json { render :show, status: :created, location: @material }
+          format.js
+        else
+          @errores = errores_o_true
+          format.html { render materiales_path}
+          format.js
+        end
+    end
+    rescue Exception => e
+      flash[:notice] = "Tipo de archivo no valido"
+      redirect_to materiales_path
+    end
+  end
+
   # GET /materiales/1
   # GET /materiales/1.json
   def show

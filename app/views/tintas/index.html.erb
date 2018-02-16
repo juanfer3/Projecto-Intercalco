@@ -10,6 +10,23 @@
 
 
 </div>
+
+<br>
+
+
+<div class="col-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Buscar..." id="buscador_tintas">
+    </div>
+</div>
+
+  <br>
+
+
+
 <div class="container">
 
 
@@ -23,9 +40,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="bodyDeOrdenes">
     <% @tintas.each do |tinta| %>
-      <tr>
+      <tr class="ocultarBodyOrdenes">
         <td><%= tinta.codigo %></td>
         <td><%= tinta.descripcion %></td>
         <td><%= tinta.linea_de_color.nombre %></td>

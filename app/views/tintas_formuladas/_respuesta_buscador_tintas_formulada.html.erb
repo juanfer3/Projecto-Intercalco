@@ -1,0 +1,14 @@
+<% @inks.each do |tinta_formulada| %>
+  <tr class="identificador">
+
+    <td><%= tinta_formulada.codigo %></td>
+    <td><%= tinta_formulada.descripcion %></td>
+    <td><%= tinta_formulada.pantone %></td>
+    <td><%= tinta_formulada.linea_de_color.nombre %></td>
+    <td><%= tinta_formulada.malla.nombre %></td>
+    <td></td>
+    <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-erlenmeyer-flask"></i></span></button>'.html_safe, tinta_formulada, remote: true%></td>
+    <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_tinta_formulada_path(tinta_formulada) %></td>
+    <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, tinta_formulada, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>

@@ -4,6 +4,20 @@ class Tinta < ApplicationRecord
   has_many :tintas_formuladas, inverse_of: :tinta, dependent: :destroy
   accepts_nested_attributes_for :tintas_formuladas, reject_if: :all_blank, allow_destroy: true
 
+  def self.buscar_tinta(data)
+    #code
+    puts "****************Entrada************************"
+    dato=data.to_s.upcase
+    @inks = Tinta.where('tintas.descripcion LIKE ?', '%'+dato+'%').distinct
+    if @inks.any?
+      puts "***************Existe*************************"
+      return @inks
+    else
+      puts "***************No Existe*************************"
+      return @inks
+    end
+  end
+
 
   def self.subir_excel(file)
 

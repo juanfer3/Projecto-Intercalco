@@ -7,6 +7,17 @@
 
 <br>
 
+<div class="col-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+      </span>
+      <input type="text" class="form-control" placeholder="Buscar..." id="buscador_de_tintas_formuladas">
+    </div>
+</div>
+
+
+<br>
 <table class="table">
   <thead>
     <tr>
@@ -20,9 +31,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="bodyDeOrdenes">
     <% @tintas_formuladas.each do |tinta_formulada| %>
-      <tr>
+      <tr class="ocultarBodyOrdenes">
 
         <td><%= tinta_formulada.codigo %></td>
         <td><%= tinta_formulada.descripcion %></td>
