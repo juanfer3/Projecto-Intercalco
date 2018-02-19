@@ -20,8 +20,6 @@ class Montaje < ApplicationRecord
   has_many :ordenes_produccion, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :ordenes_produccion, reject_if: :all_blank, allow_destroy: true
 
-  has_many :compromisos_de_entrega, inverse_of: :orden_produccion, dependent: :destroy
-  accepts_nested_attributes_for :compromisos_de_entrega, reject_if: :all_blank, allow_destroy: true
 
   has_many :desarrollos_de_tintas, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :desarrollos_de_tintas, reject_if: :all_blank, allow_destroy: true
@@ -29,10 +27,6 @@ class Montaje < ApplicationRecord
   attr_accessor :new_cliente, :select_vendedor, :material_nuevo
 
   before_save :create_cliente
-
-
-
-
 
   def self.buscar_ficha(data)
     #code
@@ -85,9 +79,6 @@ class Montaje < ApplicationRecord
 
 
   def create_cliente
-    puts "***************Creando Cliente: #{new_cliente}*************************"
-    puts "****************************************"
-    puts "***************Creando Cliente: #{select_vendedor}*************************"
     self.cliente = Cliente.create(nombre: new_cliente, user_id: select_vendedor) if new_cliente.present?
     self.material = Material.create(descripcion: material_nuevo) if material_nuevo.present?
   end
