@@ -40,7 +40,7 @@ class Montaje < ApplicationRecord
             return @fichas
     else
               puts "*****************MOntaje nombre vacio***********************"
-              @fichas= Montaje.joins(:cliente).where('clientes.nombre LIKE ?', dato+'%')
+              @fichas= Montaje.joins(:cliente).where('clientes.nombre SIMILAR TO ?', dato+'%')
               if @fichas.any?
                   puts "****************Cliente existe************************"
                   return @fichas
