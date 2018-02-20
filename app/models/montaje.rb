@@ -33,26 +33,26 @@ class Montaje < ApplicationRecord
     dato= data.to_s.upcase
     puts "*****************Entrada***********************"
     puts "*****************el dato es: #{dato}***********************"
-    @fichas= Montaje.where('montajes.nombre LIKE ?', dato+'%').distinct
+    @fichas= Montaje.where('montajes.nombre LIKE ?', dato+'%')
 
     if @fichas.any?
             puts "*****************MOntaje nombre lleno***********************"
             return @fichas
     else
               puts "*****************MOntaje nombre vacio***********************"
-              @fichas= Montaje.joins(:ordenes_produccion, :cliente).where('clientes.nombre LIKE ?', dato+'%').distinct
+              @fichas= Montaje.joins(:ordenes_produccion, :cliente).where('clientes.nombre LIKE ?', dato+'%')
               if @fichas.any?
                   puts "****************Cliente existe************************"
                   return @fichas
               else
                   puts "****************Cliente no existe************************"
-                  @fichas= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre LIKE ?', dato+'%').distinct
+                  @fichas= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre LIKE ?', dato+'%')
                   if @fichas.any?
                     puts "****************La Maquina existe existe************************"
                     return @fichas
                   else
                     puts "****************La Maquina no existe existe************************"
-                    @fichas = Montaje.where('montajes.codigo LIKE ?', dato+'%').distinct
+                    @fichas = Montaje.where('montajes.codigo LIKE ?', dato+'%')
 
                     if @fichas.any?
                       puts "****************El codigo existe existe************************"
