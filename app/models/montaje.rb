@@ -46,23 +46,8 @@ class Montaje < ApplicationRecord
                   return @fichas
               else
                   puts "****************Cliente no existe************************"
-                  @fichas= Montaje.joins(:maquina).where('maquinas.nombre LIKE ?', dato+'%')
-                  if @fichas.any?
-                    puts "****************La Maquina existe existe************************"
-                    return @fichas
-                  else
-                    puts "****************La Maquina no existe existe************************"
-                    @fichas = Montaje.where('montajes.codigo LIKE ?', dato+'%')
 
-                    if @fichas.any?
-                      puts "****************El codigo existe existe************************"
-                      return @fichas
-                    else
-                      return @fichas
-                    end
-
-                  end
-
+                  return @fichas
               end
     end
 
