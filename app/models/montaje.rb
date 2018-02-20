@@ -46,7 +46,7 @@ class Montaje < ApplicationRecord
                   return @fichas
               else
                   puts "****************Cliente no existe************************"
-                  @fichas= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre LIKE ?', dato+'%')
+                  @fichas= Montaje.joins(:maquina).where('maquinas.nombre LIKE ?', dato+'%')
                   if @fichas.any?
                     puts "****************La Maquina existe existe************************"
                     return @fichas
