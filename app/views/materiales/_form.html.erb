@@ -4,12 +4,13 @@
   <div class="form-inputs">
     <%= f.input :codigo %>
     <%= f.input :descripcion %>
-    <%= f.input :medida_material %>
-    <%= f.input :cantidad %>
-    <%= f.input :estado %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <div class="btn pull-right">
+  <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+    <span>Guardar
+      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+    </span>
+   <% end %>
+ </div>
 <% end %>

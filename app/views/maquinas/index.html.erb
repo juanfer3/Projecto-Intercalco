@@ -2,7 +2,7 @@
 
 <h1>Maquinas</h1>
 
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -17,7 +17,7 @@
         <td><%= maquina.nombre %></td>
         <td><%= maquina.descripcion %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_maquina_path(maquina) %></td>
-        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, maquina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, maquina, method: :delete, data: { confirm: 'Desea eliminar este registro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Maquina', new_maquina_path %>
+<%= link_to '<button type="button" class="btn btn-dark">Registrar Máquina</button>'.html_safe, new_maquina_path %>

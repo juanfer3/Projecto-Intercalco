@@ -2,15 +2,12 @@
 
 <h1>Materiales</h1>
 
-<table>
-  <thead>
+<table class="table table-hover">
+  <thead >
     <tr>
       <th>Codigo</th>
       <th>Descripcion</th>
-      <th>Medida material</th>
-      <th>Cantidad</th>
-      <th>Estado</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -19,12 +16,8 @@
       <tr>
         <td><%= material.codigo %></td>
         <td><%= material.descripcion %></td>
-        <td><%= material.medida_material %></td>
-        <td><%= material.cantidad %></td>
-        <td><%= material.estado %></td>
-        <td><%= link_to 'Show', material %></td>
-        <td><%= link_to 'Edit', edit_material_path(material) %></td>
-        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_material_path(material) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, material, method: :delete, data: { confirm: 'Desea eliminar este registro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -32,11 +25,25 @@
 
 <br>
 
-<%= link_to 'New Material', new_material_path %>
 
-<div class="col-4">
-  <button class="btn btn-info" data-toggle="modal" data-target="#modalExcelMP">Importar Piezas Montajes Desde Excel</button>
+
+
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-4">
+      <%= link_to '<button type="button" class="btn btn-outline-primary">Registrar material nuevo</button>'.html_safe, new_material_path %>
+    </div>
+
+    <div class="col-4">
+      <button class="btn btn-info" data-toggle="modal" data-target="#modalExcelMP">Importar Piezas Montajes Desde Excel</button>
+    </div>
+
+
+  </div>
 </div>
+
+
 
 <div class="modal fade fullscreen-modal " id="modalExcelMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
