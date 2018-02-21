@@ -28,7 +28,7 @@ class LineasDeColoresController < ApplicationController
 
     respond_to do |format|
       if @linea_de_color.save
-        format.html { redirect_to @linea_de_color, notice: 'Linea de color was successfully created.' }
+        format.html { redirect_to lineas_de_colores_url, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @linea_de_color }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LineasDeColoresController < ApplicationController
   def update
     respond_to do |format|
       if @linea_de_color.update(linea_de_color_params)
-        format.html { redirect_to @linea_de_color, notice: 'Linea de color was successfully updated.' }
+        format.html { redirect_to lineas_de_colores_url, notice: 'Registro editado.' }
         format.json { render :show, status: :ok, location: @linea_de_color }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LineasDeColoresController < ApplicationController
   def destroy
     @linea_de_color.destroy
     respond_to do |format|
-      format.html { redirect_to lineas_de_colores_url, notice: 'Linea de color was successfully destroyed.' }
+      format.html { redirect_to lineas_de_colores_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end

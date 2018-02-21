@@ -28,7 +28,7 @@ class LineasProductosController < ApplicationController
 
     respond_to do |format|
       if @linea_producto.save
-        format.html { redirect_to @linea_producto, notice: 'Linea producto was successfully created.' }
+        format.html { redirect_to lineas_productos_path, notice: 'Línea de producto creada.' }
         format.json { render :show, status: :created, location: @linea_producto }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class LineasProductosController < ApplicationController
   def update
     respond_to do |format|
       if @linea_producto.update(linea_producto_params)
-        format.html { redirect_to @linea_producto, notice: 'Linea producto was successfully updated.' }
+        format.html { redirect_to lineas_productos_path, notice: 'Línea de producto editada.' }
         format.json { render :show, status: :ok, location: @linea_producto }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LineasProductosController < ApplicationController
   def destroy
     @linea_producto.destroy
     respond_to do |format|
-      format.html { redirect_to lineas_productos_url, notice: 'Linea producto was successfully destroyed.' }
+      format.html { redirect_to lineas_productos_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end

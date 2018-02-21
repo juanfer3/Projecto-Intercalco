@@ -15,7 +15,7 @@ class MaterialesController < ApplicationController
 
       respond_to do |format|
         if errores_o_true == true
-          format.html { redirect_to clientes_path, notice: 'Materiales Importados' }
+          format.html { redirect_to materiales_path, notice: 'Materiales Importados' }
           format.json { render :show, status: :created, location: @material }
           format.js
         else
@@ -51,7 +51,7 @@ class MaterialesController < ApplicationController
 
     respond_to do |format|
       if @material.save
-        format.html { redirect_to @material, notice: 'Material was successfully created.' }
+        format.html { redirect_to materiales_url, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @material }
       else
         format.html { render :new }
@@ -65,7 +65,7 @@ class MaterialesController < ApplicationController
   def update
     respond_to do |format|
       if @material.update(material_params)
-        format.html { redirect_to @material, notice: 'Material was successfully updated.' }
+        format.html { redirect_to materiales_url, notice: 'Registro creado.' }
         format.json { render :show, status: :ok, location: @material }
       else
         format.html { render :edit }
@@ -79,7 +79,7 @@ class MaterialesController < ApplicationController
   def destroy
     @material.destroy
     respond_to do |format|
-      format.html { redirect_to materiales_url, notice: 'Material was successfully destroyed.' }
+      format.html { redirect_to materiales_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end

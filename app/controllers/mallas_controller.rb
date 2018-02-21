@@ -28,7 +28,7 @@ class MallasController < ApplicationController
 
     respond_to do |format|
       if @malla.save
-        format.html { redirect_to @malla, notice: 'Malla was successfully created.' }
+        format.html { redirect_to   mallas_path, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @malla }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class MallasController < ApplicationController
   def update
     respond_to do |format|
       if @malla.update(malla_params)
-        format.html { redirect_to @malla, notice: 'Malla was successfully updated.' }
+        format.html { redirect_to mallas_path, notice: 'Registro editado.' }
         format.json { render :show, status: :ok, location: @malla }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class MallasController < ApplicationController
   def destroy
     @malla.destroy
     respond_to do |format|
-      format.html { redirect_to mallas_url, notice: 'Malla was successfully destroyed.' }
+      format.html { redirect_to mallas_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end
