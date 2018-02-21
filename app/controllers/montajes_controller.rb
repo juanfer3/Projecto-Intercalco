@@ -97,6 +97,7 @@ class MontajesController < ApplicationController
   # GET /montajes/1
   # GET /montajes/1.json
   def show
+
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
 
@@ -128,6 +129,7 @@ class MontajesController < ApplicationController
 
     @montaje.ordenes_produccion.build.compromisos_de_entrega.build
 
+    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
 
 
 
@@ -160,6 +162,9 @@ class MontajesController < ApplicationController
 
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
+
+    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+
 
     @Tintas=[]
 
@@ -207,6 +212,8 @@ class MontajesController < ApplicationController
   def update
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
+    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+
 
     @Tintas=[]
 
@@ -255,7 +262,8 @@ class MontajesController < ApplicationController
     def set_montaje
 
       @montaje = Montaje.find(params[:id])
-
+      @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+      
 
       @NombreTintas = Tinta.all.distinct
       @TintaFormulada = TintaFormulada.all.distinct
