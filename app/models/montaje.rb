@@ -33,14 +33,14 @@ class Montaje < ApplicationRecord
     dato= data.to_s.upcase
     puts "*****************Entrada***********************"
     puts "*****************el dato es: #{dato}***********************"
-    @fichas= Montaje.where('montajes.nombre LIKE ?', dato+'%')
+    @fichas= Montaje.where('montajes.nombre ILIKE ?', dato+'%')
 
     if @fichas.any?
             puts "*****************MOntaje nombre lleno***********************"
             return @fichas
     else
               puts "*****************MOntaje nombre vacio***********************"
-              @fichas= Montaje.joins(:cliente).where('clientes.nombre LIKE ?', dato+'%')
+              @fichas= Montaje.joins(:cliente).where('clientes.nombre ILIKE ?', dato+'%')
               if @fichas.empty?
                 puts "****************Cliente no existe************************"
 
