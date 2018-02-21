@@ -26,28 +26,28 @@ class OrdenesProduccionController < ApplicationController
     @data = params['data']
     puts "*****************el dato es: #{@data}***********************"
     @orden= []
-    @ordenes= Montaje.joins(:ordenes_produccion).where('numero_de_orden LIKE ?', @data+'%').distinct
+    @ordenes= Montaje.joins(:ordenes_produccion).where('numero_de_orden ILIKE ?', @data+'%').distinct
 
 
 
 
       if @ordenes.empty?
         puts "****************No se encuentra #{@ordenes}************************"
-        @ordenes= Montaje.joins(:ordenes_produccion).where('montajes.nombre LIKE ?', @data+'%').distinct
+        @ordenes= Montaje.joins(:ordenes_produccion).where('montajes.nombre ILIKE ?', @data+'%').distinct
                 if @ordenes.empty?
                   puts "****************No se encuentra montaje #{@ordenes}************************"
-                  @ordenes= Montaje.joins(:ordenes_produccion, :cliente).where('clientes.nombre LIKE ?', @data+'%').distinct
+                  @ordenes= Montaje.joins(:ordenes_produccion, :cliente).where('clientes.nombre ILIKE ?', @data+'%').distinct
 
                         if @ordenes.empty?
                           puts "****************No se encuentra montaje #{@ordenes}************************"
-                          @ordenes= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre LIKE ?', @data+'%').distinct
+                          @ordenes= Montaje.joins(:ordenes_produccion, :maquina).where('maquinas.nombre ILIKE ?', @data+'%').distinct
 
                                   if @ordenes.empty?
                                     puts "*****************No se encuentra la maquina***********************"
-                                    @ordenes= Montaje.joins(:ordenes_produccion, :linea_de_color).where('linea_de_colores.nombre LIKE ?', @data+'%').distinct
+                                    @ordenes= Montaje.joins(:ordenes_produccion, :linea_de_color).where('linea_de_colores.nombre ILIKE ?', @data+'%').distinct
                                             if @ordenes.empty?
                                                 puts "*****************No se encuentra la linea de color***********************"
-                                                  @ordenes= Montaje.joins(:ordenes_produccion, :linea_producto).where('lineas_productos.nombre LIKE ?', @data+'%').distinct
+                                                  @ordenes= Montaje.joins(:ordenes_produccion, :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%').distinct
                                                   if @ordenes.empty?
 
                                                   else

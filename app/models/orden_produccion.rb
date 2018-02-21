@@ -18,7 +18,7 @@ class OrdenProduccion < ApplicationRecord
     else
       puts "******************Lleno**********************"
     end
-    
+
     return ordenes
 
   end
@@ -30,7 +30,7 @@ class OrdenProduccion < ApplicationRecord
     case mes
 
           when "ENERO"
-            numero_de_mes=01
+            numero_de_mes=1
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
             if @ordenes.empty?
@@ -45,7 +45,7 @@ class OrdenProduccion < ApplicationRecord
             end
 
           when "FEBRERO"
-            numero_de_mes=02
+            numero_de_mes=2
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
@@ -61,7 +61,7 @@ class OrdenProduccion < ApplicationRecord
 
             end
           when "MARZO"
-            numero_de_mes=03
+            numero_de_mes=3
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
@@ -77,7 +77,7 @@ class OrdenProduccion < ApplicationRecord
             end
 
           when "ABRIL"
-            numero_de_mes=04
+            numero_de_mes=4
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
@@ -93,7 +93,7 @@ class OrdenProduccion < ApplicationRecord
             end
 
           when "MAYO"
-            numero_de_mes=05
+            numero_de_mes=5
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
@@ -108,7 +108,7 @@ class OrdenProduccion < ApplicationRecord
             return @ordenes
             end
           when "JUNIO"
-            numero_de_mes=06
+            numero_de_mes=6
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
@@ -123,7 +123,7 @@ class OrdenProduccion < ApplicationRecord
             return @ordenes
             end
           when "JULIO"
-            numero_de_mes=07
+            numero_de_mes=7
 
             @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
 
