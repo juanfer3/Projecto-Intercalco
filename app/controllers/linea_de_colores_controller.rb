@@ -42,7 +42,7 @@ class LineaDeColoresController < ApplicationController
   def update
     respond_to do |format|
       if @linea_de_color.update(linea_de_color_params)
-        format.html { redirect_to lineas_de_colores_url, notice: 'Registro Editado.' }
+        format.html { redirect_to lineas_de_colores_path, notice: 'Registro Editado.' }
         format.json { render :show, status: :ok, location: @linea_de_color }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class LineaDeColoresController < ApplicationController
   def destroy
     @linea_de_color.destroy
     respond_to do |format|
-      format.html { redirect_to linea_de_colores_url, notice: 'Registro eliminado.' }
+      format.html { redirect_to lineas_de_colores_path, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end

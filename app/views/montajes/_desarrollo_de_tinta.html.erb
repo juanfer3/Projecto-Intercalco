@@ -12,7 +12,7 @@
   </td>
 
   <td>
-    <%= f.select :descripción,[['CYAN'], ['MAGENTA'],['YELLOW'], ['NEGRO']],
+    <%= f.select :descripción,@Tintas.map{|i| [i]},
     {}, {class: "form-control js-example-tintas"}%>
   </td>
 

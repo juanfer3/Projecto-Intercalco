@@ -235,7 +235,10 @@ $('#select_material').select2().select2('val', $('#select_material option:eq(1)'
 
         switch(i) {
               case 0:
+
+
                   $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
+                  $('.js-example-tintas:eq('+i+') ').trigger('change');
                   break;
               case 1:
                   $('.js-example-tintas:eq('+i+') ').val("MAGENTA").trigger('change');
