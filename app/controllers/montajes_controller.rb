@@ -129,7 +129,8 @@ class MontajesController < ApplicationController
 
     @montaje.ordenes_produccion.build.compromisos_de_entrega.build
     comercial= "Comercial"
-    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
+    gerente_comercial = "Gerente Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
 
 
@@ -164,7 +165,8 @@ class MontajesController < ApplicationController
     @TintaFormulada = TintaFormulada.all.distinct
 
     comercial= "Comercial"
-    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
+    gerente_comercial = "Gerente Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
 
     @Tintas=[]
@@ -186,6 +188,10 @@ class MontajesController < ApplicationController
   def create
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
+
+    comercial= "Comercial"
+    gerente_comercial = "Gerente Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
     @Tintas=[]
 
@@ -213,8 +219,10 @@ class MontajesController < ApplicationController
   def update
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
+
     comercial= "Comercial"
-    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
+    gerente_comercial = "Gerente Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
 
     @Tintas=[]
@@ -264,8 +272,10 @@ class MontajesController < ApplicationController
     def set_montaje
 
       @montaje = Montaje.find(params[:id])
+
       comercial= "Comercial"
-      @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
+      gerente_comercial = "Gerente Comercial"
+      @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
 
       @NombreTintas = Tinta.all.distinct
