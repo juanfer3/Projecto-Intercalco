@@ -128,8 +128,8 @@ class MontajesController < ApplicationController
     @montaje.formatos_op.build
 
     @montaje.ordenes_produccion.build.compromisos_de_entrega.build
-
-    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+    comercial= "Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
 
 
 
@@ -163,7 +163,8 @@ class MontajesController < ApplicationController
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
 
-    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+    comercial= "Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
 
 
     @Tintas=[]
@@ -212,7 +213,8 @@ class MontajesController < ApplicationController
   def update
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct
-    @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
+    comercial= "Comercial"
+    @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
 
 
     @Tintas=[]
@@ -262,8 +264,9 @@ class MontajesController < ApplicationController
     def set_montaje
 
       @montaje = Montaje.find(params[:id])
-      @comerciales = User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"')
-      
+      comercial= "Comercial"
+      @comerciales = User.joins(:rol).where('roles.cargo = ?', comercial)
+
 
       @NombreTintas = Tinta.all.distinct
       @TintaFormulada = TintaFormulada.all.distinct
