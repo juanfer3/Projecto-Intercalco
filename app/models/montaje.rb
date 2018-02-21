@@ -231,7 +231,7 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @maquinas_nombre = spreadsheet.row(i)[8].to_s.upcase
+                                                              @maquinas_nombre = spreadsheet.row(i)[9].to_s.upcase
                                                               @maquinas = Maquina.find_by(nombre: @maquinas_nombre)
 
                                                               if @maquinas != nil
@@ -253,10 +253,10 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @linea_de_color_nombre = spreadsheet.row(i)[9].to_s.upcase
+                                                              @linea_de_color_nombre = spreadsheet.row(i)[10].to_s.upcase
 
                                                               @lineas_de_colores = LineaDeColor.find_by(nombre: @linea_de_color_nombre)
-                                                        
+
 
                                                               if @lineas_de_colores != nil
                                                                 puts "********************Los colores existe********************"
