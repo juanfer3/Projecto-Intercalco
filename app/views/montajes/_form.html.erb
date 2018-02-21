@@ -74,7 +74,7 @@
 
                       <div class="col-4  ContenedorClienteNuevo" >
                         <label for="">Selecionar Vendedor</label> <br>
-                        <%=f.select :select_vendedor,User.all.map{|i| [i.nombre, i.id]},
+                        <%=f.select :select_vendedor,User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"').map{|i| [i.nombre, i.id]},
                         {}, {required: 'true', autofocus: 'true', class: 'form-control  col-12', id: "vendedor_cliente_nuevo"}%>
                       </div>
 
