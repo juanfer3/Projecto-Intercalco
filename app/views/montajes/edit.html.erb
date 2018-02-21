@@ -1,6 +1,6 @@
 <br>
 <h1>Editar Montaje</h1>
-
+<p id="montaje_id"><%=@montaje.id%></p>
 <%= simple_form_for(@montaje) do |f| %>
   <%= f.error_notification %>
 
@@ -550,3 +550,42 @@
      </div>
   </div>
 <% end %>
+
+
+
+<script>
+
+var montaje_id = $('#montaje_id').text()
+
+$.ajax({
+  url:'/tintas_select/'+montaje_id+'',
+  method:'get',
+  success: function (data){
+    var vendedor_lentgh = 1;
+    for (var i = 0; i < vendedor_lentgh; i++) {
+
+      var vendedor = data ["nombre"]
+      $('#op_vendedor').val(vendedor)
+
+    }
+  }
+})
+
+      var data = {
+        text : "=====data=======",
+        id:0
+      }
+      // Set the value, creating a new option if necessary
+      if ($('.js-example-tags').find("option[value='" + data.id + "']").length) {
+        console.log("si existe");
+        var newOption = new Option(data.text, data.id, true, true);
+
+      } else {
+      // Create a DOM Option and pre-select by default
+          console.log("No existe"+ data.text);
+          var newOption = new Option(data.text, data.id, false, false);
+          // Append it to the select
+      $('.js-example-tintas').append(newOption)
+      }
+
+</script>

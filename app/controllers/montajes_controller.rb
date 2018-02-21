@@ -19,6 +19,11 @@ class MontajesController < ApplicationController
     end
   end
 
+  def tintas_select
+    puts "******************Entra al controlador**********************"
+    @montaje_tintas = Montaje.find(params[:id])
+  end
+
 
   def buscador_de_fichas
     #buscador

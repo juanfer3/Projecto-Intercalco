@@ -148,8 +148,7 @@ $("#crearOrden").change(function(){
 })
 */
 
-$('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje option:eq(1)').val());
-$('#select_material').select2().select2('val', $('#select_material option:eq(1)').val());
+
 
 //$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 
@@ -238,7 +237,7 @@ $('#select_material').select2().select2('val', $('#select_material option:eq(1)'
 
 
                   $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
-                  $('.js-example-tintas:eq('+i+') ').trigger('change');
+
                   break;
               case 1:
                   $('.js-example-tintas:eq('+i+') ').val("MAGENTA").trigger('change');
@@ -892,12 +891,24 @@ $('#montaje_tinta_nueva').change(function(){
 
 
 
+if( $('#montaje_doming').prop('checked') ) {
+
+  $('#origenDoming').show()
+  $('#contenedorDoming').appendTo('#origenDoming');
+  $('#contenedorDoming').removeClass( "col-2" )
+
+}else {
+
+  $('#contenedorDoming').appendTo('#EstadosFalse');
+  $('#contenedorDoming').addClass( "col-2" );
+  $('#origenDoming').hide()
+
+}
 
 
 
 
 
-  $("#montaje_doming").attr('checked',true);
   $("#montaje_doming").change(function(){
 
     if( $('#montaje_doming').prop('checked') ) {
@@ -917,7 +928,22 @@ $('#montaje_tinta_nueva').change(function(){
   })
 
 
-  $("#montaje_plotter").attr('checked',true);
+
+  if( $('#montaje_plotter').prop('checked') ) {
+
+    $('#origenPlotter').show()
+    $('#contenedorPlotter').appendTo('#origenPlotter');
+    $('#contenedorPlotter').removeClass( "col-2" )
+
+  }else {
+
+    $('#contenedorPlotter').appendTo('#EstadosFalse');
+    $('#contenedorPlotter').addClass( "col-2" );
+    $('#origenPlotter').hide()
+
+  }
+
+
   $("#montaje_plotter").change(function(){
 
     if( $('#montaje_plotter').prop('checked') ) {
@@ -936,7 +962,23 @@ $('#montaje_tinta_nueva').change(function(){
 
   })
 
-  $("#montaje_descalerillado").attr('checked',true);
+
+
+  if( $('#montaje_descalerillado').prop('checked') ) {
+
+    $('#origenDescalerillado').show()
+    $('#contenedorDescalerillado').appendTo('#origenDescalerillado');
+    $('#contenedorDescalerillado').removeClass( "col-2" )
+
+  }else {
+
+    $('#contenedorDescalerillado').appendTo('#EstadosFalse');
+    $('#contenedorDescalerillado').addClass( "col-2" );
+    $('#origenDescalerillado').hide()
+
+  }
+
+
   $("#montaje_descalerillado").change(function(){
 
     if( $('#montaje_descalerillado').prop('checked') ) {
@@ -956,7 +998,21 @@ $('#montaje_tinta_nueva').change(function(){
   })
 
 
-  $("#montaje_troquelado").attr('checked',true);
+  if( $('#montaje_troquelado').prop('checked') ) {
+
+    $('#origenTroquelado').show()
+    $('#contenedorTroquelado').appendTo('#origenTroquelado');
+    $('#contenedorTroquelado').removeClass( "col-2" )
+
+  }else {
+
+    $('#contenedorTroquelado').appendTo('#EstadosFalse');
+    $('#contenedorTroquelado').addClass( "col-2" );
+    $('#origenTroquelado').hide()
+
+  }
+
+
   $("#montaje_troquelado").change(function(){
 
     if( $('#montaje_troquelado').prop('checked') ) {
@@ -974,7 +1030,22 @@ $('#montaje_tinta_nueva').change(function(){
     }
 
   })
-  $("#montaje_laminado").attr('checked',true);
+
+
+  if( $('#montaje_laminado').prop('checked') ) {
+
+    $('#origenLaminado').show()
+    $('#contenedorLaminado').appendTo('#origenLaminado');
+    $('#contenedorLaminado').removeClass( "col-2" )
+
+  }else {
+
+    $('#contenedorLaminado').appendTo('#EstadosFalse');
+    $('#contenedorLaminado').addClass( "col-2" );
+    $('#origenLaminado').hide()
+
+  }
+
   $("#montaje_laminado").change(function(){
 
     if( $('#montaje_laminado').prop('checked') ) {
@@ -993,7 +1064,23 @@ $('#montaje_tinta_nueva').change(function(){
 
   })
 
-  $("#montaje_pretroquelado").attr('checked',true);
+
+  if( $('#montaje_pretroquelado').prop('checked') ) {
+
+    $('#origenPretroquelado').show()
+    $('#contenedorPretroquelado').appendTo('#origenPretroquelado');
+    $('#contenedorPretroquelado').removeClass( "col-2" )
+
+  }else {
+
+
+    $('#contenedorPretroquelado').appendTo('#EstadosFalse');
+    $('#contenedorPretroquelado').addClass( "col-2" );
+    $('#origenPretroquelado').hide()
+
+  }
+
+
   $("#montaje_pretroquelado").change(function(){
 
     if( $('#montaje_pretroquelado').prop('checked') ) {
@@ -1009,13 +1096,29 @@ $('#montaje_tinta_nueva').change(function(){
       $('#contenedorPretroquelado').addClass( "col-2" );
       $('#origenPretroquelado').hide()
 
-
-
-
     }
 
   })
-  $("#montaje_precorte").attr('checked',true);
+
+
+  if( $('#montaje_precorte').prop('checked') ) {
+
+    $('#origenPrecorte').show()
+    $('#contenedorPrecorte').appendTo('#origenPrecorte');
+    $('#contenedorPrecorte').removeClass( "col-2" )
+
+  }else {
+
+    $('#contenedorPrecorte').appendTo('#EstadosFalse');
+    $('#contenedorPrecorte').addClass( "col-2" );
+    $('#origenPrecorte').hide()
+
+
+
+
+  }
+
+
   $("#montaje_precorte").change(function(){
 
     if( $('#montaje_precorte').prop('checked') ) {
@@ -1036,6 +1139,18 @@ $('#montaje_tinta_nueva').change(function(){
     }
 
   })
+
+
+  if( $('#montaje_ensamblado').prop('checked') ) {
+
+    $('#contenedorEnsamblado').appendTo('#contenedorEstado');
+    $('#contenedorEnsamblado').addClass( "col-2" );
+    $('#origenEnsamblado').hide()
+  }else {
+    $('#origenEnsamblado').show()
+    $('#contenedorEnsamblado').appendTo('#origenEnsamblado');
+    $('#contenedorEnsamblado').removeClass( "col-2" )
+  }
 
 
   $("#montaje_ensamblado").change(function(){

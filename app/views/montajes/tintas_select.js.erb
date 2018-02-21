@@ -1,0 +1,14 @@
+toastr.info(":)")
+
+
+<%cont = 0%>
+<%@montaje_tintas.desarrollos_de_tintas.each do |tintas|%>
+<%cont = cont +1%>
+    var i = "<%=cont%>"
+    var descripcion = "<%=tintas.descripción%>"
+    var descr_input = $('.js-example-tintas:eq('+i+') ').val()
+    toastr.info(descr_input)
+
+    $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
+
+  <%end%>
