@@ -28,7 +28,7 @@ class Cliente < ApplicationRecord
 
     (2..spreadsheet.last_row).each do |i|
 
-      cliente = Cliente.new(nombre: spreadsheet.row(i)[0], nit: spreadsheet.row(i)[1],direccion:spreadsheet.row(i)[2],telefono:spreadsheet.row(i)[3],user_id:my_user_id)
+      cliente = Cliente.new(nombre: spreadsheet.row(i)[0].to_s.upcase, nit: spreadsheet.row(i)[1],direccion:spreadsheet.row(i)[2].to_s.upcase,telefono:spreadsheet.row(i)[3],user_id:my_user_id)
 
       unless cliente.save
         cliente.errors.full_messages.each do |message|
