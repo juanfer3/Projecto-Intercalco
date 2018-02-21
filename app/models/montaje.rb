@@ -169,7 +169,7 @@ class Montaje < ApplicationRecord
 
 
                                           @montaje_nombre = spreadsheet.row(i)[2].to_s.upcase
-                                          puts "****************************************NOmbre: MOntaje"+@montaje_nombre+"**********************"
+                                          puts "****************************************NOmbre: Montaje"+@montaje_nombre+"**********************"
 
                                           @montaje = Montaje.find_by(nombre: @montaje_nombre)
 
@@ -180,7 +180,7 @@ class Montaje < ApplicationRecord
                                           if @montaje == nil
 
                                                   puts "****************************************El Montaje No Existe**********************"
-                                                  @nombre_cliente = spreadsheet.row(i)[0]
+                                                  @nombre_cliente = spreadsheet.row(i)[0].to_s.upcase
                                                   puts "****************************************"+@nombre_cliente+"*********************"
                                                   @cli = Cliente.find_by(nombre: @nombre_cliente)
                                                   puts "****************************************Busco El cliente**********************"
@@ -188,7 +188,7 @@ class Montaje < ApplicationRecord
                                                     puts "****************************************El Cliente no Existe**********************"
                                                     @nombre_user = spreadsheet.row(i)[5]
 
-                                                    @vendedor=User.find_by(nombre: @nombre_user)
+                                                    @vendedor=User.find_by(nombre: @nombre_cliente)
                                                     puts "****************************************El Vendedor es #{@vendedor.nombre}**********************"
                                                     @clienteNuevo=Cliente.new(nombre:spreadsheet.row(i)[0],user_id:@vendedor.id)
                                                     if @clienteNuevo.save
