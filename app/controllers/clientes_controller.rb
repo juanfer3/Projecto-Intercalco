@@ -61,7 +61,7 @@ end
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre').distinct
     elsif current_user.rol.cargo == "Comercial"
       @clientes = Cliente.joins(:contactos, :user).paginate(page: params[:page], per_page: 20).where("contactos.user_id=#{current_user.id}").order('nombre').distinct
-    elsif current_user.rol.cargo == "Gerente Comercial"
+    elsif current_user.rol.cargo == "Producción"
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre').distinct
     end
   end
