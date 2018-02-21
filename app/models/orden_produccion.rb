@@ -31,7 +31,7 @@ class OrdenProduccion < ApplicationRecord
 
           when "ENERO"
             numero_de_mes=1
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+            @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de enero vacio***********************"
@@ -47,7 +47,7 @@ class OrdenProduccion < ApplicationRecord
           when "FEBRERO"
             numero_de_mes=2
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -63,7 +63,7 @@ class OrdenProduccion < ApplicationRecord
           when "MARZO"
             numero_de_mes=3
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -79,7 +79,7 @@ class OrdenProduccion < ApplicationRecord
           when "ABRIL"
             numero_de_mes=4
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -95,7 +95,7 @@ class OrdenProduccion < ApplicationRecord
           when "MAYO"
             numero_de_mes=5
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -110,7 +110,7 @@ class OrdenProduccion < ApplicationRecord
           when "JUNIO"
             numero_de_mes=6
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -125,7 +125,7 @@ class OrdenProduccion < ApplicationRecord
           when "JULIO"
             numero_de_mes=7
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -142,7 +142,7 @@ class OrdenProduccion < ApplicationRecord
 
             numero_de_mes=8
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -158,7 +158,7 @@ class OrdenProduccion < ApplicationRecord
           when "SEPTIEMBRE"
             numero_de_mes=9
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -174,7 +174,7 @@ class OrdenProduccion < ApplicationRecord
           when "OCTUBRE"
             numero_de_mes=10
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -190,7 +190,7 @@ class OrdenProduccion < ApplicationRecord
           when "NOVIEMBRE"
             numero_de_mes=11
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -206,7 +206,7 @@ class OrdenProduccion < ApplicationRecord
           when "DICIEMBRE"
             numero_de_mes=12
 
-            @ordenes = CompromisoDeEntrega.where("cast(strftime('%m', fecha_de_compromiso) as int  ) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
