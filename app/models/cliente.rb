@@ -9,7 +9,7 @@ class Cliente < ApplicationRecord
 
 
 
-  def self.subir_excel(file ,my_user_id)
+  def self.subir_excel(file )
 
     @errores = []
 
@@ -28,13 +28,41 @@ class Cliente < ApplicationRecord
 
     (2..spreadsheet.last_row).each do |i|
 
-      cliente = Cliente.new(nombre: spreadsheet.row(i)[0].to_s.upcase, nit: spreadsheet.row(i)[1],direccion:spreadsheet.row(i)[2].to_s.upcase,telefono:spreadsheet.row(i)[3],user_id:my_user_id)
 
-      unless cliente.save
-        cliente.errors.full_messages.each do |message|
-          @errores << "Error en la fila #{i}, columna #{message}"
+      cliente_nombre = spreadsheet.row(i)[0].to_s.upcase
+
+      if cliente_nombre.length <= 0
+          puts "******************Array Vacio**********************"
+      else
+        puts "****************Busqueda del cliente************************"
+        buscar_cliente = Cliente.find_by(nombre: cliente_nombre)
+        if buscar_cliente == nil
+          puts "***************El cliente no existe*************************"
+          nit = spreadsheet.row(i)[1]
+          direccion = spreadsheet.row(i)[2].to_s.upcase
+          telefono = spreadsheet.row(i)[3]
+          comercial = spreadsheet.row(i)[4].to_s.upcase
+
+          puts "****************buscar user************************"
+          user = User.find_by(nombre: comercial)
+            puts "****************almacenamiento user************************"
+          if user != nil
+            puts "*****************el Usuario si existe***********************"
+            cliente = Cliente.new(nombre: cliente_nombre, nit: nit,direccion: direccion,telefono: telefono,user_id:user.id)
+            unless cliente.save
+              cliente.errors.full_messages.each do |message|
+                @errores << "Error en la fila #{i}, columna #{message}"
+              end
+            end
+          end
+
+
         end
       end
+
+
+
+
 
     end
 

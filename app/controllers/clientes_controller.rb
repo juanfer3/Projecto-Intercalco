@@ -6,10 +6,10 @@ class ClientesController < ApplicationController
   end
 
   def import_from_excel
-    my_user_id = current_user.id
+
     file = params[:file]
     begin
-      errores_o_true = Cliente.subir_excel(file, my_user_id)
+      errores_o_true = Cliente.subir_excel(file)
 
       respond_to do |format|
         if errores_o_true == true
