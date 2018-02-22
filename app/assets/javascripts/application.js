@@ -1187,6 +1187,18 @@ if( $('#montaje_doming').prop('checked') ) {
   })
 
 
+  if( $('#montaje_pegado').prop('checked') ) {
+
+    $('#contenedorPegado').appendTo('#contenedorEstado');
+    $('#contenedorPegado').addClass( "col-2" );
+    $('#origenPegado').hide()
+  }else {
+    $('#origenPegado').show()
+    $('#contenedorPegado').appendTo('#origenPegado');
+    $('#contenedorPegado').removeClass( "col-2" )
+  }
+
+
   $("#montaje_pegado").change(function(){
 
     if( $('#montaje_pegado').prop('checked') ) {
@@ -1203,6 +1215,20 @@ if( $('#montaje_doming').prop('checked') ) {
   })
 
 
+
+
+  if( $('#montaje_hilo').prop('checked') ) {
+
+    $('#contenedorHilo').appendTo('#contenedorEstado');
+    $('#contenedorHilo').addClass( "col-2" );
+    $('#origenHilo').hide()
+  }else {
+    $('#origenHilo').show()
+    $('#contenedorHilo').appendTo('#origenHilo');
+    $('#contenedorHilo').removeClass( "col-2" )
+  }
+
+
   $("#montaje_hilo").change(function(){
 
     if( $('#montaje_hilo').prop('checked') ) {
@@ -1217,6 +1243,20 @@ if( $('#montaje_doming').prop('checked') ) {
     }
 
   })
+
+
+
+
+  if( $('#montaje_ojalete').prop('checked') ) {
+
+    $('#contenedorOjalete').appendTo('#contenedorEstado');
+    $('#contenedorOjalete').addClass( "col-2" );
+    $('#origenOjalete').hide()
+  }else {
+    $('#origenOjalete').show()
+    $('#contenedorOjalete').appendTo('#origenOjalete');
+    $('#contenedorOjalete').removeClass( "col-2" )
+  }
 
 
   $("#montaje_ojalete").change(function(){
@@ -1236,6 +1276,19 @@ if( $('#montaje_doming').prop('checked') ) {
 
 
 
+
+  if( $('#montaje_perforado').prop('checked') ) {
+
+    $('#contenedorPerforado').appendTo('#contenedorEstado');
+    $('#contenedorPerforado').addClass( "col-2" );
+    $('#origenPerforado').hide()
+  }else {
+    $('#origenPerforado').show()
+    $('#contenedorPerforado').appendTo('#origenPerforado');
+    $('#contenedorPerforado').removeClass( "col-2" )
+  }
+
+
   $("#montaje_perforado").change(function(){
 
     if( $('#montaje_perforado').prop('checked') ) {
@@ -1253,6 +1306,16 @@ if( $('#montaje_doming').prop('checked') ) {
 
 
 
+  if( $('#montaje_refilado').prop('checked') ) {
+
+    $('#contenedorRefilado').appendTo('#contenedorEstado');
+    $('#contenedorRefilado').addClass( "col-2" );
+    $('#origenRefilado').hide()
+  }else {
+    $('#origenRefilado').show()
+    $('#contenedorRefilado').appendTo('#origenRefilado');
+    $('#contenedorRefilado').removeClass( "col-2" )
+  }
 
 
   $("#montaje_refilado").change(function(){
@@ -1273,6 +1336,16 @@ if( $('#montaje_doming').prop('checked') ) {
 
 
 
+  if( $('#montaje_estampado_al_calor').prop('checked') ) {
+
+    $('#contenedorEstampado_al_calor').appendTo('#contenedorEstado');
+    $('#contenedorEstampado_al_calor').addClass( "col-3" );
+    $('#origenEstampado_al_calor').hide()
+  }else {
+    $('#origenEstampado_al_calor').show()
+    $('#contenedorEstampado_al_calor').appendTo('#origenEstampado_al_calor');
+    $('#contenedorEstampado_al_calor').removeClass( "col-3" )
+  }
 
 
   $("#montaje_estampado_al_calor").change(function(){
@@ -1289,6 +1362,21 @@ if( $('#montaje_doming').prop('checked') ) {
     }
 
   })
+
+
+
+
+  if( $('#montaje_termoformado').prop('checked') ) {
+
+    $('#contenedorTermoformado').appendTo('#contenedorEstado');
+    $('#contenedorTermoformado').addClass( "col-2" );
+    $('#origenTermoformado').hide()
+  }else {
+    $('#origenTermoformado').show()
+    $('#contenedorTermoformado').appendTo('#origenTermoformado');
+    $('#contenedorTermoformado').removeClass( "col-2" )
+  }
+
 
 
   $("#montaje_termoformado").change(function(){
@@ -1311,6 +1399,18 @@ if( $('#montaje_doming').prop('checked') ) {
 
 
 
+  if( $('#montaje_doblez_calor').prop('checked') ) {
+
+    $('#contenedorDoblez_calor').appendTo('#contenedorEstado');
+    $('#contenedorDoblez_calor').addClass( "col-2" );
+    $('#origenDoblez_calor').hide()
+  }else {
+    $('#origenDoblez_calor').show()
+    $('#contenedorDoblez_calor').appendTo('#origenDoblez_calor');
+    $('#contenedorDoblez_calor').removeClass( "col-2" )
+  }
+
+
   $("#montaje_doblez_calor").change(function(){
 
 
@@ -1331,6 +1431,15 @@ if( $('#montaje_doming').prop('checked') ) {
 
 
 
+  if( $('#montaje_descolille').prop('checked') ) {
+
+    $('#contenedorDescolille').appendTo('#contenedorEstado');
+    $('#contenedorDescolille').appendTo('#contenedorEstado');
+    $('#origenDescolille').hide()
+  }else {
+    $('#origenDescolille').show()
+    $('#contenedorDescolille').appendTo('#origenDescolille');
+  }
 
 $("#montaje_descolille").change(function(){
 
