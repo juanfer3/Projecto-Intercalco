@@ -63,7 +63,7 @@ class OrdenesProduccionController < ApplicationController
                                                         puts "****************palabra: #{word1[0]}************************"
 
                                                         for i in (0..contenedor)
-                                                             if word1[i].to_s.upcase== word2[i].to_s.upcase
+                                                             if word1[i].to_s.upcase == word2[i].to_s.upcase
                                                                puts "**************Letra igual**************************"
                                                                cont = cont + 1
                                                              else

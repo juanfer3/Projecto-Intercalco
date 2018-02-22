@@ -18,6 +18,11 @@ toastr.info(":)")
           $('.removerContenidoNuevo').remove()
           $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_compromisos_produccion'%>")
           $('.identificador').addClass('removerContenidoNuevo')
+    <%elsif current_user.rol.cargo == "Producción"%>
+          $('.ocultarBodyOrdenes').hide()
+          $('.removerContenidoNuevo').remove()
+          $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_compromisos_produccion'%>")
+          $('.identificador').addClass('removerContenidoNuevo')
     <%elsif current_user.rol.cargo == "Despachos"%>
           $('.ocultarBodyOrdenes').hide()
           $('.removerContenidoNuevo').remove()
