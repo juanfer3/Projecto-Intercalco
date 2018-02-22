@@ -33,21 +33,21 @@ class OrdenesProduccionController < ApplicationController
 
       if @ordenes.empty?
         puts "****************No se encuentra #{@ordenes}************************"
-        @ordenes= Montaje.joins(:ordenes_produccion).where('montajes.nombre ILIKE ?', '%'+@data+'%').distinct
+        @ordenes= Montaje.joins(:ordenes_produccion).where('montajes.nombre ILIKE ?', '%'+@data+'%')
                 if @ordenes.empty?
                   puts "****************No se encuentra montaje #{@ordenes}************************"
-                  @ordenes= Montaje.joins( :cliente).where('clientes.nombre ILIKE ?', @data+'%').distinct
+                  @ordenes= Montaje.joins( :cliente).where('clientes.nombre ILIKE ?', @data+'%')
 
                         if @ordenes.empty?
                           puts "****************No se encuentra montaje #{@ordenes}************************"
-                          @ordenes= Montaje.joins( :maquina).where('maquinas.nombre ILIKE ?', @data+'%').distinct
+                          @ordenes= Montaje.joins( :maquina).where('maquinas.nombre ILIKE ?', @data+'%')
 
                                   if @ordenes.empty?
                                     puts "*****************No se encuentra la maquina***********************"
-                                    @ordenes= Montaje.joins( :linea_de_color).where('linea_de_colores.nombre ILIKE ?', @data+'%').distinct
+                                    @ordenes= Montaje.joins( :linea_de_color).where('linea_de_colores.nombre ILIKE ?', @data+'%')
                                             if @ordenes.empty?
                                                 puts "*****************No se encuentra la linea de color***********************"
-                                                  @ordenes= Montaje.joins( :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%').distinct
+                                                  @ordenes= Montaje.joins( :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%')
                                                   if @ordenes.empty?
 
                                                   else
