@@ -47,7 +47,7 @@ class OrdenesProduccionController < ApplicationController
                                     @ordenes= Montaje.joins( :linea_de_color).where('linea_de_colores.nombre ILIKE ?', @data+'%')
                                             if @ordenes.empty?
                                                 puts "*****************No se encuentra la linea de color***********************"
-                                                  @ordenes= Montaje.joins( :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%')
+                                                  @ordenes= Montaje.joins(:ordenes_produccion, :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%')
                                                   if @ordenes.empty?
 
                                                   else
@@ -95,7 +95,7 @@ class OrdenesProduccionController < ApplicationController
                                                     puts "****************palabra: #{word1[0]}************************"
 
                                                     for i in (0..contenedor)
-                                                         if word1[i].to_s.upcase== word2[i].to_s.upcase
+                                                         if word1[i].to_s.upcase == word2[i].to_s.upcase
                                                            puts "**************Letra igual**************************"
                                                            cont = cont + 1
                                                          else
