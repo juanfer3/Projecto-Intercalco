@@ -1,5 +1,5 @@
 
-
+$('#montaje_id').hide()
 
 <%cont = 0%>
 <%@montaje_tintas.desarrollos_de_tintas.each do |tintas|%>
@@ -18,8 +18,6 @@
       }
       // Set the value, creating a new option if necessary
       if ($('.js-example-tintas:eq('+i+') ').find("option[value='" + data.id + "']").length) {
-
-
 
       } else {
       // Create a DOM Option and pre-select by default
