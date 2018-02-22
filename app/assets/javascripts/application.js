@@ -97,7 +97,7 @@ $(document).on('turbolinks:load', function() {
 
   $(".multiSelect").select2({
     tags: true,
-    tokenSeparators: [',', ' ']
+    tokenSeparators: [',']
 })
 
 //ordenes=============================================================================
@@ -1459,7 +1459,7 @@ $("#montaje_descolille").change(function(){
 
   $(".js-example-tokenizer").select2({
       tags: true,
-      tokenSeparators: [',', ' ']
+      tokenSeparators: [',']
   })
 
   $('#value_otro').on("select2:select", function (e) {
@@ -2016,10 +2016,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
 
 
-  $(".js-example-tintas").select2({
-    tags: true,
-    tokenSeparators: [',', ' ']
-  })
+
 
   $('form').on('click', '.add_desarrollo_tintas', function(event) {
 
@@ -2034,7 +2031,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
     $(".js-example-tintas").select2({
       tags: true,
-      tokenSeparators: [',', ' ']
+      tokenSeparators: [',']
     })
     return event.preventDefault();
   });

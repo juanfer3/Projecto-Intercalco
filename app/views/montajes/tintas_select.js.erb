@@ -11,7 +11,7 @@ $('#montaje_id').hide()
 
 
     if (descr_input != descripcion) {
-      console.log('son diferentes');
+
       var data = {
         text : descripcion,
         id: descripcion
@@ -21,7 +21,7 @@ $('#montaje_id').hide()
 
       } else {
       // Create a DOM Option and pre-select by default
-          console.log("No existe"+ data.text);
+      
           var newOption = new Option(data.text, data.id, true, true);
           // Append it to the select
       $('.js-example-tintas:eq('+i+') ').append(newOption)
