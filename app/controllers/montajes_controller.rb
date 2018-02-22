@@ -125,6 +125,19 @@ class MontajesController < ApplicationController
 
   # GET /montajes/new
   def new
+    @ultimo_montaje = Montaje.all
+    cont = 0
+    if @ultimo_montaje.any?
+      @ultimo_montaje.each do |montaje|
+        codigo = montaje.codigo.to_i if montaje.codigo.match(/^\d+$/)
+          if cont < codigo
+            cont = codigo
+            @last_codigo = montaje.codigo
+          end
+      end
+    end
+
+
     @montaje = Montaje.new
     @montaje.desarrollos_de_tintas.build
     @montaje.piezas.build

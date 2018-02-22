@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <!-- Errores en la validación -->
 
-
+<h1></h1>
 
   <% if @montaje.errors.any? %>
     <div class="">
@@ -657,3 +657,7 @@
    </div>
 </div>
 <% end %>
+<script type="text/javascript">
+    <%valor = @last_codigo.to_i + 1%>
+   $('#montaje_codigo').val('<%=valor%>')
+</script>
