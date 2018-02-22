@@ -88,6 +88,7 @@
                 <th>Malla</th>
                 <th>Tiro</th>
                 <th>Retiro</th>
+                <th>Tamaños totales</th>
                 <th>Desarrollar color</th>
 
               </thead>
@@ -119,9 +120,9 @@
 
 
 
-
-                    <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
                     <td><%=@orden_produccion.tamanos_total%></td>
+                    <td><%=  link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbucket"></i></span></button>'.html_safe, desarrollar_color_url(desarrollo), remote: true %></td>
+
                   </tr>
                 <%end%>
               </tbody>
@@ -255,6 +256,7 @@
           <th>Linea</th>
           <th>Malla</th>
           <th>Tiros</th>
+
           <th>Eliminar</th>
         </thead>
         <tbody id="AgregarTintasRetiro">
