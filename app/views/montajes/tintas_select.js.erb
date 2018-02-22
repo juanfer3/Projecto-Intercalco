@@ -3,12 +3,37 @@ toastr.info(":)")
 
 <%cont = 0%>
 <%@montaje_tintas.desarrollos_de_tintas.each do |tintas|%>
-<%cont = cont +1%>
+
     var i = "<%=cont%>"
     var descripcion = "<%=tintas.descripción%>"
+    var id = "<%=tintas.id%>"
     var descr_input = $('.js-example-tintas:eq('+i+') ').val()
-    toastr.info(descr_input)
 
-    $('.js-example-tintas:eq('+i+') ').val("CYAN").trigger('change');
+    toastr.info(descripcion +"========"+ descr_input)
+    if (descr_input != descripcion) {
+      console.log('son diferentes');
+      var data = {
+        text : descripcion,
+        id: descripcion
+      }
+      // Set the value, creating a new option if necessary
+      if ($('.js-example-tintas:eq('+i+') ').find("option[value='" + data.id + "']").length) {
+
+
+
+      } else {
+      // Create a DOM Option and pre-select by default
+          console.log("No existe"+ data.text);
+          var newOption = new Option(data.text, data.id, true, true);
+          // Append it to the select
+      $('.js-example-tintas:eq('+i+') ').append(newOption)
+      }
+
+      <%cont = cont +1%>
+
+
+    }
+
+
 
   <%end%>
