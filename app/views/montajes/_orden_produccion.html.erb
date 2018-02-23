@@ -30,6 +30,19 @@
            <div class="my_card_pedidos_form">
 
 
+             <div class="col-3">
+               <label for="">Contenedor de despachos</label>
+               <%=f.select :contenedor_prueba, Maquina.all.map{|i| [i.nombre, i.id]},
+               {},  {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}%>
+             </div>
+
+             <script type="text/javascript">
+               $(".multiSelect").select2({
+                   tags: true,
+                   tokenSeparators: [',']
+                })
+             </script>
+
              <!--Numero de Orden-->
              <div class="col-4">
                <%= f.input :numero_de_orden %>

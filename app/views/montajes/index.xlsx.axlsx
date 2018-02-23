@@ -1,0 +1,35 @@
+wb = xlsx_package.workbook
+
+
+piezas =Pieza.all
+
+
+wb.styles do |style|
+  highlight_cell = style.add_style(:b => true)
+
+	 wb.add_worksheet(name: "Evento ") do |sheet|
+
+
+
+
+
+	 sheet.add_row ["CLIENTE", "CODIGO", "NOMBRE MONTAJE", "CODIGO PIEZA",
+   "DESCRIPCION PIEZA","VENDEDOR", "LINEA DE PRODUCTO", "MATERIAL","MAQUINA",
+   "LINEA DE COLOR"],
+	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+
+
+
+
+     piezas.each do |pieza|
+  	   sheet.add_row [pieza.montaje.cliente.nombre, pieza.montaje.codigo,
+       pieza.montaje.nombre, pieza.codigo, pieza.nombre, pieza.montaje.cliente.user.nombre,
+       pieza.montaje.linea_producto.nombre, pieza.montaje.material.descripcion,
+       pieza.montaje.maquina.nombre, pieza.montaje.linea_de_color.nombre]
+     end
+
+
+	end
+
+end

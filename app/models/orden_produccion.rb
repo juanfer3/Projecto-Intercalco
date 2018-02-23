@@ -13,17 +13,26 @@ class OrdenProduccion < ApplicationRecord
 
   def create_despachos
     if contenedor_prueba.present?
+      contenedor2 = contenedor_prueba
       contener = []
 
-      contenedor_prueba.each do |contenedor|
-        puts "*****************Si existe #{self.id}***********************"
-        contener << [{"id" => self.id}, {"despacho_id" => contenedor}]
+      for i in 1..contenedor2.length
+        if contenedor2[i] != nil
+          puts "*****************Si existe #{self.id}***********************"
+          contener << [self.id, contenedor2[i]]
+          puts "**************#{contener[i]}**************************"
+        end
 
       end
 
-      contener.each do |c|
-        puts "***************El contenedor existe *************************"
-
+      for i in 0..contener.length
+          puts "Value of local variable is #{i}"
+          puts "**************Resultado: #{contener[i]}**************************"
+          if contener[i] == nil
+            puts "***************** no COntiene algo***********************"
+          else
+            puts "*******************COntiene Algo*********************"
+          end
       end
 
     end

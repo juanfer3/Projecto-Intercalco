@@ -12,15 +12,15 @@ wb.styles do |style|
    @remisiones = []
 
   @pedidos.each do |pedido|
-    pedido.tiempos_de_entregas.each do |facturar|
-      facturar.facturas_despacho.each do |facturas|
-        @facturas << facturas
+                  pedido.tiempos_de_entregas.each do |facturar|
+                    facturar.facturas_despacho.each do |facturas|
+                      @facturas << facturas
 
-        facturas.remisiones.each do |remisiones|
-          @remisiones << remisiones
-        end
-      end
-    end
+                      facturas.remisiones.each do |remisiones|
+                        @remisiones << remisiones
+                      end
+                    end
+                  end
 
 
 	   sheet.add_row [pedido.contacto.cliente.nombre, pedido.contacto.nombre_contacto,
