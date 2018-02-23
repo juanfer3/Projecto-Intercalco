@@ -1,7 +1,6 @@
 class Montaje < ApplicationRecord
   belongs_to :cliente
   belongs_to :linea_de_color
-  belongs_to :maquina
   belongs_to :linea_producto
   belongs_to :material
 
@@ -239,21 +238,7 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @maquinas_nombre = spreadsheet.row(i)[8].to_s.upcase
-                                                              @maquinas = Maquina.find_by(nombre: @maquinas_nombre)
 
-                                                              if @maquinas != nil
-                                                                puts "********************La maquina existe********************"
-                                                                @maquina_id = @maquinas.id
-                                                              else
-                                                                puts "********************La maquina no existe********************"
-                                                                maquina = Maquina.new(nombre: @maquinas_nombre)
-                                                                if maquina.save
-                                                                  puts "******************Se creo la maquina produccion**********************"
-                                                                  @maquina_id = maquina.id
-                                                                end
-
-                                                              end
 
 
 
@@ -293,7 +278,7 @@ class Montaje < ApplicationRecord
 
                                                             codigo_mo=spreadsheet.row(i)[1].to_s.upcase
                                                             nombre_mo=spreadsheet.row(i)[2].to_s.upcase
-                                                            formato_mo = Montaje.new( codigo:codigo_mo, nombre: nombre_mo, cliente_id: @cliente_id, maquina_id: @maquina_id, linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id, material_id: @material_id)
+                                                            formato_mo = Montaje.new( codigo:codigo_mo, nombre: nombre_mo, cliente_id: @cliente_id,  linea_de_color_id: @linea_de_color_id, linea_producto_id:@linea_produccion_id, material_id: @material_id)
 
                                                             if formato_mo.save
                                                               puts "****************************************Montaje Creado**********************"

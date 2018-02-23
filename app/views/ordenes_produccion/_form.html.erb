@@ -42,7 +42,7 @@
            <!--Container Con Flexbox-->
            <div class="my_card_pedidos_form">
 
-             
+
 
 
              <!--Numero de Orden-->
@@ -78,10 +78,6 @@
                <input type="text" name=""  class="form-control op_montaje" id="op_linea_producto" value="" disabled>
              </div>
 
-             <div class="col-3">
-               <label for="">Maquina</label>
-               <input type="text" name=""  class="form-control op_montaje" id="op_maquina" value="" disabled>
-             </div>
 
 
              <!--Fecha De pedido-->
@@ -195,6 +191,12 @@
                          <label for="">Cantidad Programada</label>
                          <%= f.input :cantidad_programada, label: false %>
                        </div>
+
+                       <div class="col-2">
+                         <label for="">Precio <br> Unitario</label>
+                         <%= f.input :precio_unitario, label: false %>
+                       </div>
+
 
 
 

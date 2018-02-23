@@ -4,7 +4,7 @@
         <td><%= montaje.codigo %></td>
         <td><%= montaje.cliente.nombre %></td>
         <td><%= montaje.nombre %></td>
-        <td><%= montaje.observacion %></td>
+
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-connection-bars"></i></span></button>'.html_safe, montaje, remote:true %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_montaje_path(montaje) %></td>
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, montaje, method: :delete, data: { confirm: 'Are you sure?' } %></td>
