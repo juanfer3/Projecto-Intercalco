@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+
+
+
+
+
+wb.styles do |style|
+  highlight_cell = style.add_style(:b => true)
+
+	 wb.add_worksheet(name: "Evento ") do |sheet|
+
+
+
+   montajes = Montaje.all.order("codigo")
+
+	 sheet.add_row ["CLIENTE", "CODIGO", "NOMBRE MONTAJE", "TINTA", "MALLA", "LINEA DE COLOR"],
+	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+
+
+
+
+     montajes.each do |montaje|
+  	   sheet.add_row [montaje.cliente.nombre, montaje.codigo,
+       montaje.nombre, montaje.desarrollos_de_tintas.pluck(:descripción)*", "  " "]
+     end
+
+
+	end
+
+end

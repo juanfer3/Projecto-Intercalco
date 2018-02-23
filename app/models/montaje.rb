@@ -33,7 +33,7 @@ class Montaje < ApplicationRecord
     dato= data.to_s.upcase
     puts "*****************Entrada***********************"
     puts "*****************el dato es: #{dato}***********************"
-    @fichas= Montaje.where('montajes.codigo ILIKE ?', dato+'%')
+    @fichas= Montaje.where('montajes.codigo ILIKE ?', dato+'%').order("codigo")
 
 
     if @fichas.any?
@@ -41,12 +41,12 @@ class Montaje < ApplicationRecord
             return @fichas
     else
               puts "*****************MOntaje nombre vacio***********************"
-              @fichas= Montaje.joins(:cliente).where('clientes.nombre ILIKE ?', dato+'%')
+              @fichas= Montaje.joins(:cliente).where('clientes.nombre ILIKE ?', dato+'%').order("codigo")
 
 
               if @fichas.empty?
                 puts "****************Cliente no existe************************"
-                @fichas= Montaje.where('montajes.nombre ILIKE ?', '%'+dato+'%')
+                @fichas= Montaje.where('montajes.nombre ILIKE ?', '%'+dato+'%').order("codigo")
                 if @fichas.empty?
                   puts "****************nombre montaje no existe************************"
                   return @fichas
@@ -196,7 +196,7 @@ class Montaje < ApplicationRecord
                                                     puts "****************************************El Cliente no Existe**********************"
                                                     @nombre_user = spreadsheet.row(i)[5]
 
-                                                    @vendedor=User.find_by(nombre: @nombre_cliente)
+                                                    @vendedor=User.find_by(nombre: @nombre_user)
                                                     puts "****************************************El Vendedor es #{@vendedor.nombre}**********************"
                                                     @clienteNuevo=Cliente.new(nombre:spreadsheet.row(i)[0],user_id:@vendedor.id)
                                                     if @clienteNuevo.save
@@ -213,7 +213,7 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @linea_produccion_nombre = spreadsheet.row(i)[7].to_s.upcase
+                                                              @linea_produccion_nombre = spreadsheet.row(i)[6].to_s.upcase
                                                               puts "=============Esta es la Linea==#{@linea_produccion_nombre}==============="
 
                                                               @lineas_produccion = LineaProducto.find_by(nombre: @linea_produccion_nombre)
@@ -239,7 +239,7 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @maquinas_nombre = spreadsheet.row(i)[9].to_s.upcase
+                                                              @maquinas_nombre = spreadsheet.row(i)[8].to_s.upcase
                                                               @maquinas = Maquina.find_by(nombre: @maquinas_nombre)
 
                                                               if @maquinas != nil
@@ -261,7 +261,7 @@ class Montaje < ApplicationRecord
 
 
 
-                                                              @linea_de_color_nombre = spreadsheet.row(i)[10].to_s.upcase
+                                                              @linea_de_color_nombre = spreadsheet.row(i)[9].to_s.upcase
 
                                                               @lineas_de_colores = LineaDeColor.find_by(nombre: @linea_de_color_nombre)
 
@@ -280,7 +280,7 @@ class Montaje < ApplicationRecord
                                                               end
 
 
-                                                            material_nombre = spreadsheet.row(i)[8].to_s.upcase
+                                                            material_nombre = spreadsheet.row(i)[7].to_s.upcase
                                                             puts "****************buscando materiales************************"
                                                             material = Material.find_by(descripcion:material_nombre)
 

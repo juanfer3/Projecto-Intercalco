@@ -4,7 +4,14 @@ class DesarrollosDeTintasController < ApplicationController
   # GET /desarrollos_de_tintas
   # GET /desarrollos_de_tintas.json
   def index
-    @desarrollos_de_tintas = DesarrolloDeTinta.all
+    @desarrollos_de_tintas = DesarrolloDeTinta.joins(:montaje).order("montajes.codigo")
+    respond_to do |format|
+      format.html
+      format.js
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="pedidos.xlsx"'
+      }
+    end
   end
 
   # GET /desarrollos_de_tintas/1
@@ -68,7 +75,7 @@ class DesarrollosDeTintasController < ApplicationController
 
 
 
-      
+
     respond_to do |format|
       format.html { redirect_to desarrollos_de_tintas_url, notice: 'Desarrollo de tinta was successfully destroyed.' }
       format.json { head :no_content }
