@@ -22,9 +22,7 @@ wb.styles do |style|
 
      montajes.each do |montaje|
   	   sheet.add_row [montaje.cliente.nombre, montaje.codigo,
-       montaje.nombre, montaje.desarrollos_de_tintas.pluck(:descripción)*", "  " ",
-       montaje.desarrollos_de_tintas.pluck(:malla)*", "  " ",
-       montaje.desarrollos_de_tintas.pluck(:linea_de_color)*", "  " "]
+       montaje.nombre, montaje.desarrollos_de_tintas.pluck(:descripción)*", "  " "]
      end
 
 
