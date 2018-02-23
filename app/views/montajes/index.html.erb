@@ -139,6 +139,12 @@
 </div>
 
 
+<div class="">
+  <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+  desarrollos_de_tintas_path(format: :xlsx) %>
+</div>
+
+
 <div class="modal fade fullscreen-modal " id="modalDetalleMotaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content col-12">
