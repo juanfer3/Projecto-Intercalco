@@ -2,11 +2,22 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :nombre_contacto %>
+    <%= f.association :user,
+    collection: User.all,
+    label_method: :nombre,
+    value_method: :id,
+    as: :select,
+    class:'col-4 my_cliente form-control' %>
     <%= f.input :telefono %>
     <%= f.input :celular %>
     <%= f.input :correo %>
-    <%= f.association :cliente %>
+    <%= f.association :cliente,
+    collection: Cliente.all.order('nombre'),
+    label_method: :nombre,
+    value_method: :id,
+    as: :select,
+    class:'col-4 my_cliente form-control'
+ %>
     <%= f.input :estado %>
   </div>
 

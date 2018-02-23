@@ -1,5 +1,9 @@
 class OrdenProduccion < ApplicationRecord
   belongs_to :montaje
+  belongs_to :contacto
+
+  has_many :contenedores_de_maquinas, inverse_of: :orden_produccion, dependent: :destroy
+  accepts_nested_attributes_for :contenedores_de_maquinas, reject_if: :all_blank, allow_destroy: true
 
   has_many :compromisos_de_entrega, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :compromisos_de_entrega, reject_if: :all_blank, allow_destroy: true
@@ -7,9 +11,16 @@ class OrdenProduccion < ApplicationRecord
   has_many :contenedores_de_ordenes, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :contenedores_de_ordenes, reject_if: :all_blank, allow_destroy: true
 
+
+  has_many :maquinas, through: :contenedores_de_maquinas
+
+
+
+
   attr_accessor :buscar, :contenedor_prueba
 
   after_save :create_despachos
+
 
   def create_despachos
     if contenedor_prueba.present?

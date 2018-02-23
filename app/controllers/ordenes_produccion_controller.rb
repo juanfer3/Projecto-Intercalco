@@ -622,7 +622,7 @@ end
     @orden_produccion = OrdenProduccion.new
     @montaje = Montaje.new
     @orden_produccion.compromisos_de_entrega.build
-
+    @orden_produccion.contenedores_de_ordenes.build
   end
 
   # GET /ordenes_produccion/1/edit
@@ -679,15 +679,17 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_produccion_params
-      params.require(:orden_produccion).permit(:montaje_id, :numero_de_orden,
+      params.require(:orden_produccion).permit(:montaje_id,:contacto_id,:numero_de_orden,:contacto,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
-        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],
+        :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado,:_destroy, :id]
+        :diferencia, :numero_de_remision, :estado,:_destroy, :id],
+      contenedores_de_ordenes_attributes:[:orden_produccion_id, :maquina_id, :maquina_ids => []]
       )
+
     end
 end

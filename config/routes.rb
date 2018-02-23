@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contenedores_de_maquinas
   resources :linea_de_colores
   resources :materiales
   resources :contenedores_de_ordenes

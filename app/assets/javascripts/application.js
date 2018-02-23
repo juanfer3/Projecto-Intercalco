@@ -185,6 +185,34 @@ $("#crearOrden").change(function(){
 
   })
 
+  if( $('#Contacto_nuevo').prop('checked') ) {
+
+    $('.ContenedorContactoNuevo').show()
+    $('#contenedorContactoExistente').hide();
+  }else {
+
+    $('#contenedorContactoExistente').show()
+    $('#vendedor_contacto_nuevo').addClass('form-control')
+    $(".ContenedorContactoNuevo").hide()
+  }
+
+
+  $("#Contacto_nuevo").change(function(){
+
+    if( $('#Contacto_nuevo').prop('checked') ) {
+
+      $('.ContenedorClienteNuevo').show()
+      $('#vendedor_cliente_nuevo').addClass("form-control")
+      $('#contenedorClienteExistente').hide();
+    }else {
+
+      $('#contenedorClienteExistente').show()
+      $('#montaje_new_cliente').val("")
+      $(".ContenedorClienteNuevo").hide()
+    }
+
+  })
+
 
 
 

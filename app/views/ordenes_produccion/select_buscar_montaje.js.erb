@@ -14,6 +14,22 @@ $('#op_tamano_hoja').val("<%=@montaje.tamano_por_hojas%>")
 $('#op_medida_corte').val("<%=@montaje.tamano_de_corte%>")
 
 
+$ ( "#select_contactos" ).prop("disabled", false)
+$ ( "#select_contactos option" ).remove()
+
+<%@montaje.cliente.contactos.each do |cliente|%>
+var cliente_id = "<%=cliente.id%>"
+var text = "<%=cliente.nombre_contacto%>"
+    var data = {
+        id: cliente_id,
+        text: text
+    };
+
+    var newOption = new Option(data.text, data.id, false, false);
+    $('#select_contactos').append(newOption).trigger('change');
+<%end%>
+
+
 var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
 var tamano_por_hojas = $("#op_tamano_hoja").val()
 

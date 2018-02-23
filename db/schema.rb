@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223191129) do
+ActiveRecord::Schema.define(version: 20180223213531) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -64,6 +64,15 @@ ActiveRecord::Schema.define(version: 20180223191129) do
     t.integer "contenedor_de_ordenes_id"
     t.index ["compromiso_de_entrega_id"], name: "index_contenedor_de_remisiones_on_compromiso_de_entrega_id"
     t.index ["contenedor_de_ordenes_id"], name: "index_contenedor_de_remisiones_on_contenedor_de_ordenes_id"
+  end
+
+  create_table "contenedores_de_maquinas", force: :cascade do |t|
+    t.integer "orden_produccion_id"
+    t.integer "maquina_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maquina_id"], name: "index_contenedores_de_maquinas_on_maquina_id"
+    t.index ["orden_produccion_id"], name: "index_contenedores_de_maquinas_on_orden_produccion_id"
   end
 
   create_table "contenedores_de_ordenes", force: :cascade do |t|
@@ -349,6 +358,10 @@ ActiveRecord::Schema.define(version: 20180223191129) do
     t.boolean "tinta_nueva_tiro"
     t.boolean "tinta_nueva_retiro"
     t.float "cantidad_solicitada"
+    t.integer "contacto_id"
+    t.string "facturar_a"
+    t.string "orden_de_compra"
+    t.index ["contacto_id"], name: "index_ordenes_produccion_on_contacto_id"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
   end
 

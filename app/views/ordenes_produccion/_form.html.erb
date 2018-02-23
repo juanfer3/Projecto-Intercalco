@@ -31,7 +31,20 @@
   <div class="card text-center">
 
      <div class="card-header">
-        <h1>Datos Generales</h1>
+       <div class="my_card_contactos_form">
+         <div >
+           <h1>Datos Generales</h1>
+         </div>
+
+         <div id="cliente">
+           <div class="">
+             <input type="checkbox"  id="Contacto_nuevo">
+             <label for="" > Registrar Contacto nuevo  </label>
+           </div>
+         </div>
+
+
+     </div>
 
      </div>
 
@@ -44,11 +57,29 @@
 
 
 
-
              <!--Numero de Orden-->
              <div class="col-3">
                <%= f.input :numero_de_orden %>
              </div>
+
+             <div class="col-3">
+               <label for="">Selección el contacto</label>
+               <%=
+
+               f.select  :contacto_id,options_for_select([ "" ]),
+               {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_contactos"}
+
+
+
+               %>
+
+             </div>
+
+
+
+
+
+
 
              <!--Mes-->
              <div class="col-3">
@@ -152,6 +183,7 @@
                          <label for="">Material A Imprimir</label>
                          <input type="text" name=""  class="form-control op_montaje" id="op_material" value="" disabled>
                        </div>
+
                        <div class="col-12">
                          <br>
                        </div>
@@ -167,7 +199,6 @@
                          <input type="text" name=""  class="form-control op_Vendedor" id="op_tamano_hoja" value="" disabled>
                        </div>
 
-
                        <div class="col-2">
                          <label for="">Medida de corte </label>
                          <input type="text" name=""  class="form-control op_montaje" id="op_medida_corte" value="" disabled>
@@ -176,7 +207,6 @@
                        <div class="col-2">
                          <%= f.input :cantidad_hoja %>
                        </div>
-
 
                        <div class="col-2">
                          <label for="">Tamaños Totales</label>
@@ -198,11 +228,6 @@
                        </div>
 
 
-
-
-
-
-
          </div>
          <br>
       </div>
@@ -210,6 +235,41 @@
 </div>
 
 <br>
+
+               <div class="card card-outline-secondary mb-3 text-center">
+                  <div class="card-block">
+                     <div class="container">
+                        <br>
+                        <br>
+                        <div class="my_card_pedidos_form">
+
+
+
+
+                            <div class="col-12">
+                              <label for="">Maquinas</label>
+
+                 <%=
+                 f.select :maquina_ids,
+                  Maquina.all.map{|i| [ i.nombre, i.id]},
+                  {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
+                  %>
+                            </div>
+
+
+
+
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+
+
+
+
+
+
 
 <div class="card card-outline-secondary mb-3 text-center">
    <div class="card-block">
@@ -252,3 +312,9 @@
 <% end %>
 
 </div>
+
+
+<script>
+
+  $ ( "#select_contactos" ).prop("disabled", true)
+</script>

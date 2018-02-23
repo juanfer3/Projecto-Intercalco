@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orden produccion:</strong>
+  <%= @contenedor_de_maquinas.orden_produccion %>
+</p>
+
+<p>
+  <strong>Maquina:</strong>
+  <%= @contenedor_de_maquinas.maquina %>
+</p>
+
+<%= link_to 'Edit', edit_contenedor_de_maquinas_path(@contenedor_de_maquinas) %> |
+<%= link_to 'Back', contenedores_de_maquinas_path %>

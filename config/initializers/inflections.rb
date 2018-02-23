@@ -151,5 +151,9 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'medida_material', 'medidas_materiales'
 
+  inflect.irregular 'facturar_a', 'facturarles_a'
+  inflect.irregular 'orden_de_compra', 'ordenes_de_compras'
+  inflect.irregular 'contenedor_de_maquinas', 'contenedores_de_maquinas'
+
 
 end
