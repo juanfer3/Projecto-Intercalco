@@ -1651,7 +1651,6 @@ $("#buscandoControlador").on("select2:select", function (e) {
     method:'get',
     success: function (data){
       console.log();
-
     }
   })
 

@@ -7,7 +7,27 @@ class OrdenProduccion < ApplicationRecord
   has_many :contenedores_de_ordenes, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :contenedores_de_ordenes, reject_if: :all_blank, allow_destroy: true
 
-  attr_accessor :buscar
+  attr_accessor :buscar, :contenedor_prueba
+
+  after_save :create_despachos
+
+  def create_despachos
+    if contenedor_prueba.present?
+      contener = []
+
+      contenedor_prueba.each do |contenedor|
+        puts "*****************Si existe #{self.id}***********************"
+        contener << [{"id" => self.id}, {"despacho_id" => contenedor}]
+
+      end
+
+      contener.each do |c|
+        puts "***************El contenedor existe *************************"
+
+      end
+
+    end
+  end
 
   def self.consultar_fecha(fecha)
     puts "****************la fecha es #{fecha}************************"
