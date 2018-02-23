@@ -11,7 +11,7 @@ wb.styles do |style|
 
 
 
-   montajes = Montaje.joins(:desarrollos_de_tintas => :malla ).order("codigo")
+
 
 	 sheet.add_row ["CLIENTE", "CODIGO", "NOMBRE MONTAJE", "TINTA", "MALLA", "LINEA DE COLOR"],
 	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,
@@ -20,10 +20,10 @@ wb.styles do |style|
 
 
 
-     montajes.each do |montaje|
-  	   sheet.add_row [montaje.cliente.nombre, montaje.codigo,
-       montaje.nombre, montaje.desarrollos_de_tintas,
-       montaje.desarrollos_de_tintas.pluck(:malla => :nombre)*", "  " "]
+     @desarrollos_de_tintas.each do |tintas|
+  	   sheet.add_row [tintas.montaje.cliente.nombre, tintas.montaje.codigo,
+       tintas.montaje.nombre, 
+       tintas.descripción, tintas.malla.nombre, tintas.linea_de_color.nombre]
      end
 
 
