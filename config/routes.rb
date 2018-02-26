@@ -160,4 +160,6 @@ Rails.application.routes.draw do
   get 'buscador_de_tintas_formuladas', to: 'tintas_formuladas#buscador_de_tintas_formuladas', as: :buscador_de_tintas_formuladas
 
   post 'import_materiales_excel' => "materiales#import_materiales_excel", as: :import_materiales_excel
+
+  get 'contactos_for_select/:id', to: 'montajes#contactos_for_select', as: :contactos_for_select
 end

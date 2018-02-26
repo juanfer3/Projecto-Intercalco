@@ -435,6 +435,8 @@ end
 
   def select_buscar_montaje
     @montaje = Montaje.find(params[:id])
+    buscar = "SIN DEFINIR"
+    @cliente = Cliente.find_by(nombre: buscar)
     respond_to do |format|
       format.js
     end
@@ -680,15 +682,15 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def orden_produccion_params
       params.require(:orden_produccion).permit(:montaje_id,:contacto_id,:numero_de_orden,:contacto,
-        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
+        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:facturar_a,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
-        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
+        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,  :contacto_nuevo,:tomar_cliente, :tomar_usuario,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
         :diferencia, :numero_de_remision, :estado,:_destroy, :id],
-      contenedores_de_ordenes_attributes:[:orden_produccion_id, :maquina_id, :maquina_ids => []]
+      contenedores_de_ordenes_attributes:[:id,:_destroy,:orden_produccion_id, :maquina_id, :maquina_ids => []]
       )
 
     end

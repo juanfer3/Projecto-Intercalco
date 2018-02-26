@@ -5,6 +5,31 @@
 
 <%= link_to 'Back', ordenes_produccion_path %>
 <script type="text/javascript">
+$("#buscandoControlador").select2()
+var busVal = $("#buscandoControlador").select2("val")
+
+if (busVal == null ) {
+
+
+
+}else {
+  if (busVal.length != 0 ) {
+
+
+        $.ajax({
+          url:'/select_buscar_montaje/'+busVal+'',
+          method:'get',
+          success: function (data){
+            console.log();
+            toastr.info("edit")
+            var valor_id = "<%=@orden_produccion.contacto.id%>"
+            $('#select_contactos').val(valor_id).trigger('change');
+          }
+        })
+  }
+}
+
+
 
 
 

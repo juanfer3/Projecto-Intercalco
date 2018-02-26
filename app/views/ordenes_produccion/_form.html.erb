@@ -11,7 +11,6 @@
   <%= f.error_notification %>
 
 
-
 <div class="col-6">
   <label for="">Selección De Referencia</label>
   <%=
@@ -62,36 +61,65 @@
                <%= f.input :numero_de_orden %>
              </div>
 
-             <div class="col-3">
+             <div class="col-3" id="contenedorContactoExistente">
                <label for="">Selección el contacto</label>
                <%=
 
                f.select  :contacto_id,options_for_select([ "" ]),
-               {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_contactos"}
-
-
+               {}, {required: 'true', autofocus: 'true', class: 'js-example-contactos form-control', id: "select_contactos"}
 
                %>
 
              </div>
+             <script type="text/javascript">
+               $(".js-example-contactos").select2({
 
+               })
+             </script>
 
-
+             <div class="col-3 ContenedorContactoNuevo">
+               <label for="">Nombre del Contacto nuevo</label>
+               <%=
+                f.text_field :contacto_nuevo, class: "form-control"
+               %>
+             </div>
 
 
 
 
              <!--Mes-->
-             <div class="col-3">
+             <div class="col-3 " >
                <label for="">Cliente</label>
+               <div class="ocultar">
+                 <%=
+                  f.text_field :tomar_cliente, class: "form-control"
+                 %>
+               </div>
                <input type="text" name=""  class="form-control op_cliente" id="op_cliente" value="" disabled>
              </div>
 
              <div class="col-3">
                <label for="">Vendedor</label>
+               <div class="ocultar">
+                 <%=
+                  f.text_field :tomar_usuario, class: "form-control"
+                 %>
+               </div>
                <input type="text" name=""  class="form-control op_Vendedor" id="op_vendedor" value="" disabled>
              </div>
 
+
+             <div class="col-3">
+               <label for="">Facturar a</label>
+                 <%=
+                  f.text_field :facturar_a, class: "form-control"
+                 %>
+             </div>
+
+             <div class="col-3">
+               <label for="">Cantidad </label>
+               <%= f.input :cantidad_solicitada, label: false %>
+             </div>
 
              <div class="col-3">
                <label for="">Linea De Color</label>
@@ -99,10 +127,7 @@
              </div>
 
 
-             <div class="col-3">
-               <label for="">Cantidad </label>
-               <%= f.input :cantidad_solicitada, label: false %>
-             </div>
+
 
              <div class="col-3">
                <label for="">Linea De Producto</label>
@@ -260,6 +285,7 @@
 
 
                         </div>
+                        <br>
                      </div>
                   </div>
                </div>
@@ -315,6 +341,6 @@
 
 
 <script>
-
   $ ( "#select_contactos" ).prop("disabled", true)
+
 </script>

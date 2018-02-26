@@ -1,0 +1,67 @@
+
+
+$ ( "#select_contactos" ).prop("disabled", false)
+$ ( "#select_contactos option" ).remove()
+<%@cliente.contactos.each do |cliente|%>
+var cliente_id = "<%=cliente.id%>"
+var text = "<%=cliente.nombre_contacto%>"
+    var data = {
+        id: cliente_id,
+        text: text
+    };
+
+    var newOption = new Option(data.text, data.id, false, false);
+
+    $('#select_contactos').append(newOption).trigger('change');
+
+<%end%>
+
+var revizar_select = $('#select_contactos option').length
+
+<%@clien.contactos.each do |cliente|%>
+if (revizar_select <= 0)
+
+{
+
+  var cliente_id = "<%=cliente.id%>"
+  var text = "<%=cliente.nombre_contacto%>"
+      var data = {
+          id: cliente_id,
+          text: text
+      };
+
+      var newOption = new Option(data.text, data.id, false, false);
+
+      $('#select_contactos').append(newOption).trigger('change');
+
+        $("#Contacto_nuevo").attr('checked',true);
+
+        $("#Contacto_nuevo_contenedor").hide()
+        if( $('#Contacto_nuevo').prop('checked') ) {
+
+          $('.ContenedorContactoNuevo').show()
+          $('#contenedorContactoExistente').hide();
+        }else {
+
+          $('#contenedorContactoExistente').show()
+          $(".ContenedorContactoNuevo").hide()
+        }
+
+
+
+
+}else {
+        $("#Contacto_nuevo_contenedor").show()
+
+          $("#Contacto_nuevo").attr('checked',false);
+          if( $('#Contacto_nuevo').prop('checked') ) {
+
+            $('.ContenedorContactoNuevo').show()
+            $('#contenedorContactoExistente').hide();
+          }else {
+
+            $('#contenedorContactoExistente').show()
+            $(".ContenedorContactoNuevo").hide()
+          }
+}
+  <%end%>

@@ -17,20 +17,38 @@ class OrdenProduccion < ApplicationRecord
 
 
 
-  attr_accessor :buscar, :contenedor_prueba
+  attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario
 
-  after_save :create_despachos
+  after_save :create_contenedores_de_maquinas
+  before_save :crear_contactos
+
+  def crear_contactos
+    self.contacto = Contacto.create(nombre_contacto: contacto_nuevo, user_id: tomar_usuario, cliente_id: tomar_cliente) if contacto_nuevo.present?
+    if self.contacto.save
+      puts "****************REGISTRO ALMACENADO************************"
+    else
+      puts "*******************FALLO EN LA INSERCION*********************"
+    end
+  end
 
 
-  def create_despachos
+  def create_contenedores_de_maquinas
     if contenedor_prueba.present?
       contenedor2 = contenedor_prueba
       contener = []
 
       for i in 1..contenedor2.length
+        maquina_save = ContenedorDeMaquinas.new(orden_produccion_id: self.id, maquina_id: contenedor2[i])
+
+        if maquina_save.save
+          puts "******************CONTENEDOR CREADO**********************"
+        else
+          puts "******************NO SE A CREADO EL CONTENEDOR**********************"
+        end
         if contenedor2[i] != nil
           puts "*****************Si existe #{self.id}***********************"
           contener << [self.id, contenedor2[i]]
+          ContenedorDeMaquinas.new(orden_produccion_id: self.id, maquina_id: contenedor2[i])
           puts "**************#{contener[i]}**************************"
         end
 
@@ -43,6 +61,7 @@ class OrdenProduccion < ApplicationRecord
             puts "***************** no COntiene algo***********************"
           else
             puts "*******************COntiene Algo*********************"
+
           end
       end
 

@@ -28,6 +28,17 @@ class MontajesController < ApplicationController
     end
   end
 
+
+def contactos_for_select
+  @cliente = Cliente.find(params[:id])
+  buscar = "SIN DEFINIR"
+  @clien = Cliente.find_by(nombre: buscar)
+  respond_to do |format|
+    format.js
+  end
+end
+
+
   def tintas_select
     puts "******************Entra al controlador**********************"
     @montaje_tintas = Montaje.find(params[:id])
@@ -323,12 +334,12 @@ class MontajesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
       params.require(:montaje).permit(:cliente_id, :material_id,:material,:nombre, :tamano, :dimension,:new_cliente,:select_vendedor,
-        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,
+        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,:contacto_nuevo_montaje,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
          :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
-         :tamano_hoja,:tamano_por_hojas,:tamano_de_corte,
+         :tamano_hoja,:tamano_por_hojas,:tamano_de_corte,    :nit_cliente, :dir_cliente, :tel_cliente, :tel_contacto,
          :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,
        desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy, :id],
@@ -338,15 +349,16 @@ class MontajesController < ApplicationController
         :referencia_de_orden, :linea_de_color_id, :tipo_de_produccion, :material, :temperatura,
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
         :tiro, :retiro, :_destroy, :id],
-      ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,
+      ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,:contacto_id,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
-        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,
+        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,:tomar_cliente, :contacto_nuevo,:facturar_a,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba =>[],
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-          :diferencia, :numero_de_remision, :estado, :_destroy, :id]
+          :diferencia, :numero_de_remision, :estado, :_destroy, :id],
+      contenedores_de_ordenes_attributes:[:id,:_destroy,:orden_produccion_id, :maquina_id, :maquina_ids => []]
       ]
 
       )

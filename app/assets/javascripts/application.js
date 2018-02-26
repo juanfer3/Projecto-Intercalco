@@ -36,6 +36,10 @@ $(document).on('turbolinks:load', function() {
 
 
 
+$('.ocultar').hide()
+
+
+
   $('#buscador_de_tintas_formuladas').keyup(function(){
     var data=$('#buscador_de_tintas_formuladas').val()
     $.ajax({
@@ -64,19 +68,6 @@ $(document).on('turbolinks:load', function() {
     })
   })
 
-
-  $('#buscador_montajes').keyup(function(){
-    var data=$('#buscador_montajes').val()
-    $.ajax({
-      url:'/buscador_de_fichas/',
-      data: {data:data},
-      method:'get',
-      success: function (data){
-        console.log();
-
-      }
-    })
-  })
 
 
   $('#buscar_orden').keyup(function(){
@@ -192,7 +183,6 @@ $("#crearOrden").change(function(){
   }else {
 
     $('#contenedorContactoExistente').show()
-    $('#vendedor_contacto_nuevo').addClass('form-control')
     $(".ContenedorContactoNuevo").hide()
   }
 
@@ -201,14 +191,13 @@ $("#crearOrden").change(function(){
 
     if( $('#Contacto_nuevo').prop('checked') ) {
 
-      $('.ContenedorClienteNuevo').show()
-      $('#vendedor_cliente_nuevo').addClass("form-control")
-      $('#contenedorClienteExistente').hide();
+      $('.ContenedorContactoNuevo').show()
+      $('#contenedorContactoExistente').hide();
     }else {
 
-      $('#contenedorClienteExistente').show()
-      $('#montaje_new_cliente').val("")
-      $(".ContenedorClienteNuevo").hide()
+      $('#contenedorContactoExistente').show()
+      $('#orden_produccion_contacto_nuevo').val("")
+      $(".ContenedorContactoNuevo").hide()
     }
 
   })
@@ -221,11 +210,18 @@ $("#crearOrden").change(function(){
 
     $('.ContenedorClienteNuevo').show()
     $('#contenedorClienteExistente').hide();
+    $('#contenedorContactoExistente').hide();
+    $(".ContenedorContactoNuevo").hide()
+    $('#orden_produccion_contacto_nuevo').val("")
+    $("#Contacto_nuevo_contenedor").hide()
   }else {
 
     $('#contenedorClienteExistente').show()
     $('#vendedor_cliente_nuevo').addClass('form-control')
     $(".ContenedorClienteNuevo").hide()
+    $('#contenedorContactoExistente').show();
+    $(".ContenedorContactoNuevo").show()
+    $("#Contacto_nuevo_contenedor").show()
   }
 
 
@@ -236,11 +232,18 @@ $("#crearOrden").change(function(){
       $('.ContenedorClienteNuevo').show()
       $('#vendedor_cliente_nuevo').addClass("form-control")
       $('#contenedorClienteExistente').hide();
+      $('#contenedorContactoExistente').hide();
+      $(".ContenedorContactoNuevo").hide()
+      $('#orden_produccion_contacto_nuevo').val("")
+      $("#Contacto_nuevo_contenedor").hide()
     }else {
 
       $('#contenedorClienteExistente').show()
       $('#montaje_new_cliente').val("")
       $(".ContenedorClienteNuevo").hide()
+      $('#contenedorContactoExistente').show();
+      $(".ContenedorContactoNuevo").show()
+      $("#Contacto_nuevo_contenedor").show()
     }
 
   })
@@ -1685,26 +1688,7 @@ $("#buscandoControlador").on("select2:select", function (e) {
 })
 
 
-var busVal = $("#buscandoControlador").select2("val")
 
-if (busVal == null ) {
-
-
-
-}else {
-  if (busVal.length != 0 ) {
-
-
-        $.ajax({
-          url:'/select_buscar_montaje/'+busVal+'',
-          method:'get',
-          success: function (data){
-            console.log();
-
-          }
-        })
-  }
-}
 
 
 

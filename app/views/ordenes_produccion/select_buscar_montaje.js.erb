@@ -3,7 +3,9 @@
 $("#AgregarTintas").html('<%= j render 'montaje_tintas_tiro'%>')
 
 $('#op_cliente').val("<%=@montaje.cliente.nombre%>")
+$('#orden_produccion_tomar_cliente').val("<%=@montaje.cliente.id%>")
 $('#op_vendedor').val("<%=@montaje.cliente.user.nombre%>")
+$('#orden_produccion_tomar_usuario').val("<%=@montaje.cliente.user.id%>")
 
 $('#op_linea_producto').val("<%=@montaje.linea_producto.nombre%>")
 $('#op_linea_de_color').val("<%=@montaje.linea_de_color.nombre%>")
@@ -12,6 +14,7 @@ $('#op_material').val("<%=@montaje.material.descripcion%>")
 $('#op_medida_hoja').val("<%=@montaje.tamano_hoja%>")
 $('#op_tamano_hoja').val("<%=@montaje.tamano_por_hojas%>")
 $('#op_medida_corte').val("<%=@montaje.tamano_de_corte%>")
+
 
 
 $ ( "#select_contactos" ).prop("disabled", false)
@@ -32,6 +35,67 @@ var text = "<%=cliente.nombre_contacto%>"
 
 var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
 var tamano_por_hojas = $("#op_tamano_hoja").val()
+
+var revizar_select = $('#select_contactos option').length
+
+
+
+
+
+
+
+
+
+<%@cliente.contactos.each do |cliente|%>
+if (revizar_select <= 0)
+
+{
+
+  var cliente_id = "<%=cliente.id%>"
+  var text = "<%=cliente.nombre_contacto%>"
+      var data = {
+          id: cliente_id,
+          text: text
+      };
+
+      var newOption = new Option(data.text, data.id, false, false);
+
+      $('#select_contactos').append(newOption).trigger('change');
+
+        $("#Contacto_nuevo").attr('checked',true);
+        $("#Contacto_nuevo").hide()
+        if( $('#Contacto_nuevo').prop('checked') ) {
+
+          $('.ContenedorContactoNuevo').show()
+          $('#contenedorContactoExistente').hide();
+        }else {
+
+          $('#contenedorContactoExistente').show()
+          $(".ContenedorContactoNuevo").hide()
+        }
+
+
+
+
+}else {
+  $("#Contacto_nuevo").show()
+    $("#Contacto_nuevo").attr('checked',false);
+    if( $('#Contacto_nuevo').prop('checked') ) {
+
+      $('.ContenedorContactoNuevo').show()
+      $('#contenedorContactoExistente').hide();
+    }else {
+
+      $('#contenedorContactoExistente').show()
+      $(".ContenedorContactoNuevo").hide()
+    }
+}
+  <%end%>
+
+
+
+
+
 
 if (cantidad_hojas.length <= 0 && tamano_por_hojas.length <= 0) {
 
