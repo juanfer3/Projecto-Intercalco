@@ -20,6 +20,12 @@ $('#op_medida_corte').val("<%=@montaje.tamano_de_corte%>")
 $ ( "#select_contactos" ).prop("disabled", false)
 $ ( "#select_contactos option" ).remove()
 
+$ ( "#select_facturar_a" ).prop("disabled", false)
+$ ( "#select_facturar_a option" ).remove()
+
+$ ( "#select_entrega" ).prop("disabled", false)
+$ ( "#select_entrega option" ).remove()
+
 <%@montaje.cliente.contactos.each do |cliente|%>
 var cliente_id = "<%=cliente.id%>"
 var text = "<%=cliente.nombre_contacto%>"
@@ -33,24 +39,22 @@ var text = "<%=cliente.nombre_contacto%>"
 <%end%>
 
 
-$ ( "#select_facturar_a" ).prop("disabled", false)
-$ ( "#select_facturar_a option" ).remove()
+
 
 <%@montaje.cliente.nombres_facturaciones.each do |factura|%>
-var cliente_id = "<%=factura.id%>"
-var text = "<%=factura.nombre%>"
-    var data = {
-        id: cliente_id,
-        text: text
-    };
+    var cliente_id = "<%=factura.id%>"
+    var text = "<%=factura.nombre%>"
+        var data = {
+            id: cliente_id,
+            text: text
+        };
 
     var newOption = new Option(data.text, data.id, false, false);
     $('#select_facturar_a').append(newOption).trigger('change');
 <%end%>
 
 
-$ ( "#select_entrega" ).prop("disabled", false)
-$ ( "#select_entrega option" ).remove()
+
 
 <%@montaje.cliente.lugares_despachos.each do |despacho|%>
 var cliente_id = "<%=despacho.id%>"
@@ -69,6 +73,131 @@ var cantidad_hojas= $("#orden_produccion_cantidad_hoja").val()
 var tamano_por_hojas = $("#op_tamano_hoja").val()
 
 var revizar_select = $('#select_contactos option').length
+var revizar_select_entrega = $('#select_entrega option').length
+var revizar_select_facturar_a = $('#select_facturar_a option').length
+
+
+
+
+
+<%@cliente.nombres_facturaciones.each do |cliente|%>
+
+if (revizar_select_facturar_a <= 0)
+
+{
+
+  var cliente_id = "<%=cliente.id%>"
+  var text = "<%=cliente.nombre%>"
+      var data = {
+          id: cliente_id,
+          text: text
+      };
+
+      var newOption = new Option(data.text, data.id, false, false);
+
+      $('#select_facturar_a').append(newOption).trigger('change');
+
+        $("#factura_nuevo").attr('checked',true);
+        $("#factura_nuevo").hide();
+        if( $('#factura_nuevo').prop('checked') ) {
+
+          $('.ContenedorFacturaNuevo').show()
+          $('#contenedorFacturaExistente').hide();
+        }else {
+
+          $('#contenedorFacturaExistente').show()
+          $(".ContenedorFacturaNuevo").hide()
+        }
+
+
+
+
+
+}else {
+  $("#factura_nuevo").show()
+    $("#facturao_nuevo").attr('checked',false);
+    if( $('#factura_nuevo').prop('checked') ) {
+
+      $('.ContenedorFacturaNuevo').show()
+      $('#contenedorFacturaExistente').hide();
+    }else {
+
+      $('#contenedorFacturaExistente').show()
+      $(".ContenedorFacturaNuevo").hide()
+    }
+}
+  <%end%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <%@cliente.lugares_despachos.each do |cliente|%>
+  if (revizar_select_entrega <= 0)
+
+  {
+
+    var cliente_id = "<%=cliente.id%>"
+    var text = "<%=cliente.direccion%>"
+        var data = {
+            id: cliente_id,
+            text: text
+        };
+
+        var newOption = new Option(data.text, data.id, false, false);
+
+        $('#select_entrega').append(newOption).trigger('change');
+
+          $("#despacho_nuevo").attr('checked',true);
+          $("#despacho_nuevo").hide()
+          if( $('#despacho_nuevo').prop('checked') ) {
+
+            $('.ContenedorDespachoNuevo').show()
+            $('#contenedorDespachoExistente').hide();
+          }else {
+
+            $('#contenedorDespachoExistente').show()
+            $(".ContenedorDespachoNuevo").hide()
+          }
+
+
+
+
+  }else {
+    $("#despacho_nuevo").show()
+      $("#despacho_nuevo").attr('checked',false);
+      if( $('#despacho_nuevo').prop('checked') ) {
+
+        $('.ContenedorDespachoNuevo').show()
+        $('#contenedorDespachoExistente').hide();
+      }else {
+
+        $('#contenedorDespachoExistente').show()
+        $(".ContenedorDespachoNuevo").hide()
+      }
+  }
+    <%end%>
+
+
+
+
+
+
+
+
 
 
 

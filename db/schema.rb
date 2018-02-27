@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227130802) do
+ActiveRecord::Schema.define(version: 20180227143711) do
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -382,8 +382,12 @@ ActiveRecord::Schema.define(version: 20180227130802) do
     t.string "facturar_a"
     t.string "orden_de_compra"
     t.string "lugar_despacho"
+    t.integer "lugar_despacho_id"
+    t.integer "nombre_facturacion_id"
     t.index ["contacto_id"], name: "index_ordenes_produccion_on_contacto_id"
+    t.index ["lugar_despacho_id"], name: "index_ordenes_produccion_on_lugar_despacho_id"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"
+    t.index ["nombre_facturacion_id"], name: "index_ordenes_produccion_on_nombre_facturacion_id"
   end
 
   create_table "pedidos", force: :cascade do |t|

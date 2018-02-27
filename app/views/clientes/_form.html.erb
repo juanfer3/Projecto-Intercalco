@@ -64,6 +64,73 @@
 
   </div>
 
+
+  <div class="">
+    <br>
+      <div class="card">
+        <div class="card-header">
+          <div class="my_card_contactos_form">
+            <div >
+              <h3>Direcciones Despacho</h3>
+            </div>
+            <div >
+              <%= link_to_add_lugar_depacho('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :lugares_despachos, class: '') %>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+
+          <table class="table">
+            <tbody class='fields_lugar_despacho'>
+              <%=f.fields_for :lugares_despachos do |contc|%>
+
+                 <%= render 'lugar_despacho', f:contc%>
+
+              <%end%>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="">
+    <br>
+      <div class="card">
+        <div class="card-header">
+          <div class="my_card_contactos_form">
+            <div >
+              <h3>Facturar</h3>
+            </div>
+            <div >
+              <%= link_to_add_nombre_facturacion('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :nombres_facturaciones, class: '') %>
+            </div>
+        </div>
+        </div>
+
+
+        <div class="container">
+
+          <table class="table">
+            <tbody class='fields_nombre_facturacion'>
+              <%=f.fields_for :nombres_facturaciones do |contc|%>
+
+                 <%= render 'nombre_facturacion', f:contc%>
+
+              <%end%>
+            </tbody>
+            </table>
+
+        </div>
+    </div>
+  </div>
+
+
   <br>
 
   <div class="btn pull-right">

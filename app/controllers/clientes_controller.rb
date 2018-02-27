@@ -77,6 +77,8 @@ end
   def new
     @cliente = Cliente.new
     @cliente.contactos.build
+    @cliente.nombres_facturaciones.build
+    @cliente.lugares_despachos.build
   end
 
   # GET /clientes/1/edit
@@ -132,6 +134,9 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def cliente_params
       params.require(:cliente).permit(:nombre, :nit, :direccion, :telefono, :correo, :user_id, :estado,
-      contactos_attributes: [:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :user_id,:estado])
+      contactos_attributes: [:id,:_destroy,:nombre_contacto, :telefono, :celular, :correo, :cliente_id, :user_id,:estado],
+      lugares_despachos_attributes:[:id,:_destroy,:cliente_id, :nombre, :direccion, :telefono],
+      nombres_facturaciones_attributes:[:id,:_destroy,:cliente_id, :nombre, :direccion, :telefono]
+    )
     end
 end

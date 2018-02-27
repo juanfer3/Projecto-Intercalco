@@ -35,7 +35,23 @@
            <h1>Datos Generales</h1>
          </div>
 
-         <div id="cliente">
+
+         <div id="ContenederEntrega">
+           <div class="">
+             <input type="checkbox"  id="despacho_nuevo">
+             <label for="" > Lugar despacho nuevo  </label>
+           </div>
+         </div>
+
+         <div id="ContenedorFactura">
+           <div class="">
+             <input type="checkbox"  id="factura_nuevo">
+             <label for="" > Facturar a nuevo  </label>
+           </div>
+         </div>
+
+
+         <div id="ContenedorContacto">
            <div class="">
              <input type="checkbox"  id="Contacto_nuevo">
              <label for="" > Registrar Contacto nuevo  </label>
@@ -77,7 +93,7 @@
                })
              </script>
 
-             <div class="col-3 ContenedorContactoNuevo">
+             <div class="col-3 ContenedorContactoNuevo" id="contacto_nuevo-ocultar">
                <label for="">Nombre del Contacto nuevo</label>
                <%=
                 f.text_field :contacto_nuevo, class: "form-control"
@@ -109,22 +125,35 @@
              </div>
 
 
-             <div class="col-3">
+             <div class="col-3" id="contenedorFacturaExistente">
                <label for="">Facturar a</label>
                  <%=
-                  f.select :facturar_a, options_for_select([ "" ]),
-                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control', id: "select_facturar_a"}
+                  f.select :nombre_facturacion_id, options_for_select([ "" ]),
+                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control select_fact', id: "select_facturar_a"}
+
+                 %>
+             </div>
+             <div class="col-3 ContenedorFacturaNuevo" >
+               <label for="">Facturar a</label>
+               <%=
+                f.text_field :facturar_a_nuevo, class: "form-control"
+               %>
+             </div>
+
+             <div class="col-3 "  id="contenedorDespachoExistente">
+               <label for="">Dirección de envio</label>
+                 <%=
+                  f.select :lugar_despacho_id, options_for_select([ "" ]),
+                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control select_des', id: "select_entrega"}
 
                  %>
              </div>
 
-             <div class="col-3">
-               <label for="">Dirección de envio</label>
-                 <%=
-                  f.select :lugar_despacho, options_for_select([ "" ]),
-                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control', id: "select_entrega"}
-
-                 %>
+             <div class="col-3 ContenedorDespachoNuevo" >
+               <label for="">Dirección Nueva</label>
+               <%=
+                f.text_field :direccion_nueva, class: "form-control"
+               %>
              </div>
 
 
@@ -362,5 +391,8 @@
 
 <script>
   $ ( "#select_contactos" ).prop("disabled", true)
+  $ ( "#select_facturar_a" ).prop("disabled", true)
+  $ ( "#select_entrega" ).prop("disabled", true)
+
 
 </script>

@@ -8,18 +8,10 @@
 $("#buscandoControlador").select2()
 var busVal = $("#buscandoControlador").select2("val")
 
-var direcion = "<%=@orden_produccion.lugar_despacho%>"
-$('#select_entrega').val(direcion).trigger('change');
-
-
-var facturar_a = "<%=@orden_produccion.facturar_a%>"
-$('#select_facturar_a').val(facturar_a).trigger('change');
-
-if (busVal == null ) {
 
 
 
-}else {
+
   if (busVal.length != 0 ) {
 
 
@@ -29,7 +21,62 @@ if (busVal == null ) {
           success: function (data){
 
             var valor_id = "<%=@orden_produccion.contacto.id%>"
-            $('#select_contactos').val(valor_id).trigger('change');
+            $('#select_contactos  ').val(valor_id).trigger('change');
+
+            var direcion = "<%=@orden_produccion.lugar_despacho.id%>"
+            var valor_entrega = $('#select_entrega').val()
+
+            if (direcion == valor_entrega) {
+
+            }else {
+              toastr.info('son direfentes '+direcion+" y "+ valor_entrega)
+              var nombre_direcion = "<%=@orden_produccion.lugar_despacho.direccion%>"
+              var cont = 0
+              var totaloop= $('#select_entrega option').length
+
+
+
+              var input2 = ""
+
+              for (var i = 0; i < totaloop; i++) {
+
+
+                   input2 = $('#select_entrega option:eq('+i+')').text();
+
+
+                  if (input2 == nombre_direcion) {
+
+                    toastr.info('son Igules')
+                    $('#select_entrega option:eq('+i+')').text();
+                    $('#select_entrega option:eq('+i+')').attr("selected", true)
+                  }
+
+
+              }
+
+              var comprobar = $('#select_entrega').val()
+
+              if (comprobar == direcion) {
+                toastr.success("FUCK YEA!!!!!!!!!!!!")
+              }
+
+
+            }
+
+
+
+
+            var facturar_a = "<%=@orden_produccion.nombre_facturacion.id%>"
+            var valor_facturar_a = $('#select_facturar_a').val();
+
+            if (valor_facturar_a == facturar_a) {
+              toastr.info("son iguales")
+            }else{
+              toastr.info("son diferentes")
+              $('#select_facturar_a').val(facturar_a);
+            }
+
+
 
 
 
@@ -39,7 +86,7 @@ if (busVal == null ) {
           }
         })
   }
-}
+
 
 
 

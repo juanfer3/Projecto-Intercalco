@@ -196,21 +196,74 @@ $("#crearOrden").change(function(){
     }else {
 
       $('#contenedorContactoExistente').show()
-      $('#orden_produccion_contacto_nuevo').val("")
+      $('#contact').val("")
       $(".ContenedorContactoNuevo").hide()
     }
 
   })
 
+  //Checbos despachos form ordenes
+  if( $('#despacho_nuevo').prop('checked') ) {
+
+    $('.ContenedorDespachoNuevo').show()
+    $('#contenedorDespachoExistente').hide();
+  }else {
+
+    $('#contenedorDespachoExistente').show()
+    $(".ContenedorDespachoNuevo").hide()
+  }
+
+
+  $("#despacho_nuevo").change(function(){
+
+    if( $('#despacho_nuevo').prop('checked') ) {
+
+      $('.ContenedorDespachoNuevo').show()
+      $('#contenedorDespachoExistente').hide();
+    }else {
+
+      $('#contenedorDespachoExistente').show()
+      $('#des').val("")
+      $(".ContenedorDespachoNuevo").hide()
+    }
+
+  })
+//Checbos facturar_a nuevo form ordenes
+if( $('#factura_nuevo').prop('checked') ) {
+
+  $('.ContenedorFacturaNuevo').show()
+  $('#contenedorFacturaExistente').hide();
+}else {
+
+  $('#contenedorFacturaExistente').show()
+  $(".ContenedorFacturaNuevo").hide()
+}
+
+
+$("#factura_nuevo").change(function(){
+
+  if( $('#factura_nuevo').prop('checked') ) {
+
+    $('.ContenedorFacturaNuevo').show()
+    $('#contenedorFacturaExistente').hide();
+  }else {
+
+    $('#contenedorFacturaExistente').show()
+    $('#fact').val("")
+    $(".ContenedorFacturaNuevo").hide()
+  }
+
+})
 
 
 
-
+//Checbos cliente nuevo form montaje
   if( $('#crearCliente').prop('checked') ) {
 
     $('.ContenedorClienteNuevo').show()
     $('#contenedorClienteExistente').hide();
     $('#contenedorContactoExistente').hide();
+
     $(".ContenedorContactoNuevo").hide()
     $('#orden_produccion_contacto_nuevo').val("")
     $("#Contacto_nuevo_contenedor").hide()
@@ -222,6 +275,7 @@ $("#crearOrden").change(function(){
     $('#contenedorContactoExistente').show();
     $(".ContenedorContactoNuevo").show()
     $("#Contacto_nuevo_contenedor").show()
+
   }
 
 
@@ -233,8 +287,18 @@ $("#crearOrden").change(function(){
       $('#vendedor_cliente_nuevo').addClass("form-control")
       $('#contenedorClienteExistente').hide();
       $('#contenedorContactoExistente').hide();
+
+      $('.ContenedorFacturaNuevo').hide()
+      $('#fact').val("")
+
+      $('.ContenedorDespachoNuevo').hide()
+      $('#des').val("")
+
+      $('.ContenedorContacto').hide()
+      $('#contact').val("")
+
       $(".ContenedorContactoNuevo").hide()
-      $('#orden_produccion_contacto_nuevo').val("")
+
       $("#Contacto_nuevo_contenedor").hide()
     }else {
 
@@ -244,10 +308,51 @@ $("#crearOrden").change(function(){
       $('#contenedorContactoExistente').show();
       $(".ContenedorContactoNuevo").show()
       $("#Contacto_nuevo_contenedor").show()
+
+      $('.ContenedorFacturaNuevo').show()
+
+      $('.ContenedorDespachoNuevo').show()
+      $('.ContenedorContacto').show()
+
+
+      if( $('#Contacto_nuevo').prop('checked') ) {
+
+        $('.ContenedorContactoNuevo').show()
+        $('#contenedorContactoExistente').hide();
+      }else {
+
+        $('#contenedorContactoExistente').show()
+        $(".ContenedorContactoNuevo").hide()
+      }
+      //Checbos despachos form ordenes
+      if( $('#despacho_nuevo').prop('checked') ) {
+
+        $('.ContenedorDespachoNuevo').show()
+        $('#contenedorDespachoExistente').hide();
+      }else {
+
+        $('#contenedorDespachoExistente').show()
+        $(".ContenedorDespachoNuevo").hide()
+      }
+      
+    if( $('#factura_nuevo').prop('checked') ) {
+
+      $('.ContenedorFacturaNuevo').show()
+      $('#contenedorFacturaExistente').hide();
+    }else {
+
+      $('#contenedorFacturaExistente').show()
+      $(".ContenedorFacturaNuevo").hide()
+    }
+
+
+
+
     }
 
   })
 
+$("#contacto_nuevo-ocultar").hide()
 
 
 
@@ -2006,7 +2111,7 @@ $('#busqueda_fop').on("select2:select", function (e) {
 
   $('form').on('click', '.remove_contactos', function(event) {
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').remove();
+    $(this).closest('tr').hide();
     return event.preventDefault();
   });
 
@@ -2017,6 +2122,40 @@ $('#busqueda_fop').on("select2:select", function (e) {
     $('.fields_contactos').append($(this).data('fields').replace(regexp, time));
     return event.preventDefault();
   });
+
+
+
+
+  $('form').on('click', '.remove_lugar_despacho', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').hide();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.add_lugar_depacho', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_lugar_despacho').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
+
+
+  $('form').on('click', '.remove_nombre_facturacion', function(event) {
+    $(this).prev('input[type=hidden]').val('1');
+    $(this).closest('tr').hide();
+    return event.preventDefault();
+  });
+
+  $('form').on('click', '.add_nombre_facturacion', function(event) {
+    var regexp, time;
+    time = new Date().getTime();
+    regexp = new RegExp($(this).data('id'), 'g');
+    $('.fields_nombre_facturacion').append($(this).data('fields').replace(regexp, time));
+    return event.preventDefault();
+  });
+
+
 
 
   $('form').on('click', '.remove_desarrollo_tintas', function(event) {

@@ -1,6 +1,8 @@
 class OrdenProduccion < ApplicationRecord
   belongs_to :montaje
   belongs_to :contacto
+  belongs_to :lugar_despacho
+  belongs_to :nombre_facturacion
 
   has_many :contenedores_de_maquinas, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :contenedores_de_maquinas, reject_if: :all_blank, allow_destroy: true
@@ -17,34 +19,40 @@ class OrdenProduccion < ApplicationRecord
 
 
 
-  attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario
+  attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo
 
   after_save :create_contenedores_de_maquinas
   before_save :antes_de_crear
 
   def antes_de_crear
-    if facturar_a.present?
-      puts "*********************Facturar a: #{facturar_a}*******************"
-      buscar_facturar = NombreFacturacion.find_by(nombre: facturar_a)
+    if direccion_nueva.present?
+      puts "*********************Facturar a: #{direccion_nueva}*******************"
+      buscar_facturar = LugarDespacho.find_by(direccion: direccion_nueva, cliente_id:tomar_cliente)
 
       if buscar_facturar == nil
-        nombres_facturacion = NombreFacturacion.create(cliente_id: tomar_cliente, nombre: facturar_a)
+        nombres_facturacion = LugarDespacho.create(cliente_id: tomar_cliente, direccion: direccion_nueva)
         if nombres_facturacion.save
           puts "****************Registro Guardado************************"
+          self.lugar_despacho_id = nombres_facturacion.id
         end
+      else
+        self.lugar_despacho_id = buscar_facturar.id
       end
 
     end
 
-    if lugar_despacho.present?
-      puts "********************Despachar a: #{lugar_despacho}********************"
-      buscar_despacho = LugarDespacho.find_by(direccion: lugar_despacho)
+    if facturar_a_nuevo.present?
+      puts "********************Despachar a: #{facturar_a_nuevo}********************"
+      buscar_despacho = NombreFacturacion.find_by(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
 
       if buscar_despacho == nil
-        direccion_despacho = LugarDespacho.create(cliente_id: tomar_cliente, direccion: lugar_despacho)
+        direccion_despacho = NombreFacturacion.create(cliente_id: tomar_cliente, nombre: facturar_a_nuevo)
         if direccion_despacho.save
           puts "****************Registro Guardado************************"
+          self.lugar_despacho_id = direccion_despacho.id
         end
+      else
+        self.lugar_despacho_id = buscar_despacho.id
       end
 
     end
