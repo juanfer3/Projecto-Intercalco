@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nombres Facturaciones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nombres_facturaciones.each do |nombre_facturacion| %>
+      <tr>
+        <td><%= nombre_facturacion.cliente %></td>
+        <td><%= nombre_facturacion.nombre %></td>
+        <td><%= nombre_facturacion.direccion %></td>
+        <td><%= nombre_facturacion.telefono %></td>
+        <td><%= link_to 'Show', nombre_facturacion %></td>
+        <td><%= link_to 'Edit', edit_nombre_facturacion_path(nombre_facturacion) %></td>
+        <td><%= link_to 'Destroy', nombre_facturacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Nombre Facturacion', new_nombre_facturacion_path %>

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lugares Despachos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lugares_despachos.each do |lugar_despacho| %>
+      <tr>
+        <td><%= lugar_despacho.cliente %></td>
+        <td><%= lugar_despacho.nombre %></td>
+        <td><%= lugar_despacho.direccion %></td>
+        <td><%= lugar_despacho.telefono %></td>
+        <td><%= link_to 'Show', lugar_despacho %></td>
+        <td><%= link_to 'Edit', edit_lugar_despacho_path(lugar_despacho) %></td>
+        <td><%= link_to 'Destroy', lugar_despacho, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lugar Despacho', new_lugar_despacho_path %>

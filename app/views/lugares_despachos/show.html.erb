@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cliente:</strong>
+  <%= @lugar_despacho.cliente %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @lugar_despacho.nombre %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @lugar_despacho.direccion %>
+</p>
+
+<p>
+  <strong>Telefono:</strong>
+  <%= @lugar_despacho.telefono %>
+</p>
+
+<%= link_to 'Edit', edit_lugar_despacho_path(@lugar_despacho) %> |
+<%= link_to 'Back', lugares_despachos_path %>

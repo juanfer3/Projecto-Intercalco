@@ -7,6 +7,12 @@ class Cliente < ApplicationRecord
   has_many :montajes , inverse_of: :cliente, dependent: :destroy
   accepts_nested_attributes_for :montajes, reject_if: :all_blank, allow_destroy: true
 
+  has_many :lugares_despachos , inverse_of: :cliente, dependent: :destroy
+  accepts_nested_attributes_for :lugares_despachos, reject_if: :all_blank, allow_destroy: true
+
+  has_many :nombres_facturaciones , inverse_of: :cliente, dependent: :destroy
+  accepts_nested_attributes_for :nombres_facturaciones, reject_if: :all_blank, allow_destroy: true
+
 
 
   def self.subir_excel(file )

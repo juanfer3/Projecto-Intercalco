@@ -1,0 +1,14 @@
+<%= simple_form_for(@nombre_facturacion) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :cliente %>
+    <%= f.input :nombre %>
+    <%= f.input :direccion %>
+    <%= f.input :telefono %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

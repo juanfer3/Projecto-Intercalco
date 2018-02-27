@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lugares_despachos
+  resources :nombres_facturaciones
   resources :contenedores_de_maquinas
   resources :linea_de_colores
   resources :materiales

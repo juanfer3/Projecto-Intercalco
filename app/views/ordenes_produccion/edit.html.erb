@@ -8,6 +8,13 @@
 $("#buscandoControlador").select2()
 var busVal = $("#buscandoControlador").select2("val")
 
+var direcion = "<%=@orden_produccion.lugar_despacho%>"
+$('#select_entrega').val(direcion).trigger('change');
+
+
+var facturar_a = "<%=@orden_produccion.facturar_a%>"
+$('#select_facturar_a').val(facturar_a).trigger('change');
+
 if (busVal == null ) {
 
 
@@ -20,10 +27,15 @@ if (busVal == null ) {
           url:'/select_buscar_montaje/'+busVal+'',
           method:'get',
           success: function (data){
-            console.log();
-            toastr.info("edit")
+
             var valor_id = "<%=@orden_produccion.contacto.id%>"
             $('#select_contactos').val(valor_id).trigger('change');
+
+
+
+
+
+
           }
         })
   }

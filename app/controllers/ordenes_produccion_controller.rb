@@ -683,7 +683,7 @@ end
     def orden_produccion_params
       params.require(:orden_produccion).permit(:montaje_id,:contacto_id,:numero_de_orden,:contacto,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:facturar_a,
-        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
+        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,:lugar_despacho,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,  :contacto_nuevo,:tomar_cliente, :tomar_usuario,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
