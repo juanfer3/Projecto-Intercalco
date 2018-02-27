@@ -83,7 +83,20 @@
                         {}, {required: 'true', autofocus: 'true', class: 'form-control  col-12', id: "vendedor_cliente_nuevo"}%>
                       </div>
 
+                      <div class="col-4 ContenedorClienteNuevo">
+                        <label for="">Nit Cliente</label> <br>
+                        <%=f.text_field :nit_cliente,  :class => 'form-control '%>
+                      </div>
 
+                      <div class="col-4 ContenedorClienteNuevo">
+                        <label for="">Telefono Cliente</label> <br>
+                        <%=f.text_field :tel_cliente,  :class => 'form-control '%>
+                      </div>
+
+                      <div class="col-4 ContenedorClienteNuevo">
+                        <label for="">Direccion Cliente</label> <br>
+                        <%=f.text_field :dir_cliente,  :class => 'form-control '%>
+                      </div>
 
 
               <!--Linea De Color-->

@@ -81,7 +81,7 @@ class Montaje < ApplicationRecord
 
 
 
-    self.cliente = Cliente.create(nombre: new_cliente, user_id: select_vendedor) if new_cliente.present?
+    self.cliente = Cliente.create(nombre: new_cliente, nit: nit_cliente,direccion: dir_cliente,user_id: select_vendedor) if new_cliente.present?
     contacto_creado = Contacto.create(nombre_contacto: contacto_nuevo_montaje, user_id: select_vendedor, cliente_id: self.cliente.id) if contacto_nuevo_montaje.present?
     if contacto_creado != nil
       self.ordenes_produccion.each do |produccion|
