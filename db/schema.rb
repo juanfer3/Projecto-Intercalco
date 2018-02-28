@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227143711) do
+ActiveRecord::Schema.define(version: 20180228153514) do
+
+  create_table "acabados", force: :cascade do |t|
+    t.string "nombre"
+    t.string "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clientes", force: :cascade do |t|
     t.string "nombre"
@@ -64,6 +71,15 @@ ActiveRecord::Schema.define(version: 20180227143711) do
     t.integer "contenedor_de_ordenes_id"
     t.index ["compromiso_de_entrega_id"], name: "index_contenedor_de_remisiones_on_compromiso_de_entrega_id"
     t.index ["contenedor_de_ordenes_id"], name: "index_contenedor_de_remisiones_on_contenedor_de_ordenes_id"
+  end
+
+  create_table "contenedores_de_acabados", force: :cascade do |t|
+    t.integer "montaje_id"
+    t.integer "acabado_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["acabado_id"], name: "index_contenedores_de_acabados_on_acabado_id"
+    t.index ["montaje_id"], name: "index_contenedores_de_acabados_on_montaje_id"
   end
 
   create_table "contenedores_de_maquinas", force: :cascade do |t|

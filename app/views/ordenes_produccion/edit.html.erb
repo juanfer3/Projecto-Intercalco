@@ -20,6 +20,14 @@ var busVal = $("#buscandoControlador").select2("val")
           method:'get',
           success: function (data){
 
+            var total_valor = $('#orden_produccion_tamanos_total').val()
+
+
+
+              $('#orden_produccion_tamanos_total').val("<%=@orden_produccion.tamanos_total%>")
+              $('#orden_produccion_cantidad_programada').val("<%=@orden_produccion.cantidad_programada%>")
+
+
             var valor_id = "<%=@orden_produccion.contacto.id%>"
             $('#select_contactos  ').val(valor_id).trigger('change');
 
@@ -29,7 +37,7 @@ var busVal = $("#buscandoControlador").select2("val")
             if (direcion == valor_entrega) {
 
             }else {
-              toastr.info('son direfentes '+direcion+" y "+ valor_entrega)
+
               var nombre_direcion = "<%=@orden_produccion.lugar_despacho.direccion%>"
               var cont = 0
               var totaloop= $('#select_entrega option').length
@@ -57,7 +65,7 @@ var busVal = $("#buscandoControlador").select2("val")
               var comprobar = $('#select_entrega').val()
 
               if (comprobar == direcion) {
-                toastr.success("FUCK YEA!!!!!!!!!!!!")
+
               }
 
 
@@ -70,9 +78,9 @@ var busVal = $("#buscandoControlador").select2("val")
             var valor_facturar_a = $('#select_facturar_a').val();
 
             if (valor_facturar_a == facturar_a) {
-              toastr.info("son iguales")
+
             }else{
-              toastr.info("son diferentes")
+
               $('#select_facturar_a').val(facturar_a);
             }
 

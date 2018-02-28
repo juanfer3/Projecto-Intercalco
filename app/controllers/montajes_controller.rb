@@ -155,6 +155,7 @@ end
     @montaje.tintas_fop_tiro.build
     @montaje.tintas_fop_retiro.build
     @montaje.formatos_op.build
+    @montaje.contenedores_de_acabados.build
 
     @montaje.ordenes_produccion.build.compromisos_de_entrega.build
     comercial= "Comercial"
@@ -328,10 +329,10 @@ end
         :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,:contacto_nuevo_montaje,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:lugar_despacho,:lugar_despacho_id,:nombres_facturacion,:nombres_facturacion_id,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,:direccion_nuevo_montaje, :facturar_a_nuevo_montaje,
-         :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,
+         :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,:agregar_acabado,
          :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
          :tamano_hoja,:tamano_por_hojas,:tamano_de_corte,    :nit_cliente, :dir_cliente, :tel_cliente, :tel_contacto,
-         :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,
+         :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,:acabado_ids => [],
        desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy, :id],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado, :_destroy, :id],
@@ -350,7 +351,8 @@ end
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
           :diferencia, :numero_de_remision, :estado, :_destroy, :id],
       contenedores_de_ordenes_attributes:[:id,:_destroy,:orden_produccion_id, :maquina_id, :maquina_ids => []]
-      ]
+    ],
+      contenedores_de_acabados_attributes: [:id,:_destroy,:montaje_id, :acabado_id,:acabado_ids => []]
 
       )
 

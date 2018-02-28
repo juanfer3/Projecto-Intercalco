@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contenedores_de_acabados
+  resources :acabados
   resources :lugares_despachos
   resources :nombres_facturaciones
   resources :contenedores_de_maquinas

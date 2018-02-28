@@ -80,136 +80,19 @@
 
 
            <div class="card-block">
-              <div class="container">
-                <br>
+             <div class="container">
+               <br>
                 <br>
                 <div class="my_card_pedidos_form" >
+                     <%@montaje.contenedores_de_acabados.each do  |contenedor|%>
+                           <div class="col-3">
+                              <h6><%=contenedor.acabado.nombre%></h6>
+                           </div>
+                     <%end%>
+             </div>
 
-
-                  <% if @montaje.precorte == true%>
-                  <div class="col-2">
-                    <h6>Tiro</h6>
-                  </div>
-                  <% end %>
-
-
-
-                  <% if @montaje.pretroquelado== true%>
-                  <div class="col-2">
-                    <h6>Pretroquelado</h6>
-                  </div>
-                  <% end %>
-
-
-
-                  <% if @montaje.laminado== true%>
-                  <div class="col-2">
-                    <h6>Laminado</h6>
-                  </div>
-                  <% end %>
-
-
-
-                  <% if @montaje.troquelado== true%>
-                  <div class="col-2">
-                    <h6>Torquelado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.descalerillado== true%>
-                  <div class="col-2">
-                    <h6>Torquelado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.plotter== true%>
-                  <div class="col-2">
-                    <h6>Plotter</h6>
-                  </div>
-                  <% end %>
-
-
-
-                  <% if @montaje.doming== true%>
-                  <div class="col-2">
-                    <h6>Doming</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.descolille== true%>
-                  <div class="col-2">
-                    <h6>Descolille</h6>
-                  </div>
-                  <% end %>
-
-                  <% if @montaje.doblez_calor== true%>
-                  <div class="col-2">
-                    <h6>Doblez al calor</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.termoformado== true%>
-                  <div class="col-2">
-                    <h6>Termoformado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.estampado_al_calor== true%>
-                  <div class="col-2">
-                    <h6>Estampado al calor</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.refilado== true%>
-                  <div class="col-2">
-                    <h6>Refilado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.perforado== true%>
-                  <div class="col-2">
-                    <h6>Perforado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.ojalete== true%>
-                  <div class="col-2">
-                    <h6>Ojalete</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.hilo== true%>
-                  <div class="col-2">
-                    <h6>Hilo</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.pegado== true%>
-                  <div class="col-2">
-                    <h6>Pegado</h6>
-                  </div>
-                  <% end %>
-
-
-                  <% if @montaje.ensamblado== true%>
-                  <div class="col-2">
-                    <h6>Ensamblado</h6>
-                  </div>
-                  <% end %>
-
-                </div>
-
-                <br>
-              </div>
+             </div>
+             <br>
+             <br>
            </div>
         </div>

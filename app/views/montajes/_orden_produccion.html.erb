@@ -1,5 +1,9 @@
 
+
+
 <div class="" id="contenido_formulario">
+
+<div class="">
 
 
 
@@ -68,16 +72,13 @@
             <div class="col-3" id="contenedorContactoExistente">
               <label for="">Selección el contacto</label>
               <%=
-
               f.select  :contacto_id,options_for_select([ "" ]),
               {}, {required: 'true', autofocus: 'true', class: 'js-example-contactos form-control', id: "select_contactos"}
-
               %>
 
             </div>
             <script type="text/javascript">
               $(".js-example-contactos").select2({
-
               })
             </script>
 
@@ -100,7 +101,6 @@
                 <%=
                  f.select :nombre_facturacion_id, options_for_select([ "" ]),
                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control', id: "select_facturar_a"}
-
                 %>
             </div>
             <div class="col-3 ContenedorFacturaNuevo" >
@@ -115,7 +115,6 @@
                 <%=
                  f.select :lugar_despacho_id, options_for_select([ "" ]),
                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control', id: "select_entrega"}
-
                 %>
             </div>
 
@@ -141,27 +140,7 @@
             </div>
 
 
-            <!--Mes-->
-            <div class="col-3 " >
-              <label for="">Cliente</label>
-              <div class="">
-                <%=
-                 f.text_field :tomar_cliente, class: "form-control"
-                %>
-              </div>
 
-
-            </div>
-
-            <div class="col-3">
-              <label for="">Vendedor</label>
-              <div class="">
-                <%=
-                 f.text_field :tomar_usuario, class: "form-control"
-                %>
-              </div>
-
-            </div>
 
 
             <!--Fecha De pedido-->
@@ -361,11 +340,8 @@
   $ ( "#select_contactos" ).prop("disabled", true)
   $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje option:eq(1)').val());
   $('#select_material').select2().select2('val', $('#select_material option:eq(1)').val());
-
   valor = $("#select_cliente_montaje").val();
-
   if (valor.length > 0) {
-
       $.ajax({
         url:'/contactos_for_select/'+valor+'',
         method:'get',
@@ -373,14 +349,10 @@
 
         }
       })
-
   }
-
   $("#select_cliente_montaje").on("select2:select", function (e) {
     var fop_id = e.params.data.id;
-
     if (fop_id.length > 0) {
-
             $.ajax({
               url:'/contactos_for_select/'+fop_id+'',
               method:'get',
@@ -388,8 +360,6 @@
 
               }
             })
-
       }
-
   })
 </script>

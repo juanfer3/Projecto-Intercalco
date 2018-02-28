@@ -308,194 +308,53 @@
 
 
 
+
+
+
+
+
+
   <div class="card card-outline-secondary mb-3 text-center">
-    <div class="card-header">
-
-      <div class="col-12">
-        <div class="my_card_contactos_form">
-          <div >
-            <h3>Acabados</h3>
-          </div>
-          <div >
-
-          <button type="button" id="pruebaSelect" data-toggle="modal" data-target="#modalExcelMP" class="btn btn-outline-primary"><span>Otros <i class="ion-calendar"></i></span></button>
-          </div>
-      </div>
-      </div>
-
-    </div>
-
-
      <div class="card-block">
         <div class="container">
-          <br>
-          <br>
-          <div class="my_card_pedidos_form" id="contenedorEstado">
+           <br>
+           <br>
+           <div class="my_card_pedidos_form">
 
 
 
+             <div class="col-12">
+                 <label for="">Acabados</label>
 
-                       <div class="col-2" id="origenPrecorte">
-                         <div class="" id="contenedorPrecorte">
-                           <%= f.input :precorte , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
+                   <%=
+                   f.select :acabado_ids,
+                   Acabado.all.map{|i| [i.nombre, i.id]},
+                   {},  {required: 'true', autofocus: 'true',
+                   class: 'multiSelect form-control', id: "",
+                   'multiple': "multiple",readonly: "readonly"}
+                       %>
+                 <script type="text/javascript">
+                   $(".multiSelect").select2({
+                       tags: true,
+                       tokenSeparators: [',']
+                    })
+                 </script>
+              </div>
+              <div class="col-12">
+                <br>
+              </div>
+              <div class="col-12">
+                  <%=f.input :agregar_acabado%>
+              </div>
+               <div class="col-12">
+                 <br>
+               </div>
 
-                       <div class="col-2" id="origenPretroquelado">
-                         <div class="" id="contenedorPretroquelado">
-                           <%= f.input :pretroquelado , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
 
-                       <div class="col-2" id="origenLaminado">
-                         <div class="" id="contenedorLaminado">
-                           <%= f.input :laminado , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
-
-                       <div class="col-2" id="origenTroquelado">
-                         <div class="" id="contenedorTorquelado">
-                           <%= f.input :troquelado , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
-
-                       <div class="col-2" id="origenDescalerillado">
-                         <div class="" id="contenedorDescalerillado">
-                           <%= f.input :descalerillado , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
-
-                       <div class="col-2" id="origenPlotter">
-                         <div class="" id="contenedorPlotter">
-                           <%= f.input :plotter , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
-
-                       <div class="col-2" id="origenDoming">
-                         <div class="" id="contenedorDoming">
-                           <%= f.input :doming , class: "myCheckBoxTiro", id: ""%>
-                         </div>
-                       </div>
-
-                       <div class="col-12">
-                         <br>
-                       </div>
-
-          </div>
-          <div class="my_card_pedidos_form">
-            <div class="col-9 ">
-              <%= f.input :otro, id:"otro_montaje"%>
-            </div>
-          </div>
-
+           </div>
         </div>
      </div>
   </div>
-
-
-
-  <div class="modal fade fullscreen-modal " id="modalExcelMP" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content col-12">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Selección De Acabados</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="card-block">
-               <div class="container">
-                 <br>
-                 <br>
-                 <div class="my_card_pedidos_form" id="EstadosFalse">
-
-                              <div class="col-2" id="origenDescolille">
-                                <div class="" id="contenedorDescolille">
-                                  <%= f.input :descolille, class: "myCheckBoxTiro", id: "descolille"%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenDoblez_calor">
-                                <div class="" id="contenedorDoblez_calor">
-                                  <%= f.input :doblez_calor, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenTermoformado">
-                                <div class="" id="contenedorTermoformado">
-                                  <%= f.input :termoformado, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-
-                              </div>
-
-                              <div class="col-3" id="origenEstampado_al_calor">
-                                <div class="" id="contenedorEstampado_al_calor">
-                                  <%= f.input :estampado_al_calor, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenRefilado">
-                                <div class="" id="contenedorRefilado">
-                                  <%= f.input :refilado, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenPerforado">
-                                <div class="" id="contenedorPerforado">
-                                  <%= f.input :perforado, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenOjalete">
-                                <div class="" id="contenedorOjalete">
-                                  <%= f.input :ojalete, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenHilo">
-                                <div class="" id="contenedorHilo">
-                                  <%= f.input :hilo, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenPegado">
-                                <div class="" id="contenedorPegado">
-                                  <%= f.input :pegado, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-                              <div class="col-2" id="origenEnsamblado">
-                                <div class="" id="contenedorEnsamblado">
-                                  <%= f.input :ensamblado, class: "myCheckBoxTiro", id: ""%>
-                                </div>
-                              </div>
-
-
-
-
-
-
-
-
-
-
-                 </div>
-
-               </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-
 
 
   <div class="card card-outline-secondary mb-3 text-center">

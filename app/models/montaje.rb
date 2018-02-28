@@ -19,18 +19,39 @@ class Montaje < ApplicationRecord
   has_many :ordenes_produccion, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :ordenes_produccion, reject_if: :all_blank, allow_destroy: true
 
-
   has_many :desarrollos_de_tintas, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :desarrollos_de_tintas, reject_if: :all_blank, allow_destroy: true
 
+  has_many :contenedores_de_acabados, inverse_of: :montaje, dependent: :destroy
+  accepts_nested_attributes_for :contenedores_de_acabados, reject_if: :all_blank, allow_destroy: true
+
+
+  has_many :acabados, through: :contenedores_de_acabados
+
   attr_accessor :new_cliente, :select_vendedor, :material_nuevo,
   :contacto_nuevo_montaje, :contacto_creado, :nit_cliente, :dir_cliente,
-  :tel_cliente, :tel_contacto, :direccion_nuevo_montaje, :facturar_a_nuevo_montaje
+  :tel_cliente, :tel_contacto, :direccion_nuevo_montaje, :facturar_a_nuevo_montaje,:agregar_acabado
 
   before_save :create_cliente
+  after_save :despues_de_guardar
 
+  def despues_de_guardar
+    #code
+    if agregar_acabado.present?
+      puts "****************Agregar acabado Presente************************"
+      mostrar = agregar_acabado.split(", ")
 
-
+      puts "***************Mostrar: - #{mostrar}*************************"
+      for i in 0..mostrar.length-1
+        acabado=Acabado.create(nombre:mostrar[i])
+        if acabado.save
+          puts "****************se almaceno acabado************************"
+          contenedor=ContenedorDeAcabados.create(montaje_id:self.id, acabado_id: acabado.id)
+          puts "***************Contenedor Creado*************************"if contenedor.save
+        end
+      end
+    end
+  end
 
 
   def self.buscar_ficha(data)
@@ -111,6 +132,7 @@ class Montaje < ApplicationRecord
         end
 
         self.material = Material.create(descripcion: material_nuevo) if material_nuevo.present?
+
 
   end
 

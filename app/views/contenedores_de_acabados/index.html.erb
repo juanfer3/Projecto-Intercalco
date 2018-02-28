@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contenedores De Acabados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Montaje</th>
+      <th>Acabado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contenedores_de_acabados.each do |contenedor_de_acabados| %>
+      <tr>
+        <td><%= contenedor_de_acabados.montaje %></td>
+        <td><%= contenedor_de_acabados.acabado %></td>
+        <td><%= link_to 'Show', contenedor_de_acabados %></td>
+        <td><%= link_to 'Edit', edit_contenedor_de_acabados_path(contenedor_de_acabados) %></td>
+        <td><%= link_to 'Destroy', contenedor_de_acabados, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contenedor De Acabados', new_contenedor_de_acabados_path %>

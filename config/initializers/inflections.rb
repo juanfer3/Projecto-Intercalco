@@ -158,6 +158,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'nombre_facturacion', 'nombres_facturaciones'
   inflect.irregular 'lugar_despacho', 'lugares_despachos'
 
+  inflect.irregular 'contenedor_de_acabados', 'contenedores_de_acabados'
 
 
 end
