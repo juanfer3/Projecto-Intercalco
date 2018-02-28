@@ -141,7 +141,27 @@
             </div>
 
 
+            <!--Mes-->
+            <div class="col-3 " >
+              <label for="">Cliente</label>
+              <div class="">
+                <%=
+                 f.text_field :tomar_cliente, class: "form-control"
+                %>
+              </div>
 
+
+            </div>
+
+            <div class="col-3">
+              <label for="">Vendedor</label>
+              <div class="">
+                <%=
+                 f.text_field :tomar_usuario, class: "form-control"
+                %>
+              </div>
+
+            </div>
 
 
             <!--Fecha De pedido-->
@@ -350,7 +370,7 @@
         url:'/contactos_for_select/'+valor+'',
         method:'get',
         success: function (data){
-          console.log();
+
         }
       })
 
@@ -365,7 +385,7 @@
               url:'/contactos_for_select/'+fop_id+'',
               method:'get',
               success: function (data){
-                console.log();
+
               }
             })
 

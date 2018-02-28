@@ -1,0 +1,396 @@
+
+<div class="" id="contenido_formulario">
+
+  <div class="offset-md-10">
+    <%= link_to '<button class="btn btn-outline-info"><span>Produccion Nueva <i class="ion-android-document"></i></span></button>'.html_safe, new_montaje_path  %>
+  </div>
+
+
+  <br>
+<%= simple_form_for(@orden_produccion) do |f| %>
+  <%= f.error_notification %>
+
+
+<div class="col-6">
+  <label for="">Selección De Referencia</label>
+  <%=
+
+    f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"}
+
+  %>
+
+</div>
+
+
+
+<br>
+
+
+  <div class="card text-center">
+
+     <div class="card-header">
+       <div class="my_card_contactos_form">
+         <div >
+           <h1>Datos Generales</h1>
+         </div>
+
+
+         <div id="ContenederEntrega">
+           <div class="">
+             <input type="checkbox"  id="despacho_nuevo">
+             <label for="" > Lugar despacho nuevo  </label>
+           </div>
+         </div>
+
+         <div id="ContenedorFactura">
+           <div class="">
+             <input type="checkbox"  id="factura_nuevo">
+             <label for="" > Facturar a nuevo  </label>
+           </div>
+         </div>
+
+
+         <div id="ContenedorContacto">
+           <div class="">
+             <input type="checkbox"  id="Contacto_nuevo">
+             <label for="" > Registrar Contacto nuevo  </label>
+           </div>
+         </div>
+
+
+     </div>
+
+     </div>
+
+     <!--Card Block-->
+     <div class="card-block">
+        <h4 class="card-title"></h4>
+        <div class="container">
+           <!--Container Con Flexbox-->
+           <div class="my_card_pedidos_form">
+
+
+
+             <!--Numero de Orden-->
+             <div class="col-3">
+               <%= f.input :numero_de_orden %>
+             </div>
+
+             <div class="col-3" id="contenedorContactoExistente">
+               <label for="">Selección el contacto</label>
+               <%=
+
+               f.select  :contacto_id,options_for_select([ "" ]),
+               {}, {required: 'true', autofocus: 'true', class: 'js-example-contactos form-control', id: "select_contactos"}
+
+               %>
+
+             </div>
+             <script type="text/javascript">
+               $(".js-example-contactos").select2({
+
+               })
+             </script>
+
+             <div class="col-3 ContenedorContactoNuevo" id="contacto_nuevo-ocultar">
+               <label for="">Nombre del Contacto nuevo</label>
+               <%=
+                f.text_field :contacto_nuevo, class: "form-control"
+               %>
+             </div>
+
+
+
+
+             <!--Mes-->
+             <div class="col-3 " >
+               <label for="">Cliente</label>
+               <div class="ocultar">
+                 <%=
+                  f.text_field :tomar_cliente, class: "form-control"
+                 %>
+               </div>
+               <input type="text" name=""  class="form-control op_cliente" id="op_cliente" value="" disabled>
+             </div>
+
+             <div class="col-3">
+               <label for="">Vendedor</label>
+               <div class="ocultar">
+                 <%=
+                  f.text_field :tomar_usuario, class: "form-control"
+                 %>
+               </div>
+               <input type="text" name=""  class="form-control op_Vendedor" id="op_vendedor" value="" disabled>
+             </div>
+
+
+             <div class="col-3" id="contenedorFacturaExistente">
+               <label for="">Facturar a</label>
+                 <%=
+                  f.select :nombre_facturacion_id, NombreFacturacion.all.map{|i| [i.nombre , i.id]},
+                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control select_fact', id: "select_facturar_a"}
+
+                 %>
+             </div>
+             <div class="col-3 ContenedorFacturaNuevo" >
+               <label for="">Facturar a</label>
+               <%=
+                f.text_field :facturar_a_nuevo, class: "form-control"
+               %>
+             </div>
+
+             <div class="col-3 "  id="contenedorDespachoExistente">
+               <label for="">Dirección de envio</label>
+                 <%=
+                  f.select :lugar_despacho_id, options_for_select([ "" ]),
+                  {}, {required: 'true', autofocus: 'true', class: 'js-select form-control select_des', id: "select_entrega"}
+
+                 %>
+             </div>
+
+             <div class="col-3 ContenedorDespachoNuevo" >
+               <label for="">Dirección Nueva</label>
+               <%=
+                f.text_field :direccion_nueva, class: "form-control"
+               %>
+             </div>
+
+
+             <script type="text/javascript">
+               $(".js-select").select2({
+                 tags: true
+               })
+             </script>
+
+
+
+             <div class="col-3">
+               <label for="">Cantidad </label>
+               <%= f.input :cantidad_solicitada, label: false %>
+             </div>
+
+             <div class="col-3">
+               <label for="">Linea De Color</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_linea_de_color" value="" disabled>
+             </div>
+
+
+
+
+             <div class="col-3">
+               <label for="">Linea De Producto</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_linea_producto" value="" disabled>
+             </div>
+
+
+
+             <!--Fecha De pedido-->
+             <div class="col-3">
+               <label for="">Fecha De La Orden</label>
+               <div class="input-group" >
+                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+                 <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+               </div>
+               <p id="campo_fecha_pedido"></p>
+             </div>
+             <div class="col-12">
+               <br>
+             </div>
+             <div class="col-12">
+               <div class="my_card_contactos_form">
+                 <div >
+                   <h3>Fechas De Entrega</h3>
+                 </div>
+                 <div >
+                   <%= link_to_add_compromisos('<button type="button" id="pruebaSelect" class="btn btn-outline-primary"><span>Agregar <i class="ion-calendar"></i></span></button>'.html_safe, f, :compromisos_de_entrega, class: '') %>
+                 </div>
+             </div>
+             </div>
+
+             <div class="col-6 ">
+
+               <table class="table">
+                 <tbody class='fields_compromisos'>
+                   <%=f.fields_for :compromisos_de_entrega do |builder|%>
+
+                      <%= render 'compromiso_de_entrega', :f => builder%>
+
+                   <%end%>
+                 </tbody>
+                 </table>
+
+
+
+
+             </div>
+
+
+
+
+
+           </div>
+           <!--/Container con Flexbox-->
+        </div>
+        <!--Container-->
+        <br>
+     </div>
+     <!--/Card Block-->
+  </div>
+  <!--/Datos Generales del Pedido---->
+
+
+<br>
+<div class="card card-outline-secondary mb-3 text-center">
+  <div class="card-header">
+     <h1>Materias Primas</h1>
+
+  </div>
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+                       <div class="col-12">
+                         <label for="">Material A Imprimir</label>
+                         <input type="text" name=""  class="form-control op_montaje" id="op_material" value="" disabled>
+                       </div>
+
+                       <div class="col-12">
+                         <br>
+                       </div>
+
+                       <!--Mes-->
+                       <div class="col-2">
+                         <label for="">Medida de la hoja</label>
+                         <input type="text" name=""  class="form-control op_cliente" id="op_medida_hoja" value="" disabled>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Tamaños por hoja </label>
+                         <input type="text" name=""  class="form-control op_Vendedor" id="op_tamano_hoja" value="" disabled>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Medida de corte </label>
+                         <input type="text" name=""  class="form-control op_montaje" id="op_medida_corte" value="" disabled>
+                       </div>
+
+                       <div class="col-2">
+                         <%= f.input :cantidad_hoja %>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Tamaños Totales</label>
+                         <%= f.input :tamanos_total , label: false%>
+                       </div>
+
+                       <div class="col-2">
+                         <%= f.input :cavidad %>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Cantidad Programada</label>
+                         <%= f.input :cantidad_programada, label: false %>
+                       </div>
+
+                       <div class="col-2">
+                         <label for="">Precio <br> Unitario</label>
+                         <%= f.input :precio_unitario, label: false %>
+                       </div>
+
+
+         </div>
+         <br>
+      </div>
+   </div>
+</div>
+
+<br>
+
+               <div class="card card-outline-secondary mb-3 text-center">
+                  <div class="card-block">
+                     <div class="container">
+                        <br>
+                        <br>
+                        <div class="my_card_pedidos_form">
+
+
+
+
+                            <div class="col-12">
+                              <label for="">Maquinas</label>
+
+                 <%=
+                 f.select :maquina_ids,
+                  Maquina.all.map{|i| [ i.nombre, i.id]},
+                  {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
+                  %>
+                            </div>
+
+
+
+
+                        </div>
+                        <br>
+                     </div>
+                  </div>
+               </div>
+
+
+
+
+
+
+
+
+<div class="card card-outline-secondary mb-3 text-center">
+   <div class="card-block">
+      <div class="container">
+         <br>
+         <br>
+         <div class="my_card_pedidos_form">
+
+
+
+
+             <div class="col-12">
+               <label for="">Obsevaciones</label>
+               <%= f.input :observacion, label: false %>
+             </div>
+
+
+
+
+         </div>
+      </div>
+   </div>
+</div>
+
+
+<div id="AgregarTintas">
+
+</div>
+<br>
+
+
+
+<div class="btn pull-right">
+<%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+  <span>Guardar
+    <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+  </span>
+ <% end %>
+</div>
+<% end %>
+
+</div>
+
+
+<script>
+
+
+
+</script>

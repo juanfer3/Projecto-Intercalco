@@ -145,17 +145,8 @@ end
 
   # GET /montajes/new
   def new
-    @ultimo_montaje = Montaje.all
-    cont = 0
-    if @ultimo_montaje.any?
-      @ultimo_montaje.each do |montaje|
-        codigo = montaje.codigo.to_i if montaje.codigo.match(/^\d+$/)
-          if cont < codigo
-            cont = codigo
-            @last_codigo = montaje.codigo
-          end
-      end
-    end
+
+
 
 
     @montaje = Montaje.new
@@ -350,9 +341,9 @@ end
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
         :tiro, :retiro, :_destroy, :id],
       ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,:contacto_id,:lugar_despacho,:lugar_despacho_id,:nombre_facturacion,:nombre_facturacion_id,
-        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:direccion_nueva, :facturar_a_nuevo,
+        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,
-        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,:tomar_cliente, :contacto_nuevo,:facturar_a,
+        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,:contact_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba =>[],
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,

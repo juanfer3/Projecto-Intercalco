@@ -85,26 +85,26 @@ class Montaje < ApplicationRecord
         if new_cliente.present?
             self.cliente = Cliente.create(nombre: new_cliente, nit: nit_cliente,user_id: select_vendedor)
             contacto_creado = Contacto.create(nombre_contacto: contacto_nuevo_montaje, user_id: select_vendedor, cliente_id: self.cliente.id) if contacto_nuevo_montaje.present?
-            facturar = NombreFacturacion.create(cliente_id: self.cliente.id, nombre: facturar_a_nuevo_montaje)
-            direcion_entrega = LugarDespacho.create(cliente_id: self.cliente.id, direccion: direccion_nuevo_montaje)
+            facturar = NombreFacturacion.create(cliente_id: self.cliente.id, nombre: facturar_a_nuevo_montaje)if facturar_a_nuevo_montaje.present?
+            direcion_entrega = LugarDespacho.create(cliente_id: self.cliente.id, direccion: direccion_nuevo_montaje)if direccion_nuevo_montaje.present?
 
 
             if contacto_creado != nil
               puts "****************CONTACTO CREADO************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.contacto_id= contacto_creado.id
+                produccion.contacto = contacto_creado
               end
             end
             if facturar != nil
               puts "****************FACTURAR A CREADO************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.nombre_facturacion_id= facturar.id
+                produccion.nombre_facturacion = facturar
               end
             end
             if direcion_entrega != nil
               puts "****************DIRECCION CREADA************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.lugar_despacho_id = direcion_entrega.id
+                produccion.lugar_despacho = direcion_entrega
               end
             end
 

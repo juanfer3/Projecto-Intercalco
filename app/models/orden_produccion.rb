@@ -25,36 +25,18 @@ class OrdenProduccion < ApplicationRecord
   before_save :antes_de_crear
 
   def antes_de_crear
-    if direccion_nueva.present?
-      puts "*********************Facturar a: #{direccion_nueva}*******************"
-      buscar_facturar = LugarDespacho.find_by(direccion: direccion_nueva, cliente_id:tomar_cliente)
-
-      if buscar_facturar == nil
-        nombres_facturacion = LugarDespacho.create(cliente_id: tomar_cliente, direccion: direccion_nueva)
-        if nombres_facturacion.save
-          puts "****************Registro Guardado************************"
-          self.lugar_despacho_id = nombres_facturacion.id
-        end
-      else
-        self.lugar_despacho_id = buscar_facturar.id
+    if facturar_a_nuevo.present?
+      self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
+      if self.nombre_facturacion
+        puts "*******************Registro Facturar a Creado*********************"
       end
-
     end
 
-    if facturar_a_nuevo.present?
-      puts "********************Despachar a: #{facturar_a_nuevo}********************"
-      buscar_despacho = NombreFacturacion.find_by(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
-
-      if buscar_despacho == nil
-        direccion_despacho = NombreFacturacion.create(cliente_id: tomar_cliente, nombre: facturar_a_nuevo)
-        if direccion_despacho.save
-          puts "****************Registro Guardado************************"
-          self.lugar_despacho_id = direccion_despacho.id
-        end
-      else
-        self.lugar_despacho_id = buscar_despacho.id
+    if direccion_nueva.present?
+      self.lugar_despacho = LugarDespacho.create(cliente_id: tomar_cliente, direccion: direccion_nueva)
+      if self.lugar_despacho
+        puts "*******************Registro Despacho Creado*********************"
       end
-
     end
 
     self.contacto = Contacto.create(nombre_contacto: contacto_nuevo, user_id: tomar_usuario, cliente_id: tomar_cliente) if contacto_nuevo.present?

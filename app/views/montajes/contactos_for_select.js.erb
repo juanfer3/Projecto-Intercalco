@@ -10,6 +10,8 @@ $ ( "#select_entrega" ).prop("disabled", false)
 $ ( "#select_entrega option" ).remove()
 
 
+$('#montaje_ordenes_produccion_attributes_0_tomar_cliente').val("<%=@cliente.id%>")
+$('#montaje_ordenes_produccion_attributes_0_tomar_usuario').val("<%=@cliente.user.id%>")
 
 <%@cliente.contactos.each do |cliente|%>
 var cliente_id = "<%=cliente.id%>"

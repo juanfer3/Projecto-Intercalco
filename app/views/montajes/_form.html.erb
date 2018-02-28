@@ -93,7 +93,7 @@
                         <%=f.text_field :tel_cliente,  :class => 'form-control '%>
                       </div>
 
-            
+
 
                       <div class="col-4 ContenedorClienteNuevo">
                         <label for="">Direccion de entrega</label> <br>
@@ -671,13 +671,12 @@
     <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
 
       <span>Guardar
-        <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+        <i id=""class="ion-paper-airplane" aria-hidden="true"></i>
       </span>
      <% end %>
    </div>
 </div>
 <% end %>
 <script type="text/javascript">
-    <%valor = @last_codigo.to_i + 1%>
-   $('#montaje_codigo').val('<%=valor%>')
+
 </script>
