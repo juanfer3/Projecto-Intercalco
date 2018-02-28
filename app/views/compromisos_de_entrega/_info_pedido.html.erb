@@ -2,23 +2,50 @@
 <div class="container card-block">
   <div class="container my_card_pedidos_form my_orden_pedidos">
     <div class="col-3">
-      <label for="">Cliente</label>
-      <h4 ><%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nombre%></h4>
+      <label for=""> <strong>Cliente</strong> </label>
+      <h6 ><%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nombre%></h6>
     </div>
     <div class="col-3">
-      <label for="">Descripción</label>
-      <h4 ><%= @compromiso_de_entrega.orden_produccion.montaje.nombre%></h4>
+      <label for=""> <strong>Descripción</strong>  </label>
+      <h6 ><%= @compromiso_de_entrega.orden_produccion.montaje.nombre%></h6>
     </div>
     <div class="col-3">
-      <label for="">Numero de Orden</label>
-      <h4><%= @compromiso_de_entrega.orden_produccion.numero_de_orden%></h4>
+      <label for=""> <strong> Numero de Orden</strong> </label>
+      <h6><%= @compromiso_de_entrega.orden_produccion.numero_de_orden%></h6>
     </div>
+
     <div class="col-3">
-      <label for="">Fecha</label>
-      <h4><%= @compromiso_de_entrega.fecha_de_compromiso%></h4>
+      <label for=""> <strong>Fecha</strong> </label>
+      <h6><%= @compromiso_de_entrega.fecha_de_compromiso%></h6>
     </div>
+
+    <div class="col-12">
+      <br>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+<hr>
+
+<div class="">
+  <div class="col-12 input-group">
+    <h6> <strong>Dirección de Despacho: 	&nbsp;</strong> </h6>
+    <h6> <%= @compromiso_de_entrega.orden_produccion.lugar_despacho.direccion%></h6>
+  </div>
+  <div class="col-12 input-group">
+    <h6> <strong>Contacto:	&nbsp; </strong>  </h6>
+    <h6><%= @compromiso_de_entrega.orden_produccion.contacto.nombre_contacto%></h6>
+  </div>
+  <div class="col-12 input-group">
+    <h6> <strong>Facturar a: 	&nbsp;</strong> </h6>
+    <h6><%= @compromiso_de_entrega.orden_produccion.nombre_facturacion.nombre%></h6>
   </div>
 </div>
+
 
 <hr>
 

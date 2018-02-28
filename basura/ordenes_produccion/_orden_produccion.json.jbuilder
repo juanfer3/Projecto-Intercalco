@@ -1,2 +1,0 @@
-json.extract! orden_produccion, :id, :formato_op_id, :numero_de_orden, :mes_id, :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion, :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso, :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla, :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion, :habilitar_acabado, :estado_de_orden, :estado, :created_at, :updated_at
-json.url orden_produccion_url(orden_produccion, format: :json)

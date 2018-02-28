@@ -287,7 +287,7 @@ $("#factura_nuevo").change(function(){
       $('#vendedor_cliente_nuevo').addClass("form-control")
       $('#contenedorClienteExistente').hide();
       $('#contenedorContactoExistente').hide();
-
+      $('.oc_cliente').hide()
       $('.ContenedorFacturaNuevo').hide()
       $('#fact').val("")
 
@@ -298,7 +298,6 @@ $("#factura_nuevo").change(function(){
       $('#contact').val("")
 
       $(".ContenedorContactoNuevo").hide()
-
       $("#Contacto_nuevo_contenedor").hide()
     }else {
 
@@ -310,9 +309,10 @@ $("#factura_nuevo").change(function(){
       $("#Contacto_nuevo_contenedor").show()
 
       $('.ContenedorFacturaNuevo').show()
-
       $('.ContenedorDespachoNuevo').show()
       $('.ContenedorContacto').show()
+
+
 
 
       if( $('#Contacto_nuevo').prop('checked') ) {
@@ -345,6 +345,7 @@ $("#factura_nuevo").change(function(){
       $(".ContenedorFacturaNuevo").hide()
     }
 
+    $('.oc_cliente').show()
 
 
 

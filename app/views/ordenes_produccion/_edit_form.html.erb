@@ -164,11 +164,11 @@
              </script>
 
 
-
              <div class="col-3">
-               <label for="">Cantidad </label>
-               <%= f.input :cantidad_solicitada, label: false %>
+               <label for="">Linea De Producto</label>
+               <input type="text" name=""  class="form-control op_montaje" id="op_linea_producto" value="" disabled>
              </div>
+
 
              <div class="col-3">
                <label for="">Linea De Color</label>
@@ -177,13 +177,16 @@
 
 
 
-
              <div class="col-3">
-               <label for="">Linea De Producto</label>
-               <input type="text" name=""  class="form-control op_montaje" id="op_linea_producto" value="" disabled>
+               <label for="">Orden de compra</label>
+              <%= f.input :orden_de_compra, label: false %>
              </div>
 
 
+             <div class="col-3">
+               <label for="">Cantidad </label>
+               <%= f.input :cantidad_solicitada, label: false %>
+             </div>
 
              <!--Fecha De pedido-->
              <div class="col-3">

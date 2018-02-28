@@ -113,19 +113,19 @@ class Montaje < ApplicationRecord
             if contacto_creado != nil
               puts "****************CONTACTO CREADO************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.contacto = contacto_creado
+                produccion.contacto_id = contacto_creado.id
               end
             end
             if facturar != nil
               puts "****************FACTURAR A CREADO************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.nombre_facturacion = facturar
+                produccion.nombre_facturacion_id = facturar.id
               end
             end
             if direcion_entrega != nil
               puts "****************DIRECCION CREADA************************"
               self.ordenes_produccion.each do |produccion|
-                produccion.lugar_despacho = direcion_entrega
+                produccion.lugar_despacho_id = direcion_entrega.id
               end
             end
 

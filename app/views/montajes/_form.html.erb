@@ -18,7 +18,7 @@
 
 
   <div class="offset-md-10">
-    <%= link_to '<button class="btn btn-outline-info"><span>Ficha Exixtente <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path  %>
+    <%= link_to '<button class="btn btn-outline-info"><span>Ficha Existente <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path  %>
   </div>
 
   <br>
@@ -373,16 +373,34 @@
 
   <div class="container_add_entregas col-12">
      <div class="col-4">
-        <h1>Piezas</h1>
+
      </div>
-     <div class="col-3 offset-md-6">
-        <%= link_to_add_piezas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :piezas, class: '') %>
-     </div>
+
 </div>
 
 
   <br>
   <div class="card card-outline-secondary mb-3 text-center">
+    <div class="card-header">
+
+      <div class="col-12">
+        <div class="my_card_contactos_form">
+          <div >
+            <h3>Piezas</h3>
+          </div>
+          <div class="">
+
+               <%= link_to_add_piezas('<button type="button" id="pruebaSelect" class="btn btn-outline-warning"><span><i class="ion-plus-round"></i></span></button>'.html_safe, f, :piezas, class: '') %>
+
+          </div>
+
+
+
+
+      </div>
+      </div>
+
+    </div>
      <div class="card-block">
         <div class="container">
            <br>
@@ -443,6 +461,10 @@
 
 
     <div class="card card-outline-secondary mb-3 text-center">
+      <div class="card-header">
+        <h4>Acabados</h4>
+
+      </div>
        <div class="card-block">
           <div class="container">
              <br>
@@ -452,7 +474,7 @@
 
 
                <div class="col-12">
-                   <label for="">Acabados</label>
+                   <label for="">Selecionar acabados</label>
 
                      <%=
                      f.select :acabado_ids,
@@ -488,6 +510,10 @@
 
 
     <div class="card card-outline-secondary mb-3 text-center">
+      <div class="card-header">
+        <h4>Observaciones en la ficha técnica</h4>
+
+      </div>
        <div class="card-block">
           <div class="container">
              <br>
