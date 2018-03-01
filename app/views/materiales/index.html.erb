@@ -34,11 +34,11 @@
     <div class="col-4">
       <%= link_to '<button type="button" class="btn btn-outline-primary">Registrar material nuevo</button>'.html_safe, new_material_path %>
     </div>
-
+    <%if current_user.rol.cargo == "Administrador"%>
     <div class="col-4">
       <button class="btn btn-info" data-toggle="modal" data-target="#modalExcelMP">Importar Piezas Montajes Desde Excel</button>
     </div>
-
+    <% end %>
 
   </div>
 </div>

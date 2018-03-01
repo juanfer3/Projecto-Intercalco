@@ -50,6 +50,9 @@
 <div class="pull-right">
   <%= will_paginate @montajes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
+
+
+<%if current_user.rol.cargo == "Administrador"%>
 <div class="container">
   <div class="row align-items-start">
     <div class="col-4">
@@ -64,9 +67,44 @@
     <div class="col-4">
       <button class="btn btn-info" data-toggle="modal" data-target="#modalExcelMP">Importar Piezas Montajes Desde Excel</button>
     </div>
+
+
+
+   <div class="col-4">
+      <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+      montajes_path(format: :xlsx) %>
+    </div>
+
+
+    <div class="col-4">
+      <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+      desarrollos_de_tintas_path(format: :xlsx) %>
+    </div>
+
   </div>
 </div>
 
+<%elsif current_user.rol.cargo == "Producción"%>
+
+
+<div class="container">
+  <div class="row align-items-start">
+    <div class="col-4">
+      <%= link_to '<button type="button" class="btn btn-dark">Crear Montaje Nuevo</button>'.html_safe, new_montaje_path %>
+
+    </div>
+
+    <div class="col-4">
+      <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+      montajes_path(format: :xlsx) %>
+    </div>
+
+
+
+
+  </div>
+</div>
+<%end%>
 
 
 <br>
@@ -133,16 +171,7 @@
 </div>
 
 
-<div class="">
-  <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
-  montajes_path(format: :xlsx) %>
-</div>
 
-
-<div class="">
-  <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
-  desarrollos_de_tintas_path(format: :xlsx) %>
-</div>
 
 
 <div class="modal fade fullscreen-modal " id="modalDetalleMotaje" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

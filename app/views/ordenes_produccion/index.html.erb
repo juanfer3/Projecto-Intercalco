@@ -355,14 +355,20 @@
     <div class="col-4">
       <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Crear orden de producción</button>'.html_safe, new_orden_produccion_path %>
     </div>
+    <%if current_user.rol.cargo == "Administrador"%>
+      <div class="col-4">
+        <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>
+      </div>
 
-    <div class="col-4">
-      <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>
-    </div>
 
+    <%end%>
 
   </div>
 </div>
+
+
+
+
 
 
 
