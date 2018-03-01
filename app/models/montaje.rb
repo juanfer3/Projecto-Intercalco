@@ -255,18 +255,25 @@ class Montaje < ApplicationRecord
                                                   puts "****************************************"+@nombre_cliente+"*********************"
                                                   @cli = Cliente.find_by(nombre: @nombre_cliente)
                                                   puts "****************************************Busco El cliente**********************"
+
                                                   if @cli == nil
+
                                                     puts "****************************************El Cliente no Existe**********************"
                                                     @nombre_user = spreadsheet.row(i)[5]
 
                                                     @vendedor=User.find_by(nombre: @nombre_user)
                                                     puts "****************************************El Vendedor es #{@vendedor.nombre}**********************"
-                                                    @clienteNuevo=Cliente.new(nombre:spreadsheet.row(i)[0],user_id:@vendedor.id)
+                                                    @clienteNuevo=Cliente.new(nombre:@nombre_cliente,user_id:@vendedor.id, estado:true)
                                                     if @clienteNuevo.save
                                                       puts "*****************El Cliente se creo"
+                                                      @cliente_id = @clienteNuevo.id
                                                     end
-                                                    @cliente_id = @clienteNuevo.id
+
+
+
                                                   else
+
+
                                                     puts "****************************************El Cliente -Si- Existe y su id es: #{@cli.id}**********************"
                                                     @cliente_id = @cli.id
 
