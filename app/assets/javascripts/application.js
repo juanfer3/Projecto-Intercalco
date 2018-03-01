@@ -107,6 +107,20 @@ $('.ocultar').hide()
   })
 
 
+	$('#buscador_montajes').keyup(function(){
+    var data=$('#buscador_montajes').val()
+    $.ajax({
+      url:'/buscador_de_fichas/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log();
+
+      }
+    })
+  })
+
+
 
 
   $(".multiSelect").select2({
