@@ -17,8 +17,11 @@
             <div class="col-4">
               <%= f.input :direccion %>
             </div>
-
-
+            <%if current_user.rol.cargo == "Administrador"%>
+            <div class="">
+              <%= f.input :estado %>
+            </div>
+            <%end%>
           </div>
         </div>
       <br>
