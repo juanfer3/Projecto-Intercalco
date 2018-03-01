@@ -612,5 +612,8 @@
 </div>
 <% end %>
 <script type="text/javascript">
-
+  <%if @last_codigo != nil%>
+      <%valor = @last_codigo.to_i + 1%>
+       $('#montaje_codigo').val('<%=valor%>')
+  <%end%>
 </script>

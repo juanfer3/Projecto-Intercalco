@@ -146,7 +146,20 @@ end
   # GET /montajes/new
   def new
 
-
+    ultimo_montaje = Montaje.all
+    cont = 0
+    @last_codigo = nil
+    if ultimo_montaje.any?
+      ultimo_montaje.each do |montaje|
+          if montaje.codigo.length > 0
+            codigo = montaje.codigo.to_i if montaje.codigo.match(/^\d+$/)
+              if cont < codigo
+                cont = codigo
+                @last_codigo = montaje.codigo
+              end
+          end
+      end
+    end
 
 
     @montaje = Montaje.new
