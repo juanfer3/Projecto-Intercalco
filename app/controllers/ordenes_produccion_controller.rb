@@ -15,8 +15,6 @@ class OrdenesProduccionController < ApplicationController
 
 
   def buscador_de_ordenes_por_mes
-
-
     @mes = params["mes"]
     @compromisos_de_entrega = OrdenProduccion.consultar_mes(@mes)
 

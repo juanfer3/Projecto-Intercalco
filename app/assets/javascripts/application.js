@@ -785,19 +785,6 @@ $("#contacto_nuevo-ocultar").hide()
 
 
 
-$('.validacion_fecha').focusout(function (){
-  //toastr.success("validate")
-  var pedido_numero_de_pedido=$(this).parents("tr").find('.validacion_fecha').val()
-  if (pedido_numero_de_pedido==""){
-    $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #a94442")
-    var campo_error='<span class="help-block" id="error_numero_de_pedido">La Fecha del Compromiso no debe estar vacía</span>'
-    $(this).parents("tr").find('.campo_fecha_entrega').html(campo_error)
-    //alertify.error("El número de pedido debe estar vacio")
-  }else{
-    $(this).parents("tr").find('.validacion_fecha').css("border", "1px solid #3c763d");
-    $(this).parents("tr").find('.campo_fecha_entrega').html("")
-  }
-})
 
 
 
