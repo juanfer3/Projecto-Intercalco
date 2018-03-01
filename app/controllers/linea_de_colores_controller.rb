@@ -56,7 +56,7 @@ class LineaDeColoresController < ApplicationController
   def destroy
     @linea_de_color.destroy
     respond_to do |format|
-      format.html { redirect_to lineas_de_colores_path, notice: 'Registro eliminado.' }
+      format.html { redirect_to lineas_de_colores_url, notice: 'Registro eliminado.' }
       format.json { head :no_content }
     end
   end
