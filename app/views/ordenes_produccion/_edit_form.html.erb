@@ -192,7 +192,7 @@
              <div class="col-3">
                <label for="">Fecha De La Orden</label>
                <div class="input-group" >
-                 <%= f.text_field :fecha , class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+                 <%= f.text_field :fecha, value: @orden_produccion.fecha.strftime("%d/%m/%Y") , class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
                  <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
 
                </div>
