@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228153514) do
+ActiveRecord::Schema.define(version: 20180301121136) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -83,12 +83,12 @@ ActiveRecord::Schema.define(version: 20180228153514) do
   end
 
   create_table "contenedores_de_maquinas", force: :cascade do |t|
-    t.integer "orden_produccion_id"
     t.integer "maquina_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "montaje_id"
     t.index ["maquina_id"], name: "index_contenedores_de_maquinas_on_maquina_id"
-    t.index ["orden_produccion_id"], name: "index_contenedores_de_maquinas_on_orden_produccion_id"
+    t.index ["montaje_id"], name: "index_contenedores_de_maquinas_on_montaje_id"
   end
 
   create_table "contenedores_de_ordenes", force: :cascade do |t|

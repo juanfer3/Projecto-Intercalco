@@ -293,50 +293,7 @@
 
 <br>
 
-               <div class="card card-outline-secondary mb-3 text-center">
-                 <div class="card-header">
-                   <h4>Maquinas</h4>
 
-                 </div>
-                  <div class="card-block">
-                     <div class="container">
-                        <br>
-                        <br>
-                        <div class="my_card_pedidos_form">
-
-
-
-
-                            <div class="col-12">
-                              <label for="">Selección de máquinas</label>
-
-
-
-                                <%=
-                                f.select :contenedor_prueba,
-                                Maquina.all.map{|i| [i.nombre, i.id]},
-                                {},  {required: 'true', autofocus: 'true',
-                                class: 'multiSelect form-control', id: "",
-                                'multiple': "multiple",readonly: "readonly"}
-                                    %>
-
-
-                              <script type="text/javascript">
-                                $(".multiSelect").select2({
-                                    tags: true,
-                                    tokenSeparators: [',']
-                                 })
-                              </script>
-                            </div>
-
-
-
-
-                        </div>
-                        <br>
-                     </div>
-                  </div>
-               </div>
 
 
 
@@ -371,6 +328,14 @@
   $ ( "#select_contactos" ).prop("disabled", true)
   $('#select_cliente_montaje').select2().select2('val', $('#select_cliente_montaje option:eq(1)').val());
   $('#select_material').select2().select2('val', $('#select_material option:eq(1)').val());
+
+  $('#montaje_linea_producto_id').select2().select2('val', $('#montaje_linea_producto_id option:eq(1)').val());
+  $('#montaje_linea_de_color_id').select2().select2('val', $('#montaje_linea_de_color_id option:eq(1)').val());
+
+  $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id option:eq(1)').val());
+
+  $('#montaje_desarrollos_de_tintas_attributes_0_malla_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_malla_id option:eq(1)').val());
+
   valor = $("#select_cliente_montaje").val();
   if (valor.length > 0) {
       $.ajax({

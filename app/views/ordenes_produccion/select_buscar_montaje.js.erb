@@ -15,7 +15,24 @@ $('#op_medida_hoja').val("<%=@montaje.tamano_hoja%>")
 $('#op_tamano_hoja').val("<%=@montaje.tamano_por_hojas%>")
 $('#op_medida_corte').val("<%=@montaje.tamano_de_corte%>")
 
+var machine = ""
+var machines = ""
+var cont = 0
+<%@montaje.contenedores_de_maquinas.each do |contenedor|%>
 
+  cont = cont+1
+  machine = "<%=contenedor.maquina.nombre%>"
+
+  if (cont > 1) {
+    machines = machines.concat(", "+machine)
+  }else {
+    machines = machines.concat(machine)
+  }
+
+
+<%end%>
+
+$('#op_maquinas_add').val(machines)
 
 $ ( "#select_contactos" ).prop("disabled", false)
 $ ( "#select_contactos option" ).remove()

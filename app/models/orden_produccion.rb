@@ -10,18 +10,14 @@ class OrdenProduccion < ApplicationRecord
   has_many :compromisos_de_entrega, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :compromisos_de_entrega, reject_if: :all_blank, allow_destroy: true
 
-  has_many :contenedores_de_ordenes, inverse_of: :orden_produccion, dependent: :destroy
-  accepts_nested_attributes_for :contenedores_de_ordenes, reject_if: :all_blank, allow_destroy: true
 
-
-  has_many :maquinas, through: :contenedores_de_maquinas
 
 
 
 
   attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo
 
-  after_save :create_contenedores_de_maquinas
+
   before_save :antes_de_crear
 
   def antes_de_crear
@@ -48,41 +44,8 @@ class OrdenProduccion < ApplicationRecord
   end
 
 
-  def create_contenedores_de_maquinas
-    if contenedor_prueba.present?
-        contenedor2 = contenedor_prueba
-        contener = []
 
-          for i in 1..contenedor2.length
-            maquina_save = ContenedorDeMaquinas.new(orden_produccion_id: self.id, maquina_id: contenedor2[i])
 
-            if maquina_save.save
-              puts "******************CONTENEDOR CREADO**********************"
-            else
-              puts "******************NO SE A CREADO EL CONTENEDOR**********************"
-            end
-            if contenedor2[i] != nil
-              puts "*****************Si existe #{self.id}***********************"
-              contener << [self.id, contenedor2[i]]
-              ContenedorDeMaquinas.new(orden_produccion_id: self.id, maquina_id: contenedor2[i])
-              puts "**************#{contener[i]}**************************"
-            end
-
-          end
-
-        for i in 0..contener.length
-            puts "Value of local variable is #{i}"
-            puts "**************Resultado: #{contener[i]}**************************"
-            if contener[i] == nil
-              puts "***************** no COntiene algo***********************"
-            else
-              puts "*******************COntiene Algo*********************"
-
-            end
-        end
-
-    end
-  end
 
   def self.consultar_fecha(fecha)
     puts "****************la fecha es #{fecha}************************"

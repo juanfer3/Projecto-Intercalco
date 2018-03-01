@@ -261,6 +261,11 @@
                        </div>
 
                        <div class="col-12">
+                         <label for="">Maquinas</label>
+                         <input type="text" name=""  class="form-control op_montaje" id="op_maquinas_add" value="" disabled>
+                       </div>
+
+                       <div class="col-12">
                          <br>
                        </div>
 
@@ -312,38 +317,7 @@
 
 <br>
 
-               <div class="card card-outline-secondary mb-3 text-center">
-                 <div class="card-header">
-                   <h4>Maquinas</h4>
 
-                 </div>
-                  <div class="card-block">
-                     <div class="container">
-                        <br>
-                        <br>
-                        <div class="my_card_pedidos_form">
-
-
-
-
-                            <div class="col-12">
-                              <label for="">Selección de máquinas</label>
-
-                 <%=
-                 f.select :maquina_ids,
-                  Maquina.all.map{|i| [ i.nombre, i.id]},
-                  {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
-                  %>
-                            </div>
-
-
-
-
-                        </div>
-                        <br>
-                     </div>
-                  </div>
-               </div>
 
 
 

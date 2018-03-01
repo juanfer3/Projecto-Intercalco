@@ -31,21 +31,10 @@
                 <label for="">Seleccion Cliente</label>
                 <%=
                   f.select :cliente_id,
-                  Cliente.all.map{|i| ["Cliente: "+i.nombre+"- Vendedor: "+i.user.nombre , i.id]},
+                  Cliente.all.map{|i| ["Cliente: "+i.nombre+" " , i.id]},
                   {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_cliente_montaje"}
                 %>
                 <p id="campo_cliente"></p>
-              </div>
-
-
-              <!--Linea De Color-->
-              <div class="col-4">
-                <label for="">Seleccione la linea de color</label>
-                <%= f.select :linea_de_color_id,
-                LineaDeColor.all.map{|i| [i.nombre, i.id]},
-                {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
-                %>
-                <p id="campo_lineaColor"></p>
               </div>
 
               <!--Linea de Producto-->
@@ -58,6 +47,18 @@
                 %>
                 <p id="campo_productos"></p>
               </div>
+
+              <!--Linea De Color-->
+              <div class="col-4">
+                <label for="">Seleccione la linea de color</label>
+                <%= f.select :linea_de_color_id,
+                LineaDeColor.all.map{|i| [i.nombre, i.id]},
+                {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
+                %>
+                <p id="campo_lineaColor"></p>
+              </div>
+
+
 
 
               <!--Codigo-->
@@ -316,7 +317,37 @@
 
 
 
+  <div class="card card-outline-secondary mb-3 text-center">
+    <div class="card-header">
+      <h4>Maquinas</h4>
 
+    </div>
+     <div class="card-block">
+        <div class="container">
+           <br>
+           <br>
+           <div class="my_card_pedidos_form">
+
+
+
+
+               <div class="col-12">
+                 <label for="">Selección de máquinas</label>
+                  <%=
+                  f.select :maquina_ids,
+                   Maquina.all.map{|i| [ i.nombre, i.id]},
+                   {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
+                   %>
+               </div>
+
+
+
+
+           </div>
+           <br>
+        </div>
+     </div>
+  </div>
 
 
 

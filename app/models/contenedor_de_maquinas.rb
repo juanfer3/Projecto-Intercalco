@@ -1,4 +1,4 @@
 class ContenedorDeMaquinas < ApplicationRecord
-  belongs_to :orden_produccion
+  belongs_to :montaje
   belongs_to :maquina
 end

@@ -624,7 +624,7 @@ end
     @orden_produccion = OrdenProduccion.new
     @montaje = Montaje.new
     @orden_produccion.compromisos_de_entrega.build
-    @orden_produccion.contenedores_de_ordenes.build
+
   end
 
   # GET /ordenes_produccion/1/edit
@@ -689,8 +689,8 @@ end
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado,:_destroy, :id],
-      contenedores_de_ordenes_attributes:[:id,:_destroy,:orden_produccion_id, :maquina_id, :maquina_ids => []]
+        :diferencia, :numero_de_remision, :estado,:_destroy, :id]
+
       )
 
     end

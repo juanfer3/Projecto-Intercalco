@@ -25,8 +25,14 @@ class Montaje < ApplicationRecord
   has_many :contenedores_de_acabados, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :contenedores_de_acabados, reject_if: :all_blank, allow_destroy: true
 
-
   has_many :acabados, through: :contenedores_de_acabados
+
+  has_many :contenedores_de_maquinas, inverse_of: :montaje, dependent: :destroy
+  accepts_nested_attributes_for :contenedores_de_maquinas, reject_if: :all_blank, allow_destroy: true
+
+  has_many :maquinas, through: :contenedores_de_maquinas
+
+
 
   attr_accessor :new_cliente, :select_vendedor, :material_nuevo,
   :contacto_nuevo_montaje, :contacto_creado, :nit_cliente, :dir_cliente,
