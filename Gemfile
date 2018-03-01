@@ -110,6 +110,7 @@ gem 'monetize'
 gem 'roo'
 gem 'roo-xls'
 
+gem 'sprockets_better_errors'
 
 #para Exportar A PDF
 gem 'wicked_pdf'
@@ -119,3 +120,7 @@ gem 'wkhtmltopdf-binary'
 #buscadores
 gem 'ransack'
 #gem 'ransack', github: 'activerecord-hackery/ransack'
+
+
+
+gem 'pipeline'

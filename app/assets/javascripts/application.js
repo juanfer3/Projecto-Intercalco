@@ -106,7 +106,7 @@ $('.ocultar').hide()
     })
   })
 
-  //////////////////////////////////////////////////////////////
+
 
 
   $(".multiSelect").select2({
@@ -114,7 +114,7 @@ $('.ocultar').hide()
     tokenSeparators: [',']
 })
 
-//ordenes=============================================================================
+
 
 $('#contenedorBtnOrden').hide()
 $('form').on('click', '.remove_ordenes', function(event) {
@@ -138,35 +138,11 @@ $('form').on('click', '.add_ordenes', function(event) {
 
 
 });
-/*
-if( $('#crearOrden').prop('checked') ) {
-
-  $("#ContenedorDeOrdenes").show()
-
-}else {
-
-  $("#ContenedorDeOrdenes").hide()
-}
-
-$("#crearOrden").change(function(){
-
-  if( $('#crearOrden').prop('checked') ) {
-
-    $("#ContenedorDeOrdenes").show()
-
-  }else {
-
-    $("#ContenedorDeOrdenes").hide()
-  }
-
-})
-*/
 
 
 
-//$('#select_malla > option[value="<%=@desarrollo_de_tinta.malla.id%>"]').attr('selected', 'selected');
 
-  //$('#btnDesarrollo').trigger('click');
+
 
 
 
@@ -225,7 +201,7 @@ $("#crearOrden").change(function(){
 
   })
 
-  //Checbos despachos form ordenes
+
   if( $('#despacho_nuevo').prop('checked') ) {
 
     $('.ContenedorDespachoNuevo').show()
@@ -251,7 +227,7 @@ $("#crearOrden").change(function(){
     }
 
   })
-//Checbos facturar_a nuevo form ordenes
+
 if( $('#factura_nuevo').prop('checked') ) {
 
   $('.ContenedorFacturaNuevo').show()
