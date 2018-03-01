@@ -120,7 +120,3 @@ gem 'wkhtmltopdf-binary'
 #buscadores
 gem 'ransack'
 #gem 'ransack', github: 'activerecord-hackery/ransack'
-
-
-
-gem 'pipeline'
