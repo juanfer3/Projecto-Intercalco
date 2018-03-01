@@ -66,8 +66,6 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 gem 'bootstrap-datepicker-rails'
 
-gem 'bootstrap-toggle-rails'
-
 gem "select2-rails"
 
 gem 'ionicons-rails'
@@ -82,8 +80,6 @@ gem 'momentjs-rails'
 gem "font-awesome-rails"
 
 gem 'rails_layout'
-
-
 
 gem "table_print"
 

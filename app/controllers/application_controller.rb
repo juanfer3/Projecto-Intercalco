@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-
+  config.serve_static_assets = true
   #protect_from_forgery with: :null_session
 
   protect_from_forgery with: :exception
