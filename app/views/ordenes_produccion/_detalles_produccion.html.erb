@@ -376,11 +376,11 @@
                       <td>
                           <%=best_in_place desarrollo,
                           :linea_de_color_id, :as => :select,
-                          :collection => LineaDeColor.all.map{|i| [i.id, i.nombre]},
+                          :collection => LineaDeColor.all.order("nombre").map{|i| [i.id, i.nombre]},
                           inner_class: "js-select-best_in_place"
                           %>
                       </td>
-                      <td><%=best_in_place desarrollo, :malla_id , :as => :select, :collection => Malla.all.map{|i| [i.id, i.nombre]}%></td>
+                      <td><%=best_in_place desarrollo, :malla_id , :as => :select, :collection => Malla.all.order("nombre").map{|i| [i.id, i.nombre]}%></td>
 
                       <% if desarrollo.tiro== true %>
                         <td>

@@ -35,6 +35,29 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+
+
+
+
+
+
+
+
+	$('input').keydown(function(e) {
+		var keyCode = e.keyCode || e.which;
+			if (keyCode == 9) {
+
+			}
+	    if(keyCode == 13) {
+
+
+		}
+	});
+
+
+
+
 //Codigo Unicamente numerico
 $("#montaje_codigo").keydown(function(event) {
 	   if(event.shiftKey)
@@ -1963,6 +1986,34 @@ $('#busqueda_fop').on("select2:select", function (e) {
       tags: true,
       tokenSeparators: [',']
     })
+		var value_linea = $('#montaje_linea_de_color_id').val()
+		var contar_select =$(".desarrollo_tnt .lineas_add").length
+		for (var i = 0; i < contar_select; i++) {
+			var value_linea_add = $('.lineas_add:eq('+i+')').val()
+
+			if (value_linea_add.length <= 0) {
+				var value_linea_add = $('.lineas_add:eq('+i+')').val(value_linea).trigger('change')
+				var id_de_malla = $('#id_mallita').text()
+				$('.value_malla_add:eq('+i+')').val(id_de_malla).trigger('change')
+
+
+					if( $('.foo').last().prop('checked') ) {
+
+				  }else {
+				    $('.foo').last().attr('checked',true);
+				  }
+
+			}
+
+
+    }
+
+
+
+
+
+
+
     return event.preventDefault();
   });
 

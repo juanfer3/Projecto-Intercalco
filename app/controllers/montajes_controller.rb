@@ -160,7 +160,13 @@ end
           end
       end
     end
+    nombre_malla= "150"
 
+    @malla_id = ""
+    @malla_cont = Malla.find_by(nombre: nombre_malla)
+    if @malla_cont != nil
+      @malla_id = @malla_cont.id
+    end
 
     @montaje = Montaje.new
     @montaje.desarrollos_de_tintas.build
@@ -203,7 +209,13 @@ end
 
 
 
+    nombre_malla= "150"
 
+    @malla_id = ""
+    @malla_cont = Malla.find_by(nombre: nombre_malla)
+    if @malla_cont != nil
+      @malla_id = @malla_cont.id
+    end
 
     @NombreTintas = Tinta.all.distinct
     @TintaFormulada = TintaFormulada.all.distinct

@@ -3,5 +3,17 @@
 <%= render 'form', montaje: @montaje %>
 
 <script type="text/javascript">
-  
+  var value_linea = $('#montaje_linea_de_color_id').val()
+  var value_tinta_linea = $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id').val()
+
+  if (value_tinta_linea.length >= 0) {
+    toastr.info("es menor")
+    $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id option:eq('+value_linea+')').val());
+    var id_de_malla = $('id_mallita').text()
+    if (id_de_malla.length <= 0) {
+      $('#montaje_desarrollos_de_tintas_attributes_0_malla_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_malla_id option:eq(1)').val());
+    }else {
+      $('#montaje_desarrollos_de_tintas_attributes_0_malla_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_malla_id option:eq('+id_de_malla+')').val());
+    }
+  }
 </script>

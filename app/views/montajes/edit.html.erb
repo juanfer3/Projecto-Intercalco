@@ -1,8 +1,10 @@
 <br>
 <h1>Editar Montaje</h1>
-<p id="montaje_id"><%=@montaje.id%></p>
+
+
 <%= simple_form_for(@montaje) do |f| %>
   <%= f.error_notification %>
+
 
 
   <div class="offset-md-10">
@@ -238,7 +240,7 @@
                    <th>Anexar tinta al retiro</th>
                    <th>Eliminar</th>
                  </thead>
-                 <tbody class="fields_desarrollo_tintas">
+                 <tbody class="fields_desarrollo_tintas desarrollo_tnt">
                    <%=f.fields_for :desarrollos_de_tintas do |builder|%>
 
                       <%= render 'desarrollo_de_tinta', f: builder%>
@@ -326,7 +328,7 @@
         <div class="container">
            <br>
            <br>
-           <div class="my_card_pedidos_form">
+           <div class="my_card_pedidos_form ">
 
 
 
@@ -403,7 +405,7 @@
 
 
   <div class="card card-outline-secondary mb-3 text-center">
-  
+
     <div class="card-header">
        <h1>Observaciones</h1>
 
@@ -432,7 +434,10 @@
      </div>
   </div>
 
-
+  <div class="ocultar">
+    <p id="id_mallita"><%=@malla_id%></p>
+  </div>
+  <p id="montaje_id"><%=@montaje.id%></p>
 
   <div class="">
     <div class="btn pull-left">

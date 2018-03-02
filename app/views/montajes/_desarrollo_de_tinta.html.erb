@@ -3,12 +3,12 @@
 
 
     <%= f.select :linea_de_color_id,LineaDeColor.all.map {|i| [i.nombre , i.id]},
-    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}  %>
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control lineas_add'}  %>
   </td>
 
   <td>
     <%= f.select :malla_id, Malla.all.map {|i| [i.nombre , i.id]},
-    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control' } %>
+    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control value_malla_add' } %>
   </td>
 
   <td>
@@ -18,7 +18,7 @@
 
   <td>
     <br>
-    <%= f.input :tiro, label:false %>
+    <%= f.input :tiro, label:false, :input_html => { :class => 'foo' }%>
   </td>
 
   <td>

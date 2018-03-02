@@ -3,7 +3,7 @@
   <%= f.error_notification %>
   <!-- Errores en la validación -->
 
-<h1></h1>
+
 
   <% if @montaje.errors.any? %>
     <div class="">
@@ -345,7 +345,7 @@
                    <th>Anexar tinta al retiro</th>
                    <th>Eliminar</th>
                  </thead>
-                 <tbody class="fields_desarrollo_tintas" id="ContenedorDesarrollo">
+                 <tbody class="fields_desarrollo_tintas desarrollo_tnt" id="ContenedorDesarrollo">
                    <%=f.fields_for :desarrollos_de_tintas do |builder|%>
 
                       <%= render 'desarrollo_de_tinta', f: builder%>
@@ -587,8 +587,9 @@
 
 
 
-
-
+    <div class="ocultar">
+      <p id="id_mallita"><%=@malla_id%></p>
+    </div>
 
 
 

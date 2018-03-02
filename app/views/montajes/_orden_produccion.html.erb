@@ -193,7 +193,7 @@
             <div class="col-6 ">
 
               <table class="table">
-                <tbody class='fields_compromisos'>
+                <tbody class='fields_compromisos' >
                   <%=f.fields_for :compromisos_de_entrega do |builder|%>
 
                      <%= render 'compromiso_de_entrega', :f => builder%>
@@ -332,9 +332,13 @@
   $('#montaje_linea_producto_id').select2().select2('val', $('#montaje_linea_producto_id option:eq(1)').val());
   $('#montaje_linea_de_color_id').select2().select2('val', $('#montaje_linea_de_color_id option:eq(1)').val());
 
-  $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_linea_de_color_id option:eq(1)').val());
 
-  $('#montaje_desarrollos_de_tintas_attributes_0_malla_id').select2().select2('val', $('#montaje_desarrollos_de_tintas_attributes_0_malla_id option:eq(1)').val());
+
+  if( $('#montaje_desarrollos_de_tintas_attributes_0_tiro').prop('checked') ) {
+
+  }else {
+    $('#montaje_desarrollos_de_tintas_attributes_0_tiro').attr('checked',true);
+  }
 
   valor = $("#select_cliente_montaje").val();
   if (valor.length > 0) {
