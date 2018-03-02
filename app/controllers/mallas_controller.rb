@@ -4,7 +4,7 @@ class MallasController < ApplicationController
   # GET /mallas
   # GET /mallas.json
   def index
-    @mallas = Malla.all
+    @mallas = Malla.all.order("nombre")
   end
 
   # GET /mallas/1

@@ -4,7 +4,7 @@ class LineaDeColoresController < ApplicationController
   # GET /linea_de_colores
   # GET /linea_de_colores.json
   def index
-    @linea_de_colores = LineaDeColor.all
+    @linea_de_colores = LineaDeColor.all.order("nombre")
   end
 
   # GET /linea_de_colores/1
