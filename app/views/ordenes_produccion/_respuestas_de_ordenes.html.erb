@@ -1,7 +1,7 @@
 
 
 
-  <%@orden.each do |orden_produccion|%>
+  <%@ordenes.each do |orden_produccion|%>
 
 
 <%
@@ -228,3 +228,4 @@
                   <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, orden_produccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
                 <%end%>
+              

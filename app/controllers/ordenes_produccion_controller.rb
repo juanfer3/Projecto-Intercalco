@@ -8,7 +8,7 @@ class OrdenesProduccionController < ApplicationController
   end
 
   def buscador_de_ordenes_por_fecha
-    #code
+
     @fecha = params["fecha"]
     @compromisos_de_entrega = OrdenProduccion.consultar_fecha(@fecha)
   end
@@ -24,222 +24,35 @@ class OrdenesProduccionController < ApplicationController
     @data = params['data']
     puts "*****************el dato es: #{@data}***********************"
     @orden= []
-    @ordenes= Montaje.joins(:ordenes_produccion).where('numero_de_orden ILIKE ?', @data+'%').distinct
+    @ordenes= OrdenProduccion.joins(:montaje).where('numero_de_orden ILIKE ?', @data+'%').distinct
 
-
-
-
+    if @ordenes.empty?
+      puts "******************Vacio**********************"
+      @ordenes= OrdenProduccion.joins(:montaje).where('montajes.nombre ILIKE ?', '%'+@data+'%').distinct
       if @ordenes.empty?
-        puts "****************No se encuentra #{@ordenes}************************"
-        @ordenes= Montaje.joins(:ordenes_produccion).where('montajes.nombre ILIKE ?', '%'+@data+'%')
-                if @ordenes.empty?
-                  puts "****************No se encuentra montaje #{@ordenes}************************"
-                  @ordenes= Montaje.joins( :cliente).where('clientes.nombre ILIKE ?', @data+'%')
+        puts "*****************El montaje no existe***********************"
+        @ordenes= OrdenProduccion.joins(:montaje => [:cliente]).where('clientes.nombre ILIKE ?', @data+'%').distinct
+        if @ordenes.empty?
+          puts "*****************El cliente no existe***********************"
+          @ordenes= OrdenProduccion.joins(:montaje => [:linea_producto]).where('lineas_productos.nombre ILIKE ?', @data+'%').distinct
 
-                        if @ordenes.empty?
-                          puts "****************No se encuentra montaje #{@ordenes}************************"
-                          @ordenes= Montaje.joins( :maquina).where('maquinas.nombre ILIKE ?', @data+'%')
-
-                                  if @ordenes.empty?
-                                    puts "*****************No se encuentra la maquina***********************"
-                                    @ordenes= Montaje.joins( :linea_de_color).where('linea_de_colores.nombre ILIKE ?', @data+'%')
-                                            if @ordenes.empty?
-                                                puts "*****************No se encuentra la linea de color***********************"
-                                                  @ordenes= Montaje.joins(:ordenes_produccion, :linea_producto).where('lineas_productos.nombre ILIKE ?', @data+'%')
-                                                  if @ordenes.empty?
-
-                                                  else
-                                                    puts "****************si existe************************"
-                                                    @ordenes.each do |montaje|
-                                                      montaje.ordenes_produccion.each do |orden_produccion|
-
-                                                        word1 = @data.split('')
-                                                        word2 = orden_produccion.montaje.linea_producto.nombre
-                                                        contenedor=word1.length
-
-                                                        cont= 0
-                                                        puts "****************palabra: #{word1[0]}************************"
-
-                                                        for i in (0..contenedor)
-                                                             if word1[i].to_s.upcase == word2[i].to_s.upcase
-                                                               puts "**************Letra igual**************************"
-                                                               cont = cont + 1
-                                                             else
-                                                               puts "**************Letra Diferente**************************"
-                                                             end
-                                                        end
-
-                                                        if cont >= word1.length
-                                                          @orden << orden_produccion
-                                                        end
-
-
-                                                      end
-                                                    end
-                                                  end
-
-
-                                              else
-                                                puts "****************si existe************************"
-                                                @ordenes.each do |montaje|
-                                                  montaje.ordenes_produccion.each do |orden_produccion|
-
-
-                                                    word1 = @data.split('')
-                                                    word2 = orden_produccion.montaje.linea_de_color.nombre
-                                                    contenedor=word1.length
-
-                                                    cont= 0
-                                                    puts "****************palabra: #{word1[0]}************************"
-
-                                                    for i in (0..contenedor)
-                                                         if word1[i].to_s.upcase == word2[i].to_s.upcase
-                                                           puts "**************Letra igual**************************"
-                                                           cont = cont + 1
-                                                         else
-                                                           puts "**************Letra Diferente**************************"
-                                                         end
-                                                    end
-
-                                                    if cont >= word1.length
-                                                      @orden << orden_produccion
-                                                    end
-                                                  end
-
-                                                end
-                                            end
-                                          else
-                                            puts "****************si existe************************"
-                                            @ordenes.each do |montaje|
-                                              montaje.ordenes_produccion.each do |orden_produccion|
-
-
-                                                word1 = @data.split('')
-                                                word2 = orden_produccion.montaje.maquina.nombre
-                                                contenedor=word1.length
-
-                                                cont= 0
-                                                puts "****************palabra: #{word1[0]}************************"
-
-                                                for i in (0..contenedor)
-                                                     if word1[i].to_s.upcase== word2[i].to_s.upcase
-                                                       puts "**************Letra igual**************************"
-                                                       cont = cont + 1
-                                                     else
-                                                       puts "**************Letra Diferente**************************"
-                                                     end
-                                                end
-
-                                                if cont >= word1.length
-                                                  @orden << orden_produccion
-                                                end
-
-                                              end
-                                            end
-                                  end
-
-
-
-
-
-
-                                else
-                                  puts "****************si existe************************"
-                                  @ordenes.each do |montaje|
-                                    montaje.ordenes_produccion.each do |orden_produccion|
-
-
-                                      word1 = @data.split('')
-                                      word2 = orden_produccion.montaje.cliente.nombre
-                                      contenedor=word1.length
-
-                                      cont= 0
-                                      puts "****************palabra: #{word1[0]}************************"
-
-                                      for i in (0..contenedor)
-                                           if word1[i].to_s.upcase== word2[i].to_s.upcase
-                                             puts "**************Letra igual**************************"
-                                             cont = cont + 1
-                                           else
-                                             puts "**************Letra Diferente**************************"
-                                           end
-                                      end
-
-                                      if cont >= word1.length
-                                        @orden << orden_produccion
-                                      end
-
-                                    end
-                                  end
-                        end
-
-
-              else
-                  puts "****************si existe************************"
-                  @ordenes.each do |montaje|
-                    montaje.ordenes_produccion.each do |orden_produccion|
-
-
-                      word1 = @data.split('')
-                      word2 = orden_produccion.montaje.nombre
-                      contenedor=word1.length
-
-                      cont= 0
-                      puts "****************palabra: #{word1[0]}************************"
-
-                      for i in (0..contenedor)
-                           if word1[i].to_s.upcase == word2[i].to_s.upcase
-                             puts "**************Letra igual**************************"
-                             cont = cont + 1
-                           else
-                             puts "**************Letra Diferente**************************"
-                           end
-                      end
-
-                      if cont >= word1.length
-                        @orden << orden_produccion
-                      end
-
-                    end
-                  end
-                end
-
-
-
-
-      else
-        puts "****************si existe************************"
-        @ordenes.each do |montaje|
-          montaje.ordenes_produccion.each do |orden_produccion|
-
-
-            word1 = @data.split('')
-            word2 = orden_produccion.numero_de_orden
-            contenedor=word1.length
-
-            cont= 0
-            puts "****************palabra: #{word1[0]}************************"
-
-            for i in (0..contenedor)
-                 if word1[i].to_s.upcase== word2[i].to_s.upcase
-                   puts "**************Letra igual**************************"
-                   cont = cont + 1
-                 else
-                   puts "**************Letra Diferente**************************"
-                 end
-            end
-            contpalabra = word1.length
-            cont2 = contpalabra
-            puts "***********el contador es igual a: #{cont} ==  la palabra tiene#{cont2}****************************"
-            if cont >= cont2
-              @orden << orden_produccion
-            end
-
+          if @ordenes.empty?
+            @ordenes= OrdenProduccion.joins(:montaje => [:linea_de_color]).where('linea_de_colores.nombre ILIKE ?', @data+'%').distinct
           end
+        else
+          puts "*****************el cliente existe***********************"
         end
+      else
+        puts "*****************el montaje existe***********************"
       end
+    else
 
-#===========================================
+    end
+
+
+
+
+
     respond_to do |format|
           format.js
     end
