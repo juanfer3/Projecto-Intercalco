@@ -5,7 +5,7 @@
     <div class="col-4">
       <label for="">Cliente</label>
 
-      <h4 ><%= @orden_produccion.montaje.cliente.nombre%></h4>
+      <h4 ><%= @orden_produccion.montaje.cliente.nombre%> <br> <p> <%=@orden_produccion.montaje.cliente.user.nombre%> </p></h4>
     </div>
     <div class="col-4">
       <label for="">Descripción</label>
@@ -29,7 +29,19 @@
 
             <div class="">
             <strong>Máquina:</strong>
-            maquina
+            <%conteo = 0%>
+            <%@orden_produccion.montaje.contenedores_de_maquinas.each do |contenedor_maquina|%>
+              <%
+              conteo = conteo+1
+
+              %>
+              <% if conteo == 1 %>
+                <%=contenedor_maquina.maquina.nombre%>
+              <%else%>
+                <%=", "+contenedor_maquina.maquina.nombre%>
+              <% end %>
+
+            <%end%>
             </div>
 
 
@@ -359,9 +371,16 @@
                 <tbody>
                   <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
                     <tr id=<%="quitar_desarrollo_#{desarrollo.id}"%>>
-                      <td><%=desarrollo.descripción%></td>
-                      <td><%=desarrollo.linea_de_color.nombre%></td>
-                      <td><%=desarrollo.malla.nombre%></td>
+
+                      <td><%=best_in_place desarrollo, :descripción, :as => :input%></td>
+                      <td>
+                          <%=best_in_place desarrollo,
+                          :linea_de_color_id, :as => :select,
+                          :collection => LineaDeColor.all.map{|i| [i.id, i.nombre]},
+                          inner_class: "js-select-best_in_place"
+                          %>
+                      </td>
+                      <td><%=best_in_place desarrollo, :malla_id , :as => :select, :collection => Malla.all.map{|i| [i.id, i.nombre]}%></td>
 
                       <% if desarrollo.tiro== true %>
                         <td>
@@ -399,3 +418,15 @@
 
 
 <hr>
+
+
+
+
+<script type="text/javascript">
+jQuery(".best_in_place").best_in_place();
+$('.best_in_place').on('best_in_place:activate', function() {
+
+});
+
+
+</script>

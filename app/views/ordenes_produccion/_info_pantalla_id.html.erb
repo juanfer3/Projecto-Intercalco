@@ -29,7 +29,26 @@
     <div class="col-3">
       <label for="">Máquina:</label>
 
-        <h4>       </h4>
+      <div class="">
+        <ul class="list-inline">
+        <%conteo = 0%>
+        <%@orden_produccion.montaje.contenedores_de_maquinas.each do |contenedor_maquina|%>
+          <%
+          conteo = conteo+1
+
+          %>
+                  <% if conteo == 1 %>
+
+
+                        <li class="list-inline-item"> <p><%=contenedor_maquina.maquina.nombre%></p> </li>
+                  <%else%>
+
+                        <li class="list-inline-item"> <p><%=","+contenedor_maquina.maquina.nombre%></p> </li>
+
+                  <% end %>
+      <%end%>
+      </ul>
+      </div>
 
 
         </div>
