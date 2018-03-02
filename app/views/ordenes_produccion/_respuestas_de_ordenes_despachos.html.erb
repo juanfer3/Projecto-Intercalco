@@ -1,4 +1,4 @@
-<% @orden.each do |orden| %>
+<% @ordenes.each do |orden| %>
         <%orden.compromisos_de_entrega.each do |compromiso_de_entrega|%>
           <tr class="identificador">
             <td><%= compromiso_de_entrega.orden_produccion.numero_de_orden %></td>
