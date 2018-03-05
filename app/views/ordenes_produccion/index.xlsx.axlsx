@@ -16,9 +16,9 @@ wb.styles do |style|
 
 
 	 sheet.add_row ["NUMERO DE ORDEN", "MES", "VENDEDOR", "LINEA DE PRODUCTO",
-   "FECHA OP", "FECHA DE ENTREGA", "FECHA CALCULADA","CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA",
+   "FECHA OP", "FECHA DE ENTREGA", "CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA",
    "PRECIO UNITARIO", "VALOR TOTAL","PRODUCCION NUEVA O REPETITIVA","TAMAÑOS TOTALES","CABIDAD", "CODIGO MATERIAL","MATERIAL", "LINEA DE COLOR",
-   "TEMPERATURA", "MAQUINA(S)",  "PIEZA A DECORAR",
+   "TEMPERATURA", "MAQUINA(S)", "PANTALLA NUEVA O REPETITIVA", "PIEZA A DECORAR",
    "TINTA 1", "MALLA 1",
    "TINTA 2", "MALLA 2",
    "TINTA 3", "MALLA 3",
@@ -163,14 +163,14 @@ wb.styles do |style|
        "", orden.montaje.cliente.user.nombre,
        orden.montaje.linea_producto.nombre, orden.fecha,
        orden.compromisos_de_entrega.pluck(:fecha_de_compromiso)*", "  " ",
-       "",
        orden.montaje.cliente.nombre,orden.montaje.nombre,orden.cantidad_solicitada,orden.precio_unitario,
        orden.cantidad_programada,
        "", orden.tamanos_total,
-       orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion, orden.montaje.linea_de_color.nombre,
+       orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion,
+       orden.montaje.linea_de_color.nombre,
        "",
        orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " ",
-       
+       "",
        "",
 
        tnt_1,
