@@ -363,7 +363,10 @@
       <div class="col-4">
         <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>
       </div>
-
+      <div class="col-4">
+         <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+         ordenes_produccion_path(format: :xlsx) %>
+       </div>
 
     <%end%>
 

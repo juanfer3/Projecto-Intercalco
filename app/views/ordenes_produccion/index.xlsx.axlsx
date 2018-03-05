@@ -3,13 +3,14 @@
 wb = xlsx_package.workbook
 
 
-ordenes_produccion = OrdenProduccion.all
+ordenes_produccion = OrdenProduccion.all.order("numero_de_orden")
 
 
 wb.styles do |style|
   highlight_cell = style.add_style(:b => true)
 
 	 wb.add_worksheet(name: "Evento ") do |sheet|
+
 
 
 
