@@ -217,7 +217,7 @@ wb.styles do |style|
        orden.montaje.linea_producto.nombre, orden.fecha,
        orden.compromisos_de_entrega.pluck(:fecha_de_compromiso)*", "  " ",
        orden.montaje.cliente.nombre,orden.montaje.nombre,orden.cantidad_solicitada,number_to_currency(orden.precio_unitario) ,
-       number_to_currency(orden.cantidad_programada),
+       "",
        "", orden.tamanos_total,
        orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion,
        orden.montaje.linea_de_color.nombre,
