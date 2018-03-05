@@ -17,8 +17,8 @@ wb.styles do |style|
 
 	 sheet.add_row ["NUMERO DE ORDEN", "MES", "VENDEDOR", "LINEA DE PRODUCTO",
    "FECHA OP", "FECHA DE ENTREGA", "FECHA CALCULADA","CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA",
-   "PRECIO UNITARIO", "VALOR TOTAL","TAMAÑOS TOTALES","CABIDAD", "CODIGO MATERIAL","MATERIAL", "LINEA DE COLOR",
-   "TEMPERATURA", "MAQUINA(S)", "PRODUCCION NUEVA O REPETITIVA", "PIEZA A DECORAR",
+   "PRECIO UNITARIO", "VALOR TOTAL","PRODUCCION NUEVA O REPETITIVA","TAMAÑOS TOTALES","CABIDAD", "CODIGO MATERIAL","MATERIAL", "LINEA DE COLOR",
+   "TEMPERATURA", "MAQUINA(S)",  "PIEZA A DECORAR",
    "TINTA 1", "MALLA 1",
    "TINTA 2", "MALLA 2",
    "TINTA 3", "MALLA 3",
@@ -170,7 +170,7 @@ wb.styles do |style|
        orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion, orden.montaje.linea_de_color.nombre,
        "",
        orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " ",
-       "",
+       
        "",
 
        tnt_1,
