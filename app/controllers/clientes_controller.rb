@@ -59,11 +59,23 @@ end
   def index
     if current_user.rol.cargo == "Administrador"
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).order('nombre').distinct
+      comercial= "Comercial"
+      gerente_comercial = "Gerente Comercial"
+      @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
+
     elsif current_user.rol.cargo == "Comercial"
       @clientes = Cliente.joins(:contactos, :user).paginate(page: params[:page], per_page: 20).where("contactos.user_id=#{current_user.id}").order('nombre').distinct
+      comercial= "Comercial"
+      gerente_comercial = "Gerente Comercial"
+      @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
+
     elsif current_user.rol.cargo == "Producción"
       val_estado = true
       @clientes = Cliente.all.paginate(page: params[:page], per_page: 20).where("estado =?",val_estado).order('nombre').distinct
+      comercial= "Comercial"
+      gerente_comercial = "Gerente Comercial"
+      @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
+
     end
   end
 

@@ -12,6 +12,7 @@
       <th>Nit</th>
       <th>Direccion</th>
       <th>Telefono</th>
+      <th>Vendedor</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,8 @@
         <td><%= cliente.nit %></td>
         <td><%= cliente.direccion %></td>
         <td><%= cliente.telefono %></td>
+        <td><%= best_in_place cliente, :user_id,  :as => :select,
+        :collection => @comerciales.map{|i| [i.id, i.nombre]}%></td>
         <td><%= link_to '<button class="btn btn-outline-primary"><span><i class="ion-person-stalker"></i></i></span></button>'.html_safe, cliente %></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_cliente_path(cliente) %></td>
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, cliente, method: :delete, data: { confirm: 'Are you sure?' } %></td>
