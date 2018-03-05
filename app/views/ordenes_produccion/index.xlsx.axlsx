@@ -1,0 +1,241 @@
+
+
+wb = xlsx_package.workbook
+
+
+ordenes_produccion = OrdenProduccion.all
+
+
+wb.styles do |style|
+  highlight_cell = style.add_style(:b => true)
+
+	 wb.add_worksheet(name: "Evento ") do |sheet|
+
+
+
+
+
+	 sheet.add_row ["NUMERO DE ORDEN", "MES", "VENDEDOR", "LINEA DE PRODUCTO",
+   "FECHA OP", "FECHA DE ENTREGA", "FECHA CALCULADA","CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA",
+   "PRECIO UNITARIO", "VALOR TOTAL","TAMAÑOS TOTALES","CABIDAD", "CODIGO MATERIAL","MATERIAL", "LINEA DE COLOR",
+   "TEMPERATURA", "MAQUINA(S)", "PRODUCCION NUEVA O REPETITIVA", "PIEZA A DECORAR",
+   "TINTA 1", "MALLA 1",
+   "TINTA 2", "MALLA 2",
+   "TINTA 3", "MALLA 3",
+   "TINTA 4", "MALLA 4",
+   "TINTA 5", "MALLA 5",
+   "TINTA 6", "MALLA 6",
+   "TINTA 7", "MALLA 7",
+   "TINTA 8", "MALLA 8",
+   "TINTA 9", "MALLA 9",
+   "TINTA 10", "MALLA 10",
+   "TINTA 11", "MALLA 11",
+   "TINTA 12", "MALLA 12",
+   "TAMAÑO CORTE 1", "TAMAÑO CORTE 2", "CANTIDAD HOJAS", "TIRO", "RETIRO", "OBSERVACIONES"],
+
+	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+
+
+
+
+     ordenes_produccion.each do |orden|
+
+     tiro = ""
+     retiro = ""
+
+      tnt_1 = ""
+      tnt_2 = ""
+      tnt_3 = ""
+      tnt_4 = ""
+      tnt_5 = ""
+      tnt_6 = ""
+      tnt_7 = ""
+      tnt_8 = ""
+      tnt_9 = ""
+      tnt_10 = ""
+      tnt_11 = ""
+      tnt_12 = ""
+
+      mall_1 = ""
+      mall_2 = ""
+      mall_3 = ""
+      mall_4 = ""
+      mall_5 = ""
+      mall_6 = ""
+      mall_7 = ""
+      mall_8 = ""
+      mall_9 = ""
+      mall_10 = ""
+      mall_11 = ""
+      mall_12 = ""
+
+
+
+
+      cont = 0
+      orden.montaje.desarrollos_de_tintas.each do |tintas|
+            cont = cont+1
+            puts "INICION DEL SWICHT"
+            puts "El contador esta en #{cont}"
+            case cont
+            when 1
+              puts"==========caso 1"
+
+              tnt_1 = tintas.descripción
+              mall_1 = tintas.malla.nombre
+
+            when 2
+
+              tnt_2 = tintas.descripción
+              mall_2 = tintas.malla.nombre
+
+            when 3
+
+              tnt_3 = tintas.descripción
+              mall_3 = tintas.malla.nombre
+
+            when 4
+
+                tnt_4 = tintas.descripción
+                mall_4 = tintas.malla.nombre
+
+            when 5
+
+                tnt_5 = tintas.descripción
+                mall_5 = tintas.malla.nombre
+
+            when 6
+
+                tnt_6 = tintas.descripción
+                mall_6 = tintas.malla.nombre
+
+            when 7
+
+              tnt_7 = tintas.descripción
+              mall_7 = tintas.malla.nombre
+
+            when 8
+
+                tnt_8 = tintas.descripción
+                mall_8 = tintas.malla.nombre
+
+            when 9
+
+                tnt_9 = tintas.descripción
+                mall_9 = tintas.malla.nombre
+
+            when 10
+                tnt_10 = tintas.descripción
+                mall_10 = tintas.malla.nombre
+            when 11
+                tnt_11 = tintas.descripción
+                mall_11 = tintas.malla.nombre
+            when 12
+                tnt_12 = tintas.descripción
+                mall_12 = tintas.malla.nombre
+             end
+
+
+
+
+           if tintas.tiro == true
+            tiro = "X"
+           end
+
+           if tintas.retiro == true
+            retiro = "X"
+           end
+
+
+      end
+      tamanos_corte = orden.montaje.tamano_de_corte.to_s.upcase
+      mostrar = tamanos_corte.split("X")
+
+
+  	   sheet.add_row [orden.numero_de_orden,
+       "", orden.montaje.cliente.user.nombre,
+       orden.montaje.linea_producto.nombre, orden.fecha,
+       orden.compromisos_de_entrega.pluck(:fecha_de_compromiso)*", "  " ",
+       "",
+       orden.montaje.cliente.nombre,orden.montaje.nombre,orden.cantidad_solicitada,orden.precio_unitario,
+       orden.cantidad_programada, "NUEVA/REPETITIVA", orden.tamanos_total,
+       orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion, orden.montaje.linea_de_color.nombre,
+       "",
+       orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " ",
+       "",
+       "PIEZA A DECORAR",
+
+       tnt_1,
+       mall_1 ,
+
+       tnt_2 ,
+       mall_2 ,
+
+       tnt_3 ,
+       mall_3 ,
+       tnt_4 ,
+       mall_4 ,
+
+       tnt_5 ,
+       mall_5 ,
+
+       tnt_6 ,
+       mall_6 ,
+
+       tnt_7 ,
+       mall_7 ,
+
+       tnt_8 ,
+       mall_8 ,
+
+       tnt_9 ,
+       mall_9 ,
+
+       tnt_10 ,
+       mall_10 ,
+
+       tnt_11 ,
+       mall_11 ,
+
+       tnt_12 ,
+       mall_12,
+
+       orden.cantidad_hoja,
+       mostrar[0],
+       mostrar[1],
+       tiro,
+       retiro,
+       orden.observacion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       ]
+
+     end
+
+
+	end
+
+end

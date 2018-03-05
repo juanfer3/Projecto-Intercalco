@@ -5,6 +5,13 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion.json
   def index
     @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden').distinct
+    respond_to do |format|
+      format.html
+      format.js
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="OrdenesDeProduccion.xlsx"'
+      }
+    end
   end
 
   def buscador_de_ordenes_por_fecha
