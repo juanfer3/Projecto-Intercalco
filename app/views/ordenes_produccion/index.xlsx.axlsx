@@ -155,13 +155,65 @@ wb.styles do |style|
            end
 
 
+
+
+
+
+
       end
+
+      mes = []
+      value_mes = ""
+      orden.compromisos_de_entrega.each do |compromiso|
+
+        if compromiso.fecha_de_compromiso != nil
+            value_mes = compromiso.fecha_de_compromiso.strftime("%m")
+
+            case value_mes
+            when "01"
+              mes << "Enero"
+            when "02"
+              mes << "Febrero"
+            when "03"
+              mes << "Marzo"
+            when "04"
+              mes << "Abril"
+            when "05"
+              mes << "Mayo"
+            when "06"
+              mes << "Junio"
+            when "07"
+              mes << "Julio"
+            when "08"
+              mes << "Agosto"
+            when "09"
+              mes << "Septiembre"
+            when "10"
+              mes << "Octubre"
+            when "11"
+              mes << "Noviembre"
+            when "12"
+              mes << "Diciembre"
+
+
+
+
+       end
+
+
+
+
+
+        end
+      end
+
+
       tamanos_corte = orden.montaje.tamano_de_corte.to_s.upcase
       mostrar = tamanos_corte.split("X")
 
 
   	   sheet.add_row [orden.numero_de_orden,
-       "", orden.montaje.cliente.user.nombre,
+       mes.map{|i|i.to_s.upcase}*", "  " ", orden.montaje.cliente.user.nombre,
        orden.montaje.linea_producto.nombre, orden.fecha,
        orden.compromisos_de_entrega.pluck(:fecha_de_compromiso)*", "  " ",
        orden.montaje.cliente.nombre,orden.montaje.nombre,orden.cantidad_solicitada,orden.precio_unitario,
