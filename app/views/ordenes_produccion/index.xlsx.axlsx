@@ -17,7 +17,7 @@ wb.styles do |style|
 
 
 	 sheet.add_row ["NUMERO DE ORDEN", "MES", "VENDEDOR", "LINEA DE PRODUCTO",
-   "FECHA OP", "FECHA DE ENTREGA", "CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA","",
+   "FECHA OP", "FECHA DE ENTREGA", "","CLIENTE", "DESCRIPCION", "CANTIDAD PROGRAMADA",
    "PRECIO UNITARIO", "VALOR TOTAL","PRODUCCION NUEVA O REPETITIVA","TAMAÑOS TOTALES","CABIDAD", "CODIGO MATERIAL","MATERIAL", "LINEA DE COLOR",
    "TEMPERATURA", "MAQUINA(S)", "PANTALLA NUEVA O REPETITIVA", "PIEZA A DECORAR",
    "TINTA 1", "MALLA 1",
@@ -229,11 +229,10 @@ wb.styles do |style|
        fechas_entregas.map{|i|i}*", "  " ",
        "",
        orden.montaje.cliente.nombre.to_s.capitalize,orden.montaje.nombre.to_s.capitalize,
-       orden.cantidad_solicitada,number_to_currency_br(orden.precio_unitario) ,
-       "",
+       orden.cantidad_solicitada,number_to_currency_br(orden.precio_unitario) ,"",
        tipo_de_orden, orden.tamanos_total,
        orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion.to_s.capitalize,
-       orden.montaje.linea_de_color.nombre.to_s.capitalize,
+       orden.montaje.linea_de_color.nombre.to_s.upcase,
        "",
        orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre.to_s.capitalize}*", "  " ",
        "",
