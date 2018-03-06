@@ -4,7 +4,7 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion
   # GET /ordenes_produccion.json
   def index
-    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden').distinct
+    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden DESC').distinct
     respond_to do |format|
       format.html
       format.js
@@ -149,7 +149,7 @@ end
   #Color
   def produccion_color
     estado = true
-    @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden")
+    @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden DESC")
   end
 
   def cerrar_color
@@ -224,7 +224,7 @@ end
   #pantallas
   def produccion_pantallas
     estado = true
-    @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden")
+    @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden DESC")
   end
 
   def cerrar_pantalla
