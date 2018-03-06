@@ -7,10 +7,33 @@
     <title>Pdf reporte de tintas</title>
   </head>
   <body>
-    <%=
-        wicked_pdf_image_tag 'logointercalco.png',
-        class:"float-left col-10"
-    %>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+              <th rowspan="2" style="width: 200px;">
+              <%=
+                  wicked_pdf_image_tag 'logointercalco.png',
+                  class:"float-center col-5"
+              %>
+            </th >
+
+            <th rowspan="2" align="center">
+              <p align="center">ORDEN DE FABRICACIÓN</p>
+            </th>
+            <th>CODIGO</th>
+            <th>FOP-PP-04-01</th>
+      </tr>
+      <tr>
+
+        <th>FECHA</th>
+        <th>8/11/2012</th>
+      </tr>
+
+      </thead>
+    </table>
+
+
       <h1>HOLA MUNDO</h1>
       <table class="table">
         <thead>

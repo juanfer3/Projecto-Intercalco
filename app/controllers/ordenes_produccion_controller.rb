@@ -14,6 +14,18 @@ class OrdenesProduccionController < ApplicationController
     end
   end
 
+  def reporte_tinta
+
+    @orden_produccion = OrdenProduccion.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf {render template: "ordenes_produccion/reporte_tinta", pdf: 'reporte_tinta'}
+      format.json
+    end
+  end
+
+
   def buscador_de_ordenes_por_fecha
 
     @fecha = params["fecha"]

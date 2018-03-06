@@ -1,0 +1,17 @@
+.my_card_contactos_form{
+    //background:green;
+    display: flex;
+    justify-content: space-between ;
+    flex-wrap:  wrap;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+  -webkit-flex-flow: row wrap;
+}
+
+body{
+  background-color: red;
+}

@@ -166,4 +166,6 @@ Rails.application.routes.draw do
   post 'import_materiales_excel' => "materiales#import_materiales_excel", as: :import_materiales_excel
 
   get 'contactos_for_select/:id', to: 'montajes#contactos_for_select', as: :contactos_for_select
+
+  get 'reporte_tinta/:id', to: 'ordenes_produccion#reporte_tinta', as: :reporte_tinta
 end

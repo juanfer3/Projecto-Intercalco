@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%= wicked_pdf_stylesheet_link_tag  'pdf' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Pdf reporte de tintas</title>
+  </head>
+  <body>
+    <style media="screen">
+    .my_card_contactos_form{
+        //background:green;
+        display: flex;
+        justify-content: space-between ;
+        flex-wrap:  wrap;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+      -webkit-flex-flow: row wrap;
+    }
+
+
+
+    </style>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+              <th rowspan="2" style="width: 200px;">
+              <%=
+                  wicked_pdf_image_tag 'logointercalco.png',
+                  class:"float-center col-5"
+              %>
+            </th >
+
+            <th rowspan="2" align="center">
+              <p align="center">ORDEN DE FABRICACIÓN</p>
+            </th>
+            <th>CODIGO</th>
+            <th>FOP-PP-04-01</th>
+      </tr>
+      <tr>
+
+        <th>FECHA</th>
+        <th>8/11/2012</th>
+      </tr>
+      <tbody>
+        <tr >
+          <th colspan="4" align="center" style="height: 5px;"><h6 align="center"> ORDEN DE FABRICACIÓN DE COLORES </h6> </th>
+        </tr>
+      </tbody>
+
+      </thead>
+    </table>
+
+
+
+
+      <div class="my_card_contactos_form">
+        <div class="col-4">
+          <h6> <strong>Fecha: </strong> </h6>
+        </div>
+        <div class="col-4">
+          <h6> <strong>N° de orden: </strong> <%= @orden_produccion.numero_de_orden%> </h6>
+        </div>
+        <div class="col-4">
+          <h6> <strong>Producción: X </strong>  </h6>
+        </div>
+
+        <br>
+
+      </div>
+
+
+      <br>
+
+
+
+      <div class="my_card_contactos_form">
+
+        <div class="col-6">
+          <h6> <strong>Cliente:  </strong> <%= @orden_produccion.montaje.cliente.nombre%> </h6>
+        </div>
+
+        <div class="col-6">
+          <h6> <strong>Fecha de Entrega:  </strong> <%= @orden_produccion.compromisos_de_entrega.map{|i|i.fecha_de_compromiso}*", "  " "%> </h6>
+        </div>
+
+
+      </div>
+
+      <br>
+
+      <div class="my_card_contactos_form">
+
+        <div class="col-12">
+          <h6> <strong>Identificación trabajo:  </strong> <%= @orden_produccion.montaje.nombre%> </h6>
+        </div>
+
+
+
+
+      </div>
+
+      <br>
+
+      <div class="my_card_contactos_form">
+
+        <div class="col-3">
+          <h6> <strong>Línea:  </strong> <%= @orden_produccion.montaje.linea_de_color.nombre%> </h6>
+        </div>
+
+        <div class="col-6 ">
+          <h6> <strong>Sustrato:  </strong> <%= @orden_produccion.montaje.material.descripcion%> </h6>
+        </div>
+
+        <div class="col-3">
+          <h6> <strong>cabidad:  </strong> <%= @orden_produccion.cavidad%> </h6>
+        </div>
+
+
+
+
+      </div>
+
+      <br>
+
+      <div class="my_card_contactos_form">
+
+        <div class="col-6">
+          <h6> <strong>Maquina(s):  </strong> <%= @orden_produccion.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " "%> </h6>
+        </div>
+        <div class="col-2">
+          <h6> <strong>Tamaño:  </strong> <%= @orden_produccion.montaje.tamano_de_corte%> </h6>
+        </div>
+        <div class="col-3">
+          <h6> <strong>Tamaños totales:  </strong> <%= @orden_produccion.tamanos_total%> </h6>
+        </div>
+
+
+      </div>
+      <br>
+      <table class="table table-bordered table-sm">
+        <thead>
+          <tr>
+            <th style="width: 200px;">Observaciones</th>
+            <td colspan="4"><%= @orden_produccion.observacion%></td>
+
+          </tr>
+          <tr>
+            <th colspan="5" align="center"> <h6 align="center">Colores</h6> </th>
+          </tr>
+
+          <tr>
+            <th>#</th>
+
+            <th colspan="2">Color</th>
+            <th>Linea</th>
+            <th>Malla</th>
+
+          </tr>
+
+
+        </thead>
+        <tbody>
+          <%cont= 0%>
+          <%@orden_produccion.montaje.desarrollos_de_tintas.each do  |desarrollo|%>
+          <%cont = cont+1%>
+          <tr>
+              <td ><%=cont%></td>
+              <td colspan="2"><%=desarrollo.descripción%></td>
+              <td><%=desarrollo.linea_de_color.nombre%></td>
+              <td><%=desarrollo.malla.nombre%></td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
+
+
+  </body>
+</html>
