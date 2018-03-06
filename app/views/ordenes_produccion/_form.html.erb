@@ -10,19 +10,26 @@
 <%= simple_form_for(@orden_produccion) do |f| %>
   <%= f.error_notification %>
 
+<div class=" my_card_contactos_form">
 
-<div class="col-6">
-  <label for="">Selección De Referencia</label>
-  <%=
 
-    f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
-    {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"}
+          <div class="col-6">
+            <label for="">Selección De Referencia</label>
+            <%=
 
-  %>
+              f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
+              {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"}
+
+            %>
+
+          </div>
+          <div class="col-3 offset-md-3 nueva_orden_checbox">
+            <%=
+            f.input :orden_nueva
+            %>
+          </div>
 
 </div>
-
-
 
 <br>
 
@@ -377,6 +384,6 @@
   $ ( "#select_contactos" ).prop("disabled", true)
   $ ( "#select_facturar_a" ).prop("disabled", true)
   $ ( "#select_entrega" ).prop("disabled", true)
-  
+
 
 </script>

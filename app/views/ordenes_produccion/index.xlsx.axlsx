@@ -40,13 +40,19 @@ wb.styles do |style|
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
-   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+   highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
 
 
 
 
      ordenes_produccion.each do |orden|
+     tipo_de_orden = ""
+     if orden.orden_nueva == true
+      tipo_de_orden = "Nueva"
+     else
+      tipo_de_orden = "Repetición"
+     end
 
      tiro = ""
      retiro = ""
@@ -85,63 +91,65 @@ wb.styles do |style|
             cont = cont+1
             puts "INICION DEL SWICHT"
             puts "El contador esta en #{cont}"
+
+
             case cont
-            when 1
-              puts"==========caso 1"
+              when 1
+                puts"==========caso 1"
 
-              tnt_1 = tintas.descripción
-              mall_1 = tintas.malla.nombre
+                tnt_1 = tintas.descripción
+                mall_1 = tintas.malla.nombre
 
-            when 2
+              when 2
 
-              tnt_2 = tintas.descripción
-              mall_2 = tintas.malla.nombre
+                tnt_2 = tintas.descripción
+                mall_2 = tintas.malla.nombre
 
-            when 3
+              when 3
 
-              tnt_3 = tintas.descripción
-              mall_3 = tintas.malla.nombre
+                tnt_3 = tintas.descripción
+                mall_3 = tintas.malla.nombre
 
-            when 4
+              when 4
 
-                tnt_4 = tintas.descripción
-                mall_4 = tintas.malla.nombre
+                  tnt_4 = tintas.descripción
+                  mall_4 = tintas.malla.nombre
 
-            when 5
+              when 5
 
-                tnt_5 = tintas.descripción
-                mall_5 = tintas.malla.nombre
+                  tnt_5 = tintas.descripción
+                  mall_5 = tintas.malla.nombre
 
-            when 6
+              when 6
 
-                tnt_6 = tintas.descripción
-                mall_6 = tintas.malla.nombre
+                  tnt_6 = tintas.descripción
+                  mall_6 = tintas.malla.nombre
 
-            when 7
+              when 7
 
-              tnt_7 = tintas.descripción
-              mall_7 = tintas.malla.nombre
+                tnt_7 = tintas.descripción
+                mall_7 = tintas.malla.nombre
 
-            when 8
+              when 8
 
-                tnt_8 = tintas.descripción
-                mall_8 = tintas.malla.nombre
+                  tnt_8 = tintas.descripción
+                  mall_8 = tintas.malla.nombre
 
-            when 9
+              when 9
 
-                tnt_9 = tintas.descripción
-                mall_9 = tintas.malla.nombre
+                  tnt_9 = tintas.descripción
+                  mall_9 = tintas.malla.nombre
 
-            when 10
-                tnt_10 = tintas.descripción
-                mall_10 = tintas.malla.nombre
-            when 11
-                tnt_11 = tintas.descripción
-                mall_11 = tintas.malla.nombre
-            when 12
-                tnt_12 = tintas.descripción
-                mall_12 = tintas.malla.nombre
-             end
+              when 10
+                  tnt_10 = tintas.descripción
+                  mall_10 = tintas.malla.nombre
+              when 11
+                  tnt_11 = tintas.descripción
+                  mall_11 = tintas.malla.nombre
+              when 12
+                  tnt_12 = tintas.descripción
+                  mall_12 = tintas.malla.nombre
+            end
 
 
 
@@ -164,9 +172,12 @@ wb.styles do |style|
 
       mes = []
       value_mes = ""
+      fechas_entregas = []
       orden.compromisos_de_entrega.each do |compromiso|
 
         if compromiso.fecha_de_compromiso != nil
+
+            fechas_entregas << compromiso.fecha_de_compromiso.strftime("%d/%m/%Y")
             value_mes = compromiso.fecha_de_compromiso.strftime("%m")
 
             case value_mes
@@ -212,62 +223,64 @@ wb.styles do |style|
       mostrar = tamanos_corte.split("X")
 
 
-  	   sheet.add_row [orden.numero_de_orden,
-       mes.map{|i|i.to_s.upcase}*", "  " ", orden.montaje.cliente.user.nombre,
-       orden.montaje.linea_producto.nombre, orden.fecha,
-       orden.compromisos_de_entrega.pluck(:fecha_de_compromiso)*", "  " ",
+  	   sheet.add_row [orden.numero_de_orden.to_s.upcase,
+       mes.map{|i|i.to_s.upcase}*", "  " ", orden.montaje.cliente.user.nombre.to_s.capitalize,
+       orden.montaje.linea_producto.nombre.to_s.capitalize, orden.fecha.strftime("%d/%m/%Y"),
+       fechas_entregas.map{|i|i}*", "  " ",
        "",
-       orden.montaje.cliente.nombre,orden.montaje.nombre,orden.cantidad_solicitada,number_to_currency(orden.precio_unitario) ,
+       orden.montaje.cliente.nombre.to_s.capitalize,orden.montaje.nombre.to_s.capitalize,
+       orden.cantidad_solicitada,number_to_currency_br(orden.precio_unitario) ,
        "",
-       "", orden.tamanos_total,
-       orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion,
-       orden.montaje.linea_de_color.nombre,
+       tipo_de_orden, orden.tamanos_total,
+       orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion.to_s.capitalize,
+       orden.montaje.linea_de_color.nombre.to_s.capitalize,
        "",
-       orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " ",
+       orden.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre.to_s.capitalize}*", "  " ",
        "",
        "",
 
-       tnt_1,
-       mall_1 ,
+       tnt_1.to_s.capitalize,
+       mall_1.to_s.capitalize ,
 
-       tnt_2 ,
-       mall_2 ,
+       tnt_2.to_s.capitalize ,
+       mall_2.to_s.capitalize,
 
-       tnt_3 ,
-       mall_3 ,
-       tnt_4 ,
-       mall_4 ,
+       tnt_3.to_s.capitalize ,
+       mall_3.to_s.capitalize ,
 
-       tnt_5 ,
-       mall_5 ,
+       tnt_4.to_s.capitalize ,
+       mall_4.to_s.capitalize,
 
-       tnt_6 ,
-       mall_6 ,
+       tnt_5.to_s.capitalize ,
+       mall_5.to_s.capitalize ,
 
-       tnt_7 ,
-       mall_7 ,
+       tnt_6.to_s.capitalize ,
+       mall_6.to_s.capitalize ,
 
-       tnt_8 ,
-       mall_8 ,
+       tnt_7.to_s.capitalize ,
+       mall_7.to_s.capitalize ,
 
-       tnt_9 ,
-       mall_9 ,
+       tnt_8.to_s.capitalize ,
+       mall_8.to_s.capitalize ,
 
-       tnt_10 ,
-       mall_10 ,
+       tnt_9.to_s.capitalize ,
+       mall_9.to_s.capitalize ,
 
-       tnt_11 ,
-       mall_11 ,
+       tnt_10.to_s.capitalize ,
+       mall_10.to_s.capitalize ,
 
-       tnt_12 ,
-       mall_12,
+       tnt_11.to_s.capitalize ,
+       mall_11.to_s.capitalize ,
+
+       tnt_12.to_s.capitalize ,
+       mall_12.to_s.capitalize,
 
        orden.cantidad_hoja,
        mostrar[0],
        mostrar[1],
        tiro,
        retiro,
-       orden.observacion
+       orden.observacion.to_s.capitalize
 
 
 

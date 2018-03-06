@@ -91,9 +91,17 @@
 
 <hr>
 
+<%if @orden_produccion.orden_nueva == true%>
+  <div class="col-md-6 offset-md-5">
+    <h5> <span class="badge badge-warning">Producción nueva</span>  </h5>
+  </div>
+<%else%>
+  <div class="col-md-6 offset-md-5">
+    <h5> <span class="badge badge-info">Producción repetida</span>  </h5>
+  </div>
+<%end%>
 
-
-
+<hr>
 
 
 <div class="" id="ContenedorTintas">

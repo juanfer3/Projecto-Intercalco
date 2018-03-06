@@ -359,7 +359,7 @@ end
          :estampado_al_calor,:refilado,:perforado, :ojalete, :hilo, :pegado, :ensamblado,
          :tamano_hoja,:tamano_por_hojas,:tamano_de_corte,    :nit_cliente, :dir_cliente, :tel_cliente, :tel_contacto,
          :otro, :tinta_nueva,:maquina_id, :montaje_id, :linea_de_color_id, :linea_producto_id,:_destroy,:id,:acabado_ids => [],:maquina_ids => [],
-       desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
+      desarrollos_de_tintas_attributes:[:montaje_id, :linea_de_color_id, :malla_id, :descripción, :cantidad, :estado, :tiro, :retiro, :_destroy, :id],
         piezas_attributes:[:montaje_id, :nombre, :tamano, :tipo_de_unidad, :dimension, :descripcion, :cantidad, :codigo ,:estado, :_destroy, :id],
       tintas_fop_retiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado, :_destroy, :id],
       tintas_fop_tiro_attributes:[:montaje_id, :tinta, :malla_id, :descripcion, :estado, :_destroy, :id],
@@ -368,7 +368,7 @@ end
         :tamanos_total, :cavidad, :tipo_de_linea, :cantidad_hoja, :observacion, :linea_producto_id, :estado,
         :tiro, :retiro, :_destroy, :id],
       ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,:contacto_id,:lugar_despacho,:lugar_despacho_id,:nombre_facturacion,:nombre_facturacion_id,
-        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:orden_de_compra,
+        :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:orden_de_compra,:orden_nueva,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,:contacto_nuevo,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,:contact_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
@@ -376,7 +376,6 @@ end
         compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
           :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
           :diferencia, :numero_de_remision, :estado, :_destroy, :id]
-
     ],
       contenedores_de_acabados_attributes: [:id,:_destroy,:montaje_id, :acabado_id,:acabado_ids => []],
       contenedores_de_maquinas_attributes:[:id,:_destroy,:montaje_id, :maquina_id, :maquina_ids => []]

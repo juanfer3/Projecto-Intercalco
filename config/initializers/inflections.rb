@@ -160,5 +160,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'contenedor_de_acabados', 'contenedores_de_acabados'
 
+  inflect.irregular 'orden_nueva', 'ordenes_nuevas'
 
 end
