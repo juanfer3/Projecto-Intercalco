@@ -150,6 +150,12 @@ end
   def produccion_color
     estado = true
     @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden DESC")
+    respond_to do |format|
+      format.html
+      format.pdf {render template: "ordenes_produccion/color_pdf", pdf: 'color_pdf'}
+      format.json
+    end
+
   end
 
   def cerrar_color

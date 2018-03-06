@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%= wicked_pdf_stylesheet_link_tag  'pdf'%>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Pdf reporte de tintas</title>
+  </head>
+  <body>
+    <%=
+        wicked_pdf_image_tag 'logointercalco.png',
+        class:"float-left col-10"
+    %>
+      <h1>HOLA MUNDO</h1>
+      <table class="table">
+        <thead>
+          <th>Valor uno</th>
+          <th>valor dos</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>valor uno</td>
+            <td>valor dos</td>
+          </tr>
+        </tbody>
+      </table>
+  </body>
+</html>
