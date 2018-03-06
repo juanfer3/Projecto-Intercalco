@@ -26,124 +26,133 @@
 
     </style>
 
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-              <th rowspan="2" style="width: 200px;">
-              <%=
-                  wicked_pdf_image_tag 'logointercalco.png',
-                  class:"float-center col-5"
-              %>
-            </th >
+<div class="container">
 
-            <th rowspan="2" align="center">
-              <p align="center">ORDEN DE FABRICACIÓN</p>
-            </th>
-            <th>CODIGO</th>
-            <th>FOP-PP-04-01</th>
-      </tr>
-      <tr>
+        <table class="col-12" border="1">
+          <thead>
+            <tr>
+                  <th rowspan="2" style="width: 200px;">
+                  <%=
+                      wicked_pdf_image_tag 'logointercalco.png',
+                      class:"float-center col-5"
+                  %>
+                </th >
 
-        <th>FECHA</th>
-        <th>8/11/2012</th>
-      </tr>
-      <tbody>
-        <tr >
-          <th colspan="4" align="center" style="height: 5px;"><h6 align="center"> ORDEN DE FABRICACIÓN DE COLORES </h6> </th>
-        </tr>
-      </tbody>
+                <th rowspan="2" align="center">
+                  <p align="center">ORDEN DE FABRICACIÓN</p>
+                </th>
+                <th>CODIGO</th>
+                <th>FOP-PP-04-01</th>
+          </tr>
+          <tr>
 
-      </thead>
-    </table>
+            <th>FECHA</th>
+            <th>8/11/2012</th>
+          </tr>
+          <tbody>
+            <tr >
+              <th colspan="4" align="center" style="height: 5px;"><h6 align="center"> ORDEN DE FABRICACIÓN DE COLORES </h6> </th>
+            </tr>
+          </tbody>
 
+          </thead>
+        </table>
+</div>
 
-
-
-      <div class="my_card_contactos_form">
-        <div class="col-4">
-          <h6> <strong>Fecha: </strong> </h6>
-        </div>
-        <div class="col-4">
-          <h6> <strong>N° de orden: </strong> <%= @orden_produccion.numero_de_orden%> </h6>
-        </div>
-        <div class="col-4">
-          <h6> <strong>Producción: X </strong>  </h6>
-        </div>
-
-        <br>
-
-      </div>
+  <br>
+<div class="contenedor">
 
 
+
+                <div class="my_card_contactos_form">
+                  <div class="col-4">
+                    <h6> <strong>Fecha: </strong> </h6>
+                  </div>
+                  <div class="col-4">
+                    <h6> <strong>N° de orden: </strong> <%= @orden_produccion.numero_de_orden%> </h6>
+                  </div>
+                  <div class="col-4">
+                    <h6> <strong>Producción: X </strong>  </h6>
+                  </div>
+
+                  <br>
+
+                </div>
+
+
+                <br>
+
+
+
+                <div class="my_card_contactos_form">
+
+                  <div class="col-6">
+                    <h6> <strong>Cliente:  </strong> <%= @orden_produccion.montaje.cliente.nombre%> </h6>
+                  </div>
+
+                  <div class="col-6">
+                    <h6> <strong>Fecha de Entrega:  </strong> <%= @orden_produccion.compromisos_de_entrega.map{|i|i.fecha_de_compromiso}*", "  " "%> </h6>
+                  </div>
+
+
+                </div>
+
+                <br>
+
+                <div class="my_card_contactos_form">
+
+                  <div class="col-12">
+                    <h6> <strong>Identificación trabajo:  </strong> <%= @orden_produccion.montaje.nombre%> </h6>
+                  </div>
+
+
+
+
+                </div>
+
+                <br>
+
+                <div class="my_card_contactos_form">
+
+                  <div class="col-3">
+                    <h6> <strong>Línea:  </strong> <%= @orden_produccion.montaje.linea_de_color.nombre%> </h6>
+                  </div>
+
+                  <div class="col-6 ">
+                    <h6> <strong>Sustrato:  </strong> <%= @orden_produccion.montaje.material.descripcion%> </h6>
+                  </div>
+
+                  <div class="col-3">
+                    <h6> <strong>cabidad:  </strong> <%= @orden_produccion.cavidad%> </h6>
+                  </div>
+
+
+
+
+                </div>
+
+                <br>
+
+                <div class="my_card_contactos_form">
+
+                  <div class="col-6">
+                    <h6> <strong>Maquina(s):  </strong> <%= @orden_produccion.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " "%> </h6>
+                  </div>
+                  <div class="col-2">
+                    <h6> <strong>Tamaño:  </strong> <%= @orden_produccion.montaje.tamano_de_corte%> </h6>
+                  </div>
+                  <div class="col-3">
+                    <h6> <strong>Tamaños totales:  </strong> <%= @orden_produccion.tamanos_total%> </h6>
+                  </div>
+
+
+                </div>
+</div>
       <br>
+      <div class="container">
 
 
-
-      <div class="my_card_contactos_form">
-
-        <div class="col-6">
-          <h6> <strong>Cliente:  </strong> <%= @orden_produccion.montaje.cliente.nombre%> </h6>
-        </div>
-
-        <div class="col-6">
-          <h6> <strong>Fecha de Entrega:  </strong> <%= @orden_produccion.compromisos_de_entrega.map{|i|i.fecha_de_compromiso}*", "  " "%> </h6>
-        </div>
-
-
-      </div>
-
-      <br>
-
-      <div class="my_card_contactos_form">
-
-        <div class="col-12">
-          <h6> <strong>Identificación trabajo:  </strong> <%= @orden_produccion.montaje.nombre%> </h6>
-        </div>
-
-
-
-
-      </div>
-
-      <br>
-
-      <div class="my_card_contactos_form">
-
-        <div class="col-3">
-          <h6> <strong>Línea:  </strong> <%= @orden_produccion.montaje.linea_de_color.nombre%> </h6>
-        </div>
-
-        <div class="col-6 ">
-          <h6> <strong>Sustrato:  </strong> <%= @orden_produccion.montaje.material.descripcion%> </h6>
-        </div>
-
-        <div class="col-3">
-          <h6> <strong>cabidad:  </strong> <%= @orden_produccion.cavidad%> </h6>
-        </div>
-
-
-
-
-      </div>
-
-      <br>
-
-      <div class="my_card_contactos_form">
-
-        <div class="col-6">
-          <h6> <strong>Maquina(s):  </strong> <%= @orden_produccion.montaje.contenedores_de_maquinas.map{|i|i.maquina.nombre}*", "  " "%> </h6>
-        </div>
-        <div class="col-2">
-          <h6> <strong>Tamaño:  </strong> <%= @orden_produccion.montaje.tamano_de_corte%> </h6>
-        </div>
-        <div class="col-3">
-          <h6> <strong>Tamaños totales:  </strong> <%= @orden_produccion.tamanos_total%> </h6>
-        </div>
-
-
-      </div>
-      <br>
-      <table class="table table-bordered table-sm">
+      <table class="col-12" border="1">
         <thead>
           <tr>
             <th style="width: 200px;">Observaciones</th>
@@ -178,7 +187,7 @@
           <%end%>
         </tbody>
       </table>
-
+      </div>
 
   </body>
 </html>
