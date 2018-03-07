@@ -12,7 +12,12 @@
     $('.removerContenidoNuevo').remove()
     $('.ocultarBodyOrdenes').hide()
   <%else%>
-        <%if current_user.rol.cargo == "Administrador" %>
+      <%if current_user.rol.cargo == "Administrador" %>
+              $('.ocultarBodyOrdenes').hide()
+              $('.removerContenidoNuevo').remove()
+              $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_ordenes'%>")
+              $('.identificador').addClass('removerContenidoNuevo')
+      <%elsif current_user.rol.cargo == "Coordinacion Produccion" %>
               $('.ocultarBodyOrdenes').hide()
               $('.removerContenidoNuevo').remove()
               $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_ordenes'%>")
