@@ -2,8 +2,10 @@
 <div class="container card-block">
   <div class="container my_card_pedidos_form my_orden_pedidos">
     <div class="col-3">
-      <label for=""> <strong>Cliente</strong> </label>
-      <h6 ><%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nombre%></h6>
+    
+      <h6 ><strong>Cliente:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nombre%></h6>
+      <h6 > <strong>Nit:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nit%></h6>
+      <h6 > <strong>Vendedor:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.user.nombre%></h6>
     </div>
     <div class="col-3">
       <label for=""> <strong>Descripción</strong>  </label>
@@ -31,23 +33,40 @@
 
 <hr>
 
-<div class="">
-  <div class="col-12 input-group">
-    <h6> <strong>Dirección de Despacho: 	&nbsp;</strong> </h6>
-    <h6> <%= @compromiso_de_entrega.orden_produccion.lugar_despacho.direccion%></h6>
-  </div>
-  <div class="col-12 input-group">
-    <h6> <strong>Contacto:	&nbsp; </strong>  </h6>
-    <h6><%= @compromiso_de_entrega.orden_produccion.contacto.nombre_contacto%></h6>
-  </div>
-  <div class="col-12 input-group">
-    <h6> <strong>Facturar a: 	&nbsp;</strong> </h6>
-    <h6><%= @compromiso_de_entrega.orden_produccion.nombre_facturacion.nombre%></h6>
-  </div>
+<div class="container col-12">
+      <div class="float-sm-left">
+        <div class="col-12 input-group">
+          <h6> <strong>Dirección de Despacho: 	&nbsp;</strong> </h6>
+          <h6> <%= @compromiso_de_entrega.orden_produccion.lugar_despacho.direccion%></h6>
+        </div>
+        <div class="col-12 input-group">
+          <h6> <strong>Contacto:	&nbsp; </strong>  </h6>
+          <h6><%= @compromiso_de_entrega.orden_produccion.contacto.nombre_contacto%></h6>
+        </div>
+        <div class="col-12 input-group">
+          <h6> <strong>Facturar a: 	&nbsp;</strong> </h6>
+          <h6><%= @compromiso_de_entrega.orden_produccion.nombre_facturacion.nombre%></h6>
+        </div>
+      </div>
+      <div class="float-sm-right">
+        <div class="col-12 input-group">
+          <h6> <strong>Cantidad a entregar: 	&nbsp;</strong> </h6>
+          <%cantidad = @compromiso_de_entrega.cantidad%>
+          <h6><%=  cantidad.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join('.').reverse%></h6>
+        </div>
+      </div>
 </div>
 
 
-<hr>
+
+<div class="col-12">
+  <br>
+  <br>
+  <br>
+
+  <hr>
+</div>
+
 
 <div class="">
 
@@ -89,6 +108,12 @@
 
       </div>
 
+      <div class="col-12">
+        <label for="">Observaciones</label><br>
+        <%= f.text_area :observacion, label:false , class: "form-control"%>
+
+      </div>
+
     </div>
 
 
@@ -101,7 +126,7 @@
           <h1>Deshacer Envio</h1>
        </div>
        <div class="col-3 offset-md-6">
-          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-graph-down-right"></i></span></button>'.html_safe, deshacer_envio_path(@compromiso_de_entrega), remote:true %></td>
+          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-graph-down-right"></i></span></button>'.html_safe, deshacer_envio_path(@compromiso_de_entrega), remote:true, data: { confirm: 'Realmente desea eliminar esta remisión?' } %></td>
        </div>
     </div>
     <br>
@@ -120,7 +145,32 @@
             <td><%=@compromiso_de_entrega.cantidad_despacho %></td>
           </tr>
         </tbody>
+        <tfoot>
+
+
+
+
       </table>
+      <div class="col-12">
+
+      </div>
+
+
+
+
+<div class="container my_card_pedidos_form my_orden_pedidos">
+  <div class="col-12">
+      <div class="input-group">
+        <h6> <strong>Observaciones: 	&nbsp;</strong> </h6>
+        <h6><%=@compromiso_de_entrega.observacion%></h6>
+      </div>
+  </div>
+</div>
+
+
+
+
+
     </div>
 
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180307195021) do
+ActiveRecord::Schema.define(version: 20180307211835) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20180307195021) do
     t.datetime "updated_at", null: false
     t.boolean "enviado", default: false
     t.boolean "cumplido", default: false
+    t.string "observacion", default: ""
     t.index ["orden_produccion_id"], name: "index_compromisos_de_entrega_on_orden_produccion_id"
   end
 

@@ -23,7 +23,7 @@ class CompromisosDeEntregaController < ApplicationController
     @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
     respond_to do |format|
         @compromiso_de_entrega.update(enviado: false,
-          fecha_despacho: "", cantidad_despacho:0.0, numero_de_remision:"")
+          fecha_despacho: "", cantidad_despacho:0.0, numero_de_remision:"", observacion: "")
           @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
           @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion.id)
         format.js {flash[:notice] = "" }
@@ -104,7 +104,7 @@ class CompromisosDeEntregaController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def compromiso_de_entrega_params
       params.require(:compromiso_de_entrega).permit(:orden_produccion_id, :fecha_de_compromiso,
-        :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
+        :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,:observacion,
         :diferencia, :numero_de_remision,:enviado, :cumplido,:estado)
     end
 end
