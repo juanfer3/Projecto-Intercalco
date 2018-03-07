@@ -39,7 +39,9 @@ $(document).on('turbolinks:load', function() {
 
 
 
-
+$('#material_codigo').on('input', function () {
+    this.value = this.value.replace(/[^0-9]/g,'');
+});
 
 
 

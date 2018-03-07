@@ -1,4 +1,68 @@
 class Material < ApplicationRecord
+
+
+  before_save :antes_de_salvar
+
+  def antes_de_salvar
+
+
+
+
+    if self.codigo.present?
+            puts"============existe==================="
+            puts "************#{self.codigo.length }****************************"
+            if self.codigo.length == 1
+              zero_i= "0"
+              self.codigo = zero_i + self.codigo
+            end
+    else
+            puts"=============No existe======================"
+
+
+
+
+
+                  ultimo_material = Material.all
+                  cont = 0
+                  @last_codigo = nil
+                  if ultimo_material.any?
+                    ultimo_material.each do |material|
+                        if material.codigo.length > 0
+                          codigo = material.codigo.to_i if material.codigo.match(/^\d+$/)
+                            if cont < codigo
+                              cont = codigo
+                              @last_codigo = material.codigo
+                            end
+                        end
+                    end
+                  end
+
+
+
+                  if @last_codigo != nil
+                      self.codigo = @last_codigo.to_i + 1
+                      if self.codigo.length == 1
+                        self.codigo = "0"+self.codigo
+                      end
+
+                  else
+                      self.codigo = "01"
+                  end
+    end
+
+
+
+
+
+
+
+
+
+
+  end
+
+
+
   def self.subir_excel(file)
     @errores = []
 
@@ -27,7 +91,7 @@ class Material < ApplicationRecord
 
 
     raise "El orden de las columnas no es válido"  unless  columnas_validas == columnas_archivos
-    
+
 
 
 

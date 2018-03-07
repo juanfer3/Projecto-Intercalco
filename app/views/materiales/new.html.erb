@@ -3,3 +3,13 @@
 <%= render 'form', material: @material %>
 
 <%= link_to '<button type="button" class="btn btn-outline-primary">Listar Materiales</button>'.html_safe, materiales_path %>
+<script type="text/javascript">
+<%if @last_codigo != nil%>
+    <%valor = @last_codigo.to_i + 1%>
+
+      $('#material_codigo').val('<%=valor%>')
+<%else%>
+      $('#material_codigo').val('01')
+<%end%>
+
+</script>

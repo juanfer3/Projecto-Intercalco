@@ -44,6 +44,20 @@ class MaterialesController < ApplicationController
   # GET /materiales/new
   def new
     @material = Material.new
+    ultimo_material = Material.all
+    cont = 0
+    @last_codigo = nil
+    if ultimo_material.any?
+      ultimo_material.each do |material|
+          if material.codigo.length > 0
+            codigo = material.codigo.to_i if material.codigo.match(/^\d+$/)
+              if cont < codigo
+                cont = codigo
+                @last_codigo = material.codigo
+              end
+          end
+      end
+    end
   end
 
   # GET /materiales/1/edit
