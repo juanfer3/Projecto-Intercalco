@@ -14,6 +14,43 @@ class OrdenesProduccionController < ApplicationController
     end
   end
 
+
+
+
+def produccion_coordinador
+  #code
+  @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden DESC').distinct
+  respond_to do |format|
+    format.html
+    format.json
+  end
+end
+
+def   info_coordinador
+  #code
+  @orden_produccion = OrdenProduccion.find(params[:id])
+  respond_to do |format|
+    format.html
+    format.js
+  end
+end
+
+def cerrar_materiales
+  #code
+  @orden_produccion = OrdenProduccion.find(params[:id])
+  respond_to do |format|
+    if @orden_produccion.corte_material == false
+          @orden_produccion.update(corte_material: true)
+          format.js {flash[:notice] = "" }
+    else
+      @orden_produccion.update(corte_material: false)
+      format.js {flash[:notice] = "" }
+    end
+  end
+end
+
+
+
   def reporte_tinta
 
     @orden_produccion = OrdenProduccion.find(params[:id])

@@ -2,4 +2,8 @@
 
 $('#modalDetalles').modal('show');
 
-$('#contenidoModal').html('<%= j render 'orden_info'%>')
+<%if current_user.rol.cargo == "Administrador" %>
+          $('#contenidoModal').html('<%= j render 'orden_info'%>')
+<%elsif current_user.rol.cargo == "Coordinacion Produccion"%>
+          $('#contenidoModal').html('<%= j render 'orden_info_coordinador'%>')
+<%end%>

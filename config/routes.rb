@@ -130,6 +130,11 @@ Rails.application.routes.draw do
   get 'cerrar_pantalla/:id', to: 'ordenes_produccion#cerrar_pantalla', as: :cerrar_pantalla
 
 
+  get 'produccion_coordinador', to: 'ordenes_produccion#produccion_coordinador', as: :produccion_coordinador
+  get 'info_coordinador/:id', to: 'ordenes_produccion#info_coordinador', as: :info_coordinador
+  get 'cerrar_materiales/:id', to: 'ordenes_produccion#cerrar_materiales', as: :cerrar_materiales
+
+
   get 'produccion_color', to: 'ordenes_produccion#produccion_color', as: :produccion_color
   get 'info_color/:id', to: 'ordenes_produccion#info_color', as: :info_color
   get 'cerrar_color/:id', to: 'ordenes_produccion#cerrar_color', as: :cerrar_color

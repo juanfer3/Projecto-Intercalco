@@ -139,6 +139,47 @@
     </nav>
     <!-- /Gerente Comercial  -->
 
+    <!-- Direccion Produccion  -->
+    <% elsif  current_user.rol.cargo == "Coordinacion Produccion" %>
+      <nav class="navbar navbar-light bg-light my_nav">
+
+        <a class="navbar-brand" href="#">
+          Intercalco
+        </a>
+
+        <div class="form-inline">
+
+          <a class="navbar-brand" href="#">
+            <%= link_to 'Ordenes Producción', produccion_coordinador_path, class:'navbar-brand' %>
+          </a>
+
+
+
+        <div class="nav-item dropdown">
+
+          <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+          role="button" data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+
+
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+
+            <div class="dropdown-divider"></div>
+
+
+
+            <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+
+          </div>
+        </div>
+
+
+        </div>
+      </nav>
+      <!-- /Direccion Produccion  -->
     <!-- pantalla  -->
     <% elsif  current_user.rol.cargo == "Pantallas" %>
       <nav class="navbar navbar-light bg-light my_nav">
