@@ -1,6 +1,9 @@
 
 
 
+
+
+
 <div class="" id="contenido_formulario">
 
 <div class="">
@@ -176,6 +179,14 @@
               </div>
               <p id="campo_fecha_pedido"></p>
             </div>
+
+            <!--Numero de Orden-->
+           <div class="col-3">
+             <label for="">Orden Nueva</label> <br>
+             <%=
+             f.input :orden_nueva, label: false
+             %>
+           </div>
             <div class="col-12">
               <br>
             </div>
@@ -277,6 +288,8 @@
                          <label for="">Precio Unitario</label>
                          <%= f.input :precio_unitario, label: false %>
                        </div>
+
+
 
 
 

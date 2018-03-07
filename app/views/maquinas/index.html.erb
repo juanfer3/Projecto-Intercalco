@@ -7,7 +7,7 @@
     <tr>
       <th>Nombre</th>
       <th>Descripcion</th>
-      <th colspan="2"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -16,6 +16,7 @@
       <tr>
         <td><%= maquina.nombre %></td>
         <td><%= maquina.descripcion %></td>
+        <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-eye"></i></span></button>'.html_safe, maquina, remote:true%></td>
         <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_maquina_path(maquina) %></td>
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, maquina, method: :delete, data: { confirm: 'Desea eliminar este registro?' } %></td>
       </tr>
@@ -26,3 +27,31 @@
 <br>
 
 <%= link_to '<button type="button" class="btn btn-dark">Registrar Máquina</button>'.html_safe, new_maquina_path %>
+
+
+
+
+
+
+<div class="modal fade fullscreen-modal " id="modalMaquinas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Detalle del material</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="contenidoModal">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
