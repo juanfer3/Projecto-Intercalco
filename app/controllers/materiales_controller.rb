@@ -4,7 +4,7 @@ class MaterialesController < ApplicationController
   # GET /materiales
   # GET /materiales.json
   def index
-    @materiales = Material.all
+    @materiales = Material.all.paginate(page: params[:page], per_page: 20).order('codigo')
   end
 
   def import_materiales_excel
@@ -33,6 +33,12 @@ class MaterialesController < ApplicationController
   # GET /materiales/1
   # GET /materiales/1.json
   def show
+
+    respond_to do |format|
+        format.html
+        format.js
+    end
+
   end
 
   # GET /materiales/new
@@ -92,6 +98,6 @@ class MaterialesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
-      params.require(:material).permit(:codigo, :descripcion, :medida_material, :cantidad, :estado)
+      params.require(:material).permit(:codigo, :descripcion, :tipo_de_unidad,:medida_material, :cantidad, :estado)
     end
 end

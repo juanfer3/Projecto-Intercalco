@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306133359) do
+ActiveRecord::Schema.define(version: 20180307121103) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -265,6 +265,7 @@ ActiveRecord::Schema.define(version: 20180306133359) do
     t.boolean "estado"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "tipo_de_unidad", default: ""
   end
 
   create_table "meses", force: :cascade do |t|
