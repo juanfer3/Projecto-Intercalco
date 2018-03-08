@@ -2,7 +2,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.association :orden_produccion %>
+    <%= f.association :orden_produccion ,
+    collection: OrdenProduccion.all,
+    label_method: :numero_de_orden,
+    value_method: :id,
+    as: :select,
+    class:'col-4 my_cliente form-control',
+    selected: current_user.id
+    %>
     <%= f.input :fecha_de_compromiso %>
     <%= f.input :cantidad %>
     <%= f.input :precio %>
