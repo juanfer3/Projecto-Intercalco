@@ -257,7 +257,9 @@
 </table>
 
 
-
+<div class="pull-right">
+  <%= will_paginate @compromiso_de_entrega, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 
 
 <!-- Modal Anexar Edit -->
@@ -283,8 +285,4 @@
 
     </div>
   </div>
-</div>
-
-<div class="pull-right">
-  <%= will_paginate @compromiso_de_entrega, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
