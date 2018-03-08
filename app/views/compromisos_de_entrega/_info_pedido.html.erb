@@ -2,7 +2,7 @@
 <div class="container card-block">
   <div class="container my_card_pedidos_form my_orden_pedidos">
     <div class="col-3">
-    
+
       <h6 ><strong>Cliente:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nombre%></h6>
       <h6 > <strong>Nit:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.nit%></h6>
       <h6 > <strong>Vendedor:</strong> <%= @compromiso_de_entrega.orden_produccion.montaje.cliente.user.nombre%></h6>
@@ -140,9 +140,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><%=@compromiso_de_entrega.numero_de_remision %></td>
-            <td><%=@compromiso_de_entrega.fecha_despacho %></td>
-            <td><%=@compromiso_de_entrega.cantidad_despacho %></td>
+            <td><%=best_in_place @compromiso_de_entrega, :numero_de_remision, as: :input %></td>
+            <td><%=best_in_place @compromiso_de_entrega, :fecha_despacho, as: :date %></td>
+            <td><%=best_in_place @compromiso_de_entrega, :cantidad_despacho, as: :input %></td>
           </tr>
         </tbody>
         <tfoot>
@@ -162,7 +162,7 @@
   <div class="col-12">
       <div class="input-group">
         <h6> <strong>Observaciones: 	&nbsp;</strong> </h6>
-        <h6><%=@compromiso_de_entrega.observacion%></h6>
+        <h6><%=best_in_place @compromiso_de_entrega, :observacion, as: :textarea, inner_class: "form-control col-12"%></h6>
       </div>
   </div>
 </div>
@@ -175,3 +175,6 @@
 
   </div>
 <% end %>
+<script type="text/javascript">
+  jQuery(".best_in_place").best_in_place();
+</script>

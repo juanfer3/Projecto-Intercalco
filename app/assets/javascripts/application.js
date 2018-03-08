@@ -35,8 +35,26 @@
 $(document).on('turbolinks:load', function() {
 
 
+$('#montaje_new_cliente').focusout(function () {
+    var valor = $('#montaje_new_cliente').val()
+    var fact_a = $("#montaje_facturar_a_nuevo_montaje").val()
 
+    if (fact_a.length <= 0) {
+      $("#montaje_facturar_a_nuevo_montaje").val(valor)
+    }
 
+})
+
+$('#montaje_ordenes_produccion_attributes_0_cantidad_solicitada').focusout(function (){
+
+  var valor = $('#montaje_ordenes_produccion_attributes_0_cantidad_solicitada').val()
+  var dest = $("#montaje_ordenes_produccion_attributes_0_compromisos_de_entrega_attributes_0_cantidad").val()
+
+  if (dest.length <= 0) {
+    $("#montaje_ordenes_produccion_attributes_0_compromisos_de_entrega_attributes_0_cantidad").val(valor)
+  }
+
+})
 
 
 $('#material_codigo').on('input', function () {
