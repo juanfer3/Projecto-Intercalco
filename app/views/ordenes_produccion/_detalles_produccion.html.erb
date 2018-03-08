@@ -308,58 +308,11 @@
     </ul>
   </div>
 
-
-  <div class="col-12">
-    <br>
-  </div>
-
-
-  <div class="col-12">
-    <h5>Despachos</h5>
-    <table class="table">
-      <thead>
-        <th>Fecha de compromiso</th>
-        <th>cantidad a despachar</th>
-        <th>cantidad despachada</th>
-        <th>Despacho</th>
-      </thead>
-      <tbody>
-        <%  @orden_produccion.compromisos_de_entrega.each do |fecha| %>
-        <tr>
-          <td><%=fecha.fecha_de_compromiso%></td>
-          <td><%=fecha.cantidad%></td>
-          <td><%=fecha.cantidad_despacho%></td>
-          <%if fecha.enviado == true%>
-            <td>
-              <h6>
-                <span class="badge badge-success"> Entregado
-                  <i class="ion-checkmark-circled"></i>
-                </span>
-              </h6>
-            </td>
-          <% else %>
-            <td>
-              <h6>
-                <span class="badge badge-warning"> Pendiente
-                  <i class="ion-android-alarm-clock"></i>
-                </span>
-              </h6>
-            </td>
-          <%end%>
-
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-
-<div class="col-12">
-  <br>
-</div>
-
   <%if @orden_produccion.montaje.desarrollos_de_tintas.any? %>
-      <br>
+      <div class="col-12">
+        <br>
+      </div>
+
       <div class="col-12" id="">
 
 
@@ -436,6 +389,111 @@
       </div>
       <hr>
       <%end%>
+
+
+
+
+
+
+
+  <%if @orden_produccion.montaje.contenedores_de_acabados.any? %>
+  <div class="col-12">
+    <br>
+  </div>
+      <div class="col-12" id="">
+
+
+            <div class="">
+
+
+              <div class="card card-outline-secondary mb-3 text-center">
+                <div class="card-header">
+
+                  <div class="col-12">
+                    <h3>Acabados</h3>
+                  </div>
+
+                </div>
+
+
+                 <div class="card-block">
+                   <div class="container">
+                     <br>
+                      <br>
+                      <div class="my_card_pedidos_form" >
+                           <%@orden_produccion.montaje.contenedores_de_acabados.each do  |contenedor|%>
+                                 <div class="col-3">
+                                    <h6><%=contenedor.acabado.nombre%></h6>
+                                 </div>
+                           <%end%>
+                   </div>
+
+                   </div>
+                   <br>
+                   <br>
+                 </div>
+              </div>
+
+
+            </div>
+      </div>
+      <hr>
+      <%end%>
+
+      <div class="col-12">
+        <br>
+      </div>
+
+
+      <div class="col-12">
+        <h5>Despachos</h5>
+        <table class="table">
+          <thead>
+            <th>Fecha de compromiso</th>
+            <th>cantidad a despachar</th>
+            <th>cantidad despachada</th>
+            <th>Despacho</th>
+          </thead>
+          <tbody>
+            <%  @orden_produccion.compromisos_de_entrega.each do |fecha| %>
+            <tr>
+              <td><%=fecha.fecha_de_compromiso%></td>
+              <td><%=fecha.cantidad%></td>
+              <td><%=fecha.cantidad_despacho%></td>
+              <%if fecha.enviado == true%>
+                <td>
+                  <h6>
+                    <span class="badge badge-success"> Entregado
+                      <i class="ion-checkmark-circled"></i>
+                    </span>
+                  </h6>
+                </td>
+              <% else %>
+                <td>
+                  <h6>
+                    <span class="badge badge-warning"> Pendiente
+                      <i class="ion-android-alarm-clock"></i>
+                    </span>
+                  </h6>
+                </td>
+              <%end%>
+
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
