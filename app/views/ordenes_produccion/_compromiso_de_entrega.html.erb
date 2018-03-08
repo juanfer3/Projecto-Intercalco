@@ -1,14 +1,16 @@
 <tr>
+  <%valor_fecha = ""%>
   <%@orden_produccion.compromisos_de_entrega.each do |entrega| %>
 
   <%
-    valor_fecha = ""
+
     if entrega.fecha_de_compromiso != nil
       valor_fecha = entrega.fecha_de_compromiso.strftime("%d/%m/%Y")
     end
 
 
   %>
+  <%end%>
   <td>
     <div class="">
     <label for="">Fecha De Compromiso</label>
@@ -21,5 +23,5 @@
   <td><label for=""></label> <br>
   <%= f.input_field :_destroy, as: :hidden %>
   <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_compromisos' %></td>
-  <%end%>
+
 </tr>
