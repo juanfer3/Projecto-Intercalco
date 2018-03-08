@@ -4,7 +4,7 @@ class CompromisosDeEntregaController < ApplicationController
   # GET /compromisos_de_entrega
   # GET /compromisos_de_entrega.json
   def index
-    @compromisos_de_entrega = CompromisoDeEntrega.all
+    @compromisos_de_entrega = CompromisoDeEntrega.all.paginate(page: params[:page], per_page: 20).order('fecha_de_compromiso DESC')
   end
 
 

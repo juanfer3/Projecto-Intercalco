@@ -6,7 +6,9 @@
 
 
 <br>
-
+<div class="pull-right">
+  <%= will_paginate @compromiso_de_entrega, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
 <div class="my_card_contactos_form">
 
 
@@ -281,4 +283,8 @@
 
     </div>
   </div>
+</div>
+
+<div class="pull-right">
+  <%= will_paginate @compromiso_de_entrega, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
