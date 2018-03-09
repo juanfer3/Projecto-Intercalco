@@ -130,7 +130,7 @@
         <td><%= compromiso_de_entrega.orden_produccion.numero_de_orden %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.cliente.nombre %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.nombre %></td>
-        <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
+        <td><%= compromiso_de_entrega.fecha_de_compromiso.strftime("%d/%m/%Y") %></td>
         <% if compromiso_de_entrega.fecha_de_compromiso != nil %>
           <!-- true -->
 
