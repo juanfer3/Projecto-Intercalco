@@ -17,7 +17,7 @@
             <label for="">Selección De Referencia</label>
             <%=
 
-              f.select  :montaje_id,Montaje.all.map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
+              f.select  :montaje_id,Montaje.all.order("codigo").map {|i| ["Referencia: "+i.codigo+" -"+i.nombre , i.id]},
               {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "buscandoControlador"}
 
             %>

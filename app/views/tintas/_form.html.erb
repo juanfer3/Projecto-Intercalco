@@ -10,7 +10,7 @@
           <div class="my_card_pedidos_form">
             <div class="col-4">
               <%= f.association :linea_de_color,
-               collection: LineaDeColor.all,
+               collection: LineaDeColor.all.order('nombre'),
                label_method: :nombre,
                value_method: :id,
                as: :select,

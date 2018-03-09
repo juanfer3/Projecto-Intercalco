@@ -5,8 +5,8 @@ class MontajesController < ApplicationController
   # GET /montajes.json
   def index
     @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo")
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     @Tintas=[]
 
@@ -123,8 +123,8 @@ end
   # GET /montajes/1.json
   def show
 
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     @Tintas=[]
 
@@ -187,8 +187,8 @@ end
 
 
 
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     @Tintas=[]
 
@@ -217,8 +217,8 @@ end
       @malla_id = @malla_cont.id
     end
 
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     comercial= "Comercial"
     gerente_comercial = "Gerente Comercial"
@@ -242,8 +242,8 @@ end
   # POST /montajes
   # POST /montajes.json
   def create
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     comercial= "Comercial"
     gerente_comercial = "Gerente Comercial"
@@ -304,8 +304,8 @@ end
   # DELETE /montajes/1
   # DELETE /montajes/1.json
   def destroy
-    @NombreTintas = Tinta.all.distinct
-    @TintaFormulada = TintaFormulada.all.distinct
+    @NombreTintas = Tinta.all.order('descripcion').distinct
+    @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
     @Tintas=[]
 
@@ -334,8 +334,8 @@ end
       @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
 
 
-      @NombreTintas = Tinta.all.distinct
-      @TintaFormulada = TintaFormulada.all.distinct
+      @NombreTintas = Tinta.all.order('descripcion').distinct
+      @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 
       @Tintas=[]
 
