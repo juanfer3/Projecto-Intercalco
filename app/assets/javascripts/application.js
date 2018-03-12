@@ -35,6 +35,8 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+
 $('#montaje_new_cliente').focusout(function () {
     var valor = $('#montaje_new_cliente').val()
     var fact_a = $("#montaje_facturar_a_nuevo_montaje").val()

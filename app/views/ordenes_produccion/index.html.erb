@@ -160,10 +160,10 @@
                     <%@estado_data= false%>
                     <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
 
-                                      <% if fecha.fecha_de_compromiso != nil %>
+                            <% if fecha.fecha_de_compromiso != nil  %>
                                         <!-- true -->
 
-
+                              <% if fecha.fecha_de_compromiso.to_s.length != 0%>
                                             <%
                                               fech = fecha.fecha_de_compromiso
                                               fech.strftime("%Y/%m/%d")
@@ -208,8 +208,8 @@
 
 
                                     <% end %>
-
-                              <% end %>
+                            <% end %>
+                          <% end %>
 
 
                               <% if @dates != nil %>
@@ -249,7 +249,7 @@
                                         <td>Por Definir</td>
                                   <% end %>
 
-                                    <td><%=@dates.strftime("%d/%m/%Y")%> </td>
+                                    <td><%=@dates%> </td>
 
                         <% else %>
                         <td><p>Pendiente Por Definir Fecha</p> </td>

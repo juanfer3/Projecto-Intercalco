@@ -490,6 +490,31 @@
 
 
 
+  <% if @orden_produccion.montaje.piezas.any?%>
+  <div class="col-12">
+    <hr>
+  </div>
+  <h1>Piezas del producto</h1>
+  <table class="table table-striped">
+    <thead>
+      <th>Codigo </th>
+      <th>Pieza</th>
+    </thead>
+    <tbody>
+      <tr>
+        <% @orden_produccion.montaje.piezas.each do |pieza|%>
+        <tr>
+          <td><%=pieza.codigo%></td>
+          <td><%=pieza.nombre%></td>
+        </tr>
+        <%end%>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+
+
+
 
 
 
