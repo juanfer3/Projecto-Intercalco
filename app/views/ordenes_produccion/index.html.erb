@@ -116,7 +116,7 @@
 </div>
 <br>
 <br>
-<table class="table table-hover">
+<table class="table table-hover tablesorter" id="myTable" >
   <thead>
     <tr>
       <th>Numero de orden</th>
@@ -133,7 +133,7 @@
   <tbody id="bodyDeOrdenes">
 
     <% @ordenes_produccion.each do |orden_produccion| %>
-      <tr class="ocultarBodyOrdenes">
+      <tr class="ocultarBodyOrdenes order_table">
         <td><%= orden_produccion.numero_de_orden %></td>
         <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
         <td><%= orden_produccion.montaje.cliente.nombre%></td>
@@ -212,7 +212,7 @@
 
 
                                     <% end %>
-                            
+
                           <% end %>
 
 
@@ -449,3 +449,8 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.29.6/js/jquery.tablesorter.js">
+  
+  $('#myTable').tableSorter();
+</script>
