@@ -4,7 +4,7 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion
   # GET /ordenes_produccion.json
   def index
-    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20)
+    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order("numero_de_orden DESC")
     respond_to do |format|
       format.html
       format.js
