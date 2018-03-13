@@ -48,7 +48,7 @@ def self.advanced_search(data)
           when "Impresión"
                       estado = true
                       acabado = false
-                      orden =OrdenProduccion.where(impresion: estado, acabado: acabado)
+                      orden =OrdenProduccion.where(impresion: estado, acabado: acabado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
@@ -62,7 +62,7 @@ def self.advanced_search(data)
                       puts "*********************PREPRENSA*******************"
                       estado = true
                       impresion = false
-                      orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, estado, estado, estado)
+                      orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, estado, estado, estado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
@@ -74,7 +74,7 @@ def self.advanced_search(data)
           when "Acabado"
                       estado = true
                       entregado = false
-                      orden =OrdenProduccion.where(" acabado = ? AND entregado = ?", estado, entregado)
+                      orden =OrdenProduccion.where(" acabado = ? AND entregado = ?", estado, entregado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
@@ -86,7 +86,7 @@ def self.advanced_search(data)
           when "Cerrado"
             estado = true
 
-            orden =OrdenProduccion.where("entregado = ?", estado)
+            orden =OrdenProduccion.where("entregado = ?", estado).order("numero_de_orden DESC")
             puts "***************Devuelve*************************"
 
             if orden.empty?
@@ -99,7 +99,7 @@ def self.advanced_search(data)
                       estado = false
                       impresion = false
                       entregado = false
-                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?", estado, estado, estado, impresion, entregado)
+                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?", estado, estado, estado, impresion, entregado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
