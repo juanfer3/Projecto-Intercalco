@@ -98,7 +98,8 @@ def self.advanced_search(data)
           when "Sin Programar"
                       estado = false
                       impresion = false
-                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ?", estado, estado, estado, impresion)
+                      entregado = false
+                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?", estado, estado, estado, impresion, entregado)
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
