@@ -120,3 +120,8 @@ gem 'wkhtmltopdf-binary'
 #buscadores
 gem 'ransack'
 #gem 'ransack', github: 'activerecord-hackery/ransack'
+
+
+
+gem 'bootstrap-popover-rails', '~> 0.1.0'
+gem 'bootstrap-tooltip-rails'

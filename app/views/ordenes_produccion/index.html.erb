@@ -16,9 +16,58 @@
 
 
 
-<br>
 
-<div class="my_card_contactos_form">
+<div class="">
+            <button type="button"
+              title="" data-toggle="popover" data-trigger="hover" data-content="buscar por parametros avanzados"
+              class="btn btn-outline-success"
+              id="advanced_search">
+                        Busqueda Avanzada
+                        <i class="ion-android-search">
+                        </i>
+            </button>
+
+            <button type="button"
+            title="" data-toggle="popover" data-trigger="hover"
+            data-content="buscar por parametros básicos"
+              class="btn btn-outline-success"
+              id="simple_search">
+                        Busqueda Sencilla
+                        <i class="ion-android-search">
+                        </i>
+            </button>
+
+</div>
+
+
+<div class="formulario_busqueda_avanzada">
+  <br>
+  <h6>Busqueda Avanzada</h6>
+      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline',remote:true do%>
+        <%= select_tag "estados",
+            options_for_select([ "Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado"]),
+            class:"form-control input-group"
+          %>
+          <div class="input-group">
+            &nbsp;&nbsp;
+          </div>
+        <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+          <span>Buscar... <i></i> </span>
+        <%end%>
+      <%end%>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+
+<div class="col-12">
+  <br>
+</div>
+
+<div class="my_card_contactos_form" id="busqueda_basica">
 
 
           <div class="col-3">

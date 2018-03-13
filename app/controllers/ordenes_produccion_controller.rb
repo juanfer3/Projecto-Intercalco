@@ -14,7 +14,14 @@ class OrdenesProduccionController < ApplicationController
     end
   end
 
-
+def busquda_avanzada_produccion
+  estado = params["estados"]
+  puts "****************ESTADO VALUE: #{estado}**********************"
+  @ordenes = OrdenProduccion.advanced_search(estado)
+  respond_to do |format|
+    format.js
+  end
+end
 
 
 def produccion_coordinador
@@ -565,7 +572,6 @@ end
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
         :diferencia, :numero_de_remision, :estado,:_destroy, :id]
-
       )
 
     end

@@ -15,6 +15,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require bootstrap/bootstrap-tooltip
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
@@ -35,6 +36,25 @@
 $(document).on('turbolinks:load', function() {
 
 
+$('#simple_search').hide()
+$('.formulario_busqueda_avanzada').hide()
+$('#advanced_search').click(function(){
+
+  $('#busqueda_basica').hide()
+  $('#advanced_search').hide()
+  $('#simple_search').show()
+  $('.formulario_busqueda_avanzada').show()
+})
+
+
+$('#simple_search').click(function(){
+
+  $('#busqueda_basica').show()
+  $('#advanced_search').show()
+
+  $('#simple_search').hide()
+  $('.formulario_busqueda_avanzada').hide()
+})
 
 
 $('#montaje_new_cliente').focusout(function () {

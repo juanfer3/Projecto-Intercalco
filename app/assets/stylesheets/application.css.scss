@@ -427,7 +427,7 @@ Contenedor Btn Procesos
 .input-group-addon, .input-group-btn {
     white-space: nowrap;
 }
-.input-group-addon, .input-group-btn, .input-group .form-control {
+;.input-group-addon, .input-group-btn, .input-group .form-control {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -441,4 +441,8 @@ Contenedor Btn Procesos
   margin-top: 3%;
 
 
+}
+
+.seach_advance{
+  
 }

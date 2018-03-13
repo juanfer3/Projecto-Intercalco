@@ -160,6 +160,9 @@ Rails.application.routes.draw do
   post 'buscador_de_ordenes_por_mes', to: 'ordenes_produccion#buscador_de_ordenes_por_mes', as: :buscador_de_ordenes_por_mes
   post 'buscador_de_ordenes_por_fecha', to: 'ordenes_produccion#buscador_de_ordenes_por_fecha', as: :buscador_de_ordenes_por_fecha
 
+  post 'busquda_avanzada_produccion', to: 'ordenes_produccion#busquda_avanzada_produccion', as: :busquda_avanzada_produccion
+
+
   get 'buscador_de_ordenes_despachos', to: 'compromisos_de_entrega#buscador_de_ordenes_despachos', as: :buscador_de_ordenes_despachos
 
   get 'buscador_de_fichas', to: 'montajes#buscador_de_fichas', as: :buscador_de_fichas

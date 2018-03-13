@@ -40,7 +40,80 @@ class OrdenProduccion < ApplicationRecord
 
 
 
+def self.advanced_search(data)
+  #code
+  puts "****************ENTRA A BUSCAR************************"
+  orden = []
+        case data
+          when "Impresión"
+                      estado = true
+                      acabado = false
+                      orden =OrdenProduccion.where(impresion: estado, acabado: acabado)
+                      puts "***************Devuelve*************************"
 
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+
+                      return orden
+          when "Preprensa"
+                      puts "*********************PREPRENSA*******************"
+                      estado = true
+                      impresion = false
+                      orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, estado, estado, estado)
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Acabado"
+                      estado = true
+                      entregado = false
+                      orden =OrdenProduccion.where(" acabado = ? AND entregado = ?", estado, entregado)
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Cerrado"
+            estado = true
+
+            orden =OrdenProduccion.where("entregado = ?", estado)
+            puts "***************Devuelve*************************"
+
+            if orden.empty?
+                puts "***********Produccion vacia no existe o no hay*****************************"
+            else
+                puts "***************Esta lleno*************************"
+            end
+            return orden
+          when "Sin Programar"
+                      estado = false
+                      impresion = false
+                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ?", estado, estado, estado, impresion)
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+        end
+
+
+        return orden
+
+
+end
 
   def self.consultar_fecha(fecha)
     puts "****************la fecha es #{fecha}************************"
