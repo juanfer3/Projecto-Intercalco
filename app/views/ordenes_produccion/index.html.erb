@@ -40,20 +40,51 @@
 </div>
 
 
-<div class="formulario_busqueda_avanzada">
+<div class="formulario_busqueda_avanzada ">
   <br>
-  <h6>Busqueda Avanzada</h6>
-      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline',remote:true do%>
-        <%= select_tag "estados",
-            options_for_select([ "Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado"]),
-            class:"form-control input-group"
+  <div class="col-12">
+    <h6>Busqueda Avanzada</h6>
+  </div>
+
+<div class="">
+  <br>
+</div>
+      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
+        <div class="col-3">
+          <label class="form-check-label">
+              <input type="checkbox" id="cb_cliente"
+              title="" data-toggle="popover" data-trigger="hover"
+              data-placement="top"
+              data-content="seleccione para buscar con cliente"
+              class="form-check-input" value="">Selección Cliente
+          </label>
+
+          <%val_estado = true%>
+          <%=
+          select_tag "clientes", options_for_select([ "Sin selección......................" ]),
+          class:"form-control input-group col-12 select_cliente_bus",'size': "15", id: "sca"
           %>
-          <div class="input-group">
-            &nbsp;&nbsp;
+
+
+      </div>
+
+        <div class="col-3">
+
+          <label for="" align="center">Estados</label>
+          <%= select_tag "estados",
+              options_for_select([ "Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado"]),
+              class:"form-control col-12",align: "center",style:"width:250px"
+            %>
+        </div>
+
+
+          <div class="col-3">
+            <label for=""></label><br>
+            <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+              <span>Buscar... <i></i> </span>
+            <%end%>
           </div>
-        <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
-          <span>Buscar... <i></i> </span>
-        <%end%>
+
       <%end%>
 </div>
 

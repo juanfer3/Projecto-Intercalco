@@ -40,7 +40,7 @@ class OrdenProduccion < ApplicationRecord
 
 
 
-def self.advanced_search(data)
+def self.advanced_search_estado(data)
   #code
   puts "****************ENTRA A BUSCAR************************"
   orden = []
@@ -49,6 +49,87 @@ def self.advanced_search(data)
                       estado = true
                       acabado = false
                       orden =OrdenProduccion.where(impresion: estado, acabado: acabado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+
+                      return orden
+          when "Preprensa"
+                      puts "*********************PREPRENSA*******************"
+                      estado = true
+                      impresion = false
+                      orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, estado, estado, estado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Acabado"
+                      estado = true
+                      entregado = false
+                      orden =OrdenProduccion.where(" acabado = ? AND entregado = ?", estado, entregado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Cerrado"
+            estado = true
+
+            orden =OrdenProduccion.where("entregado = ?", estado).order("numero_de_orden DESC")
+            puts "***************Devuelve*************************"
+
+            if orden.empty?
+                puts "***********Produccion vacia no existe o no hay*****************************"
+            else
+                puts "***************Esta lleno*************************"
+            end
+            return orden
+          when "Sin Programar"
+                      estado = false
+                      impresion = false
+                      entregado = false
+                      orden =OrdenProduccion.where("color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?", estado, estado, estado, impresion, entregado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+        end
+
+
+        return orden
+
+
+end
+
+
+
+
+
+def self.advanced_search_cliente(data, cliente)
+  #code
+  #code
+  puts "****************ENTRA A BUSCAR ESTADO CON CLIENTE************************"
+  orden = []
+        case data
+          when "Impresión"
+                      estado = true
+                      acabado = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.nombre=? AND impresion = ? AND acabado", cliente,impresion,acabado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?

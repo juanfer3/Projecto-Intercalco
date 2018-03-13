@@ -161,7 +161,7 @@ Rails.application.routes.draw do
   post 'buscador_de_ordenes_por_fecha', to: 'ordenes_produccion#buscador_de_ordenes_por_fecha', as: :buscador_de_ordenes_por_fecha
 
   post 'busquda_avanzada_produccion', to: 'ordenes_produccion#busquda_avanzada_produccion', as: :busquda_avanzada_produccion
-
+  get 'cargar_select_advance_search', to: 'ordenes_produccion#cargar_select_advance_search', as: :cargar_select_advance_search
 
   get 'buscador_de_ordenes_despachos', to: 'compromisos_de_entrega#buscador_de_ordenes_despachos', as: :buscador_de_ordenes_despachos
 

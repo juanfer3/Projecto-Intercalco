@@ -17,11 +17,24 @@ class OrdenesProduccionController < ApplicationController
 def busquda_avanzada_produccion
   estado = params["estados"]
   puts "****************ESTADO VALUE: #{estado}**********************"
-  @ordenes = OrdenProduccion.advanced_search(estado)
+  @ordenes = OrdenProduccion.advanced_search_estado(estado)
   respond_to do |format|
     format.js
   end
 end
+
+
+
+def cargar_select_advance_search
+  #code
+  val_estado = true
+  @clientes = Cliente.all.where("estado =?",val_estado).order('nombre').distinct
+  respond_to do |format|
+    format.js
+  end
+end
+
+
 
 
 def produccion_coordinador

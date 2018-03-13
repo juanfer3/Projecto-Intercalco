@@ -36,15 +36,85 @@
 $(document).on('turbolinks:load', function() {
 
 
+
+
+
+
+
+
 $('#simple_search').hide()
 $('.formulario_busqueda_avanzada').hide()
+
 $('#advanced_search').click(function(){
 
   $('#busqueda_basica').hide()
   $('#advanced_search').hide()
   $('#simple_search').show()
   $('.formulario_busqueda_avanzada').show()
+
+
+
+  $('.select_cliente_bus').select2({
+
+  })
+
+  $('.select_cliente_bus').addClass('select_crecer')
+
+
+
+
+  if( $('#cb_cliente').prop('checked') ) {
+
+  }else {
+      $('.select_cliente_bus').attr("disabled", true);
+
+  }
+
+
+
+  $("#cb_cliente").change(function(){
+
+            if( $('#cb_cliente').prop('checked') ) {
+
+
+              $('.select_cliente_bus').attr("disabled", false);
+              $('#sca').select2({
+              ajax: {
+
+                    url: "/clientes.json",
+                    dataType: "json",
+                    results: function(data, page) {
+                      console.log(data)
+                      return {
+                        results: $.map( data, function(cliente, i) {
+                          console.log(data)
+                          return { id: cliente.id, text: cliente.nombre }
+                        } )
+                      }
+                    }
+                  }
+                });
+
+
+
+            }else {
+              $('.select_cliente_bus').attr("disabled", true);
+
+            }
+
+  })
+
+
+
+
+
+
+
 })
+
+
+
+
 
 
 $('#simple_search').click(function(){
@@ -54,6 +124,12 @@ $('#simple_search').click(function(){
 
   $('#simple_search').hide()
   $('.formulario_busqueda_avanzada').hide()
+
+
+
+
+
+
 })
 
 

@@ -1,0 +1,11 @@
+<%@clientes.each do |cliente|%>
+          var cliente_id = "<%=cliente.id%>"
+          var text = "<%=cliente.nombre%>"
+              var data = {
+                  id: cliente_id,
+                  text: text
+              };
+
+              var newOption = new Option(data.text, data.id, false, false);
+              $('#select-cliente-advance option').append(newOption).trigger('change');
+<%end%>
