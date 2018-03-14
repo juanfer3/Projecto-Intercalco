@@ -1,11 +1,9 @@
+toastr.success(";)pop")
+$('.fff').html("")
 <%@clientes.each do |cliente|%>
-          var cliente_id = "<%=cliente.id%>"
-          var text = "<%=cliente.nombre%>"
-              var data = {
-                  id: cliente_id,
-                  text: text
-              };
+var nombre = "<%= cliente.nombre%>"
 
-              var newOption = new Option(data.text, data.id, false, false);
-              $('#select-cliente-advance option').append(newOption).trigger('change');
+
+var op = '<option value="<%= cliente.id %>" "><%= cliente.nombre %></option>'
+$('#ajax-example').append(op).trigger('change')
 <%end%>

@@ -37,7 +37,19 @@ $(document).on('turbolinks:load', function() {
 
 
 
+  $('#spd').select2({
+      ajax: {
+        url: "/cargar_select_advance_search",
 
+        results: function(data, page) {
+          return {
+            results: $.map( data, function(cliente, i) {
+              return { id: cliente.id, text: cliente.nombre }
+            } )
+          }
+        }
+      }
+    });
 
 
 
@@ -66,7 +78,7 @@ $('#advanced_search').click(function(){
   if( $('#cb_cliente').prop('checked') ) {
 
   }else {
-      $('.select_cliente_bus').attr("disabled", true);
+
 
   }
 
@@ -78,27 +90,12 @@ $('#advanced_search').click(function(){
 
 
               $('.select_cliente_bus').attr("disabled", false);
-              $('#sca').select2({
-              ajax: {
 
-                    url: "/clientes.json",
-                    dataType: "json",
-                    results: function(data, page) {
-                      console.log(data)
-                      return {
-                        results: $.map( data, function(cliente, i) {
-                          console.log(data)
-                          return { id: cliente.id, text: cliente.nombre }
-                        } )
-                      }
-                    }
-                  }
-                });
 
 
 
             }else {
-              $('.select_cliente_bus').attr("disabled", true);
+              $('.select_cliente_bus').attr("disabled", false);
 
             }
 

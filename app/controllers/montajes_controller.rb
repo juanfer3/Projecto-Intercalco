@@ -22,6 +22,7 @@ class MontajesController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.json
       format.xlsx {
         response.headers['Content-Disposition'] = 'attachment; filename="FichasTécnicas.xlsx"'
       }

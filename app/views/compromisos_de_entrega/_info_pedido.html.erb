@@ -73,108 +73,232 @@
 
 
 </div>
-<%if @compromiso_de_entrega.enviado == false || @compromiso_de_entrega.enviado == nil%>
-  <%= simple_form_for(@compromiso_de_entrega, remote:true) do |f| %>
-    <%= f.error_notification %>
-
-
-
-
-    <div class="container my_card_pedidos_form my_orden_pedidos">
-      <div class="col-3" id="OcultarChecboxEnviado">
-        <%= f.input :enviado%>
-      </div>
-      <div class="col-3">
-        <%= f.input :numero_de_remision %>
-      </div>
-      <div class="col-3">
-        <label for="">Fecha real de despacho</label>
-        <div class="input-group" >
-          <%= f.text_field :fecha_despacho , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
-          <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
-
-        </div>
-
-      </div>
-      <div class="col-3">
-        <label for="">Cantidad Despachada</label>
-        <%= f.input :cantidad_despacho, label:false %>
-      </div>
-      <div class=" col-3">
-        <label for="">Aceptar Remisión</label><br>
-        <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
-          <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
-         <% end %>
-
-      </div>
-
-      <div class="col-12">
-        <label for="">Observaciones</label><br>
-        <%= f.text_area :observacion, label:false , class: "form-control"%>
-
-      </div>
-
-    </div>
-
-
-  <% end %>
-  <% elsif @compromiso_de_entrega.enviado == true%>
-  <div class="container my_card_pedidos_form my_orden_pedidos">
-
-    <div class="container_add_entregas col-12">
-       <div class="col-4">
-          <h1>Deshacer Envio</h1>
-       </div>
-       <div class="col-3 offset-md-6">
-          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-graph-down-right"></i></span></button>'.html_safe, deshacer_envio_path(@compromiso_de_entrega), remote:true, data: { confirm: 'Realmente desea eliminar esta remisión?' } %></td>
-       </div>
-    </div>
-    <br>
-    <br>
-    <div class="col-12">
-      <table class="table">
-        <thead>
-          <th>Numeros de remisión</th>
-          <th>Fecha a despachar</th>
-          <th>Cantidad despachada</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%=best_in_place @compromiso_de_entrega, :numero_de_remision, as: :input %></td>
-            <td><%=best_in_place @compromiso_de_entrega, :fecha_despacho, as: :date %></td>
-            <td><%=best_in_place @compromiso_de_entrega, :cantidad_despacho, as: :input %></td>
-          </tr>
-        </tbody>
-        <tfoot>
-
-
-
-
-      </table>
-      <div class="col-12">
-
-      </div>
-
-
-
-
-<div class="container my_card_pedidos_form my_orden_pedidos">
-  <div class="col-12">
-      <div class="input-group">
-        <h6> <strong>Observaciones: 	&nbsp;</strong> </h6>
-        <h6><%=best_in_place @compromiso_de_entrega, :observacion, as: :textarea, inner_class: "form-control col-12"%></h6>
-      </div>
-  </div>
-</div>
 
 
 
 
 
-    </div>
+<% if @compromiso_de_entrega.orden_produccion.acabado == true &&  @compromiso_de_entrega.orden_produccion.entregado == false%>
 
-  </div>
+
+
+                <%if @compromiso_de_entrega.enviado == false || @compromiso_de_entrega.enviado == nil%>
+                  <%= simple_form_for(@compromiso_de_entrega, remote:true) do |f| %>
+                    <%= f.error_notification %>
+
+
+
+
+                    <div class="container my_card_pedidos_form my_orden_pedidos">
+                      <div class="col-3" id="OcultarChecboxEnviado">
+                        <%= f.input :enviado%>
+                      </div>
+                      <div class="col-3">
+                        <%= f.input :numero_de_remision %>
+                      </div>
+                      <div class="col-3">
+                        <label for="">Fecha real de despacho</label>
+                        <div class="input-group" >
+                          <%= f.text_field :fecha_despacho , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                          <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+                        </div>
+
+                      </div>
+                      <div class="col-3">
+                        <label for="">Cantidad Despachada</label>
+                        <%= f.input :cantidad_despacho, label:false %>
+                      </div>
+                      <div class=" col-3">
+                        <label for="">Aceptar Remisión</label><br>
+                        <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
+                          <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+                         <% end %>
+
+                      </div>
+
+                      <div class="col-12">
+                        <label for="">Observaciones</label><br>
+                        <%= f.text_area :observacion, label:false , class: "form-control"%>
+
+                      </div>
+
+                    </div>
+
+
+                  <% end %>
+                  <% elsif @compromiso_de_entrega.enviado == true%>
+                  <div class="container my_card_pedidos_form my_orden_pedidos">
+
+                    <div class="container_add_entregas col-12">
+                       <div class="col-4">
+                          <h1>Deshacer Envio</h1>
+                       </div>
+                       <div class="col-3 offset-md-6">
+                          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-graph-down-right"></i></span></button>'.html_safe, deshacer_envio_path(@compromiso_de_entrega), remote:true, data: { confirm: 'Realmente desea eliminar esta remisión?' } %></td>
+                       </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-12">
+                      <table class="table">
+                        <thead>
+                          <th>Numeros de remisión</th>
+                          <th>Fecha a despachar</th>
+                          <th>Cantidad despachada</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%=best_in_place @compromiso_de_entrega, :numero_de_remision, as: :input %></td>
+                            <td><%=best_in_place @compromiso_de_entrega, :fecha_despacho, as: :date %></td>
+                            <td><%=best_in_place @compromiso_de_entrega, :cantidad_despacho, as: :input %></td>
+                          </tr>
+                        </tbody>
+                        <tfoot>
+
+
+
+
+                      </table>
+                      <div class="col-12">
+
+                      </div>
+
+
+
+
+                <div class="container my_card_pedidos_form my_orden_pedidos">
+                  <div class="col-12">
+                      <div class="input-group">
+                        <h6> <strong>Observaciones: 	&nbsp;</strong> </h6>
+                        <h6><%=best_in_place @compromiso_de_entrega, :observacion, as: :textarea, inner_class: "form-control col-12"%></h6>
+                      </div>
+                  </div>
+                </div>
+
+
+
+
+
+                    </div>
+
+                  </div>
+                <% end %>
+                <script type="text/javascript">
+                  jQuery(".best_in_place").best_in_place();
+                </script>
+
+
+<% elsif @compromiso_de_entrega.orden_produccion.acabado == true &&  @compromiso_de_entrega.orden_produccion.entregado == true%>
+
+
+
+            <%if @compromiso_de_entrega.enviado == false || @compromiso_de_entrega.enviado == nil%>
+              <%= simple_form_for(@compromiso_de_entrega, remote:true) do |f| %>
+                <%= f.error_notification %>
+
+
+
+
+                <div class="container my_card_pedidos_form my_orden_pedidos">
+                  <div class="col-3" id="OcultarChecboxEnviado">
+                    <%= f.input :enviado%>
+                  </div>
+                  <div class="col-3">
+                    <%= f.input :numero_de_remision %>
+                  </div>
+                  <div class="col-3">
+                    <label for="">Fecha real de despacho</label>
+                    <div class="input-group" >
+                      <%= f.text_field :fecha_despacho , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                      <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+                    </div>
+
+                  </div>
+                  <div class="col-3">
+                    <label for="">Cantidad Despachada</label>
+                    <%= f.input :cantidad_despacho, label:false %>
+                  </div>
+                  <div class=" col-3">
+                    <label for="">Aceptar Remisión</label><br>
+                    <%= button_tag type: 'submit', class: "btn btn-outline-info", id: "register-button" do %>
+                      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+                     <% end %>
+
+                  </div>
+
+                  <div class="col-12">
+                    <label for="">Observaciones</label><br>
+                    <%= f.text_area :observacion, label:false , class: "form-control"%>
+
+                  </div>
+
+                </div>
+
+
+              <% end %>
+              <% elsif @compromiso_de_entrega.enviado == true%>
+              <div class="container my_card_pedidos_form my_orden_pedidos">
+
+                <div class="container_add_entregas col-12">
+                   <div class="col-4">
+                      <h1>Deshacer Envio</h1>
+                   </div>
+                   <div class="col-3 offset-md-6">
+                      <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-graph-down-right"></i></span></button>'.html_safe, deshacer_envio_path(@compromiso_de_entrega), remote:true, data: { confirm: 'Realmente desea eliminar esta remisión?' } %></td>
+                   </div>
+                </div>
+                <br>
+                <br>
+                <div class="col-12">
+                  <table class="table">
+                    <thead>
+                      <th>Numeros de remisión</th>
+                      <th>Fecha a despachar</th>
+                      <th>Cantidad despachada</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><%=best_in_place @compromiso_de_entrega, :numero_de_remision, as: :input %></td>
+                        <td><%=best_in_place @compromiso_de_entrega, :fecha_despacho, as: :date %></td>
+                        <td><%=best_in_place @compromiso_de_entrega, :cantidad_despacho, as: :input %></td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+
+
+
+
+                  </table>
+                  <div class="col-12">
+
+                  </div>
+
+
+
+
+            <div class="container my_card_pedidos_form my_orden_pedidos">
+              <div class="col-12">
+                  <div class="input-group">
+                    <h6> <strong>Observaciones: 	&nbsp;</strong> </h6>
+                    <h6><%=best_in_place @compromiso_de_entrega, :observacion, as: :textarea, inner_class: "form-control col-12"%></h6>
+                  </div>
+              </div>
+            </div>
+
+
+
+
+
+                </div>
+
+              </div>
+            <% end %>
+            <script type="text/javascript">
+              jQuery(".best_in_place").best_in_place();
+            </script>
+
+
+
 <% end %>
-<script type="text/javascript">
-  jQuery(".best_in_place").best_in_place();
-</script>

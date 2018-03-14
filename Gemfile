@@ -121,7 +121,7 @@ gem 'wkhtmltopdf-binary'
 gem 'ransack'
 #gem 'ransack', github: 'activerecord-hackery/ransack'
 
-
+gem 'colorize'
 
 gem 'bootstrap-popover-rails', '~> 0.1.0'
 gem 'bootstrap-tooltip-rails'
