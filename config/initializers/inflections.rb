@@ -161,8 +161,10 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'contenedor_de_acabados', 'contenedores_de_acabados'
 
   inflect.irregular 'orden_nueva', 'ordenes_nuevas'
-  
+
   inflect.irregular 'formato_de_tamaño', 'formatos_de_tamaños'
 
+  inflect.irregular 'habilitar_corte_de_material', 'habilitar_cortes_de_materiales'
+  inflect.irregular 'sacar_de_inventario', 'sacar_de_inventarios'
 
 end

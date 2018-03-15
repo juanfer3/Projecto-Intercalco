@@ -1,4 +1,6 @@
 class OrdenProduccion < ApplicationRecord
+  require 'colorize'
+
   belongs_to :montaje
   belongs_to :contacto
   belongs_to :lugar_despacho
@@ -16,6 +18,15 @@ class OrdenProduccion < ApplicationRecord
   before_save :antes_de_crear
 
   def antes_de_crear
+
+    puts "==========================================================".blue
+    puts "*******************HABILTAR IMPRESION*******************".green 
+    self.habilitar_impresion = false if sacar_de_inventario == true
+    puts "==========================================================".blue
+    puts "=*******************HABILTAR CORTE***********************=".green
+    self.habilitar_corte_de_material = false if sacar_de_inventario == true
+    puts "==========================================================".blue
+
     if facturar_a_nuevo.present?
       self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
       if self.nombre_facturacion

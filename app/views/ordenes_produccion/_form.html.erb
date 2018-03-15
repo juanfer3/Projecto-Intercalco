@@ -23,9 +23,15 @@
             %>
 
           </div>
-          <div class="col-3 offset-md-3 nueva_orden_checbox">
+          <div class="col-2 offset-md-1  nueva_orden_checbox">
             <%=
             f.input :orden_nueva
+            %>
+          </div>
+
+          <div class="col-2 offset-md-1  nueva_orden_checbox">
+            <%=
+            f.input :sacar_de_inventario
             %>
           </div>
 
@@ -384,10 +390,6 @@
 
 
 <script>
-
-
-
-
 
 
   $ ( "#select_contactos" ).prop("disabled", true)

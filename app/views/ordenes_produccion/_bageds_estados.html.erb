@@ -1,4 +1,12 @@
 <% if  @orden_produccion.impresion == false%>
+    <% if @orden_produccion.sacar_de_inventario==true &&  @orden_produccion.acabado == false%>
+      <!-- true -->
+      <h6 id=<%="quitar_estado_orden_produccion#{@orden_produccion.id}"%>>
+        <span class="badge badge-dark">
+           Inventario
+        </span>
+      </h6>
+      <% else %>
 
   <% if @orden_produccion.pantalla == true || @orden_produccion.color === true || @orden_produccion.corte_material=== true && @orden_produccion.acabado == false%>
 
@@ -28,7 +36,7 @@
 
   <% end %>
 
-
+  <% end %>
 
 <%elsif @orden_produccion.impresion == true && @orden_produccion.acabado == false%>
 
