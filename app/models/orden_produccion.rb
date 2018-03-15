@@ -374,7 +374,7 @@ end
           when "FEBRERO"
             numero_de_mes=2
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -390,7 +390,7 @@ end
           when "MARZO"
             numero_de_mes=3
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -406,7 +406,7 @@ end
           when "ABRIL"
             numero_de_mes=4
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -422,7 +422,7 @@ end
           when "MAYO"
             numero_de_mes=5
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -437,7 +437,7 @@ end
           when "JUNIO"
             numero_de_mes=6
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -452,7 +452,7 @@ end
           when "JULIO"
             numero_de_mes=7
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -469,7 +469,7 @@ end
 
             numero_de_mes=8
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -485,7 +485,7 @@ end
           when "SEPTIEMBRE"
             numero_de_mes=9
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -501,7 +501,7 @@ end
           when "OCTUBRE"
             numero_de_mes=10
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -517,7 +517,7 @@ end
           when "NOVIEMBRE"
             numero_de_mes=11
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -533,7 +533,7 @@ end
           when "DICIEMBRE"
             numero_de_mes=12
 
-          @ordenes = CompromisoDeEntrega.where("extract(month from  fecha_de_compromiso) = ?", numero_de_mes)
+          @ordenes = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND extract(month from  fecha_de_compromiso) = ?", cliente, numero_de_mes)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
