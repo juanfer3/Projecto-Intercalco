@@ -20,6 +20,7 @@ def busquda_avanzada_produccion
   estado = params["estados"]
   cliente = params["clientes"]
   mes = params["mes"]
+
   puts "**************** Cliente: #{cliente}**********************".yellow
   puts "****************ESTADO VALUE: #{estado}**********************".green
 

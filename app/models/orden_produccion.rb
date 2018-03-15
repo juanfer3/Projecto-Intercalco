@@ -553,7 +553,7 @@ end
   end
 
   # consulta por mes-cliente-estado
-  def consultar_mes_cliente_estado(mes, cliente, estado)
+  def self.consultar_mes_cliente_estado(mes, cliente, estado)
 
       puts "********************CONSULTA MES CLIENTE Y ESTADO********************"
         #code
