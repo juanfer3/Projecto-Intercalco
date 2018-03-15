@@ -15,10 +15,12 @@ class OrdenProduccion < ApplicationRecord
   attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo
 
 
-  before_save :antes_de_crear
+  before_save :antes_de_salvar
+  after_create :despues_de_crear
 
-  def antes_de_crear
 
+  def despues_de_crear
+    #code
     puts "==========================================================".blue
     puts "*******************HABILTAR IMPRESION*******************".green
     self.habilitar_impresion = false if sacar_de_inventario == true
@@ -35,6 +37,11 @@ class OrdenProduccion < ApplicationRecord
     puts "=*******************DESHABILTAR CORTE***********************=".green
     self.habilitar_corte_de_material = true if sacar_de_inventario == false
     puts "==========================================================".blue
+  end
+
+  def antes_de_salvar
+
+
 
     if facturar_a_nuevo.present?
       self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
