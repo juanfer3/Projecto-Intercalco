@@ -38,19 +38,7 @@ $(document).on('turbolinks:load', function() {
 
 
 
-  $('#spd').select2({
-      ajax: {
-        url: "/cargar_select_advance_search",
 
-        results: function(data, page) {
-          return {
-            results: $.map( data, function(cliente, i) {
-              return { id: cliente.id, text: cliente.nombre }
-            } )
-          }
-        }
-      }
-    });
 
 
 
