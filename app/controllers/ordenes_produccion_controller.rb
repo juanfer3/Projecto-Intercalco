@@ -40,7 +40,7 @@ def cargar_select_advance_search
   puts "******************ESTA ES LA DATA: #{data}**********************".red
   val_estado = true
   @clientes = []
-  @clientes= Cliente.where("nombre LIKE ? AND estado = ?", data+"%", val_estado).order('nombre') if data.present?
+  @clientes= Cliente.where("nombre ILIKE ? AND estado = ?", data+"%", val_estado).order('nombre') if data.present?
   respond_to do |format|
     format.js
     format.json
