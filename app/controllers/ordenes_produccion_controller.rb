@@ -19,16 +19,23 @@ class OrdenesProduccionController < ApplicationController
 def busquda_avanzada_produccion
   estado = params["estados"]
   cliente = params["clientes"]
+  mes = params["mes"]
   puts "**************** Cliente: #{cliente}**********************".yellow
   puts "****************ESTADO VALUE: #{estado}**********************".green
-  if cliente.present?
-    @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
-  else
-    @ordenes = OrdenProduccion.advanced_search_estado(estado)
-  end
+
 
   respond_to do |format|
-    format.js
+        if cliente.present?
+          @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
+          format.js
+        elsif mes.present?
+          @mes = mes
+          @compromisos_de_entrega =[]
+          format.js{ render buscador_de_ordenes_por_mes}
+        else
+          @ordenes = OrdenProduccion.advanced_search_estado(estado)
+          format.js{ render }
+        end
   end
 end
 
