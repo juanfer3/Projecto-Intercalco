@@ -111,17 +111,17 @@ def self.advanced_search_estado(data)
                       end
                       return orden
           when "Cerrado"
-            estado = true
+                    estado = true
 
-            orden =OrdenProduccion.where("entregado = ?", estado).order("numero_de_orden DESC")
-            puts "***************Devuelve*************************"
+                    orden =OrdenProduccion.where("entregado = ?", estado).order("numero_de_orden DESC")
+                    puts "***************Devuelve*************************"
 
-            if orden.empty?
-                puts "***********Produccion vacia no existe o no hay*****************************"
-            else
-                puts "***************Esta lleno*************************"
-            end
-            return orden
+                    if orden.empty?
+                        puts "***********Produccion vacia no existe o no hay*****************************"
+                    else
+                        puts "***************Esta lleno*************************"
+                    end
+                    return orden
           when "Sin Programar"
                       estado = false
                       impresion = false
@@ -135,6 +135,21 @@ def self.advanced_search_estado(data)
                           puts "***************Esta lleno*************************"
                       end
                       return orden
+        when "Inventario"
+          puts "****************  START INVENTARIO  ************************".green
+                    estado = true
+                    acabado = false
+                    entregado = false
+                    orden =OrdenProduccion.where("sacar_de_inventario = ? AND acabado = ? AND  entregado = ?", estado, acabado, entregado).order("numero_de_orden DESC")
+                    puts "***************Devuelve*************************"
+
+                    if orden.empty?
+                        puts "***********Produccion vacia no existe o no hay*****************************"
+                    else
+                        puts "***************Esta lleno*************************"
+                    end
+          puts "*****************  END INVENTARIO  ***********************".green
+                    return orden
         end
 
 
