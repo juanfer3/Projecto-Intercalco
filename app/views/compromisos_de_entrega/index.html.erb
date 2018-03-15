@@ -138,7 +138,7 @@
         <td><%= compromiso_de_entrega.orden_produccion.numero_de_orden %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.cliente.nombre %></td>
         <td><%= compromiso_de_entrega.orden_produccion.montaje.nombre %></td>
-        <td><%= compromiso_de_entrega.fecha_de_compromiso.strftime("%d/%m/%Y") %></td>
+        <td><%= compromiso_de_entrega.fecha_de_compromiso %></td>
         <% if compromiso_de_entrega.fecha_de_compromiso != nil %>
           <!-- true -->
 
@@ -189,6 +189,16 @@
 
           <% if  compromiso_de_entrega.orden_produccion.entregado == false || compromiso_de_entrega.orden_produccion.entregado == nil %>
                 <% if compromiso_de_entrega.enviado == false || compromiso_de_entrega.enviado == nil%>
+
+                  <% if compromiso_de_entrega.orden_produccion.sacar_de_inventario==true && compromiso_de_entrega.orden_produccion.acabado == false%>
+                    <!-- true -->
+                    <h6 id=<%="quitar_estado_orden_produccion#{compromiso_de_entrega.orden_produccion.id}"%>>
+                      <span class="badge badge-dark">
+                         Inventario
+                      </span>
+                    </h6>
+                    <% else %>
+
                         <% if  compromiso_de_entrega.orden_produccion.impresion == false%>
 
                           <% if compromiso_de_entrega.orden_produccion.pantalla == true || compromiso_de_entrega.orden_produccion.color === true || compromiso_de_entrega.orden_produccion.corte_material=== true && compromiso_de_entrega.orden_produccion.acabado == false%>
@@ -240,6 +250,11 @@
 
 
                         <% end %>
+
+
+
+                        <% end %>
+
                   <% else %>
                   <h6 id=<%="quitar_estado_orden_produccion#compromiso_de_entrega.orden_produccion.id}"%>>
                     <span class="badge badge-success ">

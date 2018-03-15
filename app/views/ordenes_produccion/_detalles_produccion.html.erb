@@ -444,46 +444,58 @@
         <br>
       </div>
 
+<%  @orden_produccion.compromisos_de_entrega.each do |fecha| %>
+<br>
+          <div class="col-12">
+            <h5>Despachos</h5>
+            <table class="table">
+              <thead>
+                <th>Remision</th>
+                <th>Fecha de compromiso</th>
+                <th>cantidad a despachar</th>
+                <th>Fecha real del despacho</th>
+                <th>cantidad despachada</th>
+                <th>Despacho</th>
+              </thead>
+              <tbody>
 
-      <div class="col-12">
-        <h5>Despachos</h5>
-        <table class="table">
-          <thead>
-            <th>Fecha de compromiso</th>
-            <th>cantidad a despachar</th>
-            <th>cantidad despachada</th>
-            <th>Despacho</th>
-          </thead>
-          <tbody>
-            <%  @orden_produccion.compromisos_de_entrega.each do |fecha| %>
-            <tr>
-              <td><%=fecha.fecha_de_compromiso%></td>
-              <td><%=fecha.cantidad%></td>
-              <td><%=fecha.cantidad_despacho%></td>
-              <%if fecha.enviado == true%>
-                <td>
-                  <h6>
-                    <span class="badge badge-success"> Entregado
-                      <i class="ion-checkmark-circled"></i>
-                    </span>
-                  </h6>
-                </td>
-              <% else %>
-                <td>
-                  <h6>
-                    <span class="badge badge-warning"> Pendiente
-                      <i class="ion-android-alarm-clock"></i>
-                    </span>
-                  </h6>
-                </td>
-              <%end%>
+                <tr>
+                  <td><%=fecha.numero_de_remision%></td>
+                  <td><%=fecha.fecha_de_compromiso%></td>
+                  <td><%=fecha.cantidad%></td>
+                  <td><%=fecha.fecha_despacho%></td>
+                  <td><%=fecha.cantidad_despacho%></td>
+                  <%if fecha.enviado == true%>
+                    <td>
+                      <h6>
+                        <span class="badge badge-success"> Entregado
+                          <i class="ion-checkmark-circled"></i>
+                        </span>
+                      </h6>
+                    </td>
+                  <% else %>
+                    <td>
+                      <h6>
+                        <span class="badge badge-warning"> Pendiente
+                          <i class="ion-android-alarm-clock"></i>
+                        </span>
+                      </h6>
+                    </td>
+                  <%end%>
 
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+                </tr>
 
+
+              <tr >
+                <td colspan="6"><%=fecha.observacion%></td>
+              </tr>
+
+
+              </tbody>
+
+            </table>
+          </div>
+    <% end %>
 
 
 
