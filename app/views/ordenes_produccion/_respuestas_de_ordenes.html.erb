@@ -147,6 +147,14 @@
 
                             <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
                               <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
+                                <% if orden_produccion.sacar_de_inventario==true && orden_produccion.acabado == false%>
+                                  <!-- true -->
+                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                    <span class="badge badge-dark">
+                                       Inventario
+                                    </span>
+                                  </h6>
+                                  <% else %>
                                               <!-- true -->
                                               <% if @estado_data == false || @estado_data == nil%>
                                                 <!-- true -->
@@ -203,6 +211,7 @@
 
                                                     <% end %>
 
+
                                             <% else %>
                                             <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
                                               <span class="badge badge-success ">
@@ -211,6 +220,7 @@
                                               </span>
                                             </h6>
                                             <% end %>
+                                      <% end %>
                               <% else %>
                               <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
                                 <span class="badge badge-success ">
