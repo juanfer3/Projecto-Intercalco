@@ -16,6 +16,8 @@
  *= require font-awesome
  *= require font-awesome
  *= require select2
+ *= require selectize
+ *= require selectize.default
  *= require jquery-ui
  *= sourceMappingURL=bootstrap.css.map
  */
@@ -25,6 +27,8 @@
 
   @import "toastr";
   @import "font-awesome";
+
+
 
 
 

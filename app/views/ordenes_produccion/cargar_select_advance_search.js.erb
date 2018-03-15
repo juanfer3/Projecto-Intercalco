@@ -1,9 +1,2 @@
-
+toastr.info("jsjssjsj")
 $('.fff').html("")
-<%@clientes.each do |cliente|%>
-var nombre = "<%= cliente.nombre%>"
-
-
-var op = '<option value="<%= cliente.id %>" "><%= cliente.nombre %></option>'
-$('#ajax-example').append(op).trigger('change')
-<%end%>

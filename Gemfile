@@ -125,3 +125,7 @@ gem 'colorize'
 
 gem 'bootstrap-popover-rails', '~> 0.1.0'
 gem 'bootstrap-tooltip-rails'
+
+
+
+gem "selectize-rails"

@@ -15,6 +15,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require selectize
 //= require bootstrap/bootstrap-tooltip
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core

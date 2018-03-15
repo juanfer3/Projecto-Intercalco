@@ -13,21 +13,9 @@
 <div class="col-12">
   <br>
 </div>
-<div class="demo">
-				<h2>&lt;select&gt;</h2>
-				<div class="control-group">
-					<label for="select-beast">Beast:</label>
-					<select id="select-beast" class="demo-default" placeholder="Select a person...">
-						<option value="">Select a person...</option>
-						<option value="4">Thomas Edison</option>
-						<option value="1">Nikola</option>
-						<option value="3">Nikola Tesla</option>
-						<option value="5">Arnold Schwarzenegger</option>
-					</select>
-				</div>
-				<script>
 
-				</script>
+
+
 
 <div class="">
             <button type="button"
@@ -65,6 +53,67 @@
 </div>
       <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
 
+      <div class="col-3">
+
+
+        <div class="control-group">
+          <label for="select-beast">Seleccione Cliente:</label>
+          <%= select_tag "clientes",
+              options_for_select([ ""]),
+              class:"demo-default",
+              id:"selectize_cliente",
+              include_blank: 'Seleccione cliente'
+            %>
+
+
+				</div>
+
+      </div>
+      <script type="text/javascript">
+              $('#selectize_cliente').selectize({
+              valueField: 'id',
+              labelField: 'nombre',
+              searchField: 'nombre',
+              options: [],
+              create: false,
+              render: {
+                  option: function(cliente, escape) {
+                    return '<div>' +
+                                '<span class="title">' +
+                                    '<span class="ciccioname">' + cliente.nombre + '</span>' +
+                                '</span>' +
+                            '</div>';
+                  }
+              },
+              load: function(query, callback) {
+                  if (!query.length) return callback();
+                  $.ajax({
+                      url: '/cargar_select_advance_search.json',
+                      data: { q: query},
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function(res) {
+                      callback(res.slice(0,10));
+
+
+                      }
+                  });
+              },
+              render: {
+                  option: function(item, escape) {
+
+                    if (item != null) {
+                      return `<div>` + escape(item.nombre) + `</div>`
+                    }else if(item == null) {
+                  
+                      var resp= "El Cliente no exise"
+                      return `<div>` + escape(resp) + `</div>`
+                    }
+
+                  }
+                }
+            });
+      </script>
 
         <div class="col-3">
 

@@ -18,8 +18,15 @@ class OrdenesProduccionController < ApplicationController
 
 def busquda_avanzada_produccion
   estado = params["estados"]
-  puts "****************ESTADO VALUE: #{estado}**********************"
-  @ordenes = OrdenProduccion.advanced_search_estado(estado)
+  cliente = params["clientes"]
+  puts "**************** Cliente: #{cliente}**********************".yellow
+  puts "****************ESTADO VALUE: #{estado}**********************".green
+  if cliente.present?
+    @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
+  else
+    @ordenes = OrdenProduccion.advanced_search_estado(estado)
+  end
+
   respond_to do |format|
     format.js
   end
@@ -29,11 +36,11 @@ end
 
 def cargar_select_advance_search
   #code
-  data = params["q"]
+  data = params['q']
   puts "******************ESTA ES LA DATA: #{data}**********************".red
   val_estado = true
-
-  @clientes= Cliente.where("nombre LIKE ?", data+"%").order('nombre') if data.present?
+  @clientes = []
+  @clientes= Cliente.where("nombre LIKE ? AND estado = ?", data+"%", val_estado).order('nombre') if data.present?
   respond_to do |format|
     format.js
     format.json

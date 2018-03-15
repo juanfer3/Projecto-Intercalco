@@ -65,11 +65,99 @@ class OrdenProduccion < ApplicationRecord
     end
   end
 
+def self.advanced_search_cliente_estado(estado,cliente)
+  #code
+  puts "****************ENTRA A BUSCAR SOLO POR CLIENTE - ESTADO************************".yellow
+  orden = []
+        case estado
+          when "Impresión"
+                      estado = true
+                      inventario = false
+                      acabado = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado = ? AND ordenes_produccion.sacar_de_inventario = ?",cliente, estado, acabado, inventario).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
 
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+
+                      return orden
+          when "Preprensa"
+                      puts "*********************PREPRENSA*******************"
+                      estado = true
+                      impresion = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)",cliente, impresion, estado, estado, estado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Acabado"
+                      estado = true
+                      entregado = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND acabado = ? AND entregado = ?",cliente, estado, entregado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+          when "Cerrado"
+                    estado = true
+
+                    orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND entregado = ?",cliente, estado).order("numero_de_orden DESC")
+                    puts "***************Devuelve*************************"
+
+                    if orden.empty?
+                        puts "***********Produccion vacia no existe o no hay*****************************"
+                    else
+                        puts "***************Esta lleno*************************"
+                    end
+                    return orden
+          when "Sin Programar"
+                      estado = false
+                      impresion = false
+                      entregado = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?",cliente, estado, estado, estado, impresion, entregado).order("numero_de_orden DESC")
+                      puts "***************Devuelve*************************"
+
+                      if orden.empty?
+                          puts "***********Produccion vacia no existe o no hay*****************************"
+                      else
+                          puts "***************Esta lleno*************************"
+                      end
+                      return orden
+        when "Inventario"
+          puts "****************  START INVENTARIO  ************************".green
+                    estado = true
+                    acabado = false
+                    entregado = false
+                    orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND sacar_de_inventario = ? AND acabado = ? AND  entregado = ?",cliente, estado, acabado, entregado).order("numero_de_orden DESC")
+                    puts "***************Devuelve*************************"
+
+                    if orden.empty?
+                        puts "***********Produccion vacia no existe o no hay*****************************"
+                    else
+                        puts "***************Esta lleno*************************"
+                    end
+          puts "*****************  END INVENTARIO  ***********************".green
+                    return orden
+        end
+
+
+        return orden
+end
 
 def self.advanced_search_estado(data)
   #code
-  puts "****************ENTRA A BUSCAR************************"
+  puts "****************ENTRA A BUSCAR SOLO POR ESTADO************************".blue
   orden = []
         case data
           when "Impresión"
