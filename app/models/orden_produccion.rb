@@ -177,7 +177,8 @@ def self.advanced_search_estado(data)
                       puts "*********************PREPRENSA*******************"
                       estado = true
                       impresion = false
-                      orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, estado, estado, estado).order("numero_de_orden DESC")
+                      entregado = false
+                      orden =OrdenProduccion.where("impresion = ? AND entregado = ? AND (color = ? OR  corte_material = ? OR pantalla = ?)", impresion, entregado, estado, estado, estado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
