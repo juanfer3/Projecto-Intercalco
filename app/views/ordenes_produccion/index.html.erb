@@ -105,14 +105,19 @@
                     if (item != null) {
                       return `<div>` + escape(item.nombre) + `</div>`
                     }else if(item == null) {
-                  
-                      var resp= "El Cliente no exise"
+
+                      var resp = "El Cliente no Exise"
                       return `<div>` + escape(resp) + `</div>`
                     }
 
                   }
                 }
+
             });
+
+
+
+
       </script>
 
         <div class="col-3">
@@ -120,9 +125,18 @@
           <label for="" align="center">Estados</label>
           <%= select_tag "estados",
               options_for_select([ "Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado", "Inventario"]),
-              class:"form-control col-12",align: "center",style:"width:250px"
+              class:" col-12",
+              include_blank: 'Seleccione Estado'
             %>
         </div>
+        <script type="text/javascript">
+                $('#estados').selectize({
+
+                });
+        </script>
+
+
+        
 
 
           <div class="col-3">

@@ -38,7 +38,9 @@ $(document).on('turbolinks:load', function() {
 
 
 
-
+  $('#estados').click(function(){
+    toastr.info("click")
+  })
 
 
 
