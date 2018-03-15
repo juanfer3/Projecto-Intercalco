@@ -31,7 +31,7 @@ def busquda_avanzada_produccion
         elsif mes.present?
           @mes = mes
           @compromisos_de_entrega =[]
-          format.js{ render template:'buscador_de_ordenes_por_mes'}
+          format.js{ render :template =>'buscador_de_ordenes_por_mes.js'}
         else
           @ordenes = OrdenProduccion.advanced_search_estado(estado)
           format.js{ render }
