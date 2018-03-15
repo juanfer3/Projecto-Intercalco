@@ -20,11 +20,20 @@ class OrdenProduccion < ApplicationRecord
   def antes_de_crear
 
     puts "==========================================================".blue
-    puts "*******************HABILTAR IMPRESION*******************".green 
+    puts "*******************HABILTAR IMPRESION*******************".green
     self.habilitar_impresion = false if sacar_de_inventario == true
     puts "==========================================================".blue
     puts "=*******************HABILTAR CORTE***********************=".green
     self.habilitar_corte_de_material = false if sacar_de_inventario == true
+    puts "==========================================================".blue
+
+
+    puts "==========================================================".blue
+    puts "*******************DESHABILTAR IMPRESION*******************".green
+    self.habilitar_impresion = true if sacar_de_inventario == false
+    puts "==========================================================".blue
+    puts "=*******************DESHABILTAR CORTE***********************=".green
+    self.habilitar_corte_de_material = true if sacar_de_inventario == false
     puts "==========================================================".blue
 
     if facturar_a_nuevo.present?
