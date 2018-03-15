@@ -25,21 +25,30 @@ def busquda_avanzada_produccion
 
 
   respond_to do |format|
-        if cliente.present?
-          @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
-          format.js
-        elsif mes.present?
-          @mes = mes
-          @compromisos_de_entrega = OrdenProduccion.consultar_mes(@mes)
-          format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
-        elsif mes.present? && cliente.present
-          @mes = mes
-          @compromisos_de_entrega = OrdenProduccion.consultar_mes_cliente(@mes,cliente)
-          format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
-        else
-          @ordenes = OrdenProduccion.advanced_search_estado(estado)
-          format.js{ render }
-        end
+    if mes.present? && cliente.present
+      @mes = mes
+      @compromisos_de_entrega = OrdenProduccion.consultar_mes_cliente(@mes,cliente)
+      format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
+    else
+      if cliente.present?
+        @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
+        format.js
+      elsif mes.present?
+        @mes = mes
+        @compromisos_de_entrega = OrdenProduccion.consultar_mes(@mes)
+        format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
+
+
+      else
+        @ordenes = OrdenProduccion.advanced_search_estado(estado)
+        format.js{ render }
+      end
+    end
+
+
+
+
+
   end
 end
 
