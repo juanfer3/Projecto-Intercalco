@@ -626,7 +626,7 @@ end
                               puts "*********************PREPRENSA*******************"
                               estado = true
                               impresion = false
-                              orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id = ? AND ordenes_produccion.impresion = ? AND (color = ? OR  ordenes_produccion.corte_material = ? OR ordenes_produccion.pantalla = ? AND extract(month from  fecha_de_compromiso) = ?",cliente, impresion, estado, estado, estado, numero_de_orden, numero_de_mes).order("ordenes_produccion.numero_de_orden DESC")
+                              orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id = ? AND ordenes_produccion.impresion = ? AND (color = ? OR  ordenes_produccion.corte_material = ? OR ordenes_produccion.pantalla = ? AND extract(month from  fecha_de_compromiso) = ?",cliente, impresion, estado, estado, estado,  numero_de_mes).order("ordenes_produccion.numero_de_orden DESC")
                               puts "***************Devuelve*************************"
 
                               if orden.empty?
