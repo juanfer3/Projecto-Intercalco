@@ -650,7 +650,7 @@ end
                   when "Cerrado"
                             estado = true
 
-                            orden = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id = ? AND ordenes_produccion.entregado = ? AND extract(month from  fecha_de_compromiso) = ?",cliente, estado).order("ordenes_produccion.numero_de_orden DESC")
+                            orden = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id = ? AND ordenes_produccion.entregado = ? AND extract(month from  fecha_de_compromiso) = ?",cliente, estado, numero_de_mes).order("ordenes_produccion.numero_de_orden DESC")
                             puts "***************Devuelve*************************"
 
                             if orden.empty?
