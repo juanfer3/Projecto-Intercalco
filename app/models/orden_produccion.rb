@@ -125,7 +125,8 @@ def self.advanced_search_cliente_estado(estado,cliente)
                       estado = false
                       impresion = false
                       entregado = false
-                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?",cliente, estado, estado, estado, impresion, entregado).order("numero_de_orden DESC")
+                      inventario = false
+                      orden =OrdenProduccion.joins(:montaje => [:cliente]).where("clientes.id = ? AND color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND inventario= ? AND ENTREGADO = ?",cliente, estado, estado, estado, impresion, inventario,entregado).order("numero_de_orden DESC")
                       puts "***************Devuelve*************************"
 
                       if orden.empty?
