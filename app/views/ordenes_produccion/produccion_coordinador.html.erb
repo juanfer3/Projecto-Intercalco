@@ -17,13 +17,173 @@
 
 
 
-
-
-
-<br>
-
 <div class="my_card_contactos_form">
 
+
+              <div class="col-3">
+                          <button type="button"
+                            title="" data-toggle="popover" data-trigger="hover" data-content="buscar por parametros avanzados"
+                            class="btn btn-outline-success"
+                            id="advanced_search">
+                                      Busqueda Avanzada
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
+
+                          <button type="button"
+                          title="" data-toggle="popover" data-trigger="hover"
+                          data-content="buscar por parametros básicos"
+                            class="btn btn-outline-success"
+                            id="simple_search">
+                                      Busqueda Sencilla
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
+
+              </div>
+
+                <div class="col-3">
+                  <div class="">
+                      <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, ordenes_produccion_path %>
+                  </div>
+                </div>
+</div>
+
+
+
+<div class="formulario_busqueda_avanzada ">
+
+
+      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
+      <div class="col-12">
+        <br>
+      </div>
+      <div class="col-3">
+
+
+        <div class="control-group">
+          <label for="select-beast">Seleccione Cliente:</label>
+          <%= select_tag "clientes",
+              options_for_select([ ""]),
+              class:"demo-default",
+              id:"selectize_cliente",
+              include_blank: 'Seleccione cliente'
+            %>
+
+
+				</div>
+
+      </div>
+      <script type="text/javascript">
+              $('#selectize_cliente').selectize({
+              valueField: 'id',
+              labelField: 'nombre',
+              searchField: 'nombre',
+              options: [],
+              create: false,
+              render: {
+                  option: function(cliente, escape) {
+                    return '<div>' +
+                                '<span class="title">' +
+                                    '<span class="ciccioname">' + cliente.nombre + '</span>' +
+                                '</span>' +
+                            '</div>';
+                  }
+              },
+              load: function(query, callback) {
+                  if (!query.length) return callback();
+                  $.ajax({
+                      url: '/cargar_select_advance_search.json',
+                      data: { q: query},
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function(res) {
+                      callback(res.slice(0,10));
+
+
+                      }
+                  });
+              },
+              render: {
+                  option: function(item, escape) {
+
+                    if (item != null) {
+                      return `<div>` + escape(item.nombre) + `</div>`
+                    }else if(item == null) {
+
+                      var resp = "El Cliente no Exise"
+                      return `<div>` + escape(resp) + `</div>`
+                    }
+
+                  }
+                }
+
+            });
+
+
+
+
+      </script>
+
+        <div class="col-3">
+
+          <label for="" align="center">Estados</label>
+          <%= select_tag "estados",
+              options_for_select([ "Ninguno","Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado", "Inventario"]),
+              class:" col-12",
+              include_blank: 'Seleccione Estado'
+            %>
+        </div>
+        <script type="text/javascript">
+                $('#estados').selectize({
+
+                });
+        </script>
+
+
+        <div class="col-3">
+
+          <label for="" align="center">Selecionar Mes</label>
+          <%= select_tag "mes",
+              options_for_select(["Ninguno", "ENERO", "FEBRERO","MARZO", "ABRIL",
+                "MAYO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE",
+                "DICIEMBRE"]),
+              class:" col-12",
+              include_blank: 'Seleccione Mes'
+            %>
+        </div>
+        <script type="text/javascript">
+                $('#mes').selectize({
+
+                });
+        </script>
+
+
+          <div class="col-3">
+            <label for=""></label><br>
+            <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+              <span>Buscar... <i></i> </span>
+            <%end%>
+          </div>
+
+      <%end%>
+
+
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+
+
+
+<div class="my_card_contactos_form" id="busqueda_basica">
+  <div class="col-12">
+    <br>
+  </div>
 
           <div class="col-3">
               <div class="input-group">
@@ -73,13 +233,7 @@
 
                     <div class="my_card_contactos_form">
 
-
-
                           <div class="input-group">
-
-
-
-
                                     <div class="col-6">
                                         <div class="input-group">
                                           <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
@@ -87,10 +241,6 @@
 
                                         </div>
                                     </div>
-
-
-
-
 
 
 
@@ -110,15 +260,7 @@
 
 
 
-
-            <div class="col-1">
-                <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, produccion_coordinador_path %>
-            </div>
-
-
-
 </div>
-<br>
 <br>
 <table class="table table-hover">
   <thead>

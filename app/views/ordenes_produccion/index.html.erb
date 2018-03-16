@@ -56,9 +56,11 @@
 
 <div class="formulario_busqueda_avanzada ">
 
-<br>
-      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
 
+      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
+      <div class="col-12">
+        <br>
+      </div>
       <div class="col-3">
 
 
@@ -179,13 +181,13 @@ $(document).ready(function(){
 });
 </script>
 
-<div class="col-12">
-  <br>
-</div>
+
 
 <div class="my_card_contactos_form" id="busqueda_basica">
+  <div class="col-12">
+    <br>
+  </div>
 
-<br>
           <div class="col-3">
               <div class="input-group">
                 <span class="input-group-btn">
@@ -278,7 +280,7 @@ $(document).ready(function(){
 
 </div>
 <br>
-<br>
+
 <table class="table table-hover tablesorter" id="myTable" >
   <thead>
     <tr>
