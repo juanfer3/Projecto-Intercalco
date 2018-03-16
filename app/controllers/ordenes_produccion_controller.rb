@@ -21,6 +21,12 @@ def busquda_avanzada_produccion
   cliente = params["clientes"]
   mes = params["mes"]
 
+  if mes == "Ninguno"
+    mes = ""
+  end
+
+
+
   puts "**************** Cliente: #{cliente}**********************".yellow
   puts "****************ESTADO VALUE: #{estado}**********************".green
 

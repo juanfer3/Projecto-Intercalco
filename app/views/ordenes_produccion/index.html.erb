@@ -122,7 +122,7 @@
 
           <label for="" align="center">Estados</label>
           <%= select_tag "estados",
-              options_for_select([ "Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado", "Inventario"]),
+              options_for_select([ "Ninguno","Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado", "Inventario"]),
               class:" col-12",
               include_blank: 'Seleccione Estado'
             %>
@@ -138,7 +138,7 @@
 
           <label for="" align="center">Selecionar Mes</label>
           <%= select_tag "mes",
-              options_for_select([ "ENERO", "FEBRERO","MARZO", "ABRIL",
+              options_for_select(["Ninguno", "ENERO", "FEBRERO","MARZO", "ABRIL",
                 "MAYO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE",
                 "DICIEMBRE"]),
               class:" col-12",
