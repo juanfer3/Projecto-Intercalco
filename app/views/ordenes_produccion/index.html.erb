@@ -20,29 +20,37 @@
 
 
 
+<div class="my_card_contactos_form">
 
-<div class="">
-            <button type="button"
-              title="" data-toggle="popover" data-trigger="hover" data-content="buscar por parametros avanzados"
-              class="btn btn-outline-success"
-              id="advanced_search">
-                        Busqueda Avanzada
-                        <i class="ion-android-search">
-                        </i>
-            </button>
 
-            <button type="button"
-            title="" data-toggle="popover" data-trigger="hover"
-            data-content="buscar por parametros básicos"
-              class="btn btn-outline-success"
-              id="simple_search">
-                        Busqueda Sencilla
-                        <i class="ion-android-search">
-                        </i>
-            </button>
+              <div class="col-3">
+                          <button type="button"
+                            title="" data-toggle="popover" data-trigger="hover" data-content="buscar por parametros avanzados"
+                            class="btn btn-outline-success"
+                            id="advanced_search">
+                                      Busqueda Avanzada
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
 
+                          <button type="button"
+                          title="" data-toggle="popover" data-trigger="hover"
+                          data-content="buscar por parametros básicos"
+                            class="btn btn-outline-success"
+                            id="simple_search">
+                                      Busqueda Sencilla
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
+
+              </div>
+
+                <div class="col-3">
+                  <div class="">
+                      <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, ordenes_produccion_path %>
+                  </div>
+                </div>
 </div>
-
 
 
 
@@ -160,6 +168,9 @@
           </div>
 
       <%end%>
+
+
+
 </div>
 
 <script>
@@ -174,7 +185,7 @@ $(document).ready(function(){
 
 <div class="my_card_contactos_form" id="busqueda_basica">
 
-
+<br>
           <div class="col-3">
               <div class="input-group">
                 <span class="input-group-btn">
@@ -261,9 +272,7 @@ $(document).ready(function(){
 
 
 
-            <div class="col-1">
-                <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, ordenes_produccion_path %>
-            </div>
+
 
 
 
