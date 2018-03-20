@@ -12,7 +12,8 @@ class OrdenProduccion < ApplicationRecord
 
 
 
-  attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo
+  attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente,
+  :tomar_usuario, :direccion_nueva, :facturar_a_nuevo, :deshabilitar_por_linea
 
 
   before_save :antes_de_salvar
@@ -41,7 +42,12 @@ class OrdenProduccion < ApplicationRecord
 
   def antes_de_salvar
 
+    linea = self.montaje.linea_producto.nombre.upcase
 
+    if linea == "DIGITAL"
+      puts "*******************EL TRABAJO ES DIGTAL #{self.montaje.linea_producto.nombre}*********************".green
+      self.habilitar_impresion = false
+    end
 
     if facturar_a_nuevo.present?
       self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
@@ -1178,6 +1184,39 @@ end
       return true
     end
   end
+
+
+def self.importar_excel_individual(file)
+  #code
+  @errores = []
+
+  file_ext = File.extname(file.original_filename)
+  raise "Unknown file type: #{file.original_filename}" unless [".xls", ".xlsx", ".csv"].include?(file_ext)
+
+  if file_ext == ".xlsx"
+    spreadsheet = Roo::Excelx.new(file.path)
+  elsif file_ext == ".xls"
+    spreadsheet = Roo::Excel.new(file.path)
+  elsif file_ext == ".csv"
+    spreadsheet = Roo::CSV.new(file.path)
+  end
+
+  header = spreadsheet.row(1)
+
+  (2..spreadsheet.last_row).each do |i|
+
+      celda = spreadsheet.cell(1,'A')
+      puts "*******************#{celda}*********************".green
+
+  end
+
+
+
+end
+
+
+
+
 
 
 end

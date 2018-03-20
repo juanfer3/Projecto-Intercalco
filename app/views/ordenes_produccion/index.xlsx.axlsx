@@ -7,6 +7,9 @@ ordenes_produccion = OrdenProduccion.all.order("numero_de_orden")
 
 
 wb.styles do |style|
+
+  formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
+
   highlight_cell = style.add_style(:b => true)
 
 	 wb.add_worksheet(name: "Evento ") do |sheet|
@@ -34,7 +37,7 @@ wb.styles do |style|
    "TINTA 12", "MALLA 12",
    "TAMAÑO CORTE 1", "TAMAÑO CORTE 2", "CANTIDAD HOJAS", "TIRO", "RETIRO", "OBSERVACIONES"],
 
-	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
+	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell :format_code => "dd/mm/yyyy",
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
