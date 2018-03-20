@@ -37,7 +37,7 @@ wb.styles do |style|
    "TINTA 12", "MALLA 12",
    "TAMAÑO CORTE 1", "TAMAÑO CORTE 2", "CANTIDAD HOJAS", "TIRO", "RETIRO", "OBSERVACIONES"],
 
-	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell :format_code => "dd/mm/yyyy",
+	 style: [highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
    highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,
