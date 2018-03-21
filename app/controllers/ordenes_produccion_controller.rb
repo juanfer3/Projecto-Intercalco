@@ -193,7 +193,7 @@ def import_ordenes_produccion_from_excel
 
   file = params[:file]
   begin
-    errores_o_true = OrdenProduccion.subir_excel(file)
+    errores_o_true = OrdenProduccion.importar_excel_individual(file)
 
     respond_to do |format|
       if errores_o_true == true

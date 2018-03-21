@@ -929,15 +929,18 @@ end
     header = spreadsheet.row(1)
 
     (2..spreadsheet.last_row).each do |i|
+      puts "******************START ITERACION**********************".yellow
+
+      vendedor = spreadsheet.row(i)[2].to_s.upcase
 
 
-      vendedor = spreadsheet.row(i)[2]
+      puts "*****************#{vendedor}***********************"
       @vendedor= User.find_by(nombre: vendedor)
 
       if @vendedor != nil
         puts "****************El Vendedor Existe Star************************"
 
-        numero_orden = spreadsheet.row(i)[0]
+        numero_orden = spreadsheet.row(i)[0].to_s.upcase
         puts "****************Numer de Orden : #{numero_orden}************************"
 
 
@@ -951,13 +954,13 @@ end
                           fecha_de_orden = spreadsheet.row(i)[4]
                           puts "**************Fecha de Orden: #{fecha_de_orden}**************************"
 
-                          descripcion = spreadsheet.row(i)[7]
+                          descripcion = spreadsheet.row(i)[8].to_s.upcase
                           @bus_montaje= Montaje.find_by(nombre:descripcion)
                           if @bus_montaje == nil
 
 
                                   puts "*********** El montaje NO existe*****************************"
-                                  cliente =  spreadsheet.row(i)[6]
+                                  cliente =  spreadsheet.row(i)[7].to_s.upcase
                                   @bus_cliente= Cliente.find_by(nombre: cliente)
 
 
@@ -981,7 +984,7 @@ end
 
 
 
-                                        maquina =  spreadsheet.row(i)[18]
+                                        maquina =  spreadsheet.row(i)[19].to_s.upcase
                                         if maquina != ""
                                               @bus_maquina= Maquina.find_by(nombre: maquina)
                                               puts "**************Busqueda De la maquina**************************"
@@ -1018,10 +1021,10 @@ end
 
 
 
-                                        linea_color =  spreadsheet.row(i)[16]
+                                        linea_color =  spreadsheet.row(i)[17].to_s.upcase
                                         if linea_color != ""
                                               @bus_linea_color= LineaDeColor.find_by(nombre: linea_color)
-                                              puts "**************Busqueda De la linea_color**************************"
+                                              puts "**************Busqueda De la linea_color #{linea_color}**************************"
 
 
                                                         if @bus_linea_color== nil
@@ -1057,8 +1060,8 @@ end
 
 
 
-                                        linea_producto =  spreadsheet.row(i)[3]
-                                        if linea_producto != ""
+                                        linea_producto =  spreadsheet.row(i)[3].to_s.upcase
+                                        if linea_producto.length != 0
                                               @bus_linea_producto= LineaProducto.find_by(nombre: linea_producto)
                                               puts "**************Busqueda De la linea_producto**************************"
 
@@ -1075,7 +1078,7 @@ end
                                                             @linea_producto_id=@bus_linea_producto.id
                                                         end
                                         else
-                                                puts "**************La El campo Pieza esta vacio**************************"
+                                                puts "**************La El campo linea de producto esta vacio**************************"
                                                 busqueda="Por Definir"
                                                 @bus_linea_producto= LineaProducto.find_by(nombre: busqueda)
                                                 puts "**************Busqueda De la linea_producto nulas**************************"
@@ -1084,57 +1087,230 @@ end
                                                           if @bus_linea_producto== nil
                                                               linea_productoNueva = LineaProducto.new(nombre: busqueda)
                                                               if linea_productoNueva.save
-                                                                  puts "**************La linea_producto a sido Creada y se Por Definir**************************"
+                                                                  puts "**************La linea_producto a sido Creada y es Por Definir**************************"
                                                                   @linea_producto_id=linea_productoNueva.id
                                                               end
                                                           else
                                                               @linea_producto_id=@bus_linea_producto.id
                                                           end
                                         end
-                                        nombre_montaje = spreadsheet.row(i)[7].to_s.upcase
+                                        nombre_montaje = spreadsheet.row(i)[8].to_s.upcase
 
-                                        montajeNuevo = Montaje.new( codigo: "", nombre:nombre_montaje, cliente_id: @cliente_id, maquina_id: @maquina_id, linea_de_color_id: @linea_color_id, linea_producto_id:@linea_producto_id, material:spreadsheet.row(i)[15].to_s.upcase)
+
+                                        nombre_de_material = spreadsheet.row(i)[16].to_s.upcase
+                                        if nombre_de_material.length != 0
+                                              @bus_material= Material.find_by(descripcion: nombre_de_material)
+                                              puts "**************Busqueda Del Material**************************"
+
+
+                                                        if @bus_material== nil
+                                                          puts "**************El material es nulo**************************"
+                                                          materialNuevo = Material.new(descripcion: nombre_de_material, codigo: "")
+                                                          if materialNuevo.save
+                                                              puts "**************El material a sido Creada**************************"
+                                                              @material_id=materialNuevo.id
+                                                          end
+                                                        else
+                                                          puts "**************La linea_producto Existe**************************"
+                                                            @material_id=@bus_material.id
+                                                        end
+                                        else
+                                                puts "**************La El campo material esta vacio**************************"
+                                                busqueda="Por Definir".to_s.upcase
+                                                @bus_material= Material.find_by(descripcion: busqueda)
+                                                puts "**************Busqueda Del material es nulo**************************"
+
+                                                          busqueda="Por Definir".upcase
+                                                          if @bus_material== nil
+                                                              materialNuevo = Material.new(descripcion: busqueda, codigo: "")
+                                                              if materialNuevo.save
+                                                                  puts "**************La linea_producto a sido Creada y es Por Definir**************************"
+                                                                  @material_id= materialNuevo.id
+                                                              end
+                                                          else
+                                                              @material_id=@bus_material.id
+                                                          end
+                                        end
+
+                                        puts "******************INICIO DE INSERCION **********************".red
+                                        puts "******************LINEA COLOR: #{@linea_color_id}**********************".blue
+                                        puts "******************LINEA PRODUCTO: #{@linea_producto_id}**********************".blue
+                                        puts "******************CLIENTE: #{@cliente_id}**********************".blue
+                                        puts "******************MATERIAL: #{@material_id}**********************".blue
+
+                                        montajeNuevo = Montaje.new(cliente_id: @cliente_id, codigo: "", nombre: nombre_montaje, linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
+
                                         if montajeNuevo.save
-                                                puts "***********El Montaje a sido alamcenado*****************************"
+                                                puts "***********El Montaje a sido almacenado*****************************"
                                                 @montaje_id = montajeNuevo.id
+
+                                                contacto_nombre = spreadsheet.row(i)[52].to_s.upcase
+                                                puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+
+                                                if contacto_nombre.length != 0
+                                                      @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                                                      puts "**************Busqueda Del contacto**************************"
+
+
+                                                                if @bus_contacto == nil
+                                                                  puts "**************El contacto es nulo**************************"
+                                                                  contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre)
+                                                                  if contactoNuevo.save
+                                                                      puts "**************La linea_producto a sido Creada**************************"
+                                                                      @contacto_id=contactoNuevo.id
+                                                                  end
+                                                                else
+                                                                  puts "**************el contacto Existe**************************"
+                                                                    @contacto_id=@bus_contacto.id
+                                                                end
+                                                else
+                                                        puts "**************La El campo contacto esta vacio**************************"
+                                                        busqueda = "SIN DEFINIR"
+                                                        @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                                        puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                                  if @bus_contacto== nil
+
+                                                                  else
+                                                                      @contacto_id=@bus_contacto.id
+                                                                  end
+                                                end
+
+                                                puts "***************Crear Facturar a para orden*************************".green
+                                                if facturar_a_nombre != 0
+                                                      @bus_facturar_a= FacturarA.find_by(nombre: contacto_nombre)
+                                                      puts "**************Busqueda Del Fac**************************".yellow
+
+
+                                                                if @bus_facturar_a == nil
+
+                                                                else
+                                                                  puts "**************La fac Existe**************************".yellow
+                                                                    @facturar_a_id=@bus_facturar_a.id
+                                                                end
+                                                else
+                                                        puts "**************La El campo fac esta vacio**************************".yellow
+                                                        busqueda = "SIN DEFINIR"
+                                                        @bus_facturar_a = FacturarA.find_by(nombre: busqueda)
+                                                        puts "**************Busqueda De la linea_producto nulas**************************".yellow
+
+
+                                                                  if @bus_facturar_a== nil
+
+                                                                  else
+                                                                    puts "****************id del contacto es: #{@bus_facturar_a.id}************************".red
+                                                                      @facturar_a_id=@bus_facturar_a.id
+                                                                  end
+                                                end
+
+                                                fecha_de_orden = spreadsheet.row(i)[4]
+                                                puts "***************fecha a parsear #{fecha_de_orden}*************************"
+                                                fecha=fecha_de_orden.to_date
+                                                puts "****************Fecha Parseada #{fecha}************************"
+
+                                                ordenNueva=OrdenProduccion.new(montaje_id:@montaje_id, numero_de_orden:numero_orden, fecha:fecha)
+                                                if ordenNueva.save
+                                                  puts "*******************Orden Almacenada*********************"
+                                                  fecha_de_compromiso = spreadsheet.row(i)[4]
+                                                  fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
+                                                  puts "*******************Orden Almacenada*********************"
+                                                  compromiso= CompromisoDeEntrega.new(orden_produccion_id:ordenNueva.id, fecha_de_compromiso: fecha_compromiso)
+
+                                                  if compromiso.save
+
+                                                    puts "*******************Fecha de compromiso Almacenada*********************"
+
+                                                  end
+                                                  else
+                                                    puts "*******************Orden Fallida*********************"
+                                                end
+                                        else
+                                                puts "******************EL MONTAJE NO EXISTE**********************".green
                                         end
 
 
 
-                                        formato_op = FormatoOp.new(montaje_id: @montaje_id, pieza_a_decorar_id: @pieza_id, maquina_id: @maquina_id, linea_de_color_id: @linea_color_id, linea_producto_id:@linea_producto_id, material:spreadsheet.row(i)[15])
-                                        if formato_op.save
-                                          puts "***************Formato Guardado*************************"
-                                        end
 
 
-
-
-                                        fecha_de_orden = spreadsheet.row(i)[4]
-                                        puts "***************fecha a parsear #{fecha_de_orden}*************************"
-                                        fecha=fecha_de_orden.to_date
-                                        puts "****************Fecha Parseada #{fecha}************************"
-
-                                        ordenNueva=OrdenProduccion.new(montaje_id:@montaje_id, numero_de_orden:numero_orden, fecha:fecha)
-                                        if ordenNueva.save
-                                          puts "*******************Orden Almacenada*********************"
-                                          fecha_de_compromiso = spreadsheet.row(i)[4]
-                                          fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
-                                          puts "*******************Orden Almacenada*********************"
-                                          compromiso= CompromisoDeEntrega.new(orden_produccion_id:ordenNueva.id, fecha_de_compromiso: fecha_compromiso)
-
-                                          if compromiso.save
-
-                                            puts "*******************Fecha de compromiso Almacenada*********************"
-
-                                          end
-                                          else
-                                            puts "*******************Orden Fallida*********************"
-                                        end
 
                           else
                                         puts "***********el montaje si existe y el id: #{@bus_montaje}*****************************"
+                                        contacto_nombre = spreadsheet.row(i)[52]
 
 
+                                        puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+
+                                        if contacto_nombre.length != 0
+                                              @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                                              puts "**************Busqueda Del contacto**************************"
+
+
+                                                        if @bus_contacto == nil
+                                                          puts "**************El contacto es nulo**************************"
+                                                          contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre)
+                                                          if contactoNuevo.save
+                                                              puts "**************La linea_producto a sido Creada**************************"
+                                                              @contacto_id=contactoNuevo.id
+                                                          end
+                                                        else
+                                                          puts "**************el contacto Existe**************************"
+                                                            @contacto_id=@bus_contacto.id
+                                                        end
+                                        else
+                                                puts "**************La El campo contacto esta vacio**************************"
+                                                busqueda = "SIN DEFINIR"
+                                                @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                                puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                          if @bus_contacto== nil
+
+                                                          else
+                                                              @contacto_id=@bus_contacto.id
+                                                          end
+                                        end
+
+                                        puts "***************Crear Facturar a para orden*************************".green
+                                        if facturar_a_nombre != 0
+                                              @bus_facturar_a= FacturarA.find_by(nombre: contacto_nombre)
+                                              puts "**************Busqueda Del Fac**************************".yellow
+
+
+                                                        if @bus_facturar_a == nil
+
+                                                        else
+                                                          puts "**************La fac Existe**************************".yellow
+                                                            @facturar_a_id=@bus_facturar_a.id
+                                                        end
+                                        else
+                                                puts "**************La El campo fac esta vacio**************************".yellow
+                                                busqueda = "SIN DEFINIR"
+                                                @bus_facturar_a = FacturarA.find_by(nombre: busqueda)
+                                                puts "**************Busqueda De la linea_producto nulas**************************".yellow
+
+
+                                                          if @bus_facturar_a== nil
+
+                                                          else
+                                                            puts "****************id del contacto es: #{@bus_facturar_a.id}************************".red
+                                                              @facturar_a_id=@bus_facturar_a.id
+                                                          end
+                                        end
+
+                                        fecha_de_compromiso = spreadsheet.row(i)[4]
+                                        fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
+                                        puts "*******************Orden Almacenada*********************"
+
+                                        cantidad_programada = spreadsheet.row(i)[9]
+                                        precio_unitario = spreadsheet.row(i)[10]
+                                        tipo_trabajo = spreadsheet.row(i)[12]
+                                        cavidad = spreadsheet.row(i)[14]
+                                        tamanos_totales = spreadsheet.row(i)[13]
+                                        tamano_1 = spreadsheet.row(i)[46]
+                                        tamano_2 = spreadsheet.row(i)[47]
+                                        cantidad_hojas = spreadsheet.row(i)[48]
+                                        observacion = spreadsheet.row(i)[51]
 
                                         @montaje_op_id = @bus_montaje.id
                                         fecha_de_orden = spreadsheet.row(i)[4]
@@ -1145,9 +1321,12 @@ end
                                         ordenNueva=OrdenProduccion.new(montaje_id:@bus_montaje.id, numero_de_orden:numero_orden , fecha:fecha)
                                         if ordenNueva.save
                                           puts "*******************Orden Almacenada*********************"
-                                          fecha_de_compromiso = spreadsheet.row(i)[4]
-                                          fecha_compromiso=fecha_de_compromiso.strftime("%Y/%m/%d").to_date
-                                          puts "*******************Orden Almacenada*********************"
+
+
+
+
+
+
                                           compromiso= CompromisoDeEntrega.new(orden_produccion_id:ordenNueva.id, fecha_de_compromiso: fecha_compromiso)
 
                                           if compromiso.save
@@ -1188,6 +1367,7 @@ end
 
 def self.importar_excel_individual(file)
   #code
+  puts "********************START********************".red
   @errores = []
 
   file_ext = File.extname(file.original_filename)
@@ -1203,16 +1383,2360 @@ def self.importar_excel_individual(file)
 
   header = spreadsheet.row(1)
 
-  (2..spreadsheet.last_row).each do |i|
 
-      celda = spreadsheet.cell(1,'A')
-      puts "*******************#{celda}*********************".green
+      puts "****************ITERACION************************".yellow
+      numero_orden = spreadsheet.cell(4,'B')
+      puts "******************* NUMERO DE ORDEN : <(*)-#{numero_orden}-(*)>*********************".green
+
+      if numero_orden.length > 0
+        puts "******************STRING LLLENO**********************".blue
+        puts "*******************<(*) - #{numero_orden} - (*)>*********************".green
+        numero_op=numero_orden.to_s.upcase
+        op = OrdenProduccion.find_by(numero_de_orden: numero_op)
+        #consulta de orden_nueva
+        if op == nil
+          puts "***************** ORDEN NO EXISTE***********************".red
+          descripcion_montaje = spreadsheet.cell(11,'E').to_s.upcase
+          puts "******************MONTAJE #{descripcion_montaje}**********************".blue
+
+                #consulta de montaje
+                if descripcion_montaje.length > 0
+                            puts "*****************STRING LLENO***********************".green
+                            montaje = Montaje.find_by(nombre: descripcion_montaje)
+                            if montaje == nil
+                                    puts "**************MONTAJE NO EXISTE**************************".red
+
+                                    cliente_nombre = spreadsheet.cell(8,'B').to_s.upcase
+                                    puts "****************NOMBRE DEL CLIENTE: #{cliente_nombre}************************"
+                                    if cliente_nombre.length > 0
+
+                                        puts "******************El CLIENTE STRING LLENO #{cliente_nombre}**********************".green
+                                        puts "******************BUSCAR CLIENTE**********************".blue
+                                        cliente = Cliente.find_by(nombre: cliente_nombre)
+                                        if cliente == nil
+                                          puts "*****************EL CLIENTE NO EXISTE***********************".yellow
+
+                                          #Busqueda de vendedor
+                                          vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                          puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                    if vendedor_nombre.length > 0
+                                                      puts "*****************vendedor existe***********************".green
+                                                      vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                if vendedor == nil
+                                                                  puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                else
+                                                                  puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                  clienteNuevo = Cliente.new(nombre:cliente_nombre, user_id: vendedor.id)
+                                                                  if clienteNuevo.save
+                                                                    puts "***********El Cliente a sido Almacenado*****************************".green
+                                                                    cliente_id = clienteNuevo.id
+                                                                    puts "**************CLIENTE NUEVO: #{cliente_id}**************************"
+                                                                  end
+                                                                end
+                                                    else
+                                                      puts "****************STRING VENDEDOR VACIO************************".red
+                                                    end
+
+
+                                        else
+                                          puts "*****************EL CLIENTE EXISTE #{cliente.nombre}***********************".green
+                                          cliente_id =cliente.id
+                                        end
+
+                                    else
+                                      puts "*****************CLIENTE ES UN STRING VACIO***********************".red
+                                    end
+
+
+
+                                    puts "*******************<(*)salimos de la creacion del cliente (*)>*********************".yellow
+                                    #Consular linea de color
+                                    linea_color =  spreadsheet.cell(6,'C').to_s.upcase
+                                    if linea_color != ""
+                                          @bus_linea_color= LineaDeColor.find_by(nombre: linea_color)
+                                          puts "**************Busqueda De la linea_color #{linea_color}**************************"
+
+
+                                                    if @bus_linea_color== nil
+                                                      puts "**************La linea_color es nula**************************"
+                                                      linea_colorNueva = LineaDeColor.new(nombre: linea_color)
+                                                      if linea_colorNueva.save
+                                                          puts "**************La linea_color a sido Creada**************************"
+                                                          @linea_color_id=linea_colorNueva.id
+                                                      end
+                                                    else
+                                                      puts "**************La linea_color Existe**************************"
+                                                        @linea_color_id=@bus_linea_color.id
+                                                    end
+                                    else
+                                            puts "**************La El campo Pieza esta vacio**************************"
+                                            busqueda="Por Definir"
+                                            @bus_linea_color= LineaDeColor.find_by(nombre: busqueda)
+                                            puts "**************Busqueda De la linea_color nulas**************************"
+
+                                                      busqueda="Por Definir"
+                                                      if @bus_linea_color== nil
+                                                          linea_colorNueva = LineaDeColor.new(nombre: busqueda)
+                                                          if linea_colorNueva.save
+                                                              puts "**************La linea_color a sido Creada y se Por Definir**************************"
+                                                              @linea_color_id=linea_colorNueva.id
+                                                          end
+                                                      else
+                                                          @linea_color_id=@bus_linea_color.id
+                                                      end
+                                    end
+
+
+
+                                    #Consultar Material
+                                    nombre_de_material = spreadsheet.cell(20,'D').to_s.upcase
+                                    if nombre_de_material.length != 0
+                                          @bus_material= Material.find_by(descripcion: nombre_de_material)
+                                          puts "**************Busqueda Del Material**************************"
+
+
+                                                    if @bus_material== nil
+                                                      puts "**************El material es nulo**************************"
+                                                      materialNuevo = Material.new(descripcion: nombre_de_material, codigo: "")
+                                                      if materialNuevo.save
+                                                          puts "**************El material a sido Creada**************************"
+                                                          @material_id=materialNuevo.id
+                                                      end
+                                                    else
+                                                      puts "**************La linea_producto Existe**************************"
+                                                        @material_id=@bus_material.id
+                                                    end
+                                    else
+                                            puts "**************La El campo material esta vacio**************************"
+                                            busqueda="Por Definir".to_s.upcase
+                                            @bus_material= Material.find_by(descripcion: busqueda)
+                                            puts "**************Busqueda Del material es nulo**************************"
+
+                                                      busqueda="Por Definir".upcase
+                                                      if @bus_material== nil
+                                                          materialNuevo = Material.new(descripcion: busqueda, codigo: "")
+                                                          if materialNuevo.save
+                                                              puts "**************La linea_producto a sido Creada y es Por Definir**************************"
+                                                              @material_id= materialNuevo.id
+                                                          end
+                                                      else
+                                                          @material_id=@bus_material.id
+                                                      end
+                                    end
+
+                                    #Consultar linea de producto
+                                    linea_producto =  spreadsheet.cell(6,'C').to_s.upcase
+                                    if linea_producto.length != 0
+                                          @bus_linea_producto= LineaProducto.find_by(nombre: linea_producto)
+                                          puts "**************Busqueda De la linea_producto**************************"
+
+
+                                                    if @bus_linea_producto== nil
+                                                      puts "**************La linea_producto es nula**************************"
+                                                      linea_productoNueva = LineaProducto.new(nombre: linea_producto)
+                                                      if linea_productoNueva.save
+                                                          puts "**************La linea_producto a sido Creada**************************"
+                                                          @linea_producto_id=linea_productoNueva.id
+                                                      end
+                                                    else
+                                                      puts "**************La linea_producto Existe**************************"
+                                                        @linea_producto_id=@bus_linea_producto.id
+                                                    end
+                                    else
+                                            puts "**************La El campo linea de producto esta vacio**************************"
+                                            busqueda="Por Definir"
+                                            @bus_linea_producto= LineaProducto.find_by(nombre: busqueda)
+                                            puts "**************Busqueda De la linea_producto nulas**************************"
+
+                                                      busqueda="Por Definir"
+                                                      if @bus_linea_producto== nil
+                                                          linea_productoNueva = LineaProducto.new(nombre: busqueda)
+                                                          if linea_productoNueva.save
+                                                              puts "**************La linea_producto a sido Creada y es Por Definir**************************"
+                                                              @linea_producto_id=linea_productoNueva.id
+                                                          end
+                                                      else
+                                                          @linea_producto_id=@bus_linea_producto.id
+                                                      end
+                                    end
+
+                                    #Insercion
+                                    puts "******************INICIO DE INSERCION **********************".red
+                                    puts "******************LINEA COLOR: #{@linea_color_id}**********************".blue
+                                    puts "******************LINEA PRODUCTO: #{@linea_producto_id}**********************".blue
+                                    puts "******************CLIENTE: #{@cliente_id}**********************".blue
+                                    puts "******************MATERIAL: #{@material_id}**********************".blue
+                                    nombre_montaje = spreadsheet.cell(11,'E').to_s.upcase
+                                    montajeNuevo = Montaje.new(cliente_id: cliente_id, codigo: "", nombre: nombre_montaje, linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
+                                    if montajeNuevo.save
+                                         puts "*******************REGISTRO DE MONTAJE GUARDADO*********************".green
+
+                                         #TINTAS PARA DESARROLLO 1
+                                         descripcion_de_tinta = spreadsheet.cell(28,'E').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'E').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'E').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+                                         #TINTAS PARA DESARROLLO 2
+                                         descripcion_de_tinta = spreadsheet.cell(28,'F').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'F').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'F').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 3
+                                         descripcion_de_tinta = spreadsheet.cell(28,'G').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'G').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'G').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 4
+                                         descripcion_de_tinta = spreadsheet.cell(28,'H').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'H').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'H').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 5
+                                         descripcion_de_tinta = spreadsheet.cell(28,'I').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'I').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'I').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 6
+                                         descripcion_de_tinta = spreadsheet.cell(28,'J').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'J').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'J').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 7
+                                         descripcion_de_tinta = spreadsheet.cell(28,'K').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'K').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'K').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 8
+                                         descripcion_de_tinta = spreadsheet.cell(28,'L').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'L').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'L').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO 9
+                                         descripcion_de_tinta = spreadsheet.cell(28,'L').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+                                           puts "******************LA TINTA EXISTE**********************".yellow
+                                                             #CONSULTA DE MALLA
+                                                             nombre_malla = spreadsheet.cell(29,'L').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = Malla.new(nombre: nombre_malla)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                malla_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              malla_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = Malla.new(nombre: indefinido)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                malla_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+
+
+                                                             #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                             nombre_malla = spreadsheet.cell(27,'L').to_s.upcase
+                                                             if nombre_malla.length > 0
+                                                                            puts "********************MALLA EXISTE********************".green
+                                                                            consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                            if consulta_malla == nil
+                                                                              puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                              crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                              if crearMalla.save
+                                                                                puts "*********************MALLA CREADA*******************"
+                                                                                linea_id = crearMalla.id
+                                                                              else
+                                                                                puts "******************MALLA NO SALVADA**********************".red
+                                                                              end
+                                                                            else
+                                                                              puts "*******************LA MALLA EXISTE*********************".green
+                                                                              linea_id= consulta_malla.id
+                                                                            end
+                                                             else
+                                                                            puts "********************MALLA NO EXISTE********************".red
+                                                                            indefinido = "SIN DEFINIR"
+                                                                            malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                            if malla_indefinida == nil
+                                                                                puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                if crearMalla.save
+                                                                                  puts "******************MALLA CREADA**********************".green
+                                                                                  linea_id = crearMalla.id
+                                                                                else
+                                                                                  puts "******************MALLA NO SALVADA**********************".red
+                                                                                end
+                                                                            else
+                                                                                puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                linea_id = malla_indefinida.id
+                                                                            end
+                                                             end
+
+
+                                                             #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                             tiro = true
+                                                             retiro = false
+                                                             crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                             if crearTinta.save
+                                                                puts "*****************TINTAS GUARDADA***********************".green
+                                                             else
+                                                                puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                             end
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 1
+                                         descripcion_de_tinta = spreadsheet.cell(33,'E').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'E').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'E').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 2
+                                         descripcion_de_tinta = spreadsheet.cell(33,'F').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'F').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'F').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 3
+                                         descripcion_de_tinta = spreadsheet.cell(33,'G').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'G').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'G').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 4
+                                         descripcion_de_tinta = spreadsheet.cell(33,'H').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'H').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'H').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 5
+                                         descripcion_de_tinta = spreadsheet.cell(33,'I').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'I').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'I').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 6
+                                         descripcion_de_tinta = spreadsheet.cell(33,'J').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'J').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'J').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 7
+                                         descripcion_de_tinta = spreadsheet.cell(33,'K').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'K').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'K').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 8
+                                         descripcion_de_tinta = spreadsheet.cell(33,'L').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'L').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'L').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                         #TINTAS PARA DESARROLLO RETIRO 9
+                                         descripcion_de_tinta = spreadsheet.cell(33,'M').to_s.upcase
+                                         puts "******************LA TINTA ES: #{descripcion_de_tinta}**********************".yellow
+
+                                         if descripcion_de_tinta.length > 0
+
+
+
+
+                                                puts "**************BUSQUEDA DE LA TINTA EN EL TIRO**************************".green
+
+                                                buscar_tinta_retiro = DesarrolloDeTinta.find_by(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id)
+
+
+                                                if buscar_tinta_retiro == nil
+
+
+
+
+
+                                                               puts "******************LA TINTA EXISTE**********************".yellow
+                                                                                 #CONSULTA DE MALLA
+                                                                                 nombre_malla = spreadsheet.cell(34,'M').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = Malla.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = Malla.new(nombre: nombre_malla)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    malla_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  malla_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = Malla.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = Malla.new(nombre: indefinido)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    malla_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+
+
+                                                                                 #CONSULTA DE LINEA PARA DESARROLLO DE TINTAS
+                                                                                 nombre_malla = spreadsheet.cell(32,'M').to_s.upcase
+                                                                                 if nombre_malla.length > 0
+                                                                                                puts "********************MALLA EXISTE********************".green
+                                                                                                consulta_malla = LineaDeColor.find_by(nombre: nombre_malla)
+                                                                                                if consulta_malla == nil
+                                                                                                  puts "*******************LA MALLA NO EXISTE*********************".red
+                                                                                                  crearMalla = LineaDeColor.new(nombre: nombre_malla, estado: false)
+                                                                                                  if crearMalla.save
+                                                                                                    puts "*********************MALLA CREADA*******************"
+                                                                                                    linea_id = crearMalla.id
+                                                                                                  else
+                                                                                                    puts "******************MALLA NO SALVADA**********************".red
+                                                                                                  end
+                                                                                                else
+                                                                                                  puts "*******************LA MALLA EXISTE*********************".green
+                                                                                                  linea_id= consulta_malla.id
+                                                                                                end
+                                                                                 else
+                                                                                                puts "********************MALLA NO EXISTE********************".red
+                                                                                                indefinido = "SIN DEFINIR"
+                                                                                                malla_indefinida = LineaDeColor.find_by(nombre: indefinido)
+                                                                                                if malla_indefinida == nil
+                                                                                                    puts "***************NO EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    crearMalla = LineaDeColor.new(nombre: indefinido, estado: false)
+                                                                                                    if crearMalla.save
+                                                                                                      puts "******************MALLA CREADA**********************".green
+                                                                                                      linea_id = crearMalla.id
+                                                                                                    else
+                                                                                                      puts "******************MALLA NO SALVADA**********************".red
+                                                                                                    end
+                                                                                                else
+                                                                                                    puts "***************SI EXISTE LA MALLA SIN DEFINIR*************************".yellow
+                                                                                                    linea_id = malla_indefinida.id
+                                                                                                end
+                                                                                 end
+
+
+                                                                                 #INSERCION EN EL DESARROLLO DE LA TINTA
+                                                                                 tiro = false
+                                                                                 retiro = true
+                                                                                 crearTinta = DesarrolloDeTinta.new(descripción: descripcion_de_tinta, montaje_id: montajeNuevo.id,malla_id:malla_id, linea_de_color_id:linea_id, tiro: tiro, retiro: retiro)
+                                                                                 if crearTinta.save
+                                                                                    puts "*****************TINTAS GUARDADA***********************".green
+                                                                                 else
+                                                                                    puts "*****************ERROR AL SALVAR LA TINTA***********************".red
+                                                                                 end
+
+
+                                                else
+
+                                                      puts "*************************SI EXISTE EN EL TIRO***************".green
+                                                      chance_retiro = true
+                                                      buscar_tinta_retiro.update(retiro: chance_retiro)
+                                                end
+
+                                         else
+                                                      puts "******************LA TINTA NO EXISTE**********************".red
+                                         end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    else
+                                         puts "*******************FALLA EN LA INSERCION DEL MONTAJE*********************".red
+                                    end
+                            else
+                                    puts "**************MONTAJE EXISTE**************************".green
+
+
+
+
+
+                            end
+                else
+                  puts "*****************STRING VACIO***********************".red
+                end
+
+        else
+          puts "******************* ORDEN EXISTE *********************".green
+        end
+
+
+
+      else
+        puts "*******************STRING VACIO*********************".blue
+      end
+
 
   end
 
 
 
-end
+
 
 
 
