@@ -651,12 +651,18 @@ $(document).ready(function(){
 
                   <div class="step_1 my_card_contactos_form">
 
+                    <div class="col-12">
+                      <h5>INFORMACION DE FICHAS TECNICAS</h5>
+                    </div>
 
+                    <div class="col-12">
+                      <br>
+                    </div>
 
                     <div class="col-4">
                       <div class="form-check">
                         <label class="form-check-label">
-                          <h6> SELECCIONAR FICHA TECNICA </h6>
+                          <h6> Seleccionar ficha tecnica </h6>
 
                           <input class="form-check-input" type="checkbox" id="checkbox_ficha">
 
@@ -720,19 +726,16 @@ $(document).ready(function(){
 
 
                     <div class="col-4">
-                      <label for="">Seleccione Linea de color</label>
+                      <label for="">Seleccione las máquinas</label>
                       <% machines = []%>
                       <% machines = Maquina.all%>
 
 
-                        <% grouped_options = []%>
 
 
-                        <%opciones= []%>
-                        <%  machines.each do |maq|
-                            opciones << maq.nombre
 
-                         end %>
+
+
 
                       <%= select_tag "seleccion_maquina_id",
                         options_from_collection_for_select(machines, :id, :nombre),
@@ -744,7 +747,39 @@ $(document).ready(function(){
                       %>
                     </div>
 
+                    <div class="col-12">
+                        <br>
+                    </div>
+
+                    <div class="col-6">
+                     <% acabados = []%>
+                     <% acabados = Acabado.all%>
+                     <label for="">Seleccione Acabados</label>
+                      <%= select_tag "seleccion_acabados",
+                        options_from_collection_for_select(acabados, :id, :nombre),
+                        class:"demo-default",
+                        id:"selectize_acabados",
+                        :multiple=>true,
+                        include_blank: 'Seleccione Los acabados'
+                      %>
+                    </div>
+                    <div class="col-6">
+                      <label for="">Agregar acabados</label>
+                        <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                  <input type="checkbox" aria-label="Checkbox for following text input" id="cb_acabados">
+                                </div>
+                                </div>
+                              <%= text_field_tag 'agregar_acabados',"",
+                              class: "form-control",
+                              id: "agregar_acabados_id"
+                              %>
+                        </div>
+                    </div>
+
                     <script type="text/javascript">
+                      $('#selectize_acabados').selectize()
                       $('#selectize_fichas').selectize()
                       $('#selectize_linea_de_producto').selectize()
                       $('#selectize_linea_de_color').selectize()
@@ -783,9 +818,11 @@ $(document).ready(function(){
 
                 <div class="step_2 my_card_contactos_form">
                   <div class="col-12">
-                    <h1>STEP 2</h1>
+                    <h5>INFORMACION DE LA ORDEN DE PRODUCCION</h5>
                   </div>
-
+                  <div class="col-12">
+                    <br>
+                  </div>
 
 
 
@@ -802,10 +839,10 @@ $(document).ready(function(){
                     <div class="col-4">
                       <div class="form-check">
                         <label class="form-check-label">
-
+                          Sacar de inventario <br>
                           <%=
-                              check_box_tag 'inventario', 'yes', true
-                            %>Sacar de inventario
+                              check_box_tag 'inventario', 'yes', false
+                            %>
 
 
                         </label>
@@ -827,11 +864,25 @@ $(document).ready(function(){
 
                 </div>
 
+                <div class="step_3 my_card_contactos_form">
 
-                <div class="ocultar_importacion">
-                  <%= file_field_tag :file %> <br> <br>
-                  <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+                  <div class="col-12">
+                    <%= file_field_tag :file %>
+                    <%= submit_tag "Importar", :class=> "btn btn-success"%>
+                  </div>
+
+
+
+
                 </div>
+
+                <div class="step_3">
+                  <br>
+                  <button type="button" name="button" class="btn btn-primary" id="back_step_2">ATRAS</button>
+
+                </div>
+
+
 
               <% end %>
 

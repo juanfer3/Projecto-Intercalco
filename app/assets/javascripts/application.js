@@ -16,6 +16,7 @@
 //= require popper
 //= require bootstrap
 //= require selectize
+//= require spin
 //= require bootstrap/bootstrap-tooltip
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
@@ -36,7 +37,6 @@
 
 $(document).on('turbolinks:load', function() {
 
-  
 
   $('#estados').click(function(){
     toastr.info("click")

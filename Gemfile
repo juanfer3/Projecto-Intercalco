@@ -127,5 +127,8 @@ gem 'bootstrap-popover-rails', '~> 0.1.0'
 gem 'bootstrap-tooltip-rails'
 
 
-
+#gem combobox select
 gem "selectize-rails"
+
+#gem spinjs load page
+gem 'spinjs-rails'

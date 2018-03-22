@@ -1365,7 +1365,9 @@ end
   end
 
 
-def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,cliente_id,inventario,fecha_de_orden)
+def self.importar_excel_individual(file,montaje_seleccionado,
+  linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,
+  cliente_id,inventario,fecha_de_orden,agregar_acabados, seleccion_acabados)
   #code
   puts "********************START********************".red
   @errores = []
@@ -1400,7 +1402,277 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
           if montaje_seleccionado.present?
             puts "====================EL MONTAJE FUE SELECCIONADO=====================".green
+            #busqueda de ORDENES
+            puts "*******************SESION DE ORDENES*********************"
 
+                               #busquea de contactos
+                               contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
+                               puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+
+                               if contacto_nombre.length != 0
+                                     @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                                     puts "**************Busqueda Del contacto**************************".red
+
+
+                                               if @bus_contacto == nil
+
+
+
+
+
+
+                                                 #Busqueda de vendedor
+                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                           if vendedor_nombre.length > 0
+                                                             puts "*****************vendedor existe***********************".green
+                                                             vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                       if vendedor == nil
+                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                       else
+
+                                                                         puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                         puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                         puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                         puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
+                                                                         contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
+                                                                         if contactoNuevo.save
+                                                                             puts "************** El contacto ha sido creado **************************".green
+                                                                             @contacto_id=contactoNuevo.id
+                                                                         end
+
+                                                                       end
+                                                           else
+                                                             puts "****************STRING VENDEDOR VACIO************************".red
+                                                           end
+
+
+
+
+
+
+
+
+
+
+
+                                               else
+                                                 puts "**************el contacto Existe**************************".green
+                                                   @contacto_id=@bus_contacto.id
+                                               end
+                               else
+                                       puts "**************La El campo contacto esta vacio**************************"
+                                       busqueda = "SIN DEFINIR"
+                                       @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                       puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                 if @bus_contacto== nil
+
+                                                 else
+                                                     @contacto_id=@bus_contacto.id
+                                                 end
+                               end
+
+
+                               #busqueda nombre facturacion
+                               facturar_a_nombre= spreadsheet.cell(8,'H').to_s.upcase
+                               puts "*************** Facturar a - <(*) #{facturar_a_nombre} (*)> - para orden************************".green
+
+                               if facturar_a_nombre.length != 0
+
+                                     puts "**************Busqueda Del Facturado**************************".red
+                                     @bus_facturar_a = NombreFacturacion.find_by(nombre: facturar_a_nombre)
+
+
+
+                                               if @bus_facturar_a == nil
+                                                 puts "***********EL NOMBRE DE FACTURACION NO EXISTE*****************************".yellow
+
+
+
+
+
+                                                 #Busqueda de vendedor
+                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                           if vendedor_nombre.length > 0
+                                                             puts "*****************vendedor existe***********************".green
+                                                             vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                       if vendedor == nil
+                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                       else
+
+                                                                         puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                         puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                         puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                         puts "**************facturar_a: #{facturar_a_nombre}**************************".blue
+                                                                         facturar_aNuevo = NombreFacturacion.new(nombre: facturar_a_nombre,cliente_id:cliente_id)
+                                                                         if facturar_aNuevo.save
+                                                                             puts "************** El contacto ha sido creado **************************".green
+                                                                             @facturar_a_id=facturar_aNuevo.id
+                                                                         end
+
+                                                                       end
+                                                           else
+                                                             puts "****************STRING VENDEDOR VACIO************************".red
+                                                           end
+
+
+
+
+
+
+
+
+
+
+
+                                               else
+                                                 puts "*************la factura existe Existe**************************".green
+                                                   @facturar_a_id=@bus_facturar_a.id
+                                               end
+
+
+                               else
+                                       puts "**************La El campo contacto esta vacio**************************"
+                                       busqueda = "SIN DEFINIR"
+                                       @bus_facturar_a = NombreFacturacion.find_by(nombre: busqueda)
+                                       puts "**************Busqueda De la facturacion nulas**************************"
+
+
+                                                 if @bus_facturar_a== nil
+
+                                                 else
+                                                     @facturar_a_id = @bus_facturar_a.id
+                                                 end
+                               end
+
+
+
+
+
+
+
+
+
+                               #lugar a despachar
+                               lugar_despacho_nombre= spreadsheet.cell(9,'B').to_s.upcase
+                               puts "*************** Facturar a - <(*) #{lugar_despacho_nombre} (*)> - para orden************************".green
+
+                               if lugar_despacho_nombre.length != 0
+
+                                     puts "**************Busqueda Del lUGAR DESPACHO**************************".red
+                                     @bus_lugar_despacho = LugarDespacho.find_by(direccion: lugar_despacho_nombre)
+
+
+
+                                               if @bus_lugar_despacho == nil
+                                                 puts "***********EL NOMBRE DE DESPACHO NO EXISTE*****************************".yellow
+
+
+
+
+
+                                                 #Busqueda de vendedor
+                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                           if vendedor_nombre.length > 0
+                                                             puts "*****************vendedor existe***********************".green
+                                                             vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                       if vendedor == nil
+                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                       else
+
+                                                                         puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                         puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                         puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                         puts "**************facturar_a: #{lugar_despacho_nombre}**************************".blue
+                                                                         lugar_despachoNuevo = LugarDespacho.new(direccion: lugar_despacho_nombre,cliente_id:cliente_id)
+                                                                         if lugar_despachoNuevo.save
+                                                                             puts "************** El lugar despacho ha sido creado **************************".green
+                                                                             @lugar_despacho_id=lugar_despachoNuevo.id
+                                                                         end
+
+                                                                       end
+                                                           else
+                                                             puts "****************STRING VENDEDOR VACIO************************".red
+                                                           end
+
+
+
+
+
+
+
+
+
+
+
+                                               else
+                                                 puts "**************el lugar despacho Existe**************************".green
+                                                   @lugar_despacho_id=@bus_lugar_despacho.id
+                                               end
+                               else
+                                       puts "**************La El campo lugar despachos esta vacio**************************"
+                                       busqueda = "SIN DEFINIR"
+                                       @bus_lugar_despacho = LugarDespacho.find_by(direccion: busqueda)
+                                       puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                 if @bus_lugar_despacho == nil
+
+                                                 else
+                                                     @lugar_despacho_id = @bus_lugar_despacho.id
+                                                 end
+                               end
+
+
+
+
+                               if @contacto_id.present? && @facturar_a_id.present? && @lugar_despacho_id.present?
+                                 puts "****************LOS DATOS NECESARIOS EXISTEN************************".blue
+                                 puts "****************CONTACTO: #{@contacto_id}************************".green
+                                 puts "****************FACTURAR A: #{@facturar_a_id}************************".green
+                                 puts "****************LUGAR DESPACHO ID: #{@lugar_despacho_id}************************".green
+
+                                 orden_de_compra = spreadsheet.cell(10,'L').to_s.upcase
+                                 cantidad_solicitada = spreadsheet.cell(11,'L')
+                                 cantidad_hoja = spreadsheet.cell(21,'B')
+                                 tamanos_totales_op = spreadsheet.cell(22,'K')
+                                 obs= spreadsheet.cell(58,'C')
+                                 obs2 = spreadsheet.cell(59,'C')
+                                 obs3 = spreadsheet.cell(60,'C')
+                                 observacion = obs.to_s + ". " + obs2.to_s + ". " + obs3.to_s
+
+                                 puts "================VALOR 1========================".yellow
+                                 puts "******************#{tamanos_totales_op}**********************".blue
+                                 puts "========================================".yellow
+                                 cavidad = spreadsheet.cell(21,'G')
+                                 cantidad_programada = tamanos_totales_op.to_f * cavidad.to_f
+
+                                 puts "=================VALOR 2=======================".yellow
+                                 puts "******************#{tamanos_totales_op}**********************".blue
+                                 puts "========================================".yellow
+                                 fecha = fecha_de_orden
+                                 sacar_de_inventario = inventario
+                                 habilitar_impresion = true
+                                 if inventario == true
+                                   habilitar_impresion =false
+                                 end
+                                 ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montaje_seleccionado, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                 if ordenCreada.save
+                                   puts "*****************ORDEN DE PRODUCCION***********************".green
+
+                                 end
+                               else
+                               end
           else
 
 
@@ -1464,40 +1736,47 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
                                     puts "*******************<(*)salimos de la creacion del cliente (*)>*********************".yellow
                                     #Consular linea de color
                                     linea_color =  spreadsheet.cell(6,'G').to_s.upcase
-                                    if linea_color != ""
-                                          @bus_linea_color= LineaDeColor.find_by(nombre: linea_color)
-                                          puts "**************Busqueda De la linea_color #{linea_color}**************************"
-
-
-                                                    if @bus_linea_color== nil
-                                                      puts "**************La linea_color es nula**************************"
-                                                      linea_colorNueva = LineaDeColor.new(nombre: linea_color)
-                                                      if linea_colorNueva.save
-                                                          puts "**************La linea_color a sido Creada**************************"
-                                                          @linea_color_id=linea_colorNueva.id
-                                                      end
-                                                    else
-                                                      puts "**************La linea_color Existe**************************"
-                                                        @linea_color_id=@bus_linea_color.id
-                                                    end
+                                    if linea_de_color_seleccionada.present?
+                                      puts "*******************LA LINEA DE COLOR FUE SELECCIONADA*********************".green
+                                      @linea_color_id = linea_de_color_seleccionada
                                     else
-                                            puts "**************La El campo Pieza esta vacio**************************"
-                                            busqueda="Por Definir"
-                                            @bus_linea_color= LineaDeColor.find_by(nombre: busqueda)
-                                            puts "**************Busqueda De la linea_color nulas**************************"
 
-                                                      busqueda="Por Definir"
-                                                      if @bus_linea_color== nil
-                                                          linea_colorNueva = LineaDeColor.new(nombre: busqueda)
-                                                          if linea_colorNueva.save
-                                                              puts "**************La linea_color a sido Creada y se Por Definir**************************"
-                                                              @linea_color_id=linea_colorNueva.id
-                                                          end
-                                                      else
-                                                          @linea_color_id=@bus_linea_color.id
-                                                      end
+
+
+                                            if linea_color.length != 0
+                                                  @bus_linea_color= LineaDeColor.find_by(nombre: linea_color)
+                                                  puts "**************Busqueda De la linea_color #{linea_color}**************************"
+
+
+                                                            if @bus_linea_color== nil
+                                                              puts "**************La linea_color es nula**************************"
+                                                              linea_colorNueva = LineaDeColor.new(nombre: linea_color)
+                                                              if linea_colorNueva.save
+                                                                  puts "**************La linea_color a sido Creada**************************"
+                                                                  @linea_color_id=linea_colorNueva.id
+                                                              end
+                                                            else
+                                                              puts "**************La linea_color Existe**************************"
+                                                                @linea_color_id=@bus_linea_color.id
+                                                            end
+                                            else
+                                                    puts "**************La El campo Pieza esta vacio**************************"
+                                                    busqueda="Por Definir"
+                                                    @bus_linea_color= LineaDeColor.find_by(nombre: busqueda)
+                                                    puts "**************Busqueda De la linea_color nulas**************************"
+
+                                                              busqueda="Por Definir"
+                                                              if @bus_linea_color== nil
+                                                                  linea_colorNueva = LineaDeColor.new(nombre: busqueda)
+                                                                  if linea_colorNueva.save
+                                                                      puts "**************La linea_color a sido Creada y se Por Definir**************************"
+                                                                      @linea_color_id=linea_colorNueva.id
+                                                                  end
+                                                              else
+                                                                  @linea_color_id=@bus_linea_color.id
+                                                              end
+                                            end
                                     end
-
 
 
                                     #Consultar Material
@@ -1538,40 +1817,46 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
                                     #Consultar linea de producto
                                     linea_producto =  spreadsheet.cell(6,'C').to_s.upcase
-                                    if linea_producto.length != 0
-                                          @bus_linea_producto= LineaProducto.find_by(nombre: linea_producto)
-                                          puts "**************Busqueda De la linea_producto**************************"
-
-
-                                                    if @bus_linea_producto== nil
-                                                      puts "**************La linea_producto es nula**************************"
-                                                      linea_productoNueva = LineaProducto.new(nombre: linea_producto)
-                                                      if linea_productoNueva.save
-                                                          puts "**************La linea_producto a sido Creada**************************"
-                                                          @linea_producto_id=linea_productoNueva.id
-                                                      end
-                                                    else
-                                                      puts "**************La linea_producto Existe**************************"
-                                                        @linea_producto_id=@bus_linea_producto.id
-                                                    end
+                                    if linea_de_producto_seleccionada.present?
+                                      puts "******************LA LINEA DE PRODUCTO FUE SELECCIONADA**********************".green
+                                      @linea_producto_id= linea_de_producto_seleccionada
                                     else
-                                            puts "**************La El campo linea de producto esta vacio**************************"
-                                            busqueda="Por Definir"
-                                            @bus_linea_producto= LineaProducto.find_by(nombre: busqueda)
-                                            puts "**************Busqueda De la linea_producto nulas**************************"
+                                            if linea_producto.length != 0
 
-                                                      busqueda="Por Definir"
-                                                      if @bus_linea_producto== nil
-                                                          linea_productoNueva = LineaProducto.new(nombre: busqueda)
-                                                          if linea_productoNueva.save
-                                                              puts "**************La linea_producto a sido Creada y es Por Definir**************************"
-                                                              @linea_producto_id=linea_productoNueva.id
-                                                          end
-                                                      else
-                                                          @linea_producto_id=@bus_linea_producto.id
-                                                      end
-                                    end
 
+                                                  @bus_linea_producto= LineaProducto.find_by(nombre: linea_producto)
+                                                  puts "**************Busqueda De la linea_producto**************************"
+
+
+                                                            if @bus_linea_producto== nil
+                                                              puts "**************La linea_producto es nula**************************"
+                                                              linea_productoNueva = LineaProducto.new(nombre: linea_producto)
+                                                              if linea_productoNueva.save
+                                                                  puts "**************La linea_producto a sido Creada**************************"
+                                                                  @linea_producto_id=linea_productoNueva.id
+                                                              end
+                                                            else
+                                                              puts "**************La linea_producto Existe**************************"
+                                                                @linea_producto_id=@bus_linea_producto.id
+                                                            end
+                                            else
+                                                    puts "**************La El campo linea de producto esta vacio**************************"
+                                                    busqueda="Por Definir"
+                                                    @bus_linea_producto= LineaProducto.find_by(nombre: busqueda)
+                                                    puts "**************Busqueda De la linea_producto nulas**************************"
+
+                                                              busqueda="Por Definir"
+                                                              if @bus_linea_producto== nil
+                                                                  linea_productoNueva = LineaProducto.new(nombre: busqueda)
+                                                                  if linea_productoNueva.save
+                                                                      puts "**************La linea_producto a sido Creada y es Por Definir**************************"
+                                                                      @linea_producto_id=linea_productoNueva.id
+                                                                  end
+                                                              else
+                                                                  @linea_producto_id=@bus_linea_producto.id
+                                                              end
+                                            end
+                                      end
                                     #Insercion
                                     puts "******************INICIO DE INSERCION **********************".red
                                     puts "******************LINEA COLOR: #{@linea_color_id}**********************".blue
@@ -1604,7 +1889,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
                                     tamano_de_corte = tamano_corte_1.to_s + "X" + tamano_corte_2.to_s
 
 
-                                    montajeNuevo = Montaje.new(cliente_id: cliente_id, codigo: "", nombre: nombre_montaje, dimension:tamano_dimension,tamano_hoja:tamano_hoja,tamano_por_hojas:tamano_por_hojas,tamano_de_corte:tamano_de_corte,linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
+                                    montajeNuevo = Montaje.new(cliente_id: cliente_id, agregar_acabado:agregar_acabados,acabado_ids:seleccion_acabados,codigo: "", nombre: nombre_montaje, dimension:tamano_dimension,tamano_hoja:tamano_hoja,tamano_por_hojas:tamano_por_hojas,tamano_de_corte:tamano_de_corte,linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
                                     if montajeNuevo.save
                                          puts "*******************REGISTRO DE MONTAJE GUARDADO*********************".green
 
@@ -1739,14 +2024,16 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
 
                                                                             else
-                                                                              puts "**************el contacto Existe**************************".green
-                                                                                @facturar_a_id=@bus_contacto.id
+                                                                              puts "*************la factura existe Existe**************************".green
+                                                                                @facturar_a_id=@bus_facturar_a.id
                                                                             end
+
+
                                                             else
                                                                     puts "**************La El campo contacto esta vacio**************************"
                                                                     busqueda = "SIN DEFINIR"
                                                                     @bus_facturar_a = NombreFacturacion.find_by(nombre: busqueda)
-                                                                    puts "**************Busqueda De la linea_producto nulas**************************"
+                                                                    puts "**************Busqueda De la facturacion nulas**************************"
 
 
                                                                               if @bus_facturar_a== nil
@@ -1800,7 +2087,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
                                                                                                       puts "**************facturar_a: #{lugar_despacho_nombre}**************************".blue
                                                                                                       lugar_despachoNuevo = LugarDespacho.new(direccion: lugar_despacho_nombre,cliente_id:cliente_id)
                                                                                                       if lugar_despachoNuevo.save
-                                                                                                          puts "************** El contacto ha sido creado **************************".green
+                                                                                                          puts "************** El lugar despacho ha sido creado **************************".green
                                                                                                           @lugar_despacho_id=lugar_despachoNuevo.id
                                                                                                       end
 
@@ -1820,11 +2107,11 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
 
                                                                             else
-                                                                              puts "**************el contacto Existe**************************".green
+                                                                              puts "**************el lugar despacho Existe**************************".green
                                                                                 @lugar_despacho_id=@bus_lugar_despacho.id
                                                                             end
                                                             else
-                                                                    puts "**************La El campo contacto esta vacio**************************"
+                                                                    puts "**************La El campo lugar despachos esta vacio**************************"
                                                                     busqueda = "SIN DEFINIR"
                                                                     @bus_lugar_despacho = LugarDespacho.find_by(direccion: busqueda)
                                                                     puts "**************Busqueda De la linea_producto nulas**************************"
@@ -1864,8 +2151,13 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
                                                               puts "=================VALOR 2=======================".yellow
                                                               puts "******************#{tamanos_totales_op}**********************".blue
                                                               puts "========================================".yellow
-
-                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                                              fecha = fecha_de_orden
+                                                              sacar_de_inventario = inventario
+                                                              habilitar_impresion = true
+                                                              if inventario == true
+                                                                habilitar_impresion =false
+                                                              end
+                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
                                                               if ordenCreada.save
                                                                 puts "*****************ORDEN DE PRODUCCION***********************".green
 
@@ -1890,27 +2182,34 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
                                          #busqueda de maquinas para contenedor
                                          puts "*******************SESION DE MAQUINAS*********************"
-                                         nombre_maquina = spreadsheet.cell(6,'J').to_s.upcase
-                                         puts "******************maquina: #{nombre_maquina}**********************".blue
+
+
                                          maquinas_id = []
-                                         nombre_maquina = nombre_maquina.split(", ")
+                                         if maquinas_seleccionadas.present?
+                                           maquinas_id = maquinas_seleccionadas
+                                         else
+                                               nombre_maquina = spreadsheet.cell(6,'J').to_s.upcase
+                                               puts "******************maquina: #{nombre_maquina}**********************".blue
 
-                                        puts "******************ARRAY maquina: #{nombre_maquina}**********************".blue
+                                               nombre_maquina = nombre_maquina.split(", ")
 
-                                         nombre_maquina.each do |machine|
+                                              puts "******************ARRAY maquina: #{nombre_maquina}**********************".blue
+
+                                               nombre_maquina.each do |machine|
 
 
-                                               consultar_maquina = Maquina.find_by(nombre:machine)
-                                               if consultar_maquina == nil
-                                                    puts "*****************LA MAQUINA NO EXISTE***********************".red
-                                               else
+                                                     consultar_maquina = Maquina.find_by(nombre:machine)
+                                                     if consultar_maquina == nil
+                                                          puts "*****************LA MAQUINA NO EXISTE***********************".red
+                                                     else
 
-                                                    puts "*****************LA MAQUINA EXISTE***********************".green
-                                                    maquinas_id << consultar_maquina.id
+                                                          puts "*****************LA MAQUINA EXISTE***********************".green
+                                                          maquinas_id << consultar_maquina.id
+                                                     end
+
+
+
                                                end
-
-
-
                                          end
                                          puts "****************INSERCION CONTENEDOR DE MAQUINAS************************"
                                          #INSERCION CONTENEDOR MAQUINA
@@ -4082,10 +4381,18 @@ def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_s
 
 
 
-              end
+          end
 
         else
           puts "******************* ORDEN EXISTE *********************".green
+          @errores << "LA ORDEN DE PRODUCCION YA EXISTE"
+
+          if @errores != []
+            return @errores
+          else
+            return true
+          end
+
         end
 
 

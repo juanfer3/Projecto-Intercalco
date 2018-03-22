@@ -1,5 +1,42 @@
 $('#modalExcelImpotar').modal('show');
 
+
+
+if( $('#cb_acabados').prop('checked') ) {
+
+  $( "#agregar_acabados_id" ).prop( "disabled", false );
+
+
+}else {
+
+  $( "#agregar_acabados_id" ).prop( "disabled", true );
+
+}
+
+
+
+
+
+$("#cb_acabados").change(function(){
+
+      if( $('#cb_acabados').prop('checked') ) {
+
+        $( "#agregar_acabados_id" ).prop( "disabled", false );
+
+
+      }else {
+
+        $( "#agregar_acabados_id" ).prop( "disabled", true );
+        $( "#agregar_acabados_id" ).val("")
+
+      }
+})
+
+
+
+
+
+
 $('.oculta_importacion').hide()
 
 
@@ -34,6 +71,14 @@ $('#clear_step_2').click(function(){
 
 })
 
+$('#back_step_2').click(function(){
+
+    $('.step_1').hide()
+    $('.step_3').hide()
+
+    $('.step_2').show()
+
+})
 
 $('#selectize_fichas')[0].selectize.disable()
 

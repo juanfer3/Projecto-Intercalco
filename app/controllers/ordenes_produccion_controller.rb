@@ -206,11 +206,18 @@ def import_ordenes_produccion_from_excel
   montaje_seleccionado = params["seleccion_montaje_id"]
   linea_de_producto_seleccionada = params["seleccion_linea_de_producto_id"]
   linea_de_color_seleccionada = params["seleccion_linea_de_color_id"]
+
   maquinas_seleccionadas = []
   maquinas_seleccionadas = params["seleccion_maquina_id"]
+
+  seleccion_acabados = []
+  seleccion_acabados = params["seleccion_acabados"]
+
   cliente_id = params["cliente_id"]
   inventario = params["inventario"]
   fecha_de_orden = params["fecha_op"]
+  agregar_acabados = params["agregar_acabados"]
+
   if inventario == "yes"
     inventario = true
   else
@@ -219,7 +226,7 @@ def import_ordenes_produccion_from_excel
 
 
 
-  puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
+  puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
   puts "***************Este es el montaje id: #{montaje_seleccionado}*************************".green
   puts "***************Este es el Linea producto id: #{linea_de_producto_seleccionada}*************************".green
   puts "***************Este es el linea de color id: #{linea_de_color_seleccionada}*************************".green
@@ -227,27 +234,29 @@ def import_ordenes_produccion_from_excel
   puts "***************Este es el id del Cliente id #{cliente_id}*************************".green
   puts "***************Este es el estado del inventario #{inventario}*************************".green
   puts "***************Esta es la fecha de orden #{fecha_de_orden}*************************".green
-  puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
+  puts "***************AGREGAR ACABADOS:  #{agregar_acabados}*************************".green
+  puts "***************SELECIONAR ACABADOS: #{seleccion_acabados}*************************".green
+  puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
 
 
   begin
     errores_o_true = OrdenProduccion.importar_excel_individual(file,montaje_seleccionado,
       linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,cliente_id,
-      inventario, fecha_de_orden)
+      inventario, fecha_de_orden, agregar_acabados, seleccion_acabados)
 
     respond_to do |format|
       if errores_o_true == true
         format.html { redirect_to ordenes_produccion_path, notice: 'Ordenes Importados' }
         format.json { render :show, status: :created, location: @orden_produccion }
         format.js
-    else
+      else
         @errores = errores_o_true
-        format.html { render ordenes_produccion_path}
-        format.js
+        format.html { render ordenes_produccion_path, notice: 'Orden de produccion importada'}
+
       end
   end
   rescue Exception => e
-    flash[:notice] = "Tipo de archivo no valido"
+    flash[:notice] = errores_o_true
     redirect_to ordenes_produccion_path
   end
 end

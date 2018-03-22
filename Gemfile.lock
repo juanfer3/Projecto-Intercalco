@@ -235,6 +235,8 @@ GEM
     simple_form (3.5.1)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
+    spinjs-rails (1.4)
+      rails (>= 3.1)
     spreadsheet (1.1.5)
       ruby-ole (>= 1.0)
     spring (2.0.2)
@@ -325,6 +327,7 @@ DEPENDENCIES
   selectize-rails
   selenium-webdriver
   simple_form
+  spinjs-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   sprockets_better_errors
