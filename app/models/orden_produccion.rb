@@ -1365,7 +1365,7 @@ end
   end
 
 
-def self.importar_excel_individual(file)
+def self.importar_excel_individual(file,montaje_seleccionado,linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,cliente_id,inventario,fecha_de_orden)
   #code
   puts "********************START********************".red
   @errores = []
@@ -1397,6 +1397,16 @@ def self.importar_excel_individual(file)
         #consulta de orden_nueva
         if op == nil
           puts "***************** ORDEN NO EXISTE***********************".red
+
+          if montaje_seleccionado.present?
+            puts "====================EL MONTAJE FUE SELECCIONADO=====================".green
+
+          else
+
+
+
+
+
           descripcion_montaje = spreadsheet.cell(11,'E').to_s.upcase
           puts "******************MONTAJE #{descripcion_montaje}**********************".blue
 
@@ -1837,7 +1847,25 @@ def self.importar_excel_individual(file)
                                                               puts "****************LUGAR DESPACHO ID: #{@lugar_despacho_id}************************".green
 
                                                               orden_de_compra = spreadsheet.cell(10,'L').to_s.upcase
-                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                                              cantidad_solicitada = spreadsheet.cell(11,'L')
+                                                              cantidad_hoja = spreadsheet.cell(21,'B')
+                                                              tamanos_totales_op = spreadsheet.cell(22,'K')
+                                                              obs= spreadsheet.cell(58,'C')
+                                                              obs2 = spreadsheet.cell(59,'C')
+                                                              obs3 = spreadsheet.cell(60,'C')
+                                                              observacion = obs.to_s + ". " + obs2.to_s + ". " + obs3.to_s
+
+                                                              puts "================VALOR 1========================".yellow
+                                                              puts "******************#{tamanos_totales_op}**********************".blue
+                                                              puts "========================================".yellow
+                                                              cavidad = spreadsheet.cell(21,'G')
+                                                              cantidad_programada = tamanos_totales_op.to_f * cavidad.to_f
+
+                                                              puts "=================VALOR 2=======================".yellow
+                                                              puts "******************#{tamanos_totales_op}**********************".blue
+                                                              puts "========================================".yellow
+
+                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
                                                               if ordenCreada.save
                                                                 puts "*****************ORDEN DE PRODUCCION***********************".green
 
@@ -4050,6 +4078,11 @@ def self.importar_excel_individual(file)
                 else
                   puts "*****************STRING VACIO***********************".red
                 end
+
+
+
+
+              end
 
         else
           puts "******************* ORDEN EXISTE *********************".green

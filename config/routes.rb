@@ -176,4 +176,5 @@ Rails.application.routes.draw do
   get 'contactos_for_select/:id', to: 'montajes#contactos_for_select', as: :contactos_for_select
 
   get 'reporte_tinta/:id', to: 'ordenes_produccion#reporte_tinta', as: :reporte_tinta
+  get 'open_modal_import', to: 'ordenes_produccion#open_modal_import', as: :open_modal_import
 end

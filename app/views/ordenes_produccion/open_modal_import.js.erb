@@ -1,0 +1,68 @@
+$('#modalExcelImpotar').modal('show');
+
+$('.oculta_importacion').hide()
+
+
+$('.step_2').hide()
+$('.step_3').hide()
+
+
+$('#clear_step_1').click(function(){
+
+    $('.step_1').hide()
+    $('.step_3').hide()
+    $('.step_2').show()
+
+})
+
+$('#back_step_1').click(function(){
+
+    $('.step_2').hide()
+    $('.step_3').hide()
+
+    $('.step_1').show()
+
+})
+
+
+$('#clear_step_2').click(function(){
+
+    $('.step_1').hide()
+    $('.step_2').hide()
+
+    $('.step_3').show()
+
+})
+
+
+$('#selectize_fichas')[0].selectize.disable()
+
+
+            if( $('#checkbox_ficha').prop('checked') ) {
+
+
+                    $('#selectize_fichas')[0].selectize.enable()
+
+            }else {
+
+                    $('#selectize_fichas')[0].selectize.disable()
+                    $('#selectize_fichas')[0].selectize.clear()
+
+            }
+
+
+            $("#checkbox_ficha").change(function(){
+
+                        if( $('#checkbox_ficha').prop('checked') ) {
+
+
+                          $('#selectize_fichas')[0].selectize.enable()
+
+                        }else {
+
+                          $('#selectize_fichas')[0].selectize.disable()
+                          $('#selectize_fichas')[0].selectize.clear()
+
+                        }
+
+            })

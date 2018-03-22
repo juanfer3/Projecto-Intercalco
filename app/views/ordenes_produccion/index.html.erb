@@ -548,8 +548,10 @@ $(document).ready(function(){
      </div>
     <%if current_user.rol.cargo == "Administrador"%>
       <div class="col-4">
-        <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>
+        <%= link_to '<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>'.html_safe,
+        open_modal_import_path, remote: true %>
       </div>
+
       <div class="col-4">
          <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
          ordenes_produccion_path(format: :xlsx) %>
@@ -603,26 +605,257 @@ $(document).ready(function(){
 
 <br>
 
-<div class="modal fade fullscreen-modal " id="modalExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade fullscreen-modal " id="modalExcelImpotar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content col-12">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Importar Montajes Desde Excel</h5>
+
+
+
+
+
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <h1>Instrucciones:</h1>
-          <h6> <strong>-</strong> Para importar Montajes desde Excel asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Codigo del Montaje, Descripción.</strong>  </h6>
-          <h6><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
-            <%= form_tag import_ordenes_produccion_from_excel_path, remote:true,multipart: true do %> <br>
-            <%= file_field_tag :file %> <br> <br>
-            <%= submit_tag "Importar", :class=> "btn btn-primary"%>
-          <% end %>
 
+
+        <div class="card text-center">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Active</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+
+            <div class="">
+
+              <%= form_tag import_ordenes_produccion_from_excel_path, remote:true,multipart: true do %> <br>
+
+              <h1 ALIGN="left" >Instrucciones:</h1>
+              <h6 ALIGN="left"> <strong>-</strong> Para importar Montajes desde Excel asegurese de que el orden las las columnas sean los siguientes: <br> &nbsp; <strong> Nombre del Cliente, Codigo del Montaje, Descripción.</strong>  </h6>
+              <h6 ALIGN="left"><strong>-</strong> Además El archivo tendrá que pertenecer a alguna de estas extenciones:<br> &nbsp; <strong>".xls", ".xlsx", ".csv". </strong></h6>
+              <br>
+
+
+                  <div class="step_1 my_card_contactos_form">
+
+
+
+                    <div class="col-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <h6> SELECCIONAR FICHA TECNICA </h6>
+
+                          <input class="form-check-input" type="checkbox" id="checkbox_ficha">
+
+
+                        </label>
+                      </div>
+                    </div>
+
+                    <div class="col-4">
+                      <label for="">Seleccionar Ficha</label>
+                      <% montajes = Montaje.all.map { |i| [i.nombre, i.id] } %>
+                      <%= select_tag "seleccion_montaje_id",
+                        options_for_select(montajes),
+                        class:"demo-default",
+                        id:"selectize_fichas",
+                        include_blank: 'Seleccione Ficha Técnica'
+                      %>
+                    </div>
+                    <div class="col-4">
+                      <div class="control-group">
+                        <label for="selectize_cliente_modal">Seleccione Cliente:</label>
+                        <%= select_tag "cliente_id",
+                            options_for_select(Cliente.all.map { |i| [i.nombre, i.id] }),
+                            class:"demo-default",
+                            id:"selectize_cliente_modal",
+                            include_blank: 'Seleccione cliente'
+                          %>
+
+
+              				</div>
+                    </div>
+
+
+
+                    <div class="col-12">
+                      <br>
+                    </div>
+
+
+                    <div class="col-4">
+                      <label for="">Seleccione Linea de producto</label>
+                      <% montajes = LineaProducto.all.map { |i| [i.nombre, i.id] } %>
+                      <%= select_tag "seleccion_linea_de_producto_id",
+                        options_for_select(montajes),
+                        class:"demo-default",
+                        id:"selectize_linea_de_producto",
+                        include_blank: 'Seleccione Linea de producto'
+                      %>
+                    </div>
+
+                    <div class="col-4">
+                      <label for="">Seleccione Linea de color</label>
+                      <% montajes = LineaDeColor.all.map { |i| [i.nombre, i.id] } %>
+                      <%= select_tag "seleccion_linea_de_color_id",
+                        options_for_select(montajes),
+                        class:"demo-default",
+                        id:"selectize_linea_de_color",
+                        include_blank: 'Seleccione Linea de color'
+                      %>
+                    </div>
+
+
+                    <div class="col-4">
+                      <label for="">Seleccione Linea de color</label>
+                      <% machines = []%>
+                      <% machines = Maquina.all%>
+
+
+                        <% grouped_options = []%>
+
+
+                        <%opciones= []%>
+                        <%  machines.each do |maq|
+                            opciones << maq.nombre
+
+                         end %>
+
+                      <%= select_tag "seleccion_maquina_id",
+                        options_from_collection_for_select(machines, :id, :nombre),
+                        class:"demo-default",
+                        id:"selectize_maquina",
+                        :multiple=>true,
+
+                        include_blank: 'Seleccione Las maquinas'
+                      %>
+                    </div>
+
+                    <script type="text/javascript">
+                      $('#selectize_fichas').selectize()
+                      $('#selectize_linea_de_producto').selectize()
+                      $('#selectize_linea_de_color').selectize()
+                      $('#selectize_maquina').selectize({
+                              delimiter: ',',
+                              persist: false,
+                              create: function(input) {
+                                return {
+                                    value: id,
+                                    text: input
+                                }
+                              }
+                      })
+
+
+
+
+
+                      $('#selectize_cliente_modal').selectize({
+
+                      });
+
+
+
+                    </script>
+
+                </div>
+
+                <br>
+                <div class="step_1">
+                  <p class="card-text"></p>
+                  <button type="button" name="button" class="btn btn-primary" id="clear_step_1">SIGUIENTE</button>
+
+                </div>
+
+
+                <div class="step_2 my_card_contactos_form">
+                  <div class="col-12">
+                    <h1>STEP 2</h1>
+                  </div>
+
+
+
+
+                    <div class="col-4">
+                      <div class="">
+                        <label for="">Fecha de orden</label> <br>
+                          <div class="input-group">
+
+                            <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+                            <%= text_field_tag 'fecha_op',"",class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+
+                          <%=
+                              check_box_tag 'inventario', 'yes', true
+                            %>Sacar de inventario
+
+
+                        </label>
+                      </div>
+
+                    </div>
+
+
+                    <div class="col-12">
+                      <br>
+                    </div>
+                    <div class="col-12">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-primary" id="back_step_1">ATRAS</button>
+                        <div  class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                        <button type="button" class="btn btn-primary" id="clear_step_2">SIGUIENTE</button>
+                      </div>
+                    </div>
+
+                </div>
+
+
+                <div class="ocultar_importacion">
+                  <%= file_field_tag :file %> <br> <br>
+                  <%= submit_tag "Importar", :class=> "btn btn-primary"%>
+                </div>
+
+              <% end %>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+          </div>
         </div>
+
+
+
+
+
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

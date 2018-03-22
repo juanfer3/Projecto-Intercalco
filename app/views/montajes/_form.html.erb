@@ -68,7 +68,7 @@
                   {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control', id: "select_cliente_montaje"}
                 %>
 
-                
+
                 <p id="campo_cliente"></p>
               </div>
 
@@ -488,7 +488,7 @@
                     <%=
                     f.select :maquina_ids,
                      Maquina.all.map{|i| [ i.nombre, i.id]},
-                     {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", 'multiple': "multiple",readonly: "readonly"}
+                     {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", :multiple => true,readonly: "readonly"}
                      %>
                  </div>
 
