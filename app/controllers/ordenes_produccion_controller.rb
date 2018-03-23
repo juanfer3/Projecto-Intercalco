@@ -216,6 +216,7 @@ def import_ordenes_produccion_from_excel
   comercial_id = params["comercial_id"]
   inventario = params["inventario"]
   fecha_de_orden = params["fecha_op"]
+  fecha_compromiso = params["fecha_compromiso"]
   agregar_acabados = params["agregar_acabados"]
 
   if inventario == "yes"
@@ -237,13 +238,14 @@ def import_ordenes_produccion_from_excel
   puts "***************AGREGAR ACABADOS:  #{agregar_acabados}*************************".green
   puts "***************SELECIONAR ACABADOS: #{seleccion_acabados}*************************".green
   puts "***************ESTE ES EL COMERCIAL SELECCIONADDO #{comercial_id}*************************".green
+  puts "***************ESTA ES LA FECHA DE COPROMISO #{fecha_compromiso}*************************".green
   puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
 
 
   begin
     errores_o_true = OrdenProduccion.importar_excel_individual(file,montaje_seleccionado,
       linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,comercial_id,
-      inventario, fecha_de_orden, agregar_acabados, seleccion_acabados, cliente_id)
+      inventario, fecha_de_orden, agregar_acabados, seleccion_acabados, cliente_id, fecha_compromiso)
 
     respond_to do |format|
       if errores_o_true == true

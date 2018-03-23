@@ -1368,7 +1368,7 @@ end
 
 def self.importar_excel_individual(file,montaje_seleccionado,
   linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,
-  comercial_id,inventario,fecha_de_orden,agregar_acabados, seleccion_acabados, cliente_id)
+  comercial_id,inventario,fecha_de_orden,agregar_acabados, seleccion_acabados, cliente_id,fecha_compromiso)
   #code
   puts "********************START********************".red
   puts "********************COMERCIAL ID: #{comercial_id}********************"
@@ -1395,7 +1395,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
       if numero_orden.length > 0
         puts "******************STRING LLLENO**********************".blue
         puts "*******************<(*) - #{numero_orden} - (*)>*********************".green
-        numero_op=numero_orden.to_s.upcase
+        numero_op = numero_orden.to_s.upcase
         op = OrdenProduccion.find_by(numero_de_orden: numero_op)
 
         #consulta de orden_nueva
@@ -1663,7 +1663,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                  obs= spreadsheet.cell(58,'C')
                                  obs2 = spreadsheet.cell(59,'C')
                                  obs3 = spreadsheet.cell(60,'C')
-                                 observacion = obs.to_s + ". " + obs2.to_s + ". " + obs3.to_s
+                                 observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
 
                                  puts "================VALOR 1========================".yellow
                                  puts "******************#{tamanos_totales_op}**********************".blue
@@ -1680,10 +1680,17 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                  if inventario == true
                                    habilitar_impresion =false
                                  end
-                                 ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montaje_seleccionado, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                 precio_unitario = spreadsheet.cell(13,'D')
+                                 ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,precio_unitario:precio_unitario,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montaje_seleccionado, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
                                  if ordenCreada.save
                                    puts "*****************ORDEN DE PRODUCCION***********************".green
-
+                                   if fecha_compromiso.present?
+                                     puts "******************LA FECHA DE COMPROISO EXITES Y ES #{fecha_compromiso}**********************".yellow
+                                     compromisos_de_entrega = CompromisoDeEntrega.new(orden_produccion_id:ordenCreada.id,fecha_de_compromiso:fecha_compromiso, cantidad:cantidad_solicitada)
+                                     if compromisos_de_entrega.save
+                                       puts "*******************COMPROMISO DE ENTREGA CREADO*********************".green
+                                     end
+                                   end
                                  end
                                else
                                end
@@ -2170,7 +2177,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                               obs= spreadsheet.cell(58,'C')
                                                               obs2 = spreadsheet.cell(59,'C')
                                                               obs3 = spreadsheet.cell(60,'C')
-                                                              observacion = obs.to_s + ". " + obs2.to_s + ". " + obs3.to_s
+                                                              observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
 
                                                               puts "================VALOR 1========================".yellow
                                                               puts "******************#{tamanos_totales_op}**********************".blue
@@ -2187,10 +2194,17 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                               if inventario == true
                                                                 habilitar_impresion =false
                                                               end
-                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                                              precio_unitario = spreadsheet.cell(13,'D')
+                                                              ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,precio_unitario:precio_unitario,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montajeNuevo.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
                                                               if ordenCreada.save
                                                                 puts "*****************ORDEN DE PRODUCCION***********************".green
-
+                                                                if fecha_compromiso.present?
+                                                                  puts "******************LA FECHA DE COMPROISO EXITES Y ES #{fecha_compromiso}**********************".yellow
+                                                                  compromisos_de_entrega = CompromisoDeEntrega.new(orden_produccion_id:ordenCreada.id,fecha_de_compromiso:fecha_compromiso, cantidad:cantidad_solicitada)
+                                                                  if compromisos_de_entrega.save
+                                                                    puts "*******************COMPROMISO DE ENTREGA CREADO*********************".green
+                                                                  end
+                                                                end
                                                               end
                                                             else
                                                             end
@@ -4398,7 +4412,296 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                     end
                             else
                                     puts "**************MONTAJE EXISTE**************************".green
+                                    #busqueda de ORDENES
+                                    puts "*******************SESION DE ORDENES*********************"
 
+                                    #busquea de contactos
+                                    contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
+                                    puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+
+                                                if contacto_nombre.length != 0
+                                                      @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                                                      puts "**************Busqueda Del contacto**************************".red
+
+
+                                                                if @bus_contacto == nil
+                                                                puts "******************EL CONTACTO NO EXISTE**********************".red
+
+
+
+
+
+                                                                  #Busqueda de vendedor
+                                                                  if comercial_id.present?
+                                                                    puts "*******************EL COMERCIAL HA SIDO SELECCIONADO*********************".green
+                                                                    contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: comercial_id)
+                                                                    if contactoNuevo.save
+                                                                        puts "************** El contacto ha sido creado **************************".green
+                                                                        @contacto_id=contactoNuevo.id
+                                                                    end
+
+                                                                  else
+                                                                    puts "*******************EL COMERCIAL NO HA SIDO SELECCIONADO*********************".red
+
+
+                                                                                    vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                                                    puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                                                              if vendedor_nombre.length > 0
+                                                                                                puts "*****************vendedor existe***********************".green
+                                                                                                vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                                                          if vendedor == nil
+                                                                                                            puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                                                          else
+
+                                                                                                                      puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                                                                      puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                                                                      puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                                                                      puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                                                                      puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
+                                                                                                                      contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
+                                                                                                                      if contactoNuevo.save
+                                                                                                                          puts "************** El contacto ha sido creado **************************".green
+                                                                                                                          @contacto_id=contactoNuevo.id
+                                                                                                                      end
+
+                                                                                                          end
+                                                                                              else
+                                                                                                puts "****************STRING VENDEDOR VACIO************************".red
+                                                                                              end
+
+
+                                                                         end
+
+
+
+
+
+
+
+
+                                                                else
+                                                                  puts "**************EL CONTACTO  EXISTE**************************".green
+                                                                    @contacto_id=@bus_contacto.id
+                                                                end
+                                                else
+                                                        puts "**************La El campo contacto esta vacio**************************"
+                                                        busqueda = "SIN DEFINIR"
+                                                        @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                                        puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                                  if @bus_contacto== nil
+
+                                                                  else
+                                                                      @contacto_id=@bus_contacto.id
+                                                                  end
+                                                end
+
+
+                                                       #busqueda nombre facturacion
+                                                       facturar_a_nombre= spreadsheet.cell(8,'H').to_s.upcase
+                                                       puts "*************** Facturar a - <(*) #{facturar_a_nombre} (*)> - para orden************************".green
+
+                                                       if facturar_a_nombre.length != 0
+
+                                                             puts "**************Busqueda Del Facturado**************************".red
+                                                             @bus_facturar_a = NombreFacturacion.find_by(nombre: facturar_a_nombre)
+
+
+
+                                                                       if @bus_facturar_a == nil
+                                                                         puts "***********EL NOMBRE DE FACTURACION NO EXISTE*****************************".yellow
+
+
+
+
+
+                                                                         #Busqueda de vendedor
+                                                                         vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                                         puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                                                   if vendedor_nombre.length > 0
+                                                                                     puts "*****************vendedor existe***********************".green
+                                                                                     vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                                               if vendedor == nil
+                                                                                                 puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                                               else
+
+                                                                                                 puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                                                 puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                                                 puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                                                 puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                                                 puts "**************facturar_a: #{facturar_a_nombre}**************************".blue
+                                                                                                 facturar_aNuevo = NombreFacturacion.new(nombre: facturar_a_nombre,cliente_id:cliente_id)
+                                                                                                 if facturar_aNuevo.save
+                                                                                                     puts "************** El contacto ha sido creado **************************".green
+                                                                                                     @facturar_a_id=facturar_aNuevo.id
+                                                                                                 end
+
+                                                                                               end
+                                                                                   else
+                                                                                     puts "****************STRING VENDEDOR VACIO************************".red
+                                                                                   end
+
+
+
+
+
+
+
+
+
+
+
+                                                                       else
+                                                                         puts "*************la factura existe Existe**************************".green
+                                                                           @facturar_a_id=@bus_facturar_a.id
+                                                                       end
+
+
+                                                       else
+                                                               puts "**************La El campo contacto esta vacio**************************"
+                                                               busqueda = "SIN DEFINIR"
+                                                               @bus_facturar_a = NombreFacturacion.find_by(nombre: busqueda)
+                                                               puts "**************Busqueda De la facturacion nulas**************************"
+
+
+                                                                         if @bus_facturar_a== nil
+
+                                                                         else
+                                                                             @facturar_a_id = @bus_facturar_a.id
+                                                                         end
+                                                       end
+
+
+
+
+
+
+
+
+
+                                                       #lugar a despachar
+                                                       lugar_despacho_nombre= spreadsheet.cell(9,'B').to_s.upcase
+                                                       puts "*************** Facturar a - <(*) #{lugar_despacho_nombre} (*)> - para orden************************".green
+
+                                                       if lugar_despacho_nombre.length != 0
+
+                                                             puts "**************Busqueda Del lUGAR DESPACHO**************************".red
+                                                             @bus_lugar_despacho = LugarDespacho.find_by(direccion: lugar_despacho_nombre)
+
+
+
+                                                                       if @bus_lugar_despacho == nil
+                                                                         puts "***********EL NOMBRE DE DESPACHO NO EXISTE*****************************".yellow
+
+
+
+
+
+                                                                         #Busqueda de vendedor
+                                                                         vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                                         puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                                                   if vendedor_nombre.length > 0
+                                                                                     puts "*****************vendedor existe***********************".green
+                                                                                     vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                                               if vendedor == nil
+                                                                                                 puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                                               else
+
+                                                                                                 puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                                                 puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                                                 puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                                                 puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                                                 puts "**************facturar_a: #{lugar_despacho_nombre}**************************".blue
+                                                                                                 lugar_despachoNuevo = LugarDespacho.new(direccion: lugar_despacho_nombre,cliente_id:cliente_id)
+                                                                                                 if lugar_despachoNuevo.save
+                                                                                                     puts "************** El lugar despacho ha sido creado **************************".green
+                                                                                                     @lugar_despacho_id=lugar_despachoNuevo.id
+                                                                                                 end
+
+                                                                                               end
+                                                                                   else
+                                                                                     puts "****************STRING VENDEDOR VACIO************************".red
+                                                                                   end
+
+
+
+
+
+
+
+
+
+
+
+                                                                       else
+                                                                         puts "**************el lugar despacho Existe**************************".green
+                                                                           @lugar_despacho_id=@bus_lugar_despacho.id
+                                                                       end
+                                                       else
+                                                               puts "**************La El campo lugar despachos esta vacio**************************"
+                                                               busqueda = "SIN DEFINIR"
+                                                               @bus_lugar_despacho = LugarDespacho.find_by(direccion: busqueda)
+                                                               puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                                         if @bus_lugar_despacho == nil
+
+                                                                         else
+                                                                             @lugar_despacho_id = @bus_lugar_despacho.id
+                                                                         end
+                                                       end
+
+
+
+
+                                                       if @contacto_id.present? && @facturar_a_id.present? && @lugar_despacho_id.present?
+                                                         puts "****************LOS DATOS NECESARIOS EXISTEN************************".blue
+                                                         puts "****************CONTACTO: #{@contacto_id}************************".green
+                                                         puts "****************FACTURAR A: #{@facturar_a_id}************************".green
+                                                         puts "****************LUGAR DESPACHO ID: #{@lugar_despacho_id}************************".green
+
+                                                         orden_de_compra = spreadsheet.cell(10,'L').to_s.upcase
+                                                         cantidad_solicitada = spreadsheet.cell(11,'L')
+                                                         cantidad_hoja = spreadsheet.cell(21,'B')
+                                                         tamanos_totales_op = spreadsheet.cell(22,'K')
+                                                         obs= spreadsheet.cell(58,'C')
+                                                         obs2 = spreadsheet.cell(59,'C')
+                                                         obs3 = spreadsheet.cell(60,'C')
+                                                         observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
+
+                                                         puts "================VALOR 1========================".yellow
+                                                         puts "******************#{tamanos_totales_op}**********************".blue
+                                                         puts "========================================".yellow
+                                                         cavidad = spreadsheet.cell(21,'G')
+                                                         cantidad_programada = tamanos_totales_op.to_f * cavidad.to_f
+
+                                                         puts "=================VALOR 2=======================".yellow
+                                                         puts "******************#{tamanos_totales_op}**********************".blue
+                                                         puts "========================================".yellow
+                                                         fecha = fecha_de_orden
+                                                         sacar_de_inventario = inventario
+                                                         habilitar_impresion = true
+                                                         if inventario == true
+                                                           habilitar_impresion =false
+                                                         end
+                                                         precio_unitario = spreadsheet.cell(13,'D')
+                                                         ordenCreada = OrdenProduccion.new(numero_de_orden:numero_op,precio_unitario:precio_unitario,habilitar_impresion:habilitar_impresion,sacar_de_inventario:sacar_de_inventario,fecha:fecha,observacion:observacion,cantidad_programada:cantidad_programada,cavidad:cavidad,tamanos_total:tamanos_totales_op,cantidad_hoja:cantidad_hoja,cantidad_solicitada:cantidad_solicitada,orden_de_compra:orden_de_compra,montaje_id: montaje.id, contacto_id: @contacto_id, nombre_facturacion_id:@facturar_a_id, lugar_despacho_id:@lugar_despacho_id)
+                                                         if ordenCreada.save
+                                                           puts "*****************ORDEN DE PRODUCCION***********************".green
+                                                           if fecha_compromiso.present?
+                                                             puts "******************LA FECHA DE COMPROISO EXITES Y ES #{fecha_compromiso}**********************".yellow
+                                                             compromisos_de_entrega = CompromisoDeEntrega.new(orden_produccion_id:ordenCreada.id,fecha_de_compromiso:fecha_compromiso, cantidad:cantidad_solicitada)
+                                                             if compromisos_de_entrega.save
+                                                               puts "*******************COMPROMISO DE ENTREGA CREADO*********************".green
+                                                             end
+                                                           end
+                                                         end
+                                                       else
+                                                       end
 
 
 
