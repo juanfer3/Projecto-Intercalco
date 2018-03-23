@@ -1660,10 +1660,11 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                  cantidad_solicitada = spreadsheet.cell(11,'L')
                                  cantidad_hoja = spreadsheet.cell(21,'B')
                                  tamanos_totales_op = spreadsheet.cell(22,'K')
-                                 obs= spreadsheet.cell(58,'C')
-                                 obs2 = spreadsheet.cell(59,'C')
-                                 obs3 = spreadsheet.cell(60,'C')
-                                 observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
+                                 obs= spreadsheet.cell(63,'C')
+                                 obs2 = spreadsheet.cell(64,'A')
+                                 obs3 = spreadsheet.cell(65,'A')
+                                 obs4 = spreadsheet.cell(66,'A')
+                                 observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s + "\n" + obs4
 
                                  puts "================VALOR 1========================".yellow
                                  puts "******************#{tamanos_totales_op}**********************".blue
@@ -1908,9 +1909,10 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                     tamano_corte_2 = spreadsheet.cell(21,'M')
 
                                     tamano_de_corte = tamano_corte_1.to_s + "X" + tamano_corte_2.to_s
+                                    modo_de_empaque = spreadsheet.cell(60,'D')
 
+                                    montajeNuevo = Montaje.new(cliente_id: cliente_id, modo_de_empaque:modo_de_empaque,agregar_acabado:agregar_acabados,acabado_ids:seleccion_acabados,codigo: "", nombre: nombre_montaje, dimension:tamano_dimension,tamano_hoja:tamano_hoja,tamano_por_hojas:tamano_por_hojas,tamano_de_corte:tamano_de_corte,linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
 
-                                    montajeNuevo = Montaje.new(cliente_id: cliente_id, agregar_acabado:agregar_acabados,acabado_ids:seleccion_acabados,codigo: "", nombre: nombre_montaje, dimension:tamano_dimension,tamano_hoja:tamano_hoja,tamano_por_hojas:tamano_por_hojas,tamano_de_corte:tamano_de_corte,linea_de_color_id: @linea_color_id, linea_producto_id: @linea_producto_id, material_id: @material_id)
                                     if montajeNuevo.save
                                          puts "*******************REGISTRO DE MONTAJE GUARDADO*********************".green
 
@@ -2174,10 +2176,11 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                               cantidad_solicitada = spreadsheet.cell(11,'L')
                                                               cantidad_hoja = spreadsheet.cell(21,'B')
                                                               tamanos_totales_op = spreadsheet.cell(22,'K')
-                                                              obs= spreadsheet.cell(58,'C')
-                                                              obs2 = spreadsheet.cell(59,'C')
-                                                              obs3 = spreadsheet.cell(60,'C')
-                                                              observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
+                                                              obs= spreadsheet.cell(63,'C')
+                                                              obs2 = spreadsheet.cell(64,'A')
+                                                              obs3 = spreadsheet.cell(65,'A')
+                                                              obs4 = spreadsheet.cell(66,'A')
+                                                              observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s + "\n" + obs4
 
                                                               puts "================VALOR 1========================".yellow
                                                               puts "******************#{tamanos_totales_op}**********************".blue
@@ -4668,10 +4671,11 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                          cantidad_solicitada = spreadsheet.cell(11,'L')
                                                          cantidad_hoja = spreadsheet.cell(21,'B')
                                                          tamanos_totales_op = spreadsheet.cell(22,'K')
-                                                         obs= spreadsheet.cell(58,'C')
-                                                         obs2 = spreadsheet.cell(59,'C')
-                                                         obs3 = spreadsheet.cell(60,'C')
-                                                         observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s
+                                                         obs= spreadsheet.cell(63,'C')
+                                                         obs2 = spreadsheet.cell(64,'A')
+                                                         obs3 = spreadsheet.cell(65,'A')
+                                                         obs4 = spreadsheet.cell(66,'A')
+                                                         observacion = obs.to_s + "\n" + obs2.to_s + "\n" + obs3.to_s + "\n" + obs4
 
                                                          puts "================VALOR 1========================".yellow
                                                          puts "******************#{tamanos_totales_op}**********************".blue
