@@ -664,7 +664,7 @@ $(document).ready(function(){
                         <label class="form-check-label">
                           <h6> Seleccionar ficha tecnica </h6>
 
-                          <input class="form-check-input" type="checkbox" id="checkbox_ficha">
+                          <input class="form-check-input" type="checkbox" id="checkbox_ficha" checked>
 
 
                         </label>
@@ -683,12 +683,16 @@ $(document).ready(function(){
                     </div>
                     <div class="col-4">
                       <div class="control-group">
-                        <label for="selectize_cliente_modal">Seleccione Cliente:</label>
-                        <%= select_tag "cliente_id",
-                            options_for_select(Cliente.all.map { |i| [i.nombre, i.id] }),
+                        <label for="selectize_cliente_modal">Seleccione comercial:</label>
+                            <%
+                            comercial= "Comercial"
+                            gerente_comercial = "Gerente Comercial"
+                            %>
+                        <%= select_tag "comercial_id",
+                            options_for_select(User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial).map { |i| [i.nombre, i.id] }),
                             class:"demo-default",
-                            id:"selectize_cliente_modal",
-                            include_blank: 'Seleccione cliente'
+                            id:"selectize_comercial_modal",
+                            include_blank: 'Seleccione Comercial'
                           %>
 
 
@@ -702,7 +706,7 @@ $(document).ready(function(){
                     </div>
 
 
-                    <div class="col-4">
+                    <div class="col-4 sel_ficha">
                       <label for="">Seleccione Linea de producto</label>
                       <% montajes = LineaProducto.all.map { |i| [i.nombre, i.id] } %>
                       <%= select_tag "seleccion_linea_de_producto_id",
@@ -713,7 +717,7 @@ $(document).ready(function(){
                       %>
                     </div>
 
-                    <div class="col-4">
+                    <div class="col-4 sel_ficha">
                       <label for="">Seleccione Linea de color</label>
                       <% montajes = LineaDeColor.all.map { |i| [i.nombre, i.id] } %>
                       <%= select_tag "seleccion_linea_de_color_id",
@@ -725,17 +729,10 @@ $(document).ready(function(){
                     </div>
 
 
-                    <div class="col-4">
+                    <div class="col-4 sel_ficha">
                       <label for="">Seleccione las máquinas</label>
                       <% machines = []%>
                       <% machines = Maquina.all%>
-
-
-
-
-
-
-
 
                       <%= select_tag "seleccion_maquina_id",
                         options_from_collection_for_select(machines, :id, :nombre),
@@ -751,7 +748,7 @@ $(document).ready(function(){
                         <br>
                     </div>
 
-                    <div class="col-6">
+                    <div class="col-6 sel_ficha">
                      <% acabados = []%>
                      <% acabados = Acabado.all%>
                      <label for="">Seleccione Acabados</label>
@@ -763,7 +760,7 @@ $(document).ready(function(){
                         include_blank: 'Seleccione Los acabados'
                       %>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 sel_ficha">
                       <label for="">Agregar acabados</label>
                         <div class="input-group mb-3">
                               <div class="input-group-prepend">
@@ -798,7 +795,7 @@ $(document).ready(function(){
 
 
 
-                      $('#selectize_cliente_modal').selectize({
+                      $('#selectize_comercial_modal').selectize({
 
                       });
 
@@ -836,6 +833,7 @@ $(document).ready(function(){
                           </div>
                       </div>
                     </div>
+
                     <div class="col-4">
                       <div class="form-check">
                         <label class="form-check-label">
@@ -849,6 +847,24 @@ $(document).ready(function(){
                       </div>
 
                     </div>
+
+
+                    <div class="col-4">
+                      <div class="">
+                        <label for="">Fecha de compromiso</label> <br>
+                          <div class="input-group">
+
+                            <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+                            <%= text_field_tag 'fecha_compromiso',"",class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+                          </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
 
 
                     <div class="col-12">

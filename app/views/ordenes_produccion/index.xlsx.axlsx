@@ -50,12 +50,34 @@ wb.styles do |style|
 
 
      ordenes_produccion.each do |orden|
+
+
+
+
+     fecha_op = ""
+     if orden.fecha != nil
+
+
+      fecha_op = orden.fecha
+
+     end
+
+
+
      tipo_de_orden = ""
      if orden.orden_nueva == true
       tipo_de_orden = "Nueva"
      else
       tipo_de_orden = "Repetición"
      end
+
+
+
+
+
+
+
+
 
      tiro = ""
      retiro = ""
@@ -173,6 +195,9 @@ wb.styles do |style|
 
       end
 
+
+
+
       mes = []
       value_mes = ""
       fechas_entregas = []
@@ -228,10 +253,10 @@ wb.styles do |style|
 
   	   sheet.add_row [orden.numero_de_orden.to_s.upcase,
        mes.map{|i|i.to_s.upcase}*", "  " ", orden.montaje.cliente.user.nombre.to_s.capitalize,
-       orden.montaje.linea_producto.nombre.to_s.capitalize, orden.fecha.strftime("%d/%m/%Y"),
+       orden.montaje.linea_producto.nombre.to_s.capitalize, fecha_op,
        fechas_entregas.map{|i|i}*", "  " ",
        "",
-       orden.montaje.cliente.nombre.to_s.capitalize,orden.montaje.nombre.to_s.capitalize,
+       orden.montaje.cliente.nombre.to_s.titleize,orden.montaje.nombre.to_s.capitalize,
        orden.cantidad_solicitada,number_to_currency_br(orden.precio_unitario) ,"",
        tipo_de_orden, orden.tamanos_total,
        orden.cavidad, orden.montaje.material.codigo, orden.montaje.material.descripcion.to_s.capitalize,

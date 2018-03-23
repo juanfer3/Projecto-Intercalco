@@ -10,6 +10,10 @@ if( $('#cb_acabados').prop('checked') ) {
 }else {
 
   $( "#agregar_acabados_id" ).prop( "disabled", true );
+  $( "#agregar_acabados_id" ).val("")
+
+
+
 
 }
 
@@ -28,6 +32,10 @@ $("#cb_acabados").change(function(){
 
         $( "#agregar_acabados_id" ).prop( "disabled", true );
         $( "#agregar_acabados_id" ).val("")
+
+
+
+
 
       }
 })
@@ -87,11 +95,39 @@ $('#selectize_fichas')[0].selectize.disable()
 
 
                     $('#selectize_fichas')[0].selectize.enable()
+                    $('.sel_ficha').hide()
+
+                    $('#selectize_maquina')[0].selectize.disable()
+                    $("#selectize_maquina")[0].selectize.clear()
+
+                    $('#selectize_linea_de_color')[0].selectize.disable()
+                    $("#selectize_linea_de_color")[0].selectize.clear()
+
+                    $('#selectize_linea_de_producto')[0].selectize.disable()
+                    $("#selectize_linea_de_producto")[0].selectize.clear()
+
+                    $('#selectize_acabados')[0].selectize.disable()
+                    $('#selectize_acabados')[0].selectize.clear()
+
+                    $( "#agregar_acabados_id" ).val("")
 
             }else {
 
                     $('#selectize_fichas')[0].selectize.disable()
                     $('#selectize_fichas')[0].selectize.clear()
+
+
+                    $('.sel_ficha').show()
+                    $('#selectize_maquina')[0].selectize.enable()
+
+                    $('#selectize_linea_de_color')[0].selectize.enable()
+
+                    $('#selectize_linea_de_producto')[0].selectize.enable()
+
+                    $('#selectize_acabados')[0].selectize.enable()
+
+
+
 
             }
 
@@ -102,11 +138,37 @@ $('#selectize_fichas')[0].selectize.disable()
 
 
                           $('#selectize_fichas')[0].selectize.enable()
+                          $('.sel_ficha').hide()
+
+                          $('#selectize_maquina')[0].selectize.disable()
+                          $("#selectize_maquina")[0].selectize.clear()
+
+                          $('#selectize_linea_de_color')[0].selectize.disable()
+                          $("#selectize_linea_de_color")[0].selectize.clear()
+
+                          $('#selectize_linea_de_producto')[0].selectize.disable()
+                          $("#selectize_linea_de_producto")[0].selectize.clear()
+
+                          $('#selectize_acabados')[0].selectize.disable()
+                          $('#selectize_acabados')[0].selectize.clear()
+
+                          $( "#agregar_acabados_id" ).val("")
 
                         }else {
 
                           $('#selectize_fichas')[0].selectize.disable()
                           $('#selectize_fichas')[0].selectize.clear()
+
+                          $('.sel_ficha').show()
+
+
+                          $('#selectize_maquina')[0].selectize.enable()
+
+                          $('#selectize_linea_de_color')[0].selectize.enable()
+
+                          $('#selectize_linea_de_producto')[0].selectize.enable()
+
+                          $('#selectize_acabados')[0].selectize.enable()
 
                         }
 

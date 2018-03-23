@@ -206,14 +206,14 @@ def import_ordenes_produccion_from_excel
   montaje_seleccionado = params["seleccion_montaje_id"]
   linea_de_producto_seleccionada = params["seleccion_linea_de_producto_id"]
   linea_de_color_seleccionada = params["seleccion_linea_de_color_id"]
-
+  cliente_id = ""
   maquinas_seleccionadas = []
   maquinas_seleccionadas = params["seleccion_maquina_id"]
 
   seleccion_acabados = []
   seleccion_acabados = params["seleccion_acabados"]
 
-  cliente_id = params["cliente_id"]
+  comercial_id = params["comercial_id"]
   inventario = params["inventario"]
   fecha_de_orden = params["fecha_op"]
   agregar_acabados = params["agregar_acabados"]
@@ -236,13 +236,14 @@ def import_ordenes_produccion_from_excel
   puts "***************Esta es la fecha de orden #{fecha_de_orden}*************************".green
   puts "***************AGREGAR ACABADOS:  #{agregar_acabados}*************************".green
   puts "***************SELECIONAR ACABADOS: #{seleccion_acabados}*************************".green
+  puts "***************ESTE ES EL COMERCIAL SELECCIONADDO #{comercial_id}*************************".green
   puts "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".red
 
 
   begin
     errores_o_true = OrdenProduccion.importar_excel_individual(file,montaje_seleccionado,
-      linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,cliente_id,
-      inventario, fecha_de_orden, agregar_acabados, seleccion_acabados)
+      linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,comercial_id,
+      inventario, fecha_de_orden, agregar_acabados, seleccion_acabados, cliente_id)
 
     respond_to do |format|
       if errores_o_true == true

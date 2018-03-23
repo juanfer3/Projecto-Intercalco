@@ -1,3 +1,4 @@
+
 class OrdenProduccion < ApplicationRecord
   require 'colorize'
 
@@ -1367,9 +1368,10 @@ end
 
 def self.importar_excel_individual(file,montaje_seleccionado,
   linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,
-  cliente_id,inventario,fecha_de_orden,agregar_acabados, seleccion_acabados)
+  comercial_id,inventario,fecha_de_orden,agregar_acabados, seleccion_acabados, cliente_id)
   #code
   puts "********************START********************".red
+  puts "********************COMERCIAL ID: #{comercial_id}********************"
   @errores = []
 
   file_ext = File.extname(file.original_filename)
@@ -1405,76 +1407,88 @@ def self.importar_excel_individual(file,montaje_seleccionado,
             #busqueda de ORDENES
             puts "*******************SESION DE ORDENES*********************"
 
-                               #busquea de contactos
-                               contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
-                               puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+            #busquea de contactos
+            contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
+            puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
 
-                               if contacto_nombre.length != 0
-                                     @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
-                                     puts "**************Busqueda Del contacto**************************".red
-
-
-                                               if @bus_contacto == nil
+                        if contacto_nombre.length != 0
+                              @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                              puts "**************Busqueda Del contacto**************************".red
 
 
-
-
-
-
-                                                 #Busqueda de vendedor
-                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
-                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
-                                                           if vendedor_nombre.length > 0
-                                                             puts "*****************vendedor existe***********************".green
-                                                             vendedor = User.find_by(nombre: vendedor_nombre)
-                                                                       if vendedor == nil
-                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
-
-                                                                       else
-
-                                                                         puts "******************VENDEDOR EXISTE**********************".yellow
-                                                                         puts "**************CREACION DEL CONTACTO**************************".yellow
-                                                                         puts "**************CLIENTE ID: #{cliente_id}**************************".blue
-                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
-                                                                         puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
-                                                                         contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
-                                                                         if contactoNuevo.save
-                                                                             puts "************** El contacto ha sido creado **************************".green
-                                                                             @contacto_id=contactoNuevo.id
-                                                                         end
-
-                                                                       end
-                                                           else
-                                                             puts "****************STRING VENDEDOR VACIO************************".red
-                                                           end
+                                        if @bus_contacto == nil
+                                        puts "******************EL CONTACTO NO EXISTE**********************".red
 
 
 
 
 
+                                          #Busqueda de vendedor
+                                          if comercial_id.present?
+                                            puts "*******************EL COMERCIAL HA SIDO SELECCIONADO*********************".green
+                                            contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: comercial_id)
+                                            if contactoNuevo.save
+                                                puts "************** El contacto ha sido creado **************************".green
+                                                @contacto_id=contactoNuevo.id
+                                            end
+
+                                          else
+                                            puts "*******************EL COMERCIAL NO HA SIDO SELECCIONADO*********************".red
 
 
+                                                            vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                            puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                                      if vendedor_nombre.length > 0
+                                                                        puts "*****************vendedor existe***********************".green
+                                                                        vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                                  if vendedor == nil
+                                                                                    puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                                  else
+
+                                                                                              puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                                              puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                                              puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                                              puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                                              puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
+                                                                                              contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
+                                                                                              if contactoNuevo.save
+                                                                                                  puts "************** El contacto ha sido creado **************************".green
+                                                                                                  @contacto_id=contactoNuevo.id
+                                                                                              end
+
+                                                                                  end
+                                                                      else
+                                                                        puts "****************STRING VENDEDOR VACIO************************".red
+                                                                      end
 
 
-
-
-                                               else
-                                                 puts "**************el contacto Existe**************************".green
-                                                   @contacto_id=@bus_contacto.id
-                                               end
-                               else
-                                       puts "**************La El campo contacto esta vacio**************************"
-                                       busqueda = "SIN DEFINIR"
-                                       @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
-                                       puts "**************Busqueda De la linea_producto nulas**************************"
-
-
-                                                 if @bus_contacto== nil
-
-                                                 else
-                                                     @contacto_id=@bus_contacto.id
                                                  end
-                               end
+
+
+
+
+
+
+
+
+                                        else
+                                          puts "**************EL CONTACTO  EXISTE**************************".green
+                                            @contacto_id=@bus_contacto.id
+                                        end
+                        else
+                                puts "**************La El campo contacto esta vacio**************************"
+                                busqueda = "SIN DEFINIR"
+                                @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                          if @bus_contacto== nil
+
+                                          else
+                                              @contacto_id=@bus_contacto.id
+                                          end
+                        end
 
 
                                #busqueda nombre facturacion
@@ -1896,76 +1910,88 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                          #busqueda de ORDENES
                                          puts "*******************SESION DE ORDENES*********************"
 
-                                                            #busquea de contactos
-                                                            contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
-                                                            puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
+                                         #busquea de contactos
+                                         contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
+                                         puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
 
-                                                            if contacto_nombre.length != 0
-                                                                  @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
-                                                                  puts "**************Busqueda Del contacto**************************".red
-
-
-                                                                            if @bus_contacto == nil
+                                                     if contacto_nombre.length != 0
+                                                           @bus_contacto= Contacto.find_by(nombre_contacto: contacto_nombre)
+                                                           puts "**************Busqueda Del contacto**************************".red
 
 
-
-
-
-
-                                                                              #Busqueda de vendedor
-                                                                              vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
-                                                                              puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
-                                                                                        if vendedor_nombre.length > 0
-                                                                                          puts "*****************vendedor existe***********************".green
-                                                                                          vendedor = User.find_by(nombre: vendedor_nombre)
-                                                                                                    if vendedor == nil
-                                                                                                      puts "******************VENDEDOR NO EXISTE**********************".red
-
-                                                                                                    else
-
-                                                                                                      puts "******************VENDEDOR EXISTE**********************".yellow
-                                                                                                      puts "**************CREACION DEL CONTACTO**************************".yellow
-                                                                                                      puts "**************CLIENTE ID: #{cliente_id}**************************".blue
-                                                                                                      puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
-                                                                                                      puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
-                                                                                                      contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
-                                                                                                      if contactoNuevo.save
-                                                                                                          puts "************** El contacto ha sido creado **************************".green
-                                                                                                          @contacto_id=contactoNuevo.id
-                                                                                                      end
-
-                                                                                                    end
-                                                                                        else
-                                                                                          puts "****************STRING VENDEDOR VACIO************************".red
-                                                                                        end
+                                                                     if @bus_contacto == nil
+                                                                     puts "******************EL CONTACTO NO EXISTE**********************".red
 
 
 
 
 
+                                                                       #Busqueda de vendedor
+                                                                       if comercial_id.present?
+                                                                         puts "*******************EL COMERCIAL HA SIDO SELECCIONADO*********************".green
+                                                                         contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: comercial_id)
+                                                                         if contactoNuevo.save
+                                                                             puts "************** El contacto ha sido creado **************************".green
+                                                                             @contacto_id=contactoNuevo.id
+                                                                         end
+
+                                                                       else
+                                                                         puts "*******************EL COMERCIAL NO HA SIDO SELECCIONADO*********************".red
 
 
+                                                                                         vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
+                                                                                         puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+                                                                                                   if vendedor_nombre.length > 0
+                                                                                                     puts "*****************vendedor existe***********************".green
+                                                                                                     vendedor = User.find_by(nombre: vendedor_nombre)
+                                                                                                               if vendedor == nil
+                                                                                                                 puts "******************VENDEDOR NO EXISTE**********************".red
+
+                                                                                                               else
+
+                                                                                                                           puts "******************VENDEDOR EXISTE**********************".yellow
+                                                                                                                           puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                                                                           puts "**************CLIENTE ID: #{cliente_id}**************************".blue
+                                                                                                                           puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+                                                                                                                           puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
+                                                                                                                           contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
+                                                                                                                           if contactoNuevo.save
+                                                                                                                               puts "************** El contacto ha sido creado **************************".green
+                                                                                                                               @contacto_id=contactoNuevo.id
+                                                                                                                           end
+
+                                                                                                               end
+                                                                                                   else
+                                                                                                     puts "****************STRING VENDEDOR VACIO************************".red
+                                                                                                   end
 
 
-
-
-                                                                            else
-                                                                              puts "**************el contacto Existe**************************".green
-                                                                                @contacto_id=@bus_contacto.id
-                                                                            end
-                                                            else
-                                                                    puts "**************La El campo contacto esta vacio**************************"
-                                                                    busqueda = "SIN DEFINIR"
-                                                                    @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
-                                                                    puts "**************Busqueda De la linea_producto nulas**************************"
-
-
-                                                                              if @bus_contacto== nil
-
-                                                                              else
-                                                                                  @contacto_id=@bus_contacto.id
                                                                               end
-                                                            end
+
+
+
+
+
+
+
+
+                                                                     else
+                                                                       puts "**************EL CONTACTO  EXISTE**************************".green
+                                                                         @contacto_id=@bus_contacto.id
+                                                                     end
+                                                     else
+                                                             puts "**************La El campo contacto esta vacio**************************"
+                                                             busqueda = "SIN DEFINIR"
+                                                             @bus_contacto = Contacto.find_by(nombre_contacto: busqueda)
+                                                             puts "**************Busqueda De la linea_producto nulas**************************"
+
+
+                                                                       if @bus_contacto== nil
+
+                                                                       else
+                                                                           @contacto_id=@bus_contacto.id
+                                                                       end
+                                                     end
 
 
                                                             #busqueda nombre facturacion
@@ -2125,6 +2151,10 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                             end
 
 
+                                                            puts "****************¡¡¡¡LOS DATOS NECESARIOS EXISTEN???????************************".blue
+                                                            puts "****************CONTACTO: #{@contacto_id}************************".green
+                                                            puts "****************FACTURAR A: #{@facturar_a_id}************************".green
+                                                            puts "****************LUGAR DESPACHO ID: #{@lugar_despacho_id}************************".green
 
 
                                                             if @contacto_id.present? && @facturar_a_id.present? && @lugar_despacho_id.present?
