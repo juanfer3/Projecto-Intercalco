@@ -568,6 +568,7 @@ end
             when "Impresión"
                         estado = true
                         acabado = false
+                        impresion = true
                         orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado", mes,impresion,acabado).order("ordenes_produccion.numero_de_orden DESC")
                         puts "***************Devuelve*************************"
 
