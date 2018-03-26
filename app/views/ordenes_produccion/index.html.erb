@@ -306,7 +306,7 @@ $(document).ready(function(){
     <%@ordenes_prioridad.each do |orden_produccion| %>
 
 
-    <tr class="ocultarBodyOrdenes order_table">
+    <tr class="ocultarBodyOrdenes order_table ocultar_incumplidos">
       <td><%= orden_produccion.numero_de_orden %></td>
       <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
       <td><%= orden_produccion.montaje.cliente.nombre%></td>
@@ -1201,4 +1201,9 @@ $(document).ready(function(){
 <script type="text/javascript">
   var num_hoja = $('ul .active span').text()
   toastr.info(num_hoja)
+  if (num_hoja == 11) {
+    $('.ocultar_incumplidos').show()
+  }else {
+    $('.ocultar_incumplidos').hide()
+  }
 </script>
