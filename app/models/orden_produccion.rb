@@ -560,7 +560,7 @@ end
   end
 
 
-  def buscador_estado_mes(mes,data)
+  def self.buscador_estado_mes(mes,data)
     #code
     puts "*****************BUSCANDO MES Y ESTADO***********************".green
     orden = []
@@ -644,7 +644,8 @@ end
           when "ENERO"
             numero_de_mes=1
 
-            @ordenes = buscador_estado_mes(mes,estado)
+            @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
+
             if @ordenes.empty?
                 puts "*****************ordendes del mes de enero vacio***********************"
             else
@@ -659,7 +660,7 @@ end
           when "FEBRERO"
             numero_de_mes=2
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -674,7 +675,7 @@ end
           when "MARZO"
             numero_de_mes=3
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -689,7 +690,7 @@ end
           when "ABRIL"
             numero_de_mes=4
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -704,7 +705,7 @@ end
           when "MAYO"
             numero_de_mes=5
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
 
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
@@ -719,7 +720,7 @@ end
           when "JUNIO"
             numero_de_mes=6
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -733,7 +734,7 @@ end
           when "JULIO"
             numero_de_mes=7
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -749,7 +750,7 @@ end
 
             numero_de_mes=8
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -764,7 +765,7 @@ end
           when "SEPTIEMBRE"
             numero_de_mes=9
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -779,7 +780,7 @@ end
           when "OCTUBRE"
             numero_de_mes=10
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -794,7 +795,7 @@ end
           when "NOVIEMBRE"
             numero_de_mes=11
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
@@ -809,7 +810,7 @@ end
           when "DICIEMBRE"
             numero_de_mes=12
 
-          @ordenes = buscador_estado_mes(mes,estado)
+          @ordenes = OrdenProduccion.buscador_estado_mes(mes,estado)
             if @ordenes.empty?
                 puts "*****************ordendes del mes de febrero vacio***********************"
             else
