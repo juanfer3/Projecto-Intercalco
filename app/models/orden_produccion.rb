@@ -1,4 +1,3 @@
-
 class OrdenProduccion < ApplicationRecord
   require 'colorize'
 
