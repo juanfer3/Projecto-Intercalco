@@ -1404,6 +1404,8 @@ def self.importar_excel_individual(file,montaje_seleccionado,
 
           if montaje_seleccionado.present?
             puts "====================EL MONTAJE FUE SELECCIONADO=====================".green
+            buscar_cliente = Montaje.find_by(id: montaje_seleccionado)
+            cliente_id = buscar_cliente.cliente.id
             #busqueda de ORDENES
             puts "*******************SESION DE ORDENES*********************"
 
@@ -1425,7 +1427,9 @@ def self.importar_excel_individual(file,montaje_seleccionado,
 
                                           #Busqueda de vendedor
                                           if comercial_id.present?
+
                                             puts "*******************EL COMERCIAL HA SIDO SELECCIONADO*********************".green
+
                                             contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: comercial_id)
                                             if contactoNuevo.save
                                                 puts "************** El contacto ha sido creado **************************".green
@@ -1449,7 +1453,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                                                                               puts "******************VENDEDOR EXISTE**********************".yellow
                                                                                               puts "**************CREACION DEL CONTACTO**************************".yellow
                                                                                               puts "**************CLIENTE ID: #{cliente_id}**************************".blue
-                                                                                              puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+
                                                                                               puts "**************NOMBRE CONTACTO: #{contacto_nombre}**************************".blue
                                                                                               contactoNuevo = Contacto.new(nombre_contacto: contacto_nombre,cliente_id:cliente_id, user_id: vendedor.id)
                                                                                               if contactoNuevo.save
@@ -1509,42 +1513,24 @@ def self.importar_excel_individual(file,montaje_seleccionado,
 
 
 
-                                                 #Busqueda de vendedor
-                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
-                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
-                                                           if vendedor_nombre.length > 0
-                                                             puts "*****************vendedor existe***********************".green
-                                                             vendedor = User.find_by(nombre: vendedor_nombre)
-                                                                       if vendedor == nil
-                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
+                                                 #CREAR FACTURAR A:
 
-                                                                       else
+                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
+
+                                                             puts "*****************vendedor existe***********************".green
+
+
 
                                                                          puts "******************VENDEDOR EXISTE**********************".yellow
                                                                          puts "**************CREACION DEL CONTACTO**************************".yellow
                                                                          puts "**************CLIENTE ID: #{cliente_id}**************************".blue
-                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+
                                                                          puts "**************facturar_a: #{facturar_a_nombre}**************************".blue
                                                                          facturar_aNuevo = NombreFacturacion.new(nombre: facturar_a_nombre,cliente_id:cliente_id)
                                                                          if facturar_aNuevo.save
                                                                              puts "************** El contacto ha sido creado **************************".green
                                                                              @facturar_a_id=facturar_aNuevo.id
                                                                          end
-
-                                                                       end
-                                                           else
-                                                             puts "****************STRING VENDEDOR VACIO************************".red
-                                                           end
-
-
-
-
-
-
-
-
-
-
 
                                                else
                                                  puts "*************la factura existe Existe**************************".green
@@ -1592,40 +1578,20 @@ def self.importar_excel_individual(file,montaje_seleccionado,
 
 
 
-                                                 #Busqueda de vendedor
-                                                 vendedor_nombre = spreadsheet.cell(14,'C').to_s.upcase
-                                                 puts "******************nombre vendedor: #{vendedor_nombre}**********************".green
-                                                           if vendedor_nombre.length > 0
-                                                             puts "*****************vendedor existe***********************".green
-                                                             vendedor = User.find_by(nombre: vendedor_nombre)
-                                                                       if vendedor == nil
-                                                                         puts "******************VENDEDOR NO EXISTE**********************".red
+                                                 #crear lugar deapachos
 
-                                                                       else
+
 
                                                                          puts "******************VENDEDOR EXISTE**********************".yellow
-                                                                         puts "**************CREACION DEL CONTACTO**************************".yellow
+                                                                         puts "**************CREACION DEL LUGAR DEL DESPACHO**************************".yellow
                                                                          puts "**************CLIENTE ID: #{cliente_id}**************************".blue
-                                                                         puts "**************VENDEDOR ID: #{vendedor.id}**************************".blue
+
                                                                          puts "**************facturar_a: #{lugar_despacho_nombre}**************************".blue
                                                                          lugar_despachoNuevo = LugarDespacho.new(direccion: lugar_despacho_nombre,cliente_id:cliente_id)
                                                                          if lugar_despachoNuevo.save
                                                                              puts "************** El lugar despacho ha sido creado **************************".green
                                                                              @lugar_despacho_id=lugar_despachoNuevo.id
                                                                          end
-
-                                                                       end
-                                                           else
-                                                             puts "****************STRING VENDEDOR VACIO************************".red
-                                                           end
-
-
-
-
-
-
-
-
 
 
 
@@ -1919,7 +1885,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
                                          #busqueda de ORDENES
                                          puts "*******************SESION DE ORDENES*********************"
 
-                                         #busquea de contactos
+                                         #busquea de contactos CR
                                          contacto_nombre = spreadsheet.cell(10,'B').to_s.upcase
                                          puts "***************Crear contacto - <(*) #{contacto_nombre} (*)> - para orden************************".green
 
