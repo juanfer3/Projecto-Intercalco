@@ -67,7 +67,8 @@ def busquda_avanzada_produccion
       format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
 
    elsif mes.present? && estado.present?
-
+     puts "*****************SOLO TIENE MES Y ESTADO***********************".green
+     puts "===============================================================".yellow
      @mes = mes
      @compromisos_de_entrega = OrdenProduccion.consultar_mes_estado(@mes,estado)
      format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
