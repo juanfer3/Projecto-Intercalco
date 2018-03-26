@@ -559,6 +559,281 @@ end
 
   end
 
+
+  def buscador_estado_mes(mes,data)
+    #code
+    puts "*****************BUSCANDO MES Y ESTADO***********************".green
+    orden = []
+          case data
+            when "Impresión"
+                        estado = true
+                        acabado = false
+                        orden =OrdenProduccion.joins(:montaje => [:cliente]).where("extract(month from  fecha_de_compromiso) = ? AND impresion = ? AND acabado", mes,impresion,acabado).order("numero_de_orden DESC")
+                        puts "***************Devuelve*************************"
+
+                        if orden.empty?
+                            puts "***********Produccion vacia no existe o no hay*****************************"
+                        else
+                            puts "***************Esta lleno*************************"
+                        end
+
+                        return orden
+            when "Preprensa"
+                        puts "*********************PREPRENSA*******************"
+                        estado = true
+                        impresion = false
+                        orden =OrdenProduccion.where("impresion = ? AND (color = ? OR  corte_material = ? OR pantalla = ?) AND extract(month from  fecha_de_compromiso) = ?", impresion, estado, estado, estado, mes).order("numero_de_orden DESC")
+                        puts "***************Devuelve*************************"
+
+                        if orden.empty?
+                            puts "***********Produccion vacia no existe o no hay*****************************"
+                        else
+                            puts "***************Esta lleno*************************"
+                        end
+                        return orden
+            when "Acabado"
+                        estado = true
+                        entregado = false
+                        orden =OrdenProduccion.where("extract(month from  fecha_de_compromiso) = ? AND acabado = ? AND entregado = ?", mes, estado, entregado).order("numero_de_orden DESC")
+                        puts "***************Devuelve*************************"
+
+                        if orden.empty?
+                            puts "***********Produccion vacia no existe o no hay*****************************"
+                        else
+                            puts "***************Esta lleno*************************"
+                        end
+                        return orden
+            when "Cerrado"
+              estado = true
+
+              orden =OrdenProduccion.where("extract(month from  fecha_de_compromiso) = ? AND entregado = ?", mes, estado).order("numero_de_orden DESC")
+              puts "***************Devuelve*************************"
+
+              if orden.empty?
+                  puts "***********Produccion vacia no existe o no hay*****************************"
+              else
+                  puts "***************Esta lleno*************************"
+              end
+              return orden
+            when "Sin Programar"
+                        estado = false
+                        impresion = false
+                        entregado = false
+                        orden =OrdenProduccion.where("extract(month from  fecha_de_compromiso) = ? color = ? AND  corte_material = ? AND pantalla = ? AND impresion = ? AND ENTREGADO = ?", mes, estado, estado, estado, impresion, entregado).order("numero_de_orden DESC")
+                        puts "***************Devuelve*************************"
+
+                        if orden.empty?
+                            puts "***********Produccion vacia no existe o no hay*****************************"
+                        else
+                            puts "***************Esta lleno*************************"
+                        end
+                        return orden
+          end
+          return orden
+
+  end
+
+
+  #CONSULTAR POR MES Y ESTADO
+  def self.consultar_mes_estado(mes, estado)
+
+    puts "*****************Consulta del mes: #{mes}***********************"
+    @ordenes = []
+    case mes
+
+          when "ENERO"
+            numero_de_mes=1
+
+            @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de enero vacio***********************"
+            else
+                puts "*****************ordendes del mes de enero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+            return @ordenes
+
+            end
+
+          when "FEBRERO"
+            numero_de_mes=2
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+
+            end
+          when "MARZO"
+            numero_de_mes=3
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "ABRIL"
+            numero_de_mes=4
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "MAYO"
+            numero_de_mes=5
+
+          @ordenes = buscador_estado_mes(mes,estado)
+
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+          when "JUNIO"
+            numero_de_mes=6
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+          when "JULIO"
+            numero_de_mes=7
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "AGOSTO"
+
+            numero_de_mes=8
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "SEPTIEMBRE"
+            numero_de_mes=9
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "OCTUBRE"
+            numero_de_mes=10
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "NOVIEMBRE"
+            numero_de_mes=11
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+          when "DICIEMBRE"
+            numero_de_mes=12
+
+          @ordenes = buscador_estado_mes(mes,estado)
+            if @ordenes.empty?
+                puts "*****************ordendes del mes de febrero vacio***********************"
+            else
+                puts "*****************ordendes del mes de febrero lleno***********************"
+                @ordenes.each do |orden|
+                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+            end
+
+            return @ordenes
+            end
+
+    end
+
+
+
+  end
+
+
+
+
+
+
+
+
   # consulta por mes-cliente-estado
   def self.consultar_mes_cliente_estado(mes, cliente, estado)
 
@@ -4710,7 +4985,7 @@ def self.importar_excel_individual(file,montaje_seleccionado,
 def self.import_Op_digital (file)
   #code
   puts "******************ORDEN DIGITAL POR INSERCION**********************".green
-  
+
 
 
 

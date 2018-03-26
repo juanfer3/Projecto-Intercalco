@@ -66,6 +66,13 @@ def busquda_avanzada_produccion
       @compromisos_de_entrega = OrdenProduccion.consultar_mes_cliente(@mes,cliente)
       format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
 
+   elsif mes.present? && estado.present?
+
+     @mes = mes
+     @compromisos_de_entrega = OrdenProduccion.consultar_mes_estado(@mes,estado)
+     format.js { render :template =>'ordenes_produccion/buscador_de_ordenes_por_mes.js'}
+
+
     else
           if cliente.present?
             @ordenes = OrdenProduccion.advanced_search_cliente_estado(estado, cliente)
