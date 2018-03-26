@@ -4707,7 +4707,17 @@ def self.importar_excel_individual(file,montaje_seleccionado,
   end
 
 
+def self.import_Op_digital (file)
+  #code
+  puts "******************ORDEN DIGITAL POR INSERCION**********************".green
+  
 
+
+
+
+
+  puts "******************END import_Op_digital******************************".green
+end
 
 
 
