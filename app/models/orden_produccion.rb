@@ -649,13 +649,14 @@ end
             if @ordenes.empty?
                 puts "*****************ordendes del mes de enero vacio***********************"
             else
-                puts "*****************ordendes del mes de enero lleno***********************"
-                @ordenes.each do |orden|
-                puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+              puts "*****************ordendes del mes de febrero lleno***********************"
+              @ordenes.each do |orden|
+              puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+              end
             end
             return @ordenes
 
-            end
+
 
           when "FEBRERO"
             numero_de_mes=2
@@ -667,25 +668,27 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
 
-            end
+
           when "MARZO"
             numero_de_mes=3
 
           @ordenes = OrdenProduccion.buscador_estado_mes(numero_de_mes,estado)
             if @ordenes.empty?
-                puts "*****************ordendes del mes de febrero vacio***********************"
+                puts "*****************ordendes del mes de MARZO vacio***********************"
             else
-                puts "*****************ordendes del mes de febrero lleno***********************"
+                puts "*****************ordendes del mes de MARZO lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "ABRIL"
             numero_de_mes=4
@@ -697,10 +700,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "MAYO"
             numero_de_mes=5
@@ -713,10 +717,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
           when "JUNIO"
             numero_de_mes=6
 
@@ -727,10 +732,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
           when "JULIO"
             numero_de_mes=7
 
@@ -741,10 +747,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "AGOSTO"
 
@@ -757,10 +764,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "SEPTIEMBRE"
             numero_de_mes=9
@@ -772,10 +780,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "OCTUBRE"
             numero_de_mes=10
@@ -787,10 +796,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "NOVIEMBRE"
             numero_de_mes=11
@@ -802,10 +812,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
           when "DICIEMBRE"
             numero_de_mes=12
@@ -817,10 +828,11 @@ end
                 puts "*****************ordendes del mes de febrero lleno***********************"
                 @ordenes.each do |orden|
                 puts "****************#{orden.orden_produccion.numero_de_orden}************************"
+                end
             end
 
             return @ordenes
-            end
+
 
     end
 
