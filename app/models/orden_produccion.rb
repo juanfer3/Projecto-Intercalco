@@ -568,7 +568,7 @@ end
             when "Impresión"
                         estado = true
                         acabado = false
-                        orden =OrdenProduccion.joins(:compromisos_de_entrega,:montaje => [:cliente] ).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado", mes,impresion,acabado).order("ordenes_produccion.numero_de_orden DESC")
+                        orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado", mes,impresion,acabado).order("ordenes_produccion.numero_de_orden DESC")
                         puts "***************Devuelve*************************"
 
                         if orden.empty?
@@ -582,7 +582,7 @@ end
                         puts "*********************PREPRENSA*******************"
                         estado = true
                         impresion = false
-                        orden =OrdenProduccion.joins(:compromisos_de_entrega).where("ordenes_produccion.impresion = ? AND (ordenes_produccion.color = ? OR  ordenes_produccion.corte_material = ? OR ordenes_produccion.pantalla = ?) AND extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ?", impresion, estado, estado, estado, mes).order("ordenes_produccion.numero_de_orden DESC")
+                        orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("ordenes_produccion.impresion = ? AND (ordenes_produccion.color = ? OR  ordenes_produccion.corte_material = ? OR ordenes_produccion.pantalla = ?) AND extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ?", impresion, estado, estado, estado, mes).order("ordenes_produccion.numero_de_orden DESC")
                         puts "***************Devuelve*************************"
 
                         if orden.empty?
@@ -594,7 +594,7 @@ end
             when "Acabado"
                         estado = true
                         entregado = false
-                        orden =OrdenProduccion.joins(:compromisos_de_entrega).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.acabado = ? AND ordenes_produccion.entregado = ?", mes, estado, entregado).order("ordenes_produccion.numero_de_orden DESC")
+                        orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.acabado = ? AND ordenes_produccion.entregado = ?", mes, estado, entregado).order("ordenes_produccion.numero_de_orden DESC")
                         puts "***************Devuelve*************************"
 
                         if orden.empty?
@@ -606,7 +606,7 @@ end
             when "Cerrado"
               estado = true
 
-              orden =OrdenProduccion.joins(:compromisos_de_entrega).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.entregado = ?", mes, estado).order("ordenes_produccion.numero_de_orden DESC")
+              orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? AND ordenes_produccion.entregado = ?", mes, estado).order("ordenes_produccion.numero_de_orden DESC")
               puts "***************Devuelve*************************"
 
               if orden.empty?
@@ -619,7 +619,7 @@ end
                         estado = false
                         impresion = false
                         entregado = false
-                        orden =OrdenProduccion.joins(:compromisos_de_entrega).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? ordenes_produccion.color = ? AND  ordenes_produccion.corte_material = ? AND ordenes_produccion.pantalla = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.ENTREGADO = ?", mes, estado, estado, estado, impresion, entregado).order("ordenes_produccion.numero_de_orden DESC")
+                        orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("extract(month from  compromisos_de_entrega.fecha_de_compromiso) = ? ordenes_produccion.color = ? AND  ordenes_produccion.corte_material = ? AND ordenes_produccion.pantalla = ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.ENTREGADO = ?", mes, estado, estado, estado, impresion, entregado).order("ordenes_produccion.numero_de_orden DESC")
                         puts "***************Devuelve*************************"
 
                         if orden.empty?
@@ -907,7 +907,7 @@ end
                               inventario = false
                               acabado = false
 
-                              orden =CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado = ? AND ordenes_produccion.sacar_de_inventario = ? AND extract(month from  fecha_de_compromiso) = ?", cliente,estado, acabado, inventario, numero_de_mes).order("ordenes_produccion.numero_de_orden DESC")
+                              orden = CompromisoDeEntrega.joins(:orden_produccion => [:montaje => [:cliente]]).where("clientes.id =? AND ordenes_produccion.impresion = ? AND ordenes_produccion.acabado = ? AND ordenes_produccion.sacar_de_inventario = ? AND extract(month from  fecha_de_compromiso) = ?", cliente,estado, acabado, inventario, numero_de_mes).order("ordenes_produccion.numero_de_orden DESC")
                               puts "***************Devuelve*************************"
 
                               if orden.empty?
