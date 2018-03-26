@@ -6,7 +6,8 @@ class OrdenesProduccionController < ApplicationController
   # GET /ordenes_produccion
   # GET /ordenes_produccion.json
   def index
-    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).order("compromisos_de_entrega.fecha_de_compromiso DESC")
+    hoy = Time.now.strftime("%d-%m-%Y")
+    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).order("compromisos_de_entrega.fecha_de_compromiso = ? DESC", hoy)
     respond_to do |format|
       format.html
       format.js
