@@ -146,10 +146,47 @@ end
 
 def produccion_coordinador
   #code
-  @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20).order('numero_de_orden DESC').distinct
+  hoy = Time.now
+  entregado = false
+
+@ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso")
+todas_las_ordenes = OrdenProduccion.joins(:montaje).order("ordenes_produccion.numero_de_orden")
+ @ordenes_prioridad = []
+ @ordenes_sin_fecha = []
+ #iteracion 1
+ todas_las_ordenes.each do |op|
+         #if 2
+         puts "********************interando ordenes********************".green
+         if op.compromisos_de_entrega.empty?
+           puts "*****************Numero de orde : #{op.numero_de_orden}**********************".yellow
+           @ordenes_sin_fecha << op
+         else
+           #iteracion 2
+          op.compromisos_de_entrega.each do  |comp|
+
+            if comp.fecha_de_compromiso == nil
+              @ordenes_sin_fecha << op
+            elsif comp.fecha_de_compromiso < hoy
+              @ordenes_prioridad << op
+            end
+
+
+            #iteracion 2
+          end
+
+          #if 1
+         end
+
+     #iteracion 1
+   end
+
+
   respond_to do |format|
     format.html
-    format.json
+    format.js
+    format.xlsx {
+      response.headers['Content-Disposition'] = 'attachment; filename="OrdenesDeProduccion.xlsx"'
+    }
   end
 end
 
