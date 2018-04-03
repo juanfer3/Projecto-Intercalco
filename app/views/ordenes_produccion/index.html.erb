@@ -302,7 +302,7 @@ $(document).ready(function(){
 
 
 
-
+    <!--Ordenes con fechas sin incumplir-->
     <%@ordenes_prioridad.each do |orden_produccion| %>
 
 
@@ -546,12 +546,250 @@ $(document).ready(function(){
 
 
 
+<!--ordenes sin fechas-->
+<%@ordenes_sin_fecha.each do |orden_produccion| %>
+
+
+<tr class="ocultarBodyOrdenes order_table ocultar_incumplidos ">
+  <td><%= orden_produccion.numero_de_orden %></td>
+  <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
+  <td><%= orden_produccion.montaje.cliente.nombre%></td>
+  <td><%= orden_produccion.montaje.nombre %></td>
+  <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
 
 
 
 
 
+  <% if orden_produccion.compromisos_de_entrega.any? %>
+                <!-- true -->
 
+
+
+              <%
+
+
+
+              %>
+              <%cont=0%>
+              <%@comparador_fecha = ""%>
+              <%contador_enviados = 0%>
+
+
+
+              <%@hallado = false%>
+              <%@estado_data= false%>
+              <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                      <% if fecha.fecha_de_compromiso != nil  %>
+                                  <!-- true -->
+
+
+                                      <%
+                                        fech = fecha.fecha_de_compromiso
+                                        fech.strftime("%Y/%m/%d")
+                                      %>
+
+                                      <% if fecha.enviado == true %>
+                                          <%@estado_data = true%>
+                                          <%contador_enviados = contador_enviados + 1%>
+                                          <%@cantidades = contador_enviados%>
+                                      <% end %>
+
+
+
+                              <%if fecha.fecha_de_compromiso < Date.today
+
+                                    puts "******************Dia menor #{@dates}**********************"
+
+                                    @dates= fecha.fecha_de_compromiso
+                                    %>
+
+                              <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                                      <%
+                                        dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                                        if dias == 0
+                                          @dates= fecha.fecha_de_compromiso
+                                          @hallado = true
+                                          puts "******************Dia igual #{@dates}**********************"
+                                        else
+                                          if @hallado == false
+                                            @dates= fecha.fecha_de_compromiso
+                                            puts "******************Dia mayor #{@dates}**********************"
+                                          end
+                                        end
+
+                                        %>
+
+
+                              <% end %>
+
+
+                              <% end %>
+
+                    <% end %>
+
+
+                        <% if @dates != nil %>
+                          <!-- true -->
+
+                        <%
+                                  mes = @dates.strftime("%m")
+
+
+                                  case mes
+                                  when "01"%>
+                                    <td>Enero</td>
+                                  <%when "02"%>
+                                    <td>Febrero</td>
+                                  <%when "03"%>
+                                    <td>Marzo</td>
+                                  <%when "04"%>
+                                    <td>Abril</td>
+                                  <%when "05"%>
+                                    <td>Mayo</td>
+                                  <%when "06"%>
+                                    <td>Junio</td>
+                                  <%when "07"%>
+                                    <td>Julio</td>
+                                  <%when "08"%>
+                                    <td>Agosto</td>
+                                  <%when "09"%>
+                                    <td>Septiembre</td>
+                                  <%when "10"%>
+                                    <td>Octubre</td>
+                                  <%when "11"%>
+                                    <td>Noviembre</td>
+                                  <%when "12"%>
+                                    <td>Diciembre</td>
+                                  <% end %>
+                                  <% else %>
+                                  <td>Por Definir</td>
+                            <% end %>
+
+                              <td><%=@dates%> </td>
+
+                  <% else %>
+                  <td><p>Pendiente Por Definir Fecha</p> </td>
+                  <td><p>Pendiente Por Definir Fecha</p> </td>
+                  <% end %>
+
+  <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+            <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
+
+
+
+
+
+              <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
+                      <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
+                        <!-- true -->
+                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                          <span class="badge badge-dark">
+                             Inventario
+                          </span>
+                        </h6>
+                        <% else %>
+
+
+
+                              <!-- true -->
+                              <% if @estado_data == false || @estado_data == nil%>
+                                <!-- true -->
+
+                                    <% if  orden_produccion.impresion == false%>
+
+                                      <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-info">
+                                              Preprensa
+                                            </span>
+                                          </h6>
+
+                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
+
+                                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                          <span class="badge badge-warning baged_acabado">
+                                            Acabado
+                                          </span>
+                                        </h6>
+
+                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-warning">
+                                              Sin Programar
+                                            </span>
+                                          </h6>
+
+
+
+                                      <% end %>
+
+
+
+                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-warning baged_impresion">
+                                          Impresión
+                                        </span>
+                                      </h6>
+
+                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-warning baged_acabado">
+                                          Acabado
+                                        </span>
+                                      </h6>
+
+
+
+                                    <% end %>
+
+                            <% else %>
+                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                              <span class="badge badge-success ">
+                                Despachos entregados: <br>
+                                <%=@cantidades%>
+                              </span>
+                            </h6>
+                            <% end %>
+
+                        <% end %>
+              <% else %>
+              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                <span class="badge badge-success ">
+                  Cerrada
+                </span>
+              </h6>
+              <% end %>
+
+
+              </td>
+
+  <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-dark"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cambiar_proceso_url(orden_produccion), remote: true %></td>
+  <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
+  <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></span></button>'.html_safe, edit_orden_produccion_path(orden_produccion) %></td>
+  <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, orden_produccion, method: :delete, data: { confirm: 'Realmente desea eliminar esta orden de produccion?' } %></td>
+</tr>
+
+
+
+
+
+<%end%>
+
+
+
+<!--Ordenes con fechas sin incumplir-->
 
 
 
