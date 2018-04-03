@@ -10,11 +10,12 @@ class OrdenesProduccionController < ApplicationController
     entregado = false
 
   @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso")
-  todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
+  todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado)
    @ordenes_prioridad = []
    @ordenes_sin_fecha = []
    #iteracion 1
-   todas_las_ordenes.each do |op|
+   todas_las_ordenes = todas_las_ordenes.sort {|a,b| a[:fecha_de_compromiso] <=> b[:fecha_de_compromiso]}
+   todas_las_ordenes.sort {|a,b| a[:fecha_de_compromiso] <=> b[:fecha_de_compromiso]}.each do |op|
            #if 2
            puts "********************interando ordenes********************".green
            if op.compromisos_de_entrega.empty?
@@ -23,7 +24,7 @@ class OrdenesProduccionController < ApplicationController
            else
              #iteracion 2
             op.compromisos_de_entrega.each do  |comp|
-
+              puts "*******************este es el orden de las fechas: #{comp.fecha_de_compromiso}*********************".red
               if comp.fecha_de_compromiso == nil
                 @ordenes_sin_fecha << op
               elsif comp.fecha_de_compromiso < hoy
