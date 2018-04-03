@@ -9,7 +9,7 @@ class OrdenesProduccionController < ApplicationController
     hoy = Time.now
     entregado = false
 
-  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso ").distinct("ordenes_produccion.numero_de_orden")
+  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso ").distinct
   todas_las_ordenes = OrdenProduccion.joins(:montaje).order("ordenes_produccion.numero_de_orden")
    @ordenes_prioridad = []
    @ordenes_sin_fecha = []
