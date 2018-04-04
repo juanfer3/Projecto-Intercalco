@@ -303,7 +303,7 @@ $(document).ready(function(){
 
 
     <!--Ordenes con fechas sin incumplir-->
-    <%@ordenes_prioridad.each do |orden_produccion| %>
+    <%@ordenes_prioridad.uniq.each do |orden_produccion| %>
 
 
     <tr class="ocultarBodyOrdenes order_table ocultar_incumplidos color_alert">
@@ -547,7 +547,7 @@ $(document).ready(function(){
 
 
 <!--ordenes sin fechas-->
-<%@ordenes_sin_fecha.each do |orden_produccion| %>
+<%@ordenes_sin_fecha.uniq.each do |orden_produccion| %>
 
 
 <tr class="ocultarBodyOrdenes order_table ocultar_incumplidos ">
@@ -793,7 +793,7 @@ $(document).ready(function(){
 
 
 
-    <% @ordenes_produccion.each do |orden_produccion| %>
+    <% @ordenes_produccion.uniq.each do |orden_produccion| %>
       <tr class="ocultarBodyOrdenes order_table">
         <td><%= orden_produccion.numero_de_orden %></td>
         <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
