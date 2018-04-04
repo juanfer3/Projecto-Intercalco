@@ -7,6 +7,14 @@ class MaquinasController < ApplicationController
     @maquinas = Maquina.all.order("nombre")
   end
 
+  def produccion_por_maquinas
+    #code
+    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20)
+    respond_to do |format|
+      format.html
+    end
+  end
+
   # GET /maquinas/1
   # GET /maquinas/1.json
   def show
