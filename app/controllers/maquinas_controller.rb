@@ -1,14 +1,28 @@
 class MaquinasController < ApplicationController
   before_action :set_maquina, only: [:show, :edit, :update, :destroy]
-
+  require 'colorize'
   # GET /maquinas
   # GET /maquinas.json
   def index
     @maquinas = Maquina.all.order("nombre")
   end
 
+  def consulta_por_maquinas
+    #code
+
+    puts "==============CONSULTA DE MAQUINAS===================="
+    @maquina = Maquina.find(params[:id])
+    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def produccion_por_maquinas
     #code
+
+    estado = true
+    @maquinas = Maquina.where("estado = ?", estado).order("nombre")
     @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20)
     respond_to do |format|
       format.html

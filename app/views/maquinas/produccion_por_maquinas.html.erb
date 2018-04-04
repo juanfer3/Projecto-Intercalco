@@ -1,151 +1,38 @@
 <br>
-<h1>MAQUINA SATURNO</h1>
-<div class="container timeline">
-  <div class="row ">
-    <h5> <span class="badge badge-primary">Feb 21 2018</span> </h5>
-        <div class="col-lg-12">
+<h1>ORDENES DE PRODUCCION MAQUINAS DE SATURNO</h1>
+<br>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark buscar_maquinas">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">Logo</a>
 
+  <!-- Maquinas -->
 
+  <ul class="navbar-nav">
+    <%@maquinas.each do |maquina| %>
+            <li class="nav-item" id=<%="li_maquina_link_#{maquina.id}"%> >
 
+                <%=link_to "<span class='nav-link'>#{maquina.nombre}</span>".html_safe, consulta_por_maquinas_path(maquina), remote:true%>
+            </li>
 
+    <% end %>
+  </ul>
+</nav>
 
-          <div class="row">
-            <div class="col-12">
-              <div class="card w-100">
-                  <div class="card-header">
-                    NUMERO DE ORDEN: <strong> 005765 AU </strong>
-                  </div>
-                  <div class="card-body">
-                    <table class="table">
-                      <thead>
-                        <th>PRODUCTO</th>
-                        <th>FECHA DE IMPRESION</th>
-                        <th>FECHA DE COMPROMISO</th>
-                        <th>N° DE TINTAS</th>
-                        <th>CANTIDAD</th>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td align="center">CARITAS SMILE</td>
-                          <td align="center">11/03/2018</td>
-                          <td align="center">11/03/2018</td>
-                          <td align="center">3</td>
-                          <td align="center">4000</td>
-                        </tr>
-                      </tbody>
+<br>
+<div class="col-12">
 
-                    </table>
-                  </div>
-              </div>
-            </div>
+        <table class="table">
+          <thead>
+            <th>NUMERO DE ORDEN</th>
+            <th>CLIENTE</th>
+            <th>PRODUCTO</th>
+            <th>FECHA DE IMPRESION</th>
+            <th>FECHA DE COMPROMISO</th>
+            <th>CANTIDADES</th>
+            <th></th>
+          </thead>
+          <tbody class="tabla_consulta_por_maquina">
 
-          </div>
-        </div>
-
-
-
-
-
-
-  </div>
-
-
-  <div class="row ">
-
-    <h5> <span class="badge badge-primary">Feb 21 2018</span> </h5>
-    <div class="col-lg-12">
-
-
-
-
-
-      <div class="row">
-        <div class="col-12">
-          <div class="card w-100">
-              <div class="card-header">
-                NUMERO DE ORDEN: <strong> 005765 AU </strong>
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <th>PRODUCTO</th>
-                    <th>FECHA DE IMPRESION</th>
-                    <th>FECHA DE COMPROMISO</th>
-                    <th>N° DE TINTAS</th>
-                    <th>CANTIDAD</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td align="center">CARITAS SMILE</td>
-                      <td align="center">11/03/2018</td>
-                      <td align="center">11/03/2018</td>
-                      <td align="center">3</td>
-                      <td align="center">4000</td>
-                    </tr>
-                  </tbody>
-
-                </table>
-              </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-
-
-
-
-    <div class="col-lg-12">
-
-
-
-
-
-      <div class="row">
-        <div class="col-12">
-          <div class="card w-100">
-              <div class="card-header">
-                NUMERO DE ORDEN: <strong> 005765 AU </strong>
-              </div>
-              <div class="card-body">
-                <table class="table">
-                  <thead>
-                    <th>PRODUCTO</th>
-                    <th>FECHA DE IMPRESION</th>
-                    <th>FECHA DE COMPROMISO</th>
-                    <th>N° DE TINTAS</th>
-                    <th>CANTIDAD</th>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td align="center">CARITAS SMILE</td>
-                      <td align="center">11/03/2018</td>
-                      <td align="center">11/03/2018</td>
-                      <td align="center">3</td>
-                      <td align="center">4000</td>
-                    </tr>
-                  </tbody>
-
-                </table>
-              </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-
-
-
-
-
-  </div>
-
-
-
-
-
-
+          </tbody>
+        </table>
 </div>

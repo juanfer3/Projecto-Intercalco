@@ -1,0 +1,8 @@
+<%@ordenes_produccion.each do |orden|%>
+<tr>
+  <td><%=orden.numero_de_orden%></td>
+  <td><%=orden.montaje.cliente.nombre%></td>
+  <td><%=orden.montaje.nombre%></td>
+  <td><%=@maquina.nombre%></td>
+</tr>
+<%end%>

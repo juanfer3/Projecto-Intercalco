@@ -179,5 +179,6 @@ Rails.application.routes.draw do
   get 'open_modal_import', to: 'ordenes_produccion#open_modal_import', as: :open_modal_import
 
   get 'produccion_por_maquinas', to: 'maquinas#produccion_por_maquinas', as: :produccion_por_maquinas
+  get 'consulta_por_maquinas/:id', to: 'maquinas#consulta_por_maquinas', as: :consulta_por_maquinas
 
 end
