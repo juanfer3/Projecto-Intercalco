@@ -12,7 +12,6 @@
   <%@orden_produccion.compromisos_de_entrega.each do |entrega| %>
           var i = "<%=cont%>"
           var value_fecha = "<%=entrega.fecha_de_compromiso%>"
-          toastr.info(i+"el valor es: "+ value_fecha)
           var input1 = $(".it_for_fechas:eq("+i+")").val(value_fecha);
           console.log(input1);
           <%cont = cont + 1%>
