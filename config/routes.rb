@@ -177,4 +177,7 @@ Rails.application.routes.draw do
 
   get 'reporte_tinta/:id', to: 'ordenes_produccion#reporte_tinta', as: :reporte_tinta
   get 'open_modal_import', to: 'ordenes_produccion#open_modal_import', as: :open_modal_import
+
+  get 'produccion_por_maquinas', to: 'ordenes_produccion#produccion_por_maquinas', as: :produccion_por_maquinas
+
 end
