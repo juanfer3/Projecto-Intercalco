@@ -701,7 +701,7 @@ end
 
     respond_to do |format|
       if @orden_produccion.save
-        format.html { redirect_to ordenes_produccion_path, notice: 'Orden produccion was successfully created.' }
+        format.html { redirect_to ordenes_produccion_path, notice: 'Orden de produccion Creada.' }
         format.json { render :show, status: :created, location: @orden_produccion }
         format.js
       else
@@ -717,7 +717,7 @@ end
   def update
     respond_to do |format|
       if @orden_produccion.update(orden_produccion_params)
-        format.html { redirect_to ordenes_produccion_path, notice: 'Orden produccion was successfully updated.' }
+        format.html { redirect_to ordenes_produccion_path, notice: 'Orden de produccion Editada.' }
         format.json { render :show, status: :ok, location: @orden_produccion }
       else
         format.html { render :edit }
@@ -731,7 +731,7 @@ end
   def destroy
     @orden_produccion.destroy
     respond_to do |format|
-      format.html { redirect_to ordenes_produccion_url, notice: 'Orden produccion was successfully destroyed.' }
+      format.html { redirect_to ordenes_produccion_url, notice: 'Orden produccion Eliminada.' }
       format.json { head :no_content }
     end
   end
