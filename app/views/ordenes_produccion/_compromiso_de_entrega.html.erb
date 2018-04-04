@@ -1,22 +1,16 @@
-<tr>
-  <%valor_fecha = ""%>
-  <%@orden_produccion.compromisos_de_entrega.each do |entrega| %>
-
-  <%
-
-    if entrega.fecha_de_compromiso != nil
-      valor_fecha = entrega.fecha_de_compromiso.strftime("%d/%m/%Y")
-    end
+<tr class="tr_fechas">
 
 
-  %>
-  <%end%>
-  <td>
+  <td class="td_fechas">
     <div class="">
     <label for="">Fecha De Compromiso</label>
     <div class="input-group" >
-      <%= f.text_field :fecha_de_compromiso, value: valor_fecha , class: "form-control ", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
-      <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+
+            <%= f.text_field :fecha_de_compromiso, class: "form-control it_for_fechas", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+            <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+
     </div>
   </div></td>
   <td><%= f.input :cantidad, class: "" %></td>
