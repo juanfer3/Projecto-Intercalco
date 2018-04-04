@@ -144,7 +144,7 @@ def produccion_coordinador
   entregado = false
 
 @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso").distinct
-todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden").distinct
+todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
 @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso").distinct
 
  @ordenes_sin_fecha = []
@@ -153,15 +153,11 @@ todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.en
 
  todas_las_ordenes.each do |op|
          #if 2
-         puts "********************interando ordenes********************".green
-
+        puts "********************interando ordenes********************".green
         if op.compromisos_de_entrega.empty?
            puts "*****************Numero de orde : #{op.numero_de_orden}**********************".yellow
            @ordenes_sin_fecha << op
         else
-
-
-
           #if 1
         end
 
