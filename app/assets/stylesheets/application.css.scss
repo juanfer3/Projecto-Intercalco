@@ -488,7 +488,8 @@ nav a:hover{
 }
 .timeline .col-lg-12:before {
   /* counter */
-
+  counter-increment: section;
+  content: counter(section);
   /* position */
   position: absolute;
   left: -22px; /* = (width + border-left) / 2 */
