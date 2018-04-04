@@ -132,3 +132,6 @@ gem "selectize-rails"
 
 #gem spinjs load page
 gem 'spinjs-rails'
+
+#gem pry color
+gem 'pry-rails', :group => :development
