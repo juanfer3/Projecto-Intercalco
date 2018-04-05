@@ -4,6 +4,7 @@
 <br>
 <table class="table " id="mi-tabla">
   <thead>
+    <th>nulo</th>
     <th>NUMERO DE ORDEN</th>
 
 
@@ -11,8 +12,9 @@
   <tbody >
     <%@ordenes_produccion.each do |orden|%>
             <tr>
+                <td>Nulo</td>
                 <td><%=orden.numero_de_orden%></td>
-          
+
             </tr>
     <%end%>
   </tbody>
