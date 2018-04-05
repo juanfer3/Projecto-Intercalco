@@ -167,4 +167,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'habilitar_corte_de_material', 'habilitar_cortes_de_materiales'
   inflect.irregular 'sacar_de_inventario', 'sacar_de_inventarios'
 
+  inflect.irregular 'unidad', 'unidades'
 end
