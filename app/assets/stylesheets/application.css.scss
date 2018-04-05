@@ -18,6 +18,8 @@
  *= require select2
  *= require selectize
  *= require selectize.default
+ *= require jquery-tablesorter/theme.black-ice
+  *= require jquery-tablesorter/addons/pager/jquery.tablesorter.pager
  *= require jquery-ui
  *= sourceMappingURL=bootstrap.css.map
  */

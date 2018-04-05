@@ -135,3 +135,6 @@ gem 'spinjs-rails'
 
 #gem pry color
 gem 'pry-rails', :group => :development
+
+#gem table sorter
+gem 'jquery-tablesorter'

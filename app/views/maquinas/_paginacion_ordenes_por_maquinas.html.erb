@@ -1,0 +1,22 @@
+
+<div class="col-12">
+  <div class="col-md-3 offset-md-9">
+    <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+</div>
+<script type="text/javascript">
+
+
+  $(function() {
+    
+  $(".pagination a").on("click", function() {
+    $(".pagination").html("Page is loading...");
+    $.getScript(this.href);
+    $(".add_td").html('<%= j render 'produccion_por_maquinas'%>')
+
+    return false;
+    });
+  });
+
+
+</script>

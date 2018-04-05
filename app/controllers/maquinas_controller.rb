@@ -11,10 +11,13 @@ class MaquinasController < ApplicationController
     #code
 
     puts "==============CONSULTA DE MAQUINAS===================="
+    estado = true
+    @maquinas = Maquina.where("estado = ?", estado).order("nombre")
     @maquina = Maquina.find(params[:id])
-    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
+    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).paginate(page: params[:page], per_page: 20).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
     respond_to do |format|
       format.js
+      format.html { render :template =>'maquinas/produccion_por_maquinas'}
     end
   end
 
@@ -23,7 +26,7 @@ class MaquinasController < ApplicationController
 
     estado = true
     @maquinas = Maquina.where("estado = ?", estado).order("nombre")
-    @ordenes_produccion = OrdenProduccion.all.paginate(page: params[:page], per_page: 20)
+    @ordenes_produccion = []
     respond_to do |format|
       format.html
     end

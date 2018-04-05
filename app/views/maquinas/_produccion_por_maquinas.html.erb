@@ -1,8 +1,30 @@
-<%@ordenes_produccion.each do |orden|%>
-<tr>
-  <td><%=orden.numero_de_orden%></td>
-  <td><%=orden.montaje.cliente.nombre%></td>
-  <td><%=orden.montaje.nombre%></td>
-  <td><%=@maquina.nombre%></td>
-</tr>
-<%end%>
+<table class="table " id="mi-tabla">
+  <thead>
+    <th>NUMERO DE ORDEN</th>
+    <th>CLIENTE</th>
+    <th>PRODUCTO</th>
+    <th>FECHA DE IMPRESION</th>
+    <th>FECHA DE COMPROMISO</th>
+    <th>CANTIDADES</th>
+    <th></th>
+  </thead>
+  <tbody >
+    <%@ordenes_produccion.each do |orden|%>
+            <tr class="add_for_clean ">
+                <td><%=orden.numero_de_orden%></td>
+                <td><%=orden.montaje.cliente.nombre%></td>
+                <td><%=orden.montaje.nombre%></td>
+                <td><%=orden.cantidad_solicitada  %></td>
+                <td><%=@maquina.nombre%></td>
+                <td><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></td>
+            </tr>
+    <%end%>
+  </tbody>
+</table>
+
+<script type="text/javascript">
+  $('#mi-tabla').tablesorter();
+  $('.limpiar_tr').remove()
+  $('.add_for_clean').addClass('limpiar_tr')
+
+</script>
