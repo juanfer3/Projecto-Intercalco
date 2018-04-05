@@ -1,10 +1,14 @@
+<div class="">
+  <h5><%= @maquina.nombre%></h5>
+</div>
+<br>
 <table class="table " id="mi-tabla">
   <thead>
     <th>NUMERO DE ORDEN</th>
     <th>CLIENTE</th>
     <th>PRODUCTO</th>
     <th>FECHA DE IMPRESION</th>
-    <th>FECHA DE COMPROMISO</th>
+    <th class="sorter-shortDate dateFormat-ddmmyyyy">FECHA DE COMPROMISO</th>
     <th>CANTIDADES</th>
     <th></th>
   </thead>
@@ -14,8 +18,122 @@
                 <td><%=orden.numero_de_orden%></td>
                 <td><%=orden.montaje.cliente.nombre%></td>
                 <td><%=orden.montaje.nombre%></td>
-                <td><%=orden.cantidad_solicitada  %></td>
-                <td><%=@maquina.nombre%></td>
+                <td>fecha a imprimir</td>
+
+
+
+                <% if orden.compromisos_de_entrega.any? %>
+                              <!-- true -->
+
+
+
+                            <%
+
+
+
+                            %>
+                            <%cont=0%>
+                            <%@comparador_fecha = ""%>
+                            <%contador_enviados = 0%>
+
+
+
+                            <%@hallado = false%>
+                            <%@estado_data= false%>
+                            <% orden.compromisos_de_entrega.each do  |fecha| %>
+
+                                    <% if fecha.fecha_de_compromiso != nil  %>
+                                                <!-- true -->
+
+
+                                                    <%
+                                                      fech = fecha.fecha_de_compromiso
+                                                      fech.strftime("%Y/%m/%d")
+                                                    %>
+
+                                                    <% if fecha.enviado == true %>
+                                                        <%@estado_data = true%>
+                                                        <%contador_enviados = contador_enviados + 1%>
+                                                        <%@cantidades = contador_enviados%>
+                                                    <% end %>
+
+
+
+                                            <%if fecha.fecha_de_compromiso < Date.today
+
+                                                  puts "******************Dia menor #{@dates}**********************"
+
+                                                  @dates= fecha.fecha_de_compromiso
+                                                  %>
+
+                                            <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                                                    <%
+                                                      dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                                                      if dias == 0
+                                                        @dates= fecha.fecha_de_compromiso
+                                                        @hallado = true
+                                                        puts "******************Dia igual #{@dates}**********************"
+                                                      else
+                                                        if @hallado == false
+                                                          @dates= fecha.fecha_de_compromiso
+                                                          puts "******************Dia mayor #{@dates}**********************"
+                                                        end
+                                                      end
+
+                                                      %>
+
+
+                                            <% end %>
+
+
+                                            <% end %>
+
+                                  <% end %>
+
+
+
+
+                                            <td><%=@dates%> </td>
+
+                                <% else %>
+
+                                <td><p>Pendiente Por Definir Fecha</p> </td>
+                                <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <td><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></td>
             </tr>
     <%end%>
@@ -23,7 +141,26 @@
 </table>
 
 <script type="text/javascript">
-  $('#mi-tabla').tablesorter();
+  $('#mi-tabla').tablesorter({
+
+
+
+
+    dateFormat : "mmddyyyy", // set the default date format
+
+  // or to change the format for specific columns, add the dateFormat to the headers option:
+  headers: {
+    0: { sorter: "shortDate" } //, dateFormat will parsed as the default above
+    // 1: { sorter: "shortDate", dateFormat: "ddmmyyyy" }, // set day first format; set using class names
+    // 2: { sorter: "shortDate", dateFormat: "yyyymmdd" }  // set year first format; set using data attributes (jQuery data)
+  }
+
+
+
+
+
+
+  });
   $('.limpiar_tr').remove()
   $('.add_for_clean').addClass('limpiar_tr')
 
