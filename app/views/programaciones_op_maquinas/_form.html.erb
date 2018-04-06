@@ -1,0 +1,21 @@
+<%= simple_form_for(@programacion_op_maquina) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :orden_produccion %>
+    <%= f.association :maquina %>
+    <%= f.input :total_hora %>
+    <%= f.input :hora_inicio %>
+    <%= f.input :hora_final %>
+    <%= f.input :cantidad_maquinas %>
+    <%= f.input :tiempo_por_maquina %>
+    <%= f.input :tiempo_de_montaje %>
+    <%= f.input :tiempo_de_desmontaje %>
+    <%= f.input :habilitado %>
+    <%= f.input :complemento %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

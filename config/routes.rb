@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :programaciones_op_maquinas
+  resources :variables_estandar
   resources :contenedores_de_acabados
   resources :acabados
   resources :lugares_despachos
@@ -180,5 +182,7 @@ Rails.application.routes.draw do
 
   get 'produccion_por_maquinas', to: 'maquinas#produccion_por_maquinas', as: :produccion_por_maquinas
   get 'consulta_por_maquinas/:id', to: 'maquinas#consulta_por_maquinas', as: :consulta_por_maquinas
+
+  get 'detalles_produccion_maquina/:id', to: 'maquinas#detalles_produccion_maquina', as: :detalles_produccion_maquina
 
 end

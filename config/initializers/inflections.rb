@@ -168,4 +168,18 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'sacar_de_inventario', 'sacar_de_inventarios'
 
   inflect.irregular 'unidad', 'unidades'
+
+  inflect.irregular 'programacion_orden_por_maquina', 'programaciones_ordenes_por_maquinas'
+  inflect.irregular 'total_hora', 'total_horas'
+  inflect.irregular 'hora_inicio', 'horas_inicio'
+  inflect.irregular 'hora_final', 'horas_final'
+  inflect.irregular 'cantidad_maquinas', 'cantidades_maquinas'
+  inflect.irregular 'tiempo_por_maquina', 'tiempos_por_maquinas'
+  inflect.irregular 'tiempo_de_montaje', 'tiempos_de_montaje'
+  inflect.irregular 'tiempo_de_desmontaje', 'tiempos_de_desmontaje'
+  inflect.irregular 'habilitado', 'habilitados'
+  inflect.irregular 'variable_estandar', 'variables_estandar'
+  inflect.irregular 'complemento', 'complementos'
+  inflect.irregular 'programacion_op_maquina', 'programaciones_op_maquinas'
+
 end

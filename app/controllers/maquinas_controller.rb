@@ -7,6 +7,16 @@ class MaquinasController < ApplicationController
     @maquinas = Maquina.all.order("nombre")
   end
 
+  def detalles_produccion_maquina
+    #Detalles produccion maquina
+    puts "****************************************"
+    @orden_produccion = OrdenProduccion.find(params[:id])
+    @programacion_op_maquina = ProgramacionOpMaquina.new
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def consulta_por_maquinas
     #code
 
@@ -94,6 +104,6 @@ class MaquinasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def maquina_params
-      params.require(:maquina).permit(:nombre, :descripcion, :formato_de_tamaño,:estado)
+      params.require(:maquina).permit(:nombre, :descripcion, :unidad,:formato_de_tamaño,:estado)
     end
 end

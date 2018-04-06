@@ -1,0 +1,11 @@
+
+$('#modalMaquinas').modal('show');
+
+$("#contenidoModal").html("<%= j render 'detalle_de_la_orden'%>");
+
+$(".ocultar").hide()
+$("#programacion_op_maquina_orden_produccion_id").hide()
+$("#programacion_op_maquina_maquina_id").hide(id_maquina)
+
+var id_maquina = $("#add_id").text()
+$("#programacion_op_maquina_maquina_id").val(id_maquina)

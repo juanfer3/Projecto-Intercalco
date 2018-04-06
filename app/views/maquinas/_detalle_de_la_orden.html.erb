@@ -1,0 +1,74 @@
+<! ------------------Información Del Pedido---------------------------------->
+<div class="container card-block">
+  <div class="container my_card_pedidos_form my_orden_pedidos">
+    <div class="col-4">
+      <label for="">Cliente</label>
+
+      <h4 ><%= @orden_produccion.montaje.cliente.nombre%> <br> <p> <%=@orden_produccion.montaje.cliente.user.nombre%> </p></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Producto</label>
+      <h4 ><%= @orden_produccion.montaje.nombre%></h4>
+    </div>
+    <div class="col-4">
+      <label for="">Numero de Orden</label>
+      <h4><%= @orden_produccion.numero_de_orden%></h4>
+    </div>
+  </div>
+</div>
+
+<hr>
+<%if @orden_produccion.orden_nueva == true%>
+  <div class="col-md-6 offset-md-5">
+    <h5> <span class="badge badge-warning">Producción nueva</span>  </h5>
+  </div>
+<%else%>
+  <div class="col-md-6 offset-md-5">
+    <h5> <span class="badge badge-info">Producción repetida</span>  </h5>
+  </div>
+<%end%>
+
+<hr>
+
+
+
+<% if @orden_produccion.programaciones_op_maquinas.empty? %>
+
+  <h5>NO HAY PROGRAMACION</h5>
+  <!-- formulario para programacion -->
+  <%= simple_form_for(@programacion_op_maquina) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <div class="ocultar">
+          <%= f.input :orden_produccion_id,
+          :input_html => { :value => @orden_produccion.id },
+          class: "ocultar"
+            %>
+      </div>
+
+      <div class="ocultar">
+        <%= f.input :maquina_id %>
+      </div>
+
+
+      <%= f.input :total_hora %>
+      <%= f.input :hora_inicio %>
+      <%= f.input :hora_final %>
+      <%= f.input :cantidad_maquinas %>
+      <%= f.input :tiempo_por_maquina %>
+      <%= f.input :tiempo_de_montaje %>
+      <%= f.input :tiempo_de_desmontaje %>
+      <%= f.input :habilitado %>
+      <%= f.input :complemento %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+
+
+<% else %>
+  <h5>SI HAY PROGRAMACION</h5>
+<% end %>

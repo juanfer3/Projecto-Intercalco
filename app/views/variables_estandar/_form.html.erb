@@ -1,0 +1,12 @@
+<%= simple_form_for(@variable_estandar) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :tiempo_de_montaje %>
+    <%= f.input :tiempo_de_desmontaje %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

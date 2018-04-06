@@ -137,6 +137,8 @@
 
 
                 <td><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></td>
+
+                <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, detalles_produccion_maquina_path(orden), remote: true %></td>
             </tr>
     <%end%>
   </tbody>

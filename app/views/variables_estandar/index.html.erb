@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Variables Estandar</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tiempo de montaje</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @variables_estandar.each do |variable_estandar| %>
+      <tr>
+        <td><%= variable_estandar.tiempo_de_montaje %></td>
+        <td><%= link_to 'Show', variable_estandar %></td>
+        <td><%= link_to 'Edit', edit_variable_estandar_path(variable_estandar) %></td>
+        <td><%= link_to 'Destroy', variable_estandar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Variable Estandar', new_variable_estandar_path %>

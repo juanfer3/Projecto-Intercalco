@@ -44,7 +44,7 @@ class OrdenesProduccionController < ApplicationController
   end
 
 
-  
+
 
 
   def open_modal_import
@@ -753,7 +753,8 @@ end
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,
         :cantidad, :precio, :fecha_despacho, :cantidad_despacho, :precio_despacho,
-        :diferencia, :numero_de_remision, :estado,:_destroy, :id]
+        :diferencia, :numero_de_remision, :estado,:_destroy, :id],
+      programaciones_op_maquinas_attributes:[:orden_produccion_id, :maquina_id, :total_hora, :hora_inicio, :hora_final, :cantidad_maquinas, :tiempo_por_maquina, :tiempo_de_montaje, :tiempo_de_desmontaje, :habilitado, :complemento,:id,:_destroy]
       )
 
     end

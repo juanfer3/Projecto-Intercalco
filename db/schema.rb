@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315120925) do
+ActiveRecord::Schema.define(version: 20180406162835) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -257,6 +257,7 @@ ActiveRecord::Schema.define(version: 20180315120925) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "formato_de_tamaño", default: ""
+    t.integer "unidad", default: 0
   end
 
   create_table "materiales", force: :cascade do |t|
@@ -470,6 +471,24 @@ ActiveRecord::Schema.define(version: 20180315120925) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "programaciones_op_maquinas", force: :cascade do |t|
+    t.integer "orden_produccion_id"
+    t.integer "maquina_id"
+    t.time "total_hora"
+    t.time "hora_inicio"
+    t.time "hora_final"
+    t.integer "cantidad_maquinas", default: 0
+    t.time "tiempo_por_maquina"
+    t.time "tiempo_de_montaje"
+    t.time "tiempo_de_desmontaje"
+    t.boolean "habilitado", default: true
+    t.string "complemento", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maquina_id"], name: "index_programaciones_op_maquinas_on_maquina_id"
+    t.index ["orden_produccion_id"], name: "index_programaciones_op_maquinas_on_orden_produccion_id"
+  end
+
   create_table "remisiones", force: :cascade do |t|
     t.integer "factura_despacho_id"
     t.string "numero_de_remision"
@@ -587,6 +606,13 @@ ActiveRecord::Schema.define(version: 20180315120925) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["rol_id"], name: "index_users_on_rol_id"
+  end
+
+  create_table "variables_estandar", force: :cascade do |t|
+    t.datetime "tiempo_de_montaje"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.time "tiempo_de_desmontaje"
   end
 
 end

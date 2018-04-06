@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Programaciones Op Maquinas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Orden produccion</th>
+      <th>Maquina</th>
+      <th>Total hora</th>
+      <th>Hora inicio</th>
+      <th>Hora final</th>
+      <th>Cantidad maquinas</th>
+      <th>Tiempo por maquina</th>
+      <th>Tiempo de montaje</th>
+      <th>Tiempo de desmontaje</th>
+      <th>Habilitado</th>
+      <th>Complemento</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @programaciones_op_maquinas.each do |programacion_op_maquina| %>
+      <tr>
+        <td><%= programacion_op_maquina.orden_produccion %></td>
+        <td><%= programacion_op_maquina.maquina %></td>
+        <td><%= programacion_op_maquina.total_hora %></td>
+        <td><%= programacion_op_maquina.hora_inicio %></td>
+        <td><%= programacion_op_maquina.hora_final %></td>
+        <td><%= programacion_op_maquina.cantidad_maquinas %></td>
+        <td><%= programacion_op_maquina.tiempo_por_maquina %></td>
+        <td><%= programacion_op_maquina.tiempo_de_montaje %></td>
+        <td><%= programacion_op_maquina.tiempo_de_desmontaje %></td>
+        <td><%= programacion_op_maquina.habilitado %></td>
+        <td><%= programacion_op_maquina.complemento %></td>
+        <td><%= link_to 'Show', programacion_op_maquina %></td>
+        <td><%= link_to 'Edit', edit_programacion_op_maquina_path(programacion_op_maquina) %></td>
+        <td><%= link_to 'Destroy', programacion_op_maquina, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Programacion Op Maquina', new_programacion_op_maquina_path %>

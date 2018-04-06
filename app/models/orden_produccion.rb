@@ -10,6 +10,9 @@ class OrdenProduccion < ApplicationRecord
   has_many :compromisos_de_entrega, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :compromisos_de_entrega, reject_if: :all_blank, allow_destroy: true
 
+  has_many :programaciones_op_maquinas, inverse_of: :orden_produccion, dependent: :destroy
+  accepts_nested_attributes_for :programaciones_op_maquinas, reject_if: :all_blank, allow_destroy: true
+
 
 
   attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente,

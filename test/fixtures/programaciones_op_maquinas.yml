@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orden_produccion: one
+  maquina: one
+  total_hora: 2018-04-06 11:28:35
+  hora_inicio: 2018-04-06 11:28:35
+  hora_final: 2018-04-06 11:28:35
+  cantidad_maquinas: 1
+  tiempo_por_maquina: 2018-04-06 11:28:35
+  tiempo_de_montaje: 2018-04-06 11:28:35
+  tiempo_de_desmontaje: 2018-04-06 11:28:35
+  habilitado: false
+  complemento: MyString
+
+two:
+  orden_produccion: two
+  maquina: two
+  total_hora: 2018-04-06 11:28:35
+  hora_inicio: 2018-04-06 11:28:35
+  hora_final: 2018-04-06 11:28:35
+  cantidad_maquinas: 1
+  tiempo_por_maquina: 2018-04-06 11:28:35
+  tiempo_de_montaje: 2018-04-06 11:28:35
+  tiempo_de_desmontaje: 2018-04-06 11:28:35
+  habilitado: false
+  complemento: MyString
