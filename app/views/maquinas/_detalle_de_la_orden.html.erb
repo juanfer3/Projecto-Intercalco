@@ -60,12 +60,12 @@
 
         <div class="col-4">
           <label for="">Cantidad de unidades</label><br>
-          <h6> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></strong> </h6>
+          <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></strong> </h6>
         </div>
 
         <div class="col-4">
           <label for="">Cantidad de tamaños</label>
-          <h6> <strong><%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%></strong> </h6>
+          <h6 id="tamanos_totales"> <strong><%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%></strong> </h6>
         </div>
 
         <div class="col-4">
@@ -73,24 +73,24 @@
           <h6> <strong><%=number_to_currency_no_moneda(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
         </div>
 
+
+
         <div class="col-12">
           <br>
         </div>
 
         <div class="col-4">
-          <label for="">TIEMPO DE MONTAJE</label>
-          <h6> <strong><%=number_to_currency_no_moneda(0.15)%></strong> </h6>
+          <%= f.input :tiempo_de_montaje %>
         </div>
+
         <div class="col-4">
-          <label for="">TIEMPO DE DESMONTAJE</label><br>
-          <h6> <strong><%=number_to_currency_no_moneda(0.15)%></strong> </h6>
+          <%= f.input :tiempo_de_desmontaje %>
         </div>
 
         <div class="col-4">
           <label for="">CANTIDAD DE MÁQUINAS</label><br>
           <div class="col-4">
-            <%= f.input :cantidad_maquinas ,  label:false
-            %>
+            <%= f.input :cantidad_maquinas ,  label:false%>
           </div>
         </div>
 
@@ -115,13 +115,7 @@
         <%= f.input :tiempo_por_maquina %>
       </div>
 
-      <div class="col-4">
-        <%= f.input :tiempo_de_montaje %>
-      </div>
 
-      <div class="col-4">
-        <%= f.input :tiempo_de_desmontaje %>
-      </div>
 
       <div class="col-4">
         <%= f.input :complemento %>

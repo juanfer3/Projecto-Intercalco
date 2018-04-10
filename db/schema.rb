@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406162835) do
+ActiveRecord::Schema.define(version: 20180410190512) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -474,17 +474,17 @@ ActiveRecord::Schema.define(version: 20180406162835) do
   create_table "programaciones_op_maquinas", force: :cascade do |t|
     t.integer "orden_produccion_id"
     t.integer "maquina_id"
-    t.time "total_hora"
     t.time "hora_inicio"
     t.time "hora_final"
     t.integer "cantidad_maquinas", default: 0
-    t.time "tiempo_por_maquina"
-    t.time "tiempo_de_montaje"
-    t.time "tiempo_de_desmontaje"
     t.boolean "habilitado", default: true
     t.string "complemento", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "tiempo_de_desmontaje", default: 0.0
+    t.float "tiempo_de_montaje", default: 0.0
+    t.float "tiempo_por_maquina", default: 0.0
+    t.float "total_hora", default: 0.0
     t.index ["maquina_id"], name: "index_programaciones_op_maquinas_on_maquina_id"
     t.index ["orden_produccion_id"], name: "index_programaciones_op_maquinas_on_orden_produccion_id"
   end
@@ -609,10 +609,10 @@ ActiveRecord::Schema.define(version: 20180406162835) do
   end
 
   create_table "variables_estandar", force: :cascade do |t|
-    t.datetime "tiempo_de_montaje"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "tiempo_de_desmontaje"
+    t.float "tiempo_de_desmontaje", default: 0.0
+    t.float "tiempo_de_montaje", default: 0.0
   end
 
 end

@@ -49,6 +49,10 @@ module ApplicationHelper
     number_to_currency(number, :unit => "",  :separator => ",", :delimiter => ".")
   end
 
+  def numero_beuty(number)
+    #code
+    number.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join('.').reverse
+  end
 
 
 

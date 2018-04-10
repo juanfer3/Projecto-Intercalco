@@ -2,7 +2,9 @@
 
 
 
-
+<div class="">
+  <h1><%= numero_beuty(1234567) %></h1>
+</div>
 
 
 
@@ -37,7 +39,6 @@
   <ul class="navbar-nav">
     <%@maquinas.each do |maquina| %>
             <li class="nav-item" id=<%="li_maquina_link_#{maquina.id}"%> >
-
                 <%=link_to "<span class='nav-link'>#{maquina.nombre}</span>".html_safe, consulta_por_maquinas_path(maquina), remote:true%>
             </li>
 
@@ -66,7 +67,7 @@
 
 </div>
 
-<input type="number" min="1" max="10" />
+
 
 
 
