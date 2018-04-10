@@ -13,6 +13,8 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery3
+//= require jquery-ui
+//= require jquery-ui/widgets/datepicker
 //= require popper
 //= require bootstrap
 //= require selectize
@@ -25,17 +27,18 @@
 //= require jquery-tablesorter/parsers/parser-metric
 //= require jquery-tablesorter/beta-testing/pager-custom-controls
 //= require bootstrap/bootstrap-tooltip
+//= require moment
+//= require moment/es.js
+//= require tempusdominus-bootstrap-4.js
+//= require bootstrap-timepicker
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
-//= require moment
-//= require moment/es.js
 //= require select2
 //= require toastr
 //= require best_in_place
 //= require jquery.purr
 //= require best_in_place.purr
-//= require jquery-ui
 //= require best_in_place.jquery-ui
 //= require_tree .
 
@@ -43,6 +46,10 @@
 
 
 $(document).on('turbolinks:load', function() {
+
+
+
+
 
 
 
@@ -2394,6 +2401,39 @@ c."]*/
 
 });
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

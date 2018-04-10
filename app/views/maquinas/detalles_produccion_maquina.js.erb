@@ -9,3 +9,23 @@ $("#programacion_op_maquina_maquina_id").hide(id_maquina)
 
 var id_maquina = $("#add_id").text()
 $("#programacion_op_maquina_maquina_id").val(id_maquina)
+
+var cant_maquina = $('#cant_maquina').text()
+$('#programacion_op_maquina_cantidad_maquinas').val(cant_maquina);
+$('#programacion_op_maquina_cantidad_maquinas').attr({
+       "max" : 3
+
+    });
+
+
+    $('form').keypress(function(e){
+      if(e == 13){
+        return false;
+      }
+    });
+
+    $('input').keypress(function(e){
+      if(e.which == 13){
+        return false;
+      }
+    });

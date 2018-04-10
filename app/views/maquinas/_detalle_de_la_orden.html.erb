@@ -34,10 +34,11 @@
 
 <% if @orden_produccion.programaciones_op_maquinas.empty? %>
 
-  <h5>NO HAY PROGRAMACION</h5>
+
   <!-- formulario para programacion -->
-  <%= simple_form_for(@programacion_op_maquina) do |f| %>
+  <%= simple_form_for(@programacion_op_maquina, layout: :inline) do |f| %>
     <%= f.error_notification %>
+
 
     <div class="form-inputs">
       <div class="ocultar">
@@ -47,25 +48,100 @@
             %>
       </div>
 
-      <div class="ocultar">
+      <div class="ocultar col-3">
         <%= f.input :maquina_id %>
       </div>
 
 
-      <%= f.input :total_hora %>
-      <%= f.input :hora_inicio %>
-      <%= f.input :hora_final %>
-      <%= f.input :cantidad_maquinas %>
-      <%= f.input :tiempo_por_maquina %>
-      <%= f.input :tiempo_de_montaje %>
-      <%= f.input :tiempo_de_desmontaje %>
-      <%= f.input :habilitado %>
-      <%= f.input :complemento %>
+
+
+      <div class="my_card_pedidos_form">
+
+
+        <div class="col-4">
+          <label for="">Cantidad de unidades</label><br>
+          <h6> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></strong> </h6>
+        </div>
+
+        <div class="col-4">
+          <label for="">Cantidad de tamaños</label>
+          <h6> <strong><%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%></strong> </h6>
+        </div>
+
+        <div class="col-4">
+          <label for="">Cantidad de tintas</label>
+          <h6> <strong><%=number_to_currency_no_moneda(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
+        </div>
+
+        <div class="col-12">
+          <br>
+        </div>
+
+        <div class="col-4">
+          <label for="">TIEMPO DE MONTAJE</label>
+          <h6> <strong><%=number_to_currency_no_moneda(0.15)%></strong> </h6>
+        </div>
+        <div class="col-4">
+          <label for="">TIEMPO DE DESMONTAJE</label><br>
+          <h6> <strong><%=number_to_currency_no_moneda(0.15)%></strong> </h6>
+        </div>
+
+        <div class="col-4">
+          <label for="">CANTIDAD DE MÁQUINAS</label><br>
+          <div class="col-4">
+            <%= f.input :cantidad_maquinas ,  label:false
+            %>
+          </div>
+        </div>
+
+
+      <div class="col-4">
+        <%= f.input :total_hora %>
+      </div>
+
+
+
+      <div class="col-4">
+        <%= f.input :hora_inicio %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :hora_final %>
+      </div>
+
+
+
+      <div class="col-4">
+        <%= f.input :tiempo_por_maquina %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :tiempo_de_montaje %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :tiempo_de_desmontaje %>
+      </div>
+
+      <div class="col-4">
+        <%= f.input :complemento %>
+      </div>
+      </div>
+
+
+
+
+
+
+
+
     </div>
 
-    <div class="form-actions">
+    <div class="form-actions col-3">
       <%= f.button :submit %>
     </div>
+
+
   <% end %>
 
 

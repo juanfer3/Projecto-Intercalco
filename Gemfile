@@ -60,37 +60,37 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-
 gem 'bootstrap', '~> 4.0.0.beta2.1'
-
-gem 'bootstrap-datepicker-rails'
-
 gem "select2-rails"
-
+#iconos ionicos
 gem 'ionicons-rails'
-
-
 gem 'popper_js', '~> 1.12.3'
 
+
+#gem for time
 gem "jquery-ui-rails"
 gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 gem 'momentjs-rails'
 gem "font-awesome-rails"
-
+gem 'bootstrap4-datetime-picker-rails'
+# layout rails
 gem 'rails_layout'
 
+# pintar tablas
 gem "table_print"
 
+#pagination
 gem 'will_paginate', github: 'jonatack/will_paginate'
 gem 'will_paginate-bootstrap4'
 gem 'simple_form'
 
+#segurity gem devise
 gem 'devise'
-
 gem 'devise-bootstrap-views'
 gem 'devise-i18n'
+
 #cancan Autorización
 gem 'cancancan'
 
@@ -138,3 +138,10 @@ gem 'pry-rails', :group => :development
 
 #gem table sorter
 gem 'jquery-tablesorter'
+
+#gem jquery rails
+gem 'jquery-ui-rails'
+
+gem "bootstrap_form",
+    git: "https://github.com/bootstrap-ruby/rails-bootstrap-forms.git",
+    branch: "master"

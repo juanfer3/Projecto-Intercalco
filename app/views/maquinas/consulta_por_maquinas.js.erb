@@ -7,3 +7,6 @@ $(".paginacion_de_ordenes").html('<%= j render 'paginacion_ordenes_por_maquinas'
 
 var id_machine = "<%= @maquina.id%>"
 $('#add_id').html(id_machine)
+
+var cant_maquina = "<%= @maquina.unidad %>"
+$('#cant_maquina').html(cant_maquina)

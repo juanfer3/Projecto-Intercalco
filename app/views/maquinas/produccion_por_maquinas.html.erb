@@ -1,9 +1,36 @@
 <br>
-<h1>ORDENES DE PRODUCCION MAQUINAS DE SATURNO</h1>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+  $('.campo_fecha').datepicker({
+    language: 'es'
+  })
+
+  $('.campo_hora').timepicker({
+    use24hours: true
+  })
+
+
+</script>
+
+
+
+
+
+
+
 <br>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark buscar_maquinas">
   <!-- Brand/logo -->
-  <a class="navbar-brand" href="#">Logo</a>
+  <a class="navbar-brand" href="#">Maquinas</a>
 
   <!-- Maquinas -->
 
@@ -39,6 +66,9 @@
 
 </div>
 
+<input type="number" min="1" max="10" />
+
+
 
 <!-- Modal Excel -->
 
@@ -53,6 +83,8 @@
       </div>
       <div class="modal-body" >
         <p class="ocultar" id="add_id"></p>
+        <p class="ocultar" id="cant_maquina"></p>
+
         <div class="" id="contenidoModal">
 
         </div>
