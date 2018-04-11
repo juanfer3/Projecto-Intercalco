@@ -30,9 +30,11 @@ class ProgramacionesOpMaquinasController < ApplicationController
       if @programacion_op_maquina.save
         format.html { redirect_to @programacion_op_maquina, notice: 'Programacion op maquina was successfully created.' }
         format.json { render :show, status: :created, location: @programacion_op_maquina }
+        format.js
       else
         format.html { render :new }
         format.json { render json: @programacion_op_maquina.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -44,9 +46,11 @@ class ProgramacionesOpMaquinasController < ApplicationController
       if @programacion_op_maquina.update(programacion_op_maquina_params)
         format.html { redirect_to @programacion_op_maquina, notice: 'Programacion op maquina was successfully updated.' }
         format.json { render :show, status: :ok, location: @programacion_op_maquina }
+        format.js
       else
         format.html { render :edit }
         format.json { render json: @programacion_op_maquina.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -58,6 +62,7 @@ class ProgramacionesOpMaquinasController < ApplicationController
     respond_to do |format|
       format.html { redirect_to programaciones_op_maquinas_url, notice: 'Programacion op maquina was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -69,6 +74,9 @@ class ProgramacionesOpMaquinasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def programacion_op_maquina_params
-      params.require(:programacion_op_maquina).permit(:orden_produccion_id, :maquina_id, :total_hora, :hora_inicio, :hora_final, :cantidad_maquinas, :tiempo_por_maquina, :tiempo_de_montaje, :tiempo_de_desmontaje, :habilitado, :complemento)
+      params.require(:programacion_op_maquina).permit(:orden_produccion_id,
+        :maquina_id, :total_hora, :hora_inicio, :hora_final, :cantidad_maquinas,
+        :tiempo_por_maquina, :tiempo_de_montaje, :tiempo_de_desmontaje, :habilitado,
+        :complemento,:tirajes_por_hora,:fecha_de_impresion)
     end
 end

@@ -36,11 +36,26 @@
 
 
   <!-- formulario para programacion -->
-  <%= simple_form_for(@programacion_op_maquina, layout: :inline) do |f| %>
+  <%= simple_form_for(@programacion_op_maquina, layout: :inline, remote: true) do |f| %>
     <%= f.error_notification %>
 
 
     <div class="form-inputs">
+
+      <div class="col-4">
+        <div class="">
+          <label for="">FECHA DE IMPRESIÓN</label> <br>
+            <div class="input-group">
+
+              <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar "></i> </span>
+              <%= f.text_field  :fecha_de_impresion,class: "form-control", id: "fecha_de_impresion"%>
+            </div>
+        </div>
+      </div>
+      <div class="">
+        <br>
+      </div>
+
       <div class="ocultar">
           <%= f.input :orden_produccion_id,
           :input_html => { :value => @orden_produccion.id },
@@ -61,23 +76,24 @@
         <div class="col-4">
           <label for="">Cantidad de unidades</label><br>
           <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></strong> </h6>
+          <h6 id="cantidad_total_pedida_oculta" class="ocultar" > <strong ALING="CENTER"><%=@orden_produccion.cantidad_solicitada %></strong> </h6>
         </div>
 
         <div class="col-4">
           <label for="">Cantidad de tamaños</label>
           <h6 id="tamanos_totales"> <strong><%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%></strong> </h6>
+          <h6 id="tamanos_totales_oculta" class="ocultar" > <strong><%=@orden_produccion.tamanos_total%></strong> </h6>
         </div>
 
         <div class="col-4">
           <label for="">Cantidad de tintas</label>
-          <h6> <strong><%=number_to_currency_no_moneda(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
+          <h6 id="cantidad_tintas"> <strong><%=number_to_currency_no_moneda(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
+          <h6 id="cantidad_tintas_oculta" class="ocultar" > <strong><%= @orden_produccion.montaje.desarrollos_de_tintas.length%></strong> </h6>
         </div>
 
 
 
-        <div class="col-12">
-          <br>
-        </div>
+
 
         <div class="col-4">
           <%= f.input :tiempo_de_montaje %>
@@ -89,10 +105,33 @@
 
         <div class="col-4">
           <label for="">CANTIDAD DE MÁQUINAS</label><br>
-          <div class="col-4">
+
             <%= f.input :cantidad_maquinas ,  label:false%>
-          </div>
+
         </div>
+      <div class="col-4">
+        <label for="">TIRAJES POR HORA</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" id="tirajes">
+
+            </div>
+          </div>
+
+          <%= f.text_field  :tirajes_por_hora,
+          class: 'form-control',
+          'aria-label'=>"Text input with checkbox"
+          %>
+        </div>
+      </div>
+
+
+
+
+
+
 
 
       <div class="col-4">
@@ -101,13 +140,6 @@
 
 
 
-      <div class="col-4">
-        <%= f.input :hora_inicio %>
-      </div>
-
-      <div class="col-4">
-        <%= f.input :hora_final %>
-      </div>
 
 
 
@@ -115,12 +147,40 @@
         <%= f.input :tiempo_por_maquina %>
       </div>
 
+      <div class="col-4">
+        <label for="">COMPLEMENTO</label>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+
+            <div class="input-group-text">
+                <input type="checkbox" aria-label="Checkbox for following text input" id="habilitar_complemento">
+
+            </div>
+          </div>
+
+          <%= f.text_field  :complemento,
+          class: 'form-control',
+          'aria-label'=>"Text input with checkbox"
+          %>
+        </div>
+      </div>
+
+
 
 
       <div class="col-4">
-        <%= f.input :complemento %>
+        <label for="">HORA DE INICIO</label><br>
+        <%= f.time_field :hora_inicio, class: "form-control"%>
       </div>
+
+      <div class="col-4">
+        <label for="">HORA FINAL</label><br>
+        <%= f.time_field :hora_final ,class: "form-control"%>
       </div>
+
+      <!--CIERRE DEL DIV PARA ORDENAR LAS CASILLAS-->
+      </div>
+
 
 
 
@@ -131,7 +191,7 @@
 
     </div>
 
-    <div class="form-actions col-3">
+    <div class="form-actions col-3 btn pull-right">
       <%= f.button :submit %>
     </div>
 

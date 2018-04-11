@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410190512) do
+ActiveRecord::Schema.define(version: 20180411164426) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -258,6 +258,8 @@ ActiveRecord::Schema.define(version: 20180410190512) do
     t.datetime "updated_at", null: false
     t.string "formato_de_tamaño", default: ""
     t.integer "unidad", default: 0
+    t.integer "tirajes_por_hora", default: 0
+    t.float "complemento", default: 0.0
   end
 
   create_table "materiales", force: :cascade do |t|
@@ -483,8 +485,10 @@ ActiveRecord::Schema.define(version: 20180410190512) do
     t.datetime "updated_at", null: false
     t.float "tiempo_de_desmontaje", default: 0.0
     t.float "tiempo_de_montaje", default: 0.0
-    t.float "tiempo_por_maquina", default: 0.0
-    t.float "total_hora", default: 0.0
+    t.string "tiempo_por_maquina", default: ""
+    t.string "total_hora", default: ""
+    t.integer "tirajes_por_hora", default: 0
+    t.date "fecha_de_impresion"
     t.index ["maquina_id"], name: "index_programaciones_op_maquinas_on_maquina_id"
     t.index ["orden_produccion_id"], name: "index_programaciones_op_maquinas_on_orden_produccion_id"
   end

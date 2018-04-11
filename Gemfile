@@ -75,6 +75,7 @@ gem 'bootstrap-timepicker-rails'
 gem 'momentjs-rails'
 gem "font-awesome-rails"
 gem 'bootstrap4-datetime-picker-rails'
+
 # layout rails
 gem 'rails_layout'
 
