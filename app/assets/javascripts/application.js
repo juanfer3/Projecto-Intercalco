@@ -47,6 +47,44 @@
 
 $(document).on('turbolinks:load', function() {
 
+  var startTime = "19:23:58";
+  var endTime = "06:53:22";
+
+  var fecha =  new Date("1/1/1900 " + startTime);
+  console.log(fecha);
+  var horas = "06:00:00";
+  function sumar_horas(horas, fecha)
+  {
+  	fecha = new Date(fecha);
+    horas= parseInt(horas)
+  		fecha.setHours(fecha.getHours()+06);
+      toastr.info(fecha)
+  		fecha =  fecha.toString();
+
+  	var fecha_date = fecha.split('T');
+  	var fecha_time = fecha_date[1].split('.');
+  	var fecha_time = fecha_date[1].split(':');
+
+  	fecha_date = fecha_date[0];
+
+  	fecha = fecha_date+' '+fecha_time[0]+':'+fecha_time[1];
+
+    toastr.info(fecha)
+    console.log(fecha);
+  }
+
+sumar_horas(horas, fecha)
+
+
+var startDate = new Date("1/1/1900 " + startTime);
+var endDate = new Date("1/1/1900 " + endTime);
+toastr.error(endDate)
+var from = "10-11-2010 08";
+var numbers = from.match(/\d+/g);
+var date = new Date(numbers[2], numbers[0]-1, numbers[1]);
+toastr.error(date)
+
+
   jQuery(function($){
     $.extend($.fn.datepicker.defaults, {
       language: 'es',
@@ -56,7 +94,7 @@ $(document).on('turbolinks:load', function() {
 
   $('.fecha_en_espanol').datepicker({
     language: 'es',
-    
+
   })
 
 

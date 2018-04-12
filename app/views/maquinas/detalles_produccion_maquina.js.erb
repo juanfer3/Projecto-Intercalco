@@ -126,7 +126,18 @@ function validarCamporParaParseInt(numero){
   }
 
 }
+//horas a dias
+function horas_a_dias(hora){
+  if (hora.length<=0) {
 
+    valor = 0
+    return valor
+  }else{
+
+    valor = parseFloat(hora.replace(/[^0-9\.]/g, ''))/24
+    return valor
+  }
+}
 // formula para parsear
 function number_format(amount, decimals) {
 
@@ -299,6 +310,29 @@ function formatear_hora(numero){
 
 
 }
+//function para sumar fecha por horas
+function sumar_dias(horas, fecha)
+{
+  fecha = new Date(fecha);
+  horas= parseInt(horas)
+    fecha.setHours(fecha.getHours()+06);
+    toastr.info(fecha)
+    fecha =  fecha.toString();
+
+  var fecha_date = fecha.split('T');
+  var fecha_time = fecha_date[1].split('.');
+  var fecha_time = fecha_date[1].split(':');
+
+  fecha_date = fecha_date[0];
+
+  fecha = fecha_date+' '+fecha_time[0]+':'+fecha_time[1];
+
+  toastr.info(fecha)
+  console.log(fecha);
+  return fecha
+}
+
+
 //function para sumar horas_a_minutos
 function sumar_horas(hora_inicio, tiempo_a_sumar){
 
@@ -364,10 +398,23 @@ function ejecutar_calculo_de_fecha(hora_inicio, t_maquina){
   });
   return true
 }
+//formato de fecha con jQuery
+function getFormattedDate(date) {
+  var year = date.getFullYear().toString();
+  console.log("AÑO: "+year);
+  var month = (1 + date.getMonth()).toString();
+  month = month.length > 1 ? month : '0' + month;
+
+  var day = date.getDate().toString();
+  day = day.length > 1 ? day : '0' + day;
+
+  return month + '/' + day + '/' + year;
+}
 //validar campos para la fecha
 function validar_campos_para_la_fecha(){
+  var fecha = $('#fecha_de_impresion').val()
   var hora_inicio = $('#programacion_op_maquina_hora_inicio').val()
-  if (hora_inicio.length <= 0) {
+  if (hora_inicio.length <= 0 && fecha.length <= 0) {
     return false
   }else {
 
@@ -376,8 +423,22 @@ function validar_campos_para_la_fecha(){
     if (t_maquina.length <= 0) {
       t_maquina = 0
     }else{
+      console.log(fecha);
+      console.log(hora_inicio);
 
-      ejecutar_calculo_de_fecha(hora_inicio, t_maquina)
+      hora_inicio = hora_inicio.toString() + ":00"
+      console.log(hora_inicio);
+      fecha= fecha.toString()
+      var myfecha = new Date(fecha.split("/")[1]+ "/"+fecha.split("/")[0]+ "/"+fecha.split("/")[2]+ " " + hora_inicio);
+
+      //var fe = getFormattedDate(myfecha)
+      console.log("esta es la fecha a parsear: "+myfecha);
+      fe = moment(myfecha).format("DD/MM/YYYY"); 
+      //var first_date = moment("July 1, 1994").format('DD-MM-YYYY');
+      console.log("LA FECHA:"+fe);
+      //sumar_dias(t_maquina, myfecha)
+      //ejecutar_calculo_de_fecha(hora_inicio, t_maquina)
+
       return true
 
     }
