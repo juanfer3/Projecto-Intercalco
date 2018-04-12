@@ -120,9 +120,10 @@
             </div>
           </div>
 
+          <input type="text" class="form-control" value="" id="campo_tirajes">
           <%= f.text_field  :tirajes_por_hora,
-          class: 'form-control',
-          'aria-label'=>"Text input with checkbox"
+          class: 'form-control ocultar',
+          readonly: true
           %>
         </div>
       </div>
@@ -157,10 +158,10 @@
 
             </div>
           </div>
-
+          <input type="text" class="form-control"  id="campo_hab_complemento">
           <%= f.text_field  :complemento,
-          class: 'form-control',
-          'aria-label'=>"Text input with checkbox"
+          class: 'form-control ocultar',
+          readonly: true
           %>
         </div>
       </div>
@@ -200,5 +201,306 @@
 
 
 <% else %>
-  <h5>SI HAY PROGRAMACION</h5>
+<!--
+  <table class="table table-bordered">
+    <thead>
+      <th colspan="2" ALING="CENTER">INFORMACION</th>
+    </thead>
+    <tbody>
+      <tr>
+        <th> FECHA DE IMPRESION</th>
+        <td><%=@orden_produccion.programaciones_op_maquinas.first.fecha_de_impresion%></td>
+      </tr>
+
+      <tr>
+        <th> CANTIDAD DE UNIDADES</th>
+        <td><%=@orden_produccion.cantidad_solicitada%></td>
+      </tr>
+
+      <tr>
+        <th> CANTIDAD DE TAMAÑOS </th>
+        <td><%=@orden_produccion.tamanos_total%></td>
+      </tr>
+    </tbody>
+  </table>
+-->
+  <div class="pull-right"> <span> <i></i> </span>
+    <td><%= link_to '<button type="button" class="btn btn-outline-danger">  </button>'.html_safe, programacion_op_maquina, method: :delete, data: { confirm: 'Realmente desea eliminar el registro?' } %></td>
+  </div>
+  <div class="my_card_pedidos_form my_orden_pedidos">
+
+    <div class="card col-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">FECHA DE IMPRESIÓN</label><br>
+          <h6>
+            <strong>
+                <%= @orden_produccion.programaciones_op_maquinas.first.fecha_de_impresion%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">CANTIDAD TOTAL</label><br>
+          <h6>
+            <strong>
+                <%=@orden_produccion.cantidad_solicitada%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TAMAÑOS TOTALES</label><br>
+          <h6>
+            <strong>
+                <%=@orden_produccion.tamanos_total%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">CANTIDAD DE MÁQUINAS</label><br>
+          <h6>
+            <strong>
+                <%=@orden_produccion.programaciones_op_maquinas.first.cantidad_maquinas%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+
+
+  <table class="table table-responsive">
+    <thead>
+
+      <th>TIEMPO DE MONTAJE</th>
+      <th>TIEMPO DE DESMONTAJE</th>
+      <th>TIRAJES POR HORA</th>
+      <th>COMPLEMENTO</th>
+      <th>TOTAL EN HORAS</th>
+      <th>TIEMPO POR MAQUINAS</th>
+      <th>HORA DE INICIO</th>
+      <th>HORA FINAL</th>
+
+    </thead>
+      <tbody>
+
+        <tr>
+
+          <td> <h6 ALING="CENTER"> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_montaje%> <span>%</span> </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_desmontaje%> <span>%</span> </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tirajes_por_hora%> <span> UND</span> </h6 </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.complemento%> <span>%</span> </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.total_hora%> <span> <i class="ion-clock"></i> </span> </h6>  </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_por_maquina%> <span> <i class="ion-clock"></i> </span></h6>  </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.hora_inicio.strftime("%H:%M ")%> <span> <i class="ion-clock"></i> </span> </h6>  </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.hora_final.strftime("%H:%M ")%> <span> <i class="ion-clock"></i> </span> </h6> </td>
+
+
+        </tr>
+      </tbody>
+
+  </table>
+
+<!--
+
+  <div class="my_card_pedidos_form my_orden_pedidos">
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">FECHA DE IMPRESION</label><br>
+          <h6>
+            <strong>
+                <%= @orden_produccion.programaciones_op_maquinas.first.fecha_de_impresion%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">CANTIDAD DE UNIDADES</label><br>
+          <h6> <strong> <%=@orden_produccion.cantidad_solicitada%> </strong> </h6>
+        </li>
+      </ul>
+    </div>
+
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TAMAÑOS TOTALES</label><br>
+          <h6> <strong> <%=@orden_produccion.tamanos_total%> </strong> </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">NUMERO DE TINTAS</label><br>
+          <h6> <strong> <%=@orden_produccion.montaje.desarrollos_de_tintas.length%> </strong> </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TIEMPO DE MONTAJE</label><br>
+          <h6> <strong> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_montaje%> </strong> </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TIEMPO DE DESMONTAJE</label><br>
+          <h6> <strong> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_desmontaje%> </strong> </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">CANTIDAD DE MÁQUINAS</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.cantidad_maquinas%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TIRAJES POR HORA</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.tirajes_por_hora%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">COMPLEMENTO</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.complemento%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TOTAL EN HORAS</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.total_hora%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">HORA DE INICIO</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.hora_inicio.strftime("%H:%M ")%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">HORA FINAL</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.hora_final.strftime("%H:%M ")%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+    <div class="card col-4">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <label for="">TIEMPO POR MAQUINAS</label><br>
+          <h6>
+            <strong>
+               <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_por_maquina%>
+            </strong>
+          </h6>
+        </li>
+      </ul>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+-->
+
+
+
 <% end %>
+
+
+<script type="text/javascript">
+
+$('#best_in_place_programacion_op_maquina_1_fecha_de_impresion').datepicker({
+  language: 'es'
+})
+
+
+</script>

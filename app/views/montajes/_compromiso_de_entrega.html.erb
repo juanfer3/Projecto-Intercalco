@@ -3,7 +3,7 @@
     <div class="">
     <label for="">Fecha De Compromiso</label>
     <div class="input-group" >
-      <%= f.text_field :fecha_de_compromiso , class: "form-control ", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+      <%= f.text_field :fecha_de_compromiso , class: "form-control fecha_en_espanol", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
       <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
     </div>
   </div></td>
@@ -13,3 +13,9 @@
   <%= link_to '<button type="button" class="btn btn-outline-danger btn_delete_contacto"><span><i class="ion-trash-a"></i></span></button>'.html_safe, '#', class: 'remove_desarrollo_tintas' %>
   </td>
 </tr>
+
+<script type="text/javascript">
+  $('.fecha_en_espanol').datepicker({
+    language: 'es'
+  })
+</script>

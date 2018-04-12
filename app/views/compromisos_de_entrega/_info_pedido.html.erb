@@ -99,7 +99,7 @@
                       <div class="col-3">
                         <label for="">Fecha real de despacho</label>
                         <div class="input-group" >
-                          <%= f.text_field :fecha_despacho , class: "form-control", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
+                          <%= f.text_field :fecha_despacho , class: "form-control fecha_en_espanol", "data-date-format" => "yyyy/mm/dd", 'data-provide' => 'datepicker'%>
                           <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
 
                         </div>
@@ -154,7 +154,7 @@
                             <td><%=best_in_place @compromiso_de_entrega, :cantidad_despacho, as: :input %></td>
                           </tr>
                         </tbody>
-                      
+
 
 
 
@@ -297,6 +297,12 @@
             <% end %>
             <script type="text/javascript">
               jQuery(".best_in_place").best_in_place();
+
+          
+                $('.fecha_en_espanol').datepicker({
+                  language: 'es'
+                })
+
             </script>
 
 

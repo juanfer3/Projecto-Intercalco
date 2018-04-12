@@ -29,7 +29,6 @@
 //= require bootstrap/bootstrap-tooltip
 //= require moment
 //= require moment/es.js
-//= require tempusdominus-bootstrap-4.js
 //= require bootstrap-timepicker
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker/core
@@ -37,6 +36,7 @@
 //= require select2
 //= require toastr
 //= require best_in_place
+//= require best_in_place.jquery-ui
 //= require jquery.purr
 //= require best_in_place.purr
 //= require best_in_place.jquery-ui
@@ -47,16 +47,19 @@
 
 $(document).on('turbolinks:load', function() {
 
-  $('input[type="time"][value="now"]').each(function(){
-      var d = new Date(),
-          h = d.getHours(),
-          m = d.getMinutes();
-      if(h < 10) h = '0' + h;
-      if(m < 10) m = '0' + m;
-      $(this).attr({
-        'value': h + ':' + m
-      });
+  jQuery(function($){
+    $.extend($.fn.datepicker.defaults, {
+      language: 'es',
+      format: 'dd/mm/yy'
     });
+  });
+
+  $('.fecha_en_espanol').datepicker({
+    language: 'es',
+    
+  })
+
+
 
 
 
