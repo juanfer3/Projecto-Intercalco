@@ -4,30 +4,32 @@
 <br>
 <table class="table " id="mi-tabla">
   <thead>
-    <th></th>
+
     <th>NUMERO DE ORDEN</th>
     <th>CLIENTE</th>
     <th>PRODUCTO</th>
-    <th class="sorter-shortDate dateFormat-ddmmyyyy">FECHA DE COMPROMISO</th>
-    <th class="sorter-shortDate dateFormat-ddmmyyyy">FECHA DE IMPRESION</th>
+    <th class="sorter-shortDate dateFormat-ddmmyyyy tablesorter-header">FECHA DE COMPROMISO</th>
+    <th class="">FECHA DE IMPRESION</th>
     <th>CANTIDADES</th>
+    <th></th>
     <th></th>
   </thead>
   <tbody >
     <tr class="ocultar">
+
       <td></td>
       <td></td>
       <td></td>
+      <td>01/01/2018</td>
+      <td>01/01/2018</td>
       <td></td>
-      <td class="sorter-shortDate dateFormat-ddmmyyyy">01/01/2018</td>
-      <td class="sorter-shortDate dateFormat-ddmmyyyy">01/01/2018</td>
       <td></td>
       <td></td>
     </tr>
     <%@ordenes_produccion.each do |orden|%>
 
-            <tr >
-                <td></td>
+            <tr id=<%="fila_de_#{orden.id}"%>>
+
                 <td><%=orden.numero_de_orden%></td>
                 <td><%=orden.montaje.cliente.nombre%></td>
                 <td><%=orden.montaje.nombre%></td>
@@ -108,19 +110,19 @@
 
 
 
-                                            <td class="sorter-shortDate dateFormat-ddmmyyyy"><%=@dates%> </td>
+                                            <td ><%=@dates%> </td>
 
                                 <% else %>
 
-                                <td class="sorter-shortDate dateFormat-ddmmyyyy"><p>Pendiente Por Definir Fecha</p> </td>
+                                <td ><p>Pendiente Por Definir Fecha</p> </td>
                                 <% end %>
 
 
                                 <% if orden.programaciones_op_maquinas.first == nil %>
                                   <!-- true -->
-                                  <td class="sorter-shortDate dateFormat-ddmmyyyy"id=<%="fecha_impresion#{orden.id}"%> > <p>Sin definir</p> </td>
+                                  <td  > <p>Sin definir</p> </td>
                                 <% else %>
-                                <td class="sorter-shortDate dateFormat-ddmmyyyy" id=<%="fecha_impresion#{orden.id}"%> > <%=orden.programaciones_op_maquinas.first.fecha_de_impresion%> </td>
+                                <td  > <%=orden.programaciones_op_maquinas.first.fecha_de_impresion%> </td>
                                 <% end %>
 
 
@@ -152,31 +154,54 @@
 
 
                 <td><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></td>
+                <% if orden.impresion == true %>
+                  <!-- true -->
+                  <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden), remote: true %></td>
+                <% else %>
+                  <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(orden), remote: true %></td>
+                <% end %>
 
                 <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, detalles_produccion_maquina_path(orden), remote: true %></td>
+
             </tr>
     <%end%>
   </tbody>
 </table>
 
 <script type="text/javascript">
+
+
+$.tablesorter.addParser({
+    id: "ddmmyy",
+    is: function(s) {
+        return false;
+    },
+    format: function(s, table, cell, cellIndex) {
+        var c = table.config, ci = c.headerList[cellIndex],
+        x = s;
+        s = s
+            // replace separators
+            .replace(/\s+/g," ").replace(/[\-|\.|\,]/g, "/")
+            // reformat dd/mm/yy to mm/dd/yy
+            .replace(/(\d{1,2})[\/\s](\d{1,2})[\/\s](\d{2})/, "$2/$1/$3");
+        return $.tablesorter.formatFloat( (new Date(s).getTime() || ''), table);
+    },
+    type: "numeric"
+});
+
 $('.ocultar').hide()
   $('#mi-tabla').tablesorter({
+    headers: {
+        // 8th column
+        3: { sorter: "ddmmyy" },
+        4: { sorter: "ddmmyy" }
+    },
 
+    // initial sort on the date column
+    sortList: [[7, 0]],
 
-
-
-    dateFormat : "mmddyyyy", // set the default date format
-
-  // or to change the format for specific columns, add the dateFormat to the headers option:
-  headers: {
-    0: { sorter: "shortDate" } //, dateFormat will parsed as the default above
-    // 1: { sorter: "shortDate", dateFormat: "ddmmyyyy" }, // set day first format; set using class names
-    // 2: { sorter: "shortDate", dateFormat: "yyyymmdd" }  // set year first format; set using data attributes (jQuery data)
-  }
-
-
-
+    // include zebra and any other widgets
+    widgets: ['zebra', 'columns']
 
 
 

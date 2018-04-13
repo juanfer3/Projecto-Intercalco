@@ -10,6 +10,11 @@ class MaquinasController < ApplicationController
   def confirmar_impresion
     #code
     @orden_produccion = OrdenProduccion.find(params[:id])
+    if @orden_produccion.impresion == true
+      @orden_produccion.update(impresion:false)
+    else
+      @orden_produccion.update(impresion:true)
+    end
     respond_to do |format|
       format.js
     end

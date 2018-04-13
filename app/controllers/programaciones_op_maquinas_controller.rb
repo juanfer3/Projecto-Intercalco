@@ -10,6 +10,8 @@ class ProgramacionesOpMaquinasController < ApplicationController
   def deshacer_programa_maquina
     #code
     @programacion_op_maquina = ProgramacionOpMaquina.find(params[:id])
+    
+
     respond_to do |format|
       format.js
     end
