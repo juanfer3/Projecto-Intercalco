@@ -310,25 +310,27 @@ function formatear_hora(numero){
 
 
 }
+
 //function para sumar fecha por horas
 function sumar_dias(horas, fecha)
 {
   fecha = new Date(fecha);
-  horas= parseInt(horas)
-    fecha.setHours(fecha.getHours()+06);
-    toastr.info(fecha)
+
+  hora = horas.split(":")[0]
+  min = horas.split(":")[1]
+  hora = parseInt(hora)
+
+  min = parseInt(min)
+
+
+    fecha.setHours(fecha.getHours()+hora);
+
+    fecha.setMinutes(fecha.getMinutes()+min);
+
     fecha =  fecha.toString();
 
-  var fecha_date = fecha.split('T');
-  var fecha_time = fecha_date[1].split('.');
-  var fecha_time = fecha_date[1].split(':');
 
-  fecha_date = fecha_date[0];
 
-  fecha = fecha_date+' '+fecha_time[0]+':'+fecha_time[1];
-
-  toastr.info(fecha)
-  console.log(fecha);
   return fecha
 }
 
@@ -361,7 +363,7 @@ function sumar_horas(hora_inicio, tiempo_a_sumar){
 }
 
 //function para calcular horas
-function calcucal_horas(hora_inicio, tiempo_a_calcular){
+function calcular_horas(hora_inicio, tiempo_a_calcular){
 
 
   if (hora_inicio.length <= 0) {
@@ -386,7 +388,7 @@ function calcucal_horas(hora_inicio, tiempo_a_calcular){
   }
 }
 function ejecutar_calculo_de_fecha(hora_inicio, t_maquina){
-  var valor = calcucal_horas(hora_inicio, t_maquina)
+  var valor = calcular_horas(hora_inicio, t_maquina)
   var hora_final_hr = valor.split(":")[0]
   if (hora_final_hr.length == 1) {
     hora_final_hr = "0"+hora_final_hr
@@ -410,36 +412,59 @@ function getFormattedDate(date) {
 
   return month + '/' + day + '/' + year;
 }
+
 //validar campos para la fecha
 function validar_campos_para_la_fecha(){
+
   var fecha = $('#fecha_de_impresion').val()
   var hora_inicio = $('#programacion_op_maquina_hora_inicio').val()
-  if (hora_inicio.length <= 0 && fecha.length <= 0) {
+
+  if (hora_inicio.length <= 0 ) {
     return false
   }else {
-
-
     var t_maquina = $('#programacion_op_maquina_tiempo_por_maquina').val()
+
     if (t_maquina.length <= 0) {
+
       t_maquina = 0
+
     }else{
-      console.log(fecha);
-      console.log(hora_inicio);
+            if (fecha.length <= 0) {
 
-      hora_inicio = hora_inicio.toString() + ":00"
-      console.log(hora_inicio);
-      fecha= fecha.toString()
-      var myfecha = new Date(fecha.split("/")[1]+ "/"+fecha.split("/")[0]+ "/"+fecha.split("/")[2]+ " " + hora_inicio);
+                return false
 
-      //var fe = getFormattedDate(myfecha)
-      console.log("esta es la fecha a parsear: "+myfecha);
-      fe = moment(myfecha).format("DD/MM/YYYY"); 
-      //var first_date = moment("July 1, 1994").format('DD-MM-YYYY');
-      console.log("LA FECHA:"+fe);
-      //sumar_dias(t_maquina, myfecha)
-      //ejecutar_calculo_de_fecha(hora_inicio, t_maquina)
 
-      return true
+            }else {
+
+
+
+
+                            hora_inicio = hora_inicio.toString() + ":00"
+
+                            fecha= fecha.toString()
+                            var myfecha = new Date(fecha.split("/")[1]+ "/"+fecha.split("/")[0]+ "/"+fecha.split("/")[2]+ " " + hora_inicio);
+
+
+                            var fecha_definida = sumar_dias(t_maquina, myfecha)
+
+                            fecha_final= moment(fecha_definida).format("DD/MM/YYYY");
+
+                            hora_final= moment(fecha_definida).format("HH:mm");
+
+                            hora_final.toString()
+                            $('#fecha_de_impresion_final').val(fecha_final)
+                            $("#programacion_op_maquina_hora_final").attr({
+                              'value': hora_final.split(":")[0] + ':' + hora_final.split(":")[1]
+                            });
+
+                            return true
+
+            }
+
+
+
+
+
 
     }
 
@@ -451,7 +476,6 @@ $('#programacion_op_maquina_hora_inicio').focusout(function(){
   validar_campos_para_la_fecha()
 
 })
-
 
 
 
@@ -476,6 +500,22 @@ $('#programacion_op_maquina_tirajes_por_hora').focusout(function(){
   formule_time_machine()
   validar_campos_para_la_fecha()
 })
+
+$('#campo_tirajes').focusout(function(){
+  formule_time_machine()
+  validar_campos_para_la_fecha()
+})
+
+$('#programacion_op_maquina_complemento').focusout(function(){
+  formule_time_machine()
+  validar_campos_para_la_fecha()
+})
+
+$('#fecha_de_impresion').focusout(function(){
+  formule_time_machine()
+  validar_campos_para_la_fecha()
+})
+
 
 $("#programacion_op_maquina_complemento").focusout(function(){
   formule_time_machine()

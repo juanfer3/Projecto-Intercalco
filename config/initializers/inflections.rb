@@ -186,4 +186,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'tirajes_por_hora', 'tirajes_por_horas'
   inflect.irregular 'complemento', 'complementos'
   inflect.irregular 'fecha_de_impresion', 'fechas_de_impresion'
+  inflect.irregular 'fecha_de_impresion_final', 'fechas_de_impresion_final'
+
 end

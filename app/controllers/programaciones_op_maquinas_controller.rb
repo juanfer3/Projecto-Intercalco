@@ -7,6 +7,14 @@ class ProgramacionesOpMaquinasController < ApplicationController
     @programaciones_op_maquinas = ProgramacionOpMaquina.all
   end
 
+  def deshacer_programa_maquina
+    #code
+    @programacion_op_maquina = ProgramacionOpMaquina.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   # GET /programaciones_op_maquinas/1
   # GET /programaciones_op_maquinas/1.json
   def show
@@ -19,6 +27,10 @@ class ProgramacionesOpMaquinasController < ApplicationController
 
   # GET /programaciones_op_maquinas/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /programaciones_op_maquinas
@@ -77,6 +89,6 @@ class ProgramacionesOpMaquinasController < ApplicationController
       params.require(:programacion_op_maquina).permit(:orden_produccion_id,
         :maquina_id, :total_hora, :hora_inicio, :hora_final, :cantidad_maquinas,
         :tiempo_por_maquina, :tiempo_de_montaje, :tiempo_de_desmontaje, :habilitado,
-        :complemento,:tirajes_por_hora,:fecha_de_impresion)
+        :complemento,:tirajes_por_hora,:fecha_de_impresion, :fecha_de_impresion_final)
     end
 end

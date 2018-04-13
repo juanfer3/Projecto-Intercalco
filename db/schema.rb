@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411164426) do
+ActiveRecord::Schema.define(version: 20180413122443) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -489,6 +489,7 @@ ActiveRecord::Schema.define(version: 20180411164426) do
     t.string "total_hora", default: ""
     t.integer "tirajes_por_hora", default: 0
     t.date "fecha_de_impresion"
+    t.date "fecha_de_impresion_final"
     t.index ["maquina_id"], name: "index_programaciones_op_maquinas_on_maquina_id"
     t.index ["orden_produccion_id"], name: "index_programaciones_op_maquinas_on_orden_produccion_id"
   end
