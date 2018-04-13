@@ -7,6 +7,14 @@ class MaquinasController < ApplicationController
     @maquinas = Maquina.all.order("nombre")
   end
 
+  def confirmar_impresion
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def detalles_produccion_maquina
     #Detalles produccion maquina
     puts "****************************************"

@@ -1,94 +1,31 @@
 <div class="">
 
-
-
-
   <div class="my_card_pedidos_form my_orden_pedidos">
 
     <div class="col-6">
-      <%= link_to '<button type="button" class="btn btn-outline-danger"> <span>Eliminar <i class="ion-trash-a"></i> </span> </button>'.html_safe, @programacion_op_maquina, method: :delete, remote: true,data: { confirm: 'Realmente desea eliminar el registro?' } %>
+      <%= link_to '<button class="btn btn-outline-warning"><span>Editar <i class="ion-paintbrush"></i></span></button>'.html_safe, edit_programacion_op_maquina_path( @programacion_op_maquina), remote: true %>
     </div>
 
     <div class="col-6">
-      <%= link_to '<button class="btn btn-outline-warning"><span>Editar <i class="ion-paintbrush"></i></span></button>'.html_safe, edit_programacion_op_maquina_path( @programacion_op_maquina ), remote: true %>
-    </div>
-
-
-
-  </div>
-
-
-  <div class="col-12">
-    <br>
-    <br>
-
-  </div>
-
-  <div class="my_card_pedidos_form my_orden_pedidos">
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">FECHA DE IMPRESIÓN</label><br>
-          <h6>
-            <strong>
-                <%= @programacion_op_maquina.fecha_de_impresion%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">CANTIDAD TOTAL</label><br>
-          <h6>
-            <strong>
-                <%=@programacion_op_maquina.orden_produccion.cantidad_solicitada%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">TAMAÑOS TOTALES</label><br>
-          <h6>
-            <strong>
-                <%=@programacion_op_maquina.orden_produccion.tamanos_total%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">CANTIDAD DE MÁQUINAS</label><br>
-          <h6>
-            <strong>
-                <%=@programacion_op_maquina.cantidad_maquinas%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
+      <%= link_to '<button type="button" class="btn btn-outline-danger"> <span>Eliminar <i class="ion-trash-a"></i> </span> </button>'.html_safe, @programacion_op_maquina.orden_produccion.programaciones_op_maquinas.first, method: :delete, remote: true,data: { confirm: 'Realmente desea eliminar el registro?' } %>
     </div>
 
   </div>
 
+
+
+    <div class="col-12">
+      <br>
+    </div>
 
 
   <table class="table table-responsive">
     <thead>
 
-      <th>TIEMPO DE MONTAJE</th>
-      <th>TIEMPO DE DESMONTAJE</th>
-      <th>TIRAJES POR HORA</th>
-      <th>COMPLEMENTO</th>
+      <th>FECHA DE IMPRESION</th>
+      <th>CANTIDAD TOTAL</th>
+      <th>TAMAÑOS TOTALES</th>
+      <th>CANTIDAD DE MAQUINAS</th>
       <th>TOTAL EN HORAS</th>
       <th>TIEMPO POR MAQUINAS</th>
       <th>HORA DE INICIO</th>
@@ -100,10 +37,10 @@
 
         <tr>
 
-          <td> <h6 ALING="CENTER"> <%=@programacion_op_maquina.tiempo_de_montaje%> <span>%</span> </h6> </td>
-          <td> <h6> <%=@programacion_op_maquina.tiempo_de_desmontaje%> <span>%</span> </h6> </td>
-          <td> <h6> <%=@programacion_op_maquina.tirajes_por_hora%> <span> UND</span> </h6 </h6> </td>
-          <td> <h6> <%=@programacion_op_maquina.complemento%> <span>%</span> </h6> </td>
+          <td> <h6> <%=@programacion_op_maquina.fecha_de_impresion%> <span> <i class="ion-calendar"></i> </span> </h6> </td>
+          <td> <h6> <%=numero_beuty(@programacion_op_maquina.orden_produccion.cantidad_solicitada.to_i)%> </h6> </td>
+          <td> <h6> <%=numero_beuty(@programacion_op_maquina.orden_produccion.tamanos_total.to_i)%> <span> UND</span> </h6 </h6> </td>
+          <td> <h6> <%=@programacion_op_maquina.cantidad_maquinas%>  </h6> </td>
           <td> <h6> <%=@programacion_op_maquina.total_hora%> <span> <i class="ion-clock"></i> </span> </h6>  </td>
           <td> <h6> <%=@programacion_op_maquina.tiempo_por_maquina%> <span> <i class="ion-clock"></i> </span></h6>  </td>
           <td> <h6> <%=@programacion_op_maquina.hora_inicio.strftime("%H:%M ")%> <span> <i class="ion-clock"></i> </span> </h6>  </td>

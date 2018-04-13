@@ -76,20 +76,20 @@
 
 
         <div class="col-4">
-          <label for="">Cantidad de unidades</label><br>
-          <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></strong> </h6>
+          <label for="">CANTIDAD DE UNIDADES</label><br>
+          <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=numero_beuty(@orden_produccion.cantidad_solicitada) %></strong> </h6>
           <h6 id="cantidad_total_pedida_oculta" class="ocultar" > <strong ALING="CENTER"><%=@orden_produccion.cantidad_solicitada %></strong> </h6>
         </div>
 
         <div class="col-4">
-          <label for="">Cantidad de tamaños</label>
-          <h6 id="tamanos_totales"> <strong><%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%></strong> </h6>
+          <label for="">TAMAÑOS TOTALES</label>
+          <h6 id="tamanos_totales"> <strong><%=numero_beuty(@orden_produccion.tamanos_total)%></strong> </h6>
           <h6 id="tamanos_totales_oculta" class="ocultar" > <strong><%=@orden_produccion.tamanos_total%></strong> </h6>
         </div>
 
         <div class="col-4">
-          <label for="">Cantidad de tintas</label>
-          <h6 id="cantidad_tintas"> <strong><%=number_to_currency_no_moneda(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
+          <label for="">CANTIDAD DE TINTAS</label>
+          <h6 id="cantidad_tintas"> <strong><%=numero_beuty(@orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
           <h6 id="cantidad_tintas_oculta" class="ocultar" > <strong><%= @orden_produccion.montaje.desarrollos_de_tintas.length%></strong> </h6>
         </div>
 
@@ -97,21 +97,20 @@
 
 
 
-        <div class="col-4">
+        <div class="col-4 ocultar">
           <%= f.input :tiempo_de_montaje %>
         </div>
 
-        <div class="col-4">
+        <div class="col-4 ocultar">
           <%= f.input :tiempo_de_desmontaje %>
         </div>
 
         <div class="col-4">
           <label for="">CANTIDAD DE MÁQUINAS</label><br>
-
             <%= f.input :cantidad_maquinas ,  label:false%>
-
         </div>
-      <div class="col-4">
+
+      <div class="col-4 ocultar">
         <label for="">TIRAJES POR HORA</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -150,7 +149,7 @@
         <%= f.input :tiempo_por_maquina %>
       </div>
 
-      <div class="col-4">
+      <div class="col-4 ocultar">
         <label for="">COMPLEMENTO</label>
         <div class="input-group mb-3">
           <div class="input-group-prepend">
@@ -183,7 +182,7 @@
             <div class="input-group">
 
               <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar "></i> </span>
-              <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final"%>
+              <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final", readonly:true%>
             </div>
         </div>
 
@@ -193,7 +192,7 @@
       <div class="col-4">
         <label for="">HORA FINAL</label><br>
 
-        <%= f.time_field :hora_final, label:false, class: "form-control" %>
+        <%= f.time_field :hora_final, label:false, class: "form-control", readonly:true%>
 
         <script type="text/javascript">
 
@@ -212,10 +211,14 @@
 
 
     </div>
-
-    <div class="form-actions col-3 btn pull-right">
-      <%= f.button :submit %>
-    </div>
+    <br>
+    <div class="btn pull-right">
+    <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+      <span>Guardar
+        <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+      </span>
+     <% end %>
+   </div>
 
 
   <% end %>
@@ -265,75 +268,19 @@
 
   <div class="col-12">
     <br>
-    <br>
-
   </div>
 
-  <div class="my_card_pedidos_form my_orden_pedidos">
 
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">FECHA DE IMPRESIÓN</label><br>
-          <h6>
-            <strong>
-                <%= @orden_produccion.programaciones_op_maquinas.first.fecha_de_impresion%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">CANTIDAD TOTAL</label><br>
-          <h6>
-            <strong>
-                <%= number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada)%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">TAMAÑOS TOTALES</label><br>
-          <h6>
-            <strong>
-                <%=number_to_currency_no_moneda(@orden_produccion.tamanos_total)%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-    <div class="card col-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          <label for="">CANTIDAD DE MÁQUINAS</label><br>
-          <h6>
-            <strong>
-                <%=@orden_produccion.programaciones_op_maquinas.first.cantidad_maquinas%>
-            </strong>
-          </h6>
-        </li>
-      </ul>
-    </div>
-
-  </div>
 
 
 
   <table class="table table-responsive">
     <thead>
 
-      <th>TIEMPO DE MONTAJE</th>
-      <th>TIEMPO DE DESMONTAJE</th>
-      <th>TIRAJES POR HORA</th>
-      <th>COMPLEMENTO</th>
+      <th>FECHA DE IMPRESION</th>
+      <th>CANTIDAD TOTAL</th>
+      <th>TAMAÑOS TOTALES</th>
+      <th>CANTIDAD DE MAQUINAS</th>
       <th>TOTAL EN HORAS</th>
       <th>TIEMPO POR MAQUINAS</th>
       <th>HORA DE INICIO</th>
@@ -345,10 +292,10 @@
 
         <tr>
 
-          <td> <h6 ALING="CENTER"> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_montaje%> <span>%</span> </h6> </td>
-          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_de_desmontaje%> <span>%</span> </h6> </td>
-          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tirajes_por_hora%> <span> UND</span> </h6 </h6> </td>
-          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.complemento%> <span>%</span> </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.fecha_de_impresion%> <span> <i class="ion-calendar"></i> </span> </h6> </td>
+          <td> <h6> <%=numero_beuty(@orden_produccion.cantidad_solicitada.to_i)%> </h6> </td>
+          <td> <h6> <%=numero_beuty(@orden_produccion.tamanos_total.to_i)%> <span> UND</span> </h6 </h6> </td>
+          <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.cantidad_maquinas%>  </h6> </td>
           <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.total_hora%> <span> <i class="ion-clock"></i> </span> </h6>  </td>
           <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.tiempo_por_maquina%> <span> <i class="ion-clock"></i> </span></h6>  </td>
           <td> <h6> <%=@orden_produccion.programaciones_op_maquinas.first.hora_inicio.strftime("%H:%M ")%> <span> <i class="ion-clock"></i> </span> </h6>  </td>

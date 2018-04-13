@@ -1,7 +1,7 @@
 <!-- formulario para programacion -->
 
 
-<div class="">
+<div class="btn pull-right">
   <%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-arrow-left-c"></i></span></button>'.html_safe, deshacer_programa_maquina_path( @programacion_op_maquina), remote: true %>
 </div>
 <%= simple_form_for(@programacion_op_maquina, layout: :inline, remote: true) do |f| %>
@@ -42,20 +42,20 @@
 
 
       <div class="col-4">
-        <label for="">Cantidad de unidades</label><br>
-        <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=number_to_currency_no_moneda(@programacion_op_maquina.orden_produccion.cantidad_solicitada) %></strong> </h6>
+        <label for="">CANTIDAD DE UNIDADES</label><br>
+        <h6 id="cantidad_total_pedida"> <strong ALING="CENTER"><%=numero_beuty(@programacion_op_maquina.orden_produccion.cantidad_solicitada.to_i) %></strong> </h6>
         <h6 id="cantidad_total_pedida_oculta" class="ocultar" > <strong ALING="CENTER"><%=@programacion_op_maquina.orden_produccion.cantidad_solicitada %></strong> </h6>
       </div>
 
       <div class="col-4">
-        <label for="">Cantidad de tamaños</label>
-        <h6 id="tamanos_totales"> <strong><%=number_to_currency_no_moneda(@programacion_op_maquina.orden_produccion.tamanos_total)%></strong> </h6>
+        <label for="">TAMAÑOS TOTALES</label>
+        <h6 id="tamanos_totales"> <strong><%=numero_beuty(@programacion_op_maquina.orden_produccion.tamanos_total.to_i)%></strong> </h6>
         <h6 id="tamanos_totales_oculta" class="ocultar" > <strong><%=@programacion_op_maquina.orden_produccion.tamanos_total%></strong> </h6>
       </div>
 
       <div class="col-4">
-        <label for="">Cantidad de tintas</label>
-        <h6 id="cantidad_tintas"> <strong><%=number_to_currency_no_moneda(@programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length)%></strong> </h6>
+        <label for="">CANTIDAD DE TINTAS</label>
+        <h6 id="cantidad_tintas"> <strong><%=@programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length%></strong> </h6>
         <h6 id="cantidad_tintas_oculta" class="ocultar" > <strong><%= @programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length%></strong> </h6>
       </div>
 
@@ -63,21 +63,21 @@
 
 
 
-      <div class="col-4">
+      <div class="col-4 ocultar">
         <%= f.input :tiempo_de_montaje %>
       </div>
 
-      <div class="col-4">
+      <div class="col-4 ocultar">
         <%= f.input :tiempo_de_desmontaje %>
       </div>
 
-      <div class="col-4">
+      <div class="col-4 ">
         <label for="">CANTIDAD DE MÁQUINAS</label><br>
 
           <%= f.input :cantidad_maquinas ,  label:false%>
 
       </div>
-    <div class="col-4">
+    <div class="col-4 ocultar">
       <label for="">TIRAJES POR HORA</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -103,8 +103,9 @@
 
 
 
-    <div class="col-4">
-      <%= f.input :total_hora %>
+    <div class="col-4 ">
+      <label for="">TOTAL HORAS</label>
+      <%= f.input :total_hora, label:false %>
     </div>
 
 
@@ -113,10 +114,11 @@
 
 
     <div class="col-4">
-      <%= f.input :tiempo_por_maquina %>
+      <label for="">TIEMPO POR MAQUINA</label>
+      <%= f.input :tiempo_por_maquina, label:false%>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 ocultar">
       <label for="">COMPLEMENTO</label>
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -148,7 +150,7 @@
           <div class="input-group">
 
             <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar "></i> </span>
-            <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final"%>
+            <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final", readonly: true%>
           </div>
       </div>
 
@@ -158,7 +160,7 @@
     <div class="col-4">
       <label for="">HORA FINAL</label><br>
 
-      <%= f.time_field :hora_final, label:false, class: "form-control" %>
+      <%= f.time_field :hora_final, label:false, class: "form-control" , readonly: true%>
 
       <script type="text/javascript">
 
@@ -178,9 +180,14 @@
 
   </div>
 
-  <div class="form-actions col-3 btn pull-right">
-    <%= f.button :submit %>
-  </div>
+  <br>
+  <div class="btn pull-right">
+  <%= button_tag type: 'submit', class: "btn btn-outline-success" do %>
+    <span>Guardar Cambios
+      <i id="iconoSubmit"class="ion-paper-airplane" aria-hidden="true"></i>
+    </span>
+   <% end %>
+ </div>
 <% end %>
 
 
@@ -599,10 +606,10 @@
 
 
 
-                              hora_inicio = hora_inicio.toString() 
-                              console.log("hora_inicio: "+ hora_inicio);
+                              hora_inicio = hora_inicio.toString()
+          
                               fecha= fecha.toString()
-                              console.log("fecha inicial: "+ fecha);
+
                               var myfecha = new Date(fecha.split("/")[1]+ "/"+fecha.split("/")[0]+ "/"+fecha.split("/")[2]+ " " + hora_inicio);
 
 

@@ -186,5 +186,5 @@ Rails.application.routes.draw do
   get 'detalles_produccion_maquina/:id', to: 'maquinas#detalles_produccion_maquina', as: :detalles_produccion_maquina
 
   get 'deshacer_programa_maquina/:id', to: 'programaciones_op_maquinas#deshacer_programa_maquina', as: :deshacer_programa_maquina
-
+  get 'confirmar_impresion/:id', to: 'maquinas#confirmar_impresion', as: :confirmar_impresion
 end
