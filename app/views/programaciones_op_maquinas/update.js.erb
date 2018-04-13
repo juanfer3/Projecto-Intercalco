@@ -1,2 +1,3 @@
 toastr.success("Cambios Realizados")
 $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>")
+$(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
