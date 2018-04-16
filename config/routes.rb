@@ -187,4 +187,8 @@ Rails.application.routes.draw do
 
   get 'deshacer_programa_maquina/:id', to: 'programaciones_op_maquinas#deshacer_programa_maquina', as: :deshacer_programa_maquina
   get 'confirmar_impresion/:id', to: 'maquinas#confirmar_impresion', as: :confirmar_impresion
+
+
+  get 'buscar_orden_maquina', to: 'maquinas#buscar_orden_maquina', as: :buscar_orden_maquina
+
 end

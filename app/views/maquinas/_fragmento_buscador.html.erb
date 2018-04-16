@@ -1,0 +1,32 @@
+<div class="col-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Buscar...</button>
+      </span>
+      <input type="text" class="form-control" id="buscar_orden_por_maquina">
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+$('#buscar_orden_por_maquina').keyup(function (){
+
+  var data =  $(this).val()
+  var id_maquina = $('#id_maquina').text()
+
+
+
+        if (data.length > 2) {
+
+          $.ajax({
+            url:'/buscar_orden_maquina/',
+            data: {data:data, id_maquina:id_maquina},
+            method:'get',
+            success: function (data){
+              $(".paginacion_de_ordenes").hide()
+            }
+          })
+        }
+
+})
+</script>

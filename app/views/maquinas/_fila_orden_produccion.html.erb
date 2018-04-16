@@ -104,32 +104,16 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <td><%= number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></td>
-<%puts"******************#{@orden_produccion.impresion}***********************"%>
-<% if @orden_produccion.impresion == true %>
-  <%puts"******************#{@orden_produccion.impresion}***********************"%>
-  <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
-<% else %>
-  <%puts"******************#{@orden_produccion.impresion}***********************"%>
-  <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
-<% end %>
+
+
+      <% if @orden_produccion.impresion == true %>
+        <%puts"******************#{@orden_produccion.impresion}***********************"%>
+        <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+      <% else %>
+        <%puts"******************#{@orden_produccion.impresion}***********************"%>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+      <% end %>
+
 
 <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, detalles_produccion_maquina_path(@orden_produccion), remote: true %></td>

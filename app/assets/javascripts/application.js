@@ -47,7 +47,11 @@
 
 $(document).on('turbolinks:load', function() {
 
+
   
+
+
+
 
   jQuery(function($){
     $.extend($.fn.datepicker.defaults, {
