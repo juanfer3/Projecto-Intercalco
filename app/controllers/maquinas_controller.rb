@@ -1,7 +1,7 @@
 class MaquinasController < ApplicationController
   before_action :set_maquina, only: [:show, :edit, :update, :destroy]
   require 'colorize'
-  
+
   # GET /maquinas
   # GET /maquinas.json
   def index
@@ -11,9 +11,6 @@ class MaquinasController < ApplicationController
   def buscar_orden_maquina
     #code
     data = params["data"]
-    id_maquina = params["id_maquina"]
-    puts "*****************ESTE ES EL ID#{id_maquina}***********************".yellow
-    @maquina = Maquina.find_by(id: id_maquina)
     @ordenes_produccion = Maquina.buscador_de_ordenes_por_maquina(data)
     respond_to do |format|
       format.js
