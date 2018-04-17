@@ -57,7 +57,7 @@ class Maquina < ApplicationRecord
       puts "******************LA DATA ESTA LLENA**********************".green
       orden = OrdenProduccion.joins(:montaje => [:cliente => [], :linea_producto => [],
         :material => []], :contacto => [], :nombre_facturacion => [])
-        .where("ordenes_produccion.numero_de_orden LIKE ?", data+"%")
+        .where("ordenes_produccion.numero_de_orden ILIKE ?", data+"%")
         if orden.empty?
           puts "******************CONSULTA VACIA**********************".red
         else
@@ -84,7 +84,7 @@ def self.buscar_por_orden_por_cliente(data)
     puts "******************LA DATA ESTA LLENA**********************".green
     orden = OrdenProduccion.joins(:montaje => [:cliente => [], :linea_producto => [],
       :material => []], :contacto => [], :nombre_facturacion => [])
-      .where("clientes.nombre LIKE ?", "%"+data+"%")
+      .where("clientes.nombre ILIKE ?", "%"+data+"%")
       if orden.empty?
         puts "******************CONSULTA VACIA**********************".red
       else
@@ -110,7 +110,7 @@ def self.buscar_orden_por_montaje(data)
     puts "******************LA DATA ESTA LLENA**********************".green
     orden = OrdenProduccion.joins(:montaje => [:cliente => [], :linea_producto => [],
       :material => []], :contacto => [], :nombre_facturacion => [])
-      .where("montajes.nombre LIKE ?", "%"+data+"%")
+      .where("montajes.nombre ILIKE ?", "%"+data+"%")
       if orden.empty?
         puts "******************CONSULTA VACIA**********************".red
       else
