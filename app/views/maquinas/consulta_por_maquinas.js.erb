@@ -12,11 +12,10 @@ $('#cant_maquina').html(cant_maquina)
 var tirajes = "<%= @maquina.tirajes_por_hora%>"
 $('#cant_tirajes_por_hora').html(tirajes)
 
-
 $('#buscar_orden_por_maquina').keyup(function (){
 
   var data =  $(this).val()
-  var id_maquina = $('#id_maquina').text()
+
 
 
 
@@ -24,7 +23,7 @@ $('#buscar_orden_por_maquina').keyup(function (){
 
           $.ajax({
             url:'/buscar_orden_maquina/',
-            data: {data:data, id_maquina:id_maquina},
+            data: {data:data},
             method:'get',
             success: function (data){
               $(".paginacion_de_ordenes").hide()
