@@ -22,6 +22,72 @@ class OrdenProduccion < ApplicationRecord
   before_save :antes_de_salvar
   after_create :despues_de_crear
 
+  def self.importar_orden_desde_excel_b_r_p(file)
+    #START
+    @errores = []
+
+    file_ext = File.extname(file.original_filename)
+    raise "Unknown file type: #{file.original_filename}" unless [".xls", ".xlsx", ".csv"].include?(file_ext)
+
+    if file_ext == ".xlsx"
+      spreadsheet = Roo::Excelx.new(file.path)
+    elsif file_ext == ".xls"
+      spreadsheet = Roo::Excel.new(file.path)
+    elsif file_ext == ".csv"
+      spreadsheet = Roo::CSV.new(file.path)
+    end
+
+    header = spreadsheet.row(1)
+    #validacion de ordenes
+    #numero_orden = spreadsheet.cell(4,'B')
+    columnas_validas=["NUMERO DE ORDEN","MES", "VENDEDOR", "LINEA DE PRODUCTO",
+      "FECHA DE LA ORDEN", "FECHA DE COMPROMISO", "FECHA DE ENTREGA CALCULADA",
+      "CLIENTE", "CLIENTE", "CANTIDAD PROGRAMADA", "PRECIO UNITARIO", "VALOR TOTAL",
+      "PRODUCCION NUEVA O REPETIDA", "TAMAÑOS TOTALES", "CABIDA",
+      "CODIGO DE MATERIAL", "MATERIAL",
+      "LINEA DE COLOR", "TEMPERATURA ° C", "MAQUINA",
+      "PANTALLA NUEVA O REPETIDA", "PIEZA A DECORAR",
+      "TINTA 1", "MALLA 1", "TIPO DE TINTA 1",
+      "TINTA 2", "MALLA 2", "TIPO DE TINTA 2",
+      "TINTA 3", "MALLA 3", "TIPO DE TINTA 3",
+      "TINTA 4", "MALLA 4", "TIPO DE TINTA 4",
+      "TINTA 5", "MALLA 5", "TIPO DE TINTA 5",
+      "TINTA 6", "MALLA 6", "TIPO DE TINTA 6",
+      "TINTA 7", "MALLA 7", "TIPO DE TINTA 7",
+      "TINTA 8", "MALLA 8", "TIPO DE TINTA 8",
+      "TINTA 9", "MALLA 9", "TIPO DE TINTA 9",
+      "TINTA 10", "MALLA 10", "TIPO DE TINTA 10",
+      "TINTA 11", "MALLA 11", "TIPO DE TINTA 12",
+      "TINTA 12", "MALLA 13", "TIPO DE TINTA 13",
+      "TAMAÑO DE CORTE 1", "TAMAÑO DE CORTE 2", "CANTIDAD DE HOJAS",
+      "MEDIDA DE LA HOJA 1", "MEDIDA DE LA HOJA 2", "DIMENSION",
+      "ORDEN DE COMPRA", "MODO DE EMPAQUE", "OBSERVACION"
+      ]
+
+    row = Hash[[header, spreadsheet.row(2)].transpose]
+
+    columnas_archivos = row.keys
+
+    columnas_archivos = columnas_archivos.map(&:to_s)
+
+    columnas_archivos = columnas_archivos.map(&:upcase)
+
+
+    raise "El orden de las columnas no es válido"  unless  columnas_validas == columnas_archivos
+
+
+
+    if @errores != []
+      return @errores
+    else
+      return true
+    end
+    #END
+  end
+
+
+
+
 
   def despues_de_crear
     #code
