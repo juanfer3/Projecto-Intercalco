@@ -1,6 +1,5 @@
 <div class="">
 
-  <p class="ocultar" id="id_maquina"><%=@maquina.id%></p>
 
 </div>
 <br>
@@ -215,13 +214,13 @@ $('.ocultar').hide()
 $('#buscar_orden_por_maquina').keyup(function (){
 
   var data =  $(this).val()
-  var id_maquina = $('#add_id').text()
+
 
   toast.danger(id_maquina)
   if (data.length > 2) {
     $.ajax({
       url:'/buscar_orden_maquina/',
-      data: {data:data, id_maquina:id_maquina},
+      data: {data:data},
       method:'get',
       success: function (data){
 
