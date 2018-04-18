@@ -108,3 +108,12 @@
     </div>
   </div>
 </div>
+
+
+
+<%@maquinas.each do |maquina| %>
+<div class="col-4">
+  <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
+  programacion_maquinas_excel_path(maquina,format: :xlsx) %>
+</div>
+<%end%>

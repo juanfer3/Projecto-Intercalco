@@ -1,0 +1,30 @@
+wb = xlsx_package.workbook
+
+
+
+
+
+wb.styles do |style|
+  highlight_cell = style.add_style(:b => true)
+
+
+	 wb.add_worksheet(name: "#{@maquina.nombre}") do |sheet|
+
+
+
+
+
+	 sheet.add_row ["CLIENTE"],
+	 style: [highlight_cell]
+
+
+
+
+     piezas.each do |pieza|
+  	   sheet.add_row []
+     end
+
+
+	end
+
+end

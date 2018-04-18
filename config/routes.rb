@@ -191,4 +191,6 @@ Rails.application.routes.draw do
 
   get 'buscar_orden_maquina', to: 'maquinas#buscar_orden_maquina', as: :buscar_orden_maquina
 
+  get 'programacion_maquinas_excel/:id', to: 'maquinas#programacion_maquinas_excel', as: :programacion_maquinas_excel
+
 end
