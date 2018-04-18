@@ -14,15 +14,6 @@ class MaquinasController < ApplicationController
   end
 
 
-  def programacion_maquinas_excel
-    @maquina = Maquina.find(params[:id])
-    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).paginate(page: params[:page], per_page: 20).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
-    respond_to do |format|
-      format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="ProgramacionOrdenesDeProduccion.xlsx"'
-      }
-  end
-
 
   def buscar_orden_maquina
     #code
