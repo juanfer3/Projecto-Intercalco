@@ -215,7 +215,7 @@ $('.ocultar').hide()
 $('#buscar_orden_por_maquina').keyup(function (){
 
   var data =  $(this).val()
-  var id_maquina = $('#id_maquina').text()
+  var id_maquina = $('#add_id').text()
 
   toast.danger(id_maquina)
   if (data.length > 2) {
