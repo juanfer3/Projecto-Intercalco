@@ -14,6 +14,10 @@ class MaquinasController < ApplicationController
     id_maquina = params["id_maquina"]
     puts "*****************ESTE ES EL ID#{id_maquina}***********************".yellow
     @maquina = Maquina.find_by(id: id_maquina)
+    if @maquina == nil
+      puts "=============================ESTA VACIO=========================="
+    end
+
     @ordenes_produccion = Maquina.buscador_de_ordenes_por_maquina(data)
     respond_to do |format|
       format.js
