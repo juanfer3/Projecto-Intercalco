@@ -8,7 +8,7 @@ wb.styles do |style|
   highlight_cell = style.add_style(:b => true)
 
 
-	 wb.add_worksheet(name: "#{@maquina.nombre}") do |sheet|
+	 wb.add_worksheet(name: "") do |sheet|
 
 
 
