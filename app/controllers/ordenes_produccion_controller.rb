@@ -306,7 +306,7 @@ def import_ordenes_produccion_from_excel
 
 
   begin
-    errores_o_true = OrdenProduccion.importar_excel_individual(file,montaje_seleccionado,
+    errores_o_true = OrdenProduccion.importar_orden_desde_excel_b_r_p(file,montaje_seleccionado,
       linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,comercial_id,
       inventario, fecha_de_orden, agregar_acabados, seleccion_acabados, cliente_id, fecha_compromiso)
 

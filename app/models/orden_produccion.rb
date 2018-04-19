@@ -22,8 +22,140 @@ class OrdenProduccion < ApplicationRecord
   before_save :antes_de_salvar
   after_create :despues_de_crear
 
-  def self.importar_orden_desde_excel_b_r_p(file)
+
+
+
+  def self.consulta_montaje(nombre)
     #START
+    nombre = nombre.upcase
+    puts"=============BUSQUEDA MONTAJE: #{nombre}=================".green
+    montaje = Montaje.find_by(nombre: nombre)
+    return montaje
+  end
+
+#MATERIALES======================================
+  def self.crear_material(nombre)
+
+    material = Material.create(descripcion: nombre)
+        if material.save
+          puts"material salvado".green
+
+        else
+          puts"INSERION INVALIDA".red
+        end
+    return material
+  end
+
+  def self.consulta_materiales(nombre)
+    #START
+    #START
+    nombre = nombre.upcase
+    puts"=============BUSQUEDA MATERIALES: #{nombre}=================".green
+    if nombre.length > 0
+      material = Material.find_by(descripcion: nombre)
+                if material == nil
+
+                  material == OrdenProduccion.crear_material( nombre)
+                  return material
+                end
+    end
+
+
+    return material
+  end
+
+
+
+  def self.consulta_linea_producto(nombre)
+    puts"=============BUSQUEDA MATERIALES: #{nombre}=================".green
+    linea_producto = LineaProducto.find_by(Descripcion: nombre)
+    return linea_producto
+  end
+
+  def self.consulta_linea_de_color(nombre)
+    puts"=============BUSQUEDA MATERIALES: #{nombre}=================".green
+    linea_de_color = LineaDeColor.find_by(nombre: nombre)
+    return linea_de_color
+  end
+
+  def self.consulta_user(nombre)
+    puts"=============BUSQUEDA MATERIALES: #{nombre}=================".green
+    vendedor = User.find_by(nombre: nombre)
+    return vendedor
+  end
+
+
+
+  #CLIENTES======================================
+  def self.crear_cliente(nombre, vendedor_id, nit_cliente)
+    puts"INICIO DE INSERCION".yellow
+    cliente = Cliente.create(nombre: nombre, user_id: vendedor_id, nit: nit_cliente)
+
+      if cliente.save
+        puts"cliente salvado".green
+
+      else
+        puts"INSERION INVALIDA".red
+      end
+
+    return cliente
+
+  end
+
+  def self.cliente_sin_definir()
+    sin_definir = "SIN_DEFINIR"
+    cliente = Cliente.find_by(nombre:sin_definir)
+    return cliente
+  end
+
+
+  def self.consulta_cliente(nombre, vendedor_id, nit_cliente)
+    nombre = nombre.upcase
+    puts"=============BUSQUEDA CLIENTE: #{nombre}=================".green
+    if nombre.length > 0
+      cliente = Cliente.find_by(nombre: nombre)
+      if cliente == nil
+        puts"CLIENTE NO EXISTE".green
+        cliente = OrdenProduccion.crear_cliente(nombre, vendedor_id, nit_cliente)
+      end
+
+    else
+      cliente = OrdenProduccion.cliente_sin_definir
+    end
+
+
+
+
+    return cliente
+  end
+
+
+  def self.relacion_montaje(nombre,id_cliente,id_vendedor, id_linea_de_producto,
+                   id_linea_color,codigo,dimension,modo_de_empaque,medida_hoja,
+                   tamanos_por_hoja,medida_de_corte)
+    #START
+    puts"=============START MONTAJE: #{nombre}=================".green
+    montaje = Montaje.find_by(nombre: nombre)
+    if montaje == nil
+      return montaje
+    else
+      puts"el montaje no existe"
+      # montaje = Montaje.create(nombre:nombre, cliente_id:id_cliente,
+      #  user_id: id_vendedor,linea_producto_id: id_linea_de_producto,codigo:codigo,
+      #  nombre:nombre,dimension:dimension,modo_de_empaque:modo_de_empaque, tamano_hoja:medida_hoja,
+      #  tamano_por_hojas: tamanos_por_hoja,tamano_de_corte:medida_de_corte)
+      #  if montaje.save
+      #    puts"Montaje almacenado".green
+      #  end
+      return montaje
+    end
+  end
+
+  def self.importar_orden_desde_excel_b_r_p(file,montaje_seleccionado,
+    linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,comercial_id,
+    inventario, fecha_de_orden, agregar_acabados, seleccion_acabados, cliente_id, fecha_compromiso)
+    #START
+    puts"****************START*****************".yellow
     @errores = []
 
     file_ext = File.extname(file.original_filename)
@@ -42,10 +174,10 @@ class OrdenProduccion < ApplicationRecord
     #numero_orden = spreadsheet.cell(4,'B')
     columnas_validas=["NUMERO DE ORDEN","MES", "VENDEDOR", "LINEA DE PRODUCTO",
       "FECHA DE LA ORDEN", "FECHA DE COMPROMISO", "FECHA DE ENTREGA CALCULADA",
-      "CLIENTE", "CLIENTE", "CANTIDAD PROGRAMADA", "PRECIO UNITARIO", "VALOR TOTAL",
+      "CLIENTE","DESCRIPCION", "CANTIDAD PROGRAMADA", "PRECIO UNITARIO", "VALOR TOTAL",
       "PRODUCCION NUEVA O REPETIDA", "TAMAÑOS TOTALES", "CABIDA",
       "CODIGO DE MATERIAL", "MATERIAL",
-      "LINEA DE COLOR", "TEMPERATURA ° C", "MAQUINA",
+      "LINEA DE COLOR", "TEMPERATURA", "MAQUINA",
       "PANTALLA NUEVA O REPETIDA", "PIEZA A DECORAR",
       "TINTA 1", "MALLA 1", "TIPO DE TINTA 1",
       "TINTA 2", "MALLA 2", "TIPO DE TINTA 2",
@@ -57,11 +189,11 @@ class OrdenProduccion < ApplicationRecord
       "TINTA 8", "MALLA 8", "TIPO DE TINTA 8",
       "TINTA 9", "MALLA 9", "TIPO DE TINTA 9",
       "TINTA 10", "MALLA 10", "TIPO DE TINTA 10",
-      "TINTA 11", "MALLA 11", "TIPO DE TINTA 12",
-      "TINTA 12", "MALLA 13", "TIPO DE TINTA 13",
+      "TINTA 11", "MALLA 11", "TIPO DE TINTA 11",
+      "TINTA 12", "MALLA 12", "TIPO DE TINTA 12",
       "TAMAÑO DE CORTE 1", "TAMAÑO DE CORTE 2", "CANTIDAD DE HOJAS",
       "MEDIDA DE LA HOJA 1", "MEDIDA DE LA HOJA 2", "DIMENSION",
-      "ORDEN DE COMPRA", "MODO DE EMPAQUE", "OBSERVACION"
+      "ORDEN DE COMPRA", "MODO DE EMPAQUE", "OBSERVACION", "NIT CLIENTE", "TAMAÑOS POR HOJA"
       ]
 
     row = Hash[[header, spreadsheet.row(2)].transpose]
@@ -72,9 +204,107 @@ class OrdenProduccion < ApplicationRecord
 
     columnas_archivos = columnas_archivos.map(&:upcase)
 
+    columnas_erroneas  = 0
 
-    raise "El orden de las columnas no es válido"  unless  columnas_validas == columnas_archivos
+    error_column = []
 
+  (0..columnas_validas.length).each do |i|
+
+      puts"=======ITERANDO #{columnas_validas[i]} y #{columnas_archivos[i]}=======".green
+
+      if columnas_validas[i].to_s.upcase != columnas_archivos[i].to_s.upcase
+        columnas_erroneas =+ 1
+        puts"===============COLUMNA INVALIDA: #{columnas_validas[i]}===============".red
+        error_column << "VALIDE LAS COLUMNA(S) #{columnas_validas[i]}"
+      else
+        puts"===============ESTAS COLUNMAS SON IGUAES".blue
+      end
+
+    end
+
+    puts"TOTALS COLUMNAS ERRONEAS: #{columnas_erroneas}"
+
+    if columnas_erroneas > 0
+      @errores << "VALIDE LAS COLUMNA(S) #{error_column.map{|i|i}*", "  " "}"
+    end
+
+    #raise "El orden de las columnas no es válido"  unless  columnas_validas == columnas_archivos
+    if columnas_validas == columnas_archivos
+
+                  puts"==================LAS COLUMNAS SON IGUALES================".green
+
+                  numero_orden = spreadsheet.cell(2,'A')
+
+                  if numero_orden.length != 0
+                                puts"=================== EL NUMERO DE ORDEN NO ES NULO ====================".green
+                                      #VALIDAR MONTAJE
+                                      if montaje_seleccionado.present?
+
+                                              puts"EL MONTAJE EXISTE".yellow
+                                              montaje_id  = montaje_seleccionado
+
+                                      else
+
+                                              puts"EL MONTAJE NO FUE SELECCIONADO".yellow
+                                              nombre_montaje = spreadsheet.cell(2,'I').to_s.upcase
+                                              montaje = OrdenProduccion.consulta_montaje(nombre_montaje)
+
+                                                          if montaje == nil
+
+                                                            cliente_nombre = spreadsheet.cell(2,'H').to_s.upcase
+                                                            nit_cliente = spreadsheet.cell(2,'BP').to_s.upcase
+                                                            vendedor_id = comercial_id
+                                                            cliente = OrdenProduccion.consulta_cliente(cliente_nombre, vendedor_id, nit_cliente)
+                                                            #id cliente
+                                                            cliente_id =cliente.id
+                                                            puts"#{cliente_id}".yellow
+
+                                                            material_nombre = spreadsheet.cell(2,'Q')
+                                                            material = OrdenProduccion.consulta_materiales(material_nombre)
+                                                            #id material
+                                                            material_id = material.id
+                                                            puts"==================#{material_id}====================".yellow
+
+
+                                                            linea_producto_id = linea_de_producto_seleccionada
+                                                            linea_de_color_id = linea_de_color_seleccionada
+
+                                                            codigo = ""
+                                                            dimension = spreadsheet.cell(2,'BL').to_s.upcase
+                                                            dimension = dimension.split(" CM")
+
+                                                            modo_de_empaque = spreadsheet.cell(2,'BN').to_s.upcase
+
+                                                            medida_hoja_1 = spreadsheet.cell(2,'BJ').to_s.upcase
+                                                            medida_hoja_2 = spreadsheet.cell(2,'BK').to_s.upcase
+
+                                                            medida_hoja = medida_hoja_1 + medida_hoja_2
+                                                            tamanos_por_hoja = spreadsheet.cell(2,'BQ').to_s.upcase
+
+                                                            medida_corte_1 = spreadsheet.cell(2,'BG').to_s.upcase
+                                                            medida_corte_2 = spreadsheet.cell(2,'BH').to_s.upcase
+
+                                                            montaje = OrdenProduccion.relacion_montaje(nombre_montaje,cliente_id, vendedor_id,linea_producto_id,linea_de_color_id,codigo, dimension,modo_de_empaque,
+                                                            medida_hoja,tamanos_por_hoja, medida_de_corte)
+
+                                                            #montaje_id = montaje.id
+
+                                                            #nombre,id_cliente,id_vendedor, id_linea_de_producto,
+                                                            #id_linea_color,codigo,dimension,modo_de_empaque,medida_hoja,
+                                                            #tamanos_por_hoja,medida_de_corte
+
+                                                          else
+                                                            montaje_id = montaje.id
+                                                          end
+
+                                      end
+                  else
+                    puts"===================EL NUMERO DE ORDEN EXISTE=====================".red
+                  end
+
+    else
+      puts"==================LAS COLUMNAS NO SON IGUALES============".red
+    end
 
 
     if @errores != []
