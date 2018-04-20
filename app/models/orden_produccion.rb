@@ -219,7 +219,7 @@ class OrdenProduccion < ApplicationRecord
 
 
   #CREAR ORDEN DE PRODUCCION
-  def self.crear_Orden_de_produccion(numero_de_orden)
+  def self.crear_Orden_de_produccion(numero_de_orden,montaje_id)
     puts"------------------START ORDEN DE PRODUCCION----------------".yellow
 
   end
@@ -372,15 +372,25 @@ class OrdenProduccion < ApplicationRecord
                                                             OrdenProduccion.consultar_maquinas(maquinas_seleccionadas, montaje_id)
                                                             OrdenProduccion.consulta_acabados(seleccion_acabados, montaje_id)
 
+                                                            #DATOS DE LA ORDEN
+                                                                    #DATOS CONTACTO
+                                                                    
+                                                                    #DATOS DIRECCION DE ENTREGA
+                                                                    #DATOS FACTURAR A
+
+                                                            cantidad_hojas = spreadsheet.cell(2,'BI').to_s.upcase
+                                                            orden_de_compra = spreadsheet.cell(2,'BM').to_s.upcase
+                                                            cantidad_solicitada = spreadsheet.cell(2,'J').to_s.upcase
+                                                            fecha_de_orden = spreadsheet.cell(2,'E')
+                                                            tamanos_totales = spreadsheet.cell(2,'N')
+                                                            cavidad = spreadsheet.cell(2,'O')
+                                                            cantidad_programada = tamanos_totales * cavidad
+                                                            precio_unitario = spreadsheet.cell(2,'k')
+                                                            observaciones = spreadsheet.cell(2,'BO')
+                                                            puts"CANTIDAD PROGRAMADA: #{cantidad_programada}".yellow
+
                                                             #INSERCION EN LAS ORDENES DE PRODUCCION
-                                                            OrdenProduccion.crear_Orden_de_produccion(numero_orden)
-
-
-
-
-
-
-
+                                                            OrdenProduccion.crear_Orden_de_produccion(numero_orden,montaje_id)
 
 
 
