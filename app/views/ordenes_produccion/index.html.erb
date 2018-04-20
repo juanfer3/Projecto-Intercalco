@@ -1377,6 +1377,18 @@ $(document).ready(function(){
               				</div>
 
                     </div>
+
+
+                    <div class="col-4">
+                      <label for="">Seleccione Contacto:</label>
+                      <%= select_tag "contacto_id",
+                          options_for_select([ ""]),
+                          class:"demo-default",
+                          id:"selectize_contacto_id",
+                          include_blank: 'Seleccione contacto'
+                        %>
+                    </div>
+
                     <script type="text/javascript">
 
                     //AJAX CLIENTE
@@ -1469,18 +1481,6 @@ $(document).ready(function(){
                           //select_contacto.disable();
 
                     </script>
-
-                    <div class="col-4">
-                      <label for="">Seleccione Contacto:</label>
-                      <%= select_tag "contacto_id",
-                          options_for_select([ ""]),
-                          class:"demo-default",
-                          id:"selectize_contacto_id",
-                          include_blank: 'Seleccione contacto'
-                        %>
-                    </div>
-
-
 
 
                     <div class="col-12">
