@@ -1366,7 +1366,7 @@ $(document).ready(function(){
 
                       <div class="control-group">
                         <label for="select-beast">Seleccione Cliente:</label>
-                        <%= select_tag "clientes",
+                        <%= select_tag "cliente_id",
                             options_for_select([ ""]),
                             class:"demo-default",
                             id:"selectize_cliente_id",
@@ -1428,7 +1428,28 @@ $(document).ready(function(){
 
                     </script>
 
+                    <div class="col-4">
+                      <label for="">Seleccione Contacto:</label>
+                      <%= select_tag "contacto_id",
+                          options_for_select([ ""]),
+                          class:"demo-default",
+                          id:"selectize_contacto_id",
+                          include_blank: 'Seleccione contacto'
+                        %>
+                    </div>
 
+                    <script type="text/javascript">
+                              var select_conacto = $('#selectize_contacto_id').selectize({
+                                      valueField: 'name',
+                                      labelField: 'name',
+                                      searchField: ['name']
+                                })
+
+                      				select_contacto  = $select_city[0].selectize;
+
+                      				select_contacto.disable();
+
+                    </script>
 
 
                     <div class="col-12">
