@@ -18,8 +18,8 @@ class ContactosController < ApplicationController
     #code
     data = params['q']
     puts "******************ESTA ES LA DATA: #{data}**********************".red
-    @contactos= []
-    @contactos= Contacto.where("cliente_id = ?", data).order('nombre') if data.present?
+    @contactos = []
+    @contactos = Contacto.where("cliente_id = ?", data).order('nombre_contacto') if data.present?
     respond_to do |format|
       format.js
       format.json
