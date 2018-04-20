@@ -1449,7 +1449,7 @@ $(document).ready(function(){
                                       success: function(results) {
                                         select_contacto.enable();
                                         callback(results);
-                                        console.log("resultado");
+                                        console.log(results);
 
                                       },
                                       error: function() {
@@ -1471,9 +1471,9 @@ $(document).ready(function(){
 
 
                           var select_contacto = $('#selectize_contacto_id').selectize({
-                                  valueField: 'name',
-                                  labelField: 'name',
-                                  searchField: ['name']
+                                  valueField: 'id',
+                                  labelField: 'nombre',
+                                  searchField: ['nombre']
                             })
 
                           select_contacto  = select_contacto[0].selectize;
