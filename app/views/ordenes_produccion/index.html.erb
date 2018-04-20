@@ -3,7 +3,6 @@
 <h1>Ordenes de Producción</h1>
 
 
-<h1>!!!HELLO WORLD!!!</h1>
 
 
 <div class="col-12">
@@ -1447,4 +1446,25 @@ $(document).ready(function(){
     $('.ocultar_incumplidos').show()
 
   }
+
+
+
+  $('#myTable').tablesorter({
+
+            headers: {
+                //identificar columna column
+                6: { sorter: "ddmmyy" },
+            },
+            // initial sort on the date column
+            sortList: [[7, 0]],
+
+            // include zebra and any other widgets
+            widgets: ['zebra', 'columns']
+
+  });
+
+
+
+
+
 </script>

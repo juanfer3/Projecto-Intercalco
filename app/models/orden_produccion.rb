@@ -89,7 +89,8 @@ class OrdenProduccion < ApplicationRecord
   #CLIENTES======================================
   def self.crear_cliente(nombre, vendedor_id, nit_cliente)
     puts"INICIO DE INSERCION".yellow
-    cliente = Cliente.create(nombre: nombre, user_id: vendedor_id, nit: nit_cliente)
+    cliente = Cliente.create(nombre: nombre, user_id: vendedor_id,
+      nit: nit_cliente)
 
       if cliente.save
         puts"cliente salvado".green
@@ -132,24 +133,98 @@ class OrdenProduccion < ApplicationRecord
 
   def self.relacion_montaje(nombre,id_cliente,id_vendedor, id_linea_de_producto,
                    id_linea_color,codigo,dimension,modo_de_empaque,medida_hoja,
-                   tamanos_por_hoja,medida_de_corte)
+                   tamanos_por_hoja, medida_de_corte,material_id)
     #START
     puts"=============START MONTAJE: #{nombre}=================".green
     montaje = Montaje.find_by(nombre: nombre)
     if montaje == nil
+      puts"el montaje no existe"
+      puts"-----------------------------------------------".blue
+      puts"cliente: #{id_cliente}".yellow
+      puts"linea color: #{id_linea_color}".yellow
+      puts"linea de producto: #{id_linea_de_producto}".yellow
+      puts"material: #{material_id}".yellow
+      puts"nombre: #{nombre}".yellow
+      puts"-----------------------------------------------".blue
+      montaje = Montaje.create(nombre:nombre,
+                 cliente_id:id_cliente,
+                 linea_de_color_id:id_linea_color,
+                 linea_producto_id: id_linea_de_producto,
+                 material_id:material_id,
+                 codigo:codigo,
+                 dimension:dimension,
+                 modo_de_empaque:modo_de_empaque,
+                 tamano_hoja:medida_hoja,
+                 tamano_por_hojas: tamanos_por_hoja,
+                 tamano_de_corte:medida_de_corte)
+
+         if montaje.save
+           puts"Montaje almacenado".green
+         end
+
       return montaje
     else
-      puts"el montaje no existe"
-      # montaje = Montaje.create(nombre:nombre, cliente_id:id_cliente,
-      #  user_id: id_vendedor,linea_producto_id: id_linea_de_producto,codigo:codigo,
-      #  nombre:nombre,dimension:dimension,modo_de_empaque:modo_de_empaque, tamano_hoja:medida_hoja,
-      #  tamano_por_hojas: tamanos_por_hoja,tamano_de_corte:medida_de_corte)
-      #  if montaje.save
-      #    puts"Montaje almacenado".green
-      #  end
+      puts"el montaje si existe"
+
+
       return montaje
     end
   end
+
+
+  # contenedores de maquinas
+  def self.crear_contenedores_de_maquinas(maquinas_ids, montaje_id)
+    puts "****************INSERCION CONTENEDOR DE MAQUINAS************************"
+      #INSERCION CONTENEDOR MAQUINA
+      maquinas_ids.each do |crear|
+        puts "*****************id maquina: #{crear}***********************".blue
+        contenedor_para_maquinas= ContenedorDeMaquinas.new(montaje_id:montaje_id,maquina_id:crear)
+               if contenedor_para_maquinas.save
+                 puts "****************CONTENEDOR DE MAQUINAS CREADO************************".green
+               end
+      end
+  end
+
+  def self.consultar_maquinas(maquinas_seleccionadas,montaje_id)
+
+    puts"------------------START------------------".yellow
+    if maquinas_seleccionadas.present?
+        OrdenProduccion.crear_contenedores_de_maquinas(maquinas_seleccionadas, montaje_id)
+    end
+
+  end
+
+
+  #consulta de acabados
+  def self.crear_contenedores_de_acabados(acabados_ids, montaje_id)
+    puts "****************INSERCION CONTENEDOR DE ACABADOS************************"
+      #INSERCION CONTENEDOR ACABADOS
+      acabados_ids.each do |crear|
+        puts "*****************id ACABADOS: #{crear}***********************".blue
+        contenedor= ContenedorDeAcabados.new(montaje_id:montaje_id,acabado_id:crear)
+               if contenedor.save
+                 puts "****************CONTENEDOR DE ACABADOS CREADO************************".green
+               end
+      end
+  end
+
+
+
+  def self.consulta_acabados(acabados_ids,montaje_id)
+    puts"------------------START------------------".yellow
+    if acabados_ids.present?
+        OrdenProduccion.crear_contenedores_de_acabados(acabados_ids, montaje_id)
+    end
+  end
+
+
+  #CREAR ORDEN DE PRODUCCION
+  def self.crear_Orden_de_produccion(numero_de_orden)
+    puts"------------------START ORDEN DE PRODUCCION----------------".yellow
+
+  end
+
+
 
   def self.importar_orden_desde_excel_b_r_p(file,montaje_seleccionado,
     linea_de_producto_seleccionada,linea_de_color_seleccionada,maquinas_seleccionadas,comercial_id,
@@ -233,7 +308,7 @@ class OrdenProduccion < ApplicationRecord
 
                   puts"==================LAS COLUMNAS SON IGUALES================".green
 
-                  numero_orden = spreadsheet.cell(2,'A')
+                  numero_orden = spreadsheet.cell(2,'A').to_s.upcase
 
                   if numero_orden.length != 0
                                 puts"=================== EL NUMERO DE ORDEN NO ES NULO ====================".green
@@ -265,7 +340,7 @@ class OrdenProduccion < ApplicationRecord
                                                             material_id = material.id
                                                             puts"==================#{material_id}====================".yellow
 
-
+                                                            #DATOS PARA EL MONTAJE
                                                             linea_producto_id = linea_de_producto_seleccionada
                                                             linea_de_color_id = linea_de_color_seleccionada
 
@@ -284,14 +359,30 @@ class OrdenProduccion < ApplicationRecord
                                                             medida_corte_1 = spreadsheet.cell(2,'BG').to_s.upcase
                                                             medida_corte_2 = spreadsheet.cell(2,'BH').to_s.upcase
 
-                                                            montaje = OrdenProduccion.relacion_montaje(nombre_montaje,cliente_id, vendedor_id,linea_producto_id,linea_de_color_id,codigo, dimension,modo_de_empaque,
-                                                            medida_hoja,tamanos_por_hoja, medida_de_corte)
+                                                            medida_de_corte = medida_corte_1 + medida_corte_2
 
-                                                            #montaje_id = montaje.id
+                                                            #INSERCION DEL MONTAJE
+                                                            montaje = OrdenProduccion.relacion_montaje(nombre_montaje,cliente_id,
+                                                              vendedor_id,linea_producto_id,linea_de_color_id,codigo, dimension,
+                                                              modo_de_empaque, medida_hoja, tamanos_por_hoja, medida_de_corte,material_id)
 
-                                                            #nombre,id_cliente,id_vendedor, id_linea_de_producto,
-                                                            #id_linea_color,codigo,dimension,modo_de_empaque,medida_hoja,
-                                                            #tamanos_por_hoja,medida_de_corte
+                                                            montaje_id = montaje.id
+
+                                                            #INSERCION EN LOS CONTENEDORES DE MAQUINAS Y ACABADOS
+                                                            OrdenProduccion.consultar_maquinas(maquinas_seleccionadas, montaje_id)
+                                                            OrdenProduccion.consulta_acabados(seleccion_acabados, montaje_id)
+
+                                                            #INSERCION EN LAS ORDENES DE PRODUCCION
+                                                            OrdenProduccion.crear_Orden_de_produccion(numero_orden)
+
+
+
+
+
+
+
+
+
 
                                                           else
                                                             montaje_id = montaje.id

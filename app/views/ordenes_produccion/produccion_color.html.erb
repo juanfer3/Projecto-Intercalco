@@ -26,9 +26,10 @@
       <th>Linea de color</th>
       <th>Mes</th>
       <th>Fecha compromiso</th>
+
       <th></th>
 
-      <th colspan="4"></th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
@@ -174,7 +175,9 @@
 
         <td><%= link_to '<button type="button" id="crearProduccion" data-toggle="modal" data-target="" class="btn btn-outline-dark"><span><i class="ion-pull-request" aria-hidden="true"></i></span></button>'.html_safe, cerrar_color_url(orden_produccion), remote: true %></td>
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-beaker"></i></span></button>'.html_safe, info_color_path(orden_produccion), remote: true %></td>
+        <!--
         <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-document-text"></i></span></button>'.html_safe, reporte_tinta_path(orden_produccion, format: :pdf)%></td>
+        -->
       </tr>
 
     <% end %>

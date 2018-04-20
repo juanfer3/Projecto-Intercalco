@@ -252,7 +252,7 @@ wb.styles do |style|
 
 
   	   sheet.add_row [orden.numero_de_orden.to_s.upcase,
-       mes.map{|i|i.to_s.upcase}*", "  " ", orden.montaje.cliente.user.nombre.to_s.capitalize,
+       mes.map{|i|i.to_s.capitalize}*", "  " ", orden.montaje.cliente.user.nombre.to_s.titleize,
        orden.montaje.linea_producto.nombre.to_s.capitalize, fecha_op,
        fechas_entregas.map{|i|i}*", "  " ",
        "",
