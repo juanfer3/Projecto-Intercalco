@@ -13,6 +13,18 @@ class ContactosController < ApplicationController
     end
   end
 
+  #buscar contactos
+  def select_onchange_search
+    #code
+    data = params['q']
+    puts "******************ESTA ES LA DATA: #{data}**********************".red
+    @contactos= []
+    @contactos= Contacto.where("cliente_id = ?", data).order('nombre') if data.present?
+    respond_to do |format|
+      format.js
+      format.json
+    end
+  end
   # GET /contactos/1
   # GET /contactos/1.json
   def show

@@ -193,4 +193,6 @@ Rails.application.routes.draw do
 
   get 'programacion_maquinas_excel/:id', to: 'maquinas#programacion_maquinas_excel', as: :programacion_maquinas_excel
 
+  get 'select_onchange_search', to: 'contactos#select_onchange_search', as: :select_onchange_search
+
 end
