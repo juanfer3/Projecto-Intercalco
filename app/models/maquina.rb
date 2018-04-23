@@ -38,7 +38,7 @@ class Maquina < ApplicationRecord
 
       ordenes_produccion.each do |orden|
 
-        puts"====esta son las ordenes -#{orden.cliente}-==="
+        puts"====esta son las ordenes -#{orden["clientes"]}-==="
       end
       return ordenes_produccion
 
