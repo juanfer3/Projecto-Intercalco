@@ -26,9 +26,9 @@ class Maquina < ApplicationRecord
       montajes.nombre as Montaje,
       programaciones_op_maquinas.* as ProgramacionOpMaquina,
       contenedores_de_maquinas.id as ContenedorDeMaquinas,
-      desarrollos_de_tinta.* as DesarrolloDeTinta,
+      desarrollos_de_tintas.* as DesarrolloDeTinta,
       clientes.nombre as Cliente
-      FROM ordenes_produccion
+      FROM ordenes_produccions
       inner join montajes on ordenes_produccion.montaje_id = montajes.id
       inner join clientes on montajes.cliente_id = clientes.id
       inner join contenedores_de_maquinas on contenedores_de_maquinas.montaje_id = montajes.id
