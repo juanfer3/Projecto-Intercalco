@@ -16,17 +16,17 @@ class Maquina < ApplicationRecord
     connection.execute(send(:sanitize_sql_array, sql))
   end
 
-  def self.descargar_ordenes_por_maquina(maquina_id)
+  def self.descargar_ordenes_por_maquina()
     if maquina_id.present?
 
 
-      sql = "ordenes_produccion.numero_de_orden as OrdenProduccion,
+      sql = "SELECT ordenes_produccion.numero_de_orden as OrdenProduccion,
       montajes.nombre as Montaje,
       FROM ordenes_produccion
       inner join montajes on ordenes_produccion.montaje_id = montaje_id
-      where montaje_id = ?;
+      where montaje_id = 24;
       "
-      ordenes_produccion = Maquina.execute_sql(sql, 24)
+      ordenes_produccion = Maquina.execute_sql(sql)
       return ordenes_produccion
     end
   end

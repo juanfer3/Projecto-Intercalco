@@ -15,7 +15,7 @@ class MaquinasController < ApplicationController
 
   def programacion_maquinas_excel
     @maquina = Maquina.find(params[:id])
-    @ordenes_produccion = Maquina.descargar_ordenes_por_maquina(24)
+    @ordenes_produccion = Maquina.descargar_ordenes_por_maquina()
     respond_to do |format|
       format.html
       format.xls{
