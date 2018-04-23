@@ -28,6 +28,7 @@ class Maquina < ApplicationRecord
       contenedores_de_maquinas.id as ContenedorDeMaquinas,
       desarrollos_de_tintas.* as DesarrolloDeTinta,
       clientes.nombre as Cliente
+      DISTINCT ordenes_produccion.numero_de_orden
       FROM ordenes_produccion
       inner join montajes on ordenes_produccion.montaje_id = montajes.id
       inner join clientes on montajes.cliente_id = clientes.id
