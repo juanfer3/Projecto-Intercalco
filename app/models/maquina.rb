@@ -34,8 +34,8 @@ class Maquina < ApplicationRecord
       inner join contenedores_de_maquinas on contenedores_de_maquinas.montaje_id = montajes.id
       inner join programaciones_op_maquinas on programaciones_op_maquinas.orden_produccion_id = ordenes_produccion.id
       inner join desarrollos_de_tintas on desarrollos_de_tintas.montaje_id = montajes.id
-      where contenedores_de_maquinas.maquina_id = ?
-      unique: ordenes_produccion.numero_de_orden;
+      where contenedores_de_maquinas.maquina_id = ?;
+
       "
       ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
 
