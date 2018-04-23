@@ -14,6 +14,7 @@
         <Cell><Data ss:Type="String">Fecha de entrega</Data></Cell>
         <Cell><Data ss:Type="String">Cantidad unds</Data></Cell>
         <Cell><Data ss:Type="String">Cantidad tamaños</Data></Cell>
+
         <Cell><Data ss:Type="String">N° Tintas</Data></Cell>
         <Cell><Data ss:Type="String">T. Montaje</Data></Cell>
         <Cell><Data ss:Type="String">T. Desmontaje</Data></Cell>
@@ -24,17 +25,51 @@
         <Cell><Data ss:Type="String">Termina</Data></Cell>
       </Row>
     <% @ordenes_produccion.each do |orden| %>
-      <Row>
-        <Cell><Data ss:Type="Number"><%= orden.numero_de_orden %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
+    <% if orden.programaciones_op_maquinas.first == nil %>
 
-        <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                    <Row>
+                      <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
 
-        <Cell><Data ss:Type="String"><%= orden.cantidad_solicitada %></Data></Cell>
-        
-      </Row>
+                      <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+
+                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+
+                    </Row>
+      <% else %>
+                    <Row>
+                      <Cell><Data ss:Type="Number"><%= orden.numero_de_orden %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
+
+                      <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first %></Data></Cell>
+
+                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_montaje %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_desmontaje %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.total_hora %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.cantidad_maquinas %></Data></Cell>
+
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_por_maquina %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.hora_inicio %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.hora_final %></Data></Cell>
+                    </Row>
+
+      <% end %>
     <% end %>
     </Table>
   </Worksheet>
