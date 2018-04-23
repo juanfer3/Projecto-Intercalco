@@ -40,6 +40,12 @@ class Maquina < ApplicationRecord
 
         puts"====esta son las ordenes -#{orden["clientes"]}-==="
       end
+
+
+
+accepted
+
+ordenes_produccion.map { |n| n }
       return ordenes_produccion
 
   end
