@@ -24,6 +24,7 @@ class Maquina < ApplicationRecord
       ordenes_produccion.cantidad_solicitada,ordenes_produccion.tamanos_total
       as OrdenProduccion,
       montajes.nombre as Montaje,
+      programaciones_op_maquinas.* as ProgramacionOpMaquina,
       contenedores_de_maquinas.id as ContenedorDeMaquinas,
       clientes.nombre as Cliente
       FROM ordenes_produccion
