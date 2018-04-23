@@ -33,18 +33,18 @@
                       <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
 
                       <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
 
-                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.cantidad_solicitada) %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="Number"><%= numero_beuty(orden.cantidad_solicitada.to_i) %></Data></Cell>
+                      <Cell><Data ss:Type="Number"><%= numero_beuty(orden.tamanos_total.to_i) %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
+                      <Cell><Data ss:Type="String"></Data></Cell>
 
                     </Row>
       <% else %>
@@ -56,8 +56,8 @@
                       <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first %></Data></Cell>
 
-                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.cantidad_solicitada) %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="Number"><%= numero_beuty(orden.cantidad_solicitada.to_i) %></Data></Cell>
+                      <Cell><Data ss:Type="Number"><%= numero_beuty(orden.tamanos_total.to_i) %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_montaje %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_desmontaje %></Data></Cell>
