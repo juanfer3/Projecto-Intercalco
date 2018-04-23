@@ -24,7 +24,7 @@
         <Cell><Data ss:Type="String">Inicia</Data></Cell>
         <Cell><Data ss:Type="String">Termina</Data></Cell>
       </Row>
-    <% @ordenes_produccion.each do |orden| %>
+    <% @ordenes_produccion.unique.each do |orden| %>
     <% if orden.programaciones_op_maquinas.first == nil %>
 
                     <Row>
