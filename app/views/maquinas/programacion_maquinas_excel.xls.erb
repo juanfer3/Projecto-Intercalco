@@ -61,12 +61,12 @@
                       <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_montaje %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_desmontaje %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.total_hora %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.total_hora%></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.cantidad_maquinas %></Data></Cell>
 
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_por_maquina %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.hora_inicio %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.hora_final %></Data></Cell>
+                      <Cell><Data ss:Format="[h]:mm:ss"><%= orden.programaciones_op_maquinas.first.hora_inicio.strftime("%H:%M ") %></Data></Cell>
+                      <Cell><Data ss:Format="[h]:mm:ss"><%= orden.programaciones_op_maquinas.first.hora_final.strftime("%H:%M ") %></Data></Cell>
                     </Row>
 
       <% end %>
