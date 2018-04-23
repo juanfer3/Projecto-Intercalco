@@ -31,6 +31,7 @@ class Maquina < ApplicationRecord
       inner join montajes on ordenes_produccion.montaje_id = montajes.id
       inner join clientes on montajes.cliente_id = clientes.id
       inner join contenedores_de_maquinas on contenedores_de_maquinas.montaje_id = montajes.id
+      inner join programaciones_op_maquinas on programaciones_op_maquinas.orden_produccion_id = ordenes_produccion.id
       where contenedores_de_maquinas.maquina_id = ?;
       "
       ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
