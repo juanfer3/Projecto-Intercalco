@@ -17,9 +17,11 @@ class MaquinasController < ApplicationController
     @maquina = Maquina.find(params[:id])
     @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
     respond_to do |format|
-      format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="ProgramacionDeOrdenesPorMaquinas.xlsx"'
-      }
+      format.html
+      format.xls
+      #format.xlsx {
+      #  response.headers['Content-Disposition'] = 'attachment; filename="ProgramacionDeOrdenesPorMaquinas.xlsx"'
+      #}
     end
   end
 

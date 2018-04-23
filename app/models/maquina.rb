@@ -1,6 +1,18 @@
 class Maquina < ApplicationRecord
   require 'colorize'
 
+  def self.to_csv(production)
+
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |orden|
+        csv << orden.attributes.values_at(*column_names)
+      end
+    end
+
+  end
+
+
   def self.buscador_de_ordenes_por_maquina(data)
     #code
     puts "****************BUSCADOR #{data}************************".red
