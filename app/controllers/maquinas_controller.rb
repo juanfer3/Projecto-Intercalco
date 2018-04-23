@@ -16,7 +16,8 @@ class MaquinasController < ApplicationController
   def programacion_maquinas_excel
     @maquina = Maquina.find(params[:id])
     @op = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas, :desarrollos_de_tinta]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
-    @ordenes_produccion = Maquina.descargar_ordenes_por_maquina(@maquina.id)
+    @ordenes_produccion = Maquina.descargar_ordenes_programadas_por_maquina(@maquina.id)
+    @ordenes_sin_programar = Maquina.descargar_ordenes_sin_programar_por_maquina(@maquina.id)
     respond_to do |format|
       format.html
       format.xls{

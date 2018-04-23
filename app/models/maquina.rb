@@ -16,7 +16,7 @@ class Maquina < ApplicationRecord
     connection.execute(send(:sanitize_sql_array, sql))
   end
 
-  def self.descargar_ordenes_por_maquina(maquina_id)
+  def self.descargar_ordenes_programadas_por_maquina(maquina_id)
 
 
 
@@ -37,7 +37,6 @@ class Maquina < ApplicationRecord
       inner join programaciones_op_maquinas on programaciones_op_maquinas.orden_produccion_id = ordenes_produccion.id
       inner join desarrollos_de_tintas on desarrollos_de_tintas.montaje_id = montajes.id
       where contenedores_de_maquinas.maquina_id = ?;
-
       "
       ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
 
@@ -53,7 +52,37 @@ class Maquina < ApplicationRecord
 
   end
 
+  def self.descargar_ordenes_sin_programar_por_maquina(maquina_id)
 
+
+
+      sql = "SELECT
+      DISTINCT ordenes_produccion.numero_de_orden,
+      ordenes_produccion.numero_de_orden,
+      ordenes_produccion.cantidad_solicitada,ordenes_produccion.tamanos_total
+      as OrdenProduccion,
+      montajes.nombre as Montaje,
+      contenedores_de_maquinas.id as ContenedorDeMaquinas,
+      clientes.nombre as Cliente
+      FROM ordenes_produccion
+      inner join montajes on ordenes_produccion.montaje_id = montajes.id
+      inner join clientes on montajes.cliente_id = clientes.id
+      inner join contenedores_de_maquinas on contenedores_de_maquinas.montaje_id = montajes.id
+      where contenedores_de_maquinas.maquina_id = ?;
+      "
+      ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
+
+      ordenes_produccion.each do |orden|
+
+        puts"====esta son las ordenes -#{orden["montaje"]}-==="
+      end
+
+
+
+
+      return ordenes_produccion
+
+  end
 
   def self.buscador_de_ordenes_por_maquina(data)
     #code
