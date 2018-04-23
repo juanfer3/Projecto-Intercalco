@@ -20,14 +20,14 @@ class Maquina < ApplicationRecord
     if maquina_id.present?
 
 
-      sql = "ordenes_produccion.numero_de_orden,
-       ordenes_produccion.tamanos_total as OrdenProduccion,
+      sql = "ordenes_produccion.numero_de_orden as OrdenProduccion,
       montajes.nombre as Montaje,
       FROM ordenes_produccion
       inner join montajes on ordenes_produccion.montaje_id = montaje_id
-      where montaje_id = ?
+      where montaje_id = ?;
       "
       ordenes_produccion = Maquina.execute_sql(sql, 24)
+      return ordenes_produccion
     end
   end
 
