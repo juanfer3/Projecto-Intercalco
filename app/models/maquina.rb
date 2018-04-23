@@ -21,14 +21,14 @@ class Maquina < ApplicationRecord
 
 
       sql = "SELECT ordenes_produccion.numero_de_orden as OrdenProduccion,
-      montajes.nombre as Montaje,
+      montajes.nombre as Montaje
       FROM ordenes_produccion
       inner join montajes on ordenes_produccion.montaje_id = montaje_id
       where montaje_id = 24;
       "
       ordenes_produccion = Maquina.execute_sql(sql)
       return ordenes_produccion
-  
+
   end
 
 
