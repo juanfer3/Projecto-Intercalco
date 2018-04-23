@@ -45,7 +45,7 @@ class Maquina < ApplicationRecord
 
 accepted
 
-    ordenes_produccion.map { |i| puts"#{n}" }
+
       return ordenes_produccion
 
   end
