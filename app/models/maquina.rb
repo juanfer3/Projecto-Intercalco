@@ -17,7 +17,7 @@ class Maquina < ApplicationRecord
   end
 
   def self.descargar_ordenes_por_maquina()
-    if maquina_id.present?
+
 
 
       sql = "SELECT ordenes_produccion.numero_de_orden as OrdenProduccion,
@@ -28,7 +28,7 @@ class Maquina < ApplicationRecord
       "
       ordenes_produccion = Maquina.execute_sql(sql)
       return ordenes_produccion
-    end
+  
   end
 
 
