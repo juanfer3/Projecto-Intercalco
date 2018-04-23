@@ -4,7 +4,7 @@
   xmlns:x="urn:schemas-microsoft-com:office:excel"
   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
   xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
+  <Worksheet ss:Name="maquina" >
     <Table>
       <Row>
         <Cell><Data ss:Type="String">O.P</Data></Cell>
@@ -35,8 +35,8 @@
                       <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
 
-                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.cantidad_solicitada) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.tamanos_total) %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
                       <Cell><Data ss:Type="String"><%= "Sin definir"%></Data></Cell>
@@ -56,8 +56,8 @@
                       <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first %></Data></Cell>
 
-                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></Data></Cell>
-                      <Cell><Data ss:Type="String"><%= number_to_currency_no_moneda(orden.tamanos_total) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.cantidad_solicitada) %></Data></Cell>
+                      <Cell><Data ss:Type="String"><%= numero_beuty(orden.tamanos_total) %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_montaje %></Data></Cell>
                       <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_desmontaje %></Data></Cell>
