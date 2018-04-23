@@ -43,8 +43,6 @@ class Maquina < ApplicationRecord
 
 
 
-accepted
-
 
       return ordenes_produccion
 
