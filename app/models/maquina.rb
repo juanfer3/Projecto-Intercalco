@@ -35,10 +35,10 @@ class Maquina < ApplicationRecord
       where contenedores_de_maquinas.maquina_id = ?;
       "
       ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
-      cont = 0
+
       ordenes_produccion.each do |orden|
-        cont += 1
-        puts"====esta son las ordenes -#{orden.montajes.nombre}-==="
+
+        puts"====esta son las ordenes -#{orden}-==="
       end
       return ordenes_produccion
 
