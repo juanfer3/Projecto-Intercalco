@@ -26,12 +26,14 @@ class Maquina < ApplicationRecord
       montajes.nombre as Montaje,
       programaciones_op_maquinas.* as ProgramacionOpMaquina,
       contenedores_de_maquinas.id as ContenedorDeMaquinas,
+      desarrollos_de_tintas.* as DesarrolloDeTinta,
       clientes.nombre as Cliente
-      FROM ordenes_produccions
+      FROM ordenes_produccion
       inner join montajes on ordenes_produccion.montaje_id = montajes.id
       inner join clientes on montajes.cliente_id = clientes.id
       inner join contenedores_de_maquinas on contenedores_de_maquinas.montaje_id = montajes.id
       inner join programaciones_op_maquinas on programaciones_op_maquinas.orden_produccion_id = ordenes_produccion.id
+      inner join desarrollos_de_tinta on desarrollos_de_tinta.montaje_id = montajes.id
       where contenedores_de_maquinas.maquina_id = ?;
       "
       ordenes_produccion = Maquina.execute_sql(sql,maquina_id)
