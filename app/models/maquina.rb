@@ -12,6 +12,26 @@ class Maquina < ApplicationRecord
 
   end
 
+  def self.execute_sql(*sql)
+    connection.execute(send(:sanitize_sql_array, sql))
+  end
+
+  def self.descargar_ordenes_por_maquina(maquina_id)
+    if maquina_id.present?
+
+
+      sql = "ordenes_produccion.numero_de_orden,
+       ordenes_produccion.tamanos_total as OrdenProduccion,
+      montajes.nombre as Montaje,
+      FROM ordenes_produccion
+      inner join montajes on ordenes_produccion.montaje_id = montaje_id
+      where montaje_id = ?
+      "
+      ordenes_produccion = Maquina.execute_sql(sql, 24)
+    end
+  end
+
+
 
   def self.buscador_de_ordenes_por_maquina(data)
     #code
