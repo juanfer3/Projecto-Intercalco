@@ -31,7 +31,26 @@
     <% @ordenes_produccion.each do |orden| %>
 
 
-   <Row><Cell><Data ss:Type="String"><%= orden["montaje"] %></Data></Cell></Row>  
+                    <Row>
+                       <Cell><Data ss:Type="String"><%= orden["numero_de_orden"] %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["cliente"] %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["montaje"] %></Data></Cell>
+
+                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden %></Data></Cell>
+
+                       <Cell><Data ss:Type="Number"><%= numero_beuty(orden["cantidad_solicitada"].to_i) %></Data></Cell>
+                       <Cell><Data ss:Type="Number"><%= numero_beuty(orden["tamanos_total"].to_i) %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["tiempo_de_montaje"]%></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["tiempo_de_desmontaje"] %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["total_hora"]%></Data></Cell>
+                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+
+                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+                       <Cell><Data ss:Format="[h]:mm:ss"><%= %></Data></Cell>
+                       <Cell><Data ss:Format="[h]:mm:ss"><%=  %></Data></Cell>
+                     </Row>
 
 
 
