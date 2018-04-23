@@ -15,7 +15,7 @@ class MaquinasController < ApplicationController
 
   def programacion_maquinas_excel
     @maquina = Maquina.find(params[:id])
-    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
+    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas,:desarrollos_de_tintas],:programaciones_op_maquinas =>[]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
     respond_to do |format|
       format.html
       format.xls{

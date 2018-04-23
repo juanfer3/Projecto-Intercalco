@@ -7,15 +7,34 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">ID</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Release Date</Data></Cell>
-        <Cell><Data ss:Type="String">Price</Data></Cell>
+        <Cell><Data ss:Type="String">O.P</Data></Cell>
+        <Cell><Data ss:Type="String">Cliente</Data></Cell>
+        <Cell><Data ss:Type="String">Producto</Data></Cell>
+        <Cell><Data ss:Type="String">Fecha Impresión</Data></Cell>
+        <Cell><Data ss:Type="String">Fecha de entrega</Data></Cell>
+        <Cell><Data ss:Type="String">Cantidad unds</Data></Cell>
+        <Cell><Data ss:Type="String">Cantidad tamaños</Data></Cell>
+        <Cell><Data ss:Type="String">N° Tintas</Data></Cell>
+        <Cell><Data ss:Type="String">T. Montaje</Data></Cell>
+        <Cell><Data ss:Type="String">T. Desmontaje</Data></Cell>
+        <Cell><Data ss:Type="String">Tiempo (hrs) </Data></Cell>
+        <Cell><Data ss:Type="String">Cantidad Maq.</Data></Cell>
+        <Cell><Data ss:Type="String">Tiempo (hrs) total según Maq.</Data></Cell>
+        <Cell><Data ss:Type="String">Inicia</Data></Cell>
+        <Cell><Data ss:Type="String">Termina</Data></Cell>
       </Row>
     <% @ordenes_produccion.each do |orden| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= orden.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
+
         <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+
+        <Cell><Data ss:Type="String"><%= orden.cantidad_solicitada %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= orden.tamanos_totales %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tinta.length %></Data></Cell>
         
       </Row>
     <% end %>
