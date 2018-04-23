@@ -25,7 +25,7 @@
       </Row>
     <% @ordenes_produccion.each do |orden| %>
       <Row>
-        <Cell><Data ss:Type="Number"><%= orden.id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= orden.numero_de_orden %></Data></Cell>
         <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
         <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
 
@@ -33,7 +33,6 @@
         <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
 
         <Cell><Data ss:Type="String"><%= orden.cantidad_solicitada %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= orden.tamanos_totales %></Data></Cell>
         
       </Row>
     <% end %>
