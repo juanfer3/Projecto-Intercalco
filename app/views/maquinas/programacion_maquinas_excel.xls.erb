@@ -36,7 +36,7 @@
                        <Cell><Data ss:Type="String"><%= orden["cliente"] %></Data></Cell>
                        <Cell><Data ss:Type="String"><%= orden["montaje"] %></Data></Cell>
 
-                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["fecha_de_impresion"] %></Data></Cell>
                        <Cell><Data ss:Type="String"><%= orden %></Data></Cell>
 
                        <Cell><Data ss:Type="Number"><%= numero_beuty(orden["cantidad_solicitada"].to_i) %></Data></Cell>
@@ -45,11 +45,11 @@
                        <Cell><Data ss:Type="String"><%= orden["tiempo_de_montaje"]%></Data></Cell>
                        <Cell><Data ss:Type="String"><%= orden["tiempo_de_desmontaje"] %></Data></Cell>
                        <Cell><Data ss:Type="String"><%= orden["total_hora"]%></Data></Cell>
-                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["cantidad_maquinas"] %></Data></Cell>
 
-                       <Cell><Data ss:Type="String"><%=  %></Data></Cell>
-                       <Cell><Data ss:Format="[h]:mm:ss"><%= %></Data></Cell>
-                       <Cell><Data ss:Format="[h]:mm:ss"><%=  %></Data></Cell>
+                       <Cell><Data ss:Type="String"><%= orden["tiempo_por_maquina"] %></Data></Cell>
+                       <Cell><Data ss:Format="[h]:mm:ss"><%= orden["hora_inicio"]%></Data></Cell>
+                       <Cell><Data ss:Format="[h]:mm:ss"><%= orden["hora_final"] %></Data></Cell>
                      </Row>
 
 
