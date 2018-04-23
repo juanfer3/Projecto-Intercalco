@@ -28,12 +28,56 @@
 
 
 
-
     <% @ordenes_produccion.each do |orden| %>
 
+        <% if orden.programaciones_op_maquinas.first == nil %>
+
+                <Row>
+                  <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
+
+                  <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+
+                  <Cell><Data ss:Type="Number"><%= numero_beuty(orden.cantidad_solicitada.to_i) %></Data></Cell>
+                  <Cell><Data ss:Type="Number"><%= numero_beuty(orden.tamanos_total.to_i) %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+                  <Cell><Data ss:Type="String"></Data></Cell>
+
+                </Row>
+                <% else %>
+                <Row>
+                  <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.cliente.nombre %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.nombre %></Data></Cell>
+
+                  <Cell><Data ss:Type="String"><%= orden.numero_de_orden %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first %></Data></Cell>
+
+                  <Cell><Data ss:Type="Number"><%= numero_beuty(orden.cantidad_solicitada.to_i) %></Data></Cell>
+                  <Cell><Data ss:Type="Number"><%= numero_beuty(orden.tamanos_total.to_i) %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.montaje.desarrollos_de_tintas.length %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_montaje %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_de_desmontaje %></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.total_hora%></Data></Cell>
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.cantidad_maquinas %></Data></Cell>
+
+                  <Cell><Data ss:Type="String"><%= orden.programaciones_op_maquinas.first.tiempo_por_maquina %></Data></Cell>
+                  <Cell><Data ss:Format="[h]:mm:ss"><%= orden.programaciones_op_maquinas.first.hora_inicio.strftime("%H:%M ") %></Data></Cell>
+                  <Cell><Data ss:Format="[h]:mm:ss"><%= orden.programaciones_op_maquinas.first.hora_final.strftime("%H:%M ") %></Data></Cell>
+                </Row>
+
+                <% end %>
+<% end %>
 
 
-      <% end %>
 
 
 
