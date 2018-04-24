@@ -6,4 +6,14 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
 
- $('.my-tabla').trigger("updateAll");
+$("table tbody td.discount").click(function() {
+		// randomize a number
+		var resort = "", // resort variable set to anything BUT false (without quotes) will trigger the automatic resort
+			discount = '$' + Math.round(Math.random() * Math.random() * 100) + '.' + ('0' + Math.round(Math.random() * Math.random() * 100)).slice(-2),
+			callback = function(table) { /* do something */ };
+		$(this).text(discount);
+		// set resort flag to false to prevent automatic resort
+		// leave the resort flag as undefined, or with any other value, to automatically resort the table
+		$("table").trigger("updateCell",[this, resort, callback]);
+		return false;
+	});
