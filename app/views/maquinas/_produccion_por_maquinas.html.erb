@@ -3,7 +3,7 @@
 
 </div>
 <br>
-<table class="table my-td" id="mi-tabla">
+<table class="table my-td my-tabla" id="mi-tabla">
   <thead>
 
     <th>NUMERO DE ORDEN</th>
@@ -191,7 +191,7 @@ $.tablesorter.addParser({
 });
 
 $('.ocultar').hide()
-  $('#mi-tabla').tablesorter({
+  $('.my-tabla').tablesorter({
     headers: {
         // 8th column
         3: { sorter: "ddmmyy" },
