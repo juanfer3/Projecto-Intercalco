@@ -58,3 +58,6 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
 
 
 <%end%>
+
+var resort = true;
+$('#myTable').trigger('updateAll', [resort]);
