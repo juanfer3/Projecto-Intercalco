@@ -125,7 +125,7 @@
                                   <!-- true -->
                                   <td  > <p>Sin definir</p> </td>
                                 <% else %>
-                                <td  > <%=orden.programaciones_op_maquinas.first.fecha_de_impresion%> </td>
+                                <td  id=<%="fecha_impresion#{orden.programaciones_op_maquinas.first.id}"%>> <%=orden.programaciones_op_maquinas.first.fecha_de_impresion%> </td>
                                 <% end %>
 
 
