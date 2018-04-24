@@ -278,7 +278,7 @@ $(document).ready(function(){
 
 
 
-<table class="table">
+<table class="table" id="myTable">
   <thead>
     <tr>
       <th>Orden produccion</th>
@@ -471,3 +471,20 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+$('#myTable').tablesorter({
+
+          headers: {
+              //identificar columna column
+              6: { sorter: "ddmmyy" },
+          },
+          // initial sort on the date column
+          sortList: [[7, 0]],
+
+          // include zebra and any other widgets
+          widgets: ['zebra', 'columns']
+
+});
+</script>
