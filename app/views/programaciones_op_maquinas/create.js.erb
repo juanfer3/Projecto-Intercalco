@@ -5,7 +5,7 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
-$('.my.tabla')
+$('.my-tabla')
             // attach the rows to the tbody (use `:eq(#)` if there is more than one)
             .children('tbody').append( data.newContent )
             // this triggered event will propagate up to the table
