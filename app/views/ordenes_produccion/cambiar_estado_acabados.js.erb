@@ -6,4 +6,9 @@
 <%elsif current_user.rol.cargo == "Coordinacion Produccion"%>
           $('#contenidoModal').html('<%= j render 'orden_info_coordinador'%>')
 <%end%>
+
 $(<%="estado_orden_produccion#{@orden_produccion.id}"%>).html('<%= j render 'bageds_estados'%>')
+
+
+    var resort = true;
+    $('#myTable').trigger('updateAll', [resort]);
