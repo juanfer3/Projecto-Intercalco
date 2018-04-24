@@ -5,5 +5,6 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
+//actualizar los datos para ser ordenados ccon el tablesorter
 var resort = true;
 $('.my-tabla').trigger('updateAll', [resort]);
