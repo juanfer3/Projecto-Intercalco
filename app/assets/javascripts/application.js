@@ -48,7 +48,7 @@
 $(document).on('turbolinks:load', function() {
 
 
-  
+
 
 
 
@@ -56,13 +56,13 @@ $(document).on('turbolinks:load', function() {
   jQuery(function($){
     $.extend($.fn.datepicker.defaults, {
       language: 'es',
-      format: 'dd/mm/yy'
+      format: 'dd/mm/yyyy'
     });
   });
 
   $('.fecha_en_espanol').datepicker({
     language: 'es',
-
+    format: 'dd/mm/yyyy' 
   })
 
 

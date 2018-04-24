@@ -143,21 +143,24 @@ def produccion_coordinador
   hoy = Time.now
   entregado = false
 
-@ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso").distinct
+@ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso")
 todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
-@ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso").distinct
-
+@ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ?", hoy,entregado).order("compromisos_de_entrega.fecha_de_compromiso")
  @ordenes_sin_fecha = []
  #iteracion 1
  todas_las_ordenes = todas_las_ordenes.sort_by{|a| a.compromisos_de_entrega.sort_by{|b| b["fecha_de_compromiso"].to_s.split('/') } }
 
- todas_las_ordenes.each do |op|
+ todas_las_ordenes.uniq.each do |op|
          #if 2
-        puts "********************interando ordenes********************".green
+         puts "********************interando ordenes********************".green
+
         if op.compromisos_de_entrega.empty?
            puts "*****************Numero de orde : #{op.numero_de_orden}**********************".yellow
            @ordenes_sin_fecha << op
         else
+
+
+
           #if 1
         end
 
