@@ -262,7 +262,7 @@ $(document).ready(function(){
 
 </div>
 <br>
-<table class="table table-hover">
+<table class="table table-hover" id="myTable">
   <thead>
     <tr>
       <th>Numero de orden</th>
@@ -1044,3 +1044,20 @@ $(document).ready(function(){
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+$('#myTable').tablesorter({
+
+          headers: {
+              //identificar columna column
+              6: { sorter: "ddmmyy" },
+          },
+          // initial sort on the date column
+          sortList: [[7, 0]],
+
+          // include zebra and any other widgets
+          widgets: ['zebra', 'columns']
+
+});
+
+</script>
