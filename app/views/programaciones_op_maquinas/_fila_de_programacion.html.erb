@@ -31,7 +31,18 @@
 //});
 //$('.my-td').tablesorter().trigger('update');
 $('table').trigger('update');
+$('table').trigger('updateHeaders');
+var config = $( 'table' )[ 0 ].config,
+  $cell = $( <%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>), // jQuery selector or DOM element of newly updated cell
+  // applies or reapplies a sort to the table; use false to not update the sort
+  resort = true, // or [ [0,0], [1,0] ] etc
+  callback = function( table ) {
+    // do something
+  };
+$.tablesorter.updateCell( config, $cell, resort, callback );
+$('table').trigger('updateCell', [ $cell ]);
 $('.my-td').tablesorter()
+
 var valor = $('#mi-tabla')
 console.log(valor);
 </script>
