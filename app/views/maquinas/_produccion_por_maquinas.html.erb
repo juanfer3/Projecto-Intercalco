@@ -12,8 +12,8 @@
     <th class="sorter-shortDate dateFormat-ddmmyyyy tablesorter-header">FECHA DE COMPROMISO</th>
     <th class="">FECHA DE IMPRESION</th>
     <th class="discount">CANTIDADES</th>
-    <th></th>
-    <th>CANT MAQUINA</th>
+    <th>CANT MÁQUINAS</th>
+    <th>TIEMPO TOTAL</th>
     <th colspan="2"></th>
   </thead>
   <tbody >
@@ -166,6 +166,12 @@
                   <td  > <%=orden.programaciones_op_maquinas.first.cantidad_maquinas%> </td>
                 <% end %>
 
+                <!--TIEMPO TOTAL-->
+                <% if orden.programaciones_op_maquinas.first == nil %>
+                  <td  > <p>Sin definir</p> </td>
+                <% else %>
+                  <td  > <%=orden.programaciones_op_maquinas.first.total_hora%> </td>
+                <% end %>
 
                 <!--ORDENES DE IMPRESION-->
                 <% if orden.impresion == true %>
