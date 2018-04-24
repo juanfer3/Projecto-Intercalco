@@ -14,6 +14,7 @@
     <th class="discount">CANTIDADES</th>
     <th></th>
     <th></th>
+    <th colspan="2"></th>
   </thead>
   <tbody >
     <tr class="ocultar">
@@ -26,6 +27,8 @@
       <td></td>
       <td></td>
       <td></td>
+      <td colspan="2"></td>
+
     </tr>
     <%@ordenes_produccion.each do |orden|%>
 
@@ -154,7 +157,8 @@
 
 
 
-                <td><%= number_to_currency_no_moneda(orden.cantidad_solicitada) %></td>
+                <td><%= numero_beuty(orden.cantidad_solicitada.to_i) %></td>
+                <td>hhh</td>
                 <% if orden.impresion == true %>
                   <!-- true -->
                   <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden), remote: true %></td>
