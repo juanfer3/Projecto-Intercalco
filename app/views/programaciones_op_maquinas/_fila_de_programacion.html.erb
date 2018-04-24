@@ -9,7 +9,11 @@
 <script type="text/javascript">
 
 
-
+$('.my-tabla').tablesorter()
+    // bind to sort events
+    .bind('refreshComplete', function(e, table) {
+      // do something after the 'refreshWidgets' has refreshed
+    });
 //$('.mi-tabla').tablesorter({
 
 

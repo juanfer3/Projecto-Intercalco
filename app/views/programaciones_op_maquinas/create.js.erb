@@ -5,11 +5,3 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
-
-
-$('.my-tabla').tablesorter()
-    // bind to sort events
-    .bind('refreshComplete', function(e, table) {
-      // do something after the 'refreshWidgets' has refreshed
-    });
-;
