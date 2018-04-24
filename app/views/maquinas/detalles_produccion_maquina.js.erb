@@ -1,6 +1,9 @@
 //renderizar modal
 $('#modalMaquinas').modal('show');
 
+
+
+
 $("#contenidoModal").html("<%= j render 'detalle_de_la_orden'%>");
 //=========================cargo de datos================================
 <% if @orden_produccion.programaciones_op_maquinas.empty? %>
