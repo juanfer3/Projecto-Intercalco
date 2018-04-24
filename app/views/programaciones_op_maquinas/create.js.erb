@@ -6,11 +6,8 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
 $('table')
- .unbind('appendCache applyWidgetId applyWidgets sorton update updateCell')
  .removeClass('tablesorter')
- .find('thead th')
- .unbind('click mousedown')
- .removeClass('header headerSortDown headerSortUp');
+
 
 
  $('.my-table').tablesorter({
