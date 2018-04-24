@@ -138,6 +138,7 @@ class Maquina < ApplicationRecord
 
     else
       puts "******************LA DATA ESTA LLENA**********************".green
+
       orden = OrdenProduccion.joins(:montaje => [:cliente => [], :linea_producto => [],
         :material => []], :contacto => [], :nombre_facturacion => [])
         .where("ordenes_produccion.numero_de_orden ILIKE ?", data+"%")
