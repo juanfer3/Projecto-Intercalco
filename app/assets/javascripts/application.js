@@ -62,7 +62,7 @@ $(document).on('turbolinks:load', function() {
 
   $('.fecha_en_espanol').datepicker({
     language: 'es',
-    format: 'dd/mm/yyyy' 
+    format: 'dd/mm/yyyy'
   })
 
 
