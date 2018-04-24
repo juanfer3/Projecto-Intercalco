@@ -7,16 +7,23 @@
 <% end %>
 
 <script type="text/javascript">
-$('.mi-tabla').tablesorter({
+
+
+$("#mi-tabla").load('data.htm', function(){
+        $(this).sorttable();
+        $(this).trigger("update");
+        $(this).trigger("appendCache");
+     });
+//$('.mi-tabla').tablesorter({
 
 
 
 
-  headers: {
+  //headers: {
       // 8th column
-      3: { sorter: "ddmmyy" },
-      4: { sorter: "ddmmyy" }
-  },
+      //3: { sorter: "ddmmyy" },
+      //4: { sorter: "ddmmyy" }
+  //},
 
   // initial sort on the date column
   //sortList: [[7, 0]],
