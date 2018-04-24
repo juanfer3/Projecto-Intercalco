@@ -163,7 +163,7 @@
                 <% if orden.programaciones_op_maquinas.first == nil %>
                   <td  > <p>Sin definir</p> </td>
                 <% else %>
-                  <td  > <%=best_in_place orden.programaciones_op_maquinas.first,:cantidad_maquinas%> </td>
+                  <td  > <%=best_in_place orden.programaciones_op_maquinas.first,:cantidad_maquinas, :inner_class => 'cant_updadte' %> </td>
 
                 <% end %>
 
