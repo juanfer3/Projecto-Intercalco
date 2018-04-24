@@ -7,13 +7,43 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
 
 $("table tbody td.discount").click(function() {
-		// randomize a number
-		var resort = "", // resort variable set to anything BUT false (without quotes) will trigger the automatic resort
-			discount = '$' + Math.round(Math.random() * Math.random() * 100) + '.' + ('0' + Math.round(Math.random() * Math.random() * 100)).slice(-2),
-			callback = function(table) { /* do something */ };
-		$(this).text(discount);
-		// set resort flag to false to prevent automatic resort
-		// leave the resort flag as undefined, or with any other value, to automatically resort the table
-		$("table").trigger("updateCell",[this, resort, callback]);
-		return false;
+  // prevent link from removing all data from the column
+  if (indx++ < 2) {
+
+    // append new html to thead & tbody
+    $("table thead th:eq(2)").html("Age");
+    $("table tbody").find('td:nth-child(3)').html(function(i,h) {
+      return h.substring(1); // remove x & y prefix
+    });
+
+    var resort = true, // re-apply the current sort
+      callback = function() {
+        // do something after the updateAll method has completed
+      };
+
+    // let the plugin know that we made a update, then the plugin will
+    // automatically sort the table based on the header settings
+    $("table").trigger("updateAll", [ resort, callback ]);
+
+  }
+  return false;// prevent link from removing all data from the column
+    if (indx++ < 2) {
+
+      // append new html to thead & tbody
+      $("table thead th:eq(2)").html("Age");
+      $("table tbody").find('td:nth-child(3)').html(function(i,h) {
+        return h.substring(1); // remove x & y prefix
+      });
+
+      var resort = true, // re-apply the current sort
+        callback = function() {
+          // do something after the updateAll method has completed
+        };
+
+      // let the plugin know that we made a update, then the plugin will
+      // automatically sort the table based on the header settings
+      $("table").trigger("updateAll", [ resort, callback ]);
+
+    }
+    return false;
 	});
