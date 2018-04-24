@@ -5,24 +5,5 @@ $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>
 
 
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
-$('table')
- .removeClass('tablesorter')
-
-
-
- $('.my-table').tablesorter({
-
-   headers: {
-       //identificar columna column
-       3: { sorter: "ddmmyy" },
-       4: { sorter: "ddmmyy" }
-   },
-
-   // initial sort on the date column
-   sortList: [[7, 0]],
-
-   // include zebra and any other widgets
-   widgets: ['zebra', 'columns']
-
-
- });
+$('table').trigger('applyWidgets');
+$('table').trigger('update');
