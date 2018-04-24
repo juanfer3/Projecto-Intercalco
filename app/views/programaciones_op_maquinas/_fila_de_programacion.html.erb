@@ -7,24 +7,27 @@
 <% end %>
 
 <script type="text/javascript">
-$('#mi-tabla').tablesorter({
+//$('.my-td').tablesorter({
 
 
 
 
-  dateFormat : "mmddyyyy", // set the default date format
+  //headers: {
+      // 8th column
+      //3: { sorter: "ddmmyy" },
+      //4: { sorter: "ddmmyy" }
+  //},
 
-// or to change the format for specific columns, add the dateFormat to the headers option:
-headers: {
-  4: { sorter: "shortDate" } //, dateFormat will parsed as the default above
-  // 1: { sorter: "shortDate", dateFormat: "ddmmyyyy" }, // set day first format; set using class names
-  // 2: { sorter: "shortDate", dateFormat: "yyyymmdd" }  // set year first format; set using data attributes (jQuery data)
-}
+  // initial sort on the date column
+  //sortList: [[7, 0]],
+
+  // include zebra and any other widgets
+  //widgets: ['zebra', 'columns']
 
 
 
 
 
-
-});
+//});
+$('#mi-tabla').trigger("update")
 </script>
