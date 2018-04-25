@@ -16,15 +16,7 @@ Last Name: <span>Doe</span><input />
 <script type="text/javascript">
 
 
-$(".inputSwitch span").on("click", function() {
-  var $this = $(this);
-  $this.hide().siblings("input").val($this.text()).show();
-});
-$(".inputSwitch input").on("blur", function() {
-  var $this = $(this);
-  $this.hide().siblings("span").text($this.val()).show();
-  console.log($this);
-}).hide();
+
 
 
   $('.campo_hora').timepicker({
