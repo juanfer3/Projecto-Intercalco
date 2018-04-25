@@ -2,27 +2,46 @@ class Maquina < ApplicationRecord
   require 'colorize'
 
 
+def self.change_datos_to_horas(data)
+
+  def ceil2(exp = 0)
+   multiplier = 10 ** exp
+   ((self * multiplier).ceil).to_f/multiplier.to_f
+  end
+
+  data = data.ceil2(1)
+  
+  hora = data.to_s.split(".")[0]
+  min = data.to_s.split(".")[1]
+  min = min.to_i * 60
+  min = min.round
+  #min = min.to_s[0..1]
+  puts"Data: #{data}".yellow
+  puts"Hora: #{hora}".yellow
+  puts"Min: #{min}".yellow
+end
 
 def self.programar_orden(programacion_op_maquina)
   #puts"======START DATOS======".yellow
-  #puts"programacion_op_maquina.orden_produccion.tamanos_totales".yellow
+  #puts"programacion_op_maquina.orden_produccion.tamanos_total".yellow
   #puts"programacion_op_maquina.tirajes_por_hora".yellow
-  #puts"programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length".yellow
+  #puts"programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length".yellow
   #puts"programacion_op_maquina.tiempo_de_montaje".yellow
   #puts"programacion_op_maquina.tiempo_de_desmontaje".yellow
   #puts"programacion_op_maquina.total_hora".yellow
   #puts"======END DATOS=====".yellow
 
   #TOMA DE DATOS
-  tamanos_totales = programacion_op_maquina.orden_produccion.tamanos_totales
+  tamanos_totales = programacion_op_maquina.orden_produccion.tamanos_total
   tirajes_por_hora = programacion_op_maquina.tirajes_por_hora
-  num_tintas = programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length
+  num_tintas = programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length
   t_montaje = programacion_op_maquina.tiempo_de_montaje
   t_desmontaje = programacion_op_maquina.tiempo_de_desmontaje
 
 #ALGORITMO MATEMATICO PARA CALCULAR EL TIEMPO TOTAL
-  firts_data =tamanos_totales.to_i / tirajes_por_hora.to_i * num_tintas.to_i
-  
+  firts_data = tamanos_totales / tirajes_por_hora * num_tintas
+  Maquina.change_datos_to_horas(firts_data)
+  puts"primer dato: #{firts_data}".red
   return programacion_op_maquina
 end
 
