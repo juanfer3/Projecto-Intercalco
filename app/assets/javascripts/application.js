@@ -47,35 +47,9 @@
 
 $(document).on('turbolinks:load', function() {
 
-  var switchToInput = function () {
-          var $input = $("<input>", {
-              val: $(this).text(),
-              type: "text"
-          });
-          $input.addClass("loadNum");
-          $(this).replaceWith($input);
-          $input.on("blur", switchToSpan);
-          $input.select();
-      };
-      var switchToSpan = function () {
-          var $span = $("<span>", {
-              text: $(this).val()
-          });
-          $span.addClass("loadNum");
-          $(this).replaceWith($span);
-          $span.on("click", switchToInput);
-      }
-      $(".loadNum").on("click", switchToInput);
 
 
-      $(".inputSwitch span").on("click", function() {
-      	var $this = $(this);
-      	$this.hide().siblings("input").val($this.text()).show();
-      });
-      $(".inputSwitch input").on("blur", function() {
-      	var $this = $(this);
-      	$this.hide().siblings("span").text($this.val()).show();
-      }).hide();
+
 
 
   jQuery(function($){

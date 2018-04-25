@@ -2,7 +2,7 @@
 
 
 
-
+<!--
 <span class="loadNum">5566</span>
 <br />
 <span class="loadNum">5566</span>
@@ -13,13 +13,21 @@ First Name: <span>John</span><input />
 <div class="inputSwitch">
 Last Name: <span>Doe</span><input />
 </div>
-
+-->
 
 
 <script type="text/javascript">
 
-
-
+/*
+$(".inputSwitch span").on("click", function() {
+  var $this = $(this);
+  $this.hide().siblings("input").val($this.text()).show();
+});
+$(".inputSwitch input").on("blur", function() {
+  var $this = $(this);
+  $this.hide().siblings("span").text($this.val()).show();
+}).hide();
+*/
 
 
 
