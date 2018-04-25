@@ -37,10 +37,11 @@ $('#buscar_orden_por_maquina').keyup(function (){
 $(".inputSwitch span").on("click", function() {
   var $this = $(this);
   $this.hide().siblings("input").val($.trim($this.text())).show();
+  $this.hide().siblings("input").focus()
 });
 $(".inputSwitch input").on("blur", function() {
   var $this = $(this);
-  
+
 
   $this.hide().siblings("span").text($this.val()).show();
   console.log($this);
