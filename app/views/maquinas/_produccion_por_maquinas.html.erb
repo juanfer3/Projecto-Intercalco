@@ -149,12 +149,12 @@
                   </td>
                 <% end %>
 
-                <!--CANTIDA SOLICITADA-->
+                <!--ID PROGRAMACION_OP_MAQUINAS-->
                 <% if orden.programaciones_op_maquinas.first == nil %>
                   <td class="ocultar" > </td>
                 <% else %>
                   <td class="ocultar" >
-                    <span align="left">
+                    <span align="left" class="tomar_span_id">
                       <%=orden.programaciones_op_maquinas.first.id %>
                     </span>
                     <input style="text-align:left;"/>

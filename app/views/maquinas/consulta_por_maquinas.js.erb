@@ -41,8 +41,13 @@ $(".inputSwitch span").on("click", function() {
 });
 
 $(".inputSwitch input").on("blur", function() {
+
   var $this = $(this);
   var cantidad_maquinas=$this.val()
+
+  var id_programacion = $this.find('.tomar_span_id').text()
+  console.log(id_programacion);
+
   $.ajax({
     url:'/blur_edit_machine/',
     data: {authenticity_token: $('[name="csrf-token"]')[0].content,
