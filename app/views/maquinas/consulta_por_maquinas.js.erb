@@ -39,9 +39,10 @@ $(".inputSwitch span").on("click", function() {
   $this.hide().siblings("input").val($.trim($this.text())).show();
   $this.hide().siblings("input").focus()
 });
+
 $(".inputSwitch input").on("blur", function() {
   var $this = $(this);
-  var cantidad_mquinas=$this.val()
+  var cantidad_maquinas=$this.val()
   $.ajax({
     url:'/blur_edit_machine/',
     data: {cantidad_mquinas:cantidad_mquinas},
