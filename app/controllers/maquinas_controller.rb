@@ -15,7 +15,7 @@ class MaquinasController < ApplicationController
 
   def blur_edit_machine
     cantidad_maquinas = params["cantidad_maquinas"]
-    puts"CANTIDAD MAQUINAS: #{cantidad_maquinas}".green
+    puts"CANTIDAD MAQUINAS:".green
   end
 
   def programacion_maquinas_excel
