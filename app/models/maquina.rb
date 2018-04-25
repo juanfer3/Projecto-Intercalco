@@ -1,6 +1,33 @@
 class Maquina < ApplicationRecord
   require 'colorize'
 
+
+
+def self.programar_orden(programacion_op_maquina)
+  puts"======START DATOS======".yellow
+  puts"programacion_op_maquina.orden_produccion.tamanos_totales".yellow
+  puts"programacion_op_maquina.tirajes_por_hora".yellow
+  puts"programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length".yellow
+  puts"programacion_op_maquina.tiempo_de_montaje".yellow
+  puts"programacion_op_maquina.tiempo_de_desmontaje".yellow
+  puts"programacion_op_maquina.total_hora".yellow
+  puts"".yellow
+  puts"".yellow
+  puts"======END DATOS=====".yellow
+
+end
+
+def self.update_cantidad_maq_best_in_place(id_programacion,cantidad_maquinas)
+  puts"START UPDATE CANTIDAD MAQUINA BEST IN PLACE".green
+  programacion_op_maquina = ProgramacionOpMaquina.find_by(id:id_programacion)
+  programacion_op_maquina = Maquina.programar_orden(programacion_op_maquina)
+  return programacion_op_maquina
+end
+
+
+
+
+
   def self.to_csv(production)
 
     CSV.generate do |csv|

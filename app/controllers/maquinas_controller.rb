@@ -15,7 +15,14 @@ class MaquinasController < ApplicationController
 
   def blur_edit_machine
     cantidad_maquinas = params["cantidad_maquinas"]
+    id_programacion = params["id_programacion"]
+
+    if id_programacion.present?
+      @programacion_op_maquina = Maquina.update_cantidad_maq_best_in_place(id_programacion,cantidad_maquinas)
+    end
+
     puts"CANTIDAD MAQUINAS:".green
+
     respond_to do |format|
       format.js
     end

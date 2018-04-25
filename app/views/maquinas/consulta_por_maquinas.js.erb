@@ -43,14 +43,13 @@ $(".inputSwitch input").on("blur", function() {
 
   var $this = $(this);
   var cantidad_maquinas=$this.val()
-  console.log("INICIO DE BUSQUEDA DEL ID DE LA PROGRMACION DE LA ORDEN");
   var id_programacion = $(this).parents("tr").find('.tomar_span_id').text()
-  console.log('este es el id:'+id_programacion);
 
   $.ajax({
     url:'/blur_edit_machine/',
     data: {authenticity_token: $('[name="csrf-token"]')[0].content,
-            cantidad_maquinas:cantidad_maquinas},
+            cantidad_maquinas:cantidad_maquinas,
+            id_programacion:id_programacion},
     method:'post',
     success: function (data){
       console.log(data);
