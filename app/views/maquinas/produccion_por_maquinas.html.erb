@@ -2,10 +2,7 @@
 
 
 
-<!--
-<span class="loadNum">5566</span>
-<br />
-<span class="loadNum">5566</span>
+
 
 <div class="inputSwitch">
 First Name: <span>John</span><input />
@@ -13,12 +10,12 @@ First Name: <span>John</span><input />
 <div class="inputSwitch">
 Last Name: <span>Doe</span><input />
 </div>
--->
+
 
 
 <script type="text/javascript">
 
-/*
+
 $(".inputSwitch span").on("click", function() {
   var $this = $(this);
   $this.hide().siblings("input").val($this.text()).show();
@@ -26,8 +23,9 @@ $(".inputSwitch span").on("click", function() {
 $(".inputSwitch input").on("blur", function() {
   var $this = $(this);
   $this.hide().siblings("span").text($this.val()).show();
+  console.log($this);
 }).hide();
-*/
+
 
 
 
