@@ -36,7 +36,8 @@ $('#buscar_orden_por_maquina').keyup(function (){
 
 $(".inputSwitch span").on("click", function() {
   var $this = $(this);
-  $this.hide().siblings("input").val($this.text()).show();
+  
+  $this.hide().siblings("input").val($.trim($this.text())).show();
 });
 $(".inputSwitch input").on("blur", function() {
   var $this = $(this);
