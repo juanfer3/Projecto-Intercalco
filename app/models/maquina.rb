@@ -4,21 +4,16 @@ class Maquina < ApplicationRecord
 
 def self.change_datos_to_horas(data)
 
-  def ceil2(exp = 0)
-   multiplier = 10 ** exp
-   ((self * multiplier).ceil).to_f/multiplier.to_f
-  end
-
-  data = data.ceil2(1)
-  
   hora = data.to_s.split(".")[0]
   min = data.to_s.split(".")[1]
   min = min.to_i * 60
-  min = min.round
-  #min = min.to_s[0..1]
+  min = min
+  min = min.to_s[0..1]
+
   puts"Data: #{data}".yellow
   puts"Hora: #{hora}".yellow
   puts"Min: #{min}".yellow
+
 end
 
 def self.programar_orden(programacion_op_maquina)
@@ -40,7 +35,10 @@ def self.programar_orden(programacion_op_maquina)
 
 #ALGORITMO MATEMATICO PARA CALCULAR EL TIEMPO TOTAL
   firts_data = tamanos_totales / tirajes_por_hora * num_tintas
-  Maquina.change_datos_to_horas(firts_data)
+  seconds_data = t_montaje * num_tintas
+  thirds_data = t_desmontaje * num_tintas
+  hora = firts_data + seconds_data + thirds_data
+  total_horas = Maquina.change_datos_to_horas(hora)
   puts"primer dato: #{firts_data}".red
   return programacion_op_maquina
 end
