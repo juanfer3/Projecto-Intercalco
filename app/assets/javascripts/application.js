@@ -68,7 +68,14 @@ $(document).on('turbolinks:load', function() {
       $(".loadNum").on("click", switchToInput);
 
 
-
+      $(".inputSwitch span").on("click", function() {
+      	var $this = $(this);
+      	$this.hide().siblings("input").val($this.text()).show();
+      });
+      $(".inputSwitch input").on("blur", function() {
+      	var $this = $(this);
+      	$this.hide().siblings("span").text($this.val()).show();
+      }).hide();
 
 
   jQuery(function($){
