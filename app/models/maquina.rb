@@ -10,10 +10,13 @@ def self.change_datos_to_horas(data)
   min = min
   min = min.to_s[0..1]
 
+  #DATOS IMPRESOS
   puts"Data: #{data}".yellow
   puts"Hora: #{hora}".yellow
   puts"Min: #{min}".yellow
 
+  total_hora = hora + ":" + min
+  return total_hora
 end
 
 def self.programar_orden(programacion_op_maquina)
@@ -32,22 +35,42 @@ def self.programar_orden(programacion_op_maquina)
   num_tintas = programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tintas.length
   t_montaje = programacion_op_maquina.tiempo_de_montaje
   t_desmontaje = programacion_op_maquina.tiempo_de_desmontaje
-
+  fecha_inicial = programacion_op_maquina.fecha_de_impresion
+  hora_inicial = programacion_op_maquina.hora_inicio
+  complemento = programacion_op_maquina.complemento
+  puts"complemento#{complemento}".yellow
 #ALGORITMO MATEMATICO PARA CALCULAR EL TIEMPO TOTAL
   firts_data = tamanos_totales / tirajes_por_hora * num_tintas
+  puts"1 = #{firts_data}".yellow
   seconds_data = t_montaje * num_tintas
+  puts"2 = #{seconds_data}".yellow
   thirds_data = t_desmontaje * num_tintas
-  hora = firts_data + seconds_data + thirds_data
+  puts"3 = #{thirds_data}".yellow
+  hora = firts_data + seconds_data.to_f + thirds_data.to_f * complemento
+  puts"#{hora}".blue
   total_horas = Maquina.change_datos_to_horas(hora)
-  puts"primer dato: #{firts_data}".red
+  #puts"hora inicial: #{hora_inicial.strftime("%H:%M:%S")}".green
+
+  #fecha_inicial_hora = fecha_inicial.to_s+ " " + hora_inicial.strftime("%H:%M:%S")
+  #fecha_inicial_hora = DateTime.parse(fecha_inicial_hora)
+
+  #tiempo_por_maquina= fecha_inicial_hora / 5
+  #sumar_hora = fecha_inicial_hora +  total_horas.split(":")[0].to_i.hour
+  #sumar_mins = sumar_hora + total_horas.split(":")[1].to_i.minute
+  #fecha_y_hora_final = sumar_mins
+  #puts"Fecha inicial: #{fecha_inicial}".yellow
+  #puts"FECHA inicial: #{fecha_inicial_hora}".red
+  #puts"FECHA FINAL: #{fecha_y_hora_final}".blue
   return programacion_op_maquina
 end
 
 def self.update_cantidad_maq_best_in_place(id_programacion,cantidad_maquinas)
+
   puts"START UPDATE CANTIDAD MAQUINA BEST IN PLACE".green
   programacion_op_maquina = ProgramacionOpMaquina.find_by(id:id_programacion)
   programacion_op_maquina = Maquina.programar_orden(programacion_op_maquina)
   return programacion_op_maquina
+
 end
 
 
