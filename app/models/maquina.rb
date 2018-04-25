@@ -4,16 +4,25 @@ class Maquina < ApplicationRecord
 
 
 def self.programar_orden(programacion_op_maquina)
-  puts"======START DATOS======".yellow
-  puts"programacion_op_maquina.orden_produccion.tamanos_totales".yellow
-  puts"programacion_op_maquina.tirajes_por_hora".yellow
-  puts"programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length".yellow
-  puts"programacion_op_maquina.tiempo_de_montaje".yellow
-  puts"programacion_op_maquina.tiempo_de_desmontaje".yellow
-  puts"programacion_op_maquina.total_hora".yellow
-  puts"".yellow
-  puts"".yellow
-  puts"======END DATOS=====".yellow
+  #puts"======START DATOS======".yellow
+  #puts"programacion_op_maquina.orden_produccion.tamanos_totales".yellow
+  #puts"programacion_op_maquina.tirajes_por_hora".yellow
+  #puts"programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length".yellow
+  #puts"programacion_op_maquina.tiempo_de_montaje".yellow
+  #puts"programacion_op_maquina.tiempo_de_desmontaje".yellow
+  #puts"programacion_op_maquina.total_hora".yellow
+  #puts"======END DATOS=====".yellow
+
+  #TOMA DE DATOS
+  tamanos_totales = programacion_op_maquina.orden_produccion.tamanos_totales
+  tirajes_por_hora = programacion_op_maquina.tirajes_por_hora
+  num_tintas = programacion_op_maquina.orden_produccion.montaje.desarrollos_de_tinta.length
+  t_montaje = programacion_op_maquina.tiempo_de_montaje
+  t_desmontaje = programacion_op_maquina.tiempo_de_desmontaje
+
+#ALGORITMO MATEMATICO PARA CALCULAR EL TIEMPO TOTAL
+  firts_data =tamanos_totales.to_i / tirajes_por_hora.to_i * num_tintas.to_i
+  
   return programacion_op_maquina
 end
 
