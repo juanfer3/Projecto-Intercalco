@@ -141,8 +141,7 @@
                 <% else %>
                   <td class="inputSwitch" >
                     <span>
-                      <%=best_in_place orden.programaciones_op_maquinas.first,
-                      :cantidad_maquinas, :inner_class => 'cant_update' %>
+                      <%=orden.programaciones_op_maquinas.first.cantidad_maquinas %>
                     </span>
                     <input />
                   </td>
