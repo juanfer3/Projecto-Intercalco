@@ -14,7 +14,7 @@ def self.programar_orden(programacion_op_maquina)
   puts"".yellow
   puts"".yellow
   puts"======END DATOS=====".yellow
-
+  return programacion_op_maquina
 end
 
 def self.update_cantidad_maq_best_in_place(id_programacion,cantidad_maquinas)
