@@ -40,6 +40,8 @@ $(".inputSwitch span").on("click", function() {
 });
 $(".inputSwitch input").on("blur", function() {
   var $this = $(this);
+  
+
   $this.hide().siblings("span").text($this.val()).show();
   console.log($this);
 }).hide();

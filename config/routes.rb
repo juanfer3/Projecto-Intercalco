@@ -195,4 +195,7 @@ Rails.application.routes.draw do
 
   get 'select_onchange_search', to: 'contactos#select_onchange_search', as: :select_onchange_search
 
+  post 'blur_edit_machine', to: 'maquinas#blur_edit_machine', as: :blur_edit_machine
+
+
 end

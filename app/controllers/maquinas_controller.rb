@@ -13,6 +13,11 @@ class MaquinasController < ApplicationController
 
   end
 
+  def blur_edit_machine
+    cantidad_maquinas = params["cantidad_maquinas"]
+    puts"CANTIDAD MAQUINAS: #{cantidad_maquinas}".green
+  end
+
   def programacion_maquinas_excel
     @maquina = Maquina.find(params[:id])
     @op = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas, :desarrollos_de_tinta]).where("contenedores_de_maquinas.maquina_id= ?", @maquina.id)
