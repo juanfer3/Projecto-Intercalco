@@ -13,6 +13,7 @@
     <th class="">FECHA DE IMPRESION</th>
     <th class="discount">CANTIDADES</th>
     <th>CANT MÁQUINAS</th>
+    <th class="ocultar"></th>
     <th>TIEMPO TOTAL</th>
     <th colspan="2"></th>
   </thead>
@@ -26,6 +27,7 @@
       <td>01/01/2018</td>
       <td></td>
       <td></td>
+      <td class="ocultar"></td>
       <td></td>
       <td colspan="2"></td>
 
@@ -142,6 +144,18 @@
                   <td class="inputSwitch" >
                     <span align="left">
                       <%=orden.programaciones_op_maquinas.first.cantidad_maquinas %>
+                    </span>
+                    <input style="text-align:left;"/>
+                  </td>
+                <% end %>
+
+                <!--CANTIDA SOLICITADA-->
+                <% if orden.programaciones_op_maquinas.first == nil %>
+                  <td class="ocultar" > </td>
+                <% else %>
+                  <td class="ocultar" >
+                    <span align="left">
+                      <%=orden.programaciones_op_maquinas.first.id %>
                     </span>
                     <input style="text-align:left;"/>
                   </td>

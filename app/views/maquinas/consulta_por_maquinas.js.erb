@@ -45,7 +45,8 @@ $(".inputSwitch input").on("blur", function() {
   var cantidad_maquinas=$this.val()
   $.ajax({
     url:'/blur_edit_machine/',
-    data: {authenticity_token: $('[name="csrf-token"]')[0].content, cantidad_maquinas:cantidad_maquinas},
+    data: {authenticity_token: $('[name="csrf-token"]')[0].content,
+            cantidad_maquinas:cantidad_maquinas},
     method:'post',
     success: function (data){
       console.log(data);
