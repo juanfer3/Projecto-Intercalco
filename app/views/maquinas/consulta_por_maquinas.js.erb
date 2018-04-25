@@ -20,7 +20,6 @@ $('#buscar_orden_por_maquina').keyup(function (){
 
 
         if (data.length > 2) {
-
           $.ajax({
             url:'/buscar_orden_maquina/',
             data: {data:data, id_maquina:id_maquina},
@@ -44,9 +43,9 @@ $(".inputSwitch input").on("blur", function() {
 
   var $this = $(this);
   var cantidad_maquinas=$this.val()
-
-  var id_programacion = $this.find('.tomar_span_id').text()
-  console.log(id_programacion);
+  console.log("INICIO DE BUSQUEDA DEL ID DE LA PROGRMACION DE LA ORDEN");
+  var id_programacion = $(this).parents("tr").find('.tomar_span_id').text()
+  console.log('este es el id:'+id_programacion);
 
   $.ajax({
     url:'/blur_edit_machine/',

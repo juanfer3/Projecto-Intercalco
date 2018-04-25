@@ -289,7 +289,7 @@ $(document).ready(function(){
       <th>Descripción</th>
       <th>Linea de color</th>
       <th>Mes</th>
-      <th>Fecha compromiso</th>
+      <th class="sorter-shortDate dateFormat-ddmmyyyy tablesorter-header">Fecha compromiso</th>
       <th></th>
       <th colspan="4"></th>
   </thead>
@@ -1569,8 +1569,7 @@ $(document).ready(function(){
                 //identificar columna column
                 6: { sorter: "ddmmyy" },
             },
-            // initial sort on the date column
-            sortList: [[7, 0]],
+
 
             // include zebra and any other widgets
             widgets: ['zebra', 'columns']
