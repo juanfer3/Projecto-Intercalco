@@ -1,4 +1,4 @@
-<%= simple_form_for @user, remote: true do |form| %>
+<%= simple_form_for @user,class:'form-control', remote: true do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -11,46 +11,79 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nombre %>
-    <%= form.text_field :nombre, id: :user_nombre %>
+
+<div class="col-4 offset-lg-4">
+
+    
+
+    <div class="my_card_contactos_form media border p-3">
+
+
+
+
+
+                <div class="col-12">
+                  <%= form.label :nombre %><br>
+                  <%= form.text_field :nombre, id: :user_nombre, class:'form-control' %>
+                </div>
+
+
+                <div class="col-12">
+                  <br>
+                  <%= form.label :rol_id %>
+                  <%= form.association :rol,
+                  label:false,
+                  collection: Rol.all,
+                  label_method: :cargo,
+                  value_method: :id,
+                  as: :select,
+                  class:'col-12 my_cliente form-control',
+
+                  include_blank: 'Seleccione Rol'
+                  %>
+                </div>
+
+
+
+                <div class="col-12">
+
+                  <%= form.label :email %><br>
+                  <%= form.text_field :email, id: :user_email, class:'form-control' %>
+
+                </div>
+
+                <div class="col-12">
+                  <br>
+                  <%= form.label :password %><br>
+                  <%= form.password_field :password, id: :user_password, class:'form-control'%>
+                </div>
+
+                <div class="col-12">
+                  <br>
+                </div>
+                <div class="col-12">
+                  <label for="">Habilitar</label>
+                  <%= form.check_box :estado, id: :user_estado, class:'col-2 offset-lg-6'%>
+                </div>
+
+
+
+
+      </div>
+      <br>
+
+      <%= button_tag type: 'submit', class: "btn btn-outline-primary btn-lg btn-block" do %>
+          <span>Guardar
+              <i id="iconoSubmit" class="ion-paper-airplane" aria-hidden="true"></i>
+          </span>
+      <% end %>
+
   </div>
 
-  <div class="field">
-    <%= form.label :numero_celular %>
-    <%= form.text_field :numero_celular, id: :user_numero_celular %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rol_id %>
-    <%= form.association :rol,
-    collection: Rol.all,
-    label_method: :cargo,
-    value_method: :id,
-    as: :select,
-    class:'col-4 my_cliente form-control',
-
-    include_blank: 'Seleccione Rol'
-    %>
-  </div>
-
-  <div class="field">
-    <%= form.label :estado %>
-    <%= form.check_box :estado, id: :user_estado %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.text_field :password, id: :user_password%>
-  </div>
 
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+
+
+
 <% end %>

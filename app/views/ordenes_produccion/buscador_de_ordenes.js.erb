@@ -43,6 +43,8 @@
               $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_ordenes_despachos'%>")
               $('.identificador').addClass('removerContenidoNuevo')
       <%end%>
+      var resort = true;
+      $('#myTable').trigger('updateAll', [resort]);
   <%end%>
 
 <%end%>

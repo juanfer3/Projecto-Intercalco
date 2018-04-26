@@ -35,6 +35,7 @@
               $('#bodyDeOrdenes').append("<%= j render 'respuestas_de_compromisos'%>")
               $('.identificador').addClass('removerContenidoNuevo')
         <%end%>
-
+        var resort = true;
+        $('#myTable').trigger('updateAll', [resort]);
     <%end%>
 <%end%>

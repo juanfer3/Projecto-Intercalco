@@ -1,15 +1,86 @@
-<h2>Log in</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email, required: false, autofocus: true %>
-    <%= f.input :password, required: false %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<br>
+<br>
+
+
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" , class: 'needs-validation'}) do |f| %>
+
+
+
+
+<div class="col-4 offset-lg-4">
+    <h2>Log in</h2>
+
+
+    <div class="my_card_contactos_form media border p-3">
+
+
+
+                <div class="col-12">
+
+                  <label for="[object Object]">Usuario</label> <br>
+                  <%= f.text_field :email, id: :user_email,
+                  label: false,
+                  class:'form-control' ,
+                  required:true%>
+
+                </div>
+
+                <div class="col-12">
+                  <br>
+                  <label for="[object Object]">Contraseña</label> <br>
+                  <%= f.password_field :password, id: :user_password,
+                  label: false,
+                  class:'form-control',
+                  required:true%>
+                </div>
+
+
+
+
+
+
+      </div>
+      <br>
+
+      <%= button_tag type: 'submit', class: "btn btn-outline-success btn-lg btn-block" do %>
+          <span>Iniciar Sesion
+              <i id="iconoSubmit" class="ion-paper-airplane" aria-hidden="true"></i>
+          </span>
+      <% end %>
+
+      <br>
+
+      <%= link_to '<button type="button" class="btn btn-danger btn-lg btn-block">Regresar a la pagina de inicio</button>'.html_safe,
+       root_path %>
+
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+
+
+<%end%>
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

@@ -107,13 +107,44 @@
 <td><%= number_to_currency_no_moneda(@orden_produccion.cantidad_solicitada) %></td>
 
 
-      <% if @orden_produccion.impresion == true %>
-        <%puts"******************#{@orden_produccion.impresion}***********************"%>
-        <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
-      <% else %>
-        <%puts"******************#{@orden_produccion.impresion}***********************"%>
-        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
-      <% end %>
+<!--CANTIDA SOLICITADA-->
+<% if @orden_produccion.programaciones_op_maquinas.first == nil %>
+  <td  > <p>Sin definir</p> </td>
+<% else %>
+  <td class="inputSwitch" >
+    <span align="left">
+      <%=@orden_produccion.programaciones_op_maquinas.first.cantidad_maquinas %>
+    </span>
+    <input type="number" style="text-align:left;"/>
+  </td>
+<% end %>
+
+<!--ID PROGRAMACION_OP_MAQUINAS-->
+<% if @orden_produccion.programaciones_op_maquinas.first == nil %>
+  <td class="ocultar" > </td>
+<% else %>
+  <td class="ocultar" >
+    <span align="left" class="tomar_span_id">
+      <%=@orden_produccion.programaciones_op_maquinas.first.id %>
+    </span>
+
+  </td>
+<% end %>
+
+<!--TIEMPO TOTAL-->
+<% if @orden_produccion.programaciones_op_maquinas.first == nil %>
+  <td  > <p>Sin definir</p> </td>
+<% else %>
+  <td  > <%=@orden_produccion.programaciones_op_maquinas.first.total_hora%> </td>
+<% end %>
+
+<!--ORDENES DE IMPRESION-->
+<% if @orden_produccion.impresion == true %>
+  <!-- true -->
+  <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+<% else %>
+  <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+<% end %>
 
 
 <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, detalles_produccion_maquina_path(@orden_produccion), remote: true %></td>

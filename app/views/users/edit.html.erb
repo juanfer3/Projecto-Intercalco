@@ -1,5 +1,14 @@
-<h1>Editing User</h1>
+<br>
+<div class="col-4 offset-lg-4">
+  <h1>Editar usuario</h1>
+</div>
+
 
 <%= render 'form', user: @user %>
+<br>
+<div class="col-4 offset-lg-4">
+  <%= link_to '<button type="button" class="btn btn-danger btn-lg btn-block">Listar usuarios</button>'.html_safe,
+  users_path %>
+</div>
 
-<%= link_to 'Back', users_path %>
+<br>
