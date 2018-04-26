@@ -1,8 +1,5 @@
 
-<% if @programacion_op_maquina.fecha_de_impresion == nil || @programacion_op_maquina.fecha_de_impresion == ""%>
-  <!-- true -->
-   <p>Sin definir</p>
-<% else %>
+
  <%=@programacion_op_maquina.fecha_de_impresion%>
 
 
@@ -152,11 +149,13 @@
 
  <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, detalles_produccion_maquina_path(@programacion_op_maquina.orden_produccion), remote: true %></td>
 
-<% end %>
+
 
 <script type="text/javascript">
 
-
+//actualizar los datos para ser ordenados ccon el tablesorter
+var resort = true;
+$('.my-tabla').trigger('updateAll', [resort]);
 
 
 </script>
