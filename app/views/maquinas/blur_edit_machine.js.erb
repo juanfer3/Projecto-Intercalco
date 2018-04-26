@@ -55,7 +55,8 @@ if ($this.val().length == 0) {
                     method:'post',
                     success: function (data){
                       console.log();
-
+                      var resort = true;
+                      $('.my-tabla').trigger('updateAll', [resort]);
                     }
                   })
 
@@ -67,5 +68,3 @@ if ($this.val().length == 0) {
   //console.log($this);
 }).hide();
 //actualizar los datos para ser ordenados ccon el tablesorter
-var resort = true;
-$('.my-tabla').trigger('updateAll', [resort]);
