@@ -1,8 +1,11 @@
 $(".add_td").html('<%= j render 'produccion_por_maquinas'%>')
 $(".paginacion_de_ordenes").show()
 $(".paginacion_de_ordenes").html('<%= j render 'paginacion_ordenes_por_maquinas'%>')
-$(".add_buscador").html('<%= j render 'fragmento_buscador'%>')
 
+
+
+$(".add_buscador").html('<%= j render 'fragmento_buscador'%>')
+$(".ocultar").hide()
 var id_machine = "<%= @maquina.id%>"
 $('#add_id').html(id_machine)
 
@@ -33,10 +36,15 @@ $('#buscar_orden_por_maquina').keyup(function (){
 })
 
 
+
+// ===inputSwitch===
+var switch_value = ""
 $(".inputSwitch span").on("click", function() {
   var $this = $(this);
+  switch_value = $this.text()
   $this.hide().siblings("input").val($.trim($this.text())).show();
   $this.hide().siblings("input").focus()
+  return switch_value
 });
 
 $(".inputSwitch input").on("blur", function() {
@@ -45,18 +53,40 @@ $(".inputSwitch input").on("blur", function() {
   var cantidad_maquinas=$this.val()
   var id_programacion = $(this).parents("tr").find('.tomar_span_id').text()
 
-  $.ajax({
-    url:'/blur_edit_machine/',
-    data: {authenticity_token: $('[name="csrf-token"]')[0].content,
-            cantidad_maquinas:cantidad_maquinas,
-            id_programacion:id_programacion},
-    method:'post',
-    success: function (data){
-      console.log(data);
+if ($this.val().length == 0) {
 
-    }
-  })
+    console.log('valor del span es: ');
+    console.log(switch_value);
+    switch_value = parseInt(switch_value)
+    $this.val(switch_value)
+    console.log('el input esta vacio');
+    $this.hide().siblings("span").text($this.val()).show();
 
-  $this.hide().siblings("span").text($this.val()).show();
-  console.log($this);
+}else{
+
+                console.log('el input esta lleno');
+                var este_valor = parseInt($this.val())
+                if (switch_value == este_valor) {
+                    console.log('los valorres son iguales');
+                    $this.hide().siblings("span").text($this.val()).show();
+                }else{
+
+                  $.ajax({
+                    url:'/blur_edit_machine/',
+                    data: {authenticity_token: $('[name="csrf-token"]')[0].content,
+                            cantidad_maquinas:cantidad_maquinas,
+                            id_programacion:id_programacion},
+                    method:'post',
+                    success: function (data){
+                      console.log();
+
+                    }
+                  })
+
+                }
+
+
+              }
+
+  //console.log($this);
 }).hide();

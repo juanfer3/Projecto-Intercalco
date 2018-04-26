@@ -19,7 +19,7 @@ def self.change_datos_to_horas(data)
   return total_hora
 end
 
-def self.programar_orden(programacion_op_maquina)
+def self.programar_orden(programacion_op_maquina, cantidad_maquinas)
   #puts"======START DATOS======".yellow
   #puts"programacion_op_maquina.orden_produccion.tamanos_total".yellow
   #puts"programacion_op_maquina.tirajes_por_hora".yellow
@@ -46,29 +46,65 @@ def self.programar_orden(programacion_op_maquina)
   puts"2 = #{seconds_data}".yellow
   thirds_data = t_desmontaje * num_tintas
   puts"3 = #{thirds_data}".yellow
-  hora = firts_data + seconds_data.to_f + thirds_data.to_f * complemento
+  hora = (firts_data + seconds_data + thirds_data) * complemento.to_f
   puts"#{hora}".blue
+
+  hora_por_maquina = hora / cantidad_maquinas.to_f
+
+  #PASAR A DE DATOS A NUMEROS
+  hora_total_por_maquina = Maquina.change_datos_to_horas(hora_por_maquina)
   total_horas = Maquina.change_datos_to_horas(hora)
+
+  puts"HORAS TOTALES: #{total_horas}".blue
+  puts"CANTIDAD HORAS POR MAQUINAS: #{hora_total_por_maquina}".yellow
+
   #puts"hora inicial: #{hora_inicial.strftime("%H:%M:%S")}".green
 
-  #fecha_inicial_hora = fecha_inicial.to_s+ " " + hora_inicial.strftime("%H:%M:%S")
-  #fecha_inicial_hora = DateTime.parse(fecha_inicial_hora)
+  fecha_inicial_hora = fecha_inicial.to_s+ " " + hora_inicial.strftime("%H:%M:%S")
+  fecha_inicial_hora = DateTime.parse(fecha_inicial_hora)
 
-  #tiempo_por_maquina= fecha_inicial_hora / 5
-  #sumar_hora = fecha_inicial_hora +  total_horas.split(":")[0].to_i.hour
-  #sumar_mins = sumar_hora + total_horas.split(":")[1].to_i.minute
-  #fecha_y_hora_final = sumar_mins
+
+  sumar_hora = fecha_inicial_hora +  hora_total_por_maquina.split(":")[0].to_i.hour
+  sumar_mins = sumar_hora + hora_total_por_maquina.split(":")[1].to_i.minute
+  fecha_y_hora_final = sumar_mins
   #puts"Fecha inicial: #{fecha_inicial}".yellow
-  #puts"FECHA inicial: #{fecha_inicial_hora}".red
-  #puts"FECHA FINAL: #{fecha_y_hora_final}".blue
-  return programacion_op_maquina
+  puts"FECHA inicial: #{fecha_inicial_hora}".red
+  puts"FECHA FINAL: #{fecha_y_hora_final.strftime("%d/%m/%y")}".blue
+  fecha_final_a_imprimir = fecha_y_hora_final.strftime("%d/%m/%y")
+
+  #INSERCION A BASE DE DATOS
+  programacion_cambiada = ProgramacionOpMaquina
+  .find_by(id:programacion_op_maquina.id)
+  .update(cantidad_maquinas:cantidad_maquinas.to_i, total_hora:total_horas,
+  tiempo_por_maquina:hora_total_por_maquina,fecha_de_impresion_final:fecha_y_hora_final,
+  hora_final:fecha_y_hora_final)
+
+
+  programacion_cambiada = ProgramacionOpMaquina
+  .find_by(id:programacion_op_maquina.id)
+
+    if programacion_cambiada == nil
+      puts"progrmacion nula".red
+    else
+
+      puts"cambios generados #{}".green
+    end
+
+
+=begin
+  :orden_produccion_id,
+    :maquina_id, :total_hora, :hora_inicio, :hora_final, :cantidad_maquinas,
+    :tiempo_por_maquina, :tiempo_de_montaje, :tiempo_de_desmontaje, :habilitado,
+    :complemento,:tirajes_por_hora,:fecha_de_impresion, :fecha_de_impresion_final
+=end
+  return programacion_cambiada
 end
 
 def self.update_cantidad_maq_best_in_place(id_programacion,cantidad_maquinas)
 
   puts"START UPDATE CANTIDAD MAQUINA BEST IN PLACE".green
   programacion_op_maquina = ProgramacionOpMaquina.find_by(id:id_programacion)
-  programacion_op_maquina = Maquina.programar_orden(programacion_op_maquina)
+  programacion_op_maquina = Maquina.programar_orden(programacion_op_maquina, cantidad_maquinas)
   return programacion_op_maquina
 
 end
