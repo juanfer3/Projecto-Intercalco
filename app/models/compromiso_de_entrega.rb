@@ -30,10 +30,10 @@ class CompromisoDeEntrega < ApplicationRecord
       inner join compromisos_de_entrega on compromisos_de_entrega.orden_produccion_id = ordenes_produccion.id
       inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
       where
-      compromisos_de_entrega.fecha_despacho BETWEEN CAST(? AS DATE) AND CAST(? AS DATE)'
+      compromisos_de_entrega.fecha_despacho = TO_TIMESTAMP(?, 'DD-MM-YYYY')'
       ;
       "
-      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%d-%m-%Y"),fecha_final.to_date.strftime("%d-%m-%Y"))
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%d-%m-%Y"))
 
 
       return datos
