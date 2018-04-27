@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
 
 
 
-@datos_informe
+
 
 wb.styles do |style|
 
@@ -17,17 +17,19 @@ wb.styles do |style|
 
 
 
-	 sheet.add_row ["NUMERO DE ORDEN"],
+	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC"],
 
 	 style: [highlight_cell]
 
 
+   @datos_informe.each do |datos|
+         sheet.add_row [
+         datos["ordenproduccion"],
+         datos["fecha_despacho"]
 
-   sheet.add_row [
+                    ]
 
-              ]
-
-
+    end
 
 
 	end
