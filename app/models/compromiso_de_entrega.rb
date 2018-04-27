@@ -33,7 +33,7 @@ class CompromisoDeEntrega < ApplicationRecord
       compromisos_de_entrega.fecha_despacho = TO_TIMESTAMP(?, 'DD-MM-YYYY')'
       ;
       "
-      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%d-%m-%Y"))
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial)
 
 
       return datos
