@@ -17,15 +17,36 @@ wb.styles do |style|
 
 
 
-	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC"],
+	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
+   "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
+   "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR"],
 
-	 style: [highlight_cell]
+	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+   highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+   highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
+   ]
 
 
    @datos_informe.each do |datos|
          sheet.add_row [
+
          datos["ordenproduccion"],
-         datos["fecha_despacho"]
+         datos["fecha"],
+
+         datos["numero_de_remision"],
+         datos["cliente"],
+
+         datos["montaje"],
+         datos["fecha_de_compromiso"],
+         datos["fecha_despacho"],
+         "",
+         datos["cantidad_solicitada"],
+
+         datos["cantidad_despacho"],
+         "",
+         "",
+         ""
+
 
                     ]
 

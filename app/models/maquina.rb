@@ -134,6 +134,7 @@ end
 
       sql = "SELECT
       DISTINCT ordenes_produccion.numero_de_orden,
+      ordenes_produccion.fecha,
       ordenes_produccion.numero_de_orden,
       ordenes_produccion.cantidad_solicitada,ordenes_produccion.tamanos_total
       as OrdenProduccion,
