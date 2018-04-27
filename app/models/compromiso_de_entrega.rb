@@ -33,7 +33,7 @@ class CompromisoDeEntrega < ApplicationRecord
       compromisos_de_entrega.fecha_despacho = CAST(? AS DATE) AND CAST(? AS DATE)
       ;
       "
-      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%d-%m-%Y"),fecha_final.to_date.strftime("%d-%m-%Y"))
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%Y-%m-%d"),fecha_final.to_date.strftime("%Y-%m-%d"))
 
 
       return datos
