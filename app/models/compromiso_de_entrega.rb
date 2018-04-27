@@ -44,6 +44,9 @@ class CompromisoDeEntrega < ApplicationRecord
     puts"===START CONSULTA DE FECHA===".green
     datos = []
     datos = CompromisoDeEntrega.generar_busqueda_de_informe_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
+    datos.each do |d|
+      puts"#{d}".red
+    end
     return datos
   end
 
