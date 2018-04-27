@@ -1,0 +1,35 @@
+
+
+wb = xlsx_package.workbook
+
+
+
+
+
+wb.styles do |style|
+
+  formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
+
+  highlight_cell = style.add_style(:b => true)
+
+	 wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
+
+
+
+
+	 sheet.add_row ["NUMERO DE ORDEN"],
+
+	 style: [highlight_cell]
+
+
+
+   sheet.add_row [
+
+              ]
+
+
+
+
+	end
+
+end

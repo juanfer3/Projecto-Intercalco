@@ -7,6 +7,41 @@ class CompromisosDeEntregaController < ApplicationController
     @compromisos_de_entrega = CompromisoDeEntrega.all.paginate(page: params[:page], per_page: 20).order('fecha_de_compromiso DESC')
   end
 
+  def abrir_form_formato_de_oportunidad
+    @lineas_productos = LineaProducto.all.order("nombre")
+    respond_to do |format|
+
+      format.js
+
+    end
+  end
+
+  def export_formato_de_oportunidad
+    fecha_inicial = params["fecha_inicial"]
+    fecha_final = params["fecha_final"]
+    linea_producto = params["linea_producto_id"]
+
+    puts"=======================".yellow
+    puts"#{fecha_inicial}".blue
+    puts"#{fecha_final}".blue
+    puts"#{linea_producto}".blue
+    puts"=======================".yellow
+
+    @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto)
+
+    respond_to do |format|
+
+
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="IndicadorOportunidad.xlsx"'
+      }
+
+    end
+
+  end
+
+
+
 
   def buscador_de_ordenes_despachos
     #code

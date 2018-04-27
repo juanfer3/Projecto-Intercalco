@@ -197,5 +197,8 @@ Rails.application.routes.draw do
 
   post 'blur_edit_machine', to: 'maquinas#blur_edit_machine', as: :blur_edit_machine
 
+  post 'export_formato_de_oportunidad' => "compromisos_de_entrega#export_formato_de_oportunidad", as: :export_formato_de_oportunidad
+
+  get 'abrir_form_formato_de_oportunidad' => "compromisos_de_entrega#abrir_form_formato_de_oportunidad", as: :abrir_form_formato_de_oportunidad
 
 end

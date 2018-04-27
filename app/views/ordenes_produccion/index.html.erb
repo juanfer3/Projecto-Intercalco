@@ -2,6 +2,12 @@
 
 <h1>Ordenes de Producción</h1>
 
+<div class="input-group input-daterange">
+    <input type="text" class="form-control" value="2012-04-05">
+    <div class="input-group-addon">to</div>
+    <input type="text" class="form-control" value="2012-04-19">
+</div>
+
 
 
 
@@ -1042,6 +1048,12 @@ $(document).ready(function(){
        ordenes_produccion_path(format: :xlsx) %>
      </div>
      <div class="col-4">
+
+       <%= link_to '<button type="button" data-toggle="modal" data-target="#modalExportarExcel"  class="btn btn-outline-primary"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Informe De Oportunidad </span></button>'.html_safe,
+       abrir_form_formato_de_oportunidad_path, remote: true %>
+
+     </div>
+     <div class="col-4">
        <%= link_to '<button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar ordenes de producción  desde Excel</button>'.html_safe,
        open_modal_import_path, remote: true %>
      </div>
@@ -1546,10 +1558,52 @@ $(document).ready(function(){
 </div>
 
 
+<!-- Modal Excel Informa de oportunidad -->
+
+<div class="modal fade fullscreen-modal " id="modalExportarExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="contenidoFormularioInformeOportunida">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 
 
 
 <script type="text/javascript">
+
+
+
+
+
+
+
+
+
+
+
   var num_hoja = $('ul .active span').text()
 
   if (num_hoja >= 11) {

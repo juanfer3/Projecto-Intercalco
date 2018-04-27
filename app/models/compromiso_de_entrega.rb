@@ -6,9 +6,44 @@ class CompromisoDeEntrega < ApplicationRecord
 
 
   def self.buscador_de_ordenes(data)
-    
+
   end
 
+  def self.execute_sql(*sql)
+    connection.execute(send(:sanitize_sql_array, sql))
+  end
+
+  def self.generar_busqueda_de_informe_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
+
+
+
+      sql = "SELECT
+      ordenes_produccion.cantidad_solicitada,
+      ordenes_produccion.numero_de_orden as OrdenProduccion,
+      montajes.nombre as Montaje,
+      compromisos_de_entrega.* as CompromisoDeEntrega,
+      lineas_productos.nombre as LineaProducto,
+      clientes.nombre as Cliente
+      FROM ordenes_produccion
+      inner join montajes on ordenes_produccion.montaje_id = montajes.id
+      inner join clientes on montajes.cliente_id = clientes.id
+      inner join compromisos_de_entrega on compromisos_de_entrega.orden_produccion_id = ordenes_produccion.id
+      inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
+      where
+      compromisos_de_entrega.fecha_despacho BETWEEN ?::DATE AND ?'::DATE
+      ;
+      "
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial, fecha_final)
+      return datos
+
+  end
+
+  def self.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
+    puts"===START CONSULTA DE FECHA===".green
+    datos = []
+    datos = CompromisoDeEntrega.generar_busqueda_de_informe_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
+    return datos
+  end
 
 
   def cerrar()
