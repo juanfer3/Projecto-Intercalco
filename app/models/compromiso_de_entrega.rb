@@ -33,7 +33,7 @@ class CompromisoDeEntrega < ApplicationRecord
       compromisos_de_entrega.fecha_despacho BETWEEN >=  ? AND < ?'
       ;
       "
-      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_s.strftime("%d-%m-%Y"), fecha_final.strftime("%d-%m-%Y"))
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_s.strftime("%d-%m-%Y"), fecha_final.to_s.strftime("%d-%m-%Y"))
       return datos
 
   end
