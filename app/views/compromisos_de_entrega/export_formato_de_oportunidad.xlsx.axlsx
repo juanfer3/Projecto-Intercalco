@@ -4,7 +4,7 @@ wb = xlsx_package.workbook
 
 
 
-
+@datos_informe
 
 wb.styles do |style|
 
