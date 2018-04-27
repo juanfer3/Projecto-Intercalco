@@ -39,13 +39,16 @@ wb.styles do |style|
          datos["montaje"],
          datos["fecha_de_compromiso"],
          datos["fecha_despacho"],
-         "",
+
+         "hiii",
+
          datos["cantidad_solicitada"],
 
          datos["cantidad_despacho"],
-         "",
-         "",
-         ""
+
+         "hii",
+         "hii",
+         "hi"
 
 
                     ]
