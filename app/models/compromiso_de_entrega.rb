@@ -30,10 +30,10 @@ class CompromisoDeEntrega < ApplicationRecord
       inner join compromisos_de_entrega on compromisos_de_entrega.orden_produccion_id = ordenes_produccion.id
       inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
       where
-      compromisos_de_entrega.fecha_despacho BETWEEN ? '
+      compromisos_de_entrega.fecha_despacho BETWEEN >= ? AND <?'
       ;
       "
-      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial)
+      datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial, fecha_final)
       return datos
 
   end
