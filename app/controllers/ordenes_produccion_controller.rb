@@ -68,7 +68,7 @@ class OrdenesProduccionController < ApplicationController
         .order("ordenes_produccion.numero_de_orden")
 
   @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina]])
-        .where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? ", hoy,entregado)
+        .where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?)", hoy,entregado,  efi_id, mutoh_id)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
    @ordenes_sin_fecha = []
