@@ -9,10 +9,17 @@ vacio = ""
 wb.styles do |style|
 
   formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
+
     #PARA CAMBIAR COLOR DE LA LETRA SE USA fg_color: "ffffff"
+#ESTILO PARA LOS TITULOS
   highlight_cell = style.add_style(:b => true, bg_color: "b2b2b2" ,:sz=>12,
      :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
      :border => {:style => :thin, :color => "000000"})
+
+#ESTILO PARA EL CONTENIDO
+contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', aligment=> {},
+  :border => { :style => :thin, :color => "000000"})
+
 
 	 wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
