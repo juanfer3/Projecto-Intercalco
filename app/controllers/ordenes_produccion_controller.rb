@@ -52,13 +52,19 @@ class OrdenesProduccionController < ApplicationController
   maquina_efi = "DIGITAL EFI"
   maquina_mutoh = "DIGITAL MUTOH"
 
+  contenedor_efi = Maquina.find_by(nombre: maquina_efi)
+  contenedor_mutoh = Maquina.find_by(nombre:maquina_mutoh)
+
+  efi_id = contenedor_efi.id
+  mutoh_id = contenedor_mutoh.id
+
   @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas])
         .paginate(page: params[:page], per_page: 20)
-        .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ?) ", hoy, entregado, maquina_efi, maquina_mutoh)
+        .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?) ", hoy, entregado, efi_id, mutoh_id)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
   todas_las_ordenes = OrdenProduccion.joins(:montaje =>[:contenedores_de_maquinas=>[:maquina]])
-        .where("ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ?)", entregado, maquina_efi, maquina_mutoh)
+        .where("ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?)", entregado, efi_id, mutoh_id)
         .order("ordenes_produccion.numero_de_orden")
 
   @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina]])
