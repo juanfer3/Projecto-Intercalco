@@ -7,7 +7,7 @@
     <% if compromiso_de_entrega.orden_produccion.facturado == true %>
        <%= link_to '<button type="button" id="crearProduccion" class="btn btn-outline-success"><span><i class="ion-checkmark-round" aria-hidden="true"></i></span></button>'.html_safe, habilitar_facturacion_url(compromiso_de_entrega.orden_produccion), remote: true %>
     <% else %>
-       <%= link_to '<button type="button" id="crearProduccion" class="btn btn-outline-warning"><span><i class="ion-compose" aria-hidden="true"></i></span></button>'.html_safe, habilitar_facturacion_url(compromiso_de_entrega.orden_produccion), remote: true %>
+       <%= link_to '<button type="button" id="crearProduccion" class="btn btn-outline-danger"><span><i class="ion-compose" aria-hidden="true"></i></span></button>'.html_safe, habilitar_facturacion_url(compromiso_de_entrega.orden_produccion), remote: true %>
     <% end %>
 
 <%else%>
