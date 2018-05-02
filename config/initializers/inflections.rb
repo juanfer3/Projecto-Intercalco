@@ -188,4 +188,6 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'fecha_de_impresion', 'fechas_de_impresion'
   inflect.irregular 'fecha_de_impresion_final', 'fechas_de_impresion_final'
 
+  inflect.irregular 'facturado', 'facturados'
+
 end

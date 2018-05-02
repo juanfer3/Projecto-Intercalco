@@ -374,7 +374,7 @@ class OrdenProduccion < ApplicationRecord
 
                                                             #DATOS DE LA ORDEN
                                                                     #DATOS CONTACTO
-                                                                    
+
                                                                     #DATOS DIRECCION DE ENTREGA
                                                                     #DATOS FACTURAR A
 
@@ -421,6 +421,7 @@ class OrdenProduccion < ApplicationRecord
 
 
   def despues_de_crear
+    
     #code
     puts "==========================================================".blue
     puts "*******************HABILTAR IMPRESION*******************".green
@@ -438,6 +439,7 @@ class OrdenProduccion < ApplicationRecord
     puts "=*******************DESHABILTAR CORTE***********************=".green
     self.habilitar_corte_de_material = true if sacar_de_inventario == false
     puts "==========================================================".blue
+
   end
 
   def antes_de_salvar

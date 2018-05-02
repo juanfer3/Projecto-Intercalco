@@ -370,7 +370,7 @@ end
         :tiro, :retiro, :_destroy, :id],
       ordenes_produccion_attributes:[:montaje_id, :numero_de_orden,:contacto_id,:lugar_despacho,:lugar_despacho_id,:nombre_facturacion,:nombre_facturacion_id,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:orden_de_compra,:orden_nueva,
-        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,:contacto_nuevo,
+        :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,:contacto_nuevo, :facturado,
         :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,:contact_nuevo, :tomar_cliente, :tomar_usuario, :direccion_nueva, :facturar_a_nuevo,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba =>[],

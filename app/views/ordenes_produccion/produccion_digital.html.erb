@@ -4,7 +4,6 @@
 
 
 
-
 <div class="col-12">
   <div class="col-md-3 offset-md-9">
     <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
@@ -435,100 +434,7 @@ $(document).ready(function(){
       <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
 
-                <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
-
-
-
-
-
-                  <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
-                          <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
-                            <!-- true -->
-                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                              <span class="badge badge-dark">
-                                 Inventario
-                              </span>
-                            </h6>
-                            <% else %>
-
-
-
-                                  <!-- true -->
-                                  <% if @estado_data == false || @estado_data == nil%>
-                                    <!-- true -->
-
-                                        <% if  orden_produccion.impresion == false%>
-
-                                          <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
-
-                                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                                <span class="badge badge-info">
-                                                  Preprensa
-                                                </span>
-                                              </h6>
-
-                                          <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
-
-                                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                              <span class="badge badge-warning baged_acabado">
-                                                Acabado
-                                              </span>
-                                            </h6>
-
-                                          <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
-
-                                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                                <span class="badge badge-warning">
-                                                  Sin Programar
-                                                </span>
-                                              </h6>
-
-
-
-                                          <% end %>
-
-
-
-                                        <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
-
-                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                            <span class="badge badge-warning baged_impresion">
-                                              Impresión
-                                            </span>
-                                          </h6>
-
-                                        <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
-
-                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                            <span class="badge badge-warning baged_acabado">
-                                              Acabado
-                                            </span>
-                                          </h6>
-
-
-
-                                        <% end %>
-
-                                <% else %>
-                                <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                  <span class="badge badge-success ">
-                                    Despachos entregados: <br>
-                                    <%=@cantidades%>
-                                  </span>
-                                </h6>
-                                <% end %>
-
-                            <% end %>
-                  <% else %>
-                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                    <span class="badge badge-success ">
-                      Cerrada
-                    </span>
-                  </h6>
-                  <% end %>
-
-
-                  </td>
+                  <td></td>
 
                   <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
 
@@ -676,101 +582,7 @@ $(document).ready(function(){
 
   <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
-
-            <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
-
-
-
-
-
-              <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
-                      <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
-                        <!-- true -->
-                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                          <span class="badge badge-dark">
-                             Inventario
-                          </span>
-                        </h6>
-                        <% else %>
-
-
-
-                              <!-- true -->
-                              <% if @estado_data == false || @estado_data == nil%>
-                                <!-- true -->
-
-                                    <% if  orden_produccion.impresion == false%>
-
-                                      <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
-
-                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                            <span class="badge badge-info">
-                                              Preprensa
-                                            </span>
-                                          </h6>
-
-                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
-
-                                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                          <span class="badge badge-warning baged_acabado">
-                                            Acabado
-                                          </span>
-                                        </h6>
-
-                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
-
-                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                            <span class="badge badge-warning">
-                                              Sin Programar
-                                            </span>
-                                          </h6>
-
-
-
-                                      <% end %>
-
-
-
-                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
-
-                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                        <span class="badge badge-warning baged_impresion">
-                                          Impresión
-                                        </span>
-                                      </h6>
-
-                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
-
-                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                        <span class="badge badge-warning baged_acabado">
-                                          Acabado
-                                        </span>
-                                      </h6>
-
-
-
-                                    <% end %>
-
-                            <% else %>
-                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                              <span class="badge badge-success ">
-                                Despachos entregados: <br>
-                                <%=@cantidades%>
-                              </span>
-                            </h6>
-                            <% end %>
-
-                        <% end %>
-              <% else %>
-              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                <span class="badge badge-success ">
-                  Cerrada
-                </span>
-              </h6>
-              <% end %>
-
-
-              </td>
+              <td></td>
 
               <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
 
@@ -919,100 +731,7 @@ $(document).ready(function(){
         <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
 
-                  <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
-
-
-
-
-
-                    <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
-                            <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
-                              <!-- true -->
-                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                <span class="badge badge-dark">
-                                   Inventario
-                                </span>
-                              </h6>
-                              <% else %>
-
-
-
-                                    <!-- true -->
-                                    <% if @estado_data == false || @estado_data == nil%>
-                                      <!-- true -->
-
-                                          <% if  orden_produccion.impresion == false%>
-
-                                            <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
-
-                                                <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                                  <span class="badge badge-info">
-                                                    Preprensa
-                                                  </span>
-                                                </h6>
-
-                                            <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
-
-                                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                                <span class="badge badge-warning baged_acabado">
-                                                  Acabado
-                                                </span>
-                                              </h6>
-
-                                            <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
-
-                                                <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                                  <span class="badge badge-warning">
-                                                    Sin Programar
-                                                  </span>
-                                                </h6>
-
-
-
-                                            <% end %>
-
-
-
-                                          <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
-
-                                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                              <span class="badge badge-warning baged_impresion">
-                                                Impresión
-                                              </span>
-                                            </h6>
-
-                                          <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
-
-                                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                              <span class="badge badge-warning baged_acabado">
-                                                Acabado
-                                              </span>
-                                            </h6>
-
-
-
-                                          <% end %>
-
-                                  <% else %>
-                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                                    <span class="badge badge-success ">
-                                      Despachos entregados: <br>
-                                      <%=@cantidades%>
-                                    </span>
-                                  </h6>
-                                  <% end %>
-
-                              <% end %>
-                    <% else %>
-                    <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
-                      <span class="badge badge-success ">
-                        Cerrada
-                      </span>
-                    </h6>
-                    <% end %>
-
-
-                    </td>
+                  <td></td>
 
 
         <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
@@ -1080,7 +799,7 @@ $(document).ready(function(){
     if (num_hoja.length == 0) {
 
           $('.ocultar_incumplidos').show()
-          
+
     }else{
 
             if (num_hoja >= 11) {
