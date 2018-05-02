@@ -10,7 +10,8 @@ wb.styles do |style|
 
   formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
 
-  highlight_cell = style.add_style(:b => true)
+  highlight_cell = style.add_style(:b => true, fg_color:"ffffff", :sz=>12,
+     :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center})
 
 	 wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
