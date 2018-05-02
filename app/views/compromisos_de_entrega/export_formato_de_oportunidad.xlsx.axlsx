@@ -69,7 +69,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
          style: [
          contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
          contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
-         celdas_pendientes, celdas_pendientes, celdas_pendientes, celdas_pendientes
+         celdas_pendientes, celdas_pendientes, celdas_pendientes
          ]
 
     end
