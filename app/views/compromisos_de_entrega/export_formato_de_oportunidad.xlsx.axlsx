@@ -10,7 +10,7 @@ wb.styles do |style|
 
   formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
 
-  highlight_cell = style.add_style(:b => true,  :sz=>12,
+  highlight_cell = style.add_style(:b => true, fg_color:"ffffff", bg_color: "0E68A9" ,:sz=>12,
      :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
      :border => {:style => :thin, :color => "000000"})
 
