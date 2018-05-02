@@ -3,7 +3,7 @@
 wb = xlsx_package.workbook
 
 
-
+vacio = ""
 
 
 wb.styles do |style|
@@ -40,15 +40,15 @@ wb.styles do |style|
          datos["fecha_de_compromiso"],
          datos["fecha_despacho"],
 
-         "hiii",
+         vacio,
 
          datos["cantidad_solicitada"],
 
          datos["cantidad_despacho"],
 
-         "hii",
-         "hii",
-         "hi"
+         vacio,
+         vacio,
+         vacio
 
 
                     ]
