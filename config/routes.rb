@@ -201,4 +201,5 @@ Rails.application.routes.draw do
 
   get 'abrir_form_formato_de_oportunidad' => "compromisos_de_entrega#abrir_form_formato_de_oportunidad", as: :abrir_form_formato_de_oportunidad
 
+  get 'produccion_digital', to: 'ordenes_produccion#produccion_digital', as: :produccion_digital
 end

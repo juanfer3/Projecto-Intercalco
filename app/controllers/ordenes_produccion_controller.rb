@@ -44,7 +44,46 @@ class OrdenesProduccionController < ApplicationController
   end
 
 
+  def produccion_digital
 
+
+  hoy = Time.now
+  entregado = false
+  maquina_efi = "DIGITAL EFI"
+  maquina_mutoh = "DIGITAL MUTOH"
+
+  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ?) ", hoy, entregado, maquina_efi, maquina_mutoh).order("compromisos_de_entrega.fecha_de_compromiso")
+  todas_las_ordenes = OrdenProduccion.joins(:montaje =>[:contenedores_de_maquinas=>[:maquina]]).where("ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ?))", entregado, maquina_efi, maquina_mutoh).order("ordenes_produccion.numero_de_orden")
+  @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina]]).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina.nombre = ? OR contenedores_de_maquinas.maquina.nombre = ?)", hoy,entregado, maquina_efi, maquina_mutoh).order("compromisos_de_entrega.fecha_de_compromiso")
+   @ordenes_sin_fecha = []
+   #iteracion 1
+   todas_las_ordenes = todas_las_ordenes.sort_by{|a| a.compromisos_de_entrega.sort_by{|b| b["fecha_de_compromiso"].to_s.split('/') } }
+
+   todas_las_ordenes.uniq.each do |op|
+           #if 2
+           puts "********************interando ordenes********************".green
+
+          if op.compromisos_de_entrega.empty?
+             puts "*****************Numero de orde : #{op.numero_de_orden}**********************".yellow
+             @ordenes_sin_fecha << op
+          else
+
+
+
+            #if 1
+          end
+
+       #iteracion 1
+     end
+
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
+
+  end
 
 
   def open_modal_import
