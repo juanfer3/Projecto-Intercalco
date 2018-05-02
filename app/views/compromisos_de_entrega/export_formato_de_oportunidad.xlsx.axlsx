@@ -19,7 +19,9 @@ wb.styles do |style|
 #ESTILO PARA EL CONTENIDO
 contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :aligment => {:horizontal => :center},
   :border => { :style => :thin, :color => "000000"})
-
+#ESTILO CELDAS PENDIENTES
+celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  bg_color: "b2b2b2",  :aligment => {:horizontal => :center},
+  :border => { :style => :thin, :color => "000000"})
 
 	 wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
@@ -37,6 +39,8 @@ contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :a
 
 
    @datos_informe.each do |datos|
+
+          #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
          sheet.add_row [
 
          datos["ordenproduccion"],
@@ -64,8 +68,8 @@ contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :a
                     ],
          style: [
          contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-         contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-         contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas
+         contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
+         celdas_pendientes, celdas_pendientes, celdas_pendientes, celdas_pendientes
          ]
 
     end
