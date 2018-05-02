@@ -241,7 +241,7 @@ def   info_coordinador
 end
 
 def cerrar_materiales
-  #code
+  #
   @orden_produccion = OrdenProduccion.find(params[:id])
   respond_to do |format|
     if @orden_produccion.corte_material == false

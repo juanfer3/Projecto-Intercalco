@@ -17,17 +17,19 @@ class CompromisosDeEntregaController < ApplicationController
   end
 
   def habilitar_facturacion
-    #code
+    #HABILITAR FACTURACION
     @orden_produccion = OrdenProduccion.find(params[:id])
+
     respond_to do |format|
       if @orden_produccion.facturado == false
             @orden_produccion.update(facturado: true)
             format.js {flash[:notice] = "" }
       else
-        @orden_produccion.update(facturado: false)
-        format.js {flash[:notice] = "" }
+            @orden_produccion.update(facturado: false)
+            format.js {flash[:notice] = "" }
       end
     end
+
   end
 
   def export_formato_de_oportunidad
