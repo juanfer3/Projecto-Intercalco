@@ -9,8 +9,8 @@ vacio = ""
 wb.styles do |style|
 
   formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
-
-  highlight_cell = style.add_style(:b => true, fg_color:"ffffff", bg_color: "0E68A9" ,:sz=>12,
+    #PARA CAMBIAR COLOR DE LA LETRA SE USA fg_color: "ffffff"
+  highlight_cell = style.add_style(:b => true, bg_color: "b2b2b2" ,:sz=>12,
      :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
      :border => {:style => :thin, :color => "000000"})
 
