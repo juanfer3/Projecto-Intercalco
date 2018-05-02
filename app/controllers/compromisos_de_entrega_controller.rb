@@ -16,6 +16,20 @@ class CompromisosDeEntregaController < ApplicationController
     end
   end
 
+  def habilitar_facturacion
+    #code
+    @orden_produccion = OrdenProduccion.find(params[:id])
+    respond_to do |format|
+      if @orden_produccion.facturado == false
+            @orden_produccion.update(facturado: true)
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(facturado: false)
+        format.js {flash[:notice] = "" }
+      end
+    end
+  end
+
   def export_formato_de_oportunidad
     fecha_inicial = params["fecha_inicial"]
     fecha_final = params["fecha_final"]
