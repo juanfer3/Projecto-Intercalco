@@ -21,11 +21,11 @@ class CompromisosDeEntregaController < ApplicationController
     @orden_produccion = OrdenProduccion.find(params[:id])
 
     respond_to do |format|
-      if @orden_produccion.facturado == false
-            @orden_produccion.update(facturado: true)
+      if @orden_produccion.facturado == true
+            @orden_produccion.update(facturado: false)
             format.js {flash[:notice] = "" }
       else
-            @orden_produccion.update(facturado: false)
+            @orden_produccion.update(facturado: true)
             format.js {flash[:notice] = "" }
       end
     end
