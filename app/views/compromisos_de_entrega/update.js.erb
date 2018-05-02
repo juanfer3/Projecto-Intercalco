@@ -61,19 +61,19 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
         var id_compromiso_de_entrega = "<%= compromiso_de_entrega.id%>"
         toastr.error(id_compromiso_de_entrega)
         //FACTURADO
-        <% if compromiso_de_entrega.orden_produccion.entregado == true %>
+        <% if @orden_produccion.entregado == true %>
 
             <% if compromiso_de_entrega.orden_produccion.facturado == true %>
-
+                $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_true'%>')
             <% else %>
-              
+                $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_false'%>')
             <% end %>
 
         <%else%>
 
 
           var  contenedor = '<button type="button" class="btn btn-outline-primary"><span><i class="ion-lock-combination" ></i></span></button>'
-            $(<%="facturado_#{compromiso_de_entrega.id}"%>).html(contenedor)
+            $(<%="facturado_#{@orden_produccion.id}"%>).html(contenedor)
 
         <% end %>
 

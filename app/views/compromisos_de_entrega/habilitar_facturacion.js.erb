@@ -7,25 +7,20 @@
 
 
 
-//FACTURADO
-<% @orden_produccion.compromisos_de_entrega.each do  |compromiso_de_entrega| %>
 
       //FACTURADO
-      <% if compromiso_de_entrega.orden_produccion.entregado == true %>
+      <% if @orden_produccion.entregado == true %>
 
           <% if compromiso_de_entrega.orden_produccion.facturado == true %>
-              $(<%="facturado_#{compromiso_de_entrega.id}"%>).html('<%= j render 'facturado_true'%>')
+              $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_true'%>')
           <% else %>
-              $(<%="facturado_#{compromiso_de_entrega.id}"%>).html('<%= j render 'facturado_false'%>')
+              $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_false'%>')
           <% end %>
 
       <%else%>
 
 
         var  contenedor = '<button type="button" class="btn btn-outline-primary"><span><i class="ion-lock-combination" ></i></span></button>'
-          $(<%="facturado_#{compromiso_de_entrega.id}"%>).html(contenedor)
+          $(<%="facturado_#{@orden_produccion.id}"%>).html(contenedor)
 
       <% end %>
-
-
-<%end%>
