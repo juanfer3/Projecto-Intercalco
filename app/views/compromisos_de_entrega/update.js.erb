@@ -1,5 +1,10 @@
 
 
+
+
+
+
+
 <%if @compromiso_de_entrega.save%>
     toastr.success("Registro Gurdado")
 
@@ -54,7 +59,11 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
         <% end %>
 
 
-
+        <% if @orden_produccion.facturado == true %>
+           <%= link_to '<button type="button" id="crearProduccion" class="btn btn-outline-success"><span><i class="ion-checkmark-round" aria-hidden="true"></i></span></button>'.html_safe, habilitar_facturacion_url(@orden_produccion), remote: true %>
+        <% else %>
+           <%= link_to '<button type="button" id="crearProduccion" class="btn btn-outline-danger"><span><i class="ion-compose" aria-hidden="true"></i></span></button>'.html_safe, habilitar_facturacion_url(@orden_produccion), remote: true %>
+        <% end %>
 
 
 <%end%>
