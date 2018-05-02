@@ -21,7 +21,7 @@ wb.styles do |style|
 
 	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
    "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
-   "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR"],
+   "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
 
 	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
@@ -48,6 +48,7 @@ wb.styles do |style|
 
          datos["cantidad_despacho"],
 
+         vacio,
          vacio,
          vacio,
          vacio

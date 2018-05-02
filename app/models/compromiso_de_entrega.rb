@@ -19,6 +19,7 @@ class CompromisoDeEntrega < ApplicationRecord
 
       sql = "SELECT
       ordenes_produccion.cantidad_solicitada,
+      ordenes_produccion.fecha,
       ordenes_produccion.numero_de_orden as OrdenProduccion,
       montajes.nombre as Montaje,
       compromisos_de_entrega.* as CompromisoDeEntrega,
