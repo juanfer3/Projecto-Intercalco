@@ -14,11 +14,9 @@
       <% if compromiso_de_entrega.orden_produccion.entregado == true %>
 
           <% if compromiso_de_entrega.orden_produccion.facturado == true %>
-          var contenedor = "<%= link_to "<button type='button'  class='btn btn-outline-success'><span><i class='ion-checkmark-round' aria-hidden='true'></i></span></button>".html_safe, habilitar_facturacion_url(compromiso_de_entrega.orden_produccion), remote: true %>"
-              $(<%="facturado_#{compromiso_de_entrega.id}"%>).html(contenedor)
+              $(<%="facturado_#{compromiso_de_entrega.id}"%>).html('<%= j render 'facturado_true'%>')
           <% else %>
-           var contenedor = "<%= link_to "<button type='button'  class='btn btn-outline-danger'><span><i class='ion-compose' aria-hidden='true'></i></span></button>".html_safe, habilitar_facturacion_url(compromiso_de_entrega.orden_produccion), remote: true %>"
-             $(<%="facturado_#{compromiso_de_entrega.id}"%>).html(contenedor)
+              $(<%="facturado_#{compromiso_de_entrega.id}"%>).html('<%= j render 'facturado_false'%>')
           <% end %>
 
       <%else%>
