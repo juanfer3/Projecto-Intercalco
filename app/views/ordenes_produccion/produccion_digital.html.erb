@@ -43,7 +43,7 @@
                           </button>
 
               </div>
-    
+
                 <div class="col-3">
                   <div class="">
                       <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, produccion_digital_path %>
@@ -1077,14 +1077,25 @@ $(document).ready(function(){
 
   var num_hoja = $('ul .active span').text()
 
-  if (num_hoja >= 11) {
-    $('.ocultar_incumplidos').hide()
+    if (num_hoja.length == 0) {
 
-  }else {
+          $('.ocultar_incumplidos').show()
+          
+    }else{
 
-    $('.ocultar_incumplidos').show()
+            if (num_hoja >= 11) {
 
-  }
+              $('.ocultar_incumplidos').hide()
+
+            }else {
+
+              $('.ocultar_incumplidos').show()
+
+            }
+
+    }
+
+
 
 
 
