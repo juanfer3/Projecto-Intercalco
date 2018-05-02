@@ -434,11 +434,19 @@ $(document).ready(function(){
 
 
           <!--FACTURADO-->
-          <% if compromiso_de_entrega.orden_produccion.facturado == true %>
-             <td> FACTURADO </td>
-          <% else %>
-             <td> SIN FACTURAR </td>
+          <% if compromiso_de_entrega.orden_produccion.entregado == true %>
+
+              <% if compromiso_de_entrega.orden_produccion.facturado == true %>
+                 <td> FACTURADO </td>
+              <% else %>
+                 <td> SIN FACTURAR </td>
+              <% end %>
+
+          <%else%>
+              <td>SON ACCESO A FACTURAR</td>
           <% end %>
+
+
 
 
 
