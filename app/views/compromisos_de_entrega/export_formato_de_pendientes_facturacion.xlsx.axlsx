@@ -38,42 +38,47 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
    ]
 
 
-   @datos_informe.each do |datos|
-
-          #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
-         sheet.add_row [
-
-         datos["ordenproduccion"],
-         datos["fecha"],
-
-         datos["numero_de_remision"],
-         datos["cliente"].titleize,
-
-         datos["montaje"].titleize,
-         datos["fecha_de_compromiso"],
-         datos["fecha_despacho"],
-
-         vacio,
-
-         datos["cantidad_solicitada"],
-
-         datos["cantidad_despacho"],
-
-         vacio,
-         vacio,
-         vacio,
-         vacio
 
 
-                    ],
-         style: [
-         contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-         contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
-         celdas_pendientes, celdas_pendientes, celdas_pendientes
-         ]
+   if @datos_informe == nil
 
+   else
+               @datos_informe.each do |datos|
+
+                      #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
+                     sheet.add_row [
+
+                     datos["ordenproduccion"],
+                     datos["fecha"],
+
+                     datos["numero_de_remision"],
+                     datos["cliente"].titleize,
+
+                     datos["montaje"].titleize,
+                     datos["fecha_de_compromiso"],
+                     datos["fecha_despacho"],
+
+                     vacio,
+
+                     datos["cantidad_solicitada"],
+
+                     datos["cantidad_despacho"],
+
+                     vacio,
+                     vacio,
+                     vacio,
+                     vacio
+
+
+                                ],
+                     style: [
+                     contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
+                     contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
+                     celdas_pendientes, celdas_pendientes, celdas_pendientes
+                     ]
+
+                end
     end
-
 
 	end
 

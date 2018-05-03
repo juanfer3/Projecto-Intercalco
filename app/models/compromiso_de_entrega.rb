@@ -39,7 +39,7 @@ class CompromisoDeEntrega < ApplicationRecord
     ;
     "
     datos = CompromisoDeEntrega.execute_sql(sql, facturado)
-
+    
 
     return datos
   end

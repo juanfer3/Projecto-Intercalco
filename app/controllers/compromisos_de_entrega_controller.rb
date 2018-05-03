@@ -17,7 +17,7 @@ class CompromisosDeEntregaController < ApplicationController
   end
 
   def export_formato_de_pendientes_facturacion
-    #@datos_informe = CompromisoDeEntrega.generador_informe_de_pendientes_por_facturar
+    @datos_informe = CompromisoDeEntrega.generador_informe_de_pendientes_por_facturar
     respond_to do |format|
 
       format.xlsx {
