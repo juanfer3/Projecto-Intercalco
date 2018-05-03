@@ -22,10 +22,11 @@
            <hr class="line_title"/>
             <% if user_signed_in? %>
 
-              <%= link_to '<button type="button" class="btn btn-outline-danger btn-lg btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+              <%= link_to '<button type="button" class="btn btn-outline-danger btn-lg btn-block my_btn_title "> <span class="btn_letter_color"> Logout</span> </button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
             <%else%>
 
-             <button type="button" class="btn btn-outline-warning btn-lg btn-block my_btn_title" data-toggle="modal" data-target="#exampleModal">Login</button>
+             <button type="button" class="btn btn-outline-warning btn-lg btn-block my_btn_title btn_letter_color"
+             data-toggle="modal" data-target="#exampleModal"> <span style="color: black;">Login</span> </button>
 
             <%end%>
             <diV class="">
