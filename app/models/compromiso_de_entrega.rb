@@ -13,6 +13,39 @@ class CompromisoDeEntrega < ApplicationRecord
     connection.execute(send(:sanitize_sql_array, sql))
   end
 
+
+
+
+  def self.generador_informe_de_pendientes_por_facturar
+    facturado = false
+    sql = "SELECT
+    ordenes_produccion.cantidad_solicitada,
+    ordenes_produccion.fecha,
+    ordenes_produccion.precio_unitario,
+    ordenes_produccion.numero_de_orden as OrdenProduccion,
+    montajes.nombre as Montaje,
+    compromisos_de_entrega.* as CompromisoDeEntrega,
+    lineas_productos.nombre as LineaProducto,
+    users.nombre as User,
+    clientes.nombre as Cliente
+    FROM ordenes_produccion
+    inner join montajes on ordenes_produccion.montaje_id = montajes.id
+    inner join clientes on montajes.cliente_id = clientes.id
+    inner join compromisos_de_entrega on compromisos_de_entrega.orden_produccion_id = ordenes_produccion.id
+    inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
+    inner join users on clientes.user_id = users.id
+    where
+    ordenes_produccion.facturado = ?
+    ;
+    "
+    datos = CompromisoDeEntrega.execute_sql(sql, facturado)
+
+
+    return datos
+  end
+
+
+
   def self.generar_busqueda_de_informe_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
 
 

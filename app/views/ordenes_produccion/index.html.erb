@@ -1049,7 +1049,7 @@ $(document).ready(function(){
 <div class="container">
   <div class="row align-items-start">
 
-    <div class="col-2">
+    <div class="col-4">
        <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,
        ordenes_produccion_path(format: :xlsx) %>
      </div>
@@ -1063,7 +1063,7 @@ $(document).ready(function(){
      <div class="col-4">
 
        <%= link_to '<button type="button" data-toggle="modal" data-target="#modalExportarExcel"  class="btn btn-outline-warning"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Informe Pendientes Por Facturar </span></button>'.html_safe,
-       abrir_form_formato_de_pendientes_por_facturar_path, remote: true %>
+       export_formato_de_pendientes_facturacion_path%>
 
      </div>
 
@@ -1578,7 +1578,7 @@ $(document).ready(function(){
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content col-12">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Importar Clientes Desde Excel</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Generar informes</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
