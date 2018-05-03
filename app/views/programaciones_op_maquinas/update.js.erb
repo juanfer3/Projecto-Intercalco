@@ -1,3 +1,59 @@
 toastr.success("Cambios Realizados")
 $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>")
 $(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
+
+
+// ===inputSwitch===
+var switch_value = ""
+$(".inputSwitch span").on("click", function() {
+  var $this = $(this);
+  switch_value = $this.text()
+  $this.hide().siblings("input").val($.trim($this.text())).show();
+  $this.hide().siblings("input").focus()
+  return switch_value
+});
+
+$(".inputSwitch input").on("blur", function() {
+
+  var $this = $(this);
+  var cantidad_maquinas=$this.val()
+  var id_programacion = $(this).parents("tr").find('.tomar_span_id').text()
+
+if ($this.val().length == 0) {
+
+    console.log('valor del span es: ');
+    console.log(switch_value);
+    switch_value = parseInt(switch_value)
+    $this.val(switch_value)
+    console.log('el input esta vacio');
+    $this.hide().siblings("span").text($this.val()).show();
+
+}else{
+
+                console.log('el input esta lleno');
+                var este_valor = parseInt($this.val())
+                if (switch_value == este_valor) {
+                    console.log('los valorres son iguales');
+                    $this.hide().siblings("span").text($this.val()).show();
+                }else{
+
+                  $.ajax({
+                    url:'/blur_edit_machine/',
+                    data: {authenticity_token: $('[name="csrf-token"]')[0].content,
+                            cantidad_maquinas:cantidad_maquinas,
+                            id_programacion:id_programacion},
+                    method:'post',
+                    success: function (data){
+                      console.log();
+                      var resort = true;
+                      $('.my-tabla').trigger('updateAll', [resort]);
+                    }
+                  })
+
+                }
+
+
+              }
+
+  //console.log($this);
+}).hide();
