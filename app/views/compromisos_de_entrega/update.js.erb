@@ -29,7 +29,7 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
                       <%elsif compromiso_de_entrega.orden_produccion.pantalla == false && compromiso_de_entrega.orden_produccion.color === false && compromiso_de_entrega.orden_produccion.corte_material=== false && compromiso_de_entrega.orden_produccion.acabado == true%>
 
                        var contenedor =  "<h6><span class='badge badge-warning baged_acabado'>Acabado</span></h6>"
-                       $(<%="estado_orden_produccion#{compromiso.id}"%>).html(contenedor)
+                       $(<%="estado_orden_produccion#{compromiso_de_entrega.id}"%>).html(contenedor)
                       <%elsif compromiso_de_entrega.orden_produccion.pantalla == false && compromiso_de_entrega.orden_produccion.color === false && compromiso_de_entrega.orden_produccion.corte_material=== false%>
 
                            var contenedor = "<h6 ><span class='badge badge-warning'>Sin Programar</span></h6>"
@@ -58,7 +58,7 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
         $(<%="estado_orden_produccion#{compromiso_de_entrega.id}"%>).html(contenedor)
         <% end %>
 
-    
+
         //FACTURADO
         <% if @orden_produccion.entregado == true %>
 
