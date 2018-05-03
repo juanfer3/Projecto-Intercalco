@@ -78,9 +78,8 @@ class CompromisosDeEntregaController < ApplicationController
           @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
           @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion_id)
 
-          @orden_produccion.each do |orden|
-            puts"orden".red
-          end
+            puts"#{@orden_produccion}".red
+
 
         format.js {flash[:notice] = "" }
     end
