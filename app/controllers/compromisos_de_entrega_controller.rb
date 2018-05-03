@@ -76,7 +76,12 @@ class CompromisosDeEntregaController < ApplicationController
         @compromiso_de_entrega.update(enviado: false,
           fecha_despacho: "", cantidad_despacho:0.0, numero_de_remision:"", observacion: "")
           @compromiso_de_entrega = CompromisoDeEntrega.find(params[:id])
-          @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion.id)
+          @orden_produccion = OrdenProduccion.find_by(id: @compromiso_de_entrega.orden_produccion_id)
+
+          @orden_produccion.each do |orden|
+            puts"orden".red
+          end
+
         format.js {flash[:notice] = "" }
     end
     respond_to do |format|
