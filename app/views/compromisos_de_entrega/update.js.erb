@@ -58,12 +58,11 @@ $('#contenidoModal').html('<%= j render 'info_pedido'%>')
         $(<%="estado_orden_produccion#{compromiso_de_entrega.id}"%>).html(contenedor)
         <% end %>
 
-        var id_compromiso_de_entrega = "<%= compromiso_de_entrega.id%>"
-        toastr.error(id_compromiso_de_entrega)
+    
         //FACTURADO
         <% if @orden_produccion.entregado == true %>
 
-            <% if compromiso_de_entrega.orden_produccion.facturado == true %>
+            <% if @orden_produccion.facturado == true %>
                 $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_true'%>')
             <% else %>
                 $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_false'%>')
