@@ -47,9 +47,9 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
          datos["fecha"],
 
          datos["numero_de_remision"],
-         datos["cliente"],
+         datos["cliente"].titleize,
 
-         datos["montaje"],
+         datos["montaje"].titleize,
          datos["fecha_de_compromiso"],
          datos["fecha_despacho"],
 
