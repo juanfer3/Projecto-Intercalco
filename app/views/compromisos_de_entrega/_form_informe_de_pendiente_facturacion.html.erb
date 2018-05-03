@@ -1,0 +1,56 @@
+<!-- Modal Excel Informa de oportunidad -->
+
+
+
+
+<div class="container">
+  <h1>Instrucciones:</h1>
+  <h6> <strong>-</strong> Para generar el <strong>Informe de oportunidad</strong> diliengencie los siguientes datos  </h6>
+
+    <%= form_tag export_formato_de_oportunidad_path(format: :xlsx), class: 'needs-validation' do %> <br>
+
+    <div class="input-daterange input my_card_pedidos_form my_orden_pedidos">
+
+      <div class="col-4">
+        <label for="fecha_inicial">Fecha inicial</label> <br>
+        <%= text_field_tag 'fecha_inicial',"",class: "form-control fecha_en_espanol",
+        "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker',required:true%>
+      </div>
+
+      <div class="col-4">
+        <label for="fecha_final">Fecha final</label> <br>
+        <%= text_field_tag 'fecha_final',"",class: "form-control fecha_en_espanol",
+        "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker', required:true%>
+      </div>
+
+      <div class="col-4 ">
+        <label for="">Seleccione la linea de producto</label>
+        <% lineas = []%>
+        <% lineas = @lineas_productos%>
+
+        <%= select_tag "linea_producto_id",
+          options_from_collection_for_select(lineas, :id, :nombre),
+          class:"demo-default",
+          id:"selectize_linea_producto",
+          include_blank: 'Seleccione Las maquinas',
+          required:true
+        %>
+      </div>
+
+    </div>
+
+    <br>
+
+    <div class="col-4 offset-lg-4">
+      <%= button_tag type: 'submit', class: "btn btn-outline-success btn-lg btn-block" do %>
+          <span>GENERAR REPORTE
+              <i id="iconoSubmit" class="fa fa-file-excel-o" aria-hidden="true"></i>
+          </span>
+      <% end %>
+    </div>
+
+
+
+  <% end %>
+  <h1><%=@user_id%></h1>
+</div>

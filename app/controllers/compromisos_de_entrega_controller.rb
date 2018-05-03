@@ -16,6 +16,19 @@ class CompromisosDeEntregaController < ApplicationController
     end
   end
 
+
+  def abrir_form_formato_de_pendientes_por_facturar
+    @lineas_productos = LineaProducto.all.order("nombre")
+    respond_to do |format|
+
+      format.js
+
+    end
+  end
+
+
+
+
   def habilitar_facturacion
     #HABILITAR FACTURACION
     @orden_produccion = OrdenProduccion.find(params[:id])

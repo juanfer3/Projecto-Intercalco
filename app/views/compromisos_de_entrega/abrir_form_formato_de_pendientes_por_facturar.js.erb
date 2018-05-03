@@ -1,0 +1,39 @@
+
+//abrir modal
+$('#modalExportarExcel').modal('show');
+
+
+//cargar form compromisos_de_entrega/_form_informe_de_oportunidad
+$('#contenidoFormularioInformeOportunida').html('<%= j render 'form_informe_de_pendiente_facturacion'%>')
+
+
+//aplicar formato a los  inputs
+$('.input-daterange input').each(function() {
+    $(this).datepicker('clearDates');
+});
+
+$('#selectize_linea_producto').selectize({
+
+})
+
+
+//validacion de formulario
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();

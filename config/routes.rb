@@ -200,6 +200,7 @@ Rails.application.routes.draw do
   post 'export_formato_de_oportunidad' => "compromisos_de_entrega#export_formato_de_oportunidad", as: :export_formato_de_oportunidad
 
   get 'abrir_form_formato_de_oportunidad' => "compromisos_de_entrega#abrir_form_formato_de_oportunidad", as: :abrir_form_formato_de_oportunidad
+  get 'abrir_form_formato_de_pendientes_por_facturar' => "compromisos_de_entrega#abrir_form_formato_de_pendientes_por_facturar", as: :abrir_form_formato_de_pendientes_por_facturar
 
   get 'produccion_digital', to: 'ordenes_produccion#produccion_digital', as: :produccion_digital
 
