@@ -8,19 +8,19 @@
 
 
 
-      //FACTURADO
-      <% if @orden_produccion.entregado == true %>
+//FACTURADO
+<% if @orden_produccion.entregado == true %>
 
-          <% if compromiso_de_entrega.orden_produccion.facturado == true %>
-              $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_true'%>')
-          <% else %>
-              $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_false'%>')
-          <% end %>
+    <% if @orden_produccion.facturado == true %>
+        $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_true'%>')
+    <% else %>
+        $(<%="facturado_#{@orden_produccion.id}"%>).html('<%= j render 'facturado_false'%>')
+    <% end %>
 
-      <%else%>
+<%else%>
 
 
-        var  contenedor = '<button type="button" class="btn btn-outline-primary"><span><i class="ion-lock-combination" ></i></span></button>'
-          $(<%="facturado_#{@orden_produccion.id}"%>).html(contenedor)
+  var  contenedor = '<button type="button" class="btn btn-outline-primary"><span><i class="ion-lock-combination" ></i></span></button>'
+    $(<%="facturado_#{@orden_produccion.id}"%>).html(contenedor)
 
-      <% end %>
+<% end %>
