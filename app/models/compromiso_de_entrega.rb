@@ -17,7 +17,7 @@ class CompromisoDeEntrega < ApplicationRecord
 
 
   def self.generador_informe_de_pendientes_por_facturar
-    facturado = false
+    facturado = true
     sql = "SELECT
     ordenes_produccion.cantidad_solicitada,
     ordenes_produccion.fecha,
@@ -35,7 +35,7 @@ class CompromisoDeEntrega < ApplicationRecord
     inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
     inner join users on clientes.user_id = users.id
     where
-    ordenes_produccion.facturado = ?
+    ordenes_produccion.facturado != ?
     ;
     "
     datos = CompromisoDeEntrega.execute_sql(sql, facturado)
