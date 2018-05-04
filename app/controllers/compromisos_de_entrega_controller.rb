@@ -9,6 +9,8 @@ class CompromisosDeEntregaController < ApplicationController
 
   def abrir_form_formato_de_oportunidad
     @lineas_productos = LineaProducto.all.order("nombre")
+    todos = ["id" => "todos", "nombre" => "TODAS"]
+    @lineas_productos << todos
     respond_to do |format|
 
       format.js
