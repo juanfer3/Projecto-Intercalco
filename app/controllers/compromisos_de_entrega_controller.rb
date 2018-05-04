@@ -16,7 +16,7 @@ class CompromisosDeEntregaController < ApplicationController
       @lineas << contenido
     end
     contenido2 = ["id" => "todas", "nombre" => "TODAS"]
-    @lineas << Hash*contenido2
+    @lineas << contenido2
     @lineas.each do  |linea|
       puts"================ lineas: #{linea["nombre"]}==============".green
     end
