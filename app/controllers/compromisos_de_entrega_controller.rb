@@ -20,7 +20,7 @@ class CompromisosDeEntregaController < ApplicationController
     @lineas.each do  |linea|
       puts"================ lineas: #{linea}==============".green
     end
-
+    @lineas << ["odas", "TODAS"]
     respond_to do |format|
 
       format.js
