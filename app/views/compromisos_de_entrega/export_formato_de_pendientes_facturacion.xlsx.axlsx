@@ -28,9 +28,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
 
 
-	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
-   "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
-   "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
+	 sheet.add_row ["MES", "VENDEDOR", "LINEA", "CLIENTE", "REFERENCIA", "CANTIDAD", "PRECIO UNITARIO", "VALOR TOTAL", "OBSERVACIONES"],
 
 	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
@@ -45,10 +43,53 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
    else
                @datos_informe.each do |datos|
 
+
+ #ESCOGER MES:
+            if datos["fecha"].length <= 0
+                mes = datos["fecha"].strftime("%m")
+
+
+                case mes
+                      when "01"%>
+                        <td>Enero</td>
+                      <%when "02"%>
+                        <td>Febrero</td>
+                      <%when "03"%>
+                        <td>Marzo</td>
+                      <%when "04"%>
+                        <td>Abril</td>
+                      <%when "05"%>
+                        <td>Mayo</td>
+                      <%when "06"%>
+                        <td>Junio</td>
+                      <%when "07"%>
+                        <td>Julio</td>
+                      <%when "08"%>
+                        <td>Agosto</td>
+                      <%when "09"%>
+                        <td>Septiembre</td>
+                      <%when "10"%>
+                        <td>Octubre</td>
+                      <%when "11"%>
+                        <td>Noviembre</td>
+                      <%when "12"%>
+                        <td>Diciembre</td>
+                      <% end %>
+                      <% else %>
+                      <td>Por Definir</td>
+                <% end %>
+
+            else
+
+            end
+
+
+
+
                       #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                      sheet.add_row [
 
-                     datos["ordenproduccion"],
+                     Mes,
                      datos["fecha"],
 
                      datos["numero_de_remision"],
