@@ -34,7 +34,7 @@
   </thead>
 
   <tbody id="bodyDeOrdenes">
-    <% @ordenes_produccion.each do |orden_produccion| %>
+    <% @ordenes_produccion.uniq.each do |orden_produccion| %>
     <tr class="ocultarBodyOrdenes">
       <td><%= orden_produccion.numero_de_orden %></td>
       <td><%= orden_produccion.montaje.cliente.nombre%></td>
