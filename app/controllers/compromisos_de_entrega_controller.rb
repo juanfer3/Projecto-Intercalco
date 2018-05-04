@@ -13,7 +13,7 @@ class CompromisosDeEntregaController < ApplicationController
       puts"================#{linea}==============".green
     end
     todos = ["id" ,"todos","nombre","TODAS"]
-    @lineas_productos << todos
+    @lineas_productos.puts todos
     respond_to do |format|
 
       format.js
