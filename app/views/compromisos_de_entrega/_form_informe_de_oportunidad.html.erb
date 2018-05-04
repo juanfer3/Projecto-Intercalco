@@ -26,13 +26,10 @@
       <div class="col-4 ">
         <label for="">Seleccione la linea de producto</label>
         <% lineas = []%>
-        <% lineas = @lineas
-           data_for_select = lineas.each { |hash| [hash['id'], hash['nombre']] }
-
-        %>
+        <% lineas = @lineas_productos%>
 
         <%= select_tag "linea_producto_id",
-          options_for_select(lineas.map{ |hash| [hash['id'], hash['nombre']] }),
+          options_from_collection_for_select(lineas, :id, :nombre),
           class:"demo-default",
           id:"selectize_linea_producto",
           include_blank: 'Seleccione Las maquinas',
