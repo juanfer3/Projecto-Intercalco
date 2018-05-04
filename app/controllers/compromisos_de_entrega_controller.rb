@@ -9,11 +9,18 @@ class CompromisosDeEntregaController < ApplicationController
 
   def abrir_form_formato_de_oportunidad
     @lineas_productos = LineaProducto.all.order("nombre")
+    @lineas = []
     @lineas_productos.each do  |linea|
       puts"================#{linea}==============".green
+
+      @lineas << [linea.id, linea.nombre]
     end
-    todos = ["id" ,"todos","nombre","TODAS"]
-    @lineas_productos.puts todos
+
+
+    @lineas.each do  |linea|
+      puts"================ lineas: #{linea}==============".green
+    end
+
     respond_to do |format|
 
       format.js
