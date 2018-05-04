@@ -444,7 +444,7 @@ end
   #Color
   def produccion_color
     estado = true
-    @ordenes_produccion = OrdenProduccion.joins(:montaje => [:desarrollos_de_tinta], :compromisos_de_entrega =>[]).where("ordenes_produccion.habilitar_impresion = ?", estado).order("ordenes_produccion.numero_de_orden DESC")
+    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:desarrollos_de_tintas]).where("ordenes_produccion.habilitar_impresion = ?", estado).order("ordenes_produccion.numero_de_orden DESC")
     respond_to do |format|
       format.html
       format.pdf {render template: "ordenes_produccion/color_pdf", pdf: 'color_pdf'}
