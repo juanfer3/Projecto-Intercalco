@@ -92,7 +92,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
                      mes,
                      datos["user"],
-                     datos["linea_producto"].titleize,
+                     datos["lineaproducto"].titleize,
                      datos["cliente"].titleize,
                      datos["montaje"].titleize,
                      datos["cantidad_solicitada"],
