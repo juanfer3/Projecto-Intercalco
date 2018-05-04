@@ -96,7 +96,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                      datos["cliente"].titleize,
                      datos["montaje"].titleize,
                      numero_beuty(datos["cantidad_solicitada"].to_i),
-                     number_to_currency_entero(datos["precio_unitario"].to_f),
+                     number_to_currency_entero(datos["precio_unitario"].to_i),
                      vacio,
                      vacio
 
