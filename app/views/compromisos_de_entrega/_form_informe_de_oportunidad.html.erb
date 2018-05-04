@@ -29,7 +29,7 @@
         <% lineas = @lineas%>
 
         <%= select_tag "linea_producto_id",
-          options_from_collection_for_select(lineas["id"], lineas["nombre"], to_s, to_s),
+          options_from_collection_for_select([lineas["id"], lineas["nombre"]], to_s, to_s),
           class:"demo-default",
           id:"selectize_linea_producto",
           include_blank: 'Seleccione Las maquinas',
