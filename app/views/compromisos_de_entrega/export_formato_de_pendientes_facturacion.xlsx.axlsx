@@ -46,38 +46,39 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
  #ESCOGER MES:
             if datos["fecha"].length <= 0
-                mes = datos["fecha"].strftime("%m")
+                data = datos["fecha"].strftime("%m")
 
+                mes =""
 
-                case mes
-                      when "01"%>
-                        <td>Enero</td>
-                      <%when "02"%>
-                        <td>Febrero</td>
-                      <%when "03"%>
-                        <td>Marzo</td>
-                      <%when "04"%>
-                        <td>Abril</td>
-                      <%when "05"%>
-                        <td>Mayo</td>
-                      <%when "06"%>
-                        <td>Junio</td>
-                      <%when "07"%>
-                        <td>Julio</td>
-                      <%when "08"%>
-                        <td>Agosto</td>
-                      <%when "09"%>
-                        <td>Septiembre</td>
-                      <%when "10"%>
-                        <td>Octubre</td>
-                      <%when "11"%>
-                        <td>Noviembre</td>
-                      <%when "12"%>
-                        <td>Diciembre</td>
-                      <% end %>
-                      <% else %>
-                      <td>Por Definir</td>
-                <% end %>
+                case data
+                      when "01"
+                        mes = Enero
+                      when "02"
+                        mes = Febrero
+                      when "03"
+                        mes = Marzo
+                      when "04"
+                        mes = Abril
+                      when "05"
+                        mes = Mayo
+                      when "06"
+                        mes = Junio
+                      when "07"
+                        mes = Julio
+                      when "08"
+                        mes = Agosto
+                      when "09"
+                        mes = Septiembre
+                      when "10"
+                        mes = Octubre
+                      when "11"
+                        mes = Noviembre
+                      when "12"
+                        mes = Diciembre
+                       end
+                       else
+                      mes = ""
+                 end
 
             else
 
