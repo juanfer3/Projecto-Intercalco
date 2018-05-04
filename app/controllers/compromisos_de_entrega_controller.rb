@@ -18,7 +18,7 @@ class CompromisosDeEntregaController < ApplicationController
     contenido2 = ["id" => "todas", "nombre" => "TODAS"]
     @lineas << contenido2
     @lineas.each do  |linea|
-      puts"================ lineas: #{linea["nombre"]}==============".green
+      puts"================ lineas: #{linea.nombre}==============".green
     end
     respond_to do |format|
 
