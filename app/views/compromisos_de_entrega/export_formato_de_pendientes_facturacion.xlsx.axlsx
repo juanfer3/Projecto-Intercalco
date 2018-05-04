@@ -45,7 +45,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
 
  #ESCOGER MES:
-            if datos["fecha"].length <= 0
+            if datos["fecha"].length > 0
                 data = datos["fecha"].strftime("%m")
 
                 mes =""
@@ -75,13 +75,12 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                         mes = Noviembre
                       when "12"
                         mes = Diciembre
-                       end
-                       else
+                      else
                       mes = ""
                  end
 
             else
-
+              mes = ""
             end
 
 
