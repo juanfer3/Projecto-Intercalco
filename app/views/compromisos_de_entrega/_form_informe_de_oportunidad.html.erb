@@ -32,7 +32,7 @@
         %>
 
         <%= select_tag "linea_producto_id",
-          options_for_select(lineas.each { |hash| [hash['id'], hash['nombre']] }),
+          options_for_select(lineas.map{ |hash| [hash['id'], hash['nombre']] }),
           class:"demo-default",
           id:"selectize_linea_producto",
           include_blank: 'Seleccione Las maquinas',
