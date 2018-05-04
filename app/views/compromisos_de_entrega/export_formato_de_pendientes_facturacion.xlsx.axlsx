@@ -45,10 +45,11 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
 
  #ESCOGER MES:
+            mes = ""
             if datos["fecha"].length > 0
                 data = datos["fecha"].to_date.strftime("%m")
 
-                mes =""
+
 
                 case data
                       when "01"
