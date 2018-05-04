@@ -26,7 +26,7 @@
       <div class="col-4 ">
         <label for="">Seleccione la linea de producto</label>
         <% lineas = []%>
-        <% lineas = @lineas_productos%>
+        <% lineas = @lineas%>
 
         <%= select_tag "linea_producto_id",
           options_from_collection_for_select(lineas, 'id', 'nombre', 1),
