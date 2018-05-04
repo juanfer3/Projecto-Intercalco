@@ -12,10 +12,11 @@ class CompromisosDeEntregaController < ApplicationController
     @lineas = []
 
     @lineas_productos.each do  |linea|
-      @lineas << [linea.id, linea.nombre]
+      contenido = ["id" => linea.id,"nombre" => linea.nombre]
+      @lineas << Hash[*contenido]
     end
-    
-    @lineas << ["todas", "TODAS"]
+    contenido2 = ["id" => "todas", "nombre" => "TODAS"]
+    @lineas << Hash[*contenido2]
     @lineas.each do  |linea|
       puts"================ lineas: #{linea}==============".green
     end
