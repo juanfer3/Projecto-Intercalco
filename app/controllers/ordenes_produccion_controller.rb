@@ -525,7 +525,7 @@ end
   #pantallas
   def produccion_pantallas
     estado = true
-    @ordenes_produccion = OrdenProduccion.where("habilitar_impresion = ?", estado).order("numero_de_orden DESC")
+    @ordenes_produccion = OrdenProduccion.joins(:montaje => [:desarrollos_de_tintas]).where("ordenes_produccion.habilitar_impresion = ?", estado).order("ordenes_produccion.numero_de_orden DESC")
   end
 
   def cerrar_pantalla
