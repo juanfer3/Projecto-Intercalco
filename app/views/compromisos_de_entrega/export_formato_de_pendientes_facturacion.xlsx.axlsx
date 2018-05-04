@@ -31,7 +31,6 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 	 sheet.add_row ["MES", "VENDEDOR", "LINEA", "CLIENTE", "REFERENCIA", "CANTIDAD", "PRECIO UNITARIO", "VALOR TOTAL", "OBSERVACIONES"],
 
 	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
-   highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
    ]
 
@@ -92,23 +91,12 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                      sheet.add_row [
 
                      mes,
-                     datos["fecha"],
-
-                     datos["numero_de_remision"],
+                     datos["user"],
+                     datos["linea_producto"].titleize,
                      datos["cliente"].titleize,
-
                      datos["montaje"].titleize,
-                     datos["fecha_de_compromiso"],
-                     datos["fecha_despacho"],
-
-                     vacio,
-
                      datos["cantidad_solicitada"],
-
-                     datos["cantidad_despacho"],
-
-                     vacio,
-                     vacio,
+                     datos["precio_unitario"],
                      vacio,
                      vacio
 
@@ -116,8 +104,8 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                                 ],
                      style: [
                      contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-                     contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
-                     celdas_pendientes, celdas_pendientes, celdas_pendientes
+                     contenido_celdas,contenido_celdas,
+                      celdas_pendientes, celdas_pendientes
                      ]
 
                 end
