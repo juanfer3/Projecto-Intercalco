@@ -91,7 +91,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                       #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                      sheet.add_row [
 
-                     Mes,
+                     mes,
                      datos["fecha"],
 
                      datos["numero_de_remision"],
