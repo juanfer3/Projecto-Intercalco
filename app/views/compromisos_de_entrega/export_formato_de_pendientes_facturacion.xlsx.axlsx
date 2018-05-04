@@ -54,29 +54,29 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
                 case data
                       when "01"
-                        mes = Enero
+                        mes = "Enero"
                       when "02"
-                        mes = Febrero
+                        mes = "Febrero"
                       when "03"
-                        mes = Marzo
+                        mes = "Marzo"
                       when "04"
-                        mes = Abril
+                        mes = "Abril"
                       when "05"
-                        mes = Mayo
+                        mes = "Mayo"
                       when "06"
-                        mes = Junio
+                        mes = "Junio"
                       when "07"
-                        mes = Julio
+                        mes = "Julio"
                       when "08"
-                        mes = Agosto
+                        mes = "Agosto"
                       when "09"
-                        mes = Septiembre
+                        mes = "Septiembre"
                       when "10"
-                        mes = Octubre
+                        mes = "Octubre"
                       when "11"
-                        mes = Noviembre
+                        mes = "Noviembre"
                       when "12"
-                        mes = Diciembre
+                        mes = "Diciembre"
                       else
                         mes = ""
                  end
