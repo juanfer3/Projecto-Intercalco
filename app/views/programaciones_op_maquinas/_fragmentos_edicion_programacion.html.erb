@@ -636,6 +636,162 @@
 
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function PintarValidacion(campo, aviso){
+
+  var value = campo.val()
+  var mensaje = "<span>Este campo no puede estar vacio</span>"
+    if (value.length == 0) {
+      campo.css("border", "1px solid #a94442");
+      aviso.show()
+      aviso.html(mensaje)
+    }else{
+      campo.css("border", "1px solid #3c763d");
+      aviso.hide()
+    }
+
+
+  }
+
+
+  function validarCamposSubmit(){
+
+    var campos_tirajes = $('#campo_tirajes').val()
+
+    var fecha_impresion = $('#fecha_de_impresion').val()
+
+    var cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas').val()
+
+    var hora_por_maquina = $('#programacion_op_maquina_total_hora').val()
+
+    var fecha_final = $('#fecha_de_impresion_final').val()
+
+    var hora_final = $('#programacion_op_maquina_hora_final').val()
+
+
+    if (campos_tirajes.length == 0 ||
+      fecha_impresion.length == 0 || cantidad_maquinas.length == 0 ||
+      hora_por_maquina.length == 0 || fecha_final.length == 0) {
+
+
+
+      //toastr.info('CAMPOS VACIOS')
+
+      $(':input[type="submit"]').prop('disabled', true);
+
+      //VALIDAR CAMPOS
+
+
+      campo_para_fecha_impresion = $('#fecha_de_impresion')
+      aviso_fecha_de_impresion = $('#aviso_fecha_impresion')
+      PintarValidacion(campo_para_fecha_impresion, aviso_fecha_de_impresion)
+
+
+      campo_para_cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas')
+      aviso_para_cantidad_maquinas = $('#aviso_cantidad_maquinas')
+      PintarValidacion(campo_para_cantidad_maquinas, aviso_para_cantidad_maquinas)
+
+
+      campo_para_programacion_op_maquina_total_hora = $('#programacion_op_maquina_total_hora')
+      aviso_para_total_hora = $('#aviso_total_hora')
+      PintarValidacion(campo_para_programacion_op_maquina_total_hora, aviso_para_total_hora)
+
+
+      campo_para_programacion_op_maquina_tiempo_por_maquina = $('#programacion_op_maquina_tiempo_por_maquina')
+      aviso_para_aviso_tiempo_por_hora = $('#aviso_tiempo_por_hora')
+      PintarValidacion(campo_para_programacion_op_maquina_tiempo_por_maquina, aviso_para_aviso_tiempo_por_hora )
+
+
+      campo_para_programacion_op_maquina_hora_inicio = $('#programacion_op_maquina_hora_inicio')
+      aviso_para_hora_inicio = $('#aviso_hora_inicio')
+      PintarValidacion(campo_para_programacion_op_maquina_hora_inicio, aviso_para_hora_inicio)
+
+      campo_para_fecha_de_impresion_final = $('#fecha_de_impresion_final')
+      aviso_para_fecha_final = $('#aviso_fecha_final')
+      PintarValidacion(campo_para_fecha_de_impresion_final, aviso_para_fecha_final)
+
+      campo_para_hora_final = $('#programacion_op_maquina_hora_final')
+      aviso_para_hora_final = $('#aviso_hora_final')
+      PintarValidacion(campo_para_hora_final, aviso_para_hora_final)
+
+
+    }else{
+
+      //toastr.success('CAMPOS LLENOS')
+      $(':input[type="submit"]').prop('disabled', false);
+
+      //VALIDAR CAMPOS
+
+
+      campo_para_fecha_impresion = $('#fecha_de_impresion')
+      aviso_fecha_de_impresion = $('#aviso_fecha_impresion')
+      PintarValidacion(campo_para_fecha_impresion, aviso_fecha_de_impresion)
+
+
+      campo_para_cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas')
+      aviso_para_cantidad_maquinas = $('#aviso_cantidad_maquinas')
+      PintarValidacion(campo_para_cantidad_maquinas, aviso_para_cantidad_maquinas)
+
+
+      campo_para_programacion_op_maquina_total_hora = $('#programacion_op_maquina_total_hora')
+      aviso_para_total_hora = $('#aviso_total_hora')
+      PintarValidacion(campo_para_programacion_op_maquina_total_hora, aviso_para_total_hora)
+
+
+      campo_para_programacion_op_maquina_tiempo_por_maquina = $('#programacion_op_maquina_tiempo_por_maquina')
+      aviso_para_aviso_tiempo_por_hora = $('#aviso_tiempo_por_hora')
+      PintarValidacion(campo_para_programacion_op_maquina_tiempo_por_maquina, aviso_para_aviso_tiempo_por_hora )
+
+
+      campo_para_programacion_op_maquina_hora_inicio = $('#programacion_op_maquina_hora_inicio')
+      aviso_para_hora_inicio = $('#aviso_hora_inicio')
+      PintarValidacion(campo_para_programacion_op_maquina_hora_inicio, aviso_para_hora_inicio)
+
+      campo_para_fecha_de_impresion_final = $('#fecha_de_impresion_final')
+      aviso_para_fecha_final = $('#aviso_fecha_final')
+      PintarValidacion(campo_para_fecha_de_impresion_final, aviso_para_fecha_final)
+
+      campo_para_hora_final = $('#programacion_op_maquina_hora_final')
+      aviso_para_hora_final = $('#aviso_hora_final')
+      PintarValidacion(campo_para_hora_final, aviso_para_hora_final)
+
+    }
+
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   //horas
   $('#programacion_op_maquina_hora_inicio').focusout(function(){
 
