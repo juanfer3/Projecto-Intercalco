@@ -93,7 +93,7 @@ class MaquinasController < ApplicationController
     @maquina = Maquina.find(params[:id])
     estado_impresion = false
     sacar_de_inventario = false
-    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).paginate(page: params[:page], per_page: 20).where("contenedores_de_maquinas.maquina_id= ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.sacar_de_inventario", @maquina.id, estado_impresion, sacar_de_inventario)
+    @ordenes_produccion = OrdenProduccion.joins(:montaje =>[:cliente,:contenedores_de_maquinas]).paginate(page: params[:page], per_page: 20).where("contenedores_de_maquinas.maquina_id= ? AND ordenes_produccion.impresion = ? AND ordenes_produccion.sacar_de_inventario = ?", @maquina.id, estado_impresion, sacar_de_inventario)
     respond_to do |format|
       format.js
       format.html { render :template =>'maquinas/produccion_por_maquinas'}
