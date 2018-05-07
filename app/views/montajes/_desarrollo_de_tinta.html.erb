@@ -7,7 +7,7 @@
   </td>
 
   <td>
-    <%= f.select :malla_id, Malla.all.map {|i| [i.nombre , i.id]},
+    <%= f.select :malla_id, Malla.all.order("nombre").map {|i| [i.nombre , i.id]},
     {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control value_malla_add' } %>
   </td>
 

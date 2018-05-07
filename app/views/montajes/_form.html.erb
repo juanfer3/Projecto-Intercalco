@@ -130,7 +130,7 @@
               <div class="col-4">
                 <label for="">Seleccione la linea de color</label>
                 <%= f.select :linea_de_color_id,
-                LineaDeColor.all.map{|i| [i.nombre, i.id]},
+                LineaDeColor.all.order("nombre").map{|i| [i.nombre, i.id]},
                 {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control'}
                 %>
                 <p id="campo_lineaColor"></p>
@@ -487,7 +487,7 @@
                    <label for="">Selección de máquinas</label>
                     <%=
                     f.select :maquina_ids,
-                     Maquina.all.map{|i| [ i.nombre, i.id]},
+                     Maquina.all.order("nombre").map{|i| [ i.nombre, i.id]},
                      {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", :multiple => true,readonly: "readonly"}
                      %>
                  </div>
@@ -520,7 +520,7 @@
 
                      <%=
                      f.select :acabado_ids,
-                     Acabado.all.map{|i| [i.nombre, i.id]},
+                     Acabado.all.order("nombre").map{|i| [i.nombre, i.id]},
                      {},  {required: 'true', autofocus: 'true',
                      class: 'multiSelect form-control', id: "",
                      'multiple': "multiple",readonly: "readonly"}
