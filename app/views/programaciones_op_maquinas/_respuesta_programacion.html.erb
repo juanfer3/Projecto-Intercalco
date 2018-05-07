@@ -6,9 +6,7 @@
       <%= link_to '<button class="btn btn-outline-warning"><span>Editar <i class="ion-paintbrush"></i></span></button>'.html_safe, edit_programacion_op_maquina_path( @programacion_op_maquina), remote: true %>
     </div>
 
-    <div class="col-6">
-      <%= link_to '<button type="button" class="btn btn-outline-danger"> <span>Eliminar <i class="ion-trash-a"></i> </span> </button>'.html_safe, @programacion_op_maquina.orden_produccion.programaciones_op_maquinas.first, method: :delete, remote: true,data: { confirm: 'Realmente desea eliminar el registro?' } %>
-    </div>
+    
 
   </div>
 
