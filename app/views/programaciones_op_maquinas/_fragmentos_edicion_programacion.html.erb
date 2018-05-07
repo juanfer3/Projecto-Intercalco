@@ -678,8 +678,6 @@
 
   function validarCamposSubmit(){
 
-    var campos_tirajes = $('#campo_tirajes').val()
-
     var fecha_impresion = $('#fecha_de_impresion').val()
 
     var cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas').val()
@@ -691,7 +689,7 @@
     var hora_final = $('#programacion_op_maquina_hora_final').val()
 
 
-    if (campos_tirajes.length == 0 ||
+    if (
       fecha_impresion.length == 0 || cantidad_maquinas.length == 0 ||
       hora_por_maquina.length == 0 || fecha_final.length == 0) {
 
