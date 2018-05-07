@@ -478,11 +478,14 @@ function validar_campos_para_la_fecha(){
 function PintarValidacion(campo, aviso){
 
 var value = campo.val()
-
+var mensaje = "<span>Este campo no puede estar vacio</span>"
   if (value.length == 0) {
     campo.css("border", "1px solid #a94442");
+    aviso.show()
+    aviso.html(mensaje)
   }else{
-
+    campo.css("border", "1px solid #3c763d");
+    aviso.hide()
   }
 
 
