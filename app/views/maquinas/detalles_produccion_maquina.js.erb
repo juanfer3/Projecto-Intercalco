@@ -53,7 +53,7 @@ $('#programacion_op_maquina_tiempo_de_desmontaje').val("0.15")
 
 //funcion para pasar de horas a min
 function horas_a_minutos(hora){
-  if (hora.length<=0) {
+  if (hora.length == 0) {
 
     valor = 0
     return valor
@@ -68,7 +68,7 @@ function horas_a_minutos(hora){
 
 //funcion para pasar de horas a min sin formato
 function horas_a_minutos_sin_formato(hora){
-  if (hora.length<=0) {
+  if (hora.length == 0) {
 
     valor = 0
     return valor
@@ -81,7 +81,7 @@ function horas_a_minutos_sin_formato(hora){
 
 //funcion para pasar de min a horas
 function minutos_a_horas(hora){
-  if (hora.length<=0) {
+  if (hora.length == 0) {
 
     valor = 0
     return valor
@@ -94,7 +94,7 @@ function minutos_a_horas(hora){
 
 //funcion para pasar de min a horas sin formato
 function min_a_horas_sin_formato(hora){
-  if (hora.length<=0) {
+  if (hora.length == 0) {
 
     valor = 0
     return valor
@@ -131,7 +131,7 @@ function validarCamporParaParseInt(numero){
 }
 //horas a dias
 function horas_a_dias(hora){
-  if (hora.length<=0) {
+  if (hora.length == 0) {
 
     valor = 0
     return valor
