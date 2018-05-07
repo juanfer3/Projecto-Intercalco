@@ -112,6 +112,7 @@
         <div class="col-4">
           <label for="">CANTIDAD DE MÁQUINAS</label><br>
             <%= f.input :cantidad_maquinas ,  label:false, required:true%>
+            <p id="aviso_cantidad_maquinas" ></p>
         </div>
 
       <div class="col-4 ocultar">
@@ -142,6 +143,7 @@
 
       <div class="col-4">
         <%= f.input :total_hora, required:true%>
+        <p id="aviso_total_hora"></p>
       </div>
 
 
@@ -151,6 +153,7 @@
 
       <div class="col-4">
         <%= f.input :tiempo_por_maquina, required:true %>
+        <p id="aviso_tiempo_por_hora"></p>
       </div>
 
       <div class="col-4 ocultar">
@@ -177,6 +180,7 @@
       <div class="col-4">
         <label for="">HORA DE INICIO</label><br>
         <%= f.time_field :hora_inicio, class: "form-control", required: true%>
+        <p id="aviso_hora_inicio"></p>
       </div>
 
 
@@ -188,6 +192,7 @@
               <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final", required: true%>
             </div>
         </div>
+        <p id="aviso_fecha_final"></p>
       </div>
 
 
@@ -195,7 +200,7 @@
         <label for="">HORA FINAL</label><br>
 
         <%= f.time_field :hora_final, label:false, class: "form-control", required: true%>
-
+        <p id="aviso_hora_final"></p>
         <script type="text/javascript">
 
         </script>

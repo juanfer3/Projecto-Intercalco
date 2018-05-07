@@ -517,13 +517,40 @@ function validarCamposSubmit(){
 
     $(':input[type="submit"]').prop('disabled', true);
 
-    campo_para_tirajes = $('#campo_tirajes')
-    aviso_campo_tirajes = $('#aviso_fecha_impresion')
-    PintarValidacion(campo_para_tirajes, aviso_campo_tirajes)
+    //VALIDAR CAMPOS
+
 
     campo_para_fecha_impresion = $('#fecha_de_impresion')
     aviso_fecha_de_impresion = $('#aviso_fecha_impresion')
     PintarValidacion(campo_para_fecha_impresion, aviso_fecha_de_impresion)
+
+
+    campo_para_cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas')
+    aviso_para_cantidad_maquinas = $('#aviso_cantidad_maquinas')
+    PintarValidacion(campo_para_cantidad_maquinas, aviso_para_cantidad_maquinas)
+
+
+    campo_para_programacion_op_maquina_total_hora = $('#programacion_op_maquina_total_hora')
+    aviso_para_total_hora = $('#aviso_total_hora')
+    PintarValidacion(campo_para_programacion_op_maquina_total_hora, aviso_para_total_hora)
+
+
+    campo_para_programacion_op_maquina_tiempo_por_maquina = $('#programacion_op_maquina_tiempo_por_maquina')
+    aviso_para_aviso_tiempo_por_hora = $('#aviso_tiempo_por_hora')
+    PintarValidacion(campo_para_programacion_op_maquina_tiempo_por_maquina, aviso_para_aviso_tiempo_por_hora )
+
+
+    campo_para_programacion_op_maquina_hora_inicio = $('#programacion_op_maquina_hora_inicio')
+    aviso_para_hora_inicio = $('#aviso_hora_inicio')
+    PintarValidacion(campo_para_programacion_op_maquina_hora_inicio, aviso_para_hora_inicio)
+
+    campo_para_fecha_de_impresion_final = $('#fecha_de_impresion_final')
+    aviso_para_fecha_final = $('#aviso_fecha_final')
+    PintarValidacion(campo_para_fecha_de_impresion_final, aviso_para_fecha_final)
+
+    campo_para_hora_final = $('#programacion_op_maquina_hora_final')
+    aviso_para_hora_final = $('#aviso_hora_final')
+    PintarValidacion(campo_para_hora_final, aviso_para_hora_final)
 
 
   }else{
