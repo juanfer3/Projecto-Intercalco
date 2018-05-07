@@ -481,6 +481,8 @@ var value = campo.val()
 
   if (value.length == 0) {
     campo.css("border", "1px solid #a94442");
+  }else{
+
   }
 
 
@@ -516,6 +518,9 @@ function validarCamposSubmit(){
     aviso = $('#aviso_fecha_impresion')
     PintarValidacion(campo, aviso)
 
+    campo_para_fecha_impresion = $('#fecha_de_impresion')
+    aviso = $('#aviso_fecha_impresion')
+    PintarValidacion(campo, aviso)
 
 
   }else{
