@@ -1,10 +1,15 @@
 toastr.success("Registro creado")
 
+
+
+
+
 $('#formulario_programaciones_op').html("<%= j render 'respuesta_programacion'%>")
 
 
+$(<%="fila_de_#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
 
-$(<%="fecha_impresion#{@programacion_op_maquina.orden_produccion.id}"%>).html("<%= j render 'fila_de_programacion'%>")
+
 //actualizar los datos para ser ordenados ccon el tablesorter
 var resort = true;
 $('.my-tabla').trigger('updateAll', [resort]);
