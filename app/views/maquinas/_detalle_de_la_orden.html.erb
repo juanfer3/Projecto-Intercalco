@@ -50,7 +50,9 @@
             <div class="input-group">
 
               <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar "></i> </span>
-              <%= f.text_field  :fecha_de_impresion,class: "form-control", id: "fecha_de_impresion"%>
+              <%= f.text_field  :fecha_de_impresion,class: "form-control",
+              id: "fecha_de_impresion",
+              required:true%>
             </div>
         </div>
       </div>
@@ -63,7 +65,7 @@
           <%= f.input :orden_produccion_id,
           :input_html => { :value => @orden_produccion.id },
           class: "ocultar"
-            %>
+           %>
       </div>
 
       <div class="ocultar col-3">
@@ -108,7 +110,7 @@
 
         <div class="col-4">
           <label for="">CANTIDAD DE MÁQUINAS</label><br>
-            <%= f.input :cantidad_maquinas ,  label:false%>
+            <%= f.input :cantidad_maquinas ,  label:false, required:true%>
         </div>
 
       <div class="col-4 ocultar">
@@ -138,7 +140,7 @@
 
 
       <div class="col-4">
-        <%= f.input :total_hora %>
+        <%= f.input :total_hora, required:true%>
       </div>
 
 
@@ -147,7 +149,7 @@
 
 
       <div class="col-4">
-        <%= f.input :tiempo_por_maquina %>
+        <%= f.input :tiempo_por_maquina, required:true %>
       </div>
 
       <div class="col-4 ocultar">
@@ -173,7 +175,7 @@
 
       <div class="col-4">
         <label for="">HORA DE INICIO</label><br>
-        <%= f.time_field :hora_inicio, class: "form-control"%>
+        <%= f.time_field :hora_inicio, class: "form-control", required:true%>
       </div>
 
 
@@ -182,7 +184,7 @@
           <label for="">FECHA DE IMPRESIÓN FINAL</label> <br>
             <div class="input-group">
               <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar "></i> </span>
-              <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final"%>
+              <%= f.text_field  :fecha_de_impresion_final,class: "form-control", id: "fecha_de_impresion_final", required:true%>
             </div>
         </div>
       </div>
@@ -191,7 +193,7 @@
       <div class="col-4">
         <label for="">HORA FINAL</label><br>
 
-        <%= f.time_field :hora_final, label:false, class: "form-control"%>
+        <%= f.time_field :hora_final, label:false, class: "form-control", required:true%>
 
         <script type="text/javascript">
 
