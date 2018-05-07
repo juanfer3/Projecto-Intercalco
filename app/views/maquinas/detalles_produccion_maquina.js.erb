@@ -515,12 +515,12 @@ function validarCamposSubmit(){
     $(':input[type="submit"]').prop('disabled', true);
 
     campo_para_tirajes = $('#campo_tirajes')
-    aviso = $('#aviso_fecha_impresion')
-    PintarValidacion(campo, aviso)
+    aviso_campo_tirajes = $('#aviso_fecha_impresion')
+    PintarValidacion(campo_para_tirajes, aviso_campo_tirajes)
 
     campo_para_fecha_impresion = $('#fecha_de_impresion')
-    aviso = $('#aviso_fecha_impresion')
-    PintarValidacion(campo, aviso)
+    aviso_fecha_de_impresion = $('#aviso_fecha_impresion')
+    PintarValidacion(campo_para_fecha_impresion, aviso_fecha_de_impresion)
 
 
   }else{
