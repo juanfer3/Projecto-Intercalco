@@ -526,7 +526,32 @@ $("#programacion_op_maquina_complemento").focusout(function(){
 })
 
 
+function validarCamposSubmit(){
 
+  var campos_tirajes = $('#campo_tirajes').val()
+
+  var fecha_impresion = $('#fecha_de_impresion').val()
+
+  var cantidad_maquinas = $('#programacion_op_maquina_cantidad_maquinas').val()
+
+  var hora_por_maquina = $('#programacion_op_maquina_total_hora').val()
+
+  var fecha_final = $('#fecha_de_impresion_final').val()
+
+  var hora_final = $('#programacion_op_maquina_hora_final').val()
+
+
+  if (campos_tirajes.length == 0 | fecha_impresion.length == 0 | cantidad_maquinas.length == 0 | hora_por_maquina.length == 0 || fecha_final.length == 0) {
+
+    toastr.info('CAMPOS VACIOS')
+
+
+
+  }
+
+
+
+}
 
 
 
