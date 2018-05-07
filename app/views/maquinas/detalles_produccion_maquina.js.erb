@@ -475,6 +475,18 @@ function validar_campos_para_la_fecha(){
 }
 
 
+function PintarValidacion(campo, aviso){
+
+var value = campo.val()
+
+  if (value.length == 0) {
+    campo.css("border", "1px solid #a94442");
+  }
+
+
+}
+
+
 function validarCamposSubmit(){
 
   var campos_tirajes = $('#campo_tirajes').val()
@@ -494,8 +506,16 @@ function validarCamposSubmit(){
     fecha_impresion.length == 0 || cantidad_maquinas.length == 0 ||
     hora_por_maquina.length == 0 || fecha_final.length == 0) {
 
+
+
     toastr.info('CAMPOS VACIOS')
+
     $(':input[type="submit"]').prop('disabled', true);
+
+    campo_para_tirajes = $('#campo_tirajes')
+    aviso = $('#aviso_fecha_impresion')
+    PintarValidacion(campo, aviso)
+
 
 
   }else{
