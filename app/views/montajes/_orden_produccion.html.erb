@@ -72,6 +72,18 @@
               <%= f.input :numero_de_orden %>
             </div>
 
+            <!--Fecha De pedido-->
+            <div class="col-3">
+              <label for="">Fecha De La Orden</label>
+              <div class="input-group" >
+                <%= f.text_field :fecha , class: "form-control fecha_en_espanol", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+                <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+
+              </div>
+              <p id="campo_fecha_pedido"></p>
+            </div>
+
+
             <div class="col-3" id="contenedorContactoExistente">
               <label for="">Selección el contacto</label>
               <%=
@@ -169,16 +181,7 @@
 
 
 
-            <!--Fecha De pedido-->
-            <div class="col-3">
-              <label for="">Fecha De La Orden</label>
-              <div class="input-group" >
-                <%= f.text_field :fecha , class: "form-control fecha_en_espanol", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
-                <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
 
-              </div>
-              <p id="campo_fecha_pedido"></p>
-            </div>
 
             <!--Numero de Orden-->
            <div class="col-3">
