@@ -490,7 +490,9 @@ function validarCamposSubmit(){
   var hora_final = $('#programacion_op_maquina_hora_final').val()
 
 
-  if (campos_tirajes.length == 0 || fecha_impresion.length == 0 || cantidad_maquinas.length == 0 || hora_por_maquina.length == 0 || fecha_final.length == 0) {
+  if (campos_tirajes.length == 0 ||
+    fecha_impresion.length == 0 || cantidad_maquinas.length == 0 ||
+    hora_por_maquina.length == 0 || fecha_final.length == 0) {
 
     toastr.info('CAMPOS VACIOS')
     $(':input[type="submit"]').prop('disabled', true);
