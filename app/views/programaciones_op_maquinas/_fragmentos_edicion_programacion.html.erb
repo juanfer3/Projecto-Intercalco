@@ -19,6 +19,7 @@
             <%= f.text_field  :fecha_de_impresion,class: "form-control", id: "fecha_de_impresion"%>
           </div>
       </div>
+      <p id="aviso_fecha_impresion"> </p>
     </div>
     <div class="">
       <br>
@@ -75,6 +76,7 @@
         <label for="">CANTIDAD DE MÁQUINAS</label><br>
 
           <%= f.input :cantidad_maquinas ,  label:false%>
+          <p id="aviso_cantidad_maquinas" ></p>
 
       </div>
     <div class="col-4 ocultar">
@@ -106,6 +108,7 @@
     <div class="col-4 ">
       <label for="">TOTAL HORAS</label>
       <%= f.input :total_hora, label:false %>
+      <p id="aviso_total_hora"></p>
     </div>
 
 
@@ -116,6 +119,7 @@
     <div class="col-4">
       <label for="">TIEMPO POR MAQUINA</label>
       <%= f.input :tiempo_por_maquina, label:false%>
+      <p id="aviso_tiempo_por_hora"></p>
     </div>
 
     <div class="col-4 ocultar">
@@ -141,6 +145,8 @@
     <div class="col-4">
       <label for="">HORA DE INICIO</label><br>
       <%= f.time_field :hora_inicio, class: "form-control"%>
+      <p id="aviso_hora_inicio"></p>
+
     </div>
 
     <div class="col-4">
@@ -151,13 +157,14 @@
             <%= f.text_field  :fecha_de_impresion_final, class: "form-control", id: "fecha_de_impresion_final"%>
           </div>
       </div>
+      <p id="aviso_fecha_final"></p>
     </div>
 
     <div class="col-4">
       <label for="">HORA FINAL</label><br>
 
       <%= f.time_field :hora_final, label:false, class: "form-control" %>
-
+      <p id="aviso_hora_final"></p>
       <script type="text/javascript">
 
       </script>
