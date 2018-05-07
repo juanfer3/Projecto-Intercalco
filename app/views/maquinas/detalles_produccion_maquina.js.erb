@@ -493,13 +493,13 @@ function validarCamposSubmit(){
   if (campos_tirajes.length == 0 || fecha_impresion.length == 0 || cantidad_maquinas.length == 0 || hora_por_maquina.length == 0 || fecha_final.length == 0) {
 
     toastr.info('CAMPOS VACIOS')
-
+    $(':input[type="submit"]').prop('disabled', true);
 
 
   }else{
 
-    toastr.info('CAMPOS LLENOS')
-
+    toastr.success('CAMPOS LLENOS')
+    $(':input[type="submit"]').prop('disabled', false);
 
 
   }
