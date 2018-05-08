@@ -4,6 +4,27 @@ $('#modalDetalles').modal('show');
 
 <%if current_user.rol.cargo == "Administrador" %>
           $('#contenidoModal').html('<%= j render 'orden_info'%>')
+ //CHECBOX PREPRENSA
+          $("#checkbox_preprensa").change(function(){
+
+                    if( $('#checkbox_preprensa').prop('checked') ) {
+
+
+
+                        toastr.success(":) ACTIVO")
+
+
+
+                    }else {
+
+                        toastr.warning("INACTIVO")
+
+
+                    }
+
+          })
+
+
 <%elsif current_user.rol.cargo == "Producción"%>
           $('#contenidoModal').html('<%= j render 'orden_info'%>')
 <%elsif current_user.rol.cargo == "Coordinacion Produccion"%>
