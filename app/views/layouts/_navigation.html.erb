@@ -341,9 +341,14 @@
                 </a>
 
 
+                <a class="dropdown-item" href="#">
+                  <%= link_to 'Tintas', tintas_path, class:'navbar-brand' %>
+                </a>
 
 
-
+                <a class="dropdown-item" href="#">
+                  <%= link_to 'Tintas Formuladas', tintas_formuladas_path, class:'navbar-brand' %>
+                </a>
 
                 <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
 
