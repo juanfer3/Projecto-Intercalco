@@ -450,11 +450,11 @@ class OrdenProduccion < ApplicationRecord
     self.numero_de_orden = self.numero_de_orden.upcase if self.numero_de_orden.present?
     self.orden_de_compra = self.orden_de_compra.upcase if self.orden_de_compra.present?
     self.observacion = self.observacion.upcase if self.observacion.present?
-    
+
 
     if linea == "DIGITAL"
       puts "*******************EL TRABAJO ES DIGTAL #{self.montaje.linea_producto.nombre}*********************".green
-      self.habilitar_impresion = false
+      self.habilitar_preprensa = false
     end
 
     if facturar_a_nuevo.present?
