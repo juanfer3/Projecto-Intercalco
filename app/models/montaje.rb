@@ -109,9 +109,9 @@ class Montaje < ApplicationRecord
   def create_cliente
 
 
-    self.nombre.upcase if self.nombre.present?
-    self.observacion.upcase if self.observacion.present?
-    self.modo_de_empaque.upcase if self.modo_de_empaque.present?
+    self.nombre = self.nombre.upcase if self.nombre.present?
+    self.observacion = self.observacion.upcase if self.observacion.present?
+    self.modo_de_empaque = self.modo_de_empaque.upcase if self.modo_de_empaque.present?
 
 
     if self.codigo.present?
