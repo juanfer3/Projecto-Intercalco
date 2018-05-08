@@ -32,7 +32,7 @@
 
         <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
 
-      
+
             <% if @orden_produccion.habilitar_preprensa== true %>
                   <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
                     <span>
@@ -54,13 +54,13 @@
 
 
         <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
-
+        <!--
         <label class="custom-control custom-checkbox my_card_pedidos_form my_orden_pedidos">
 
                 <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
                 <span class="custom-control-indicator"></span>
         </label>
-
+      -->
 
         <% end %>
 
