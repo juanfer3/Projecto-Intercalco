@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180502172235) do
+ActiveRecord::Schema.define(version: 20180508172155) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -410,6 +410,7 @@ ActiveRecord::Schema.define(version: 20180502172235) do
     t.boolean "habilitar_corte_de_material", default: false
     t.boolean "sacar_de_inventario", default: false
     t.boolean "facturado", default: false
+    t.boolean "habilitar_preprensa", default: true
     t.index ["contacto_id"], name: "index_ordenes_produccion_on_contacto_id"
     t.index ["lugar_despacho_id"], name: "index_ordenes_produccion_on_lugar_despacho_id"
     t.index ["montaje_id"], name: "index_ordenes_produccion_on_montaje_id"

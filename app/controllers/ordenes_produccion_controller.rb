@@ -808,7 +808,7 @@ end
       params.require(:orden_produccion).permit(:montaje_id,:contacto_id,:numero_de_orden,:contacto,:orden_de_compra,:orden_nueva,:habilitar_corte_de_material,
         :cantidad_programada, :precio_unitario, :valor_total, :tipo_de_produccion,:facturar_a,:direccion_nueva, :facturar_a_nuevo,:sacar_de_inventario,
         :material, :temperatura, :tamanos_total, :cavidad, :fecha, :fecha_compromiso,:lugar_despacho,:lugar_despacho_id,:nombre_facturacion,:nombre_facturacion_id,
-        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,  :contacto_nuevo,:tomar_cliente, :tomar_usuario,
+        :cantidad_hoja, :porcentaje_macula, :tiro, :retiro, :observacion, :pantalla,  :contacto_nuevo,:tomar_cliente, :tomar_usuario, :habilitar_preprensa,
         :color, :corte_material, :impresion, :troquel, :acabado, :habilitar_impresion,:entregado,:cantidad_solicitada, :facturado,
         :habilitar_acabado, :estado_de_orden, :estado,:tamano_hoja,:tamano_por_hojas,:tamano_de_corte,:_destroy, :id,:contenedor_prueba => [],:maquina_ids => [],
       compromisos_de_entrega_attributes:[:orden_produccion_id, :fecha_de_compromiso,

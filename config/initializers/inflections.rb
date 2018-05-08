@@ -190,4 +190,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'facturado', 'facturados'
 
+  inflect.irregular 'habilitar_preprensa', 'habilitar_preprensas'
+
+
 end
