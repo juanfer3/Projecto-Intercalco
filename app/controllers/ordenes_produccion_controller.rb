@@ -50,7 +50,7 @@ class OrdenesProduccionController < ApplicationController
     puts"CONTROLLER"
     respond_to do |format|
       if @orden_produccion.habilitar_preprensa == true
-            @orden_produccion.update(habilitar_preprensa: false, impresion: false, color:false, pantalla:false, corte_material:false)
+            @orden_produccion.update(habilitar_preprensa: false)
             format.js {flash[:notice] = "" }
       else
         @orden_produccion.update(habilitar_preprensa: true)
