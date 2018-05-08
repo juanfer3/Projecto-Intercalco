@@ -27,18 +27,22 @@
   <div class="container">
   <div class="row">
     <div class="col-3">
+      <h5>Aplica Preprensa:
       <%= render 'seccion_preprensa'%>
+      </h5>
     </div>
     <div class="col-3" id="habilitar_impresion">
 
       <div class="col-3">
           <h5>
+            Aplica Impresión:
             <%= render 'seccion_impresion'%>
           </h5>
       </div>
     </div>
     <div class="col-3">
       <h5>
+        Aplica Acabados:
         <%= render 'seccion_acabados'%>
       </h5>
     </div>
@@ -288,7 +292,7 @@
 
 
                                         <%else%>
-                                              
+
                                                     <%if @orden_produccion.impresion == false%>
                                                             <div class="">
                                                               <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
