@@ -50,7 +50,7 @@ class OrdenesProduccionController < ApplicationController
     puts"CONTROLLER"
     respond_to do |format|
       if @orden_produccion.habilitar_preprensa == true
-            @orden_produccion.update(habilitar_preprensa: false)
+            @orden_produccion.update(habilitar_preprensa: false, impresion: false, color:false, pantalla:false, corte_material:false)
             format.js {flash[:notice] = "" }
       else
         @orden_produccion.update(habilitar_preprensa: true)
@@ -625,11 +625,11 @@ end
 
     respond_to do |format|
       if@orden_produccion.habilitar_impresion == false
-        @orden_produccion.update(habilitar_impresion: true, impresion:false, color:false, pantalla:false, corte_material:false)
+        @orden_produccion.update(habilitar_impresion: true, impresion:false, color:false, pantalla:false, corte_material:false, habilitar_preprensa: true
         puts "==========="+@orden_produccion.habilitar_impresion.to_s+"=========="
         format.js {flash[:notice] = "" }
       else
-        @orden_produccion.update(habilitar_impresion: false, impresion: false, color:false, pantalla:false, corte_material:false)
+        @orden_produccion.update(habilitar_impresion: false, impresion: false, color:false, pantalla:false, corte_material:false, habilitar_preprensa: false)
         puts "==========="+@orden_produccion.habilitar_impresion.to_s+"=========="
         format.js {flash[:notice] = "" }
       end
