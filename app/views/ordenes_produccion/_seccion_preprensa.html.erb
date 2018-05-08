@@ -5,6 +5,20 @@
 
 
 
+  <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+  <label class="custom-control custom-checkbox my_card_pedidos_form my_orden_pedidos">
+          <h5>Aplica Preprensa:</h5>
+          <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
+          <span class="custom-control-indicator"></span>
+  </label>
+  
+
+  <% end %>
+
+
+
+
 
     <script type="text/javascript">
     //VALIDAR CHECBOX
@@ -55,27 +69,5 @@
     </script>
 
 
-  <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
 
-  <label class="custom-control custom-checkbox">
-          <h5>Aplica Preprensa:</h5>
-          <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
-          <span class="custom-control-indicator"></span>
-  </label>
-      <% if @orden_produccion.habilitar_preprensa== true %>
-            <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
-              <span>
-                <i id="" class="ion-checkmark-round"></i>
-              </span>
-            </button>'.html_safe, cambiar_habilitar_impresion_path(@orden_produccion), remote:true %>
-
-      <% else %>
-              <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
-                <span>
-                  <i id="" class="ion-close-round"></i>
-                </span>
-              </button>'.html_safe, cambiar_habilitar_impresion_path(@orden_produccion), remote:true %>
-      <% end %>
-
-  <% end %>
 </h5>
