@@ -44,6 +44,14 @@ class OrdenesProduccionController < ApplicationController
   end
 
 
+  def cambiar_preprensa
+    @orden_produccion = OrdenProduccion.find(params[:id])
+    puts"CONTROLLER"
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def produccion_digital
 
 

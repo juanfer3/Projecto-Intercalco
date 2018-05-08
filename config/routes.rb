@@ -206,4 +206,6 @@ Rails.application.routes.draw do
   get 'produccion_digital', to: 'ordenes_produccion#produccion_digital', as: :produccion_digital
 
   get 'habilitar_facturacion/:id', to: 'compromisos_de_entrega#habilitar_facturacion', as: :habilitar_facturacion
+
+  get 'cambiar_preprensa/:id', to: 'ordenes_produccion#cambiar_preprensa', as: :cambiar_preprensa
 end

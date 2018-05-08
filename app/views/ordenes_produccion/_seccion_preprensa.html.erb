@@ -14,24 +14,25 @@
     var che = $("#checkbox_preprensa")
     console.log(che);
              $("#checkbox_preprensa").change(function(){
+              var data = "<%=@orden_produccion.id%>"
+               $.ajax({
+                 url:'/cambiar_preprensa/',
+                 data: {data:data},
+                 method:'get',
+                 success: function (data){
+                   console.log(data);
 
-                 toastr.warning("CAMBIO")
+                 }
+               })
 
-
+                      /*
                        if( $('#checkbox_preprensa').prop('checked') ) {
-
-
-
                            toastr.success(":) ACTIVO")
-
-
-
                        }else {
-
-                           toastr.warning("INACTIVO")
-
-
+                           toastr.error("INACTIVO")
                        }
+
+                       */
 
              })
     </script>
