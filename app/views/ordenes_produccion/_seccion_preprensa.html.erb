@@ -16,8 +16,7 @@
              $("#checkbox_preprensa").change(function(){
               var data = "<%=@orden_produccion.id%>"
                $.ajax({
-                 url:'/cambiar_preprensa/',
-                 data: {data:data},
+                 url:'/cambiar_preprensa/'+data+'',
                  method:'get',
                  success: function (data){
                    console.log(data);
