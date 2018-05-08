@@ -1,0 +1,17 @@
+<% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+          Aplica Acabados:
+          <% if @orden_produccion.habilitar_acabado == true %>
+          <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+            <span>
+              <i id="" class="ion-checkmark-round"></i>
+            </span>
+          </button>'.html_safe, cambiar_habilitar_acabado_path(@orden_produccion), remote:true %>
+
+          <% else %>
+          <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+            <span>
+              <i id="" class="ion-close-round"></i>
+            </span>
+          </button>'.html_safe, cambiar_habilitar_acabado_path(@orden_produccion), remote:true %>
+          <% end %>
+<% end %>
