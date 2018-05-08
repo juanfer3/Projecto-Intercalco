@@ -13,10 +13,10 @@
 
 
         <% if @orden_produccion.habilitar_preprensa== true %>
-            $("#diasHabilitados :checkbox").attr('checked', false);
+            $("#checkbox_preprensa").attr('checked', false);
 
         <% else %>
-            $("#diasHabilitados :checkbox").attr('checked', true);
+            $("#checkbox_preprensa").attr('checked', true);
         <% end %>
 
     <% end %>
