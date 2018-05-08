@@ -4,12 +4,30 @@
 
 
 
-    <label class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
-            <span class="custom-control-indicator"></span>
-    </label>
+
 
     <script type="text/javascript">
+    //VALIDAR CHECBOX
+
+    <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+
+        <% if @orden_produccion.habilitar_preprensa== true %>
+            $("#diasHabilitados :checkbox").attr('checked', false);
+
+        <% else %>
+            $("#diasHabilitados :checkbox").attr('checked', true);
+        <% end %>
+
+    <% end %>
+
+
+
+
+
+
+
+
     //CHECBOX PREPRENSA
     var che = $("#checkbox_preprensa")
     console.log(che);
@@ -39,7 +57,10 @@
 
   <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
   Aplica Preprensa:
-
+  <label class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
+          <span class="custom-control-indicator"></span>
+  </label>
       <% if @orden_produccion.habilitar_preprensa== true %>
             <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
               <span>

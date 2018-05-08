@@ -46,9 +46,16 @@ class OrdenesProduccionController < ApplicationController
 
   def cambiar_preprensa
     @orden_produccion = OrdenProduccion.find(params[:id])
+
     puts"CONTROLLER"
     respond_to do |format|
-      format.js
+      if @orden_produccion.habilitar_preprensa == true
+            @orden_produccion.update(habilitar_preprensa: false)
+            format.js {flash[:notice] = "" }
+      else
+        @orden_produccion.update(habilitar_preprensa: true)
+        format.js {flash[:notice] = "" }
+      end
     end
   end
 
