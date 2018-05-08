@@ -5,9 +5,13 @@ $('#modalDetalles').modal('show');
 <%if current_user.rol.cargo == "Administrador" %>
           $('#contenidoModal').html('<%= j render 'orden_info'%>')
  //CHECBOX PREPRENSA
+ var che = $("#checkbox_preprensa")
+ console.log();
           $("#checkbox_preprensa").change(function(){
 
               toastr.warning("CAMBIO")
+
+
                     if( $('#checkbox_preprensa').prop('checked') ) {
 
 
