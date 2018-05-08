@@ -421,7 +421,7 @@ class OrdenProduccion < ApplicationRecord
 
 
   def despues_de_crear
-    
+
     #code
     puts "==========================================================".blue
     puts "*******************HABILTAR IMPRESION*******************".green
@@ -444,7 +444,13 @@ class OrdenProduccion < ApplicationRecord
 
   def antes_de_salvar
 
+
     linea = self.montaje.linea_producto.nombre.upcase
+
+    self.numero_de_orden = self.numero_de_orden.upcase if self.numero_de_orden.present?
+    self.orden_de_compra = self.orden_de_compra.upcase if self.orden_de_compra.present?
+    self.observacion = self.observacion.upcase if self.observacion.present?
+    
 
     if linea == "DIGITAL"
       puts "*******************EL TRABAJO ES DIGTAL #{self.montaje.linea_producto.nombre}*********************".green
@@ -452,20 +458,20 @@ class OrdenProduccion < ApplicationRecord
     end
 
     if facturar_a_nuevo.present?
-      self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo,  cliente_id:tomar_cliente)
+      self.nombre_facturacion = NombreFacturacion.create(nombre: facturar_a_nuevo.upcase,  cliente_id:tomar_cliente)
       if self.nombre_facturacion
         puts "*******************Registro Facturar a Creado*********************"
       end
     end
 
     if direccion_nueva.present?
-      self.lugar_despacho = LugarDespacho.create(cliente_id: tomar_cliente, direccion: direccion_nueva)
+      self.lugar_despacho = LugarDespacho.create(cliente_id: tomar_cliente.upcase, direccion: direccion_nueva)
       if self.lugar_despacho
         puts "*******************Registro Despacho Creado*********************"
       end
     end
 
-    self.contacto = Contacto.create(nombre_contacto: contacto_nuevo, user_id: tomar_usuario, cliente_id: tomar_cliente) if contacto_nuevo.present?
+    self.contacto = Contacto.create(nombre_contacto: contacto_nuevo.upcase, user_id: tomar_usuario, cliente_id: tomar_cliente) if contacto_nuevo.present?
     if self.contacto.save
       puts "****************REGISTRO ALMACENADO************************"
     else
