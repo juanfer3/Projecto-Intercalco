@@ -26,10 +26,10 @@
 
 
         <% if @orden_produccion.habilitar_preprensa== true %>
-            $("#checkbox_preprensa").attr('checked', false);
+            $("#checkbox_preprensa").attr('checked', true);
 
         <% else %>
-            $("#checkbox_preprensa").attr('checked', true);
+            $("#checkbox_preprensa").attr('checked', false);
         <% end %>
 
     <% end %>
