@@ -109,8 +109,9 @@ class Montaje < ApplicationRecord
   def create_cliente
 
 
-
-
+    self.nombre.upcase if self.nombre.present?
+    self.observacion.upcase if self.observacion.present?
+    self.modo_de_empaque.upcase if self.modo_de_empaque.present?
 
 
     if self.codigo.present?
@@ -165,10 +166,10 @@ class Montaje < ApplicationRecord
 
 
         if new_cliente.present?
-            self.cliente = Cliente.create(nombre: new_cliente, nit: nit_cliente,user_id: select_vendedor)
-            contacto_creado = Contacto.create(nombre_contacto: contacto_nuevo_montaje, user_id: select_vendedor, cliente_id: self.cliente.id) if contacto_nuevo_montaje.present?
-            facturar = NombreFacturacion.create(cliente_id: self.cliente.id, nombre: facturar_a_nuevo_montaje)if facturar_a_nuevo_montaje.present?
-            direcion_entrega = LugarDespacho.create(cliente_id: self.cliente.id, direccion: direccion_nuevo_montaje)if direccion_nuevo_montaje.present?
+            self.cliente = Cliente.create(nombre: new_cliente.upcase, nit: nit_cliente,user_id: select_vendedor)
+            contacto_creado = Contacto.create(nombre_contacto: contacto_nuevo_montaje.upcase, user_id: select_vendedor, cliente_id: self.cliente.id) if contacto_nuevo_montaje.present?
+            facturar = NombreFacturacion.create(cliente_id: self.cliente.id, nombre: facturar_a_nuevo_montaje.upcase)if facturar_a_nuevo_montaje.present?
+            direcion_entrega = LugarDespacho.create(cliente_id: self.cliente.id, direccion: direccion_nuevo_montaje.upcase)if direccion_nuevo_montaje.present?
 
 
             if contacto_creado != nil
@@ -192,7 +193,7 @@ class Montaje < ApplicationRecord
 
         end
 
-        self.material = Material.create(descripcion: material_nuevo) if material_nuevo.present?
+        self.material = Material.create(descripcion: material_nuevo.upcase) if material_nuevo.present?
 
 
   end
