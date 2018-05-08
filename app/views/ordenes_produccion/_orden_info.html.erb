@@ -29,22 +29,135 @@
     <div class="col-3">
       <h5>Aplica Preprensa:
 
-      </h5>
-      <%= render 'seccion_preprensa'%>
+
+
+
+        <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+        <label class="custom-control custom-checkbox my_card_pedidos_form my_orden_pedidos">
+
+                <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
+                <span class="custom-control-indicator"></span>
+        </label>
+
+
+        <% end %>
+
+
+
+
+      <!--JAVASCRIPT-->
+          <script type="text/javascript">
+          //VALIDAR CHECBOX
+
+
+          <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+
+              <% if @orden_produccion.habilitar_preprensa== true %>
+                  $("#checkbox_preprensa").attr('checked', true);
+
+              <% else %>
+                  $("#checkbox_preprensa").attr('checked', false);
+              <% end %>
+
+          <% end %>
+
+
+
+
+
+
+
+
+          //CHECBOX PREPRENSA
+          var che = $("#checkbox_preprensa")
+          console.log(che);
+                   $("#checkbox_preprensa").change(function(){
+                    var data = "<%=@orden_produccion.id%>"
+                     $.ajax({
+                       url:'/cambiar_preprensa/'+data+'',
+                       method:'get',
+                       success: function (data){
+                         console.log(data);
+
+                       }
+                     })
+
+                            /*
+                             if( $('#checkbox_preprensa').prop('checked') ) {
+                                 toastr.success(":) ACTIVO")
+                             }else {
+                                 toastr.error("INACTIVO")
+                             }
+
+                             */
+
+                   })
+          </script>
+          </h5>
     </div>
     <div class="col-3" id="habilitar_impresion">
 
       <div class="col-3">
           <h5>
             Aplica Impresión:
-            <%= render 'seccion_impresion'%>
+
+
+
+
+
+
+              <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+
+                  <% if @orden_produccion.habilitar_impresion== true %>
+                        <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+                          <span>
+                            <i id="" class="ion-checkmark-round"></i>
+                          </span>
+                        </button>'.html_safe, cambiar_habilitar_impresion_path(@orden_produccion), remote:true %>
+
+                  <% else %>
+                          <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+                            <span>
+                              <i id="" class="ion-close-round"></i>
+                            </span>
+                          </button>'.html_safe, cambiar_habilitar_impresion_path(@orden_produccion), remote:true %>
+                  <% end %>
+
+
+              <% end %>
+
           </h5>
       </div>
     </div>
     <div class="col-3">
       <h5>
         Aplica Acabados:
-        <%= render 'seccion_acabados'%>
+
+
+
+
+
+        <% if  @orden_produccion.entregado == false || @orden_produccion.entregado == nil %>
+
+                  <% if @orden_produccion.habilitar_acabado == true %>
+                  <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+                    <span>
+                      <i id="" class="ion-checkmark-round"></i>
+                    </span>
+                  </button>'.html_safe, cambiar_habilitar_acabado_path(@orden_produccion), remote:true %>
+
+                  <% else %>
+                  <%= link_to '<button type="button" class="btn btn-primary btn-sm btn_circle">
+                    <span>
+                      <i id="" class="ion-close-round"></i>
+                    </span>
+                  </button>'.html_safe, cambiar_habilitar_acabado_path(@orden_produccion), remote:true %>
+                  <% end %>
+        <% end %>
+
       </h5>
     </div>
   </div>
