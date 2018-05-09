@@ -12,6 +12,8 @@ class ClientesController < ApplicationController
     puts"===============#{data}================".blue
     estado = true
     @clientes = Cliente.where("nombre ILIKE ? AND estado = ?", "%"+data+"%", estado).order('nombre')
+    @comerciales = User.joins(:rol).where('roles.cargo = ? OR roles.cargo = ?', comercial, gerente_comercial)
+
     respond_to do |format|
         format.js
     end
