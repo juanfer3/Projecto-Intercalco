@@ -147,11 +147,11 @@ end
   # GET /montajes/new
   def new
 
-    @malla_my_order = Malla.all("nombre")
+    @malla_my_order = Malla.all.order("nombre")
 
     @malla_my_order.sort_by { |x| x[/\d+/].to_i }
 
-    
+
 
 
     ultimo_montaje = Montaje.all
