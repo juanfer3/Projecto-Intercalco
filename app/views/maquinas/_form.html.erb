@@ -10,12 +10,12 @@
     <%= f.input :tirajes_por_hora %>
 
 
-    <div class="col-12">
+    <div class="">
       <label for="">Rol Que puede administrarla</label>
        <%=
        f.select :rol_ids,
         @roles.map{|i| [ i.cargo, i.id]},
-        {}, {required: 'true', autofocus: 'true', class: 'form-control roles_add', id: "", readonly: "readonly"}
+        {}, {required: 'true', autofocus: 'true', class: 'roles_add', id: "", readonly: "readonly"}
         %>
     </div>
     <script type="text/javascript">
