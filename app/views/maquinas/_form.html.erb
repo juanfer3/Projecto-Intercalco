@@ -15,9 +15,12 @@
        <%=
        f.select :roles_ids,
         @roles.map{|i| [ i.cargo, i.id]},
-        {}, {required: 'true', autofocus: 'true', class: 'form-control', id: "", readonly: "readonly"}
+        {}, {required: 'true', autofocus: 'true', class: 'form-control roles_add', id: "", readonly: "readonly"}
         %>
     </div>
+    <script type="text/javascript">
+        $('.roles_add').selectize()
+    </script>
 
     <%= f.input :estado %>
   </div>
