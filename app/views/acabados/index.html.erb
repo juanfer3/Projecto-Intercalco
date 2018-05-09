@@ -2,12 +2,12 @@
 
 <h1>Acabados</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nombre</th>
-      <th>Descripcion</th>
-      <th colspan="3"></th>
+      <th>Descripción</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -16,9 +16,8 @@
       <tr>
         <td><%= acabado.nombre %></td>
         <td><%= acabado.descripcion %></td>
-        <td><%= link_to 'Show', acabado %></td>
-        <td><%= link_to 'Edit', edit_acabado_path(acabado) %></td>
-        <td><%= link_to 'Destroy', acabado, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-paintbrush"></i></i></span></button>'.html_safe, edit_rol_path(rol) %></td>
+        <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, rol, method: :delete, data: { confirm: 'Realmente desea eliminar este acabado?' } %></td>
       </tr>
     <% end %>
   </tbody>
