@@ -1,6 +1,25 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lineas De Colores</h1>
+
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+        <h1>Lineas de Colores</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-dark float-xl-right">Linea nueva</button>'.html_safe, new_lineas_de_color_pat %>
+
+      </div>
+
+</div>
+
+<br>
 
 <table class="table table-hover">
   <thead>
@@ -24,9 +43,7 @@
 </table>
 
 <br>
-<div class="btn pull-right">
-  <%= link_to '<button class="btn btn-outline-dark"><span>Registrar línea nueva <i class="ion-android-list"></i></span></button>'.html_safe, new_lineas_de_color_path %>
-</div>
+
 
 <div class="">
   <br>
