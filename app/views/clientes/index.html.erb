@@ -44,7 +44,7 @@
 
 <br>
 
-<div class="pull-right">
+<div class="pull-right cont_oc">
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 <table class="table table-hover">
@@ -59,7 +59,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="agregar_busqueda">
     <%   @clientes.each do |cliente| %>
       <tr>
         <td><%= cliente.nombre %></td>
@@ -77,7 +77,7 @@
 </table>
 
 <br>
-<div class="pull-right">
+<div class="pull-right cont_oc">
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 
