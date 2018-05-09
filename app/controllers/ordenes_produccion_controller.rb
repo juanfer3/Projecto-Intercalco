@@ -79,11 +79,11 @@ class OrdenesProduccionController < ApplicationController
         .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND  habilitar_rol_maquinas.rol_id = ?", hoy, entregado, rol)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
-  todas_las_ordenes = OrdenProduccion.joins(:montaje =>[:contenedores_de_maquinas=>[:maquina]])
+  todas_las_ordenes = OrdenProduccion.joins(:montaje =>[:contenedores_de_maquinas=>[:maquina => [:habilitar_rol_maquinas]]])
         .where("ordenes_produccion.entregado = ? AND habilitar_rol_maquinas.rol_id = ?", entregado, rol)
         .order("ordenes_produccion.numero_de_orden")
 
-  @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina]])
+  @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina => [:habilitar_rol_maquinas]]])
         .where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND habilitar_rol_maquinas.rol_id = ?", hoy,entregado, rol)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
