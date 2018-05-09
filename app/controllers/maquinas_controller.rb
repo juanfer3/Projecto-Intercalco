@@ -174,6 +174,8 @@ class MaquinasController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def maquina_params
       params.require(:maquina).permit(:nombre, :descripcion, :unidad,
-        :formato_de_tamaño,:estado,:tirajes_por_hora)
+        :formato_de_tamaño,:estado,:tirajes_por_hora, :rol_ids => [],
+      habilitar_rol_maquinas_attributes: [:id,:_destroy,:maquina_id, :rol_id, :rol_ids => []]
+      )
     end
 end

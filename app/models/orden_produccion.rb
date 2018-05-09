@@ -425,10 +425,12 @@ class OrdenProduccion < ApplicationRecord
     #code
     puts "==========================================================".blue
     puts "*******************HABILTAR IMPRESION*******************".green
-    self.habilitar_impresion = false if sacar_de_inventario == true
+    self.habilitar_impresion = false if self.sacar_de_inventario == true
     puts "==========================================================".blue
     puts "=*******************HABILTAR CORTE***********************=".green
-    self.habilitar_corte_de_material = false if sacar_de_inventario == true
+    self.habilitar_corte_de_material = false if self.sacar_de_inventario == true
+    puts "=*******************HABILTAR PREPRENSA***********************=".green
+    self.habilitar_preprensa = false if self.sacar_de_inventario == true
     puts "==========================================================".blue
 
 
@@ -438,12 +440,16 @@ class OrdenProduccion < ApplicationRecord
     puts "==========================================================".blue
     puts "=*******************DESHABILTAR CORTE***********************=".green
     self.habilitar_corte_de_material = true if sacar_de_inventario == false
+    puts "=*******************DESHABILTAR PREPRENSA***********************=".green
+    self.habilitar_preprensa = true if sacar_de_inventario == false
     puts "==========================================================".blue
 
   end
 
   def antes_de_salvar
 
+
+    
 
     linea = self.montaje.linea_producto.nombre.upcase
 

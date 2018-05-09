@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :habilitar_rol_maquinas
   resources :programaciones_op_maquinas
   resources :variables_estandar
   resources :contenedores_de_acabados

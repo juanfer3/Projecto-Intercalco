@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508172155) do
+ActiveRecord::Schema.define(version: 20180509125538) do
 
   create_table "acabados", force: :cascade do |t|
     t.string "nombre"
@@ -198,6 +198,15 @@ ActiveRecord::Schema.define(version: 20180508172155) do
     t.datetime "updated_at", null: false
     t.index ["tinta_formulada_id"], name: "index_formulas_tinta_on_tinta_formulada_id"
     t.index ["tinta_id"], name: "index_formulas_tinta_on_tinta_id"
+  end
+
+  create_table "habilitar_rol_maquinas", force: :cascade do |t|
+    t.integer "maquina_id"
+    t.integer "rol_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["maquina_id"], name: "index_habilitar_rol_maquinas_on_maquina_id"
+    t.index ["rol_id"], name: "index_habilitar_rol_maquinas_on_rol_id"
   end
 
   create_table "linea_de_colores", force: :cascade do |t|
@@ -515,6 +524,7 @@ ActiveRecord::Schema.define(version: 20180508172155) do
     t.boolean "estado", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "administrador_maquina", default: false
   end
 
   create_table "tiempos_de_entregas", force: :cascade do |t|

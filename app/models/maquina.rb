@@ -2,6 +2,15 @@ class Maquina < ApplicationRecord
   require 'colorize'
 
 
+
+
+  has_many :habilitar_rol_maquinas, inverse_of: :maquina, dependent: :destroy
+  accepts_nested_attributes_for :habilitar_rol_maquinas, reject_if: :all_blank, allow_destroy: true
+
+  has_many :rol, through: :habilitar_rol_maquinas
+
+
+
 def self.change_datos_to_horas(data)
 
   hora = data.to_s.split(".")[0]

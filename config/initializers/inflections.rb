@@ -192,5 +192,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'habilitar_preprensa', 'habilitar_preprensas'
 
+  inflect.irregular 'administrador_maquina', 'administrador_maquinas'
+
 
 end
