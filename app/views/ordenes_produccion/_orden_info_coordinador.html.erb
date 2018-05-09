@@ -417,49 +417,57 @@
 
 <% if @orden_produccion.habilitar_impresion == true %>
 
-        <%if @orden_produccion.habilitar_preprensa == true%>
 
-                                  <div class="" id="btn_corte_material">
-                                      <% if @orden_produccion.impresion == true %>
-                                      <div class="" id="btn_color">
-                                        <div class="">
-                                          <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
+          <%if @orden_produccion.habilitar_preprensa == true%>
+
+                        <div class="" id="btn_corte_material">
+                            <% if @orden_produccion.impresion == true %>
+                            <div class="" id="btn_color">
+                              <div class="">
+                                <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
+                                <label for=""> <strong>Corte De Material</strong> </label>
+                              </div>
+                              <br>
+                            </div>
+                            <% else %>
+                                  <%if @orden_produccion.corte_material== false%>
+                                        <div >
+                                          <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_impresion" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@orden_produccion), remote:true %>
                                           <label for=""> <strong>Corte De Material</strong> </label>
                                         </div>
                                         <br>
-                                      </div>
-                                      <% else %>
-                                            <%if @orden_produccion.corte_material== false%>
-                                                  <div >
-                                                    <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_impresion" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@orden_produccion), remote:true %>
-                                                    <label for=""> <strong>Corte De Material</strong> </label>
-                                                  </div>
-                                                  <br>
-                                                  <%else%>
-                                                  <div class="">
-                                                    <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@orden_produccion), remote:true %>
-                                                    <label for=""> <strong>Corte De Material</strong> </label>
-                                                  </div>
-                                                  <br>
-                                            <%end%>
-                                      <% end %>
-                                  </div>
-                                  <% else %>
-
-                                    <div class="">
-                                      <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
-                                      <label for=""> <strong>Corte De Material</strong> </label>
-                                    </div>
-                                    <br>
+                                        <%else%>
+                                        <div class="">
+                                          <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>'.html_safe, cambiar_estado_corte_material_path(@orden_produccion), remote:true %>
+                                          <label for=""> <strong>Corte De Material</strong> </label>
+                                        </div>
+                                        <br>
+                                  <%end%>
+                            <% end %>
+                        </div>
 
 
-              <%else%>
-                      <div >
-                        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
-                        <label for=""> <strong>Corte De Material</strong> </label>
-                      </div>
-                      <br>
-              <%end%>
+
+                  <%else%>
+                          <div >
+                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+                            <label for=""> <strong>Corte De Material</strong> </label>
+                          </div>
+                          <br>
+                  <%end%>
+
+
+
+
+
+
+  <% else %>
+
+      <div class="">
+        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+        <label for=""> <strong>Corte De Material</strong> </label>
+      </div>
+      <br>
 
   <% end %>
 
