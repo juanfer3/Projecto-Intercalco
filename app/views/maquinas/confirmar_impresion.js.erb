@@ -1,4 +1,12 @@
 
+
+
+
+
+
+<%if current_user.rol.cargo == "Producción"%>
+
+
 $(<%="fila_de_#{@orden_produccion.id}"%>).html("<%= j render 'fila_orden_produccion'%>")
 
 // ===inputSwitch===
@@ -56,3 +64,12 @@ if ($this.val().length == 0) {
   //console.log($this);
 }).hide();
 //actualizar los datos para ser ordenados ccon el tablesorter
+<%elsif current_user.rol.cargo == "Produccion Digital"%>
+
+  $(<%="caja_#{@orden_produccion.id}"%>).html("<%= j render 'fila_orden_produccion_digital'%>")
+
+
+<%else%>
+
+
+<%end%>
