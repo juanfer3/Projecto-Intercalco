@@ -18,6 +18,9 @@
 
 </div>
 
+
+<br>
+
 <div class="pull-right">
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
@@ -54,6 +57,8 @@
 <div class="pull-right">
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
+
+
 
 <%if current_user.rol.cargo=="Gerente Comercial"%>
   <button class="btn btn-success" data-toggle="modal" data-target="#modalExcel">Importar Clientes Desde Excel</button>
@@ -134,17 +139,7 @@
 
     <%elsif current_user.rol.cargo=="Producción"%>
 
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col-4">
-          <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i>Registrar Cliente nuevo</button>'.html_safe, new_cliente_path %>
-        </div>
 
-
-
-
-      </div>
-    </div>
 
 
 
