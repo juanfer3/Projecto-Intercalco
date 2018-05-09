@@ -1,5 +1,20 @@
-<h1>Edición línea de producto</h1>
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+        <h1>Edición línea de producto</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-primary float-xl-right">Lista de lineas de producto</button>'.html_safe,
+        lineas_productos_path %>
+      </div>
+
+</div>
+
 
 <%= render 'form', linea_producto: @linea_producto %>
-
-<%= link_to '<button type="button" class="btn btn-outline-primary">Lista de líneas de producto</button>'.html_safe, lineas_productos_path %>
