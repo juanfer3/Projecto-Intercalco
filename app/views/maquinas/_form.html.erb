@@ -13,9 +13,9 @@
     <div class="col-12">
       <label for="">Rol Que puede administrarla</label>
        <%=
-       f.select :maquina_ids,
-        Maquina.all.order("nombre").map{|i| [ i.nombre, i.id]},
-        {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", :multiple => true,readonly: "readonly"}
+       f.select :roles_ids,
+        @roles.map{|i| [ i.cargo, i.id]},
+        {}, {required: 'true', autofocus: 'true', class: 'form-control', id: "", readonly: "readonly"}
         %>
     </div>
 
