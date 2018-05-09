@@ -4,7 +4,7 @@ class MontajesController < ApplicationController
   # GET /montajes
   # GET /montajes.json
   def index
-    @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo")
+    @montajes = Montaje.all.paginate(page: params[:page], per_page: 20).order("codigo::integer")
     @NombreTintas = Tinta.all.order('descripcion').distinct
     @TintaFormulada = TintaFormulada.all.order('descripcion').distinct
 

@@ -54,6 +54,8 @@ module ApplicationHelper
     number.to_s.reverse.scan(/(?:\d*\.)?\d{1,3}-?/).join('.').reverse
   end
 
-
+  def is_number? string
+      true if Float(string) rescue false
+  end
 
 end
