@@ -9,8 +9,9 @@ class ClientesController < ApplicationController
 
   def buscar_nombre_cliente
     data = params["data"]
+    puts"===============#{data}================".blue
     estado = true
-    @clientes = Cliente.where("nombre ILIKE ? ", "%"+data+"%", estado).order('nombre')
+    @clientes = Cliente.where("nombre ILIKE ? AND estado = ?", "%"+data+"%", estado).order('nombre')
     respond_to do |format|
         format.js
     end
