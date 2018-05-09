@@ -81,13 +81,13 @@
               </thead>
 
               <tbody>
-                <% @cliente.nombres_facturaciones.each do |nombre| %>
+                <% @cliente.nombres_facturaciones.each do |nombre_facturacion| %>
 
 
-                    <tr id=<%="nombre_num_#{nombre.id}"%> >
-                      <td><%= nombre.nombre %></td>
+                    <tr id=<%="nombre_num_#{nombre_facturacion.id}"%> >
+                      <td><%= nombre_facturacion.nombre %></td>
                       <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
-                      nombre,
+                      nombre_facturacion,
                       method: :delete, data: { confirm: 'SI ELIMINA ESTE REGISTRO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR NOMBRE A FACTURAR?' }, remote: true %></td>
                     </tr>
 
