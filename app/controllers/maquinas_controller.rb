@@ -102,9 +102,9 @@ class MaquinasController < ApplicationController
 
   def produccion_por_maquinas
     #code
-
+    rol = current_user.cargo_id
     estado = true
-    @maquinas = Maquina.where("estado = ?", estado).order("nombre")
+    @maquinas = Maquina.joins(:habilitar_rol_maquinas).where("habilitar_rol_maquinas.rol_id= ?", rol).order("nombre")
     @ordenes_produccion = []
     respond_to do |format|
       format.html
