@@ -4,7 +4,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
-    @roles = Rol.all
+    @roles = Rol.all.order("cargo")
   end
 
   # GET /roles/1
