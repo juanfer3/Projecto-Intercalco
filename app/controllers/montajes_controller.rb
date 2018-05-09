@@ -149,14 +149,9 @@ end
 
     @malla_my_order = Malla.all("nombre")
 
-    @malla_my_order.each do |malla|
+    @malla_my_order.sort_by { |x| x[/\d+/].to_i }
 
-        if is_number?( malla.nombre ) == true
-          puts"es un numero".red
-
-        end
-
-    end
+    
 
 
     ultimo_montaje = Montaje.all
