@@ -104,7 +104,7 @@
 
 
     <!-- Produccion Digital  -->
-    <%elsif current_user.rol.cargo == "Tintas"%>
+    <%elsif current_user.rol.cargo == "Produccion Digital"%>
     <nav class="navbar navbar-light bg-light my_nav">
 
       <a class="navbar-brand" href="#">
@@ -117,7 +117,7 @@
           <%= link_to 'Ordenes de producción', produccion_digital_path, class:'navbar-brand' %>
         </a>
 
-    
+
       <div class="nav-item dropdown">
 
         <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
