@@ -435,11 +435,11 @@ $(document).ready(function(){
 
 
       <!--ORDENES DE IMPRESION-->
-      <% if @orden_produccion.impresion == true %>
+      <% if orden_produccion.impresion == true %>
         <!-- true -->
-        <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+        <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
       <% else %>
-        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
       <% end %>
 
                   <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
@@ -589,11 +589,11 @@ $(document).ready(function(){
   <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
 
   <!--ORDENES DE IMPRESION-->
-  <% if @orden_produccion.impresion == true %>
+  <% if orden_produccion.impresion == true %>
     <!-- true -->
-    <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+    <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
   <% else %>
-    <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+    <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
   <% end %>
 
               <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
@@ -744,11 +744,11 @@ $(document).ready(function(){
 
 
         <!--ORDENES DE IMPRESION-->
-        <% if @orden_produccion.impresion == true %>
+        <% if orden_produccion.impresion == true %>
           <!-- true -->
-          <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+          <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
         <% else %>
-          <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(@orden_produccion), remote: true %></td>
+          <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(orden_produccion), remote: true %></td>
         <% end %>
 
 
