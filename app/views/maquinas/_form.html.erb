@@ -13,7 +13,7 @@
     <div class="col-12">
       <label for="">Rol Que puede administrarla</label>
        <%=
-       f.select :roles_ids,
+       f.select :rol_ids,
         @roles.map{|i| [ i.cargo, i.id]},
         {}, {required: 'true', autofocus: 'true', class: 'form-control roles_add', id: "", readonly: "readonly"}
         %>
