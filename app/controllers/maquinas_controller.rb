@@ -119,6 +119,7 @@ class MaquinasController < ApplicationController
   # GET /maquinas/new
   def new
     @maquina = Maquina.new
+    @maquina.habilitar_rol_maquinas.build
   end
 
   # GET /maquinas/1/edit

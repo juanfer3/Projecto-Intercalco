@@ -8,6 +8,17 @@
     <%= f.input :formato_de_tamaño %>
     <%= f.input :unidad %>
     <%= f.input :tirajes_por_hora %>
+
+
+    <div class="col-12">
+      <label for="">Rol Que puede administrarla</label>
+       <%=
+       f.select :maquina_ids,
+        Maquina.all.order("nombre").map{|i| [ i.nombre, i.id]},
+        {}, {required: 'true', autofocus: 'true', class: 'multiSelect form-control', id: "", :multiple => true,readonly: "readonly"}
+        %>
+    </div>
+
     <%= f.input :estado %>
   </div>
 
