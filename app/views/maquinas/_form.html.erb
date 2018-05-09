@@ -15,7 +15,7 @@
        <%=
        f.select :rol_ids,
         @roles.map{|i| [ i.cargo, i.id]},
-        {}, {required: 'true', autofocus: 'true', class: 'roles_add', id: "", readonly: "readonly"}
+        {}, {required: 'true', autofocus: 'true', class: 'roles_add', id: "", 'multiple': "multiple",readonly: "readonly"}
         %>
     </div>
     <script type="text/javascript">
