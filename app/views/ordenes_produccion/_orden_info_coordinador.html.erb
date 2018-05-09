@@ -208,43 +208,72 @@
           <% if @orden_produccion.habilitar_impresion == true %>
 
             <div class="col" id="btn_impresion">
+                        <% if @orden_produccion.habilitar_preprensa == true %>
+                                      <% if @orden_produccion.color == true && @orden_produccion.corte_material== true && @orden_produccion.pantalla== true %>
 
-                        <% if @orden_produccion.color == true && @orden_produccion.corte_material== true && @orden_produccion.pantalla== true %>
+                                                    <%if @orden_produccion.impresion == false%>
+                                                            <div class="">
+                                                              <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
+                                                              <label for=""> <strong>Impresion</strong> </label>
+                                                            </div>
+                                                            <br>
+                                                    <% elsif @orden_produccion.impresion== true && @orden_produccion.acabado== true %>
+                                                    <div class="col" id="btn_color">
+                                                      <div class="">
+                                                        <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
+                                                        <label for=""> <strong>Impresion</strong> </label>
+                                                      </div>
+                                                      <br>
+                                                    </div>
 
-                            <%if @orden_produccion.impresion == false%>
+                                                    <%else%>
+                                                            <div class="">
+                                                              <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
+                                                              <label for=""> <strong>Impresion</strong> </label>
+                                                            </div>
+                                                            <br>
+                                                    <%end%>
+
+
+                                      <% else %>
+
+                                                  <div class="">
+                                                    <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-power"></i></i></span></button>
+                                                    <label for=""> <strong>Impresion</strong> </label>
+                                                  </div>
+                                                  <br>
+
+                                      <% end %>
+                      <% else %>
+
+
+
+                                  <%if @orden_produccion.impresion == false%>
+                                          <div class="">
+                                            <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
+                                            <label for=""> <strong>Impresion</strong> </label>
+                                          </div>
+                                          <br>
+                                  <% elsif @orden_produccion.impresion== true && @orden_produccion.acabado== true %>
+                                  <div class="col" id="btn_color">
                                     <div class="">
-                                      <%= link_to '<button class="btn btn-outline-primary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-qr-scanner"></i></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
+                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
                                       <label for=""> <strong>Impresion</strong> </label>
                                     </div>
                                     <br>
-                            <% elsif @orden_produccion.impresion== true && @orden_produccion.acabado== true %>
-                            <div class="col" id="btn_color">
-                              <div class="">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
-                                <label for=""> <strong>Impresion</strong> </label>
-                              </div>
-                              <br>
-                            </div>
+                                  </div>
 
-                            <%else%>
-                                    <div class="">
-                                      <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
-                                      <label for=""> <strong>Impresion</strong> </label>
-                                    </div>
-                                    <br>
-                            <%end%>
+                                  <%else%>
+                                          <div class="">
+                                            <%= link_to '<button class="btn btn-outline-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></span></button>'.html_safe, cambiar_estado_impresion_path(@orden_produccion), remote:true %>
+                                            <label for=""> <strong>Impresion</strong> </label>
+                                          </div>
+                                          <br>
+                                  <%end%>
 
 
-              <% else %>
 
-                          <div class="">
-                            <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-power"></i></i></span></button>
-                            <label for=""> <strong>Impresion</strong> </label>
-                          </div>
-                          <br>
-
-              <% end %>
-
+                      <% end %>
             </div>
 
 
