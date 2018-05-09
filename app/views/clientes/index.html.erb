@@ -19,6 +19,29 @@
 </div>
 
 
+<%= form_tag buscar_nombre_cliente_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
+
+    <div class="col-3">
+
+
+          <%= text_field_tag 'data', class:"form-control input-group"%>
+
+
+      </div>
+
+
+
+
+        <div class="col-3">
+          <label for=""></label><br>
+          <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+            <span>Buscar... <i></i> </span>
+          <%end%>
+        </div>
+
+<%end%>
+
+
 <br>
 
 <div class="pull-right">

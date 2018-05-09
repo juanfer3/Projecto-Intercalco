@@ -5,6 +5,17 @@ class ClientesController < ApplicationController
     @user_id= current_user.id
   end
 
+
+
+  def buscar_nombre_cliente
+    data = params["data"]
+    estado = true
+    @clientes = Cliente.where("nombre ILIKE ? ", "%"+data+"%", estado).order('nombre')
+    respond_to do |format|
+        format.js
+    end
+  end
+
   def import_from_excel
 
     file = params[:file]

@@ -209,4 +209,10 @@ Rails.application.routes.draw do
   get 'habilitar_facturacion/:id', to: 'compromisos_de_entrega#habilitar_facturacion', as: :habilitar_facturacion
 
   get 'cambiar_preprensa/:id', to: 'ordenes_produccion#cambiar_preprensa', as: :cambiar_preprensa
+
+
+  post 'buscar_nombre_cliente', to: 'clientes#buscar_nombre_cliente', as: :buscar_nombre_cliente
+
+
+
 end
