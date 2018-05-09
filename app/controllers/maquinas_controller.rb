@@ -102,7 +102,7 @@ class MaquinasController < ApplicationController
 
   def produccion_por_maquinas
     #code
-    rol = current_user.cargo_id
+    rol = current_user.rol_id
     estado = true
     @maquinas = Maquina.joins(:habilitar_rol_maquinas).where("habilitar_rol_maquinas.rol_id= ?", rol).order("nombre")
     @ordenes_produccion = []
