@@ -53,7 +53,7 @@
 
 
             <tr id=<%="despacho_num_#{despacho.id}"%> >
-              <td><%= despacho.direccion %></td>
+              <td><%= best_in_place despacho, :direccion, :as => :input %></td>
               <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
               despacho,
               method: :delete, data: { confirm: 'SI ELIMINA ESTE REGISTRO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR LUGAR DE DESPACHO?' }, remote: true %></td>
