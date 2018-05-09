@@ -64,6 +64,8 @@
 
 <h1>Lugares de entrega</h1>
 
+<br>
+
     <table class="table  table-hover">
       <thead>
         <tr>
@@ -77,13 +79,40 @@
 
             <tr>
               <td><%= despacho.direccion %></td>
-
             </tr>
 
 
             <% end %>
           </tbody>
         </table>
+
+
+
+
+
+        <h1>Facturar a</h1>
+
+        <br>
+
+            <table class="table  table-hover">
+              <thead>
+                <tr>
+                  <th>Dirección</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @cliente.lugares_despachos.each do |despacho| %>
+
+
+                    <tr>
+                      <td><%= despacho.direccion %></td>
+                    </tr>
+
+
+                    <% end %>
+                  </tbody>
+                </table>
 
 
 
