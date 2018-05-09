@@ -149,9 +149,11 @@ end
 
     @malla_my_order = Malla.all.order("nombre")
 
-    @malla_my_order.sort_by { |x| x[/\d+/].to_i }
+    @malla_my_order = @malla_my_order.sort_by { |x| x[/\d+/].to_i }
 
-
+    @malla_my_order.each do  |malla|
+      puts"=============#{malla.nombre}=============="
+    end
 
 
     ultimo_montaje = Montaje.all
