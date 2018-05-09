@@ -72,18 +72,19 @@ class OrdenesProduccionController < ApplicationController
 
   efi_id = contenedor_efi.id
   mutoh_id = contenedor_mutoh.id
+  rol = current_user.rol_id
 
-  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas])
+  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas=>[:maquina => [:habilitar_rol_maquinas]]])
         .paginate(page: params[:page], per_page: 20)
-        .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?) ", hoy, entregado, efi_id, mutoh_id)
+        .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND  habilitar_rol_maquinas.rol_id = ?", hoy, entregado, rol)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
   todas_las_ordenes = OrdenProduccion.joins(:montaje =>[:contenedores_de_maquinas=>[:maquina]])
-        .where("ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?)", entregado, efi_id, mutoh_id)
+        .where("ordenes_produccion.entregado = ? AND habilitar_rol_maquinas.rol_id = ?", entregado, rol)
         .order("ordenes_produccion.numero_de_orden")
 
   @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje =>[:contenedores_de_maquinas=>[:maquina]])
-        .where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND (contenedores_de_maquinas.maquina_id = ? OR contenedores_de_maquinas.maquina_id = ?)", hoy,entregado,  efi_id, mutoh_id)
+        .where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND habilitar_rol_maquinas.rol_id = ?", hoy,entregado, rol)
         .order("compromisos_de_entrega.fecha_de_compromiso")
 
    @ordenes_sin_fecha = []
