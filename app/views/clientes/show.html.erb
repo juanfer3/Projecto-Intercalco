@@ -17,12 +17,12 @@
 
   <tbody>
     <% @cliente.contactos.each do |contacto| %>
-
+  
           <tr id=<%="contacto_num_#{contacto.id}"%> >
-            <td><%= contacto.nombre_contacto %></td>
-            <td><%= contacto.telefono %></td>
-            <td><%= contacto.celular %></td>
-            <td><%= contacto.correo %></td>
+            <td><%= best_in_place contacto, :nombre_contacto, :as => :input %></td>
+            <td><%= best_in_place contacto, :telefono, :as => :input %></td>
+            <td><%= best_in_place contacto, :celular, :as => :input %></td>
+            <td><%= best_in_place contacto, :correo, :as => :input %></td>
             <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
             contacto,
             method: :delete, data: { confirm: 'SI ELIMINA EL CONTACTO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR ESTE CONTACTO?' }, remote: true %></td>
