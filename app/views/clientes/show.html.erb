@@ -17,7 +17,7 @@
   <tbody>
     <% @cliente.contactos.each do |contacto| %>
 
-          <tr>
+          <tr id=<%="contacto_num_#{contacto.id}"%> >
             <td><%= contacto.nombre_contacto %></td>
             <td><%= contacto.telefono %></td>
             <td><%= contacto.celular %></td>
@@ -39,7 +39,7 @@
 
     <table class="table  table-hover">
       <thead>
-        <tr>
+        <tr >
           <th>Dirección</th>
         </tr>
       </thead>
@@ -48,7 +48,7 @@
         <% @cliente.lugares_despachos.each do |despacho| %>
 
 
-            <tr>
+            <tr id=<%="despacho_num_#{despacho.id}"%> >
               <td><%= despacho.direccion %></td>
             </tr>
 
@@ -73,11 +73,11 @@
               </thead>
 
               <tbody>
-                <% @cliente.lugares_despachos.each do |despacho| %>
+                <% @cliente.nombres_facturaciones.each do |nombre| %>
 
 
-                    <tr>
-                      <td><%= despacho.direccion %></td>
+                    <tr id=<%="nombre_num_#{nombre.id}"%> >
+                      <td><%= nombre.direccion %></td>
                     </tr>
 
 
