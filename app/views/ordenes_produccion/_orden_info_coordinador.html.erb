@@ -47,58 +47,114 @@
 
 
                   <% if @orden_produccion.impresion== false %>
-                      <div class="" id="btn_pantalla">
-                        <%if @orden_produccion.pantalla == false%>
-                                <div class=""  >
-                                  <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-clock"></i></i></span></button>
-                                  <label for=""> <strong>Pantalla</strong> </label>
-                                </div>
-                                <br>
-                        <%else%>
-                                <div class="">
-                                  <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>
-                                  <label for=""> <strong>Pantalla</strong> </label>
-                                </div>
-                                <br>
-                        <%end%>
-                        </div>
-                      <div class="row">
-                        <div class="col" id="btn_color">
-                        <%if @orden_produccion.color == false%>
-                                  <div class=""  >
-                                    <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-clock"></i></i></span></button>
-                                    <label for=""> <strong>Color</strong> </label>
-                                  </div>
-                                  <br>
-                        <%else%>
-                              <div class="">
-                                <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>
-                                <label for=""> <strong>Color</strong> </label>
-                              </div>
-                              <br>
-                        <%end%>
-                      </div>
+                                    <%if @orden_produccion.habilitar_preprensa == true %>
+
+                                                  <div class="" id="btn_pantalla">
+                                                    <%if @orden_produccion.pantalla == false%>
+                                                            <div class=""  >
+                                                              <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-clock"></i></i></span></button>
+                                                              <label for=""> <strong>Pantalla</strong> </label>
+                                                            </div>
+                                                            <br>
+                                                    <%else%>
+                                                            <div class="">
+                                                              <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>
+                                                              <label for=""> <strong>Pantalla</strong> </label>
+                                                            </div>
+                                                            <br>
+                                                    <%end%>
+                                                    </div>
+                                                  <div class="row">
+                                                    <div class="col" id="btn_color">
+                                                    <%if @orden_produccion.color == false%>
+                                                              <div class=""  >
+                                                                <button class="btn btn-outline-warning" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-clock"></i></i></span></button>
+                                                                <label for=""> <strong>Color</strong> </label>
+                                                              </div>
+                                                              <br>
+                                                    <%else%>
+                                                          <div class="">
+                                                            <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-checkmark-round"></i></i></span></button>
+                                                            <label for=""> <strong>Color</strong> </label>
+                                                          </div>
+                                                          <br>
+                                                    <%end%>
+                                                  </div>
+
+
+                                      <%else%>
+
+                                                    <!--habilitar impresion false-->
+                                                    <div class="" id="btn_pantalla">
+                                                      <div class="">
+                                                        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+                                                        <label for=""> <strong>Pantalla</strong> </label>
+                                                      </div>
+                                                      <br>
+                                                    </div>
+                                                  <div class="row">
+                                                    <div class="col" id="btn_color">
+                                                      <div class="">
+                                                        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+                                                        <label for=""> <strong>Color</strong> </label>
+                                                      </div>
+                                                      <br>
+                                                    </div>
+
+
+
+                                      <%end%>
                   <%else%>
 
 
+                                      <%if @orden_produccion.habilitar_preprensa == true%>
+
+                                                  <div class="" id="btn_pantalla">
+                                                    <div class="">
+                                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
+                                                      <label for=""> <strong>Pantalla</strong> </label>
+                                                    </div>
+                                                    <br>
+                                                  </div>
+                                                <div class="row">
+                                                  <div class="col" id="btn_color">
+                                                    <div class="">
+                                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
+                                                      <label for=""> <strong>Color</strong> </label>
+                                                    </div>
+                                                    <br>
+                                                  </div>
 
 
-                                  <div class="" id="btn_pantalla">
-                                    <div class="">
-                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
-                                      <label for=""> <strong>Pantalla</strong> </label>
-                                    </div>
-                                    <br>
-                                  </div>
-                                <div class="row">
-                                  <div class="col" id="btn_color">
-                                    <div class="">
-                                      <button class="btn btn-success" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla_ca" class="ion-pin"></i></i></span></button>
-                                      <label for=""> <strong>Color</strong> </label>
-                                    </div>
-                                    <br>
-                                  </div>
 
+
+
+                                        <%else%>
+
+
+                                        <!--habilitar impresion false-->
+                                        <div class="" id="btn_pantalla">
+                                          <div class="">
+                                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+                                            <label for=""> <strong>Pantalla</strong> </label>
+                                          </div>
+                                          <br>
+                                        </div>
+                                      <div class="row">
+                                        <div class="col" id="btn_color">
+                                          <div class="">
+                                            <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#modalConsultarDespachos"><span><i id="proceso_pantalla" class="ion-minus-circled"></i></span></button>
+                                            <label for=""> <strong>Color</strong> </label>
+                                          </div>
+                                          <br>
+                                        </div>
+
+
+
+
+
+
+                                        <%end%>
 
 
 
