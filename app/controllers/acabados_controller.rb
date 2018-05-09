@@ -28,7 +28,7 @@ class AcabadosController < ApplicationController
 
     respond_to do |format|
       if @acabado.save
-        format.html { redirect_to @acabado, notice: 'Acabado was successfully created.' }
+        format.html { redirect_to acabados_path, notice: 'Acabado registrado.' }
         format.json { render :show, status: :created, location: @acabado }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AcabadosController < ApplicationController
   def update
     respond_to do |format|
       if @acabado.update(acabado_params)
-        format.html { redirect_to @acabado, notice: 'Acabado was successfully updated.' }
+        format.html { redirect_to acabados_url, notice: 'Acabado editado.' }
         format.json { render :show, status: :ok, location: @acabado }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class AcabadosController < ApplicationController
   def destroy
     @acabado.destroy
     respond_to do |format|
-      format.html { redirect_to acabados_url, notice: 'Acabado was successfully destroyed.' }
+      format.html { redirect_to acabados_url, notice: 'Acabado elimniado.' }
       format.json { head :no_content }
     end
   end
