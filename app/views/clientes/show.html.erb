@@ -11,50 +11,21 @@
       <th>Telefono</th>
       <th>Celular</th>
       <th>Correo</th>
-
-      <%if current_user.rol.cargo=="Comercial"%>
-
-      <%else%>
-        <th >Asignar Comercial</th>
-        <th></th>
-      <%end%>
-
     </tr>
   </thead>
 
   <tbody>
     <% @cliente.contactos.each do |contacto| %>
 
-      <%if current_user.rol.cargo=="Gerente Comercial"%>
-        <tr>
-          <td><%= contacto.nombre_contacto %></td>
-          <td><%= contacto.telefono %></td>
-          <td><%= contacto.celular %></td>
-          <td><%= contacto.correo %></td>
-          <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.all.map { |i| [i.id, i.nombre] }%></td>
-          <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-
-        <%elsif current_user.rol.cargo=="Administrador"%>
           <tr>
             <td><%= contacto.nombre_contacto %></td>
             <td><%= contacto.telefono %></td>
             <td><%= contacto.celular %></td>
             <td><%= contacto.correo %></td>
-            <td><%= best_in_place contacto, :user_id, :as => :select, :collection => User.joins(:rol).where('roles.cargo="Comercial" or roles.cargo="Gerente Comercial"').map { |i| [i.id, i.nombre] }%></td>
             <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
 
-          <%elsif current_user.rol.cargo=="Comercial"%>
-            <%if current_user.nombre == contacto.user.nombre%>
-              <tr>
-                <td><%= contacto.nombre_contacto %></td>
-                <td><%= contacto.telefono %></td>
-                <td><%= contacto.celular %></td>
-                <td><%= contacto.correo %></td>
-              </tr>
-            <%end%>
-          <%end%>
+
 
         <% end %>
       </tbody>
