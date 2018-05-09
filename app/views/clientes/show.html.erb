@@ -11,6 +11,7 @@
       <th>Telefono</th>
       <th>Celular</th>
       <th>Correo</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -22,7 +23,9 @@
             <td><%= contacto.telefono %></td>
             <td><%= contacto.celular %></td>
             <td><%= contacto.correo %></td>
-            <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe, contacto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
+            contacto,
+            method: :delete, data: { confirm: 'SI ELIMINA EL CONTACTO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR ESTE CONTACTO?' }, remote: true %></td>
           </tr>
 
 
@@ -41,6 +44,7 @@
       <thead>
         <tr >
           <th>Dirección</th>
+          <th></th>
         </tr>
       </thead>
 
@@ -50,6 +54,9 @@
 
             <tr id=<%="despacho_num_#{despacho.id}"%> >
               <td><%= despacho.direccion %></td>
+              <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
+              contacto,
+              method: :delete, data: { confirm: 'SI ELIMINA ESTE REGISTRO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR LUGAR DE DESPACHO?' }, remote: true %></td>
             </tr>
 
 
@@ -68,7 +75,8 @@
             <table class="table  table-hover">
               <thead>
                 <tr>
-                  <th>Dirección</th>
+                  <th>Nombre</th>
+                  <th></th>
                 </tr>
               </thead>
 
@@ -78,6 +86,9 @@
 
                     <tr id=<%="nombre_num_#{nombre.id}"%> >
                       <td><%= nombre.nombre %></td>
+                      <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></i></span></button>'.html_safe,
+                      contacto,
+                      method: :delete, data: { confirm: 'SI ELIMINA ESTE REGISTRO SE ELIMINARA LAS ORDENES DE PRODUCCION QUE ESTEN A NOMBRE DE ESTE. DESEA ELIMINAR NOMBRE A FACTURAR?' }, remote: true %></td>
                     </tr>
 
 
