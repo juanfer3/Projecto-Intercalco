@@ -1,7 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 
-<h1>Clientes</h1>
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+        <h1>Clientes</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-dark float-xl-right">Registrar Cliente</button>'.html_safe, new_cliente_path %>
+      </div>
+
+</div>
+
 <div class="pull-right">
   <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
