@@ -64,14 +64,7 @@ class OrdenesProduccionController < ApplicationController
 
   hoy = Time.now
   entregado = false
-  maquina_efi = "DIGITAL EFI"
-  maquina_mutoh = "DIGITAL MUTOH"
 
-  contenedor_efi = Maquina.find_by(nombre: maquina_efi)
-  contenedor_mutoh = Maquina.find_by(nombre:maquina_mutoh)
-
-  efi_id = contenedor_efi.id
-  mutoh_id = contenedor_mutoh.id
   rol = current_user.rol_id
 
   @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas=>[:maquina => [:habilitar_rol_maquinas]]])
