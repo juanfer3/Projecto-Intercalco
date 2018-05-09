@@ -126,8 +126,7 @@ class MaquinasController < ApplicationController
 
   # GET /maquinas/1/edit
   def edit
-    @maquina = Maquina.new
-    @maquina.habilitar_rol_maquinas.build
+
     estado = true
     @roles = Rol.where("administrador_maquina = ?", estado).order("cargo")
   end
