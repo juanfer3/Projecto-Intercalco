@@ -14,7 +14,13 @@
   <div class="field">
     <%= form.label :cargo %>
     <%= form.text_field :cargo, id: :rol_cargo %> <br>
-    <%= form.check_box :administrador_maquina %>
+    <label class="form-check-label">
+      Este administrará maquina de impresión?
+      <%= form.check_box :administrador_maquina,{}, class:'form-check-input' %>
+      <input type="checkbox" class="form-check-input">
+    </label>
+    <label for="[object Object]"></label>
+
   </div>
 
 
