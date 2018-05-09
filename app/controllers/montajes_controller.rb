@@ -147,6 +147,18 @@ end
   # GET /montajes/new
   def new
 
+    @malla_my_order = Malla.all("nombre")
+
+    @malla_my_order.each do |malla|
+
+        if is_number?( malla.nombre ) == true
+          puts"es un numero".red
+
+        end
+
+    end
+
+
     ultimo_montaje = Montaje.all
     cont = 0
     @last_codigo = nil
@@ -168,6 +180,8 @@ end
     if @malla_cont != nil
       @malla_id = @malla_cont.id
     end
+
+
 
     @montaje = Montaje.new
     @montaje.desarrollos_de_tintas.build
