@@ -58,6 +58,7 @@ class LugaresDespachosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to lugares_despachos_url, notice: 'Lugar despacho was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 
