@@ -19,7 +19,16 @@
         %>
     </div>
     <script type="text/javascript">
-        $('.roles_add').selectize()
+        $('.roles_add').selectize({
+          delimiter: ',',
+          persist: false,
+          create: function(input) {
+            return {
+                value: id,
+                text: input
+            }
+          }
+        })
     </script>
 
     <%= f.input :estado %>
