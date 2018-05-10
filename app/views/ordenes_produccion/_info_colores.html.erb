@@ -194,6 +194,16 @@
   </div>
 
 
+
+
+
+
+
+
+
+
+<!--
+
   <div class="col-12">
     <br>
   </div>
@@ -233,7 +243,7 @@
                   <%@orden_produccion.montaje.tintas_fop_tiro.each do |tintas_tiro|%>
                   <%cont2 = cont2+1%>
                       <% if cont == cont2 %>
-                        <!-- true -->
+
                         <td><%=tintas_tiro.malla.nombre%></td>
                         <td><%=@orden_produccion.tamanos_total%></td>
                           <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, remote: true,method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
@@ -319,7 +329,7 @@
                   <%@orden_produccion.montaje.tintas_fop_retiro.each do |tintas_tiro|%>
                   <%cont2 = cont2+1%>
                       <% if cont == cont2 %>
-                        <!-- true -->
+
                         <td><%=tintas_tiro.malla.nombre%></td>
                         <td><%=@orden_produccion.tamanos_total%></td>
                           <td><%= link_to '<button class="btn btn-outline-danger"><span><i class="ion-trash-a"></i></span></button>'.html_safe, tintas_tiro, remote: true,method: :delete, data: { confirm: 'Esta seguro De Eliminar Este registro?' }%></td>
@@ -338,6 +348,7 @@
       </table>
 
 <% end %>
+-->
 </div>
     </div>
 </div>
