@@ -11,22 +11,20 @@
 
     <div class="input-daterange input my_card_pedidos_form my_orden_pedidos">
 
-      <div class="col-4">
+      <div class="col-3">
         <label for="fecha_inicial">Fecha inicial</label> <br>
         <%= text_field_tag 'fecha_inicial',"",class: "form-control fecha_en_espanol",
         "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker',required:true%>
       </div>
 
-      <div class="col-4">
+      <div class="col-3">
         <label for="fecha_final">Fecha final</label> <br>
         <%= text_field_tag 'fecha_final',"",class: "form-control fecha_en_espanol",
         "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker', required:true%>
       </div>
 
 
-
-
-      <div class="col-4 ">
+      <div class="col-3">
         <div class="form-check">
           <label class="form-check-label">
             Sacar de inventario <br>
@@ -37,6 +35,10 @@
 
           </label>
         </div>
+      </div>
+
+      <div class="col-3">
+
         <label for="">Seleccione la linea de producto</label>
         <% lineas = []%>
         <% lineas = @lineas_productos%>
