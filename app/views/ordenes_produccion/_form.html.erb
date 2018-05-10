@@ -418,6 +418,21 @@
 
 <script>
 
+function addCommas(nStr)
+    {
+      nStr += '';
+      x = nStr.split('.');
+      x1 = x[0];
+      x2 = x.length > 1 ? '.' + x[1] : '';
+      var rgx = /(\d+)(\d{3})/;
+      while (rgx.test(x1)) {
+          x1 = x1.replace(rgx, '$1' + ',' + '$2');
+      }
+      return x1 + x2;
+    }
+
+
+
 
   $ ( "#select_contactos" ).prop("disabled", true)
   $ ( "#select_facturar_a" ).prop("disabled", true)
@@ -429,15 +444,7 @@
 
   $("#orden_produccion_cantidad_solicitada").keyup(function () {
 
-    var input = $("#orden_produccion_cantidad_solicitada")
-
-    var num = input.value.replace(/\./g,'');
-    if(!isNaN(num)){
-    num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
-    num = num.split('').reverse().join('').replace(/^[\.]/,'');
-    input.value = num;
-    }
-
+    addCommas($("#orden_produccion_cantidad_solicitada").val())
 
   })
 
