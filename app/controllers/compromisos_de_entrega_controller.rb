@@ -32,7 +32,7 @@ class CompromisosDeEntregaController < ApplicationController
     respond_to do |format|
 
       format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="IndicadorOportunidad.xlsx"'
+        response.headers['Content-Disposition'] = 'attachment; filename="PendientesPorFacturar.xlsx"'
       }
 
     end
