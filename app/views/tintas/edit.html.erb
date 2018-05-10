@@ -1,5 +1,31 @@
-<h1>Editar Tinta</h1>
+
+
+
+
+
+
 <br>
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+        <h1>Editar Tinta</h1>
+      </div>
+
+
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-primary float-xl-right">Tintas</button>'.html_safe, tintas_path %>
+      </div>
+
+</div>
+<br>
+
+
+
 
 <%= render 'form', tinta: @tinta %>
 
