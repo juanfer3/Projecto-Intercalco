@@ -239,6 +239,7 @@
         </div>
       </nav>
       <!-- /Direccion Produccion  -->
+
     <!-- pantalla  -->
     <% elsif  current_user.rol.cargo == "Pantallas" %>
       <nav class="navbar navbar-light bg-light my_nav">
@@ -368,6 +369,10 @@
 
 
                 <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="#">
+                  <%= link_to 'Usuarios', users_path, class:'navbar-brand' %>
+                </a>
 
                 <a class="dropdown-item" href="#">
                   <%= link_to 'Clientes', clientes_path, class:'navbar-brand' %>
