@@ -1,9 +1,35 @@
 <p id="notice"><%= notice %></p>
 
+
+
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+
+        <h1>Fichas Técnicas</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-dark float-xl-right">Crear Montaje Nuevo</button>'.html_safe, new_montaje_path %>
+      </div>
+
+</div>
+<br>
+
+
 <div class="pull-right">
   <%= will_paginate @montajes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
-<h1>Referencias</h1>
+
+
+
+
+
 <br>
 
 
@@ -89,10 +115,7 @@
 
 <div class="container">
   <div class="row align-items-start">
-    <div class="col-4">
-      <%= link_to '<button type="button" class="btn btn-dark">Crear Montaje Nuevo</button>'.html_safe, new_montaje_path %>
 
-    </div>
 
     <div class="col-4">
       <%= link_to '<button type="button"   class="btn btn-outline-success"><span><i class="fa fa-file-excel-o" aria-hidden="true"></i> Generar Excel </span></button>'.html_safe,

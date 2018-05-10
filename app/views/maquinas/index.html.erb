@@ -1,7 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Maquinas</h1>
 
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+        <h1>Linea de Producto</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-dark float-xl-right">Registrar Máquina</button>'.html_safe, new_maquina_path %>
+      </div>
+
+</div>
+
+<br>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -25,8 +42,6 @@
 </table>
 
 <br>
-
-<%= link_to '<button type="button" class="btn btn-dark">Registrar Máquina</button>'.html_safe, new_maquina_path %>
 
 
 

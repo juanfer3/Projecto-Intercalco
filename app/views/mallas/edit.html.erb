@@ -1,5 +1,20 @@
-<h1>Edición de Malla</h1>
+
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+
+        <h1>Registro de Mallas</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-primary float-xl-right">Listar Mallas</button>'.html_safe, mallas_path %>
+      </div>
+
+</div>
+<br>
 
 <%= render 'form', malla: @malla %>
-
-<%= link_to '<button type="button" class="btn btn-outline-primary">Listar Mallas</button>'.html_safe, mallas_path %>

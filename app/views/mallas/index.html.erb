@@ -1,7 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Mallas</h1>
 
+
+
+
+<div class="my_card_pedidos_form">
+
+
+      <div class="col-6">
+
+        <h1>Mallas</h1>
+      </div>
+
+      <div class="col-3 offset-md-3">
+        <%= link_to '<button type="button" class="btn btn-outline-primary float-xl-right">Registrar malla nueva</button>'.html_safe, new_malla_path %>
+      </div>
+
+</div>
+<br>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -24,5 +40,3 @@
 </table>
 
 <br>
-
-<%= link_to '<button type="button" class="btn btn-outline-primary">Registrar malla nueva</button>'.html_safe, new_malla_path %>
