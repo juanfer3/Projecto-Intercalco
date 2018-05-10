@@ -44,6 +44,9 @@ module ApplicationHelper
   def number_to_currency_entero(number)
     number_to_currency(number, :unit => "",  :delimiter => ".")
   end
+  def number_to_currency_moneda(number)
+    number_to_currency(number, :unit => "$", :separator => ",", :delimiter => ".")
+  end
 
   def number_to_currency_no_moneda(number)
     number_to_currency(number, :unit => "",  :separator => ",", :delimiter => ".")
