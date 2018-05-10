@@ -7,6 +7,22 @@ class MaterialesController < ApplicationController
     @materiales = Material.all.paginate(page: params[:page], per_page: 20).order('codigo')
   end
 
+
+  def buscar_nombre_materiales
+    data = params["data"]
+    puts"===============#{data}================".blue
+
+
+    @materiales = Material.where("descripcion ILIKE ? ", "%"+data+"%").order('descripcion')
+
+    respond_to do |format|
+        format.js
+    end
+  end
+
+
+
+
   def import_materiales_excel
     #code
     file = params[:file]

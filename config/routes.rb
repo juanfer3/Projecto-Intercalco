@@ -212,6 +212,7 @@ Rails.application.routes.draw do
 
 
   post 'buscar_nombre_cliente', to: 'clientes#buscar_nombre_cliente', as: :buscar_nombre_cliente
+  post 'buscar_nombre_materiales', to: 'materiales#buscar_nombre_materiales', as: :buscar_nombre_materiales
 
 
 

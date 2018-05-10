@@ -1,8 +1,22 @@
 <p id="notice"><%= notice %></p>
 
+
+
+
+
+
+
+
+
 <h1>Materiales</h1>
-<div class="pull-right">
-  <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+
+
+
+
+
+<div class="pull-right cont_oc">
+  <%= will_paginate @materiales, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 
 <table class="table table-hover">
@@ -14,7 +28,7 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="agregar_busqueda">
     <% @materiales.each do |material| %>
       <tr>
         <td><%= material.codigo %></td>
@@ -28,8 +42,8 @@
   </tbody>
 </table>
 
-<div class="pull-right">
-  <%= will_paginate @clientes, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+<div class="pull-right cont_oc">
+  <%= will_paginate @materiales, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 </div>
 
 <br>
