@@ -1,6 +1,9 @@
 
 
 
+
+
+
 <%= simple_form_for(@montaje) do |f| %>
   <%= f.error_notification %>
   <!-- Errores en la validación -->
@@ -19,11 +22,30 @@
     <%end%>
 
 
-  <div class="offset-md-10">
-    <%= link_to '<button class="btn btn-outline-info"><span>Ficha Existente <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path  %>
-  </div>
+    <br>
 
-  <br>
+
+
+    <div class="my_card_pedidos_form">
+
+
+          <div class="col-6">
+
+            <h1>Registro ficha técnica de producto</h1>
+          </div>
+
+          <div class="col-3">
+            <%= link_to '<button type="button" class="btn btn-outline-dark">Listar Productos</button>'.html_safe, montajes_path %>
+          </div>
+
+          <div class="col-3 ">
+              <%= link_to '<button class="btn btn-outline-info float-xl-right"><span>Producto Existente <i class="ion-android-document"></i></span></button>'.html_safe, new_orden_produccion_path  %>
+          </div>
+
+    </div>
+    <br>
+
+
 
   <div class="card text-center">
 
