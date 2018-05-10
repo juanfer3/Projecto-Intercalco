@@ -42,6 +42,14 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
    else
                @datos_informe.each do |datos|
 
+               precio_unit = "" ""
+               if datos["precio_unitario"].present?
+                    precio_unit = datos["precio_unitario"]
+               else
+
+                    precio_unit = 0
+
+               end
 
  #ESCOGER MES:
             data = ""
