@@ -26,21 +26,20 @@
 
       <div class="col-3">
         <div class="form-check">
-          <label class="form-check-label">
-            Seleccionar Todas Las lineas <br>
+
 
             <label class="custom-control custom-checkbox my_card_pedidos_form my_orden_pedidos">
+                  Seleccionar Todas Las lineas <br>
+              <%=
+                  check_box_tag 'todas', 'yes', false
+                %>
 
                     <input type="checkbox" class="custom-control-input" id="checkbox_preprensa">
                     <span class="custom-control-indicator"></span>
             </label>
 
-            <%=
-                check_box_tag 'todas', 'yes', false
-              %>
 
 
-          </label>
         </div>
       </div>
 
