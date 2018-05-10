@@ -1,9 +1,31 @@
 
+
+
+
+
 <div class="" id="contenido_formulario">
 
-  <div class="offset-md-10">
-    <%= link_to '<button class="btn btn-outline-info"><span>Produccion Nueva <i class="ion-android-document"></i></span></button>'.html_safe, new_montaje_path  %>
+
+
+
+  <div class="my_card_pedidos_form">
+
+
+        <div class="col-6">
+          <h1>Registro de orden de producción</h1>
+        </div>
+
+        <div class="col-3">
+          <%= link_to '<button type="button" class="btn btn-outline-dark">Listar Productos</button>'.html_safe, montajes_path %>
+        </div>
+
+        <div class="col-3 ">
+              <%= link_to '<button class="btn btn-outline-info"><span>Producto Nuevo <i class="ion-android-document"></i></span></button>'.html_safe, new_montaje_path  %>
+        </div>
+
   </div>
+
+
 
 
   <br>
