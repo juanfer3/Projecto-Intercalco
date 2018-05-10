@@ -23,7 +23,20 @@
         "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker', required:true%>
       </div>
 
+
+
+
       <div class="col-4 ">
+        <div class="form-check">
+          <label class="form-check-label">
+            Sacar de inventario <br>
+            <%=
+                check_box_tag 'inventario', 'yes', false
+              %>
+
+
+          </label>
+        </div>
         <label for="">Seleccione la linea de producto</label>
         <% lineas = []%>
         <% lineas = @lineas_productos%>
