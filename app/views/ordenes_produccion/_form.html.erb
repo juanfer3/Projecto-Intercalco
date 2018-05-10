@@ -428,9 +428,6 @@
 
 
 
-  $('#orden_produccion_cantidad_solicitada').mask('000,000,000.00', { reverse: true });
-
-
 
 
 
@@ -446,6 +443,7 @@
     "keyup": function (event) {
         $(event.target).val(function (index, value ) {
             return value.number(value)
+            console.log(value.number(value));
         });
     }
 });
