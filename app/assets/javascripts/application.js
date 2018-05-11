@@ -239,7 +239,7 @@ $('.ocultar').hide()
 
 
   $('#buscador_de_tintas_formuladas').keyup(function(){
-    var data=$('#buscador_de_tintas_formuladas').val()
+    var data=$('#buscador_de_tintas_formuladas').val().toUpperCase()
     $.ajax({
       url:'/buscador_de_tintas_formuladas/',
       data: {data:data},
