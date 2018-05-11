@@ -39,7 +39,7 @@ class CompromisoDeEntrega < ApplicationRecord
     ;
     "
     datos = CompromisoDeEntrega.execute_sql(sql, facturado)
-    
+
 
     return datos
   end
@@ -74,10 +74,50 @@ class CompromisoDeEntrega < ApplicationRecord
 
   end
 
+
+def self.generar_busqueda_de_informe_oportunidad_de_todas_las_lineas(fecha_inicial, fecha_final)
+
+  sql = "SELECT
+  ordenes_produccion.cantidad_solicitada,
+  ordenes_produccion.fecha,
+  ordenes_produccion.numero_de_orden as OrdenProduccion,
+  montajes.nombre as Montaje,
+  compromisos_de_entrega.* as CompromisoDeEntrega,
+  lineas_productos.nombre as LineaProducto,
+  clientes.nombre as Cliente
+  FROM ordenes_produccion
+  inner join montajes on ordenes_produccion.montaje_id = montajes.id
+  inner join clientes on montajes.cliente_id = clientes.id
+  inner join compromisos_de_entrega on compromisos_de_entrega.orden_produccion_id = ordenes_produccion.id
+  inner join lineas_productos on montajes.linea_producto_id = lineas_productos.id
+  where
+  compromisos_de_entrega.fecha_despacho BETWEEN ? AND ?
+  ;
+  "
+  datos = CompromisoDeEntrega.execute_sql(sql,fecha_inicial.to_date.strftime("%Y-%m-%d"),fecha_final.to_date.strftime("%Y-%m-%d"))
+
+
+  return datos
+
+end
+
+
   def self.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
     puts"===START CONSULTA DE FECHA===".green
     datos = []
     datos = CompromisoDeEntrega.generar_busqueda_de_informe_oportunidad(fecha_inicial, fecha_final, linea_producto_id)
+    datos.each do |d|
+      puts"#{d}".red
+    end
+    return datos
+  end
+
+
+
+  def self.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final, linea_producto_id)
+    puts"===START CONSULTA DE FECHA===".green
+    datos = []
+    datos = CompromisoDeEntrega.generar_busqueda_de_informe_oportunidad_de_todas_las_lineas(fecha_inicial, fecha_final)
     datos.each do |d|
       puts"#{d}".red
     end
