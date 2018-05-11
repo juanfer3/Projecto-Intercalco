@@ -80,13 +80,13 @@ class CompromisosDeEntregaController < ApplicationController
     puts"#{fecha_inicial}".blue
     puts"#{fecha_final}".blue
     puts"#{linea_producto}".blue
-    puts"#{todo}".blue
+    puts"#{@todo}".blue
     puts"=======================".yellow
 
     @linea_producto = LineaProducto.all.order("nombre")
 
     @datos_informe = []
-    if todo == "yes"
+    if @todo == "yes"
       @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final)
     else
       @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto)
