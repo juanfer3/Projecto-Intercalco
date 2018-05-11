@@ -1,6 +1,10 @@
 
 
+
+
+
 $('#modalDetalles').modal('show');
+
 
 <%if current_user.rol.cargo == "Administrador" %>
           $('#contenidoModal').html('<%= j render 'orden_info'%>')

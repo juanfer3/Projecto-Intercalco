@@ -73,8 +73,8 @@ class CompromisosDeEntregaController < ApplicationController
     linea_producto = ""
     fecha_inicial = params["fecha_inicial"]
     fecha_final = params["fecha_final"]
-    linea_producto = params["linea_producto_id"]
-    todo = params["tod"]
+    @linea_producto = params["linea_producto_id"]
+    @todo = params["tod"]
 
     puts"=======================".yellow
     puts"#{fecha_inicial}".blue

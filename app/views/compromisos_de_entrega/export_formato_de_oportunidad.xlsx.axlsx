@@ -137,6 +137,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
    wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
+      if @todo == "yes"
 
          @linea_producto.each do  |producto|
            iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre,
@@ -144,7 +145,24 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
            contenido_datos_finales)
          end
 
+      else
 
+              @linea_producto.each do  |producto|
+
+                if @linea_producto.present?
+
+                    if producto.id == @linea_producto
+                        iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre,
+                        highlight_cell, contenido_celdas, celdas_pendientes, highlight_cell_maquina,
+                        contenido_datos_finales)
+                    end
+
+                end
+
+
+              end
+
+      end
 
    end
 
