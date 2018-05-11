@@ -653,16 +653,29 @@ $("#validar_cliente_nuevo").hide()
 
 
   $("#montaje_new_cliente").focusout(function(){
-    
-    var data=$("#montaje_new_cliente").val()
-    $.ajax({
-      url:'/ValidarClienteBusquedad/',
-      data: {data:data},
-      method:'get',
-      success: function (data){
-        //console.log(data);
-      }
-    })
+    var data=$("#montaje_new_cliente").val().toUpperCase()
+
+    if (data.length == 0) {
+      $("#montaje_new_cliente").css("border", "1px solid #a94442");
+      var mensaje = "<span>este campo no puede estar vacio</span>"
+      $("#validar_cliente_nuevo").html(mensaje)
+      $("#validar_cliente_nuevo").show()
+
+    }else{
+      $.ajax({
+        url:'/ValidarClienteBusquedad/',
+        data: {data:data},
+        method:'get',
+        success: function (data){
+          //console.log(data);
+        }
+      })
+
+    }
+
+
+
+
 
   })
 
