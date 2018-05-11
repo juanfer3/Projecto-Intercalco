@@ -69,6 +69,8 @@ class CompromisosDeEntregaController < ApplicationController
   end
 
   def export_formato_de_oportunidad
+
+    linea_producto = ""
     fecha_inicial = params["fecha_inicial"]
     fecha_final = params["fecha_final"]
     linea_producto = params["linea_producto_id"]
