@@ -40,7 +40,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
       datos_informe.each do |datos|
-
+            puts"********#{datos["lineaproducto"]}  and  #{linea_producto}***********"
            if datos["lineaproducto"] == linea_producto
 
 
