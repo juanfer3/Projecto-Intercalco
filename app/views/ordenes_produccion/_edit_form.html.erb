@@ -47,7 +47,18 @@
               %>
             </div>
 
+
+
             <div class="col-3  nueva_orden_checbox">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <%=
+                  f.input :sacar_de_inventario, label:false, class:"form-check-input"
+                  %>
+                  <input type="checkbox" class="form-check-input">
+                  Check me out
+                </label>
+              </div>
               <label for="">Sacar Inventario</label>
               <%=
               f.input :sacar_de_inventario, label:false
