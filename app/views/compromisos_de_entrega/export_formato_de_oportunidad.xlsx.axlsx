@@ -42,7 +42,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
               valor_fecha_cumplida = 0
            end
         #VALIDAD CANTIDADES:
-           if datos["cantidad"] == datos["cantidad_despacho"]
+           if datos["cantidad_despacho"] >= datos["cantidad"]
               valor_cantidad_cumplida = 1
            else
               contador_de_incumplimientos_por_cantidad = contador_de_incumplimientos_por_cantidad + 1
