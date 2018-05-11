@@ -653,7 +653,7 @@ $("#validar_cliente_nuevo").hide()
 
 
   $("#montaje_new_cliente").focusout(function(){
-  toastr.info(":focusout")
+    
     var data=$("#montaje_new_cliente").val()
     $.ajax({
       url:'/ValidarClienteBusquedad/',
