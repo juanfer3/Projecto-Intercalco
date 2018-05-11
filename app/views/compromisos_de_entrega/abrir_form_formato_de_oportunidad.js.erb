@@ -12,7 +12,36 @@ $('#selectize_linea_producto').selectize({
 
 })
 
+if($('#tod').prop('checked') ) {
 
+
+  $('#selectize_linea_producto').attr("disabled", true);
+
+
+
+
+}else {
+  $('#selectize_linea_producto').attr("disabled", false);
+
+}
+
+
+$('#tod').change(function(){
+
+          if($('#tod').prop('checked') ) {
+
+
+            $('#selectize_linea_producto').attr("disabled", true);
+
+
+
+
+          }else {
+            $('#selectize_linea_producto').attr("disabled", false);
+
+          }
+
+})
 //validacion de formulario
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
