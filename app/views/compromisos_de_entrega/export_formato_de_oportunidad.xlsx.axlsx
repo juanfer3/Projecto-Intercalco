@@ -36,7 +36,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
   valor_cantidad_cumplida = ""
 
 
-
+  puts"==========Iterando dentro del excel======="
 
 
       datos_informe.each do |datos|
