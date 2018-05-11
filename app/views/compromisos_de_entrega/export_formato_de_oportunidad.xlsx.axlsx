@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-def iterar_Por_Lineas(@datos_informe)
+def iterar_Por_Lineas(datos_informe)
 
 
                   wb.styles do |style|
@@ -43,7 +43,7 @@ def iterar_Por_Lineas(@datos_informe)
                                                  ]
 
 
-                                                 @datos_informe.each do |datos|
+                                                 datos_informe.each do |datos|
 
                                                         #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                                                        sheet.add_row [
