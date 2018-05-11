@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-def iterar_Por_Lineas(datos_informe)
+def iterar_Por_Lineas(datos_informe, wb)
 
 
                   wb.styles do |style|
@@ -104,8 +104,4 @@ def iterar_Por_Lineas(datos_informe)
 end
 
 
-
-
-
-
-iterar_Por_Lineas(@datos_informe)
+iterar_Por_Lineas(@datos_informe, wb)
