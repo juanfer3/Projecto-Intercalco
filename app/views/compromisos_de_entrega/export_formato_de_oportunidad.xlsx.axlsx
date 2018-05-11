@@ -156,10 +156,12 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
                 if @linea_producto.present?
                 puts"======#{producto.id} AND #{@linea_producto_id}======".red
 
-                    if producto.id == @linea_producto_id
+                    if producto.id.to_i == @linea_producto_id.to_i
+                        puts"=====LINEAS SON IGUALES======"
                         iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre,
                         highlight_cell, contenido_celdas, celdas_pendientes, highlight_cell_maquina,
                         contenido_datos_finales)
+
                     end
 
                 end
