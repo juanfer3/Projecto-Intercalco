@@ -23,14 +23,26 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 ]
 
 
-
+  contador_de_incumplimientos_por_fecha = 0
 
   contador_de_ordenes = 0
+  valor_fecha_cumplida = ""
       datos_informe.each do |datos|
 
 
 
            if datos["lineaproducto"] == linea_producto
+
+           if datos["fecha_de_compromiso"] == datos["fecha_despacho"]
+
+
+              valor_fecha_cumplida = 1
+
+
+           else
+              contador_de_incumplimientos_por_fecha = contador_de_incumplimientos_por_fecha + 1
+              valor_fecha_cumplida = 0
+           end
 
             contador_de_ordenes = contador_de_ordenes + 1
                            #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
@@ -46,7 +58,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
                           datos["fecha_de_compromiso"],
                           datos["fecha_despacho"],
 
-                          vacio,
+                          valor_fecha_cumplida,
 
                           datos["cantidad_solicitada"],
 
