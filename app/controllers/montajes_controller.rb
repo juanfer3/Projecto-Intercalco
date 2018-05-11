@@ -365,7 +365,7 @@ end
     # Never trust parameters from the scary internet, only allow the white list through.
     def montaje_params
       params.require(:montaje).permit(:cliente_id, :material_id,:material,:nombre, :tamano, :dimension,:new_cliente,:select_vendedor,
-        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,:contacto_nuevo_montaje,
+        :dimension_1, :dimension_2, :codigo, :numero_de_montaje, :tipo_de_unidad,:material_nuevo,:contacto_nuevo_montaje,:observaciones_ordenes,
          :cantidad_total, :observacion, :modo_de_empaque, :fecha_de_creacion,:estado,:lugar_despacho,:lugar_despacho_id,:nombres_facturacion,:nombres_facturacion_id,
          :_destroy, :tiro, :retiro,:precorte,:pretroquelado, :laminado, :troquelado,:direccion_nuevo_montaje, :facturar_a_nuevo_montaje,
          :descalerillado, :plotter, :doming, :descolille,:doblez_calor,:termoformado,:agregar_acabado,

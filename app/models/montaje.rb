@@ -35,7 +35,7 @@ class Montaje < ApplicationRecord
 
 
   attr_accessor :new_cliente, :select_vendedor, :material_nuevo,
-  :contacto_nuevo_montaje, :contacto_creado, :nit_cliente, :dir_cliente,
+  :contacto_nuevo_montaje, :contacto_creado, :nit_cliente, :dir_cliente,:observaciones_ordenes,
   :tel_cliente, :tel_contacto, :direccion_nuevo_montaje, :facturar_a_nuevo_montaje,:agregar_acabado
 
   before_save :create_cliente

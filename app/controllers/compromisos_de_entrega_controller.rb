@@ -87,9 +87,9 @@ class CompromisosDeEntregaController < ApplicationController
 
     @datos_informe = []
     if @todo == "yes"
-      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, @linea_producto_id)
+      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final)
     else
-      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto)
+      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad(fecha_inicial, fecha_final, @linea_producto_id)
     end
 
     respond_to do |format|
