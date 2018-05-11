@@ -98,6 +98,7 @@
                       <div class="col-4 ContenedorClienteNuevo">
                         <label for="">Cliente nuevo</label><br>
                         <%=f.text_field :new_cliente,  :class => 'form-control '%>
+                        <p id="validar_cliente_nuevo" ></p>
                       </div>
 
                       <div class="col-4 ContenedorClienteNuevo">
@@ -648,6 +649,7 @@
   <%end%>
 
 
+$("#validar_cliente_nuevo").hide()
 
 
   $("#montaje_new_cliente").focusout(function(){
@@ -658,7 +660,7 @@
       data: {data:data},
       method:'get',
       success: function (data){
-        console.log(data);
+        //console.log(data);
       }
     })
 
