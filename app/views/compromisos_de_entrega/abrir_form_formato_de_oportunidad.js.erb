@@ -7,39 +7,42 @@ $('#modalExportarExcel').modal('show');
 $('#contenidoFormularioInformeOportunida').html('<%= j render 'form_informe_de_oportunidad'%>')
 
 
-
+//selectize
 $('#selectize_linea_producto').selectize({
 
 })
 
+
+//checkbox
 if($('#tod').prop('checked') ) {
 
 
-  $('#selectize_linea_producto').attr("disabled", true);
+  $('#selectize_linea_producto')[0].selectize.disable();
 
 
 
 
 }else {
-  $('#selectize_linea_producto').attr("disabled", false);
+  $('#selectize_linea_producto')[0].selectize.enable();
 
 }
 
 
 $('#tod').change(function(){
-
-          if($('#tod').prop('checked') ) {
-
-
-            $('#selectize_linea_producto').attr("disabled", true);
+  toastr.info("select :)")
+  //checkbox
+  if($('#tod').prop('checked') ) {
 
 
+    $('#selectize_linea_producto')[0].selectize.disable();
 
 
-          }else {
-            $('#selectize_linea_producto').attr("disabled", false);
 
-          }
+
+  }else {
+    $('#selectize_linea_producto')[0].selectize.enable();
+
+  }
 
 })
 //validacion de formulario
