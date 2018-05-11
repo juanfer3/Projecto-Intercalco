@@ -73,7 +73,7 @@ class CompromisosDeEntregaController < ApplicationController
     linea_producto = ""
     fecha_inicial = params["fecha_inicial"]
     fecha_final = params["fecha_final"]
-    @linea_producto = params["linea_producto_id"]
+    @linea_producto_id = params["linea_producto_id"]
     @todo = params["tod"]
 
     puts"=======================".yellow
@@ -87,7 +87,7 @@ class CompromisosDeEntregaController < ApplicationController
 
     @datos_informe = []
     if @todo == "yes"
-      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final)
+      @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, @linea_producto_id)
     else
       @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad(fecha_inicial, fecha_final, linea_producto)
     end
