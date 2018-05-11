@@ -51,7 +51,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
                           datos["ordenproduccion"],
                           datos["fecha"],
 
-                          datos["numero_de_remision"],
+                          datos["numero_de_remision"].to_s.upcase,
                           datos["cliente"].titleize,
 
                           datos["montaje"].titleize,
