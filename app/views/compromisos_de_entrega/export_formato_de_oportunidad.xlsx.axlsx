@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-def iterar_Por_Lineas(datos_informe,  sheet,vacio, linea_producto , highlight_cell, contenido_celdas, celdas_pendientes)
+def iterar_Por_Lineas(datos_informe,  sheet,vacio, linea_producto , highlight_cell, contenido_celdas, celdas_pendientes, highlight_cell_maquina)
 
 sheet.add_row [linea_producto],
 style: [highlight_cell]
@@ -101,7 +101,7 @@ wb.styles do |style|
     #PARA CAMBIAR COLOR DE LA LETRA SE USA fg_color: "ffffff"
     #PARA CAMBIAR COLOR DE LA CELDA SE USA bg_color: "b2b2b2"
 #ESTILO PARA LOS TITULOS
-  highlight_cell = style.add_style(:b => true, bg_color: "b2b2b2"  ,:sz=>12,
+  highlight_cell_maquina = style.add_style(:b => true, bg_color: "b2b2b2"  ,:sz=>12,
      :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
      :border => {:style => :thin, :color => "000000"})
 
@@ -114,6 +114,11 @@ wb.styles do |style|
 #ESTILO PARA EL CONTENIDO
 contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :aligment => {:horizontal => :center},
   :border => { :style => :thin, :color => "000000"})
+
+#ESTILO PARA DATOS FINALES
+contenido_celdas = style.add_style(:b => true,:sz=>12,
+   :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true})
+
 #ESTILO CELDAS PENDIENTES
 celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  bg_color: "b2b2b2",  :aligment => {:horizontal => :center},
   :border => { :style => :thin, :color => "000000"})
@@ -124,7 +129,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
 
 
          @linea_producto.each do  |producto|
-           iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre, highlight_cell, contenido_celdas, celdas_pendientes)
+           iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre, highlight_cell, contenido_celdas, celdas_pendientes, highlight_cell_maquina)
          end
 
 
