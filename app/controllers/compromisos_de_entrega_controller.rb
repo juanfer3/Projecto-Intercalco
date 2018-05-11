@@ -83,6 +83,8 @@ class CompromisosDeEntregaController < ApplicationController
     puts"#{todo}".blue
     puts"=======================".yellow
 
+    @linea_producto = LineaProducto.all.order("nombre")
+
     @datos_informe = []
     if todo == "yes"
       @datos_informe = CompromisoDeEntrega.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final)

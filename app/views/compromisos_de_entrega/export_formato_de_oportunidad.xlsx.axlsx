@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-def iterar_Por_Lineas(datos_informe, wb, vacio)
+def iterar_Por_Lineas(datos_informe, wb, vacio. linea_producto)
 
 
                   wb.styles do |style|
@@ -43,49 +43,52 @@ def iterar_Por_Lineas(datos_informe, wb, vacio)
                                                  ]
 
 
-                                                 datos_informe.each do |datos|
 
-                                                        #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
-                                                       sheet.add_row [
+                                                 if datos_informe["lineaproducto"] == linea_producto
 
-                                                       datos["ordenproduccion"],
-                                                       datos["fecha"],
+                                                       datos_informe.each do |datos|
 
-                                                       datos["numero_de_remision"],
-                                                       datos["cliente"].titleize,
+                                                              #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
+                                                             sheet.add_row [
 
-                                                       datos["montaje"].titleize,
-                                                       datos["fecha_de_compromiso"],
-                                                       datos["fecha_despacho"],
+                                                             datos["ordenproduccion"],
+                                                             datos["fecha"],
 
-                                                       vacio,
+                                                             datos["numero_de_remision"],
+                                                             datos["cliente"].titleize,
 
-                                                       datos["cantidad_solicitada"],
+                                                             datos["montaje"].titleize,
+                                                             datos["fecha_de_compromiso"],
+                                                             datos["fecha_despacho"],
 
-                                                       datos["cantidad_despacho"],
+                                                             vacio,
 
-                                                       vacio,
-                                                       vacio,
-                                                       vacio,
-                                                       vacio
+                                                             datos["cantidad_solicitada"],
 
+                                                             datos["cantidad_despacho"],
 
-                                                                  ],
-                                                       style: [
-                                                       contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-                                                       contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
-                                                       celdas_pendientes, celdas_pendientes, celdas_pendientes
-                                                       ]
-
-                                                  end
+                                                             vacio,
+                                                             vacio,
+                                                             vacio,
+                                                             vacio
 
 
+                                                                        ],
+                                                             style: [
+                                                             contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
+                                                             contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
+                                                             celdas_pendientes, celdas_pendientes, celdas_pendientes
+                                                             ]
 
-                                                  sheet.add_row ["", ""],
-                                                  style: [highlight_cell, highlight_cell]
+                                                        end
+                                                end
 
-                                                  sheet.add_row ["", ""],
-                                                  style: [highlight_cell, highlight_cell]
+
+                                                      sheet.add_row ["", ""],
+                                                      style: [highlight_cell, highlight_cell]
+
+                                                      sheet.add_row ["", ""],
+                                                      style: [highlight_cell, highlight_cell]
 
 
 
@@ -104,4 +107,9 @@ def iterar_Por_Lineas(datos_informe, wb, vacio)
 end
 
 
-iterar_Por_Lineas(@datos_informe, wb, vacio)
+
+
+
+@linea_producto.each do  |producto|
+  iterar_Por_Lineas(@datos_informe, wb, vacio, producto.nombre)
+end
