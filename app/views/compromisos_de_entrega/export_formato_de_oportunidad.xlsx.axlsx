@@ -77,13 +77,13 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
      style: []
 
      sheet.add_row ["TOTAL ORDENES", contador_de_ordenes],
-     style: []
+     style: [contenido_datos_finales]
 
      sheet.add_row ["TOTAL ORDENES OPORTUNAS EN FECHA  Y CANTIDAD", ""],
-     style: []
+     style: [contenido_datos_finales]
 
      sheet.add_row ["PORCENTAJE CUMPLIMIENTO", ""],
-     style: []
+     style: [contenido_datos_finales]
 
      sheet.add_row ["", ""],
      style: []
