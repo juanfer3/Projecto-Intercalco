@@ -27,21 +27,26 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
   contador_de_ordenes = 0
   valor_fecha_cumplida = ""
+  valor_cantidad_cumplida = ""
       datos_informe.each do |datos|
 
 
 
            if datos["lineaproducto"] == linea_producto
 
+        #VALIDAR FECHAS:
            if datos["fecha_de_compromiso"] == datos["fecha_despacho"]
-
-
               valor_fecha_cumplida = 1
-
-
            else
               contador_de_incumplimientos_por_fecha = contador_de_incumplimientos_por_fecha + 1
               valor_fecha_cumplida = 0
+           end
+        #VALIDAD CANTIDADES:
+           if datos["cantidad"] == datos["cantidad_despacho"]
+              valor_cantidad_cumplida = 1
+           else
+              contador_de_incumplimientos_por_cantidad = contador_de_incumplimientos_por_cantidad + 1
+              valor_cantidad_cumplida = 0
            end
 
             contador_de_ordenes = contador_de_ordenes + 1
@@ -60,11 +65,11 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
                           valor_fecha_cumplida,
 
-                          datos["cantidad_solicitada"],
+                          datos["cantidad"],
 
                           datos["cantidad_despacho"],
 
-                          vacio,
+                          valor_cantidad_cumplida,
                           vacio,
                           vacio,
                           vacio
