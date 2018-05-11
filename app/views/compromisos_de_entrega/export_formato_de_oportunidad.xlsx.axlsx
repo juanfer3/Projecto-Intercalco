@@ -6,89 +6,106 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-wb.styles do |style|
-
-  formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
-
-    #PARA CAMBIAR COLOR DE LA LETRA SE USA fg_color: "ffffff"
-#ESTILO PARA LOS TITULOS
-  highlight_cell = style.add_style(:b => true, bg_color: "b2b2b2" ,:sz=>12,
-     :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
-     :border => {:style => :thin, :color => "000000"})
-
-#ESTILO PARA EL CONTENIDO
-contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :aligment => {:horizontal => :center},
-  :border => { :style => :thin, :color => "000000"})
-#ESTILO CELDAS PENDIENTES
-celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  bg_color: "b2b2b2",  :aligment => {:horizontal => :center},
-  :border => { :style => :thin, :color => "000000"})
-
-	 wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
+def iterar_Por_Lineas(@datos_informe)
 
 
+                  wb.styles do |style|
 
+                    formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
 
-	 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
-   "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
-   "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
+                      #PARA CAMBIAR COLOR DE LA LETRA SE USA fg_color: "ffffff"
+                  #ESTILO PARA LOS TITULOS
+                    highlight_cell = style.add_style(:b => true, bg_color: "b2b2b2" ,:sz=>12,
+                       :font_name => 'Calibri', :aligment => {:horizontal => :center, :vertical => :center, :wrap_text => true},
+                       :border => {:style => :thin, :color => "000000"})
 
-	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
-   highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
-   highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
-   ]
-
-
-   @datos_informe.each do |datos|
-
-          #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
-         sheet.add_row [
-
-         datos["ordenproduccion"],
-         datos["fecha"],
-
-         datos["numero_de_remision"],
-         datos["cliente"].titleize,
-
-         datos["montaje"].titleize,
-         datos["fecha_de_compromiso"],
-         datos["fecha_despacho"],
-
-         vacio,
-
-         datos["cantidad_solicitada"],
-
-         datos["cantidad_despacho"],
-
-         vacio,
-         vacio,
-         vacio,
-         vacio
-
-
-                    ],
-         style: [
-         contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
-         contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
-         celdas_pendientes, celdas_pendientes, celdas_pendientes
-         ]
-
-    end
+                  #ESTILO PARA EL CONTENIDO
+                  contenido_celdas = style.add_style(:sz => 11, :font_name => 'Century Gothic', :aligment => {:horizontal => :center},
+                    :border => { :style => :thin, :color => "000000"})
+                  #ESTILO CELDAS PENDIENTES
+                  celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  bg_color: "b2b2b2",  :aligment => {:horizontal => :center},
+                    :border => { :style => :thin, :color => "000000"})
 
 
 
-    sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
-    "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
-    "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
-
- 	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
-    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
-    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
-    ]
+                     wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
 
 
 
+                                                 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
+                                                 "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
+                                                 "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
 
-	end
+                                                 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+                                                 highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+                                                 highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
+                                                 ]
+
+
+                                                 @datos_informe.each do |datos|
+
+                                                        #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
+                                                       sheet.add_row [
+
+                                                       datos["ordenproduccion"],
+                                                       datos["fecha"],
+
+                                                       datos["numero_de_remision"],
+                                                       datos["cliente"].titleize,
+
+                                                       datos["montaje"].titleize,
+                                                       datos["fecha_de_compromiso"],
+                                                       datos["fecha_despacho"],
+
+                                                       vacio,
+
+                                                       datos["cantidad_solicitada"],
+
+                                                       datos["cantidad_despacho"],
+
+                                                       vacio,
+                                                       vacio,
+                                                       vacio,
+                                                       vacio
+
+
+                                                                  ],
+                                                       style: [
+                                                       contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,contenido_celdas,
+                                                       contenido_celdas,contenido_celdas,celdas_pendientes,contenido_celdas,contenido_celdas,
+                                                       celdas_pendientes, celdas_pendientes, celdas_pendientes
+                                                       ]
+
+                                                  end
+
+
+
+                                                  sheet.add_row ["", ""],
+                                                  style: [highlight_cell, highlight_cell]
+
+                                                  sheet.add_row ["", ""],
+                                                  style: [highlight_cell, highlight_cell]
+
+
+
+                                                end
+
+
+
+
+
+
+
+
+
+                  end
 
 end
+
+
+
+
+
+
+iterar_Por_Lineas(@datos_informe)
