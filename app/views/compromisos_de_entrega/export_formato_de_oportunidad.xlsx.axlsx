@@ -6,7 +6,7 @@ wb = xlsx_package.workbook
 vacio = ""
 
 
-def iterar_Por_Lineas(datos_informe,  sheet,vacio, linea_producto)
+def iterar_Por_Lineas(datos_informe,  sheet,vacio, linea_producto , highlight_cell, contenido_celdas, celdas_pendientes)
 
 
 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
@@ -76,6 +76,11 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 end
 
 
+
+
+
+
+
 wb.styles do |style|
 
   formato_fecha = style.add_style(:format_code => "dd/mm/yyyy")
@@ -98,12 +103,9 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
    wb.add_worksheet(name: "Informe de oportunidad") do |sheet|
 
 
-   @linea_producto.each do  |producto|
-     iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre)
-   end
-
-
-
+         @linea_producto.each do  |producto|
+           iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre, highlight_cell, contenido_celdas, celdas_pendientes)
+         end
 
 
 
