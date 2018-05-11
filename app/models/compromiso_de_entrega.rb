@@ -114,7 +114,7 @@ end
 
 
 
-  def self.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final, linea_producto_id)
+  def self.generador_informe_de_oportunidad_todas_las_lineas(fecha_inicial, fecha_final)
     puts"===START CONSULTA DE FECHA===".green
     datos = []
     datos = CompromisoDeEntrega.generar_busqueda_de_informe_oportunidad_de_todas_las_lineas(fecha_inicial, fecha_final)
