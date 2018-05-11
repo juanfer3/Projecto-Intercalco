@@ -109,12 +109,19 @@
              <div class="col-3">
                <%= f.input :numero_de_orden %>
              </div>
+
              <!--Fecha De pedido-->
              <%
              fecha_value =""
              if @orden_produccion.fecha != nil
                fecha_value = @orden_produccion.fecha.strftime("%d/%m/%Y")
              end
+
+
+
+
+
+             %>
 
              <div class="col-3">
                <label for="">Fecha De La Orden</label>
@@ -243,12 +250,6 @@
              </div>
 
 
-
-
-
-
-
-             %>
 
              <div class="col-12">
                <br>
