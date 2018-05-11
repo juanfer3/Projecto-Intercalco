@@ -47,7 +47,7 @@ def iterar_Por_Lineas(datos_informe, wb, vacio, linea_producto)
 
 
                                                        datos_informe.each do |datos|
-                                                            if datos_informe["lineaproducto"] == linea_producto
+                                                            if datos["lineaproducto"] == linea_producto
 
                                                                             #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                                                                            sheet.add_row [
