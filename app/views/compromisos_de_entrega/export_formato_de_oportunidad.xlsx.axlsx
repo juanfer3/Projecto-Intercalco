@@ -154,6 +154,7 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
               @linea_producto.each do  |producto|
 
                 if @linea_producto.present?
+                puts"======#{producto.id} AND #{@linea_producto_id}======".red
 
                     if producto.id == @linea_producto_id
                         iterar_Por_Lineas(@datos_informe, sheet, vacio, producto.nombre,
