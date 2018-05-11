@@ -24,10 +24,13 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
   contador_de_incumplimientos_por_fecha = 0
+  contador_de_incumplimientos_por_cantidad = 0
 
   contador_de_ordenes = 0
+
   valor_fecha_cumplida = ""
   valor_cantidad_cumplida = ""
+
       datos_informe.each do |datos|
 
 
