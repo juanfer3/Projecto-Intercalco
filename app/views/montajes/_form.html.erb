@@ -651,7 +651,7 @@
 
 
   $("#montaje_new_cliente").focusout(function(){
-
+  toastr.info(":focusout")
     var data=$("#montaje_new_cliente").val()
     $.ajax({
       url:'/ValidarClienteBusquedad/',
