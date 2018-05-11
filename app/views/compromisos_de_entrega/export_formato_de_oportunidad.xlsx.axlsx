@@ -21,9 +21,10 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
 
-
+      contador_de_ordenes = 0
       datos_informe.each do |datos|
 
+        contador_de_ordenes = contador_de_ordenes + 1
 
            if datos["lineaproducto"] == linea_producto
 
@@ -68,10 +69,19 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
      sheet.add_row ["", ""],
-     style: [highlight_cell, highlight_cell]
+     style: []
+
+     sheet.add_row ["TOTAL ORDENES", contador_de_ordenes],
+     style: []
+
+     sheet.add_row ["TOTAL ORDENES OPORTUNAS EN FECHA  Y CANTIDAD", ""],
+     style: []
+
+     sheet.add_row ["PORCENTAJE CUMPLIMIENTO", ""],
+     style: []
 
      sheet.add_row ["", ""],
-     style: [highlight_cell, highlight_cell]
+     style: []
 
 end
 
