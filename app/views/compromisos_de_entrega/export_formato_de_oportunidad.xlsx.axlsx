@@ -8,6 +8,8 @@ vacio = ""
 
 def iterar_Por_Lineas(datos_informe,  sheet,vacio, linea_producto , highlight_cell, contenido_celdas, celdas_pendientes)
 
+sheet.add_row [linea_producto],
+style: [highlight_cell]
 
 sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
 "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
