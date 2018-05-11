@@ -50,7 +50,19 @@ end
 
 
 #validarCreacionDeCliente
-
+def ValidarClienteBusquedad
+  #code
+  data = params['data']
+  puts "******************ESTA ES LA DATA: #{data}**********************".red
+  val_estado = true
+  @clientes = []
+  @clientes= Cliente.where("nombre  = ? AND estado = ?", data, val_estado).order('nombre') if data.present?
+  @validar = true
+  @validar = false if @clientes.empty?
+  respond_to do |format|
+    format.js
+  end
+end
 
 def import_contactos_from_excel
   @cliente = Cliente.find(params[:id])

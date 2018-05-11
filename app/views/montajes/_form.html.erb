@@ -652,7 +652,15 @@
 
   $("#montaje_new_cliente").focusout(function(){
 
-      
+    var data=$("#montaje_new_cliente").val()
+    $.ajax({
+      url:'/ValidarClienteBusquedad/',
+      data: {data:data},
+      method:'get',
+      success: function (data){
+        console.log(data);
+      }
+    })
 
   })
 
