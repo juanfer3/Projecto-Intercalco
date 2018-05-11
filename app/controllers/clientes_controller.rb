@@ -53,7 +53,7 @@ end
 def ValidarClienteBusquedad
   #code
   data = params['data']
-  data = data.to.upcase
+  data = data.to_s.upcase
   puts "******************ESTA ES LA DATA: #{data}**********************".red
   val_estado = true
   @clientes = []
