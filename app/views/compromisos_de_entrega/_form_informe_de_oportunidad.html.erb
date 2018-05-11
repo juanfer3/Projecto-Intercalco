@@ -31,8 +31,7 @@
 
             <label class="custom-control custom-checkbox my_card_pedidos_form my_orden_pedidos">
                   Seleccionar Todas Las lineas <br>
-              <%= check_box_tag 'tod', 'yes', false, class: 'custom-control-input' %>
-
+                  <%= check_box_tag 'tod', 'yes', false, class: 'custom-control-input' %>
                     <!--input type="checkbox" class="custom-control-input" id="checkbox_preprensa"-->
                     <span class="custom-control-indicator"></span>
             </label>
@@ -41,6 +40,9 @@
 
         </div>
       </div>
+
+
+
 
       <div class="col-3">
 
@@ -82,4 +84,39 @@ $('.fecha_en_espanol').datepicker({
   language: 'es',
   format: 'dd/mm/yyyy'
 })
+
+
+
+
+if($('#tod').prop('checked') ) {
+
+
+  $('#selectize_linea_producto').attr("disabled", true);
+
+
+
+
+}else {
+  $('#selectize_linea_producto').attr("disabled", false);
+
+}
+
+
+$('#tod').change(function(){
+
+          if($('#tod').prop('checked') ) {
+
+
+            $('#selectize_linea_producto').attr("disabled", true);
+
+
+
+
+          }else {
+            $('#selectize_linea_producto').attr("disabled", false);
+
+          }
+
+})
+
 </script>
