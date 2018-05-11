@@ -50,7 +50,17 @@
 
 
             <div class="col-3  nueva_orden_checbox">
-              
+              <div class="form-check">
+                <label class="form-check-label">
+                  Sacar Inventario
+                  <%=
+                  f.input :sacar_de_inventario, label:false, class:"form-check-input"
+                  %>
+
+
+
+                </label>
+              </div>
               <label for="">Sacar Inventario
                 <%=
                 f.input :sacar_de_inventario, label:false
