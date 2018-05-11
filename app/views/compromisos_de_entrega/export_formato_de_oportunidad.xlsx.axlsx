@@ -23,13 +23,14 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
 
-      contador_de_ordenes = 0
+  contador_de_ordenes = 0
       datos_informe.each do |datos|
 
-        contador_de_ordenes = contador_de_ordenes + 1
+
 
            if datos["lineaproducto"] == linea_producto
 
+            contador_de_ordenes = contador_de_ordenes + 1
                            #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                           sheet.add_row [
 
