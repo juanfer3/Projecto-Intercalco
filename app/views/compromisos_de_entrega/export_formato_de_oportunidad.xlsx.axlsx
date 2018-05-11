@@ -60,7 +60,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
            end
 
         #VALIDAD CANTIDADES:
-           if cantidad_pedida >= cantidad_entregada
+           if cantidad_pedida == cantidad_entregada
               valor_cantidad_cumplida = 1
            else
               contador_de_incumplimientos_por_cantidad = contador_de_incumplimientos_por_cantidad + 1
