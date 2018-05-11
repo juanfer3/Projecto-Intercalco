@@ -75,6 +75,20 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
     end
 
 
+
+    sheet.add_row ["NUMERO DE ORDEN","FECHA ORDEN PCC", "N° REMISION",
+    "CLIENTE", "DESCRIPCION","FECHA DE ENTREGA ESTIMADO", "FECHA REAL DE ENTREGA",
+    "CUMPLIDA", "UNIDADES PEDIDAS", "UNIDADES ENTREGADAS", "CUMPLIDA",  "INDICADOR", "CAUSAS INCUMPLIMIENTO"],
+
+ 	 style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,
+    highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
+    ]
+
+
+
+
+
 	end
 
 end
