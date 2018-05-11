@@ -31,21 +31,36 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
   valor_fecha_cumplida = ""
   valor_cantidad_cumplida = ""
 
+
+
+
+
       datos_informe.each do |datos|
 
+          fecha_compromiso = ""
+          fecha_real = ""
 
+          cantidad_pedida = ""
+          cantidad_entregada = ""
 
            if datos["lineaproducto"] == linea_producto
 
+           fecha_compromiso = datos["fecha_de_compromiso"].present?
+           fecha_real = datos["fecha_despacho"].present?
+
+           cantidad_pedida = datos["cantidad"].present?
+           cantidad_entregada = datos["cantidad_despacho"].present?
+
         #VALIDAR FECHAS:
-           if datos["fecha_de_compromiso"] == datos["fecha_despacho"]
+           if fecha_compromiso == fecha_real
               valor_fecha_cumplida = 1
            else
               contador_de_incumplimientos_por_fecha = contador_de_incumplimientos_por_fecha + 1
               valor_fecha_cumplida = 0
            end
+
         #VALIDAD CANTIDADES:
-           if datos["cantidad_despacho"] >= datos["cantidad"]
+           if cantidad_pedida >= cantidad_entregada
               valor_cantidad_cumplida = 1
            else
               contador_de_incumplimientos_por_cantidad = contador_de_incumplimientos_por_cantidad + 1
