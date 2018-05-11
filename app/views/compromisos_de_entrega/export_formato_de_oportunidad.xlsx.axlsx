@@ -36,15 +36,16 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
 
 
       datos_informe.each do |datos|
-
+=begin
           fecha_compromiso = ""
           fecha_real = ""
 
           cantidad_pedida = ""
           cantidad_entregada = ""
-
+=end
            if datos["lineaproducto"] == linea_producto
 
+=begin
            fecha_compromiso = datos["fecha_de_compromiso"].present?
            fecha_real = datos["fecha_despacho"].present?
 
@@ -66,7 +67,7 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
               contador_de_incumplimientos_por_cantidad = contador_de_incumplimientos_por_cantidad + 1
               valor_cantidad_cumplida = 0
            end
-
+  =end
             contador_de_ordenes = contador_de_ordenes + 1
                            #sheet.add_table "A1:M5", :name => 'Build Matrix', :style_info => { :name => "TableStyleMedium23" }
                           sheet.add_row [
@@ -81,13 +82,13 @@ highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell
                           datos["fecha_de_compromiso"],
                           datos["fecha_despacho"],
 
-                          valor_fecha_cumplida,
+                          vacio,
 
                           datos["cantidad"],
 
                           datos["cantidad_despacho"],
 
-                          valor_cantidad_cumplida,
+                          vacio,
                           vacio,
                           vacio,
                           vacio
