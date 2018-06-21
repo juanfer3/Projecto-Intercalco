@@ -55,6 +55,9 @@ celdas_pendientes = style.add_style(:sz => 11, :font_name => 'Century Gothic',  
             data = ""
 
                 if datos["fecha"] != nil
+
+                      puts "==========La Fecha no es Nula====================="
+
                       if datos["fecha"].length > 0
                           data = datos["fecha_de_compromiso"].to_date.strftime("%m")
                           puts"======================#{data}"
