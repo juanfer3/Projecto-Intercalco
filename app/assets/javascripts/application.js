@@ -278,7 +278,7 @@ $('.ocultar').hide()
   })
 
 
-
+/*
   $('#buscar_orden').keyup(function(){
     var data=$('#buscar_orden').val()
     $.ajax({
@@ -290,6 +290,27 @@ $('.ocultar').hide()
 
       }
     })
+  })
+*/
+
+//btn Buscar
+  $('.btn_buscar_op').click(function(){
+    var data=$('#buscar_orden').val()
+
+    if (data.length > 0) {
+      $.ajax({
+        url:'/buscador_de_ordenes/',
+        data: {data:data},
+        method:'get',
+        success: function (data){
+          console.log();
+
+        }
+      })
+    }
+
+
+
   })
 
 
