@@ -146,7 +146,7 @@
           <label for="" align="center">Selecionar Mes</label>
           <%= select_tag "mes",
               options_for_select(["Ninguno", "ENERO", "FEBRERO","MARZO", "ABRIL",
-                "MAYO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE",
+                "MAYO","JUNIO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE",
                 "DICIEMBRE"]),
               class:" col-12",
               include_blank: 'Seleccione Mes'
@@ -203,7 +203,7 @@ $(document).ready(function(){
                     <div class="input-group">
                       <%=
                       select_tag "mes",
-                      options_for_select([ "ENERO", "FEBRERO","MARZO", "ABRIL", "MAYO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE", "DICIEMBRE" ], "ENERO"),
+                      options_for_select([ "ENERO", "FEBRERO","MARZO", "ABRIL", "MAYO","JUNIO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE", "DICIEMBRE" ], "ENERO"),
                       class:"form-control input-group"
                       %>
                     </div>

@@ -449,13 +449,23 @@ class OrdenProduccion < ApplicationRecord
   def antes_de_salvar
 
 
-    
+
 
     linea = self.montaje.linea_producto.nombre.upcase
 
     self.numero_de_orden = self.numero_de_orden.upcase if self.numero_de_orden.present?
     self.orden_de_compra = self.orden_de_compra.upcase if self.orden_de_compra.present?
     self.observacion = self.observacion.upcase if self.observacion.present?
+
+
+    if self.sacar_de_inventario == true
+      self.habilitar_preprensa = false
+      self.habilitar_impresion = false
+    else
+
+    end
+
+
 
 
     if linea == "DIGITAL"

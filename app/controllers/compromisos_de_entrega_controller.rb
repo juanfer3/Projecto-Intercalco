@@ -4,7 +4,23 @@ class CompromisosDeEntregaController < ApplicationController
   # GET /compromisos_de_entrega
   # GET /compromisos_de_entrega.json
   def index
-    @compromisos_de_entrega = CompromisoDeEntrega.all.paginate(page: params[:page], per_page: 20).order('fecha_de_compromiso DESC')
+    hoy = Time.now
+    entregado = false
+    enviado = false
+    enviado_true = true
+
+    @compromisos_de_entrega = CompromisoDeEntrega.joins(:orden_produccion).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order('fecha_de_compromiso')
+    #todas_las_ordenes = CompromisoDeEntrega.joins(:orden_produccion).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
+    @compromisos_de_entrega_prioridad = CompromisoDeEntrega.joins(:orden_produccion).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND   compromisos_de_entrega.enviado = ?", hoy,entregado, enviado).order("compromisos_de_entrega.fecha_de_compromiso ")
+    @compromisos_de_entrega_enviados = CompromisoDeEntrega.joins(:orden_produccion).where("ordenes_produccion.entregado = ? AND   compromisos_de_entrega.enviado = ?", entregado, enviado_true).order("compromisos_de_entrega.fecha_de_compromiso ")
+
+    @ordenes_sin_fecha = []
+
+
+
+
+
+
   end
 
   def abrir_form_formato_de_oportunidad
