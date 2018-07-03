@@ -1,0 +1,13 @@
+<%= simple_form_for(@proceso_maquinas) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :orden_produccion %>
+    <%= f.association :contenedor_de_maquinas %>
+    <%= f.input :cerrado %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

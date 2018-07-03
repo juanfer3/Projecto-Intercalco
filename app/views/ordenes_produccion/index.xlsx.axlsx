@@ -302,9 +302,10 @@ wb.styles do |style|
        tnt_12.to_s.capitalize ,
        mall_12.to_s.capitalize,
 
-       orden.cantidad_hoja,
+
        mostrar[0],
        mostrar[1],
+       orden.cantidad_hoja,
        tiro,
        retiro,
        orden.observacion.to_s.capitalize

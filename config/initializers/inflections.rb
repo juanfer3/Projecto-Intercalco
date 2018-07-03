@@ -194,5 +194,7 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
 
   inflect.irregular 'administrador_maquina', 'administrador_maquinas'
 
+  inflect.irregular 'proceso_maquinas', 'procesos_maquinas'
+
 
 end

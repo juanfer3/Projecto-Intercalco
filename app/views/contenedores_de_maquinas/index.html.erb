@@ -14,8 +14,8 @@
   <tbody>
     <% @contenedores_de_maquinas.each do |contenedor_de_maquinas| %>
       <tr>
-        <td><%= contenedor_de_maquinas.orden_produccion %></td>
-        <td><%= contenedor_de_maquinas.maquina %></td>
+        <td><%= contenedor_de_maquinas.montaje.nombre %></td>
+        <td><%= contenedor_de_maquinas.maquina.nombre %></td>
         <td><%= link_to 'Show', contenedor_de_maquinas %></td>
         <td><%= link_to 'Edit', edit_contenedor_de_maquinas_path(contenedor_de_maquinas) %></td>
         <td><%= link_to 'Destroy', contenedor_de_maquinas, method: :delete, data: { confirm: 'Are you sure?' } %></td>

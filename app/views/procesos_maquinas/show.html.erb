@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Orden produccion:</strong>
+  <%= @proceso_maquinas.orden_produccion %>
+</p>
+
+<p>
+  <strong>Contenedor de maquinas:</strong>
+  <%= @proceso_maquinas.contenedor_de_maquinas %>
+</p>
+
+<p>
+  <strong>Cerrado:</strong>
+  <%= @proceso_maquinas.cerrado %>
+</p>
+
+<%= link_to 'Edit', edit_proceso_maquinas_path(@proceso_maquinas) %> |
+<%= link_to 'Back', procesos_maquinas_path %>

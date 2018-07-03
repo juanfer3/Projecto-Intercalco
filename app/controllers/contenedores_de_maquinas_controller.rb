@@ -69,6 +69,6 @@ class ContenedoresDeMaquinasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contenedor_de_maquinas_params
-      params.require(:contenedor_de_maquinas).permit(:orden_produccion_id, :maquina_id)
+      params.require(:contenedor_de_maquinas).permit(:montaje_id, :maquina_id)
     end
 end

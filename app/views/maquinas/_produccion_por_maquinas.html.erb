@@ -169,8 +169,23 @@
                 <% end %>
 
                 <!--ORDENES DE IMPRESION-->
+                <!--
+                <%orden.procesos_maquinas.each do |proceso|%>
+
+                  <% if proceso.contenedor_de_maquinas.maquina.nombre == @maquina.nombre %>
+
+                    <% if proceso.cerrado %>
+                        <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, change_proceso_maquina_path(proceso), remote: true %></td>
+                    <%else%>
+                        <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, change_proceso_maquina_path(proceso), remote: true %></td>
+                    <%end%>
+
+                  <%end%>
+
+                <%end%>
+                -->
+
                 <% if orden.impresion == true %>
-                  <!-- true -->
                   <td><%= link_to '<button class="btn btn-outline-success"><span><i class="ion-checkmark-round"></i></span></button>'.html_safe, confirmar_impresion_path(orden), remote: true %></td>
                 <% else %>
                   <td><%= link_to '<button class="btn btn-outline-warning"><span><i class="ion-qr-scanner"></i></span></button>'.html_safe, confirmar_impresion_path(orden), remote: true %></td>

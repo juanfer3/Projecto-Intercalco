@@ -13,16 +13,16 @@ class OrdenProduccion < ApplicationRecord
   has_many :programaciones_op_maquinas, inverse_of: :orden_produccion, dependent: :destroy
   accepts_nested_attributes_for :programaciones_op_maquinas, reject_if: :all_blank, allow_destroy: true
 
+  has_many :procesos_maquinas, inverse_of: :orden_produccion, dependent: :destroy
+  accepts_nested_attributes_for :procesos_maquinas, reject_if: :all_blank, allow_destroy: true
 
+  has_many :contenedores_de_maquinas, through: :procesos_maquinas
 
   attr_accessor :buscar, :contenedor_prueba, :contacto_nuevo, :tomar_cliente,
   :tomar_usuario, :direccion_nueva, :facturar_a_nuevo, :deshabilitar_por_linea
 
-
   before_save :antes_de_salvar
   after_create :despues_de_crear
-
-
 
 
   def self.consulta_montaje(nombre)
@@ -443,6 +443,21 @@ class OrdenProduccion < ApplicationRecord
     puts "=*******************DESHABILTAR PREPRENSA***********************=".green
     self.habilitar_preprensa = true if sacar_de_inventario == false
     puts "==========================================================".blue
+
+
+    puts "==================Id montaje: #{self.montaje_id}==============================".green
+    contenedor_maquina = ContenedorDeMaquinas.where('contenedores_de_maquinas.montaje_id = ?', self.montaje_id)
+
+    if contenedor_maquina.empty?
+    else
+      contenedor_maquina.each do |contenedor|
+        puts "  estos son los contenedores #{contenedor.montaje_id}".green
+        proceso_maquina = ProcesoMaquinas.create(contenedor_de_maquinas_id: contenedor.id, orden_produccion_id: self.id, cerrado: false);
+        if proceso_maquina.save
+          puts "Proceso guardado con exito".blue
+        end
+      end
+    end
 
   end
 

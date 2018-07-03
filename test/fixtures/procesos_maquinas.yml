@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  orden_produccion: one
+  contenedor_de_maquinas: one
+  cerrado: false
+
+two:
+  orden_produccion: two
+  contenedor_de_maquinas: two
+  cerrado: false

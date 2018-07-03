@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :procesos_maquinas
   resources :habilitar_rol_maquinas
   resources :programaciones_op_maquinas
   resources :variables_estandar
@@ -216,6 +217,7 @@ Rails.application.routes.draw do
 
   get 'ValidarClienteBusquedad', to: 'clientes#ValidarClienteBusquedad', as: :ValidarClienteBusquedad
 
+  get 'change_proceso_maquina/:id', to: 'procesos_maquinas#change_proceso_maquina', as: :change_proceso_maquina
 
 
 end
