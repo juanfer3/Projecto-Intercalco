@@ -42,9 +42,9 @@ class OrdenesProduccionController < ApplicationController
     entregado = false
     enviado = false
 
-    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto],:contacto=>[]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND contactos.user_id = ?", hoy, entregado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
-    todas_las_ordenes = OrdenProduccion.joins(:montaje,:contacto=>[]).where("ordenes_produccion.entregado = ? AND contactos.user_id = ?", entregado, current_user.id).order("ordenes_produccion.numero_de_orden")
-    @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje,:contacto=>[]).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND compromisos_de_entrega.enviado = ?  AND contactos.user_id = ?", hoy,entregado, enviado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
+    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto],:contacto=>[:cliente]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND clientes.user_id = ?", hoy, entregado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
+    todas_las_ordenes = OrdenProduccion.joins(:contacto=>[:cliente]).where("ordenes_produccion.entregado = ? AND clientes.user_id = ?", entregado, current_user.id).order("ordenes_produccion.numero_de_orden")
+    @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :contacto=>[:cliente]).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND compromisos_de_entrega.enviado = ?  AND clientes.user_id = ?", hoy,entregado, enviado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
 
     @ordenes_sin_fecha = []
 
