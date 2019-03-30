@@ -138,6 +138,7 @@ Rails.application.routes.draw do
   get 'info_coordinador/:id', to: 'ordenes_produccion#info_coordinador', as: :info_coordinador
   get 'cerrar_materiales/:id', to: 'ordenes_produccion#cerrar_materiales', as: :cerrar_materiales
 
+  get 'produccion_comercial', to: 'ordenes_produccion#produccion_comercial', as: :produccion_comercial
 
   get 'produccion_color', to: 'ordenes_produccion#produccion_color', as: :produccion_color
   get 'info_color/:id', to: 'ordenes_produccion#info_color', as: :info_color

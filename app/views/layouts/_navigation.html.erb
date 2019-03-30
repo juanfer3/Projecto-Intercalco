@@ -463,6 +463,29 @@
               </div>
             </nav>
             <!-- /Gerente  -->
+            <!-- Comercial  -->
+            <% elsif  current_user.rol.cargo == "Comercial" %>
+              <nav class="navbar navbar-light bg-light my_nav">
+                <a class="navbar-brand" href="#">
+                  Intercalco
+                </a>
+                <div class="form-inline">
+                  <a class="navbar-brand" href="#">
+                    <%= link_to 'Producción', produccion_comercial_path, class:'navbar-brand' %>
+                  </a>
+                <div class="nav-item dropdown">
+                  <button class="btn btn-outline-danger my-2 my-sm-0 nav-link dropdown-toggle "  href="#" id="navbarDropdown"
+                  role="button" data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"type=""><span  ></span><%=current_user.nombre%></button>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-divider"></div>
+                    <%= link_to '<button type="button" class="btn btn-outline-danger btn-sm btn-block my_btn_title">Logout</button>'.html_safe, destroy_user_session_path, :method=>'delete' %>
+                  </div>
+                </div>
+                </div>
+              </nav>
+              <!-- Comercial  -->
     <%end%>
 
   <%else%>

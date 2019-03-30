@@ -1,0 +1,1073 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ordenes de Producción</h1>
+
+
+<div class="col-12">
+  <div class="col-md-3 offset-md-9">
+    <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+</div>
+
+
+
+<div class="col-12">
+  <br>
+</div>
+
+
+
+<div class="my_card_contactos_form">
+
+
+              <div class="col-3">
+                          <button type="button"
+                            title="" data-toggle="popover" data-trigger="hover" data-content="buscar por parametros avanzados"
+                            class="btn btn-outline-success"
+                            id="advanced_search">
+                                      Busqueda Avanzada
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
+
+                          <button type="button"
+                          title="" data-toggle="popover" data-trigger="hover"
+                          data-content="buscar por parametros básicos"
+                            class="btn btn-outline-success"
+                            id="simple_search">
+                                      Busqueda Sencilla
+                                      <i class="ion-android-search">
+                                      </i>
+                          </button>
+
+              </div>
+
+                <div class="col-3">
+                  <div class="">
+                      <%= link_to '<button type="button" class="btn btn-dark"><i class="ion-clipboard"></i> Ver ordenes</button>'.html_safe, ordenes_produccion_path %>
+                  </div>
+                </div>
+</div>
+
+
+
+<div class="formulario_busqueda_avanzada ">
+
+
+      <%= form_tag busquda_avanzada_produccion_path, class: 'form-inline my_card_contactos_form form-inline',remote:true do%>
+      <div class="col-12">
+        <br>
+      </div>
+      <div class="col-3">
+
+
+        <div class="control-group">
+          <label for="select-beast">Seleccione Cliente:</label>
+          <%= select_tag "clientes",
+              options_for_select([ ""]),
+              class:"demo-default",
+              id:"selectize_cliente",
+              include_blank: 'Seleccione cliente'
+            %>
+
+
+				</div>
+
+      </div>
+      <script type="text/javascript">
+              $('#selectize_cliente').selectize({
+              valueField: 'id',
+              labelField: 'nombre',
+              searchField: 'nombre',
+              options: [],
+              create: false,
+              render: {
+                  option: function(cliente, escape) {
+                    return '<div>' +
+                                '<span class="title">' +
+                                    '<span class="ciccioname">' + cliente.nombre + '</span>' +
+                                '</span>' +
+                            '</div>';
+                  }
+              },
+              load: function(query, callback) {
+                  if (!query.length) return callback();
+                  $.ajax({
+                      url: '/cargar_select_advance_search.json',
+                      data: { q: query},
+                      type: 'GET',
+                      dataType: 'json',
+                      success: function(res) {
+                      callback(res.slice(0,10));
+
+
+                      }
+                  });
+              },
+              render: {
+                  option: function(item, escape) {
+
+                    if (item != null) {
+                      return `<div>` + escape(item.nombre) + `</div>`
+                    }else if(item == null) {
+
+                      var resp = "El Cliente no Exise"
+                      return `<div>` + escape(resp) + `</div>`
+                    }
+
+                  }
+                }
+
+            });
+
+
+
+
+      </script>
+
+        <div class="col-3">
+
+          <label for="" align="center">Estados</label>
+          <%= select_tag "estados",
+              options_for_select([ "Ninguno","Sin Programar", "Preprensa","Impresión", "Acabado", "Cerrado", "Inventario"]),
+              class:" col-12",
+              include_blank: 'Seleccione Estado'
+            %>
+        </div>
+        <script type="text/javascript">
+                $('#estados').selectize({
+
+                });
+        </script>
+
+
+        <div class="col-3">
+
+          <label for="" align="center">Selecionar Mes</label>
+          <%= select_tag "mes",
+              options_for_select(["Ninguno", "ENERO", "FEBRERO","MARZO", "ABRIL",
+                "MAYO","JUNIO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE",
+                "DICIEMBRE"]),
+              class:" col-12",
+              include_blank: 'Seleccione Mes'
+            %>
+        </div>
+        <script type="text/javascript">
+                $('#mes').selectize({
+
+                });
+        </script>
+
+
+          <div class="col-3">
+            <label for=""></label><br>
+            <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+              <span>Buscar... <i></i> </span>
+            <%end%>
+          </div>
+
+      <%end%>
+
+
+
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
+
+
+
+<div class="my_card_contactos_form" id="busqueda_basica">
+  <div class="col-12">
+    <br>
+  </div>
+
+          <div class="col-3">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button"> <i class="ion-ios-search-strong"></i> Go!</button>
+                </span>
+                <input type="text" class="form-control" placeholder="Buscar..." id="buscar_orden">
+              </div>
+            </div>
+
+
+
+            <div class="col-3">
+
+              <%= form_tag buscador_de_ordenes_por_mes_path, class: 'form-inline',remote:true,multipart: true do %> <br>
+
+                    <div class="input-group">
+                      <%=
+                      select_tag "mes",
+                      options_for_select([ "ENERO", "FEBRERO","MARZO", "ABRIL", "MAYO","JUNIO","JULIO", "AGOSTO", "SEPTIEMBRE","OCTUBRE", "NOVIEMBRE", "DICIEMBRE" ], "ENERO"),
+                      class:"form-control input-group"
+                      %>
+                    </div>
+                    <div class="input-group">
+                      &nbsp;&nbsp;
+                    </div>
+                    <div class="input-group">
+                      <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+                        <span>Buscar... <i></i> </span>
+                       <% end %>
+
+                    </div>
+
+              <% end %>
+
+            </div>
+
+
+
+
+
+
+            <div class="col-5 ">
+
+                  <%= form_tag buscador_de_ordenes_por_fecha_path, class: 'form-inline ', remote:true, multipart: true do %>
+
+
+                    <div class="my_card_contactos_form">
+
+                          <div class="input-group">
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                          <span class="input-group-addon " id="basic-addon2"> <i class="ion-calendar"></i> </span>
+                                          <%= text_field_tag 'fecha',"",class: "form-control", "data-date-format" => "dd/mm/yyyy", 'data-provide' => 'datepicker'%>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="input-group">
+                                      <%= button_tag type: 'submit', class: "btn btn-primary input-group-btn form-control" do %>
+                                        <span>Buscar... <i></i> </span>
+                                       <% end %>
+
+                                    </div>
+
+                            </div>
+
+                          </div>
+                    <% end %>
+
+            </div>
+
+
+
+</div>
+<br>
+<table class="table table-hover" id="myTable">
+  <thead>
+    <tr>
+      <th>Numero de orden</th>
+      <th>Línea producto</th>
+      <th>Cliente</th>
+      <th>Descripción</th>
+      <th>Linea de color</th>
+      <th>Mes</th>
+      <th class="sorter-shortDate dateFormat-ddmmyyyy tablesorter-header">Fecha compromiso</th>
+      <th></th>
+      <th colspan="4"></th>
+  </thead>
+
+  <tbody id="bodyDeOrdenes">
+
+    <!--Ordenes con fechas sin cumplir-->
+    <%@ordenes_prioridad.each do |orden_produccion| %>
+
+
+    <tr class="ocultarBodyOrdenes order_table ocultar_incumplidos color_alert">
+      <td><%= orden_produccion.numero_de_orden %></td>
+      <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
+      <td><%= orden_produccion.montaje.cliente.nombre%></td>
+      <td><%= orden_produccion.montaje.nombre %></td>
+      <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
+
+
+
+
+
+      <% if orden_produccion.compromisos_de_entrega.any? %>
+                    <!-- true -->
+
+
+
+                  <%
+
+
+
+                  %>
+                  <%cont=0%>
+                  <%@comparador_fecha = ""%>
+                  <%contador_enviados = 0%>
+
+
+
+                  <%@hallado = false%>
+                  <%@estado_data= false%>
+                  <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                          <% if fecha.fecha_de_compromiso != nil  %>
+                                      <!-- true -->
+
+
+                                          <%
+                                            fech = fecha.fecha_de_compromiso
+                                            fech.strftime("%Y/%m/%d")
+                                          %>
+
+                                          <% if fecha.enviado == true %>
+                                              <%@estado_data = true%>
+                                              <%contador_enviados = contador_enviados + 1%>
+                                              <%@cantidades = contador_enviados%>
+                                          <% end %>
+
+
+
+                                  <%if fecha.fecha_de_compromiso < Date.today
+
+                                        puts "******************Dia menor #{@dates}**********************"
+
+                                        @dates= fecha.fecha_de_compromiso
+                                        %>
+
+                                  <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                                          <%
+                                            dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                                            if dias == 0
+                                              @dates= fecha.fecha_de_compromiso
+                                              @hallado = true
+                                              puts "******************Dia igual #{@dates}**********************"
+                                            else
+                                              if @hallado == false
+                                                @dates= fecha.fecha_de_compromiso
+                                                puts "******************Dia mayor #{@dates}**********************"
+                                              end
+                                            end
+
+                                            %>
+
+
+                                  <% end %>
+
+
+                                  <% end %>
+
+                        <% end %>
+
+
+                            <% if @dates != nil %>
+                              <!-- true -->
+
+                            <%
+                                      mes = @dates.strftime("%m")
+
+
+                                      case mes
+                                      when "01"%>
+                                        <td>Enero</td>
+                                      <%when "02"%>
+                                        <td>Febrero</td>
+                                      <%when "03"%>
+                                        <td>Marzo</td>
+                                      <%when "04"%>
+                                        <td>Abril</td>
+                                      <%when "05"%>
+                                        <td>Mayo</td>
+                                      <%when "06"%>
+                                        <td>Junio</td>
+                                      <%when "07"%>
+                                        <td>Julio</td>
+                                      <%when "08"%>
+                                        <td>Agosto</td>
+                                      <%when "09"%>
+                                        <td>Septiembre</td>
+                                      <%when "10"%>
+                                        <td>Octubre</td>
+                                      <%when "11"%>
+                                        <td>Noviembre</td>
+                                      <%when "12"%>
+                                        <td>Diciembre</td>
+                                      <% end %>
+                                      <% else %>
+                                      <td>Por Definir</td>
+                                <% end %>
+
+                                  <td><%=@dates%> </td>
+
+                      <% else %>
+                      <td><p>Pendiente Por Definir Fecha</p> </td>
+                      <td><p>Pendiente Por Definir Fecha</p> </td>
+                      <% end %>
+
+      <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+                <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
+
+
+
+
+
+                  <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
+                          <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
+                            <!-- true -->
+                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                              <span class="badge badge-dark">
+                                 Inventario
+                              </span>
+                            </h6>
+                            <% else %>
+
+
+
+                                  <!-- true -->
+                                  <% if @estado_data == false || @estado_data == nil%>
+                                    <!-- true -->
+
+                                        <% if  orden_produccion.impresion == false%>
+
+                                          <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
+
+                                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                                <span class="badge badge-info">
+                                                  Preprensa
+                                                </span>
+                                              </h6>
+
+                                          <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
+
+                                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                              <span class="badge badge-warning baged_acabado">
+                                                Acabado
+                                              </span>
+                                            </h6>
+
+                                          <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
+
+                                              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                                <span class="badge badge-warning">
+                                                  Sin Programar
+                                                </span>
+                                              </h6>
+
+
+
+                                          <% end %>
+
+
+
+                                        <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-warning baged_impresion">
+                                              Impresión
+                                            </span>
+                                          </h6>
+
+                                        <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-warning baged_acabado">
+                                              Acabado
+                                            </span>
+                                          </h6>
+
+
+
+                                        <% end %>
+
+                                <% else %>
+                                <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                  <span class="badge badge-success ">
+                                    Despachos entregados: <br>
+                                    <%=@cantidades%>
+                                  </span>
+                                </h6>
+                                <% end %>
+
+                            <% end %>
+                  <% else %>
+                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                    <span class="badge badge-success ">
+                      Cerrada
+                    </span>
+                  </h6>
+                  <% end %>
+
+
+                  </td>
+
+                  <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
+    </tr>
+
+
+
+
+
+    <%end%>
+
+
+
+
+<!--ordenes sin fechas-->
+<%@ordenes_sin_fecha.each do |orden_produccion| %>
+
+
+<tr class="ocultarBodyOrdenes order_table ocultar_incumplidos ">
+  <td><%= orden_produccion.numero_de_orden %></td>
+  <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
+  <td><%= orden_produccion.montaje.cliente.nombre%></td>
+  <td><%= orden_produccion.montaje.nombre %></td>
+  <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
+
+
+
+
+
+  <% if orden_produccion.compromisos_de_entrega.any? %>
+                <!-- true -->
+
+
+
+              <%
+
+
+
+              %>
+              <%cont=0%>
+              <%@comparador_fecha = ""%>
+              <%contador_enviados = 0%>
+
+
+
+              <%@hallado = false%>
+              <%@estado_data= false%>
+              <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                      <% if fecha.fecha_de_compromiso != nil  %>
+                                  <!-- true -->
+
+
+                                      <%
+                                        fech = fecha.fecha_de_compromiso
+                                        fech.strftime("%Y/%m/%d")
+                                      %>
+
+                                      <% if fecha.enviado == true %>
+                                          <%@estado_data = true%>
+                                          <%contador_enviados = contador_enviados + 1%>
+                                          <%@cantidades = contador_enviados%>
+                                      <% end %>
+
+
+
+                              <%if fecha.fecha_de_compromiso < Date.today
+
+                                    puts "******************Dia menor #{@dates}**********************"
+
+                                    @dates= fecha.fecha_de_compromiso
+                                    %>
+
+                              <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                                      <%
+                                        dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                                        if dias == 0
+                                          @dates= fecha.fecha_de_compromiso
+                                          @hallado = true
+                                          puts "******************Dia igual #{@dates}**********************"
+                                        else
+                                          if @hallado == false
+                                            @dates= fecha.fecha_de_compromiso
+                                            puts "******************Dia mayor #{@dates}**********************"
+                                          end
+                                        end
+
+                                        %>
+
+
+                              <% end %>
+
+
+                              <% end %>
+
+                    <% end %>
+
+
+                        <% if @dates != nil %>
+                          <!-- true -->
+
+                        <%
+                                  mes = @dates.strftime("%m")
+
+
+                                  case mes
+                                  when "01"%>
+                                    <td>Enero</td>
+                                  <%when "02"%>
+                                    <td>Febrero</td>
+                                  <%when "03"%>
+                                    <td>Marzo</td>
+                                  <%when "04"%>
+                                    <td>Abril</td>
+                                  <%when "05"%>
+                                    <td>Mayo</td>
+                                  <%when "06"%>
+                                    <td>Junio</td>
+                                  <%when "07"%>
+                                    <td>Julio</td>
+                                  <%when "08"%>
+                                    <td>Agosto</td>
+                                  <%when "09"%>
+                                    <td>Septiembre</td>
+                                  <%when "10"%>
+                                    <td>Octubre</td>
+                                  <%when "11"%>
+                                    <td>Noviembre</td>
+                                  <%when "12"%>
+                                    <td>Diciembre</td>
+                                  <% end %>
+                                  <% else %>
+                                  <td>Por Definir</td>
+                            <% end %>
+
+                              <td><%=@dates%> </td>
+
+                  <% else %>
+                  <td><p>Pendiente Por Definir Fecha</p> </td>
+                  <td><p>Pendiente Por Definir Fecha</p> </td>
+                  <% end %>
+
+  <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+            <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
+
+
+
+
+
+              <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
+                      <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
+                        <!-- true -->
+                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                          <span class="badge badge-dark">
+                             Inventario
+                          </span>
+                        </h6>
+                        <% else %>
+
+
+
+                              <!-- true -->
+                              <% if @estado_data == false || @estado_data == nil%>
+                                <!-- true -->
+
+                                    <% if  orden_produccion.impresion == false%>
+
+                                      <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-info">
+                                              Preprensa
+                                            </span>
+                                          </h6>
+
+                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
+
+                                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                          <span class="badge badge-warning baged_acabado">
+                                            Acabado
+                                          </span>
+                                        </h6>
+
+                                      <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
+
+                                          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                            <span class="badge badge-warning">
+                                              Sin Programar
+                                            </span>
+                                          </h6>
+
+
+
+                                      <% end %>
+
+
+
+                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-warning baged_impresion">
+                                          Impresión
+                                        </span>
+                                      </h6>
+
+                                    <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-warning baged_acabado">
+                                          Acabado
+                                        </span>
+                                      </h6>
+
+
+
+                                    <% end %>
+
+                            <% else %>
+                            <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                              <span class="badge badge-success ">
+                                Despachos entregados: <br>
+                                <%=@cantidades%>
+                              </span>
+                            </h6>
+                            <% end %>
+
+                        <% end %>
+              <% else %>
+              <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                <span class="badge badge-success ">
+                  Cerrada
+                </span>
+              </h6>
+              <% end %>
+
+
+              </td>
+
+              <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
+</tr>
+
+
+
+
+
+<%end%>
+
+
+
+
+
+
+
+
+<!--Ordenes con fechas sin incumplir-->
+
+
+
+
+
+
+
+    <% @ordenes_produccion.each do |orden_produccion| %>
+      <tr class="ocultarBodyOrdenes">
+        <td><%= orden_produccion.numero_de_orden %></td>
+        <td><%= orden_produccion.montaje.linea_producto.nombre%></td>
+        <td><%= orden_produccion.montaje.cliente.nombre%></td>
+        <td><%= orden_produccion.montaje.nombre %></td>
+        <td><%=orden_produccion.montaje.linea_de_color.nombre%></td>
+
+
+
+
+
+        <% if orden_produccion.compromisos_de_entrega.any? %>
+                      <!-- true -->
+
+
+
+                    <%
+
+
+
+                		%>
+                    <%cont=0%>
+                    <%@comparador_fecha = ""%>
+                    <%contador_enviados = 0%>
+
+
+
+                    <%@hallado = false%>
+                    <%@estado_data= false%>
+                    <% orden_produccion.compromisos_de_entrega.each do  |fecha| %>
+
+                                      <% if fecha.fecha_de_compromiso != nil %>
+                                        <!-- true -->
+
+
+                                            <%
+                                              fech = fecha.fecha_de_compromiso
+                                              fech.strftime("%Y/%m/%d")
+                                            %>
+
+                                            <% if fecha.enviado == true %>
+                                                <%@estado_data = true%>
+                                                <%contador_enviados = contador_enviados + 1%>
+                                                <%@cantidades = contador_enviados%>
+                                            <% end %>
+
+
+
+                                    <%if fecha.fecha_de_compromiso < Date.today
+
+                                          puts "******************Dia menor #{@dates}**********************"
+
+                                          @dates= fecha.fecha_de_compromiso
+                                          %>
+
+                                    <% elsif fecha.fecha_de_compromiso >= Date.today %>
+
+                                            <%
+                                              dias = (fecha.fecha_de_compromiso - Date.today).to_i
+
+
+                                              if dias == 0
+                                                @dates= fecha.fecha_de_compromiso
+                                                @hallado = true
+                                                puts "******************Dia igual #{@dates}**********************"
+                                              else
+                                                if @hallado == false
+                                                  @dates= fecha.fecha_de_compromiso
+                                                  puts "******************Dia mayor #{@dates}**********************"
+                                                end
+                                              end
+
+                                              %>
+
+
+                                    <% end %>
+
+
+                                    <% end %>
+
+                              <% end %>
+
+
+                              <% if @dates != nil %>
+                                <!-- true -->
+
+                              <%
+                                        mes = @dates.strftime("%m")
+
+
+                                        case mes
+                                        when "01"%>
+                                          <td>Enero</td>
+                                        <%when "02"%>
+                                          <td>Febrero</td>
+                                        <%when "03"%>
+                                          <td>Marzo</td>
+                                        <%when "04"%>
+                                          <td>Abril</td>
+                                        <%when "05"%>
+                                          <td>Mayo</td>
+                                        <%when "06"%>
+                                          <td>Junio</td>
+                                        <%when "07"%>
+                                          <td>Julio</td>
+                                        <%when "08"%>
+                                          <td>Agosto</td>
+                                        <%when "09"%>
+                                          <td>Septiembre</td>
+                                        <%when "10"%>
+                                          <td>Octubre</td>
+                                        <%when "11"%>
+                                          <td>Noviembre</td>
+                                        <%when "12"%>
+                                          <td>Diciembre</td>
+                                        <% end %>
+                                        <% else %>
+                                        <td>Por Definir</td>
+                                  <% end %>
+
+                                    <td><%=@dates.strftime("%d/%m/%Y")%> </td>
+
+                        <% else %>
+                        <td><p>Pendiente Por Definir Fecha</p> </td>
+                        <td><p>Pendiente Por Definir Fecha</p> </td>
+                        <% end %>
+
+        <!-- ---------------------Estado orden_produccion Bageds ------------------------------------ -->
+
+
+        <td id=<%="estado_orden_produccion#{orden_produccion.id}"%>>
+
+
+
+
+
+          <% if  orden_produccion.entregado == false || orden_produccion.entregado == nil %>
+                  <% if orden_produccion.sacar_de_inventario==true &&  orden_produccion.acabado== false%>
+                    <!-- true -->
+                    <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                      <span class="badge badge-dark">
+                         Inventario
+                      </span>
+                    </h6>
+                    <% else %>
+
+
+
+                          <!-- true -->
+                          <% if @estado_data == false || @estado_data == nil%>
+                            <!-- true -->
+
+                                <% if  orden_produccion.impresion == false%>
+
+                                  <% if orden_produccion.pantalla == true || orden_produccion.color === true || orden_produccion.corte_material=== true && orden_produccion.acabado == false%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-info">
+                                          Preprensa
+                                        </span>
+                                      </h6>
+
+                                  <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false && orden_produccion.acabado == true%>
+
+                                    <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                      <span class="badge badge-warning baged_acabado">
+                                        Acabado
+                                      </span>
+                                    </h6>
+
+                                  <%elsif orden_produccion.pantalla == false && orden_produccion.color === false && orden_produccion.corte_material=== false%>
+
+                                      <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                        <span class="badge badge-warning">
+                                          Sin Programar
+                                        </span>
+                                      </h6>
+
+
+
+                                  <% end %>
+
+
+
+                                <%elsif orden_produccion.impresion == true && orden_produccion.acabado == false%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                    <span class="badge badge-warning baged_impresion">
+                                      Impresión
+                                    </span>
+                                  </h6>
+
+                                <%elsif orden_produccion.impresion == true && orden_produccion.acabado == true%>
+
+                                  <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                                    <span class="badge badge-warning baged_acabado">
+                                      Acabado
+                                    </span>
+                                  </h6>
+
+
+
+                                <% end %>
+
+                        <% else %>
+                        <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+                          <span class="badge badge-success ">
+                            Despachos entregados: <br>
+                            <%=@cantidades%>
+                          </span>
+                        </h6>
+                        <% end %>
+
+                    <% end %>
+          <% else %>
+          <h6 id=<%="quitar_estado_orden_produccion#{orden_produccion.id}"%>>
+            <span class="badge badge-success ">
+              Cerrada
+            </span>
+          </h6>
+          <% end %>
+
+
+          </td>
+
+        <td><%= link_to '<button class="btn btn-outline-info"><span><i class="ion-stats-bars"></i></span></button>'.html_safe, orden_produccion, remote: true %></td>
+
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<div class="col-12">
+  <div class="col-md-3 offset-md-9">
+    <%= will_paginate @ordenes_produccion, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  </div>
+</div>
+
+
+
+<!-- Modal Excel -->
+
+<div class="modal fade fullscreen-modal " id="modalDetalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content col-12">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Información Ordenes De Producción</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="" id="contenidoModal">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+if (num_hoja > 11) {
+  $('.ocultar_incumplidos').hide()
+
+}else {
+
+  $('.ocultar_incumplidos').show()
+
+}
+
+
+
+$('#myTable').tablesorter({
+
+          headers: {
+              //identificar columna column
+              6: { sorter: "ddmmyy" },
+          },
+          // initial sort on the date column
+          sortList: [[7, 0]],
+
+          // include zebra and any other widgets
+          widgets: ['zebra', 'columns']
+
+});
+
+</script>

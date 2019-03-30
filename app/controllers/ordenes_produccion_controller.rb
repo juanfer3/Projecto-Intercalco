@@ -10,44 +10,60 @@ class OrdenesProduccionController < ApplicationController
     entregado = false
     enviado = false
 
-  @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso")
-  todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
-  @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND compromisos_de_entrega.enviado = ?", hoy,entregado, enviado).order("compromisos_de_entrega.fecha_de_compromiso")
-   @ordenes_sin_fecha = []
-   #iteracion 1
-   todas_las_ordenes = todas_las_ordenes.sort_by{|a| a.compromisos_de_entrega.sort_by{|b| b["fecha_de_compromiso"].to_s.split('/') } }
 
-   todas_las_ordenes.uniq.each do |op|
-           #if 2
-           puts "********************interando ordenes********************".green
+      @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ?", hoy, entregado).order("compromisos_de_entrega.fecha_de_compromiso")
+      todas_las_ordenes = OrdenProduccion.joins(:montaje).where("ordenes_produccion.entregado = ?", entregado).order("ordenes_produccion.numero_de_orden")
+      @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND compromisos_de_entrega.enviado = ?", hoy,entregado, enviado).order("compromisos_de_entrega.fecha_de_compromiso")
 
-          if op.compromisos_de_entrega.empty?
-             puts "*****************Numero de orde : #{op.numero_de_orden}**********************".yellow
-             @ordenes_sin_fecha << op
-          else
+    @ordenes_sin_fecha = []
 
+    todas_las_ordenes = todas_las_ordenes.sort_by{|a| a.compromisos_de_entrega.sort_by{|b| b["fecha_de_compromiso"].to_s.split('/') } }
+      todas_las_ordenes.uniq.each do |op|
+            if op.compromisos_de_entrega.empty?
+               @ordenes_sin_fecha << op
+            else
 
-
-            #if 1
-          end
-
-       #iteracion 1
-     end
+            end
+       end
 
 
-    respond_to do |format|
-      format.html
-      format.js
-      format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment; filename="OrdenesDeProduccion.xlsx"'
-      }
-    end
+      respond_to do |format|
+        format.html
+        format.js
+        format.xlsx {
+          response.headers['Content-Disposition'] = 'attachment; filename="OrdenesDeProduccion.xlsx"'
+        }
+      end
   end
 
 
+  def produccion_comercial
+    hoy = Time.now
+    entregado = false
+    enviado = false
+
+    @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto],:contacto=>[]).paginate(page: params[:page], per_page: 20).where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND contactos.user_id = ?", hoy, entregado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
+    todas_las_ordenes = OrdenProduccion.joins(:montaje,:contacto=>[]).where("ordenes_produccion.entregado = ? AND contactos.user_id = ?", entregado, current_user.id).order("ordenes_produccion.numero_de_orden")
+    @ordenes_prioridad = OrdenProduccion.joins(:compromisos_de_entrega, :montaje,:contacto=>[]).where("compromisos_de_entrega.fecha_de_compromiso < ? AND   ordenes_produccion.entregado = ? AND compromisos_de_entrega.enviado = ?  AND contactos.user_id = ?", hoy,entregado, enviado, current_user.id).order("compromisos_de_entrega.fecha_de_compromiso")
+
+    @ordenes_sin_fecha = []
+
+    todas_las_ordenes = todas_las_ordenes.sort_by{|a| a.compromisos_de_entrega.sort_by{|b| b["fecha_de_compromiso"].to_s.split('/') } }
+      todas_las_ordenes.uniq.each do |op|
+            if op.compromisos_de_entrega.empty?
+               @ordenes_sin_fecha << op
+            else
+
+            end
+       end
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def cambiar_preprensa
     @orden_produccion = OrdenProduccion.find(params[:id])
-
     puts"CONTROLLER"
     respond_to do |format|
       if @orden_produccion.habilitar_preprensa == true
@@ -61,13 +77,9 @@ class OrdenesProduccionController < ApplicationController
   end
 
   def produccion_digital
-
-
   hoy = Time.now
   entregado = false
-
   rol = current_user.rol_id
-
   @ordenes_produccion = OrdenProduccion.joins(:compromisos_de_entrega, :montaje => [:linea_producto, :contenedores_de_maquinas=>[:maquina => [:habilitar_rol_maquinas]]])
         .paginate(page: params[:page], per_page: 20)
         .where("compromisos_de_entrega.fecha_de_compromiso >= ? AND ordenes_produccion.entregado = ? AND  habilitar_rol_maquinas.rol_id = ?", hoy, entregado, rol)
@@ -101,13 +113,9 @@ class OrdenesProduccionController < ApplicationController
 
        #iteracion 1
      end
-
-
     respond_to do |format|
       format.html
     end
-
-
   end
 
 
