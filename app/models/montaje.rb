@@ -30,7 +30,7 @@ class Montaje < ApplicationRecord
   has_many :contenedores_de_maquinas, inverse_of: :montaje, dependent: :destroy
   accepts_nested_attributes_for :contenedores_de_maquinas, reject_if: :all_blank, allow_destroy: true
 
-  has_many :maquinas, through: :contenedores_de_maquinas
+  has_many :maquinas, through: :contenedores_de_maquinas, dependent: :destroy
 
 
 

@@ -146,10 +146,9 @@ end
 
   # GET /montajes/new
   def new
+    @malla_all = Malla.all.order("nombre")
 
-    @malla_my_order = Malla.all.order("nombre")
-
-    @malla_my_order = @malla_my_order.sort_by { |x| -(x.nombre[/\d+/].to_i) }
+    @malla_my_order = @malla_all.sort_by { |x| -(x.nombre[/\d+/].to_i) }
 
 
 
@@ -273,7 +272,7 @@ end
     end
     @montaje = Montaje.new(montaje_params)
     respond_to do |format|
-      if @montaje.save
+      if @montaje.save(validate: false)
         format.html { redirect_to ordenes_produccion_path notice: 'Inserción creada con éxito' }
         format.json { render :show, status: :created, location: @montaje }
       else

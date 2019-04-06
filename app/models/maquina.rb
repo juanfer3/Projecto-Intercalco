@@ -3,6 +3,9 @@ class Maquina < ApplicationRecord
 
 
 
+  has_many :contenedores_de_maquinas, inverse_of: :maquina, dependent: :destroy
+  accepts_nested_attributes_for :contenedores_de_maquinas, reject_if: :all_blank, allow_destroy: true
+
 
   has_many :habilitar_rol_maquinas, inverse_of: :maquina, dependent: :destroy
   accepts_nested_attributes_for :habilitar_rol_maquinas, reject_if: :all_blank, allow_destroy: true

@@ -7,8 +7,10 @@
   </td>
 
   <td>
+    <% if @malla_my_order != nil  %>
     <%= f.select :malla_id, @malla_my_order.map {|i| [i.nombre , i.id]},
     {}, {required: 'true', autofocus: 'true', class: 'js-example-tags form-control value_malla_add' } %>
+    <%end%>
   </td>
 
   <td>

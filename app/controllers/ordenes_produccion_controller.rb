@@ -779,7 +779,7 @@ end
     @orden_produccion = OrdenProduccion.new(orden_produccion_params)
 
     respond_to do |format|
-      if @orden_produccion.save
+      if @orden_produccion.save(validate: false)
         format.html { redirect_to ordenes_produccion_path, notice: 'Orden de produccion Creada.' }
         format.json { render :show, status: :created, location: @orden_produccion }
         format.js

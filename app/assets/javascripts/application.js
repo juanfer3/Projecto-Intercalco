@@ -519,6 +519,7 @@ $("#factura_nuevo").change(function(){
 
       $(".ContenedorContactoNuevo").hide()
       $("#Contacto_nuevo_contenedor").hide()
+
     }else {
 
       $('#contenedorClienteExistente').show()
@@ -629,19 +630,9 @@ $("#contacto_nuevo-ocultar").hide()
       else {
 
         cantidad_hojas = parseFloat(cantidad_hojas)
-
-
         tamano_por_hojas = parseFloat(tamano_por_hojas)
-
-
         var tamanos_total = cantidad_hojas * tamano_por_hojas
-
         $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val(tamanos_total)
-
-
-
-
-
         var tama_total= $("#montaje_ordenes_produccion_attributes_0_tamanos_total").val()
         var cavidad = $("#montaje_ordenes_produccion_attributes_0_cavidad").val()
         if (tama_total.length <= 0 && cavidad.length <=0) {
@@ -1680,13 +1671,9 @@ $("#montaje_tiro").change(function(){
 
 
 $("#montaje_retiro").change(function(){
-
-
   if( $('#montaje_retiro').prop('checked') ) {
-
     $('#div_tintas_retiro').show()
     $(".js-example-tags").select2({
-
 
     })
   }else {
@@ -1794,34 +1781,25 @@ $('#busqueda_fop').on("select2:select", function (e) {
       var data_length = 1;
 
       for (var i = 0; i < data_length; i++) {
-
-
-
-
         var vendedor_id = data["0"]["montaje"]["user_id"];
         var maquina = data["0"] ["maquina"]["nombre"]
         var montaje_id = data["0"] ["montaje"]["id"]
         var linea_producto = data ["0"]["linea_producto"]["nombre"]
         var linea_de_color = data ["0"]["linea_de_color"]["nombre"]
         var material = data ["0"]["material"]
-        var cliente_id = data ["0"]["montaje"]["cliente_id"]
-
-
+        var cliente_id = data ["0"]["montaje"]["cliente_id"
         $('#op_maquina').val(maquina)
         $('#op_linea_producto').val(linea_producto)
         $('#op_linea_de_color').val(linea_de_color)
         $('#op_material').val(material)
-
         $.ajax({
           url:'/clientes/'+cliente_id+'.json',
           method:'get',
           success: function (data){
             var cliente_lentgh = 1;
             for (var i = 0; i < cliente_lentgh; i++) {
-
               var cliente = data ["nombre"]
               $('#op_cliente').val(cliente)
-
             }
           }
         })
@@ -1832,10 +1810,8 @@ $('#busqueda_fop').on("select2:select", function (e) {
           success: function (data){
             var vendedor_lentgh = 1;
             for (var i = 0; i < vendedor_lentgh; i++) {
-
               var vendedor = data ["nombre"]
               $('#op_vendedor').val(vendedor)
-
             }
           }
         })
@@ -1846,33 +1822,19 @@ $('#busqueda_fop').on("select2:select", function (e) {
           success: function (data){
             var tintas_lentgh = 1;
             for (var i = 0; i < tintas_lentgh; i++) {
-
               var Tintas_Tiro = data ["tintas_fop_tiro"].length
-
               for (var j = 0; j < Tintas_Tiro; j++) {
-
                 var Tintas = data ["tintas_fop_tiro"][j]["descripcion"]
                 var T_id = data ["tintas_fop_tiro"][j]["id"]
-
-
-
                 var contenedor = "<div class='my_card_produccion col-6'><div class='col-12'></div><div class='card col-12'><ul class='list-group list-group-flush'><li class='list-group-item container my_card_produccion'><div class=''><div><strong>Tinta:</strong></div></div><div class='col-3'><strong>Malla:</strong></div></li><li class='list-group-item container my_card_produccion'><div class='col-9'><p>"+Tintas+"</p></div><div class='col-3'><p class='m"+T_id+"'></p></div></li></ul></div></div>"
-
                 $("#AgregarTintaTiro").append(contenedor)
                 console.log(Tintas);
-
-
-
                 $.ajax({
                   url:'/mallas/'+malla_id+'.json',
                   method:'get',
                   success: function (data){
                     var vendedor_lentgh = 1;
                     for (var i = 0; i < vendedor_lentgh; i++) {
-
-
-
-
 
                     }
                   }
