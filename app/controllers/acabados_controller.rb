@@ -6,6 +6,7 @@ class AcabadosController < ApplicationController
   def index
     @acabados = Acabado.all
   end
+  
 
   # GET /acabados/1
   # GET /acabados/1.json
